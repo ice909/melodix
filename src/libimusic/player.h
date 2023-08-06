@@ -4,6 +4,7 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QObject>
+#include <QTime>
 
 class Player : public QObject
 {
@@ -20,11 +21,19 @@ public:
     Q_INVOKABLE QString getName();
     Q_INVOKABLE QString getArtist();
     Q_INVOKABLE QString getPic();
+    Q_INVOKABLE qint64 getPosition();
+    Q_INVOKABLE qint64 getDuration();
+    Q_INVOKABLE QString getFormatPosition();
+    Q_INVOKABLE QString getFormatDuration();
     Q_INVOKABLE bool getPlayState();
 signals:
     void metaChanged();
     void playStateChanged();
+    void durationChanged();
+    void positionChanged();
 public slots:
+    void onPositionChanged(qint64 new_position);
+    void onDurationChanged(qint64 duration);
 
 private:
     QMediaPlayer *m_player = nullptr;
@@ -32,6 +41,8 @@ private:
     QString m_name;
     QString m_artist;
     QString m_pic;
+    qint64 m_position;
+    qint64 m_duration;
 };
 
 #endif // PLAYER_H

@@ -4,6 +4,8 @@ Player::Player(QObject *parent)
     : QObject(parent)
 {
     m_player = new QMediaPlayer(this);
+    connect(m_player, &QMediaPlayer::positionChanged, this, &Player::onPositionChanged);
+    connect(m_player, &QMediaPlayer::durationChanged, this, &Player::onDurationChanged);
 }
 
 void Player::addSignleToPlaylist(const QString &url,
@@ -62,4 +64,38 @@ QString Player::getPic()
 bool Player::getPlayState()
 {
     return m_playState;
+}
+
+void Player::onPositionChanged(qint64 new_position)
+{
+    m_position = new_position;
+    emit positionChanged();
+}
+
+void Player::onDurationChanged(qint64 duration)
+{
+    m_duration = duration;
+    emit durationChanged();
+}
+
+qint64 Player::getDuration()
+{
+    return m_duration;
+}
+
+qint64 Player::getPosition()
+{
+    return m_position;
+}
+
+QString Player::getFormatDuration()
+{
+    QTime time = QTime::fromMSecsSinceStartOfDay(m_duration);
+    return time.toString("m:ss");
+}
+
+QString Player::getFormatPosition()
+{
+    QTime time = QTime::fromMSecsSinceStartOfDay(m_position);
+    return time.toString("m:ss");
 }

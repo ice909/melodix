@@ -13,6 +13,8 @@ FloatingPanel {
     property string artistStr: ""
     property string picUrl: ""
     property bool favorite: false
+    property int currentPosition: 0
+    property int duration: 0
     property string totalTime: "0:00"
     property string currentTime: "0:00"
     property bool iMute: false
@@ -37,11 +39,23 @@ FloatingPanel {
         playStatus = player.getPlayState();
     }
 
+    function onDurationChanged() {
+        duration = player.getDuration();
+        totalTime = player.getFormatDuration();
+    }
+
+    function onPositionChanged() {
+        currentPosition = player.getPosition();
+        currentTime = player.getFormatPosition();
+    }
+
     height: 60
     width: parent.width
     Component.onCompleted: {
         player.metaChanged.connect(onMetaChanged);
         player.playStateChanged.connect(onPlayStateChanged);
+        player.durationChanged.connect(onDurationChanged);
+        player.positionChanged.connect(onPositionChanged);
     }
 
     anchors {
@@ -239,6 +253,9 @@ FloatingPanel {
         Slider {
             width: parent.width - (coverRectWidth + infoRectWidth + playControlRectWidth + rightAreaRectWidth + contentItemSpacing * 4 + leftPaddingWidth + rightPaddingWidth)
             anchors.verticalCenter: parent.verticalCenter
+            from: 0
+            value: currentPosition
+            to: duration
         }
 
         Rectangle {
