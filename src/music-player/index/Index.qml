@@ -1,4 +1,5 @@
 import "."
+import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -7,6 +8,7 @@ import org.deepin.dtk 1.0
 Item {
     id: root
 
+    property bool initing: true
     property int scrollWidth: rootWindow.width - 40
 
     function getRecommendMV() {
@@ -14,6 +16,7 @@ Item {
             network.onSendReplyFinished.disconnect(onReply);
             //console.log(JSON.stringify(JSON.parse(reply)))
             recommendMV.lists = JSON.parse(reply).result;
+            initing = false;
         }
 
         network.onSendReplyFinished.connect(onReply);
@@ -29,7 +32,7 @@ Item {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/top/artists?limit=6");
+        network.makeRequest("/top/artists?limit=5");
     }
 
     function getRecommendNewSongs() {
@@ -125,6 +128,16 @@ Item {
                 height: 150
             }
 
+        }
+
+    }
+
+    Rectangle {
+        visible: initing
+        anchors.fill: root
+
+        Loading {
+            anchors.centerIn: parent
         }
 
     }

@@ -10,14 +10,14 @@ Rectangle {
         id: gridLayout
 
         anchors.fill: parent
-        columns: 6
+        columns: 5
         columnSpacing: 10
 
         Repeater {
             id: repeater
 
             Rectangle {
-                width: (parent.width - 50) * 0.166667
+                width: (parent.width - 40) * 0.2
                 height: parent.height + 20
                 color: "transparent"
 

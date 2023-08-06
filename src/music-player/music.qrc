@@ -19,6 +19,7 @@
         <file>titlebar/TabButton.qml</file>
 
         <file>widgets/RoundedImage.qml</file>
+        <file>widgets/Loading.qml</file>
 
         <file>toolbar/Toolbar.qml</file>
     </qresource>
