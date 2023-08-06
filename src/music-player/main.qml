@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
+import network 1.0
 import org.deepin.dtk 1.0
 import "router"
 import "titlebar"
@@ -36,7 +37,8 @@ ApplicationWindow {
             anchors.fill: parent
 
             Loader {
-                anchors.fill: parent
+                width: parent.width
+                height: parent.height - 50
             }
 
         }
@@ -73,6 +75,10 @@ ApplicationWindow {
         }
 
         target: Router
+    }
+
+    Network {
+        id: network
     }
 
     header: MyTitlebar {

@@ -3,6 +3,10 @@
         <file>main.qml</file>
         
         <file>index/Index.qml</file>
+        <file>index/RecommendPlaylist.qml</file>
+        <file>index/RecommendNewSongs.qml</file>
+        <file>index/HotSigner.qml</file>
+        <file>index/RecommendMV.qml</file>
 
         <file>discover/Discover.qml</file>
 
@@ -13,5 +17,7 @@
 
         <file>titlebar/MyTitlebar.qml</file>
         <file>titlebar/TabButton.qml</file>
+
+        <file>widgets/RoundedImage.qml</file>
     </qresource>
 </RCC>
