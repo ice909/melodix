@@ -1,6 +1,17 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>mainwindow/MainWindow.qml</file>
+        
+        <file>index/Index.qml</file>
+
+        <file>discover/Discover.qml</file>
+
+        <file>library/Library.qml</file>
+
+        <file>router/Router.qml</file>
+        <file>router/qmldir</file>
+
+        <file>titlebar/MyTitlebar.qml</file>
+        <file>titlebar/TabButton.qml</file>
     </qresource>
 </RCC>
