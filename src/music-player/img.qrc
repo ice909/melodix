@@ -20,5 +20,6 @@
         <file>dsg/icons/toolbar_volume-.dci</file>
         <file>dsg/icons/toolbar_volume+_checked.dci</file>
         <file>dsg/icons/toolbar_volume+.dci</file>
+        <file>dsg/icons/playlist_delete.dci</file>
     </qresource>
 </RCC>

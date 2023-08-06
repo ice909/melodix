@@ -31,6 +31,12 @@ FloatingPanel {
     property var modeIcon: ["toolbar_music_repeatcycle", "toolbar_music_sequence", "toolbar_music_repeat", "toolbar_music_shuffle"]
     property var modeIconTooltTip: ["单曲循环", "顺序播放", "循环播放", "随机播放"]
 
+    signal playlistBtnClicked()
+
+    function updatePlaylistBtnStatus(checked) {
+        listBtn.checked = checked;
+    }
+
     function onMetaChanged() {
         songTitle = player.getName();
         artistStr = player.getArtist();
@@ -404,6 +410,7 @@ FloatingPanel {
                     icon.height: 36
                     checkable: true
                     onClicked: {
+                        playlistBtnClicked();
                     }
 
                     ToolTip {

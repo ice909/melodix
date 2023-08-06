@@ -23,5 +23,7 @@
 
         <file>toolbar/Toolbar.qml</file>
         <file>toolbar/VolumeSlider.qml</file>
+
+        <file>playlist/Playlist.qml</file>
     </qresource>
 </RCC>

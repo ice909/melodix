@@ -4,6 +4,7 @@ import QtQuick.Window 2.11
 import network 1.0
 import org.deepin.dtk 1.0
 import player 1.0
+import "playlist"
 import "router"
 import "titlebar"
 import "toolbar"
@@ -11,6 +12,7 @@ import "toolbar"
 ApplicationWindow {
     id: rootWindow
 
+    property bool isPlaylistShow: false
     property int windowMiniWidth: 1070
     property int windowMiniHeight: 680
 
@@ -24,6 +26,19 @@ ApplicationWindow {
     DWindow.enabled: true
     DWindow.alphaBufferSize: 8
     flags: Qt.Window | Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint | Qt.WindowTitleHint
+    onActiveChanged: {
+        //窗口显示完成后加载播放列表
+        if (active && playlistLoader.status === Loader.Null) {
+            playlistLoader.setSource("playlist/Playlist.qml");
+            playlistLoader.item.width = 320;
+            playlistLoader.item.height = rootWindow.height - 90 - 50;
+            playlistLoader.item.y = height - playlistLoader.item.height - 80 - 50;
+            playlistLoader.item.playlistHided.connect(function() {
+                toolbox.updatePlaylistBtnStatus(false);
+                isPlaylistShow = false;
+            });
+        }
+    }
 
     Repeater {
         id: pages
@@ -55,6 +70,7 @@ ApplicationWindow {
     }
 
     Toolbar {
+        id: toolbox
     }
 
     Player {
@@ -88,6 +104,22 @@ ApplicationWindow {
 
     Network {
         id: network
+    }
+
+    Loader {
+        id: playlistLoader
+    }
+
+    Connections {
+        id: toolboxConnect
+
+        target: toolbox
+        onPlaylistBtnClicked: {
+            if (playlistLoader.status === Loader.Ready) {
+                playlistLoader.item.playlistRaise();
+                isPlaylistShow = true;
+            }
+        }
     }
 
     header: MyTitlebar {
