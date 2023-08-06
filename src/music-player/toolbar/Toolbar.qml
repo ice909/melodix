@@ -29,6 +29,7 @@ FloatingPanel {
     property int playMode: 3
     property bool isVolSliderShow: false
     property var modeIcon: ["toolbar_music_repeatcycle", "toolbar_music_sequence", "toolbar_music_repeat", "toolbar_music_shuffle"]
+    property var modeIconTooltTip: ["单曲循环", "顺序播放", "循环播放", "随机播放"]
 
     function onMetaChanged() {
         songTitle = player.getName();
@@ -207,6 +208,7 @@ FloatingPanel {
                     checkable: true
                     enabled: songTitle.length === 0 ? false : true
                     onClicked: {
+                        player.previous();
                     }
 
                     ToolTip {
@@ -252,6 +254,7 @@ FloatingPanel {
                     checkable: true
                     enabled: songTitle.length === 0 ? false : true
                     onClicked: {
+                        player.next();
                     }
 
                     ToolTip {
@@ -277,6 +280,12 @@ FloatingPanel {
                             playMode++;
                         player.setPlaybackMode(playMode);
                     }
+
+                    ToolTip {
+                        visible: playModeBtn.hovered
+                        text: modeIconTooltTip[playMode - 1]
+                    }
+
                 }
 
             }
@@ -372,7 +381,6 @@ FloatingPanel {
                     icon.width: 36
                     icon.height: 36
                     checkable: true
-                    //ColorSelector.pressed: true
                     onClicked: {
                         isVolSliderShow = !isVolSliderShow;
                         if (volSliderLoader.status === Loader.Null) {

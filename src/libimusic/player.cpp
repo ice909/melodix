@@ -33,12 +33,11 @@ Player::Player(QObject *parent)
     m_player->setPlaylist(m_playlist);
     m_playlist->setPlaybackMode(m_playbackMode);
 
-    qDebug() << "m_playbackMode:" << m_playbackMode;
-
     // 设置音量
     m_player->setVolume(m_volume);
     connect(m_player, &QMediaPlayer::positionChanged, this, &Player::onPositionChanged);
     connect(m_player, &QMediaPlayer::durationChanged, this, &Player::onDurationChanged);
+    connect(m_playlist, &QMediaPlaylist::currentIndexChanged, this, &Player::onCurrentIndexChanged);
 }
 
 void Player::addSignleToPlaylist(const QString &url,
@@ -46,11 +45,16 @@ void Player::addSignleToPlaylist(const QString &url,
                                  const QString &artist,
                                  const QString &pic)
 {
-    m_player->setMedia(QUrl(url));
-    m_name = name;
-    m_artist = artist;
-    m_pic = pic;
-    emit metaChanged();
+    m_playlist->addMedia(QUrl(url));
+    m_currentSong.append(name);
+    m_currentArtist.append(artist);
+    m_currentImg.append(pic);
+    playNewlyAddedSong();
+}
+
+void Player::playNewlyAddedSong()
+{
+    m_playlist->setCurrentIndex(m_playlist->mediaCount() - 1);
     play();
 }
 
@@ -79,19 +83,42 @@ void Player::stop()
     emit playStateChanged();
 }
 
+void Player::next()
+{
+    pause();
+    m_playlist->next();
+    play();
+}
+
+void Player::previous()
+{
+    pause();
+    m_playlist->previous();
+    play();
+}
+
 QString Player::getName()
 {
-    return m_name;
+    if (m_currentArtist.length() > 0)
+        return m_currentSong[m_playlist->currentIndex()];
+    else
+        return "";
 }
 
 QString Player::getArtist()
 {
-    return m_artist;
+    if (m_currentArtist.length() > 0)
+        return m_currentArtist[m_playlist->currentIndex()];
+    else
+        return "";
 }
 
 QString Player::getPic()
 {
-    return m_pic;
+    if (m_currentImg.length() > 0)
+        return m_currentImg[m_playlist->currentIndex()];
+    else
+        return "";
 }
 
 bool Player::getPlayState()
@@ -183,4 +210,9 @@ void Player::setPlaybackMode(int mode)
     }
     m_playlist->setPlaybackMode(m_playbackMode);
     m_settings->setValue("Playback/PlaybackMode", mode);
+}
+
+void Player::onCurrentIndexChanged(int index)
+{
+    emit metaChanged();
 }

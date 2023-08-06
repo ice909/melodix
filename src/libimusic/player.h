@@ -16,6 +16,8 @@ public:
     Q_INVOKABLE void play();
     Q_INVOKABLE void pause();
     Q_INVOKABLE void stop();
+    Q_INVOKABLE void next();
+    Q_INVOKABLE void previous();
     Q_INVOKABLE void addSignleToPlaylist(const QString &url,
                                          const QString &name,
                                          const QString &artist,
@@ -34,6 +36,8 @@ public:
     Q_INVOKABLE bool getMute();
     Q_INVOKABLE int getPlaybackMode();
     Q_INVOKABLE void setPlaybackMode(int mode);
+
+    void playNewlyAddedSong();
 signals:
     void metaChanged();
     void playStateChanged();
@@ -42,15 +46,16 @@ signals:
 public slots:
     void onPositionChanged(qint64 new_position);
     void onDurationChanged(qint64 duration);
+    void onCurrentIndexChanged(int index);
 
 private:
     QSettings *m_settings = nullptr;
     QMediaPlayer *m_player = nullptr;
     QMediaPlaylist *m_playlist = nullptr;
     bool m_playState = false;
-    QString m_name;
-    QString m_artist;
-    QString m_pic;
+    QList<QString> m_currentImg;
+    QList<QString> m_currentSong;
+    QList<QString> m_currentArtist;
     qint64 m_position;
     qint64 m_duration;
     int m_volume;
