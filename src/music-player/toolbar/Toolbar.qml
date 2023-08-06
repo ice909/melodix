@@ -11,6 +11,7 @@ FloatingPanel {
 
     property string songTitle: ""
     property string artistStr: ""
+    property string picUrl: ""
     property bool favorite: false
     property string totalTime: "0:00"
     property string currentTime: "0:00"
@@ -22,12 +23,26 @@ FloatingPanel {
     property int infoRectWidth: 142
     property int playControlRectWidth: 220
     property int rightAreaRectWidth: 228
-    property int playStatus: Global.Idle
+    property bool playStatus: false
     property int playMode: Global.RepeatNull
     property var modeIcon: ["toolbar_music_sequence", "toolbar_music_repeat", "toolbar_music_repeatcycle", "toolbar_music_shuffle"]
 
+    function onMetaChanged() {
+        songTitle = player.getName();
+        artistStr = player.getArtist();
+        picUrl = player.getPic();
+    }
+
+    function onPlayStateChanged() {
+        playStatus = player.getPlayState();
+    }
+
     height: 60
     width: parent.width
+    Component.onCompleted: {
+        player.metaChanged.connect(onMetaChanged);
+        player.playStateChanged.connect(onPlayStateChanged);
+    }
 
     anchors {
         left: parent.left
@@ -56,7 +71,7 @@ FloatingPanel {
                 width: songTitle.length === 0 ? 24 : parent.width
                 height: songTitle.length === 0 ? 24 : parent.height
                 anchors.centerIn: parent
-                imgSrc: "qrc:/dsg/img/no_music.svg"
+                imgSrc: songTitle.length === 0 ? "qrc:/dsg/img/no_music.svg" : picUrl
             }
 
         }
@@ -129,7 +144,7 @@ FloatingPanel {
 
                     ToolTip {
                         visible: likeBtn.hovered
-                        text: favorite ? qsTr("Unfavorite") : qsTr("Favorite")
+                        text: favorite ? qsTr("不喜欢") : qsTr("喜欢")
                     }
 
                 }
@@ -150,7 +165,6 @@ FloatingPanel {
 
                     ToolTip {
                         visible: prevBtn.hovered
-                        //ToolTip.delay: 1000
                         text: qsTr("上一首")
                     }
 
@@ -162,17 +176,20 @@ FloatingPanel {
                     width: 36
                     height: 36
                     anchors.verticalCenter: parent.verticalCenter
-                    icon.name: playStatus == Global.Paused || playStatus == Global.Stopped || playStatus == Global.Idle ? "toolbar_play" : (playStatus == Global.Playing ? "toolbar_pause" : "")
+                    icon.name: playStatus ? "toolbar_pause" : "toolbar_play"
                     icon.width: 36
                     icon.height: 36
                     checkable: true
                     onClicked: {
+                        if (player.getPlayState())
+                            player.pause();
+                        else
+                            player.play();
                     }
 
                     ToolTip {
                         visible: playPauseBtn.hovered
-                        //ToolTip.delay: 1000
-                        text: qsTr("Play/Pause")
+                        text: qsTr("播放/暂停")
                     }
 
                 }
@@ -193,8 +210,7 @@ FloatingPanel {
 
                     ToolTip {
                         visible: nextBtn.hovered
-                        //ToolTip.delay: 1000
-                        text: qsTr("Next")
+                        text: qsTr("下一首")
                     }
 
                 }
@@ -326,7 +342,7 @@ FloatingPanel {
 
                     ToolTip {
                         visible: listBtn.hovered
-                        text: qsTr("Play Queue")
+                        text: qsTr("播放列表")
                     }
 
                 }

@@ -6,11 +6,11 @@ import org.deepin.dtk 1.0
 Rectangle {
     property alias lists: repeater.model
 
-    function getMusicUrl(id) {
+    function getMusicUrl(id, name, artist, pic) {
         function onReply(reply) {
             network.onSendReplyFinished.disconnect(onReply);
             //console.log(JSON.stringify(JSON.parse(reply)))
-            player.addSignleToPlaylist(JSON.parse(reply).data[0].url);
+            player.addSignleToPlaylist(JSON.parse(reply).data[0].url, name, artist, pic);
         }
 
         network.onSendReplyFinished.connect(onReply);
@@ -75,7 +75,7 @@ Rectangle {
                     cursorShape: Qt.PointingHandCursor
                     onPressed: {
                         //点击新歌时，获取歌曲id，拿着歌曲id去获取歌曲url
-                        getMusicUrl(modelData.id);
+                        getMusicUrl(modelData.id, modelData.song.name, modelData.song.artists[0].name, modelData.picUrl);
                     }
                 }
 
