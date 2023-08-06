@@ -1,0 +1,12 @@
+#ifndef LIBIMUSIC_GLOBAL_H
+#define LIBIMUSIC_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(LIBIMUSIC_LIBRARY)
+#define LIBIMUSICSHARED_EXPORT Q_DECL_EXPORT
+#else
+#define LIBIMUSICSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // LIBIMUSIC_GLOBAL_H

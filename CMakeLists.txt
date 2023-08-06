@@ -32,6 +32,9 @@ else()
     SET(CMAKE_EXE_LINKER_FLAGS "-pie")
 endif()
 
+include_directories(${PROJECT_BINARY_DIR})
+include_directories(${PROJECT_SOURCE_DIR})
+
 add_definitions(-DAPP_VERSION="${APP_VERSION}")
 add_subdirectory(src)
 
