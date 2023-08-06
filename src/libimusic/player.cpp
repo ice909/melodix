@@ -8,8 +8,33 @@ Player::Player(QObject *parent)
     m_volume = m_settings->value("Volume/DefaultVolume", 50).toInt();
     // 读取静音配置
     m_mute = m_settings->value("Volume/Mute", false).toBool();
+    // 读取播放模式配置 把第一种播放模式去除，只要后面三种
+    int playbackMode = m_settings->value("Playback/PlaybackMode", 3).toInt();
+    switch (playbackMode) {
+    case 1:
+        m_playbackMode = QMediaPlaylist::CurrentItemInLoop;
+        break;
+    case 2:
+        m_playbackMode = QMediaPlaylist::Sequential;
+        break;
+    case 3:
+        m_playbackMode = QMediaPlaylist::Loop;
+        break;
+    case 4:
+        m_playbackMode = QMediaPlaylist::Random;
+        break;
+    default:
+        m_playbackMode = QMediaPlaylist::Loop;
+        break;
+    }
 
     m_player = new QMediaPlayer(this);
+    m_playlist = new QMediaPlaylist(this);
+    m_player->setPlaylist(m_playlist);
+    m_playlist->setPlaybackMode(m_playbackMode);
+
+    qDebug() << "m_playbackMode:" << m_playbackMode;
+
     // 设置音量
     m_player->setVolume(m_volume);
     connect(m_player, &QMediaPlayer::positionChanged, this, &Player::onPositionChanged);
@@ -130,4 +155,32 @@ int Player::getVolume()
 bool Player::getMute()
 {
     return m_mute;
+}
+
+int Player::getPlaybackMode()
+{
+    return m_playbackMode;
+}
+
+void Player::setPlaybackMode(int mode)
+{
+    switch (mode) {
+    case 1:
+        m_playbackMode = QMediaPlaylist::CurrentItemInLoop;
+        break;
+    case 2:
+        m_playbackMode = QMediaPlaylist::Sequential;
+        break;
+    case 3:
+        m_playbackMode = QMediaPlaylist::Loop;
+        break;
+    case 4:
+        m_playbackMode = QMediaPlaylist::Random;
+        break;
+    default:
+        m_playbackMode = QMediaPlaylist::Loop;
+        break;
+    }
+    m_playlist->setPlaybackMode(m_playbackMode);
+    m_settings->setValue("Playback/PlaybackMode", mode);
 }

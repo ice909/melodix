@@ -26,9 +26,9 @@ FloatingPanel {
     property int playControlRectWidth: 220
     property int rightAreaRectWidth: 228
     property bool playStatus: false
-    property int playMode: Global.RepeatNull
+    property int playMode: 3
     property bool isVolSliderShow: false
-    property var modeIcon: ["toolbar_music_sequence", "toolbar_music_repeat", "toolbar_music_repeatcycle", "toolbar_music_shuffle"]
+    property var modeIcon: ["toolbar_music_repeatcycle", "toolbar_music_sequence", "toolbar_music_repeat", "toolbar_music_shuffle"]
 
     function onMetaChanged() {
         songTitle = player.getName();
@@ -68,6 +68,7 @@ FloatingPanel {
         player.playStateChanged.connect(onPlayStateChanged);
         player.durationChanged.connect(onDurationChanged);
         player.positionChanged.connect(onPositionChanged);
+        playMode = player.getPlaybackMode();
     }
 
     anchors {
@@ -266,14 +267,15 @@ FloatingPanel {
                     width: 36
                     height: 36
                     anchors.verticalCenter: parent.verticalCenter
-                    icon.name: modeIcon[playMode + 1]
+                    icon.name: modeIcon[playMode - 1]
                     icon.width: 36
                     icon.height: 36
                     onClicked: {
-                        if (playMode == Global.Shuffle)
-                            playMode = Global.RepeatNull;
+                        if (playMode == 4)
+                            playMode = 1;
                         else
                             playMode++;
+                        player.setPlaybackMode(playMode);
                     }
                 }
 

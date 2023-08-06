@@ -32,6 +32,8 @@ public:
     Q_INVOKABLE int getVolume();
     Q_INVOKABLE void setMute(bool mute);
     Q_INVOKABLE bool getMute();
+    Q_INVOKABLE int getPlaybackMode();
+    Q_INVOKABLE void setPlaybackMode(int mode);
 signals:
     void metaChanged();
     void playStateChanged();
@@ -44,6 +46,7 @@ public slots:
 private:
     QSettings *m_settings = nullptr;
     QMediaPlayer *m_player = nullptr;
+    QMediaPlaylist *m_playlist = nullptr;
     bool m_playState = false;
     QString m_name;
     QString m_artist;
@@ -52,6 +55,7 @@ private:
     qint64 m_duration;
     int m_volume;
     int m_mute;
+    QMediaPlaylist::PlaybackMode m_playbackMode;
 };
 
 #endif // PLAYER_H
