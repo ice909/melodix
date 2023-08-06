@@ -27,6 +27,7 @@ FloatingPanel {
     property int rightAreaRectWidth: 228
     property bool playStatus: false
     property int playMode: Global.RepeatNull
+    property bool isVolSliderShow: false
     property var modeIcon: ["toolbar_music_sequence", "toolbar_music_repeat", "toolbar_music_repeatcycle", "toolbar_music_shuffle"]
 
     function onMetaChanged() {
@@ -49,6 +50,17 @@ FloatingPanel {
         currentTime = player.getFormatPosition();
     }
 
+    function onVolSliderHoveredChanged() {
+        if (!volSliderLoader.item.hovered) {
+            if (volSliderHideTimer.running)
+                volSliderHideTimer.stop();
+
+            volSliderHideTimer.start();
+        } else {
+            volSliderHideTimer.stop();
+        }
+    }
+
     height: 60
     width: parent.width
     Component.onCompleted: {
@@ -65,6 +77,25 @@ FloatingPanel {
         leftMargin: 10
         rightMargin: 10
         bottomMargin: 10
+    }
+
+    Loader {
+        id: volSliderLoader
+    }
+
+    Timer {
+        id: volSliderHideTimer
+
+        interval: 3000
+        repeat: false
+        running: false
+        onTriggered: {
+            if (volSliderLoader.status !== Loader.Null)
+                volSliderLoader.item.visible = false;
+
+            volumeBtn.checked = false;
+            isVolSliderShow = false;
+        }
     }
 
     contentItem: Row {
@@ -341,6 +372,14 @@ FloatingPanel {
                     checkable: true
                     //ColorSelector.pressed: true
                     onClicked: {
+                        isVolSliderShow = !isVolSliderShow;
+                        if (volSliderLoader.status === Loader.Null) {
+                            volSliderLoader.setSource("VolumeSlider.qml");
+                            volSliderLoader.item.x = toolbarRoot.width - 10 * 3 - width * 2;
+                            volSliderLoader.item.y = -255;
+                            volSliderLoader.item.hoveredChanged.connect(onVolSliderHoveredChanged);
+                        }
+                        volSliderLoader.item.visible = isVolSliderShow;
                     }
                 }
 

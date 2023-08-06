@@ -22,5 +22,6 @@
         <file>widgets/Loading.qml</file>
 
         <file>toolbar/Toolbar.qml</file>
+        <file>toolbar/VolumeSlider.qml</file>
     </qresource>
 </RCC>

@@ -2,8 +2,16 @@
 
 Player::Player(QObject *parent)
     : QObject(parent)
+    , m_settings(new QSettings(QDir::homePath() + "/.config/ice/player.ini", QSettings::IniFormat))
 {
+    // 读取音量配置
+    m_volume = m_settings->value("Volume/DefaultVolume", 50).toInt();
+    // 读取静音配置
+    m_mute = m_settings->value("Volume/Mute", false).toBool();
+
     m_player = new QMediaPlayer(this);
+    // 设置音量
+    m_player->setVolume(m_volume);
     connect(m_player, &QMediaPlayer::positionChanged, this, &Player::onPositionChanged);
     connect(m_player, &QMediaPlayer::durationChanged, this, &Player::onDurationChanged);
 }
@@ -98,4 +106,28 @@ QString Player::getFormatPosition()
 {
     QTime time = QTime::fromMSecsSinceStartOfDay(m_position);
     return time.toString("m:ss");
+}
+
+void Player::setVolume(int volume)
+{
+    m_volume = volume;
+    m_player->setVolume(m_volume);
+    m_settings->setValue("Volume/DefaultVolume", m_volume);
+}
+
+void Player::setMute(bool mute)
+{
+    m_mute = mute;
+    m_player->setMuted(m_mute);
+    m_settings->setValue("Volume/Mute", m_mute);
+}
+
+int Player::getVolume()
+{
+    return m_volume;
+}
+
+bool Player::getMute()
+{
+    return m_mute;
 }
