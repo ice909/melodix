@@ -3,8 +3,10 @@ import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
 import network 1.0
 import org.deepin.dtk 1.0
+import player 1.0
 import "router"
 import "titlebar"
+import "toolbar"
 
 ApplicationWindow {
     id: rootWindow
@@ -38,7 +40,7 @@ ApplicationWindow {
 
             Loader {
                 width: parent.width
-                height: parent.height - 50
+                height: parent.height - 70
             }
 
         }
@@ -50,6 +52,13 @@ ApplicationWindow {
 
         }
 
+    }
+
+    Toolbar {
+    }
+
+    Player {
+        id: player
     }
 
     Connections {

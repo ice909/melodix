@@ -6,6 +6,17 @@ import org.deepin.dtk 1.0
 Rectangle {
     property alias lists: repeater.model
 
+    function getMusicUrl(id) {
+        function onReply(reply) {
+            network.onSendReplyFinished.disconnect(onReply);
+            //console.log(JSON.stringify(JSON.parse(reply)))
+            player.addSignleToPlaylist(JSON.parse(reply).data[0].url);
+        }
+
+        network.onSendReplyFinished.connect(onReply);
+        network.makeRequest("/song/url?id=" + id);
+    }
+
     Grid {
         id: gridLayout
 
@@ -57,6 +68,15 @@ Rectangle {
                         elide: Qt.ElideRight
                     }
 
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onPressed: {
+                        //点击新歌时，获取歌曲id，拿着歌曲id去获取歌曲url
+                        getMusicUrl(modelData.id);
+                    }
                 }
 
             }

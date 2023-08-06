@@ -9,7 +9,6 @@ TitleBar {
     id: root
 
     height: DS.Style.titleBar.height
-    embedMode: false
 
     // 阴影
     BoxShadow {

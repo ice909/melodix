@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>dsg/img/no_music.svg</file>
+
+        <file>dsg/icons/toolbar_previous.dci</file>
+        <file>dsg/icons/toolbar_pause.dci</file>
+        <file>dsg/icons/toolbar_play.dci</file>
+        <file>dsg/icons/toolbar_next.dci</file>
+        <file>dsg/icons/toolbar_like_check.dci</file>
+        <file>dsg/icons/toolbar_like.dci</file>
+        <file>dsg/icons/toolbar_music_repeat.dci</file>
+        <file>dsg/icons/toolbar_music_repeatcycle.dci</file>
+        <file>dsg/icons/toolbar_music_sequence.dci</file>
+        <file>dsg/icons/toolbar_music_shuffle.dci</file>
+        <file>dsg/icons/toolbar_lrc_checked.dci</file>
+        <file>dsg/icons/toolbar_lrc.dci</file>
+        <file>dsg/icons/toolbar_playlist_checked.dci</file>
+        <file>dsg/icons/toolbar_playlist.dci</file>
+        <file>dsg/icons/toolbar_volume-_checked.dci</file>
+        <file>dsg/icons/toolbar_volume-.dci</file>
+        <file>dsg/icons/toolbar_volume+_checked.dci</file>
+        <file>dsg/icons/toolbar_volume+.dci</file>
+    </qresource>
+</RCC>

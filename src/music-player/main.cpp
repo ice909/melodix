@@ -6,6 +6,7 @@
 
 #include "global.h"
 #include "network.h"
+#include "player.h"
 
 DWIDGET_USE_NAMESPACE;
 DCORE_USE_NAMESPACE;
@@ -44,6 +45,7 @@ int main(int argc, char *argv[])
     // 在此处注册QML中的C++类型
     qmlRegisterType<Global>("audio.global", 1, 0, "Global");
     qmlRegisterType<Network>("network", 1, 0, "Network");
+    qmlRegisterType<Player>("player", 1, 0, "Player");
 
     Global::setAppName("music");
     app->setApplicationName(Global::getAppName());
