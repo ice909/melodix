@@ -115,24 +115,24 @@ QString Player::getName()
 {
     if (m_playlist->mediaCount() != 0)
         return m_currentSong[m_playlist->currentIndex()];
-    else
-        return "";
+
+    return "";
 }
 
 QString Player::getArtist()
 {
     if (m_playlist->mediaCount() != 0)
         return m_currentArtist[m_playlist->currentIndex()];
-    else
-        return "";
+
+    return "";
 }
 
 QString Player::getPic()
 {
     if (m_playlist->mediaCount() != 0)
         return m_currentImg[m_playlist->currentIndex()];
-    else
-        return "";
+
+    return "";
 }
 
 bool Player::getPlayState()
