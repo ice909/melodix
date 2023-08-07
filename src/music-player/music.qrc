@@ -13,6 +13,8 @@
 
         <file>library/Library.qml</file>
 
+        <file>playlistdetail/PlaylistDetail.qml</file>
+
         <file>router/Router.qml</file>
         <file>router/qmldir</file>
 

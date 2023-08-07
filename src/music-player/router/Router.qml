@@ -21,6 +21,12 @@ Item {
         "path": "library",
         "component": "library/Library.qml"
     }
+    // 歌单详情页
+    property var routePlaylistDetail: {
+        "path": "playlist",
+        "component": "playlistdetail/PlaylistDetail.qml",
+        "id": ""
+    }
 
     // 路由后退信号
     signal signalBack()
@@ -49,6 +55,15 @@ Item {
         signalNavigate(r);
         routeCurrent = r;
         routeHistory.push(r);
+    }
+
+    // 显示歌单详情页
+    function showPlaylistDetail(id = "") {
+        const r = clone(routePlaylistDetail);
+        r.id = id;
+        routeCurrent = r;
+        routeHistory.push(r);
+        signalNavigate(r);
     }
 
     // 复制对象

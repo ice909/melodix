@@ -1,3 +1,4 @@
+import "../router"
 import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -27,6 +28,16 @@ Rectangle {
                     width: parent.width
                     height: parent.width
                     imgSrc: modelData.picUrl
+
+                    MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onPressed: {
+                            Router.showPlaylistDetail(modelData.id);
+                        }
+                    }
+
                 }
 
                 Text {
