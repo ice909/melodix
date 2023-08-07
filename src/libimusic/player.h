@@ -47,7 +47,6 @@ public:
 
     void playNewlyAddedSong();
 signals:
-    void metaChanged();
     void playStateChanged();
     void durationChanged();
     void positionChanged();
