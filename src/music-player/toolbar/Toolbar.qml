@@ -37,7 +37,7 @@ FloatingPanel {
         listBtn.checked = checked;
     }
 
-    function onMetaChanged() {
+    function onPlaylistCurrentIndexChanged() {
         songTitle = player.getName();
         artistStr = player.getArtist();
         picUrl = player.getPic();
@@ -71,7 +71,7 @@ FloatingPanel {
     height: 60
     width: parent.width
     Component.onCompleted: {
-        player.metaChanged.connect(onMetaChanged);
+        player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         player.playStateChanged.connect(onPlayStateChanged);
         player.durationChanged.connect(onDurationChanged);
         player.positionChanged.connect(onPositionChanged);

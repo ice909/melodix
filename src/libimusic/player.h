@@ -8,6 +8,8 @@
 #include <QSettings>
 #include <QTime>
 
+#include "playlistmodel.h"
+
 class Player : public QObject
 {
     Q_OBJECT
@@ -21,7 +23,8 @@ public:
     Q_INVOKABLE void addSignleToPlaylist(const QString &url,
                                          const QString &name,
                                          const QString &artist,
-                                         const QString &pic);
+                                         const QString &pic,
+                                         const QString &duration);
     Q_INVOKABLE QString getName();
     Q_INVOKABLE QString getArtist();
     Q_INVOKABLE QString getPic();
@@ -36,6 +39,11 @@ public:
     Q_INVOKABLE bool getMute();
     Q_INVOKABLE int getPlaybackMode();
     Q_INVOKABLE void setPlaybackMode(int mode);
+    Q_INVOKABLE QObject *getPlaylistModel();
+    Q_INVOKABLE int getPlaylistSize();
+    Q_INVOKABLE int getCurrentIndex();
+    // 播放指定下标的歌曲
+    Q_INVOKABLE void playNewlyAddedSong(int index);
 
     void playNewlyAddedSong();
 signals:
@@ -43,10 +51,13 @@ signals:
     void playStateChanged();
     void durationChanged();
     void positionChanged();
+    void mediaCountChanged(int newMediaCount);
+    void playlistCurrentIndexChanged();
 public slots:
     void onPositionChanged(qint64 new_position);
     void onDurationChanged(qint64 duration);
     void onCurrentIndexChanged(int index);
+    void onMediaCountChanged(int start, int end);
 
 private:
     QSettings *m_settings = nullptr;
@@ -61,6 +72,8 @@ private:
     int m_volume;
     int m_mute;
     QMediaPlaylist::PlaybackMode m_playbackMode;
+
+    PlaylistModel *m_playlistModel = nullptr;
 };
 
 #endif // PLAYER_H

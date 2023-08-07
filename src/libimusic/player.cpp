@@ -2,6 +2,7 @@
 
 Player::Player(QObject *parent)
     : QObject(parent)
+    , m_playlistModel(new PlaylistModel(this))
     , m_settings(new QSettings(QDir::homePath() + "/.config/ice/player.ini", QSettings::IniFormat))
 {
     // 读取音量配置
@@ -38,23 +39,35 @@ Player::Player(QObject *parent)
     connect(m_player, &QMediaPlayer::positionChanged, this, &Player::onPositionChanged);
     connect(m_player, &QMediaPlayer::durationChanged, this, &Player::onDurationChanged);
     connect(m_playlist, &QMediaPlaylist::currentIndexChanged, this, &Player::onCurrentIndexChanged);
+    connect(m_playlist, &QMediaPlaylist::mediaInserted, this, &Player::onMediaCountChanged);
+    connect(m_playlist, &QMediaPlaylist::mediaRemoved, this, &Player::onMediaCountChanged);
 }
 
 void Player::addSignleToPlaylist(const QString &url,
                                  const QString &name,
                                  const QString &artist,
-                                 const QString &pic)
+                                 const QString &pic,
+                                 const QString &duration)
 {
     m_playlist->addMedia(QUrl(url));
     m_currentSong.append(name);
     m_currentArtist.append(artist);
     m_currentImg.append(pic);
+
+    m_playlistModel->addSong(name, pic, artist, duration);
+
     playNewlyAddedSong();
 }
 
 void Player::playNewlyAddedSong()
 {
     m_playlist->setCurrentIndex(m_playlist->mediaCount() - 1);
+    play();
+}
+
+void Player::playNewlyAddedSong(int index)
+{
+    m_playlist->setCurrentIndex(index);
     play();
 }
 
@@ -87,6 +100,7 @@ void Player::next()
 {
     pause();
     m_playlist->next();
+    qDebug() << "next" << m_playlist->currentIndex();
     play();
 }
 
@@ -99,7 +113,7 @@ void Player::previous()
 
 QString Player::getName()
 {
-    if (m_currentArtist.length() > 0)
+    if (m_playlist->mediaCount() != 0)
         return m_currentSong[m_playlist->currentIndex()];
     else
         return "";
@@ -107,7 +121,7 @@ QString Player::getName()
 
 QString Player::getArtist()
 {
-    if (m_currentArtist.length() > 0)
+    if (m_playlist->mediaCount() != 0)
         return m_currentArtist[m_playlist->currentIndex()];
     else
         return "";
@@ -115,7 +129,7 @@ QString Player::getArtist()
 
 QString Player::getPic()
 {
-    if (m_currentImg.length() > 0)
+    if (m_playlist->mediaCount() != 0)
         return m_currentImg[m_playlist->currentIndex()];
     else
         return "";
@@ -214,5 +228,30 @@ void Player::setPlaybackMode(int mode)
 
 void Player::onCurrentIndexChanged(int index)
 {
-    emit metaChanged();
+    qDebug() << "current index changed" << index;
+    if (index == -1) {
+        m_playlist->setCurrentIndex(0);
+    }
+    emit playlistCurrentIndexChanged();
+}
+
+QObject *Player::getPlaylistModel()
+{
+    return m_playlistModel;
+}
+
+int Player::getPlaylistSize()
+{
+    return m_playlist->mediaCount();
+}
+
+void Player::onMediaCountChanged(int start, int end)
+{
+    emit mediaCountChanged(m_playlist->mediaCount());
+}
+
+int Player::getCurrentIndex()
+{
+    qDebug() << "current index" << m_playlist->currentIndex();
+    return m_playlist->currentIndex();
 }

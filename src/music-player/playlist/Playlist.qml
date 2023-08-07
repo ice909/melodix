@@ -9,6 +9,8 @@ FloatingPanel {
     id: playlistRoot
 
     property int headerHeight: 73
+    property int playlistMediaCount: 0
+    property int selectedIndex: -1
 
     signal playlistHided()
 
@@ -19,13 +21,20 @@ FloatingPanel {
             playlistHideAnimation.start();
     }
 
-    function onMousePressed(x, y) {
-        var object = playlistRoot.mapFromGlobal(x, y);
-        if (isPlaylistShow)
-            playlistHideAnimation.start();
-
+    function onMediaCountChanged(newCount) {
+        playlistMediaCount = newCount;
+        playlistView.model = player.getPlaylistModel();
     }
 
+    function onPlaylistCurrentIndexChanged() {
+        selectedIndex = player.getCurrentIndex();
+        console.log("selectedIndex: " + selectedIndex);
+    }
+
+    Component.onCompleted: {
+        player.mediaCountChanged.connect(onMediaCountChanged);
+        player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
+    }
     visible: isPlaylistShow
     width: 320
     height: parent.height - 90
@@ -78,7 +87,7 @@ FloatingPanel {
                         Text {
                             id: songsCountText
 
-                            text: "0 首歌曲"
+                            text: playlistMediaCount + " 首歌曲"
                             color: "#7c7c7c"
                             font: DTK.fontManager.t7
                         }
@@ -127,15 +136,19 @@ FloatingPanel {
             ScrollBar.vertical: ScrollBar {
             }
 
+            delegate: PlaylistDelegate {
+                id: playlistDelegate
+
+                width: 300
+                height: 56
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                backgroundVisible: index % 2 === 0
+                autoExclusive: false
+            }
+
         }
 
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onWheel: {
-            wheel.accepted = true;
-        }
     }
 
     Connections {

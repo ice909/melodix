@@ -16,6 +16,12 @@ ApplicationWindow {
     property int windowMiniWidth: 1070
     property int windowMiniHeight: 680
 
+    function formatDuration(duration) {
+        var minutes = Math.floor(duration / 60000);
+        var seconds = Math.floor((duration % 60000) / 1000);
+        return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    }
+
     visible: true
     minimumWidth: windowMiniWidth
     minimumHeight: windowMiniHeight
@@ -111,6 +117,8 @@ ApplicationWindow {
     }
 
     Connections {
+        //console.log(isPlaylistShow);
+
         id: toolboxConnect
 
         target: toolbox
