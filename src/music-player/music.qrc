@@ -9,6 +9,7 @@
         <file>index/RecommendMV.qml</file>
 
         <file>discover/Discover.qml</file>
+        <file>discover/HotPlaylists.qml</file>
 
         <file>library/Library.qml</file>
 
