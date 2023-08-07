@@ -5,7 +5,6 @@ import QtQuick.Controls 2.4
 Item {
     property string imgSrc: ""
     property int borderRadius: 5
-    property bool animateOnHover: false
 
     Image {
         id: image
@@ -37,30 +36,6 @@ Item {
         maskSource: mask
         visible: true
         antialiasing: true
-    }
-
-    MouseArea {
-        id: mouseArea
-
-        anchors.fill: parent
-        hoverEnabled: true
-        onEntered: {
-            if (animateOnHover)
-                parent.scale = 1.1;
-
-        }
-        onExited: {
-            if (animateOnHover)
-                parent.scale = 1;
-
-        }
-    }
-
-    Behavior on scale {
-        PropertyAnimation {
-            duration: 200
-        }
-
     }
 
 }

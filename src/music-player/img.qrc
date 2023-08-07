@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>dsg/img/no_music.svg</file>
+        <file>dsg/img/avatar.svg</file>
 
         <file>dsg/icons/toolbar_previous.dci</file>
         <file>dsg/icons/toolbar_pause.dci</file>

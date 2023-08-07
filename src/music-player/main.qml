@@ -10,8 +10,11 @@ import "titlebar"
 import "toolbar"
 
 ApplicationWindow {
+    // 获取账户信息
+
     id: rootWindow
 
+    property bool isLogin: false
     property bool isPlaylistShow: false
     property int windowMiniWidth: 1070
     property int windowMiniHeight: 680
@@ -20,6 +23,39 @@ ApplicationWindow {
         var minutes = Math.floor(duration / 60000);
         var seconds = Math.floor((duration % 60000) / 1000);
         return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    }
+
+    function getTimestamp() {
+        return Math.floor(Date.now() / 1000);
+    }
+
+    function getAccountInfo() {
+        function onReply(reply) {
+            network.onAccountReplyFinished.disconnect(onReply);
+            titleBar.avatarImg = JSON.parse(reply).profile.avatarUrl;
+            console.log("用户头像获取成功");
+        }
+
+        network.onAccountReplyFinished.connect(onReply);
+        network.accountInfo("/user/account?timestamp=" + getTimestamp());
+    }
+
+    function refreshAccount() {
+        function onReply(reply) {
+            network.onAccountReplyFinished.disconnect(onReply);
+            var userData = JSON.parse(reply).data;
+            if (userData.code == 200 && userData.account.status == 0 && userData.profile != null) {
+                console.log("用户已登录");
+                isLogin = true;
+                getAccountInfo();
+            } else {
+                console("还未登录");
+                return ;
+            }
+        }
+
+        network.onAccountReplyFinished.connect(onReply);
+        network.accountInfo("/login/status?timestamp=" + getTimestamp());
     }
 
     visible: true
@@ -44,6 +80,9 @@ ApplicationWindow {
                 isPlaylistShow = false;
             });
         }
+    }
+    Component.onCompleted: {
+        refreshAccount();
     }
 
     Repeater {
@@ -116,9 +155,19 @@ ApplicationWindow {
         id: playlistLoader
     }
 
-    Connections {
-        //console.log(isPlaylistShow);
+    Loader {
+        id: loginDialog
+    }
 
+    Connections {
+        target: titleBar
+        onLoginBtnClicked: {
+            loginDialog.setSource("");
+            loginDialog.setSource("login/LoginDialog.qml");
+        }
+    }
+
+    Connections {
         id: toolboxConnect
 
         target: toolbox
@@ -131,6 +180,7 @@ ApplicationWindow {
     }
 
     header: MyTitlebar {
+        id: titleBar
     }
 
     background: Rectangle {

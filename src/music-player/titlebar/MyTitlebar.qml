@@ -8,7 +8,12 @@ import org.deepin.dtk.style 1.0 as DS
 TitleBar {
     id: root
 
+    property string avatarImg: "qrc:/dsg/img/avatar.svg"
+
+    signal loginBtnClicked()
+
     height: DS.Style.titleBar.height
+    embedMode: false
 
     // 阴影
     BoxShadow {
@@ -41,6 +46,12 @@ TitleBar {
             TabButton {
                 anchors.centerIn: parent
                 height: 36
+            }
+
+            AccountButton {
+                anchors.right: parent.right
+                width: parent.height
+                height: parent.height
             }
 
         }

@@ -20,6 +20,9 @@
 
         <file>titlebar/MyTitlebar.qml</file>
         <file>titlebar/TabButton.qml</file>
+        <file>titlebar/AccountButton.qml</file>
+
+        <file>login/LoginDialog.qml</file>
 
         <file>widgets/RoundedImage.qml</file>
         <file>widgets/Loading.qml</file>
