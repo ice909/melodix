@@ -10,8 +10,6 @@ TitleBar {
 
     property string avatarImg: "qrc:/dsg/img/avatar.svg"
 
-    signal loginBtnClicked()
-
     height: DS.Style.titleBar.height
     embedMode: false
 

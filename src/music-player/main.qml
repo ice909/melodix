@@ -49,7 +49,7 @@ ApplicationWindow {
                 isLogin = true;
                 getAccountInfo();
             } else {
-                console("还未登录");
+                console.log("还未登录");
                 return ;
             }
         }
@@ -157,14 +157,6 @@ ApplicationWindow {
 
     Loader {
         id: loginDialog
-    }
-
-    Connections {
-        target: titleBar
-        onLoginBtnClicked: {
-            loginDialog.setSource("");
-            loginDialog.setSource("login/LoginDialog.qml");
-        }
     }
 
     Connections {

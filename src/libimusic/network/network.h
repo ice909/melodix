@@ -19,6 +19,10 @@ public:
     // 判断用户是否以登录
     Q_INVOKABLE void accountInfo(QString);
     Q_INVOKABLE void saveCookie(QString);
+    // 用户退出登录，清除cookie
+    Q_INVOKABLE void logout();
+    // 解析cookie
+    void parseCookie();
 signals:
     void sendReplyFinished(QString);
     void accountReplyFinished(QString);

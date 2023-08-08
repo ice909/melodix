@@ -37,9 +37,6 @@ Popup {
     // 二维码检测扫码状态
     function checkQRCodeStatus() {
         function onReply(reply) {
-            // 二维码过期
-            // 登录成功
-
             network.onSendReplyFinished.disconnect(onReply);
             var status = JSON.parse(reply);
             if (status.code == 800)
@@ -49,7 +46,7 @@ Popup {
             else if (status.code == 802)
                 console.log("扫描成功，请在手机上确认登录");
             else if (status.code == 803)
-                handleQRCodeScanned(status.cookie);
+                handleQRCodeScanned(status.cookie); // 登录成功
         }
 
         network.onSendReplyFinished.connect(onReply);
@@ -61,6 +58,7 @@ Popup {
         // 执行相应的操作，如登录成功后的跳转等
         console.log("登录成功");
         network.saveCookie(cookie);
+        getAccountInfo();
         isLogin = true;
         timer.stop();
         root.close();
@@ -82,6 +80,10 @@ Popup {
     Component.onCompleted: {
         console.log("登录窗口初始化完成");
         generateQRCodeKey();
+    }
+    onClosed: {
+        console.log("登录窗口关闭");
+        timer.stop();
     }
 
     Timer {

@@ -5,6 +5,14 @@ Network::Network(QObject *parent)
     , m_settings(new QSettings(QDir::homePath() + "/.config/ice/user.ini", QSettings::IniFormat))
 {
     m_cookie = m_settings->value("cookieData", "").toString();
+    parseCookie();
+    manager = new QNetworkAccessManager(this);
+    connect(manager, &QNetworkAccessManager::finished, this, &Network::replyFinished);
+}
+
+void Network::parseCookie()
+{
+    m_request_cookies.clear();
     if (!m_cookie.isEmpty()) {
         QStringList cookieList = m_cookie.split(';');
         foreach (QString cookieItem, cookieList) {
@@ -18,8 +26,6 @@ Network::Network(QObject *parent)
             }
         }
     }
-    manager = new QNetworkAccessManager(this);
-    connect(manager, &QNetworkAccessManager::finished, this, &Network::replyFinished);
 }
 
 void Network::replyFinished(QNetworkReply *reply)
@@ -36,7 +42,7 @@ void Network::makeRequest(QString api)
 {
     QNetworkRequest request;
     request.setUrl(QUrl(BASE_URL + api));
-    if (m_request_cookies.size() > 0 && (api.startsWith("/login/status"))) {
+    if (!m_cookie.isEmpty() && (api.startsWith("/login/status"))) {
         // 设置请求头的Cookie值
         request.setHeader(QNetworkRequest::CookieHeader, QVariant::fromValue(m_request_cookies));
     }
@@ -49,7 +55,7 @@ void Network::accountInfo(QString api)
     QNetworkAccessManager *m_manager = new QNetworkAccessManager(this);
     QNetworkRequest request;
     request.setUrl(QUrl(BASE_URL + api));
-    if (m_request_cookies.size() > 0) {
+    if (!m_cookie.isEmpty()) {
         // 设置请求头的Cookie值
         request.setHeader(QNetworkRequest::CookieHeader, QVariant::fromValue(m_request_cookies));
     }
@@ -61,4 +67,13 @@ void Network::saveCookie(QString cookie)
 {
     m_cookie = cookie;
     m_settings->setValue("cookieData", m_cookie);
+    parseCookie();
+}
+
+void Network::logout()
+{
+    m_cookie = "";
+    m_settings->setValue("cookieData", m_cookie);
+    m_request_cookies.clear();
+    qDebug() << "logout: cookie清除完毕";
 }

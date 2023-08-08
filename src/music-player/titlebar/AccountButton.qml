@@ -39,6 +39,9 @@ WindowButton {
                 Layout.bottomMargin: 20
                 text: "登出"
                 onClicked: {
+                    network.logout();
+                    avatarImg = "qrc:/dsg/img/avatar.svg";
+                    isLogin = false;
                     accountMenu.close();
                 }
             }
@@ -52,7 +55,8 @@ WindowButton {
                 Layout.bottomMargin: 20
                 text: "登录"
                 onClicked: {
-                    loginBtnClicked();
+                    loginDialog.setSource("");
+                    loginDialog.setSource("../login/LoginDialog.qml");
                     accountMenu.close();
                 }
             }
