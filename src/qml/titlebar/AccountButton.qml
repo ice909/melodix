@@ -1,4 +1,4 @@
-import "../router"
+import "../../router"
 import "../widgets"
 import QtQuick 2.11
 import QtQuick.Layouts 1.7

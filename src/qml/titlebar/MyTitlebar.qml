@@ -1,4 +1,4 @@
-import "../router"
+import "../../router"
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0

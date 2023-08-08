@@ -1,0 +1,41 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        
+        <file>qml/index/Index.qml</file>
+        <file>qml/index/RecommendPlaylist.qml</file>
+        <file>qml/index/RecommendNewSongs.qml</file>
+        <file>qml/index/HotSigner.qml</file>
+        <file>qml/index/RecommendMV.qml</file>
+
+        <file>qml/discover/Discover.qml</file>
+        <file>qml/discover/HotPlaylists.qml</file>
+
+        <file>qml/library/Library.qml</file>
+        <file>qml/library/MyFavorite.qml</file>
+        <file>qml/library/AllPlaylist.qml</file>
+        <file>qml/library/BuyAlbums.qml</file>
+        <file>qml/library/FollowArtists.qml</file>
+        <file>qml/library/CollectMVs.qml</file>
+
+        <file>qml/playlistdetail/PlaylistDetail.qml</file>
+
+        <file>router/Router.qml</file>
+        <file>router/qmldir</file>
+
+        <file>qml/titlebar/MyTitlebar.qml</file>
+        <file>qml/titlebar/TabButton.qml</file>
+        <file>qml/titlebar/AccountButton.qml</file>
+
+        <file>qml/login/LoginDialog.qml</file>
+
+        <file>qml/widgets/RoundedImage.qml</file>
+        <file>qml/widgets/Loading.qml</file>
+
+        <file>qml/toolbar/Toolbar.qml</file>
+        <file>qml/toolbar/VolumeSlider.qml</file>
+
+        <file>qml/playlist/Playlist.qml</file>
+        <file>qml/playlist/PlaylistDelegate.qml</file>
+    </qresource>
+</RCC>

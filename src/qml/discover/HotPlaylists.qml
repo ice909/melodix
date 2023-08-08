@@ -1,4 +1,4 @@
-import "../router"
+import "../../router"
 import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -11,15 +11,15 @@ Rectangle {
 
         anchors.fill: parent
         columns: 5
-        columnSpacing: 20
-        rowSpacing: 20
+        columnSpacing: 30
+        rowSpacing: 30
 
         Repeater {
             id: repeater
 
             Rectangle {
-                width: (parent.width - 20 * 4) * 0.2
-                height: width + 30
+                width: (parent.width - 30 * 4) * 0.2
+                height: width + 20
                 color: "transparent"
 
                 RoundedImage {
@@ -27,7 +27,7 @@ Rectangle {
 
                     width: parent.width
                     height: parent.width
-                    imgSrc: modelData.picUrl
+                    imgSrc: modelData.coverImgUrl
 
                     MouseArea {
                         anchors.fill: parent
@@ -40,21 +40,12 @@ Rectangle {
 
                 }
 
-                Rectangle {
+                Text {
                     anchors.top: img.bottom
-                    anchors.horizontalCenter: img.horizontalCenter
-                    width: img.width
-                    height: 30
-                    color: "transparent"
-
-                    Text {
-                        anchors.left: parent.left
-                        anchors.verticalCenter: parent.verticalCenter
-                        width: parent.width
-                        text: modelData.name
-                        elide: Qt.ElideRight
-                    }
-
+                    anchors.topMargin: 5
+                    width: parent.width
+                    text: modelData.name
+                    elide: Qt.ElideRight
                 }
 
             }

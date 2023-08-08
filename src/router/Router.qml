@@ -9,22 +9,22 @@ Item {
     // 首页
     property var routeIndex: {
         "path": "index",
-        "component": "index/Index.qml"
+        "component": "qml/index/Index.qml"
     }
     // 发现
     property var routeDiscover: {
         "path": "discover",
-        "component": "discover/Discover.qml"
+        "component": "qml/discover/Discover.qml"
     }
     // 音乐库
     property var routeLibrary: {
         "path": "library",
-        "component": "library/Library.qml"
+        "component": "qml/library/Library.qml"
     }
     // 歌单详情页
     property var routePlaylistDetail: {
         "path": "playlist",
-        "component": "playlistdetail/PlaylistDetail.qml",
+        "component": "qml/playlistdetail/PlaylistDetail.qml",
         "id": ""
     }
 
