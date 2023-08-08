@@ -19,6 +19,8 @@ public:
     // 判断用户是否以登录
     Q_INVOKABLE void accountInfo(QString);
     Q_INVOKABLE void saveCookie(QString);
+    // 获取歌曲url
+    Q_INVOKABLE void getSongUrl(QString);
     // 用户退出登录，清除cookie
     Q_INVOKABLE void logout();
     // 解析cookie
@@ -26,9 +28,11 @@ public:
 signals:
     void sendReplyFinished(QString);
     void accountReplyFinished(QString);
+    void songUrlRequestFinished(QString);
 public slots:
     Q_INVOKABLE void replyFinished(QNetworkReply *reply);
     Q_INVOKABLE void onAccountInfoReplyFinished(QNetworkReply *reply);
+    Q_INVOKABLE void onSongUrlReplyFinished(QNetworkReply *reply);
 
 private:
     QNetworkAccessManager *manager = nullptr;

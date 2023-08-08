@@ -28,7 +28,7 @@ FloatingPanel {
 
     function onPlaylistCurrentIndexChanged() {
         selectedIndex = player.getCurrentIndex();
-        console.log("selectedIndex: " + selectedIndex);
+        console.log("playlist selectedIndex: " + selectedIndex);
     }
 
     Component.onCompleted: {
@@ -103,12 +103,14 @@ FloatingPanel {
                         icon.name: "playlist_delete"
                         icon.width: 20
                         icon.height: 20
+                        enabled: playlistMediaCount == 0 ? false : true
                         text: "清空"
                         font: DTK.fontManager.t9
                         display: AbstractButton.TextBesideIcon
                         spacing: 1
                         padding: 0
                         onClicked: {
+                            player.clearPlaylist();
                         }
 
                         textColor: Palette {

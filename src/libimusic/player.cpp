@@ -132,7 +132,7 @@ QString Player::getPic()
     if (m_playlist->mediaCount() != 0)
         return m_currentImg[m_playlist->currentIndex()];
 
-    return "";
+    return "qrc:/dsg/img/no_music.svg";
 }
 
 bool Player::getPlayState()
@@ -228,7 +228,7 @@ void Player::setPlaybackMode(int mode)
 
 void Player::onCurrentIndexChanged(int index)
 {
-    qDebug() << "current index changed" << index;
+    qDebug() << "playlist current index changed signal : " << index;
     if (index == -1) {
         m_playlist->setCurrentIndex(0);
     }
@@ -252,6 +252,23 @@ void Player::onMediaCountChanged(int start, int end)
 
 int Player::getCurrentIndex()
 {
-    qDebug() << "current index" << m_playlist->currentIndex();
+    qDebug() << "get current index :" << m_playlist->currentIndex();
     return m_playlist->currentIndex();
+}
+
+void Player::clearPlaylist()
+{
+    stop();
+
+    m_currentSong.clear();
+    m_currentArtist.clear();
+    m_currentImg.clear();
+
+    m_position = 0;
+    m_duration = 0;
+
+    m_playlist->clear();
+    m_playlistModel->clear();
+
+    emit playlistCleared();
 }

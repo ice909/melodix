@@ -69,12 +69,16 @@ public:
     Q_INVOKABLE void playNewlyAddedSong(int index);
     // 播放新添加的歌曲
     void playNewlyAddedSong();
+    // 清空播放列表
+    Q_INVOKABLE void clearPlaylist();
 signals:
     void playStateChanged();
     void durationChanged();
     void positionChanged();
     void mediaCountChanged(int newMediaCount);
     void playlistCurrentIndexChanged();
+    // 播放列表已被清空
+    void playlistCleared();
 public slots:
     void onPositionChanged(qint64 new_position);
     void onDurationChanged(qint64 duration);

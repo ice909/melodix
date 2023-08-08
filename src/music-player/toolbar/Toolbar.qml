@@ -68,6 +68,15 @@ FloatingPanel {
         }
     }
 
+    function onPlaylistCleared() {
+        duration = 0;
+        totalTime = "0:00";
+        currentPosition = 0;
+        currentTime = "0:00";
+        songTitle = "";
+        artistStr = "";
+    }
+
     height: 60
     width: parent.width
     Component.onCompleted: {
@@ -75,6 +84,7 @@ FloatingPanel {
         player.playStateChanged.connect(onPlayStateChanged);
         player.durationChanged.connect(onDurationChanged);
         player.positionChanged.connect(onPositionChanged);
+        player.playlistCleared.connect(onPlaylistCleared);
         playMode = player.getPlaybackMode();
     }
 

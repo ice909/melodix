@@ -63,6 +63,24 @@ void Network::accountInfo(QString api)
     m_manager->get(request);
 }
 
+void Network::getSongUrl(QString id)
+{
+    QNetworkAccessManager *m_url_manager = new QNetworkAccessManager(this);
+    QNetworkRequest request;
+    request.setUrl(QUrl(BASE_URL + "/song/url?id=" + id));
+    if (!m_cookie.isEmpty()) {
+        // 设置请求头的Cookie值
+        request.setHeader(QNetworkRequest::CookieHeader, QVariant::fromValue(m_request_cookies));
+    }
+    connect(m_url_manager, &QNetworkAccessManager::finished, this, &Network::onSongUrlReplyFinished);
+    m_url_manager->get(request);
+}
+
+void Network::onSongUrlReplyFinished(QNetworkReply *reply)
+{
+    emit songUrlRequestFinished(reply->readAll());
+}
+
 void Network::saveCookie(QString cookie)
 {
     m_cookie = cookie;

@@ -12,6 +12,8 @@ Item {
     property int listViewCount: 0
     property int songLimit: 50
     property bool initing: true
+    property int currentSelectIndex: -1
+    property int playlistSongCount: 0
 
     function formatTime(time) {
         var date = new Date(time);
@@ -19,6 +21,16 @@ Item {
         var month = (date.getMonth() + 1).toString().padStart(2, '0'); // 月份（注意要加1，因为月份从0开始）
         var day = date.getDate(); // 日期
         return year + '年' + month + '月' + day + '日';
+    }
+
+    function getSongUrl(id, name, artist, pic, duration) {
+        function onReply(reply) {
+            network.onSongUrlRequestFinished.disconnect(onReply);
+            player.addSignleToPlaylist(JSON.parse(reply).data[0].url, name, artist, pic, formatDuration(duration));
+        }
+
+        network.onSongUrlRequestFinished.connect(onReply);
+        network.getSongUrl(id);
     }
 
     function getPlaylistSongsInfo() {
@@ -47,6 +59,7 @@ Item {
             else
                 playlistDescription.text = "暂无介绍";
             getPlaylistSongsInfo();
+            playlistSongCount = playlist.trackIds.length;
             console.log("歌单共有：" + playlist.trackIds.length + "首歌曲");
             if (playlist.trackIds.length > 50)
                 songLimit = 50;
@@ -58,9 +71,19 @@ Item {
         network.makeRequest("/playlist/detail?id=" + Router.routeCurrent.id);
     }
 
+    function onPlaylistCurrentIndexChanged() {
+        currentSelectIndex = player.getCurrentIndex();
+    }
+
+    function onPlaylistCleared() {
+        currentSelectIndex = -1;
+    }
+
     Component.onCompleted: {
         console.log("跳转歌单id为： " + Router.routeCurrent.id);
         getPlaylistDetail();
+        player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
+        player.playlistCleared.connect(onPlaylistCleared);
     }
 
     // 歌单详情页
@@ -201,7 +224,12 @@ Item {
                     width: listView.width - 40
                     height: 55
                     backgroundVisible: false
+                    checked: index == currentSelectIndex
                     onClicked: {
+                        console.log("clicked index : " + index);
+                        console.log(modelData.id);
+                        currentSelectIndex = index;
+                        getSongUrl(modelData.id, modelData.name, modelData.ar[0].name, modelData.al.picUrl, modelData.dt);
                     }
 
                     RowLayout {

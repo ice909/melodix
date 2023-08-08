@@ -8,14 +8,12 @@ Rectangle {
 
     function getMusicUrl(id, name, artist, pic, duration) {
         function onReply(reply) {
-            //console.log(JSON.stringify(JSON.parse(reply)))
-
-            network.onSendReplyFinished.disconnect(onReply);
+            network.onSongUrlRequestFinished.disconnect(onReply);
             player.addSignleToPlaylist(JSON.parse(reply).data[0].url, name, artist, pic, formatDuration(duration));
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/song/url?id=" + id);
+        network.onSongUrlRequestFinished.connect(onReply);
+        network.getSongUrl(id);
     }
 
     Grid {
