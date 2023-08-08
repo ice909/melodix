@@ -12,7 +12,7 @@ WindowButton {
     RoundedImage {
         id: avatarImage
 
-        imgSrc: avatarImg
+        imgSrc: avatarImg == "" ? "qrc:/dsg/img/avatar.svg" : avatarImg
         width: 26
         height: 26
         anchors.centerIn: parent
@@ -40,7 +40,7 @@ WindowButton {
                 text: "登出"
                 onClicked: {
                     network.logout();
-                    avatarImg = "qrc:/dsg/img/avatar.svg";
+                    userImg = "";
                     isLogin = false;
                     accountMenu.close();
                 }

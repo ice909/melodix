@@ -42,7 +42,10 @@ void Network::makeRequest(QString api)
 {
     QNetworkRequest request;
     request.setUrl(QUrl(BASE_URL + api));
-    if (!m_cookie.isEmpty() && (api.startsWith("/song/url"))) {
+    if (!m_cookie.isEmpty()
+        && (api.startsWith("/song/url") || api.startsWith("/user/playlist")
+            || api.startsWith("/playlist/track/all") || api.startsWith("/digitalAlbum/purchased")
+            || api.startsWith("/artist/sublist") || api.startsWith("/mv/sublist"))) {
         // 设置请求头的Cookie值
         request.setHeader(QNetworkRequest::CookieHeader, QVariant::fromValue(m_request_cookies));
     }

@@ -15,6 +15,9 @@ ApplicationWindow {
     id: rootWindow
 
     property bool isLogin: false
+    property string userImg: ""
+    property string userNickname: ""
+    property string userID: ""
     property bool isPlaylistShow: false
     property int windowMiniWidth: 1070
     property int windowMiniHeight: 680
@@ -32,8 +35,10 @@ ApplicationWindow {
     function getAccountInfo() {
         function onReply(reply) {
             network.onAccountReplyFinished.disconnect(onReply);
-            titleBar.avatarImg = JSON.parse(reply).profile.avatarUrl;
-            console.log("用户头像获取成功");
+            userImg = JSON.parse(reply).profile.avatarUrl;
+            userNickname = JSON.parse(reply).profile.nickname;
+            userID = JSON.parse(reply).profile.userId;
+            console.log("用户头像 昵称 ID获取成功");
         }
 
         network.onAccountReplyFinished.connect(onReply);

@@ -8,7 +8,7 @@ import org.deepin.dtk.style 1.0 as DS
 TitleBar {
     id: root
 
-    property string avatarImg: "qrc:/dsg/img/avatar.svg"
+    property string avatarImg: userImg
 
     height: DS.Style.titleBar.height
     embedMode: false

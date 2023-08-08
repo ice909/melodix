@@ -12,6 +12,11 @@
         <file>discover/HotPlaylists.qml</file>
 
         <file>library/Library.qml</file>
+        <file>library/MyFavorite.qml</file>
+        <file>library/AllPlaylist.qml</file>
+        <file>library/BuyAlbums.qml</file>
+        <file>library/FollowArtists.qml</file>
+        <file>library/CollectMVs.qml</file>
 
         <file>playlistdetail/PlaylistDetail.qml</file>
 
