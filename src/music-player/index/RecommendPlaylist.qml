@@ -19,7 +19,7 @@ Rectangle {
 
             Rectangle {
                 width: (parent.width - 20 * 4) * 0.2
-                height: (parent.height - 40) / 2 + 20
+                height: width + 30
                 color: "transparent"
 
                 RoundedImage {
@@ -40,12 +40,21 @@ Rectangle {
 
                 }
 
-                Text {
+                Rectangle {
                     anchors.top: img.bottom
-                    anchors.topMargin: 5
-                    width: parent.width
-                    text: modelData.name
-                    elide: Qt.ElideRight
+                    anchors.horizontalCenter: img.horizontalCenter
+                    width: img.width
+                    height: 30
+                    color: "transparent"
+
+                    Text {
+                        anchors.left: parent.left
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: parent.width
+                        text: modelData.name
+                        elide: Qt.ElideRight
+                    }
+
                 }
 
             }

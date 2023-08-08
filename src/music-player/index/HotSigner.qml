@@ -11,14 +11,14 @@ Rectangle {
 
         anchors.fill: parent
         columns: 5
-        columnSpacing: 10
+        columnSpacing: 20
 
         Repeater {
             id: repeater
 
             Rectangle {
-                width: (parent.width - 40) * 0.2
-                height: parent.height + 20
+                width: (parent.width - 80) * 0.2
+                height: width + 30
                 color: "transparent"
 
                 RoundedImage {
@@ -30,13 +30,20 @@ Rectangle {
                     borderRadius: height
                 }
 
-                Text {
-                    id: title
-
+                Rectangle {
+                    color: "transparent"
+                    width: parent.width
                     anchors.top: img.bottom
-                    anchors.topMargin: 5
                     anchors.horizontalCenter: img.horizontalCenter
-                    text: modelData.name
+                    height: 30
+
+                    Text {
+                        id: title
+
+                        anchors.centerIn: parent
+                        text: modelData.name
+                    }
+
                 }
 
             }

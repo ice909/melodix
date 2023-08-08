@@ -10,30 +10,38 @@ Rectangle {
 
         anchors.fill: parent
         columns: 2
-        columnSpacing: width * 0.05
+        columnSpacing: 20
 
         Repeater {
             id: repeater
 
             Rectangle {
-                width: (parent.width - 20) * 0.47
-                height: parent.height + 20
+                width: (parent.width - 20) * 0.5
+                height: width / 2.9
                 color: "transparent"
 
                 RoundedImage {
                     id: img
 
-                    width: parent.width - 20
-                    height: parent.height - 20
+                    width: parent.width
+                    height: parent.height - 30
                     imgSrc: modelData.picUrl
                 }
 
-                Text {
-                    anchors.top: img.bottom
-                    anchors.topMargin: 5
+                Rectangle {
                     width: parent.width
-                    text: modelData.name
-                    elide: Qt.ElideRight
+                    height: 30
+                    color: "transparent"
+                    anchors.top: img.bottom
+                    anchors.horizontalCenter: img.horizontalCenter
+
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: parent.width
+                        text: modelData.name
+                        elide: Qt.ElideRight
+                    }
+
                 }
 
             }

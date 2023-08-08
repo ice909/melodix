@@ -67,7 +67,7 @@ Item {
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: recommendPlaylist.height + recommendNewSongs.height + hotSigner.height + recommendMV.height + 20 * 5 + 20 * 8
+        contentHeight: recommendPlaylist.height + recommendNewSongs.height + hotSigner.height + recommendMV.height + 30 * 4 + 20 * 7 + 5
 
         Column {
             id: body
@@ -76,56 +76,108 @@ Item {
             x: 20
             y: 5
 
-            Text {
-                text: "推荐歌单"
-                font.pixelSize: DTK.fontManager.t4.pixelSize
-                height: 20
-            }
-
-            RecommendPlaylist {
-                id: recommendPlaylist
-
+            Rectangle {
                 width: scrollWidth
-                height: 440
+                height: 30
+                color: "transparent"
+
+                Text {
+                    text: "推荐歌单"
+                    font.pixelSize: DTK.fontManager.t4.pixelSize
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
             }
 
-            Text {
-                text: "推荐新歌"
-                font.pixelSize: DTK.fontManager.t4.pixelSize
-                height: 20
-            }
-
-            RecommendNewSongs {
-                id: recommendNewSongs
-
+            Rectangle {
                 width: scrollWidth
-                height: 240
+                height: ((scrollWidth - 20 * 4) * 0.2 + 30) * 2 + 20
+                color: "transparent"
+
+                RecommendPlaylist {
+                    id: recommendPlaylist
+
+                    anchors.fill: parent
+                }
+
             }
 
-            Text {
-                text: "热门歌手"
-                font.pixelSize: DTK.fontManager.t4.pixelSize
-                height: 20
-            }
-
-            HotSigner {
-                id: hotSigner
-
+            Rectangle {
                 width: scrollWidth
-                height: 200
+                height: 30
+                color: "transparent"
+
+                Text {
+                    text: "推荐新歌"
+                    font.pixelSize: DTK.fontManager.t4.pixelSize
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
             }
 
-            Text {
-                text: "推荐MV"
-                font.pixelSize: DTK.fontManager.t4.pixelSize
-                height: 20
-            }
-
-            RecommendMV {
-                id: recommendMV
-
+            Rectangle {
                 width: scrollWidth
-                height: 150
+                height: (scrollWidth - 20) * 0.5 * 0.15 * 3 + 20 * 2
+                color: "transparent"
+
+                RecommendNewSongs {
+                    id: recommendNewSongs
+
+                    anchors.fill: parent
+                }
+
+            }
+
+            Rectangle {
+                width: scrollWidth
+                height: 30
+                color: "transparent"
+
+                Text {
+                    text: "热门歌手"
+                    font.pixelSize: DTK.fontManager.t4.pixelSize
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+            }
+
+            Rectangle {
+                width: scrollWidth
+                height: (scrollWidth - 80) * 0.2 + 30
+                color: "transparent"
+
+                HotSigner {
+                    id: hotSigner
+
+                    anchors.fill: parent
+                }
+
+            }
+
+            Rectangle {
+                width: scrollWidth
+                height: 30
+                color: "transparent"
+
+                Text {
+                    text: "推荐MV"
+                    font.pixelSize: DTK.fontManager.t4.pixelSize
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+            }
+
+            Rectangle {
+                width: scrollWidth
+                height: (scrollWidth - 20) * 0.5 / 2.9
+                color: "transparent"
+
+                RecommendMV {
+                    id: recommendMV
+
+                    anchors.fill: parent
+                }
+
             }
 
         }
