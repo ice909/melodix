@@ -171,7 +171,7 @@ Item {
                                     font.pixelSize: DTK.fontManager.t6.pixelSize
 
                                     icon {
-                                        name: "toolbar_play"
+                                        name: "details_play"
                                         width: 25
                                         height: 25
                                     }
