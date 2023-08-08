@@ -10,7 +10,7 @@ Item {
 
     property int scrollWidth: rootWindow.width - 40
     property int listViewCount: 0
-    property int songLimit: 100
+    property int songLimit: 50
     property bool initing: true
 
     function formatTime(time) {
@@ -26,7 +26,6 @@ Item {
             network.onSendReplyFinished.disconnect(onReply);
             var songs = JSON.parse(reply).songs;
             listViewCount = songs.length;
-            console.log("歌单共有：" + songs.length + "首歌曲");
             listView.model = songs;
             initing = false;
         }
@@ -48,8 +47,9 @@ Item {
             else
                 playlistDescription.text = "暂无介绍";
             getPlaylistSongsInfo();
-            if (playlist.trackIds.length > 100)
-                songLimit = 100;
+            console.log("歌单共有：" + playlist.trackIds.length + "首歌曲");
+            if (playlist.trackIds.length > 50)
+                songLimit = 50;
             else
                 songLimit = playlist.trackIds.length;
         }
