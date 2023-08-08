@@ -3,7 +3,6 @@ import QtGraphicalEffects 1.0
 import QtQuick 2.11
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
-import audio.global 1.0
 import org.deepin.dtk 1.0
 
 FloatingPanel {

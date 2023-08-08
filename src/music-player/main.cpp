@@ -4,7 +4,6 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "global.h"
 #include "network.h"
 #include "player.h"
 
@@ -43,14 +42,12 @@ int main(int argc, char *argv[])
     app->loadTranslator();
 
     // 在此处注册QML中的C++类型
-    qmlRegisterType<Global>("audio.global", 1, 0, "Global");
     qmlRegisterType<Network>("network", 1, 0, "Network");
     qmlRegisterType<Player>("player", 1, 0, "Player");
 
-    Global::setAppName("music");
-    app->setApplicationName(Global::getAppName());
+    app->setApplicationName("music");
     qApp->setProductIcon(QIcon::fromTheme("deepin-music"));
-    qApp->setApplicationDisplayName(Global::getAppName());
+    qApp->setApplicationDisplayName("music");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
