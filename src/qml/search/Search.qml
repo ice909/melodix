@@ -24,6 +24,7 @@ Item {
     property int imgCellRectWidth: 45
     property int timeRectWidth: 54
     property int spacingWidth: 10
+    property int serialNumberWidth: 20
 
     function addPlaylistAllMusic(index) {
         function onReply(reply) {
@@ -93,10 +94,53 @@ Item {
                 height: 30
                 color: "transparent"
 
-                Text {
-                    text: "搜索页面 待添加标头"
-                    font.pixelSize: DTK.fontManager.t4.pixelSize
-                    anchors.verticalCenter: parent.verticalCenter
+                Row {
+                    width: parent.width
+                    height: parent.height
+                    spacing: 10
+                    leftPadding: 10
+
+                    Item {
+                        width: 20
+                        height: 20
+                    }
+
+                    Label {
+                        width: imgCellRectWidth + (scrollWidth - timeRectWidth - serialNumberWidth - imgCellRectWidth - 10 - 50) / 3
+                        text: "歌曲名"
+                        height: 20
+                        font.bold: true
+                        font.pixelSize: DTK.fontManager.t4.pixelSize
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    Label {
+                        width: (scrollWidth - imgCellRectWidth - timeRectWidth - serialNumberWidth - 50 - 10) / 3
+                        text: "艺人"
+                        height: 20
+                        font.bold: true
+                        font.pixelSize: DTK.fontManager.t4.pixelSize
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    Label {
+                        width: (scrollWidth - imgCellRectWidth - timeRectWidth - serialNumberWidth - 50 - 10) / 3
+                        text: "专辑"
+                        height: 20
+                        font.bold: true
+                        font.pixelSize: DTK.fontManager.t4.pixelSize
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    Label {
+                        width: timeRectWidth
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: "时长"
+                        font.bold: true
+                        font.pixelSize: DTK.fontManager.t4.pixelSize
+                        height: 20
+                    }
+
                 }
 
             }
