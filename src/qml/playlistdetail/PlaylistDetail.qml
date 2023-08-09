@@ -213,11 +213,10 @@ Item {
                             Row {
                                 spacing: 20
 
-                                Button {
+                                RecommandButton {
                                     width: 80
                                     height: 40
                                     text: "播放"
-                                    checked: true
                                     font.bold: true
                                     font.pixelSize: DTK.fontManager.t6.pixelSize
                                     onClicked: {
