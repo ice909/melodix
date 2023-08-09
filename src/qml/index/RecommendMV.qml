@@ -1,3 +1,4 @@
+import "../../router"
 import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -26,6 +27,15 @@ Rectangle {
                     width: parent.width
                     height: parent.height - 30
                     imgSrc: modelData.picUrl
+
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onPressed: {
+                            Router.showMv(modelData.id);
+                        }
+                    }
+
                 }
 
                 Rectangle {

@@ -20,6 +20,8 @@
 
         <file>qml/playlistdetail/PlaylistDetail.qml</file>
 
+        <file>qml/mv/Mv.qml</file>
+
         <file>router/Router.qml</file>
         <file>router/qmldir</file>
 

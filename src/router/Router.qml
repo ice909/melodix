@@ -33,6 +33,12 @@ Item {
         "component": "qml/search/Search.qml",
         "key": ""
     }
+    // Mv详情页
+    property var routeMv: {
+        "path": "mv",
+        "component": "qml/mv/Mv.qml",
+        "id": ""
+    }
 
     // 路由后退信号
     signal signalBack()
@@ -76,6 +82,15 @@ Item {
     function showSearch(key) {
         const r = clone(routeSearch);
         r.key = key;
+        routeCurrent = r;
+        routeHistory.push(r);
+        signalNavigate(r);
+    }
+
+    // 显示Mv详情页
+    function showMv(id) {
+        const r = clone(routeMv);
+        r.id = id;
         routeCurrent = r;
         routeHistory.push(r);
         signalNavigate(r);
