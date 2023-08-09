@@ -28,12 +28,18 @@ FloatingPanel {
 
     function onPlaylistCurrentIndexChanged() {
         selectedIndex = player.getCurrentIndex();
-        console.log("playlist selectedIndex: " + selectedIndex);
+        console.log("player的playlistCurrentIndexChanged信号触发， selectedIndex: " + selectedIndex);
+    }
+
+    function onModeAndPlaylist() {
+        console.log("播放模型切换");
+        console.log("播放列表媒体数量：" + player.getMediaCount());
     }
 
     Component.onCompleted: {
         player.mediaCountChanged.connect(onMediaCountChanged);
         player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
+        player.switchModeAndPlaylist.connect(onModeAndPlaylist);
     }
     visible: isPlaylistShow
     width: 320

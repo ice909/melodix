@@ -2,6 +2,7 @@
 #define PLAYLISTMODEL_H
 
 #include <QAbstractListModel>
+#include <QDebug>
 #include <QList>
 #include <QObject>
 #include <QUrl>
@@ -12,8 +13,21 @@ class PlaylistModel : public QAbstractListModel
 public:
     explicit PlaylistModel(QObject *parent = nullptr);
 
+    QString getId(int index) const;
+    QString getTitle(int index) const;
+    QString getImageUrl(int index) const;
+    QString getAuthor(int index) const;
+    QString getDuration(int index) const;
+    int indexofId(const QString &id) const;
+
     // 定义角色枚举
-    enum PlaylistRoles { TitleRole = Qt::UserRole + 1, ImageRole, AuthorRole, DurationRole };
+    enum PlaylistRoles {
+        IdRole = Qt::UserRole + 1,
+        TitleRole,
+        ImageRole,
+        AuthorRole,
+        DurationRole
+    };
 
     // 重写 QAbstractListModel 的成员函数
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -21,7 +35,8 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     // 自定义方法用于添加歌曲
-    void addSong(const QString &title,
+    void addSong(const QString &id,
+                 const QString &title,
                  const QString &imageUrl,
                  const QString &author,
                  const QString &duration);
@@ -32,6 +47,7 @@ public:
 private:
     struct Song
     {
+        QString id;
         QString title;
         QString imageUrl;
         QString author;

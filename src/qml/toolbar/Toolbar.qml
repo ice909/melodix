@@ -37,6 +37,7 @@ FloatingPanel {
     }
 
     function onPlaylistCurrentIndexChanged() {
+        console.log("播放列表 currentIndex 改变");
         songTitle = player.getName();
         artistStr = player.getArtist();
         picUrl = player.getPic();

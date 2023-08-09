@@ -32,6 +32,16 @@ ApplicationWindow {
         return Math.floor(Date.now() / 1000);
     }
 
+    function getMusicUrl(id, name, pic, artist, duration) {
+        function onReply(reply) {
+            network.onSongUrlRequestFinished.disconnect(onReply);
+            player.addSignleToPlaylist(JSON.parse(reply).data[0].url, id, name, pic, artist, duration);
+        }
+
+        network.onSongUrlRequestFinished.connect(onReply);
+        network.getSongUrl(id);
+    }
+
     function getAccountInfo() {
         function onReply(reply) {
             network.onAccountReplyFinished.disconnect(onReply);

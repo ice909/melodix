@@ -22,6 +22,8 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const
 
     // 根据角色返回相应的数据
     switch (role) {
+    case IdRole:
+        return song.id;
     case TitleRole:
         return song.title;
     case ImageRole:
@@ -38,6 +40,7 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const
 QHash<int, QByteArray> PlaylistModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
+    roles[IdRole] = "id";
     roles[TitleRole] = "title";
     roles[ImageRole] = "image";
     roles[AuthorRole] = "author";
@@ -45,7 +48,8 @@ QHash<int, QByteArray> PlaylistModel::roleNames() const
     return roles;
 }
 
-void PlaylistModel::addSong(const QString &title,
+void PlaylistModel::addSong(const QString &id,
+                            const QString &title,
                             const QString &imageUrl,
                             const QString &author,
                             const QString &duration)
@@ -53,6 +57,7 @@ void PlaylistModel::addSong(const QString &title,
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
 
     Song song;
+    song.id = id;
     song.title = title;
     song.imageUrl = imageUrl;
     song.author = author;
@@ -60,6 +65,57 @@ void PlaylistModel::addSong(const QString &title,
     m_songs.append(song);
 
     endInsertRows();
+}
+
+QString PlaylistModel::getId(int index) const
+{
+    if (index < 0 || index >= m_songs.size()) {
+        return QString();
+    }
+    return m_songs[index].id;
+}
+
+QString PlaylistModel::getTitle(int index) const
+{
+    if (index < 0 || index >= m_songs.size()) {
+        return QString();
+    }
+
+    return m_songs[index].title;
+}
+
+QString PlaylistModel::getImageUrl(int index) const
+{
+    if (index < 0 || index >= m_songs.size()) {
+        return QString();
+    }
+    return m_songs[index].imageUrl;
+}
+
+QString PlaylistModel::getAuthor(int index) const
+{
+    if (index < 0 || index >= m_songs.size()) {
+        return QString();
+    }
+    return m_songs[index].author;
+}
+
+QString PlaylistModel::getDuration(int index) const
+{
+    if (index < 0 || index >= m_songs.size()) {
+        return QString();
+    }
+    return m_songs[index].duration;
+}
+
+int PlaylistModel::indexofId(const QString &id) const
+{
+    for (int i = 0; i < m_songs.size(); ++i) {
+        if (m_songs[i].id == id) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 void PlaylistModel::clear()

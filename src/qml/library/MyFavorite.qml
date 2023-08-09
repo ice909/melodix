@@ -7,16 +7,6 @@ import org.deepin.dtk 1.0
 Item {
     property alias lists: repeater.model
 
-    function getMusicUrl(id, name, artist, pic, dt) {
-        function onReply(reply) {
-            network.onSongUrlRequestFinished.disconnect(onReply);
-            player.addSignleToPlaylist(JSON.parse(reply).data[0].url, name, artist, pic, formatDuration(dt));
-        }
-
-        network.onSongUrlRequestFinished.connect(onReply);
-        network.getSongUrl(id);
-    }
-
     Grid {
         id: gridLayout
 

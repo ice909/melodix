@@ -9,6 +9,8 @@ Item {
     id: root
 
     property int scrollWidth: rootWindow.width - 40
+    property var songs: []
+    property var songUrls: []
     property int listViewCount: 0
     property int songLimit: 50
     property bool initing: true
@@ -23,20 +25,10 @@ Item {
         return year + '年' + month + '月' + day + '日';
     }
 
-    function getSongUrl(id, name, artist, pic, duration) {
-        function onReply(reply) {
-            network.onSongUrlRequestFinished.disconnect(onReply);
-            player.addSignleToPlaylist(JSON.parse(reply).data[0].url, name, artist, pic, formatDuration(duration));
-        }
-
-        network.onSongUrlRequestFinished.connect(onReply);
-        network.getSongUrl(id);
-    }
-
     function getPlaylistSongsInfo() {
         function onReply(reply) {
             network.onSendReplyFinished.disconnect(onReply);
-            var songs = JSON.parse(reply).songs;
+            songs = JSON.parse(reply).songs;
             listViewCount = songs.length;
             listView.model = songs;
             initing = false;
@@ -69,6 +61,37 @@ Item {
 
         network.onSendReplyFinished.connect(onReply);
         network.makeRequest("/playlist/detail?id=" + Router.routeCurrent.id);
+    }
+
+    function playPlaylistAllMusic(index = -1) {
+        function onReply(reply) {
+            network.onSongUrlRequestFinished.disconnect(onReply);
+            var urlList = JSON.parse(reply).data;
+            for (var i = 0; i < urlList.length; i++) {
+                var song = urlList[i];
+                var songIndex = ids.indexOf(song.id);
+                if (songIndex !== -1)
+                    songUrls[songIndex] = song.url;
+
+            }
+            for (var i = 0; i < songs.length; i++) {
+                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, songs[i].ar[0].name, formatDuration(songs[i].dt));
+            }
+            console.log(player.getMediaCount());
+            if (index != -1)
+                player.play(index);
+            else
+                player.play(0);
+        }
+
+        player.switchToPlaylistMode();
+        var ids = songs.map(function(song) {
+            return song.id;
+        });
+        // 将所有id使用逗号连接成一个字符串
+        var concatenatedIds = ids.join(',');
+        network.onSongUrlRequestFinished.connect(onReply);
+        network.getSongUrl(concatenatedIds);
     }
 
     function onPlaylistCurrentIndexChanged() {
@@ -192,6 +215,10 @@ Item {
                                     checked: true
                                     font.bold: true
                                     font.pixelSize: DTK.fontManager.t6.pixelSize
+                                    onClicked: {
+                                        console.log("播放按钮点击");
+                                        playPlaylistAllMusic();
+                                    }
 
                                     icon {
                                         name: "details_play"

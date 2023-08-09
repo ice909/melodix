@@ -28,7 +28,7 @@ public:
 signals:
     void sendReplyFinished(QString);
     void accountReplyFinished(QString);
-    void songUrlRequestFinished(QString);
+    void songUrlRequestFinished(QByteArray);
 public slots:
     Q_INVOKABLE void replyFinished(QNetworkReply *reply);
     Q_INVOKABLE void onAccountInfoReplyFinished(QNetworkReply *reply);
