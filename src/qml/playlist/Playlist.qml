@@ -39,7 +39,6 @@ FloatingPanel {
     Component.onCompleted: {
         player.mediaCountChanged.connect(onMediaCountChanged);
         player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
-        player.switchModeAndPlaylist.connect(onModeAndPlaylist);
     }
     visible: isPlaylistShow
     width: 320
