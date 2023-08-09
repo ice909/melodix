@@ -27,6 +27,12 @@ Item {
         "component": "qml/playlistdetail/PlaylistDetail.qml",
         "id": ""
     }
+    // 搜索结果页
+    property var routeSearch: {
+        "path": "search",
+        "component": "qml/search/Search.qml",
+        "key": ""
+    }
 
     // 路由后退信号
     signal signalBack()
@@ -61,6 +67,15 @@ Item {
     function showPlaylistDetail(id = "") {
         const r = clone(routePlaylistDetail);
         r.id = id;
+        routeCurrent = r;
+        routeHistory.push(r);
+        signalNavigate(r);
+    }
+
+    // 显示搜索结果页
+    function showSearch(key) {
+        const r = clone(routeSearch);
+        r.key = key;
         routeCurrent = r;
         routeHistory.push(r);
         signalNavigate(r);

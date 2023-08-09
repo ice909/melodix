@@ -26,6 +26,7 @@
         <file>qml/titlebar/MyTitlebar.qml</file>
         <file>qml/titlebar/TabButton.qml</file>
         <file>qml/titlebar/AccountButton.qml</file>
+        <file>qml/titlebar/MySearchEdit.qml</file>
 
         <file>qml/login/LoginDialog.qml</file>
 
@@ -37,5 +38,7 @@
 
         <file>qml/playlist/Playlist.qml</file>
         <file>qml/playlist/PlaylistDelegate.qml</file>
+
+        <file>qml/search/Search.qml</file>
     </qresource>
 </RCC>

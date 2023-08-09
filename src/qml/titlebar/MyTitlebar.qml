@@ -46,7 +46,16 @@ TitleBar {
                 height: 36
             }
 
+            MySearchEdit {
+                anchors.right: accoutBtn.left
+                anchors.rightMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                width: parent.width / 4.2
+            }
+
             AccountButton {
+                id: accoutBtn
+
                 anchors.right: parent.right
                 width: parent.height
                 height: parent.height

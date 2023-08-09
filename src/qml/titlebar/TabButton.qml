@@ -9,8 +9,8 @@ ButtonBox {
     ToolButton {
         id: indexBtn
 
-        leftPadding: 20
-        rightPadding: 20
+        leftPadding: 10
+        rightPadding: 10
         implicitHeight: root.height - 6
         checked: Router.routeCurrent.path === Router.routeIndex.path
         text: qsTr("首页")
@@ -24,8 +24,8 @@ ButtonBox {
     ToolButton {
         id: discoverBtn
 
-        leftPadding: 20
-        rightPadding: 20
+        leftPadding: 10
+        rightPadding: 10
         implicitHeight: root.height - 6
         checked: Router.routeCurrent.path === Router.routeDiscover.path
         text: qsTr("发现")
@@ -39,8 +39,8 @@ ButtonBox {
     ToolButton {
         id: libraryBtn
 
-        leftPadding: 20
-        rightPadding: 20
+        leftPadding: 10
+        rightPadding: 10
         implicitHeight: root.height - 6
         checked: Router.routeCurrent.path === Router.routeLibrary.path
         text: qsTr("音乐库")
