@@ -7,7 +7,11 @@ import org.deepin.dtk 1.0
 Item {
     id: root
 
+    property bool isAddToPlaylist: false
+    property int selectedIndex: -1
     property bool initing: true
+    property var offsetSongs: []
+    property var songUrls: []
     property int scrollWidth: rootWindow.width - 40
     // 获取到的歌曲数量
     property int searchResultCount: 0
@@ -21,12 +25,43 @@ Item {
     property int timeRectWidth: 54
     property int spacingWidth: 10
 
+    function addPlaylistAllMusic(index) {
+        function onReply(reply) {
+            network.onSongUrlRequestFinished.disconnect(onReply);
+            var urlList = JSON.parse(reply).data;
+            for (var i = 0; i < urlList.length; i++) {
+                var song = urlList[i];
+                var songIndex = ids.indexOf(song.id);
+                if (songIndex !== -1)
+                    songUrls[songIndex] = song.url;
+
+            }
+            for (var i = 0; i < offsetSongs.length; i++) {
+                player.addPlaylistToPlaylist(songUrls[i], offsetSongs[i].id, offsetSongs[i].name, offsetSongs[i].al.picUrl, offsetSongs[i].ar[0].name, formatDuration(offsetSongs[i].dt));
+            }
+            player.play(index);
+            isAddToPlaylist = true;
+        }
+
+        var ids = offsetSongs.map(function(song) {
+            return song.id;
+        });
+        // 将所有id使用逗号连接成一个字符串
+        var concatenatedIds = ids.join(',');
+        network.onSongUrlRequestFinished.connect(onReply);
+        network.getSongUrl(concatenatedIds);
+    }
+
     function getSearchResult(offset = 0) {
         function onReply(reply) {
             network.onSendReplyFinished.disconnect(onReply);
             var result = JSON.parse(reply).result;
             songListCount = result.songCount;
             var songs = result.songs;
+            if (songs.length > pageSize)
+                offsetSongs = songs.slice(0, pageSize);
+            else
+                offsetSongs = songs;
             searchResultCount = songs.length;
             listView.model = songs;
             console.log("歌曲总量：" + songListCount);
@@ -77,6 +112,22 @@ Item {
                     height: 56
                     backgroundVisible: index % 2 === 0
                     hoverEnabled: true
+                    checked: index === selectedIndex
+
+                    MouseArea {
+                        id: mouseArea
+
+                        acceptedButtons: Qt.RightButton | Qt.LeftButton
+                        anchors.fill: parent
+                        onDoubleClicked: {
+                            if (!isAddToPlaylist)
+                                addPlaylistAllMusic(index);
+                            else
+                                player.play(index);
+                            listView.currentIndex = index;
+                            selectedIndex = index;
+                        }
+                    }
 
                     Rectangle {
                         width: parent.width
