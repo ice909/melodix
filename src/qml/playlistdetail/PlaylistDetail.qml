@@ -108,6 +108,11 @@ Item {
         player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         player.playlistCleared.connect(onPlaylistCleared);
     }
+    Component.onDestruction: {
+        console.log("歌单详情页销毁，断开信号的连接");
+        player.playlistCurrentIndexChanged.disconnect(onPlaylistCurrentIndexChanged);
+        player.playlistCleared.disconnect(onPlaylistCleared);
+    }
 
     // 歌单详情页
     ScrollView {
