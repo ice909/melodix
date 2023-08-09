@@ -25,7 +25,7 @@ ItemDelegate {
             playlistView.currentIndex = index;
             selectedIndex = index;
             console.log("index: " + index + " currentIndex: " + playlistView.currentIndex);
-            player.playNewlyAddedSong(index);
+            player.play(index);
         }
     }
 
