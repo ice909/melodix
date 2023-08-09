@@ -21,22 +21,22 @@ WindowButton {
     Popup {
         id: accountMenu
 
-        x: avatarImage.x - 100
+        x: avatarImage.x - 62
         y: parent.height
-        width: 226
-        height: 80
+        width: 150
+        height: 60
 
         ColumnLayout {
             anchors.centerIn: parent
-            width: 200
+            width: 130
             spacing: 0
 
             Button {
                 visible: isLogin
                 Layout.fillWidth: true
                 height: 40
-                Layout.topMargin: 20
-                Layout.bottomMargin: 20
+                Layout.topMargin: 10
+                Layout.bottomMargin: 10
                 text: "登出"
                 onClicked: {
                     network.logout();
@@ -51,8 +51,8 @@ WindowButton {
                 visible: !isLogin
                 Layout.fillWidth: true
                 height: 40
-                Layout.topMargin: 20
-                Layout.bottomMargin: 20
+                Layout.topMargin: 10
+                Layout.bottomMargin: 10
                 text: "登录"
                 onClicked: {
                     loginDialog.setSource("");
