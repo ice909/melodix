@@ -4,7 +4,7 @@ if(NOT DEFINED VERSION)
     set(VERSION 0.1)
 endif()
 
-set(PROJECT_NAME music)
+set(PROJECT_NAME digimusic)
 
 project(${PROJECT_NAME}
     VERSION ${VERSION}

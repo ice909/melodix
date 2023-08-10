@@ -26,15 +26,15 @@ int main(int argc, char *argv[])
     DApplication *app = new DApplication(argc, argv);
     app->setAttribute(Qt::AA_UseHighDpiPixmaps);
     app->setOrganizationName("ice");
-    app->setApplicationName("music");
+    app->setApplicationName("DigiMusic");
 
-    app->setApplicationVersion(DApplication::buildVersion(APP_VERSION));
+    app->setApplicationVersion(APP_VERSION);
 
     DLogManager::registerConsoleAppender();
     DLogManager::registerFileAppender();
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("Deepin music player.");
+    parser.setApplicationDescription("music player.");
     parser.addHelpOption();
     parser.addVersionOption();
     parser.process(*app);
@@ -44,10 +44,6 @@ int main(int argc, char *argv[])
     // 在此处注册QML中的C++类型
     qmlRegisterType<Network>("network", 1, 0, "Network");
     qmlRegisterType<Player>("player", 1, 0, "Player");
-
-    app->setApplicationName("music");
-    qApp->setProductIcon(QIcon::fromTheme("deepin-music"));
-    qApp->setApplicationDisplayName("music");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
