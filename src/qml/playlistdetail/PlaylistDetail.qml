@@ -9,6 +9,7 @@ Item {
     id: root
 
     property int scrollWidth: rootWindow.width - 40
+    property bool isAddToPlaylist: false
     property var songs: []
     property var songUrls: []
     property int listViewCount: 0
@@ -77,11 +78,11 @@ Item {
             for (var i = 0; i < songs.length; i++) {
                 player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, songs[i].ar[0].name, formatDuration(songs[i].dt));
             }
-            console.log(player.getMediaCount());
             if (index != -1)
                 player.play(index);
             else
                 player.play(0);
+            isAddToPlaylist = true;
         }
 
         player.switchToPlaylistMode();
@@ -221,7 +222,10 @@ Item {
                                     font.pixelSize: DTK.fontManager.t6.pixelSize
                                     onClicked: {
                                         console.log("播放按钮点击");
-                                        playPlaylistAllMusic();
+                                        if (!isAddToPlaylist)
+                                            playPlaylistAllMusic();
+                                        else
+                                            player.play(0);
                                     }
 
                                     icon {
@@ -258,9 +262,11 @@ Item {
                     checked: index == currentSelectIndex
                     onClicked: {
                         console.log("clicked index : " + index);
-                        console.log(modelData.id);
                         currentSelectIndex = index;
-                        getSongUrl(modelData.id, modelData.name, modelData.ar[0].name, modelData.al.picUrl, modelData.dt);
+                        if (!isAddToPlaylist)
+                            playPlaylistAllMusic(index);
+                        else
+                            player.play(index);
                     }
 
                     RowLayout {
