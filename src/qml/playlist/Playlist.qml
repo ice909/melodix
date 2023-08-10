@@ -9,6 +9,7 @@ FloatingPanel {
     id: playlistRoot
 
     property int headerHeight: 73
+    property int playlistHeight: rootWindow.height - 90
     property int playlistMediaCount: 0
     property int selectedIndex: -1
 
@@ -42,7 +43,7 @@ FloatingPanel {
     }
     visible: isPlaylistShow
     width: 320
-    height: parent.height - 90
+    height: playlistHeight
     radius: 8
 
     Column {

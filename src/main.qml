@@ -171,6 +171,9 @@ ApplicationWindow {
 
     Loader {
         id: playlistLoader
+
+        width: 320
+        height: parent.height - 90
     }
 
     Loader {
