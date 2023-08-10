@@ -23,6 +23,7 @@ Item {
                 width: (parent.width - 30 * 2) * 0.333333
                 height: (parent.height - 10 * 3) / 4
                 color: "transparent"
+                radius: 5
 
                 RoundedImage {
                     id: img
@@ -30,15 +31,19 @@ Item {
                     width: parent.height - 5
                     height: parent.height - 5
                     anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 5
                     imgSrc: modelData.al.picUrl
                 }
 
                 Rectangle {
+                    width: parent.width - img.width - 10
                     anchors.left: img.right
                     anchors.right: parent.right
                     anchors.leftMargin: 5
                     anchors.verticalCenter: img.verticalCenter
                     height: parent.height - 10
+                    color: "transparent"
 
                     Text {
                         id: title
@@ -62,8 +67,21 @@ Item {
 
                 MouseArea {
                     anchors.fill: parent
+                    hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
+                    onEntered: {
+                        color = Qt.rgba(0, 0, 0, 0.1);
+                    }
+                    onExited: {
+                        color = "transparent";
+                    }
                     onPressed: {
+                        color = Qt.rgba(0, 0, 0, 0.2);
+                    }
+                    onReleased: {
+                        color = Qt.rgba(0, 0, 0, 0.1);
+                    }
+                    onClicked: {
                         //点击时，拿着歌曲id去获取歌曲url
                         getMusicUrl(modelData.id, modelData.name, modelData.al.picUrl, modelData.ar[0].name, formatDuration(modelData.dt));
                     }
