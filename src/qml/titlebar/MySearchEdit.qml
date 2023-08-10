@@ -10,6 +10,9 @@ SearchEdit {
             return ;
 
         console.log("SearchEdit: 回车触发");
-        Router.showSearch(text);
+        if (Router.routeCurrent.path == "search")
+            Router.showSearch(text, true);
+        else
+            Router.showSearch(text);
     }
 }

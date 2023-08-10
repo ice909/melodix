@@ -43,7 +43,7 @@ Item {
     // 路由后退信号
     signal signalBack()
     // 路由导航信号
-    signal signalNavigate(var route)
+    signal signalNavigate(var route, bool overlay)
     signal signalGoHome(var route)
 
     // 显示首页
@@ -56,7 +56,7 @@ Item {
     // 显示发现页
     function showDiscover() {
         const r = clone(routeDiscover);
-        signalNavigate(r);
+        signalNavigate(r, false);
         routeCurrent = r;
         routeHistory.push(r);
     }
@@ -64,7 +64,7 @@ Item {
     // 显示音乐库
     function showLibrary() {
         const r = clone(routeLibrary);
-        signalNavigate(r);
+        signalNavigate(r, false);
         routeCurrent = r;
         routeHistory.push(r);
     }
@@ -75,16 +75,21 @@ Item {
         r.id = id;
         routeCurrent = r;
         routeHistory.push(r);
-        signalNavigate(r);
+        signalNavigate(r, false);
     }
 
     // 显示搜索结果页
-    function showSearch(key) {
+    // overlay 为true时会覆盖上一个路由
+    function showSearch(key, overlay = false) {
         const r = clone(routeSearch);
         r.key = key;
         routeCurrent = r;
+        signalNavigate(r, overlay);
+        if (overlay) {
+            routeHistory[routeHistory.length - 1] = r;
+            return ;
+        }
         routeHistory.push(r);
-        signalNavigate(r);
     }
 
     // 显示Mv详情页
@@ -93,7 +98,7 @@ Item {
         r.id = id;
         routeCurrent = r;
         routeHistory.push(r);
-        signalNavigate(r);
+        signalNavigate(r, false);
     }
 
     // 复制对象

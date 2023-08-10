@@ -139,7 +139,10 @@ ApplicationWindow {
 
     Connections {
         // 路由导航，添加一个页面
-        function onSignalNavigate(route) {
+        function onSignalNavigate(route, overlay) {
+            if (overlay)
+                pages.model.remove(pages.count - 1);
+
             pages.model.append({
                 "source": route.component
             });
