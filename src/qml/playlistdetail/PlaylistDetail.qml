@@ -10,6 +10,7 @@ Item {
 
     property int scrollWidth: rootWindow.width - 40
     property bool isAddToPlaylist: false
+    property string currentPlaylistId: ""
     property var songs: []
     property var songUrls: []
     property int listViewCount: 0
@@ -36,7 +37,7 @@ Item {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/playlist/track/all?id=" + Router.routeCurrent.id + "&limit=" + songLimit);
+        network.makeRequest("/playlist/track/all?id=" + currentPlaylistId + "&limit=" + songLimit);
     }
 
     function getPlaylistDetail() {
@@ -61,7 +62,7 @@ Item {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/playlist/detail?id=" + Router.routeCurrent.id);
+        network.makeRequest("/playlist/detail?id=" + currentPlaylistId);
     }
 
     function playPlaylistAllMusic(index = -1) {
@@ -82,10 +83,15 @@ Item {
                 player.play(index);
             else
                 player.play(0);
+            player.setCurrentPlaylistId(currentPlaylistId);
             isAddToPlaylist = true;
         }
 
         player.switchToPlaylistMode();
+        if (player.getCurrentPlaylistId() != "" && player.getCurrentPlaylistId() != currentPlaylistId) {
+            console.log("当前歌单和播放列表中以添加的歌曲不是来自同一个歌单，先清空播放列表，再添加歌曲");
+            player.clearPlaylist();
+        }
         var ids = songs.map(function(song) {
             return song.id;
         });
@@ -105,6 +111,7 @@ Item {
 
     Component.onCompleted: {
         console.log("跳转歌单id为： " + Router.routeCurrent.id);
+        currentPlaylistId = Router.routeCurrent.id;
         getPlaylistDetail();
         player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         player.playlistCleared.connect(onPlaylistCleared);

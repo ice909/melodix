@@ -8,7 +8,6 @@ Player::Player(QObject *parent)
     , m_singleTrackModel(new PlaylistModel(this))
     , m_singleTrackPlaylist(new QMediaPlaylist(this))
     , m_settings(new QSettings(QDir::homePath() + "/.config/ice/player.ini", QSettings::IniFormat))
-    , m_network(new Network(this))
 {
     // 读取音量配置
     m_volume = m_settings->value("Volume/DefaultVolume", 50).toInt();
@@ -46,8 +45,6 @@ Player::Player(QObject *parent)
             &QMediaPlaylist::mediaRemoved,
             this,
             &Player::onMediaCountChanged);
-    /********************************/
-    connect(m_network, &Network::songUrlRequestFinished, this, &Player::onSongUrlReplyFinished);
 }
 
 void Player::addSignleToPlaylist(const QString &url,
@@ -218,20 +215,6 @@ void Player::onMediaCountChanged(int start, int end)
     emit mediaCountChanged(m_currentPlaylist->mediaCount());
 }
 
-void Player::onSongUrlReplyFinished(QByteArray songUrl)
-{
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(songUrl);
-    if (!jsonDoc.isNull() && jsonDoc.isObject()) {
-        QJsonObject song = jsonDoc.object();
-        QJsonArray songArray = song.value("data").toArray();
-        QJsonObject songArr0 = songArray[0].toObject();
-        qDebug() << songArr0.value("url").toString();
-        m_playlist->insertMedia(m_playlistModel->rowCount() - 1,
-                                QUrl(songArr0.value("url").toString()));
-    }
-    play(m_playlistModel->rowCount() - 1);
-}
-
 /**************** Set ********************/
 
 void Player::setVolume(int volume)
@@ -253,6 +236,11 @@ void Player::setPlaybackMode(int mode)
     switchPlaybackMode(mode);
     m_currentPlaylist->setPlaybackMode(m_playbackMode);
     m_settings->setValue("Playback/PlaybackMode", mode);
+}
+
+void Player::setCurrentPlaylistId(const QString &id)
+{
+    m_currentPlaylistId = id;
 }
 
 /**************** Get ********************/
@@ -342,6 +330,11 @@ QString Player::getFormatPosition()
 int Player::getMediaCount()
 {
     return m_currentPlaylist->mediaCount();
+}
+
+QString Player::getCurrentPlaylistId()
+{
+    return m_currentPlaylistId;
 }
 
 /**************** Util ********************/

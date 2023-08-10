@@ -11,7 +11,6 @@
 #include <QSettings>
 #include <QTime>
 
-#include "network.h"
 #include "playlistmodel.h"
 
 class Player : public QObject
@@ -76,12 +75,16 @@ public:
     Q_INVOKABLE QObject *getPlaylistModel();
     // 获取播放列表媒体数量
     Q_INVOKABLE int getMediaCount();
+    // 获取当前播放列表第一首歌曲的id
+    Q_INVOKABLE QString getCurrentPlaylistId();
     // 设置音量
     Q_INVOKABLE void setVolume(int volume);
     // 设置是否静音
     Q_INVOKABLE void setMute(bool mute);
     // 设置播放模式
     Q_INVOKABLE void setPlaybackMode(int mode);
+    // 设置当前播放歌单Id
+    Q_INVOKABLE void setCurrentPlaylistId(const QString &id);
     // 添加歌单所有歌曲到播放列表
     Q_INVOKABLE void addAllSongsToPlaylist();
     // 清空播放列表
@@ -106,7 +109,6 @@ public slots:
     void onDurationChanged(qint64 duration);
     void onCurrentIndexChanged(int index);
     void onMediaCountChanged(int start, int end);
-    void onSongUrlReplyFinished(QByteArray);
 
 private:
     // 播放器配置文件
@@ -134,7 +136,8 @@ private:
     PlaylistModel *m_currentModel = nullptr;
     QMediaPlaylist *m_currentPlaylist = nullptr;
 
-    Network *m_network = nullptr;
+    // 当前播放歌单的id
+    QString m_currentPlaylistId = "";
 };
 
 #endif // PLAYER_H
