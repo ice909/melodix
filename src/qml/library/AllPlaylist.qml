@@ -1,3 +1,4 @@
+import "../../router"
 import "../widgets"
 import QtQuick 2.0
 import QtQuick.Layouts 1.11
@@ -55,7 +56,8 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
-                    onPressed: {
+                    onClicked: {
+                        Router.showPlaylistDetail(modelData.id);
                     }
                 }
 
