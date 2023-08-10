@@ -243,6 +243,11 @@ void Player::setCurrentPlaylistId(const QString &id)
     m_currentPlaylistId = id;
 }
 
+void Player::setPosition(qint64 newPosition)
+{
+    m_player->setPosition(newPosition);
+}
+
 /**************** Get ********************/
 
 QString Player::getName()

@@ -314,6 +314,10 @@ FloatingPanel {
             from: 0
             value: currentPosition
             to: duration
+
+            onMoved: {
+                player.setPosition(value);
+            }
         }
 
         Rectangle {

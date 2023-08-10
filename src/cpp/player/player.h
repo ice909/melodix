@@ -77,6 +77,8 @@ public:
     Q_INVOKABLE int getMediaCount();
     // 获取当前播放列表第一首歌曲的id
     Q_INVOKABLE QString getCurrentPlaylistId();
+    // 设置当前音乐播放进度
+    Q_INVOKABLE void setPosition(qint64 newPosition);
     // 设置音量
     Q_INVOKABLE void setVolume(int volume);
     // 设置是否静音
