@@ -109,9 +109,14 @@ void Player::switchToPlaylistMode()
 void Player::play()
 {
     QMediaPlayer::MediaStatus status = m_player->mediaStatus();
-    if (status == QMediaPlayer::UnknownMediaStatus || status == QMediaPlayer::EndOfMedia
-        || status == QMediaPlayer::InvalidMedia)
+    if (status == QMediaPlayer::UnknownMediaStatus) {
+        qDebug() << "媒体状态未知";
         return;
+    }
+    if (status == QMediaPlayer::InvalidMedia) {
+        qDebug() << "媒体无效";
+        return;
+    }
     m_player->play();
     m_playState = true;
     emit playStateChanged();
