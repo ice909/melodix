@@ -148,8 +148,7 @@ FloatingPanel {
 
                 width: 300
                 height: 56
-                anchors.left: parent.left
-                anchors.leftMargin: 10
+                x: 10
                 backgroundVisible: index % 2 === 0
                 autoExclusive: false
             }
