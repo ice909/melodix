@@ -114,7 +114,6 @@ ApplicationWindow {
         Rectangle {
             anchors.fill: parent
             visible: !isLyricShow
-            y: -50
 
             Loader {
                 width: parent.width
@@ -177,6 +176,7 @@ ApplicationWindow {
 
         width: 320
         height: parent.height - 90
+        z: 5
     }
 
     Loader {
