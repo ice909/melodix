@@ -19,6 +19,7 @@ ApplicationWindow {
     property string userNickname: ""
     property string userID: ""
     property bool isPlaylistShow: false
+    property bool isLyricShow: false
     property int windowMiniWidth: 1070
     property int windowMiniHeight: 680
 
@@ -112,6 +113,8 @@ ApplicationWindow {
 
         Rectangle {
             anchors.fill: parent
+            visible: !isLyricShow
+            y: -50
 
             Loader {
                 width: parent.width
@@ -177,6 +180,10 @@ ApplicationWindow {
     }
 
     Loader {
+        id: lrcWindowLoader
+    }
+
+    Loader {
         id: loginDialog
     }
 
@@ -189,6 +196,15 @@ ApplicationWindow {
                 playlistLoader.item.playlistRaise();
                 isPlaylistShow = true;
             }
+        }
+        onLyricToggleClicked: {
+            if (lrcWindowLoader.status === Loader.Null) {
+                lrcWindowLoader.setSource("qml/lyric/Lyric.qml");
+                lrcWindowLoader.item.y = -50;
+            }
+            if (lrcWindowLoader.status === Loader.Ready)
+                lrcWindowLoader.item.lyricWindowUp();
+
         }
     }
 

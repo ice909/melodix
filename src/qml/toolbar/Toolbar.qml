@@ -31,6 +31,7 @@ FloatingPanel {
     property var modeIconTooltTip: ["单曲循环", "顺序播放", "循环播放", "随机播放"]
 
     signal playlistBtnClicked()
+    signal lyricToggleClicked()
 
     function updatePlaylistBtnStatus(checked) {
         listBtn.checked = checked;
@@ -79,6 +80,7 @@ FloatingPanel {
 
     height: 60
     width: parent.width
+    z: 10
     Component.onCompleted: {
         player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         player.playStateChanged.connect(onPlayStateChanged);
@@ -314,7 +316,6 @@ FloatingPanel {
             from: 0
             value: currentPosition
             to: duration
-
             onMoved: {
                 player.setPosition(value);
             }
@@ -386,8 +387,10 @@ FloatingPanel {
                     icon.width: 36
                     icon.height: 36
                     checkable: true
+                    checked: isLyricShow
                     enabled: songTitle.length === 0 ? false : true
                     onClicked: {
+                        lyricToggleClicked();
                     }
                 }
 

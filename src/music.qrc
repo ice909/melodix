@@ -22,6 +22,9 @@
 
         <file>qml/mv/Mv.qml</file>
 
+        <file>qml/lyric/Lyric.qml</file>
+        <file>qml/lyric/LyricRect.qml</file>
+
         <file>router/Router.qml</file>
         <file>router/qmldir</file>
 

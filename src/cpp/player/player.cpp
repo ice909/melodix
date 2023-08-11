@@ -250,6 +250,14 @@ void Player::setPosition(qint64 newPosition)
 
 /**************** Get ********************/
 
+QString Player::getId()
+{
+    if (m_currentPlaylist->mediaCount() != 0)
+        return m_currentModel->getId(m_currentPlaylist->currentIndex());
+
+    return "";
+}
+
 QString Player::getName()
 {
     if (m_currentPlaylist->mediaCount() != 0)

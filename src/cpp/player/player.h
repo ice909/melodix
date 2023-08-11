@@ -45,6 +45,8 @@ public:
                                            const QString &artist,
                                            const QString &pic,
                                            const QString &duration);
+    // 获取当前正在播放的歌曲ID
+    Q_INVOKABLE QString getId();
     // 获取当前正在播放的歌曲名
     Q_INVOKABLE QString getName();
     // 获取当前正在播放的歌曲作者
