@@ -42,7 +42,7 @@ TitleBar {
 
     content: ColumnLayout {
         Rectangle {
-            color: Qt.rgba(0, 0, 0, 0.01)
+            color: "transparent"
             Layout.fillWidth: true
             height: root.height
 
