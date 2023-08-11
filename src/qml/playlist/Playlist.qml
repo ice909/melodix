@@ -45,6 +45,7 @@ FloatingPanel {
     width: 320
     height: playlistHeight
     radius: 8
+    x: rootWindow.width - 320 - 10
 
     Column {
         width: parent.width
