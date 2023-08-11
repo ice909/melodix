@@ -208,6 +208,19 @@ ApplicationWindow {
         }
     }
 
+    Connections {
+        target: titleBar
+        onLrcHideBtnClicked: {
+            if (lrcWindowLoader.status === Loader.Null) {
+                lrcWindowLoader.setSource("LyricWindow.qml");
+                lrcWindowLoader.item.y = -50;
+            }
+            if (lrcWindowLoader.status === Loader.Ready)
+                lrcWindowLoader.item.lyricWindowUp();
+
+        }
+    }
+
     header: MyTitlebar {
         id: titleBar
     }

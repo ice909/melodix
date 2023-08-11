@@ -10,6 +10,8 @@ TitleBar {
 
     property string avatarImg: userImg
 
+    signal lrcHideBtnClicked()
+
     height: DS.Style.titleBar.height
     embedMode: false
 
@@ -24,14 +26,17 @@ TitleBar {
     }
 
     leftContent: Button {
-        visible: Router.routeCurrent !== Router.routeIndex
+        visible: Router.routeCurrent !== Router.routeIndex || isLyricShow
         width: 36
         height: 36
-        icon.name: "arrow_ordinary_left"
+        icon.name: isLyricShow ? "go-down" : "arrow_ordinary_left"
         icon.width: 7
         icon.height: 12
         onClicked: {
-            Router.back();
+            if (!isLyricShow)
+                Router.back();
+            else
+                lrcHideBtnClicked();
         }
     }
 
@@ -44,9 +49,11 @@ TitleBar {
             TabButton {
                 anchors.centerIn: parent
                 height: 36
+                visible: !isLyricShow
             }
 
             MySearchEdit {
+                visible: !isLyricShow
                 anchors.right: accoutBtn.left
                 anchors.rightMargin: 10
                 anchors.verticalCenter: parent.verticalCenter
