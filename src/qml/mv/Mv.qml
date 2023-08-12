@@ -371,7 +371,7 @@ Item {
                                                 font.pixelSize: DTK.fontManager.t8.pixelSize
                                                 anchors.verticalCenter: parent.verticalCenter
                                                 font.bold: true
-                                                color: "dodgerblue"
+                                                color: palette.highlight
                                                 text: modelData.user.nickname + ": "
                                             }
 
