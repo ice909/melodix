@@ -69,7 +69,7 @@ Rectangle {
 
     function onPositionChanged() {
         var position = player.getPosition();
-        position = position + 50;
+        position = position + 500;
         //二分法查找位置
         var lt, rt;
         lt = 0;
