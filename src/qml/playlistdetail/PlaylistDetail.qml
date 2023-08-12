@@ -12,12 +12,21 @@ Item {
     property bool isAddToPlaylist: false
     property string currentPlaylistId: ""
     property var songs: []
+    // 保存添加到播放列表的歌曲url,以及可以作为判断已经添加到播放列表的歌曲数
     property var songUrls: []
     property int listViewCount: 0
-    property int songLimit: 50
     property bool initing: true
     property int currentSelectIndex: -1
-    property int playlistSongCount: 0
+    // 歌单歌曲总数
+    property int playlistSongAllCount: 0
+    // 一次加载的歌曲数量
+    property int songLimit: 0
+    // 歌曲偏移量
+    property int offset: 0
+    // 是否正在“加载更多”
+    property bool loadMore: false
+    // 是否加载完全部歌曲
+    property bool hasMore: true
 
     function formatTime(time) {
         var date = new Date(time);
@@ -30,14 +39,28 @@ Item {
     function getPlaylistSongsInfo() {
         function onReply(reply) {
             network.onSendReplyFinished.disconnect(onReply);
-            songs = JSON.parse(reply).songs;
-            listViewCount = songs.length;
-            listView.model = songs;
+            var newSongs = JSON.parse(reply).songs;
+            songs.push(...newSongs);
+            listViewCount += newSongs.length;
+            for (const song of newSongs) listView.model.append({
+                "song": song
+            })
             initing = false;
+            offset += newSongs.length;
+            loadMore = false;
+            console.log("加载的歌曲数量: songLimit: " + songLimit + " offset: " + offset + " songs数组长度: " + songs.length);
         }
 
+        // 如果当前未添加的歌曲数量大于50的时候，再加载50首
+        // 否则通过歌曲总数减去当前的偏移量计算出剩余的歌曲（<50)，全部加载
+        if (playlistSongAllCount - offset > 50) {
+            songLimit = 50;
+        } else {
+            songLimit = playlistSongAllCount - offset;
+            hasMore = false;
+        }
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/playlist/track/all?id=" + currentPlaylistId + "&limit=" + songLimit);
+        network.makeRequest("/playlist/track/all?id=" + currentPlaylistId + "&limit=" + songLimit + "&offset=" + offset);
     }
 
     function getPlaylistDetail() {
@@ -52,13 +75,9 @@ Item {
                 playlistDescription.text = playlist.description.replace(/\n/g, ' ');
             else
                 playlistDescription.text = "暂无介绍";
+            playlistSongAllCount = playlist.trackIds.length;
             getPlaylistSongsInfo();
-            playlistSongCount = playlist.trackIds.length;
-            console.log("歌单共有：" + playlist.trackIds.length + "首歌曲");
-            if (playlist.trackIds.length > 50)
-                songLimit = 50;
-            else
-                songLimit = playlist.trackIds.length;
+            console.log("歌单共有：" + playlistSongAllCount + "首歌曲");
         }
 
         network.onSendReplyFinished.connect(onReply);
@@ -69,14 +88,15 @@ Item {
         function onReply(reply) {
             network.onSongUrlRequestFinished.disconnect(onReply);
             var urlList = JSON.parse(reply).data;
+            var urlOffset = songUrls.length;
             for (var i = 0; i < urlList.length; i++) {
                 var song = urlList[i];
                 var songIndex = ids.indexOf(song.id);
                 if (songIndex !== -1)
-                    songUrls[songIndex] = song.url;
+                    songUrls[songIndex + urlOffset] = song.url;
 
             }
-            for (var i = 0; i < songs.length; i++) {
+            for (var i = urlOffset; i < songs.length; i++) {
                 player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, songs[i].ar[0].name, formatDuration(songs[i].dt));
             }
             if (index != -1)
@@ -84,7 +104,9 @@ Item {
             else
                 player.play(0);
             player.setCurrentPlaylistId(currentPlaylistId);
-            isAddToPlaylist = true;
+            if (songUrls.length == playlistSongAllCount)
+                isAddToPlaylist = true;
+
         }
 
         player.switchToPlaylistMode();
@@ -92,9 +114,8 @@ Item {
             console.log("当前歌单和播放列表中以添加的歌曲不是来自同一个歌单，先清空播放列表，再添加歌曲");
             player.clearPlaylist();
         }
-        var ids = songs.map(function(song) {
-            return song.id;
-        });
+        var ids = [];
+        for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
         // 将所有id使用逗号连接成一个字符串
         var concatenatedIds = ids.join(',');
         network.onSongUrlRequestFinished.connect(onReply);
@@ -122,10 +143,22 @@ Item {
         player.playlistCleared.disconnect(onPlaylistCleared);
     }
 
+    ListModel {
+        id: songListModel
+    }
+
     // 歌单详情页
     ScrollView {
         anchors.fill: parent
         clip: true
+        ScrollBar.vertical.onPositionChanged: () => {
+            const position = ScrollBar.vertical.position + ScrollBar.vertical.size;
+            if (position > 0.99 && !loadMore && hasMore) {
+                console.log("position: " + position + " 滚动到底部，加载更多");
+                loadMore = true;
+                getPlaylistSongsInfo();
+            }
+        }
 
         Column {
             id: body
@@ -260,6 +293,7 @@ Item {
                 x: 20
                 height: listViewCount * 55 + (listViewCount - 1) * 5 + 30
                 spacing: 5
+                model: songListModel
                 clip: true
 
                 delegate: ItemDelegate {
@@ -270,10 +304,14 @@ Item {
                     onClicked: {
                         console.log("clicked index : " + index);
                         currentSelectIndex = index;
-                        if (!isAddToPlaylist)
-                            playPlaylistAllMusic(index);
-                        else
+                        if (!isAddToPlaylist) {
+                            if (index < songUrls.length)
+                                player.play(index);
+                            else
+                                playPlaylistAllMusic(index);
+                        } else {
                             player.play(index);
+                        }
                     }
 
                     RowLayout {
@@ -348,6 +386,18 @@ Item {
             anchors.centerIn: parent
         }
 
+    }
+
+    BusyIndicator {
+        id: indicator
+
+        visible: loadMore
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 5
+        running: true
+        width: 20
+        height: 20
     }
 
 }
