@@ -305,10 +305,7 @@ Item {
                         console.log("clicked index : " + index);
                         currentSelectIndex = index;
                         if (!isAddToPlaylist) {
-                            if (index < songUrls.length)
-                                player.play(index);
-                            else
-                                playPlaylistAllMusic(index);
+                            playPlaylistAllMusic(index);
                         } else {
                             player.play(index);
                         }
