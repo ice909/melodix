@@ -30,6 +30,10 @@ FloatingPanel {
     function onPlaylistCurrentIndexChanged() {
         selectedIndex = player.getCurrentIndex();
         console.log("player的playlistCurrentIndexChanged信号触发， selectedIndex: " + selectedIndex);
+        if (selectedIndex > (playlistMediaCount - (playlistView.height / 56) + 1))
+            return ;
+
+        playlistView.contentY = selectedIndex * 56;
     }
 
     function onModeAndPlaylist() {
@@ -160,10 +164,11 @@ FloatingPanel {
     }
 
     Connections {
-        target: playlistHideAnimation
         function onStopped() {
             isPlaylistShow = false;
         }
+
+        target: playlistHideAnimation
     }
 
     background: D.InWindowBlur {
