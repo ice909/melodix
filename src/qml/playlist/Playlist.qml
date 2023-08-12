@@ -161,7 +161,7 @@ FloatingPanel {
 
     Connections {
         target: playlistHideAnimation
-        onStopped: {
+        function onStopped() {
             isPlaylistShow = false;
         }
     }

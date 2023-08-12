@@ -158,7 +158,7 @@ Rectangle {
 
     Connections {
         target: lyricPage
-        onCurrentIndexChanged: {
+        function onCurrentIndexChanged(index) {
             if (isFlicking)
                 return ;
 

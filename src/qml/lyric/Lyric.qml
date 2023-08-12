@@ -265,7 +265,7 @@ Rectangle {
 
     Connections {
         target: lyricHideAnimation
-        onStopped: {
+        function onStopped() {
             isLyricShow = false;
         }
     }

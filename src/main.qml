@@ -191,13 +191,13 @@ ApplicationWindow {
         id: toolboxConnect
 
         target: toolbox
-        onPlaylistBtnClicked: {
+        function onPlaylistBtnClicked() {
             if (playlistLoader.status === Loader.Ready) {
                 playlistLoader.item.playlistRaise();
                 isPlaylistShow = true;
             }
         }
-        onLyricToggleClicked: {
+        function onLyricToggleClicked() {
             if (lrcWindowLoader.status === Loader.Null) {
                 lrcWindowLoader.setSource("qml/lyric/Lyric.qml");
                 lrcWindowLoader.item.y = -50;
@@ -210,7 +210,7 @@ ApplicationWindow {
 
     Connections {
         target: titleBar
-        onLrcHideBtnClicked: {
+        function onLrcHideBtnClicked() {
             if (lrcWindowLoader.status === Loader.Null) {
                 lrcWindowLoader.setSource("LyricWindow.qml");
                 lrcWindowLoader.item.y = -50;
