@@ -43,12 +43,9 @@ Item {
                     Text {
                         id: title
 
-                        anchors.left: parent.left
-                        anchors.verticalCenter: parent.verticalCenter
-                        width: parent.width
+                        anchors.centerIn: parent
                         text: modelData.name
-                        elide: Qt.ElideRight
-                        font.pixelSize: DTK.fontManager.t7.pixelSize
+                        font.pixelSize: DTK.fontManager.t5.pixelSize
                     }
 
                 }
