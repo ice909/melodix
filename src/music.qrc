@@ -45,5 +45,8 @@
         <file>qml/playlist/PlaylistDelegate.qml</file>
 
         <file>qml/search/Search.qml</file>
+
+        <file>qml/artist/Artist.qml</file>
+        <file>qml/artist/ArtistHotSongs.qml</file>
     </qresource>
 </RCC>

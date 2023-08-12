@@ -29,6 +29,14 @@ ApplicationWindow {
         return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
 
+    function formatTime(time) {
+        var date = new Date(time);
+        var year = date.getFullYear(); // 年份
+        var month = (date.getMonth() + 1).toString().padStart(2, '0'); // 月份（注意要加1，因为月份从0开始）
+        var day = date.getDate(); // 日期
+        return year + '年' + month + '月' + day + '日';
+    }
+
     function getTimestamp() {
         return Math.floor(Date.now() / 1000);
     }
@@ -190,13 +198,13 @@ ApplicationWindow {
     Connections {
         id: toolboxConnect
 
-        target: toolbox
         function onPlaylistBtnClicked() {
             if (playlistLoader.status === Loader.Ready) {
                 playlistLoader.item.playlistRaise();
                 isPlaylistShow = true;
             }
         }
+
         function onLyricToggleClicked() {
             if (lrcWindowLoader.status === Loader.Null) {
                 lrcWindowLoader.setSource("qml/lyric/Lyric.qml");
@@ -206,10 +214,11 @@ ApplicationWindow {
                 lrcWindowLoader.item.lyricWindowUp();
 
         }
+
+        target: toolbox
     }
 
     Connections {
-        target: titleBar
         function onLrcHideBtnClicked() {
             if (lrcWindowLoader.status === Loader.Null) {
                 lrcWindowLoader.setSource("LyricWindow.qml");
@@ -219,6 +228,8 @@ ApplicationWindow {
                 lrcWindowLoader.item.lyricWindowUp();
 
         }
+
+        target: titleBar
     }
 
     header: MyTitlebar {

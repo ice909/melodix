@@ -1,4 +1,5 @@
 import "../widgets"
+import "../../router"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import org.deepin.dtk 1.0
@@ -28,6 +29,16 @@ Rectangle {
                     height: parent.width
                     imgSrc: modelData.picUrl
                     borderRadius: height
+
+                    
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: {
+                            Router.showArtist(modelData.id)
+                        }
+                    }
+                    
                 }
 
                 Rectangle {

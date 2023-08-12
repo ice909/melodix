@@ -39,6 +39,12 @@ Item {
         "component": "qml/mv/Mv.qml",
         "id": ""
     }
+    // 艺人详情页
+    property var routeArtist: {
+        "path": "artist",
+        "component": "qml/artist/Artist.qml",
+        "id": ""
+    }
 
     // 路由后退信号
     signal signalBack()
@@ -99,6 +105,15 @@ Item {
         routeCurrent = r;
         routeHistory.push(r);
         signalNavigate(r, false);
+    }
+    
+    // 显示艺人详情页
+    function showArtist(id) {
+        const r = clone(routeArtist);
+        r.id = id;
+        routeCurrent = r;
+        routeHistory.push(r);
+        signalNavigate(r,false);
     }
 
     // 复制对象

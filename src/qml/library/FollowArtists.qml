@@ -1,4 +1,5 @@
 import "../widgets"
+import "../../router"
 import QtQuick 2.0
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
@@ -53,7 +54,8 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
-                    onPressed: {
+                    onClicked: {
+                        Router.showArtist(modelData.id)
                     }
                 }
 
