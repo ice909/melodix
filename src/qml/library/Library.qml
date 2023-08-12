@@ -20,6 +20,38 @@ Item {
         console.log("计算出的歌单行数：" + playlistRowCount);
     }
 
+    function getLyric(id) {
+        function onReply(reply) {
+            network.onSendReplyFinished.disconnect(onReply);
+            var lrc = JSON.parse(reply).lrc.lyric;
+            var lines = lrc.split("\n");
+            var lyrics = [];
+            for (var i = 0; i < lines.length; i++) {
+                var line = lines[i].trim();
+                if (line !== "") {
+                    var timestampEnd = line.indexOf("]");
+                    var lyric = line.substring(timestampEnd + 1).trim();
+                    if (lyric != "")
+                        lyrics.push(lyric);
+
+                }
+            }
+            var randomNumber = Math.floor(Math.random() * (lyrics.length - 4) + 4);
+            if ((randomNumber + 2) < lyrics.length) {
+                randomLyric1.text = lyrics[randomNumber];
+                randomLyric2.text = lyrics[randomNumber + 1];
+                randomLyric3.text = lyrics[randomNumber + 2];
+            } else {
+                randomLyric1.text = lyrics[randomNumber - 2];
+                randomLyric2.text = lyrics[randomNumber - 1];
+                randomLyric3.text = lyrics[randomNumber];
+            }
+        }
+
+        network.onSendReplyFinished.connect(onReply);
+        network.makeRequest("/lyric?id=" + id);
+    }
+
     // 获取用户歌单
     function getUserPlayLists() {
         function onReply(reply) {
@@ -41,7 +73,9 @@ Item {
     function getPlayListAllMusic() {
         function onReply(reply) {
             network.onSendReplyFinished.disconnect(onReply);
+            var randomNumber = Math.floor(Math.random() * 12);
             var datas = JSON.parse(reply).songs;
+            getLyric(datas[randomNumber].id);
             musicCountTitle.text = datas.length + "首歌";
             myFavoriteSongs.lists = datas.slice(0, 12);
             userAllPlaylist.lists = userPlaylists.slice(1, userPlaylists.length);
@@ -161,7 +195,50 @@ Item {
                         color: "#eaeffd"
                         radius: 16
 
+                        Rectangle {
+                            width: parent.width - 60
+                            height: parent.height - myfavoriteTitle.height - musicCountTitle.height - 50
+                            anchors.left: parent.left
+                            anchors.leftMargin: 10
+                            anchors.top: parent.top
+                            anchors.topMargin: 10
+                            color: "transparent"
+
+                            Column {
+                                anchors.fill: parent
+
+                                Text {
+                                    id: randomLyric1
+
+                                    width: parent.width
+                                    font.pixelSize: DTK.fontManager.t5.pixelSize
+                                    elide: Qt.ElideRight
+                                }
+
+                                Text {
+                                    id: randomLyric2
+
+                                    width: parent.width
+                                    font.pixelSize: DTK.fontManager.t4.pixelSize
+                                    font.bold: true
+                                    elide: Qt.ElideRight
+                                }
+
+                                Text {
+                                    id: randomLyric3
+
+                                    width: parent.width
+                                    font.pixelSize: DTK.fontManager.t5.pixelSize
+                                    elide: Qt.ElideRight
+                                }
+
+                            }
+
+                        }
+
                         Label {
+                            id: myfavoriteTitle
+
                             text: "我喜欢的音乐"
                             color: "#335eea"
                             anchors.left: parent.left
