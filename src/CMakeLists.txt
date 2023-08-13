@@ -4,13 +4,15 @@ list(APPEND RESOURCES img.qrc)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(Qt5 COMPONENTS Quick QuickCompiler LinguistTools REQUIRED)
+find_package(PkgConfig REQUIRED)
+find_package(Qt5 COMPONENTS Quick QuickCompiler REQUIRED)
 find_package(Qt5 REQUIRED Core Widgets Multimedia Network)
 
-find_package(DtkCore REQUIRED)
-find_package(DtkGui REQUIRED)
-find_package(DtkWidget REQUIRED)
 find_package(DtkDeclarative REQUIRED)
+
+pkg_check_modules(Dtk REQUIRED IMPORTED_TARGET dtkwidget)
+pkg_check_modules(Dtk REQUIRED IMPORTED_TARGET dtkcore)
+pkg_check_modules(Dtk REQUIRED IMPORTED_TARGET dtkgui)
 
 qtquick_compiler_add_resources(RCC_SOURCES ${RESOURCES})
 
@@ -31,9 +33,7 @@ set(TARGET_LIBS
     Qt5::Multimedia
     Qt5::Network
     Qt5::Quick
-    ${DtkCore_LIBRARIES}
-    ${DtkGui_LIBRARIES}
-    ${DtkWidget_LIBRARIES}
+    PkgConfig::Dtk
     ${DtkDeclarative_LIBRARIES}
 )
 
