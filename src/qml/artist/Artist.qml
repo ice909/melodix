@@ -82,7 +82,7 @@ Item {
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: 5 + 20 * 4 + headRect.height + newReleaseRect.height + artist_hot_songs.height + 30 * 2
+        contentHeight: 10 + 20 * 4 + headRect.height + newReleaseRect.height + artist_hot_songs.height + 30 * 2
 
         Column {
             id: body
