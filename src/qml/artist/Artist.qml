@@ -10,11 +10,22 @@ Item {
 
     property int scrollWidth: rootWindow.width - 40
     property bool initing: true
+    property int hotSongsCount: 0
 
     function getArtistSongs() {
         function onReply(reply) {
             network.onSendReplyFinished.disconnect(onReply);
-            artist_hot_songs.lists = JSON.parse(reply).hotSongs.slice(0, 12);
+            var songs = JSON.parse(reply).hotSongs;
+            if(songs.length > 12){
+                hotSongsCount = 3
+                artist_hot_songs.lists = songs.slice(0, 12);
+            }else {
+                hotSongsCount = Math.ceil(songs.length / 4);
+                artist_hot_songs.lists = songs.slice(0, hotSongsCount);
+            }
+            
+            
+            
             initing = false;
         }
 
@@ -374,7 +385,7 @@ Item {
                 id: artist_hot_songs
 
                 width: scrollWidth
-                height: (scrollWidth - 10 * 2) / 6
+                height: (scrollWidth - 30 * 3)  / 16 * hotSongsCount + 10 * 2
             }
 
         }

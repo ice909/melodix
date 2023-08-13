@@ -21,7 +21,7 @@ Item {
 
             Rectangle {
                 width: (parent.width - 30 * 3) * 0.25
-                height: (parent.height - 10 * 2) / 3
+                height: width / 4
                 color: "transparent"
                 radius: 5
 
