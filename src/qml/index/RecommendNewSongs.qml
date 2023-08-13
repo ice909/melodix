@@ -22,40 +22,46 @@ Rectangle {
                 height: width * 0.15
                 color: "transparent"
 
-                RoundedImage {
-                    id: img
+                Row {
+                    anchors.fill: parent
+                    spacing: 10
 
-                    width: parent.height
-                    height: parent.height
-                    imgSrc: modelData.picUrl
-                }
+                    RoundedImage {
+                        id: img
 
-                Rectangle {
-                    anchors.left: img.right
-                    anchors.right: parent.right
-                    anchors.leftMargin: 5
-                    anchors.verticalCenter: img.verticalCenter
-                    height: img.height - 15
-                    color: "transparent"
-
-                    Text {
-                        id: title
-
-                        anchors.left: parent.left
-                        anchors.topMargin: 5
-                        width: parent.width
-                        text: modelData.song.name
-                        elide: Qt.ElideRight
-                        font.pixelSize: DTK.fontManager.t5.pixelSize
+                        width: parent.height
+                        height: parent.height
+                        imgSrc: modelData.picUrl
                     }
 
-                    Text {
-                        anchors.top: title.bottom
-                        anchors.topMargin: 5
-                        width: parent.width
-                        text: modelData.song.artists[0].name
-                        font.pixelSize: DTK.fontManager.t6.pixelSize
-                        elide: Qt.ElideRight
+                    Rectangle {
+                        id: infoRect
+
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: parent.width - img.width - 10
+                        height: parent.height - 15
+                        color: "transparent"
+
+                        Column {
+                            anchors.centerIn: parent
+                            spacing: 5
+
+                            Text {
+                                width: infoRect.width
+                                text: modelData.song.name
+                                elide: Qt.ElideRight
+                                font.pixelSize: DTK.fontManager.t5.pixelSize
+                            }
+
+                            Text {
+                                width: infoRect.width
+                                text: modelData.song.artists[0].name
+                                font.pixelSize: DTK.fontManager.t6.pixelSize
+                                elide: Qt.ElideRight
+                            }
+
+                        }
+
                     }
 
                 }

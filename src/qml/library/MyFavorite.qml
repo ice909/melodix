@@ -37,6 +37,8 @@ Item {
                 }
 
                 Rectangle {
+                    id: infoRect
+
                     width: parent.width - img.width - 10
                     anchors.left: img.right
                     anchors.right: parent.right
@@ -45,22 +47,26 @@ Item {
                     height: parent.height - 10
                     color: "transparent"
 
-                    Text {
-                        id: title
+                    Column {
+                        anchors.centerIn: parent
+                        spacing: 3
 
-                        anchors.left: parent.left
-                        width: parent.width
-                        text: modelData.name
-                        elide: Qt.ElideRight
-                        font.pixelSize: DTK.fontManager.t7.pixelSize
-                    }
+                        Text {
+                            id: title
 
-                    Text {
-                        anchors.top: title.bottom
-                        width: parent.width
-                        text: modelData.ar[0].name
-                        font.pixelSize: DTK.fontManager.t8.pixelSize
-                        elide: Qt.ElideRight
+                            width: infoRect.width
+                            text: modelData.name
+                            elide: Qt.ElideRight
+                            font.pixelSize: DTK.fontManager.t7.pixelSize
+                        }
+
+                        Text {
+                            width: infoRect.width
+                            text: modelData.ar[0].name
+                            font.pixelSize: DTK.fontManager.t8.pixelSize
+                            elide: Qt.ElideRight
+                        }
+
                     }
 
                 }
