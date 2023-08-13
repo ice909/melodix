@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=/usr/bin/digimusic
+Icon=digimusic
+Name=Digi Music
+Type=Application
+X-Deepin-TurboType=dtkqml
+
