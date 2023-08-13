@@ -31,6 +31,8 @@ Item {
                 artist_new_mv_name.text = mvs[0].name;
                 var time = mvs[0].publishTime.split("-");
                 artist_new_mv_time.text = time[0] + "年" + time[1] + "月" + time[2] + "日";
+            } else {
+                artist_new_mv_title.visible = false;
             }
             getArtistSongs();
         }
@@ -336,6 +338,8 @@ Item {
                                     }
 
                                     Text {
+                                        id: artist_new_mv_title
+
                                         text: "最新MV"
                                         font.pixelSize: DTK.fontManager.t6.pixelSize
                                     }
