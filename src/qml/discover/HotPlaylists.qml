@@ -4,7 +4,7 @@ import QtQuick 2.11
 import QtQuick.Controls 2.4
 
 Rectangle {
-    property alias lists: repeater.model
+    property ListModel lists: ListModel {}
 
     Grid {
         id: gridLayout
@@ -16,6 +16,8 @@ Rectangle {
 
         Repeater {
             id: repeater
+
+            model: lists
 
             Rectangle {
                 width: (parent.width - 30 * 4) * 0.2
