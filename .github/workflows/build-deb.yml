@@ -1,0 +1,77 @@
+name: build deb
+run-name: Github Action is building Debian Packages
+on: [push]
+jobs: 
+    build: 
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+              with: 
+                    token: ${{ secrets.PRIVATE_TOKEN }}
+                    path: "digimusic"
+                
+            - name: Install dependency
+              run: sudo apt install libdtkwidget-dev doxygen qtmultimedia5-dev
+              
+            - name: Build and Install dtkcommon
+              run: |
+                  git clone -b 5.6.12 https://github.com/linuxdeepin/dtkcommon.git
+                  cd dtkcommon
+                  sudo apt build-dep .
+                  cmake -B build
+                  cmake --build build -j $(nproc)
+                  sudo dpkg-buildpackage -us -uc -b
+                  cd ../
+                  sudo apt install ./*.deb
+                  
+            - name: Build and Install dtkcore
+              run: |
+                  git clone -b 5.6.13 https://github.com/linuxdeepin/dtkcore.git
+                  cd dtkcore
+                  sudo apt build-dep .
+                  cmake -B build
+                  cmake --build build -j $(nproc)
+                  sudo dpkg-buildpackage -us -uc -b
+                  cd ../
+                  sudo apt install ./*.deb
+
+            - name: Build and Install dtkgui
+              run: |
+                  git clone -b 5.6.12 https://github.com/linuxdeepin/dtkgui.git
+                  cd dtkgui
+                  sudo apt build-dep .
+                  cmake -B build
+                  cmake --build build -j $(nproc)
+                  sudo dpkg-buildpackage -us -uc -b
+                  cd ../
+                  sudo apt install ./*.deb
+                  
+            # - name: Build and Install dtkwidget
+            #   run: |
+            #       git clone -b 5.6.13 https://github.com/linuxdeepin/dtkwidget.git
+            #       cd dtkwidget
+            #       sudo apt build-dep .
+            #       cmake -B build
+            #       cmake --build build -j $(nproc)
+            #       sudo dpkg-buildpackage -us -uc -b
+            #       cd ../
+            #       sudo apt install ./*.deb
+
+            - name: Build and Install dtkdeclarative
+              run: |
+                  git clone -b 5.6.10 https://github.com/linuxdeepin/dtkdeclarative.git
+                  cd dtkdeclarative
+                  sudo apt build-dep .
+                  cmake -B build
+                  cmake --build build -j $(nproc)
+                  sudo dpkg-buildpackage -us -uc -b
+                  cd ../
+                  sudo apt install ./*.deb
+
+            - name: build and pack digimusic
+              run: |
+                    cd digimusic
+                    cmake -B build
+                    cmake --build build -j $(nproc)
+                    sudo dpkg-buildpackage -us -uc -b
+
