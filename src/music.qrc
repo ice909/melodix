@@ -48,5 +48,7 @@
 
         <file>qml/artist/Artist.qml</file>
         <file>qml/artist/ArtistHotSongs.qml</file>
+
+        <file>qml/favorite/Favorite.qml</file>
     </qresource>
 </RCC>

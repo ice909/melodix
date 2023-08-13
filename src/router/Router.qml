@@ -45,6 +45,11 @@ Item {
         "component": "qml/artist/Artist.qml",
         "id": ""
     }
+    // 喜欢的歌曲页
+    property var routeFavorite: {
+        "path": "favourite",
+        "component": "qml/favorite/Favorite.qml"
+    }
 
     // 路由后退信号
     signal signalBack()
@@ -111,6 +116,14 @@ Item {
     function showArtist(id) {
         const r = clone(routeArtist);
         r.id = id;
+        routeCurrent = r;
+        routeHistory.push(r);
+        signalNavigate(r,false);
+    }
+
+    // 显示喜欢的歌曲页
+    function showFavorite() {
+        const r = clone(routeFavorite);
         routeCurrent = r;
         routeHistory.push(r);
         signalNavigate(r,false);

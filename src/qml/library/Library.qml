@@ -1,4 +1,5 @@
 import "../widgets"
+import "../../router"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -259,6 +260,14 @@ Item {
                             anchors.bottomMargin: 8
                             anchors.leftMargin: 10
                         }
+
+                        
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: Router.showFavorite();
+                        }
+                        
 
                     }
 
