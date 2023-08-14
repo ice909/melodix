@@ -41,6 +41,7 @@ Item {
                 player.addPlaylistToPlaylist(songUrls[i], offsetSongs[i].id, offsetSongs[i].name, offsetSongs[i].al.picUrl, offsetSongs[i].ar[0].name, formatDuration(offsetSongs[i].dt));
             }
             player.play(index);
+            player.setCurrentPlaylistId("search")
             isAddToPlaylist = true;
         }
 
