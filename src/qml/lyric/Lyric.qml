@@ -16,9 +16,6 @@ Rectangle {
     property int centerAreaWidth: 899
     property ListModel lrcModel
 
-    lrcModel: ListModel {
-    }
-
     signal currentIndexChanged(int index)
 
     function getLyric() {
@@ -37,10 +34,12 @@ Rectangle {
                     var minutes = parseInt(timeParts[0]);
                     var seconds = parseFloat(timeParts[1]);
                     var milliseconds = Math.round((minutes * 60 + seconds) * 1000);
-                    lrcModel.append({
+                    if (lyric != "")
+                        lrcModel.append({
                         "time": milliseconds,
                         "lyric": lyric
                     });
+
                 }
             }
         }
@@ -94,6 +93,7 @@ Rectangle {
         player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         player.positionChanged.connect(onPositionChanged);
     }
+
     Image {
         id: bgImg
 
@@ -264,10 +264,14 @@ Rectangle {
     }
 
     Connections {
-        target: lyricHideAnimation
         function onStopped() {
             isLyricShow = false;
         }
+
+        target: lyricHideAnimation
+    }
+
+    lrcModel: ListModel {
     }
 
     NumberAnimation on y {
