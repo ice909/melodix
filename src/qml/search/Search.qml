@@ -73,8 +73,17 @@ Item {
         network.makeRequest("/cloudsearch?keywords=" + Router.routeCurrent.key + "&offset=" + offset + "&limit=60");
     }
 
+    function onPlaylistCurrentIndexChanged() {
+        selectedIndex = player.getCurrentIndex();
+    }
+
     Component.onCompleted: {
         getSearchResult();
+        player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
+    }
+
+    Component.onDestruction: {
+        player.playlistCurrentIndexChanged.disconnect(onPlaylistCurrentIndexChanged)
     }
 
     ScrollView {
