@@ -121,9 +121,10 @@ Item {
         function onReply(reply) {
             network.onSendReplyFinished.disconnect(onReply);
             var datas = JSON.parse(reply).data;
-            console.log("关注艺人数量：" + datas.length);
+            //console.log(JSON.stringify(JSON.parse(reply)))
+            console.log("收藏MV数量：" + datas.length);
             playlistRowCount = Math.ceil(datas.length / 5);
-            console.log("计算出的关注艺人行数：" + playlistRowCount);
+            console.log("计算出的收藏MV行数：" + playlistRowCount);
             userCollectMVs.lists = datas;
         }
 
