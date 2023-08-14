@@ -30,7 +30,7 @@ TitleBar {
         width: 36
         height: 36
         icon.name: isLyricShow ? "go-down" : "arrow_ordinary_left"
-        icon.width: 7
+        icon.width: 12
         icon.height: 12
         onClicked: {
             if (!isLyricShow)
