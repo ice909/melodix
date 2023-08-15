@@ -18,6 +18,7 @@ ApplicationWindow {
     property string userImg: ""
     property string userNickname: ""
     property string userID: ""
+    property var userFavoriteSongsID: []
     property bool isPlaylistShow: false
     property bool isLyricShow: false
     property int windowMiniWidth: 1070
@@ -51,6 +52,16 @@ ApplicationWindow {
         network.getSongUrl(id);
     }
 
+    function getUserFavoriteSongID() {
+        function onReply(reply) {
+            network.onAccountReplyFinished.disconnect(onReply);
+            userFavoriteSongsID = JSON.parse(reply).ids;
+        }
+
+        network.onAccountReplyFinished.connect(onReply);
+        network.accountInfo("/likelist?uid=" + userID);
+    }
+
     function getAccountInfo() {
         function onReply(reply) {
             network.onAccountReplyFinished.disconnect(onReply);
@@ -58,6 +69,7 @@ ApplicationWindow {
             userNickname = JSON.parse(reply).profile.nickname;
             userID = JSON.parse(reply).profile.userId;
             console.log("用户头像 昵称 ID获取成功");
+            getUserFavoriteSongID();
         }
 
         network.onAccountReplyFinished.connect(onReply);

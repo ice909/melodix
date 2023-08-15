@@ -42,6 +42,20 @@ FloatingPanel {
         songTitle = player.getName();
         artistStr = player.getArtist();
         picUrl = player.getPic();
+        console.log(player.getId())
+        var musicId = player.getId();
+        var index = -1
+        for (const id of userFavoriteSongsID)
+        {
+            if (id == musicId) {
+                index = 0
+            }
+        }
+        if(index != -1){
+            favorite = true
+        }else {
+            favorite = false
+        }
     }
 
     function onPlayStateChanged() {
