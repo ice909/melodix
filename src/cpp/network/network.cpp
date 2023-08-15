@@ -21,8 +21,10 @@ void Network::parseCookie()
             if (parts.length() == 2) {
                 QByteArray name = parts[0].trimmed().toUtf8();
                 QByteArray value = parts[1].trimmed().toUtf8();
-                QNetworkCookie cookie(name, value);
-                m_request_cookies.append(cookie);
+                if (name == "MUSIC_U") {
+                    QNetworkCookie cookie(name, value);
+                    m_request_cookies.append(cookie);
+                }
             }
         }
     }
@@ -87,8 +89,22 @@ void Network::onSongUrlReplyFinished(QNetworkReply *reply)
 void Network::saveCookie(QString cookie)
 {
     m_cookie = cookie;
-    m_settings->setValue("cookieData", m_cookie);
-    parseCookie();
+    if (!m_cookie.isEmpty()) {
+        QStringList cookieList = m_cookie.split(';');
+        foreach (QString cookieItem, cookieList) {
+            cookieItem = cookieItem.trimmed();
+            QList<QString> parts = cookieItem.split('=');
+            if (parts.length() == 2) {
+                QByteArray name = parts[0].trimmed().toUtf8();
+                QByteArray value = parts[1].trimmed().toUtf8();
+                if (name == "MUSIC_U") {
+                    m_settings->setValue("cookieData", cookieItem);
+                }
+                m_request_cookies.append(QNetworkCookie(name, value));
+                m_cookie = cookieItem;
+            }
+        }
+    }
 }
 
 void Network::logout()
