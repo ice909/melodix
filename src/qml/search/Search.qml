@@ -1,5 +1,6 @@
 import "../../router"
 import "../widgets"
+import "../../util"
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
@@ -38,7 +39,7 @@ Item {
 
             }
             for (var i = 0; i < offsetSongs.length; i++) {
-                player.addPlaylistToPlaylist(songUrls[i], offsetSongs[i].id, offsetSongs[i].name, offsetSongs[i].al.picUrl, offsetSongs[i].ar[0].name, formatDuration(offsetSongs[i].dt));
+                player.addPlaylistToPlaylist(songUrls[i], offsetSongs[i].id, offsetSongs[i].name, offsetSongs[i].al.picUrl, offsetSongs[i].ar[0].name, Util.formatDuration(offsetSongs[i].dt));
             }
             player.play(index);
             player.setCurrentPlaylistId("search")
@@ -257,7 +258,7 @@ Item {
                                 height: parent.height
                                 color: checked ? palette.highlightedText : "#7C7C7C"
                                 elide: Text.ElideRight
-                                text: formatDuration(modelData.dt)
+                                text: Util.formatDuration(modelData.dt)
                                 verticalAlignment: Qt.AlignVCenter
                                 anchors.verticalCenter: parent.verticalCenter
                                 font: DTK.fontManager.t6

@@ -1,4 +1,5 @@
 import "../widgets"
+import "../../util"
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
@@ -18,7 +19,7 @@ Popup {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/login/qr/key?timestamp=" + rootWindow.getTimestamp());
+        network.makeRequest("/login/qr/key?timestamp=" + Util.getTimestamp());
     }
 
     // 生成二维码
@@ -31,7 +32,7 @@ Popup {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/login/qr/create?key=" + unikey + "&qrimg=true&timestamp=" + rootWindow.getTimestamp());
+        network.makeRequest("/login/qr/create?key=" + unikey + "&qrimg=true&timestamp=" + Util.getTimestamp());
     }
 
     // 二维码检测扫码状态
@@ -50,7 +51,7 @@ Popup {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/login/qr/check?key=" + unikey + "&timestamp=" + rootWindow.getTimestamp());
+        network.makeRequest("/login/qr/check?key=" + unikey + "&timestamp=" + Util.getTimestamp());
     }
 
     // 处理二维码被扫描后的逻辑

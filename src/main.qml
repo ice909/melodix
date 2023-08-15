@@ -8,6 +8,7 @@ import "qml/playlist"
 import "qml/titlebar"
 import "qml/toolbar"
 import "router"
+import "util"
 
 ApplicationWindow {
     // 获取账户信息
@@ -23,24 +24,6 @@ ApplicationWindow {
     property bool isLyricShow: false
     property int windowMiniWidth: 1070
     property int windowMiniHeight: 680
-
-    function formatDuration(duration) {
-        var minutes = Math.floor(duration / 60000);
-        var seconds = Math.floor((duration % 60000) / 1000);
-        return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-    }
-
-    function formatTime(time) {
-        var date = new Date(time);
-        var year = date.getFullYear(); // 年份
-        var month = (date.getMonth() + 1).toString().padStart(2, '0'); // 月份（注意要加1，因为月份从0开始）
-        var day = date.getDate(); // 日期
-        return year + '年' + month + '月' + day + '日';
-    }
-
-    function getTimestamp() {
-        return Math.floor(Date.now() / 1000);
-    }
 
     function getMusicUrl(id, name, pic, artist, duration) {
         function onReply(reply) {
@@ -73,7 +56,7 @@ ApplicationWindow {
         }
 
         network.onAccountReplyFinished.connect(onReply);
-        network.accountInfo("/user/account?timestamp=" + getTimestamp());
+        network.accountInfo("/user/account?timestamp=" + Util.getTimestamp());
     }
 
     function refreshAccount() {
@@ -91,7 +74,7 @@ ApplicationWindow {
         }
 
         network.onAccountReplyFinished.connect(onReply);
-        network.accountInfo("/login/status?timestamp=" + getTimestamp());
+        network.accountInfo("/login/status?timestamp=" + Util.getTimestamp());
     }
 
     visible: true
@@ -119,6 +102,7 @@ ApplicationWindow {
     }
     Component.onCompleted: {
         refreshAccount();
+        console.log(Util.getTimestamp())
     }
 
     Repeater {

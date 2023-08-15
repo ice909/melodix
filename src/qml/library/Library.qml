@@ -1,5 +1,6 @@
 import "../widgets"
 import "../../router"
+import "../../util"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -67,7 +68,7 @@ Item {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/user/playlist?uid=" + userID + "&timestamp=" + getTimestamp());
+        network.makeRequest("/user/playlist?uid=" + userID + "&timestamp=" + Util.getTimestamp());
     }
 
     // 获取歌单前12首歌曲
@@ -84,7 +85,7 @@ Item {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/playlist/track/all?id=" + myLikeListId + "&timestamp=" + getTimestamp());
+        network.makeRequest("/playlist/track/all?id=" + myLikeListId + "&timestamp=" + Util.getTimestamp());
     }
 
     // 获取用户购买的专辑
@@ -99,7 +100,7 @@ Item {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/digitalAlbum/purchased?timestamp=" + getTimestamp());
+        network.makeRequest("/digitalAlbum/purchased?timestamp=" + Util.getTimestamp());
     }
 
     // 获取收藏的歌手
@@ -114,7 +115,7 @@ Item {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/artist/sublist?timestamp=" + getTimestamp());
+        network.makeRequest("/artist/sublist?timestamp=" + Util.getTimestamp());
     }
 
     function getCollectMvs() {
@@ -129,7 +130,7 @@ Item {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/mv/sublist?timestamp=" + getTimestamp());
+        network.makeRequest("/mv/sublist?timestamp=" + Util.getTimestamp());
     }
 
     Component.onCompleted: {

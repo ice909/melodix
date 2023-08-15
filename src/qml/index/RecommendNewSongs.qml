@@ -1,4 +1,5 @@
 import "../widgets"
+import "../../util"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import org.deepin.dtk 1.0
@@ -71,7 +72,7 @@ Rectangle {
                     cursorShape: Qt.PointingHandCursor
                     onPressed: {
                         //点击新歌时，获取歌曲id，拿着歌曲id去获取歌曲url
-                        getMusicUrl(modelData.id, modelData.song.name, modelData.picUrl, modelData.song.artists[0].name, formatDuration(modelData.song.duration));
+                        getMusicUrl(modelData.id, modelData.song.name, modelData.picUrl, modelData.song.artists[0].name, Util.formatDuration(modelData.song.duration));
                     }
                 }
 

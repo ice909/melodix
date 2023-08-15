@@ -1,5 +1,6 @@
 import "../../router"
 import "../widgets"
+import "../../util"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -60,7 +61,7 @@ Item {
                 artist_new_album_cover.imgSrc = hotAlbums[0].blurPicUrl;
 
             artist_new_album_name.text = hotAlbums[0].name;
-            artist_new_album_time.text = formatTime(hotAlbums[0].publishTime);
+            artist_new_album_time.text = Util.formatTime(hotAlbums[0].publishTime);
             artist_new_album_count.text = "Single · " + hotAlbums[0].size + "首歌";
             getArtistMv();
         }

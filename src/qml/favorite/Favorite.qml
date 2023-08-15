@@ -1,4 +1,5 @@
 import "../widgets"
+import "../../util"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -41,7 +42,7 @@ Item {
 
             }
             for (var i = urlOffset; i < songs.length; i++) {
-                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, songs[i].ar[0].name, formatDuration(songs[i].dt));
+                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, songs[i].ar[0].name, Util.formatDuration(songs[i].dt));
             }
             if (index != -1)
                 player.play(index);
@@ -103,7 +104,7 @@ Item {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/user/playlist?uid=" + userID + "&timestamp=" + getTimestamp());
+        network.makeRequest("/user/playlist?uid=" + userID + "&timestamp=" + Util.getTimestamp());
     }
     
     Component.onCompleted: {
@@ -232,7 +233,7 @@ Item {
                         Label {
                             Layout.rightMargin: 10
                             font.bold: true
-                            text: rootWindow.formatDuration(modelData.dt)
+                            text: Util.formatDuration(modelData.dt)
                         }
 
                     }

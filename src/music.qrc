@@ -50,5 +50,8 @@
         <file>qml/artist/ArtistHotSongs.qml</file>
 
         <file>qml/favorite/Favorite.qml</file>
+
+        <file>util/Util.qml</file>
+        <file>util/qmldir</file>
     </qresource>
 </RCC>
