@@ -16,9 +16,10 @@ ApplicationWindow {
     id: rootWindow
 
     property bool isLogin: false
-    property string userImg: ""
+    property string userAvatar: ""
     property string userNickname: ""
     property string userID: ""
+    // 我喜欢的所有歌曲的id
     property var userFavoriteSongsID: []
     property bool isPlaylistShow: false
     property bool isLyricShow: false
@@ -48,7 +49,7 @@ ApplicationWindow {
     function getAccountInfo() {
         function onReply(reply) {
             network.onAccountReplyFinished.disconnect(onReply);
-            userImg = JSON.parse(reply).profile.avatarUrl;
+            userAvatar = JSON.parse(reply).profile.avatarUrl;
             userNickname = JSON.parse(reply).profile.nickname;
             userID = JSON.parse(reply).profile.userId;
             console.log("用户头像 昵称 ID获取成功");
@@ -102,7 +103,6 @@ ApplicationWindow {
     }
     Component.onCompleted: {
         refreshAccount();
-        console.log(Util.getTimestamp())
     }
 
     Repeater {

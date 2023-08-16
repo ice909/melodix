@@ -1,6 +1,6 @@
 import "../../router"
-import "../widgets"
 import "../../util"
+import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -9,14 +9,16 @@ import org.deepin.dtk 1.0
 Item {
     id: root
 
+    property bool initing: true
     property int scrollWidth: rootWindow.width - 40
+    // 是否已经将歌单全部歌曲添加到了播放列表
     property bool isAddToPlaylist: false
     property string currentPlaylistId: ""
     property var songs: []
     // 保存添加到播放列表的歌曲url,以及可以作为判断已经添加到播放列表的歌曲数
     property var songUrls: []
-    property int listViewCount: 0
-    property bool initing: true
+    // 已经加载到listview中的歌曲数量
+    property int loadedSongCount: 0
     property int currentSelectIndex: -1
     // 歌单歌曲总数
     property int playlistSongAllCount: 0
@@ -34,7 +36,7 @@ Item {
             network.onSendReplyFinished.disconnect(onReply);
             var newSongs = JSON.parse(reply).songs;
             songs.push(...newSongs);
-            listViewCount += newSongs.length;
+            loadedSongCount += newSongs.length;
             for (const song of newSongs) listView.model.append({
                 "song": song
             })
@@ -284,7 +286,7 @@ Item {
 
                 width: scrollWidth
                 x: 20
-                height: listViewCount * 55 + (listViewCount - 1) * 5 + 30
+                height: loadedSongCount * 55 + (loadedSongCount - 1) * 5 + 30
                 spacing: 5
                 model: songListModel
                 clip: true
@@ -297,11 +299,10 @@ Item {
                     onClicked: {
                         console.log("clicked index : " + index);
                         currentSelectIndex = index;
-                        if (!isAddToPlaylist) {
+                        if (!isAddToPlaylist)
                             playPlaylistAllMusic(index);
-                        } else {
+                        else
                             player.play(index);
-                        }
                     }
 
                     RowLayout {

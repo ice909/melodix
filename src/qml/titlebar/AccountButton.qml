@@ -12,7 +12,7 @@ WindowButton {
     RoundedImage {
         id: avatarImage
 
-        imgSrc: avatarImg == "" ? "qrc:/dsg/img/avatar.svg" : avatarImg
+        imgSrc: userAvatar == "" ? "qrc:/dsg/img/avatar.svg" : userAvatar
         width: 26
         height: 26
         anchors.centerIn: parent
@@ -40,13 +40,13 @@ WindowButton {
                 text: "登出"
                 onClicked: {
                     network.logout();
-                    userImg = "";
+                    userAvatar = "";
                     isLogin = false;
                     accountMenu.close();
                 }
             }
-            // 登陆按钮
 
+            // 登陆按钮
             RecommandButton {
                 visible: !isLogin
                 Layout.fillWidth: true

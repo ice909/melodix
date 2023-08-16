@@ -8,8 +8,6 @@ import org.deepin.dtk.style 1.0 as DS
 TitleBar {
     id: root
 
-    property string avatarImg: userImg
-
     signal lrcHideBtnClicked()
 
     height: DS.Style.titleBar.height

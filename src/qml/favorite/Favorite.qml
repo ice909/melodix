@@ -138,7 +138,7 @@ Item {
             Rectangle {
                 width: scrollWidth
                 height: 40
-                color: "red"
+                color: "transparent"
 
                 Row {
                     anchors.fill: parent
@@ -148,7 +148,7 @@ Item {
                         height: parent.height
                         width: height
                         borderRadius: height
-                        imgSrc: userImg
+                        imgSrc: userAvatar
                     }
 
                     Text {

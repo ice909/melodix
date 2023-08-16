@@ -10,7 +10,9 @@ Item {
     property bool initing: true
     property int scrollWidth: rootWindow.width - 40
     property string currentCategory: "全部" // 默认选中全部分类
-    property int hotPlaylistsRows: 0
+    // 当前显示歌单的行数
+    property int playlistRows: 0
+    // 当前显示歌单的总数
     property int playlistCount: 0
     // 一次取出的歌曲数量
     property int songlimit: 0
@@ -21,13 +23,14 @@ Item {
     // 是否加载完全部歌单
     property bool hasMore: true
 
+    // 切换分类之前重置属性
     function switchBeforeClear() {
         initing = true;
         hotPlaylists.lists.clear();
         hasMore = true;
         offset = 0;
         songlimit = 0;
-        hotPlaylistsRows = 0;
+        playlistRows = 0;
         getPlaylistCount();
     }
 
@@ -40,8 +43,8 @@ Item {
                 "playlist": playlist
             })
             console.log("获取的歌单数量：" + playlists.length);
-            hotPlaylistsRows += Math.ceil(playlists.length / 5);
-            console.log("计算出的歌单行数：" + hotPlaylistsRows);
+            playlistRows += Math.ceil(playlists.length / 5);
+            console.log("计算出的歌单行数：" + playlistRows);
             offset += playlists.length;
             console.log("加载的歌曲数量: songlimit: " + songlimit + " offset: " + offset);
             initing = false;
@@ -297,7 +300,7 @@ Item {
                 id: hotPlaylists
 
                 width: scrollWidth
-                height: hotPlaylistsRows * 202 + (hotPlaylistsRows - 1) * 30
+                height: playlistRows * 202 + (playlistRows - 1) * 30
             }
 
         }

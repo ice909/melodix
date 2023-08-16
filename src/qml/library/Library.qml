@@ -11,15 +11,16 @@ Item {
 
     property bool initing: true
     property int scrollWidth: rootWindow.width - 40
+    // 用户的所有歌单
     property var userPlaylists: []
     property string myLikeListId: ""
     property string currentChecked: "全部歌单"
-    property int playlistRowCount: 0
+    property int playlistRows: 0
 
     function checkedAllPlaylist() {
         console.log("获取的歌单数量：" + userPlaylists.length);
-        playlistRowCount = Math.ceil(userPlaylists.length / 5);
-        console.log("计算出的歌单行数：" + playlistRowCount);
+        playlistRows = Math.ceil(userPlaylists.length / 5);
+        console.log("计算出的歌单行数：" + playlistRows);
     }
 
     function getLyric(id) {
@@ -60,8 +61,8 @@ Item {
             network.onSendReplyFinished.disconnect(onReply);
             userPlaylists = JSON.parse(reply).playlist;
             console.log("获取的歌单数量：" + userPlaylists.length);
-            playlistRowCount = Math.ceil(userPlaylists.length / 5);
-            console.log("计算出的歌单行数：" + playlistRowCount);
+            playlistRows = Math.ceil(userPlaylists.length / 5);
+            console.log("计算出的歌单行数：" + playlistRows);
             // 第一个为我喜欢的歌单
             myLikeListId = userPlaylists[0].id;
             getPlayListAllMusic();
@@ -95,8 +96,8 @@ Item {
             var datas = JSON.parse(reply).paidAlbums;
             userBuyAlbum.lists = datas;
             console.log("已购专辑数量：" + datas.length);
-            playlistRowCount = Math.ceil(datas.length / 5);
-            console.log("计算出的已购专辑行数：" + playlistRowCount);
+            playlistRows = Math.ceil(datas.length / 5);
+            console.log("计算出的已购专辑行数：" + playlistRows);
         }
 
         network.onSendReplyFinished.connect(onReply);
@@ -109,8 +110,8 @@ Item {
             network.onSendReplyFinished.disconnect(onReply);
             var datas = JSON.parse(reply).data;
             console.log("关注艺人数量：" + datas.length);
-            playlistRowCount = Math.ceil(datas.length / 5);
-            console.log("计算出的关注艺人行数：" + playlistRowCount);
+            playlistRows = Math.ceil(datas.length / 5);
+            console.log("计算出的关注艺人行数：" + playlistRows);
             userFollowArtists.lists = datas;
         }
 
@@ -141,7 +142,7 @@ Item {
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: myloveRect.height + headRect.height + categoryTabRect.height + bottomDataRect.height + 5 + 20 * 3
+        contentHeight: myFavoriteSongsRect.height + headRect.height + categoryTabRect.height + bottomDataRect.height + 5 + 20 * 3
 
         Column {
             id: body
@@ -164,7 +165,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     width: 40
                     height: 40
-                    imgSrc: userImg
+                    imgSrc: userAvatar
                     borderRadius: width
                 }
 
@@ -180,7 +181,7 @@ Item {
             }
 
             Rectangle {
-                id: myloveRect
+                id: myFavoriteSongsRect
 
                 width: scrollWidth
                 height: 220
@@ -191,7 +192,7 @@ Item {
                     spacing: 30
 
                     Rectangle {
-                        id: myloveLeftRect
+                        id: myFavoriteSongsLeftRect
 
                         width: parent.width * 0.35
                         height: parent.height
@@ -355,7 +356,7 @@ Item {
                 id: bottomDataRect
 
                 width: scrollWidth
-                height: currentChecked == "MV" ? ((playlistRowCount * ((scrollWidth - 30 * 3) * 0.25 - 60)) + (playlistRowCount - 1) * 10) : ((playlistRowCount * ((scrollWidth - 30 * 4) * 0.2 + 30)) + (playlistRowCount - 1) * 10)
+                height: currentChecked == "MV" ? ((playlistRows * ((scrollWidth - 30 * 3) * 0.25 - 60)) + (playlistRows - 1) * 10) : ((playlistRows * ((scrollWidth - 30 * 4) * 0.2 + 30)) + (playlistRows - 1) * 10)
                 color: "transparent"
 
                 AllPlaylist {
