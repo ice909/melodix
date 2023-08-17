@@ -23,7 +23,7 @@ TitleBar {
         hollow: true
     }
 
-    leftContent: Button {
+    leftContent: ToolButton {
         visible: Router.routeCurrent !== Router.routeIndex || isLyricShow
         width: 36
         height: 36
