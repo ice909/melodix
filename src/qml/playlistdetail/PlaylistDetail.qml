@@ -18,7 +18,6 @@ Item {
     // 保存添加到播放列表的歌曲url,以及可以作为判断已经添加到播放列表的歌曲数
     property var songUrls: []
     // 已经加载到listview中的歌曲数量
-    property int loadedSongCount: 0
     property int currentSelectIndex: -1
     // 歌单歌曲总数
     property int playlistSongAllCount: 0
@@ -36,7 +35,6 @@ Item {
             network.onSendReplyFinished.disconnect(onReply);
             var newSongs = JSON.parse(reply).songs;
             songs.push(...newSongs);
-            loadedSongCount += newSongs.length;
             for (const song of newSongs) listView.model.append({
                 "song": song
             })
@@ -286,7 +284,7 @@ Item {
 
                 width: scrollWidth
                 x: 20
-                height: loadedSongCount * 55 + (loadedSongCount - 1) * 5 + 30
+                height: offset * 55 + (offset - 1) * 5 + 30
                 spacing: 5
                 model: songListModel
                 clip: true
