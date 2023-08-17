@@ -149,50 +149,70 @@ Item {
                 color: "transparent"
 
                 Row {
-                    width: parent.width
-                    height: parent.height
+                    anchors.fill: parent
                     spacing: 10
                     leftPadding: 10
 
-                    Item {
-                        width: 20
-                        height: 20
+                    Rectangle {
+                        width: 15
+                        height: 30
+                        color: "transparent"
                     }
 
-                    Label {
+                    Rectangle {
                         width: imgCellRectWidth + (scrollWidth - timeRectWidth - serialNumberWidth - imgCellRectWidth - 10 - 50) / 3
-                        text: "歌曲名"
-                        height: 20
-                        font.bold: true
-                        font.pixelSize: DTK.fontManager.t4.pixelSize
-                        anchors.verticalCenter: parent.verticalCenter
+                        height: 30
+                        color: "transparent"
+
+                        Label {
+                            text: "歌曲名"
+                            font.bold: true
+                            font.pixelSize: DTK.fontManager.t5.pixelSize
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
                     }
 
-                    Label {
+                    Rectangle {
                         width: (scrollWidth - imgCellRectWidth - timeRectWidth - serialNumberWidth - 50 - 10) / 3
-                        text: "艺人"
-                        height: 20
-                        font.bold: true
-                        font.pixelSize: DTK.fontManager.t4.pixelSize
-                        anchors.verticalCenter: parent.verticalCenter
+                        height: 30
+                        color: "transparent"
+
+                        Label {
+                            text: "艺人"
+                            font.bold: true
+                            font.pixelSize: DTK.fontManager.t5.pixelSize
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
                     }
 
-                    Label {
+                    Rectangle {
                         width: (scrollWidth - imgCellRectWidth - timeRectWidth - serialNumberWidth - 50 - 10) / 3
-                        text: "专辑"
-                        height: 20
-                        font.bold: true
-                        font.pixelSize: DTK.fontManager.t4.pixelSize
-                        anchors.verticalCenter: parent.verticalCenter
+                        height: 30
+                        color: "transparent"
+
+                        Label {
+                            text: "专辑"
+                            font.bold: true
+                            font.pixelSize: DTK.fontManager.t5.pixelSize
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
                     }
 
-                    Label {
-                        width: timeRectWidth
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "时长"
-                        font.bold: true
-                        font.pixelSize: DTK.fontManager.t4.pixelSize
-                        height: 20
+                    Rectangle {
+                        width: (scrollWidth - imgCellRectWidth - timeRectWidth - serialNumberWidth - 50 - 10) / 3
+                        height: 30
+                        color: "transparent"
+
+                        Label {
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: "时长"
+                            font.bold: true
+                            font.pixelSize: DTK.fontManager.t5.pixelSize
+                        }
+
                     }
 
                 }
@@ -331,6 +351,7 @@ Item {
         }
 
     }
+
     BusyIndicator {
         id: indicator
 
