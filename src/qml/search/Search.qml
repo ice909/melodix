@@ -1,6 +1,6 @@
 import "../../router"
-import "../widgets"
 import "../../util"
+import "../widgets"
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
@@ -8,51 +8,51 @@ import org.deepin.dtk 1.0
 Item {
     id: root
 
-    property bool isAddToPlaylist: false
+    property string currentPlaylistId: ""
     property int selectedIndex: -1
     property bool initing: true
-    property var offsetSongs: []
+    property var songs: []
     property var songUrls: []
     property int scrollWidth: rootWindow.width - 40
-    // 获取到的歌曲数量
-    property int searchResultCount: 0
-    // 歌曲总量
+    // 是否已经将歌单全部歌曲添加到了播放列表
+    property bool isAddToPlaylist: false
+    // 搜索到的歌曲总量
     property int songListCount: 0
-    // 歌曲页数
-    property int pageSize: 60
-    // 当前页
-    property int currentPage: 0
+    // 歌曲偏移量
+    property int offset: 0
+    // 一次加载的歌曲数量
+    property int songLimit: 0
+    // 是否正在“加载更多”
+    property bool loadMore: false
+    // 是否加载完全部歌曲
+    property bool hasMore: true
     property int imgCellRectWidth: 45
     property int timeRectWidth: 54
     property int spacingWidth: 10
     property int serialNumberWidth: 20
 
-    function addPlaylistAllMusic(index) {
+    function getSearchSongsInfo() {
         function onReply(reply) {
-            network.onSongUrlRequestFinished.disconnect(onReply);
-            var urlList = JSON.parse(reply).data;
-            for (var i = 0; i < urlList.length; i++) {
-                var song = urlList[i];
-                var songIndex = ids.indexOf(song.id);
-                if (songIndex !== -1)
-                    songUrls[songIndex] = song.url;
-
-            }
-            for (var i = 0; i < offsetSongs.length; i++) {
-                player.addPlaylistToPlaylist(songUrls[i], offsetSongs[i].id, offsetSongs[i].name, offsetSongs[i].al.picUrl, offsetSongs[i].ar[0].name, Util.formatDuration(offsetSongs[i].dt));
-            }
-            player.play(index);
-            player.setCurrentPlaylistId("search")
-            isAddToPlaylist = true;
+            network.onSendReplyFinished.disconnect(onReply);
+            var newSongs = JSON.parse(reply).result.songs;
+            songs.push(...newSongs);
+            for (const song of newSongs) listView.model.append({
+                "song": song
+            })
+            initing = false;
+            offset += newSongs.length;
+            loadMore = false;
+            console.log("加载的歌曲数量: songLimit: " + songLimit + " offset: " + offset + " songs数组长度: " + songs.length);
         }
 
-        var ids = offsetSongs.map(function(song) {
-            return song.id;
-        });
-        // 将所有id使用逗号连接成一个字符串
-        var concatenatedIds = ids.join(',');
-        network.onSongUrlRequestFinished.connect(onReply);
-        network.getSongUrl(concatenatedIds);
+        if (songListCount - offset > 50) {
+            songLimit = 50;
+        } else {
+            songLimit = songListCount - offset;
+            hasMore = false;
+        }
+        network.onSendReplyFinished.connect(onReply);
+        network.makeRequest("/cloudsearch?keywords=" + Router.routeCurrent.key + "&offset=" + offset + "&limit=" + songLimit);
     }
 
     function getSearchResult(offset = 0) {
@@ -60,19 +60,50 @@ Item {
             network.onSendReplyFinished.disconnect(onReply);
             var result = JSON.parse(reply).result;
             songListCount = result.songCount;
-            var songs = result.songs;
-            if (songs.length > pageSize)
-                offsetSongs = songs.slice(0, pageSize);
-            else
-                offsetSongs = songs;
-            searchResultCount = songs.length;
-            listView.model = songs;
-            console.log("歌曲总量：" + songListCount);
-            initing = false;
+            console.log("搜索到的歌曲共有：" + songListCount + "首");
+            getSearchSongsInfo();
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/cloudsearch?keywords=" + Router.routeCurrent.key + "&offset=" + offset + "&limit=60");
+        network.makeRequest("/cloudsearch?keywords=" + Router.routeCurrent.key);
+    }
+
+    function playSearchAllMusic(index = -1) {
+        function onReply(reply) {
+            network.onSongUrlRequestFinished.disconnect(onReply);
+            var urlList = JSON.parse(reply).data;
+            var urlOffset = songUrls.length;
+            for (var i = 0; i < urlList.length; i++) {
+                var song = urlList[i];
+                var songIndex = ids.indexOf(song.id);
+                if (songIndex !== -1)
+                    songUrls[songIndex + urlOffset] = song.url;
+
+            }
+            for (var i = urlOffset; i < songs.length; i++) {
+                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, songs[i].ar[0].name, Util.formatDuration(songs[i].dt));
+            }
+            if (index != -1)
+                player.play(index);
+            else
+                player.play(0);
+            player.setCurrentPlaylistId(currentPlaylistId);
+            if (songUrls.length == songListCount)
+                isAddToPlaylist = true;
+
+        }
+
+        player.switchToPlaylistMode();
+        if (player.getCurrentPlaylistId() != "" && player.getCurrentPlaylistId() != currentPlaylistId) {
+            console.log("当前歌单和播放列表中以添加的歌曲不是来自同一个歌单，先清空播放列表，再添加歌曲");
+            player.clearPlaylist();
+        }
+        var ids = [];
+        for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
+        // 将所有id使用逗号连接成一个字符串
+        var concatenatedIds = ids.join(',');
+        network.onSongUrlRequestFinished.connect(onReply);
+        network.getSongUrl(concatenatedIds);
     }
 
     function onPlaylistCurrentIndexChanged() {
@@ -81,17 +112,29 @@ Item {
 
     Component.onCompleted: {
         getSearchResult();
+        currentPlaylistId = Router.routeCurrent.key;
         player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
     }
-
     Component.onDestruction: {
-        player.playlistCurrentIndexChanged.disconnect(onPlaylistCurrentIndexChanged)
+        player.playlistCurrentIndexChanged.disconnect(onPlaylistCurrentIndexChanged);
+    }
+
+    ListModel {
+        id: songListModel
     }
 
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: 30 * 2 + 5 + 20 + listView.height + pageButton.height
+        contentHeight: 30 * 2 + 5 + 20 + listView.height
+        ScrollBar.vertical.onPositionChanged: () => {
+            const position = ScrollBar.vertical.position + ScrollBar.vertical.size;
+            if (position > 0.99 && !loadMore && hasMore) {
+                console.log("position: " + position + " 滚动到底部，加载更多");
+                loadMore = true;
+                getSearchSongsInfo();
+            }
+        }
 
         Column {
             id: body
@@ -160,7 +203,8 @@ Item {
                 id: listView
 
                 width: scrollWidth
-                height: searchResultCount * 56
+                height: offset * 56
+                model: songListModel
 
                 delegate: ItemDelegate {
                     width: scrollWidth
@@ -175,12 +219,12 @@ Item {
                         acceptedButtons: Qt.RightButton | Qt.LeftButton
                         anchors.fill: parent
                         onDoubleClicked: {
+                            console.log("clicked index : " + index);
+                            selectedIndex = index;
                             if (!isAddToPlaylist)
-                                addPlaylistAllMusic(index);
+                                playSearchAllMusic(index);
                             else
                                 player.play(index);
-                            listView.currentIndex = index;
-                            selectedIndex = index;
                         }
                     }
 
@@ -272,44 +316,6 @@ Item {
 
             }
 
-            Item {
-                id: pageButton
-
-                width: scrollWidth
-                height: 40
-
-                Row {
-                    id: buttons
-
-                    anchors.centerIn: parent
-                    spacing: 10
-
-                    Repeater {
-                        id: repeater
-
-                        model: songListCount / pageSize > 9 ? 9 : songListCount / pageSize + 1
-
-                        delegate: Button {
-                            width: 40
-                            height: 40
-                            text: modelData + 1
-                            font.pixelSize: DTK.fontManager.t8.pixelSize
-                            ColorSelector.pressed: index == currentPage ? true : false
-                            onClicked: {
-                                if (currentPage == index)
-                                    return ;
-
-                                currentPage = index;
-                                getSearchResult(currentPage * pageSize);
-                            }
-                        }
-
-                    }
-
-                }
-
-            }
-
         }
 
     }
@@ -324,6 +330,17 @@ Item {
             anchors.centerIn: parent
         }
 
+    }
+    BusyIndicator {
+        id: indicator
+
+        visible: loadMore
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 5
+        running: true
+        width: 20
+        height: 20
     }
 
 }
