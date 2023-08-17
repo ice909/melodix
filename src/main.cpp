@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
     app->setApplicationName("DigiMusic");
 
     app->setApplicationVersion(APP_VERSION);
+    app->setQuitOnLastWindowClosed(false);
 
     DLogManager::registerConsoleAppender();
     DLogManager::registerFileAppender();
