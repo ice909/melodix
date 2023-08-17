@@ -281,7 +281,7 @@ ApplicationWindow {
                 id: trayPreAction
                 text: "上一首"
                 enabled: false
-                onTriggered: player,previous()
+                onTriggered: player.previous()
             }
             P.MenuItem {
                 id: trayNextAction
