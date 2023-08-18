@@ -43,7 +43,7 @@ Item {
         }
 
         network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/personalized/newsong?limit=6");
+        network.makeRequest("/personalized/newsong?limit=9");
     }
 
     function getRecommendPlaylist() {
@@ -116,7 +116,7 @@ Item {
 
             Rectangle {
                 width: scrollWidth
-                height: (scrollWidth - 20) * 0.5 * 0.15 * 3 + 20 * 2
+                height: (scrollWidth - 100) * 0.33333 * 0.15 * 3 + 20 * 2
                 color: "transparent"
 
                 RecommendNewSongs {

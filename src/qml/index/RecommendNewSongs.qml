@@ -11,15 +11,15 @@ Rectangle {
         id: gridLayout
 
         anchors.fill: parent
-        columns: 2
-        columnSpacing: 20
+        columns: 3
+        columnSpacing: 50
         rowSpacing: 20
 
         Repeater {
             id: repeater
 
             Rectangle {
-                width: (parent.width - 20) * 0.5
+                width: (parent.width - 100) * 0.33333
                 height: width * 0.15
                 color: "transparent"
                 radius: 5
