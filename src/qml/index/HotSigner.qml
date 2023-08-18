@@ -52,7 +52,23 @@ Rectangle {
                         id: title
 
                         anchors.centerIn: parent
+                        font.pixelSize: DTK.fontManager.t4.pixelSize
                         text: modelData.name
+
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            hoverEnabled: true
+                            onEntered: {
+                                title.font.underline = true
+                            }
+                            onExited: {
+                                title.font.underline = false
+                            }
+                            onClicked: {
+                                Router.showArtist(modelData.id)
+                            }
+                        }
                     }
 
                 }
