@@ -69,5 +69,13 @@ TitleBar {
         }
 
     }
+    menu: Menu {
+        QuitAction {
+            text: "退出"
+            onTriggered: {
+                Qt.quit()
+            }
+        }
+    }
 
 }
