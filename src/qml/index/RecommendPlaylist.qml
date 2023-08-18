@@ -22,37 +22,78 @@ Rectangle {
                 height: width + 30
                 color: "transparent"
 
-                RoundedImage {
-                    id: img
+                Rectangle {
+                    id: imgRect
 
                     width: parent.width
                     height: parent.width
-                    imgSrc: modelData.picUrl
+                    color: "transparent"
+                    radius: 5
 
-                    MouseArea {
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onPressed: {
-                            Router.showPlaylistDetail(modelData.id);
+                    RoundedImage {
+                        id: img
+
+                        width: parent.width - 10
+                        height: parent.height - 10
+                        anchors.centerIn: parent
+                        imgSrc: modelData.picUrl
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onEntered: {
+                                imgRect.color = Qt.rgba(0, 0, 0, 0.2);
+                            }
+                            onExited: {
+                                imgRect.color = "transparent";
+                            }
+                            onPressed: {
+                                imgRect.color = Qt.rgba(0, 0, 0, 0.3);
+                            }
+                            onReleased: {
+                                imgRect.color = Qt.rgba(0, 0, 0, 0.2);
+                            }
+                            onClicked: {
+                                Router.showPlaylistDetail(modelData.id);
+                            }
                         }
+
                     }
 
                 }
 
                 Rectangle {
-                    anchors.top: img.bottom
-                    anchors.horizontalCenter: img.horizontalCenter
-                    width: img.width
+                    anchors.top: imgRect.bottom
+                    anchors.horizontalCenter: imgRect.horizontalCenter
+                    width: imgRect.width - 10
+                    anchors.leftMargin: 10
                     height: 30
                     color: "transparent"
 
                     Text {
+                        id: playlistTitle
+
                         anchors.left: parent.left
                         anchors.verticalCenter: parent.verticalCenter
                         width: parent.width
                         text: modelData.name
                         elide: Qt.ElideRight
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onEntered: {
+                            playlistTitle.font.underline = true;
+                        }
+                        onExited: {
+                            playlistTitle.font.underline = false;
+                        }
+                        onClicked: {
+                            Router.showPlaylistDetail(modelData.id);
+                        }
                     }
 
                 }
