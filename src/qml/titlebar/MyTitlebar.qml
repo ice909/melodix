@@ -69,13 +69,23 @@ TitleBar {
         }
 
     }
+
     menu: Menu {
+        x: 0
+        y: 0
+        width: 200
+
+        ThemeMenu {
+            width: 200
+        }
+
         QuitAction {
             text: "退出"
             onTriggered: {
-                Qt.quit()
+                Qt.quit();
             }
         }
+
     }
 
 }
