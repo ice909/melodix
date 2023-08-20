@@ -1,7 +1,7 @@
+import Qt.labs.platform 1.1 as P
 import QtQuick 2.11
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
-import Qt.labs.platform 1.1 as P
 import network 1.0
 import org.deepin.dtk 1.0
 import player 1.0
@@ -80,14 +80,14 @@ ApplicationWindow {
     }
 
     function onMediaCountChanged(count) {
-        if (count == 0){
-            trayPreAction.enabled = false
-            trayNextAction.enabled = false
-            trayPlayBtn.enabled = false
-        }else {
-            trayPreAction.enabled = true
-            trayNextAction.enabled = true
-            trayPlayBtn.enabled = true
+        if (count == 0) {
+            trayPreAction.enabled = false;
+            trayNextAction.enabled = false;
+            trayPlayBtn.enabled = false;
+        } else {
+            trayPreAction.enabled = true;
+            trayNextAction.enabled = true;
+            trayPlayBtn.enabled = true;
         }
     }
 
@@ -114,8 +114,30 @@ ApplicationWindow {
             });
         }
     }
+    onClosing: {
+        if (closeDlgLoader.status === Loader.Null)
+            closeDlgLoader.setSource("qml/dialogs/CloseDialog.qml");
+
+        if (closeDlgLoader.item.isMinimize) {
+            closeDlgLoader.item.isMinimize = false;
+            return ;
+        }
+        var isAsk = worker.getIsAsk();
+        if (isAsk == "2") {
+            if (worker.getCloseAction() == "2")
+                Qt.quit();
+
+        } else {
+            close.accepted = false;
+            closeDlgLoader.item.show();
+        }
+    }
     Component.onCompleted: {
         refreshAccount();
+    }
+
+    Loader {
+        id: closeDlgLoader
     }
 
     Repeater {
@@ -241,59 +263,74 @@ ApplicationWindow {
         target: titleBar
     }
 
-    header: MyTitlebar {
-        id: titleBar
+    Connections {
+        function onMinimizeToSystemTray() {
+            close();
+        }
+
+        target: closeDlgLoader.item
     }
 
     P.SystemTrayIcon {
         id: systemTray
+
         visible: true
         iconName: "digimusic"
         tooltip: "DigiMusic"
-
         onActivated: {
             if (rootWindow.visibility === 2) {
-                rootWindow.showMinimized()
+                rootWindow.showMinimized();
             } else if (rootWindow.visibility === 3 || rootWindow.visibility === 0) {
-                rootWindow.show()
-                rootWindow.raise()
-                rootWindow.requestActivate()
+                rootWindow.show();
+                rootWindow.raise();
+                rootWindow.requestActivate();
             }
         }
-
         Component.onCompleted: {
-            player.mediaCountChanged.connect(onMediaCountChanged)
+            player.mediaCountChanged.connect(onMediaCountChanged);
         }
 
         menu: P.Menu {
             P.MenuItem {
                 id: trayPlayBtn
+
                 text: "播放/暂停"
                 enabled: false
                 onTriggered: {
                     if (player.getPlayState())
-                            player.pause();
-                        else
-                            player.play();
+                        player.pause();
+                    else
+                        player.play();
                 }
             }
+
             P.MenuItem {
                 id: trayPreAction
+
                 text: "上一首"
                 enabled: false
                 onTriggered: player.previous()
             }
+
             P.MenuItem {
                 id: trayNextAction
+
                 text: "下一首"
                 enabled: false
                 onTriggered: player.next()
             }
+
             P.MenuItem {
                 text: "退出"
                 onTriggered: Qt.quit()
             }
+
         }
+
+    }
+
+    header: MyTitlebar {
+        id: titleBar
     }
 
     background: Rectangle {

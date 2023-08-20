@@ -13,6 +13,19 @@ TitleBar {
     height: DS.Style.titleBar.height
     embedMode: false
 
+    Loader {
+        id: settingDlgLoader
+
+        Connections {
+            function onClosed() {
+                settingDlgLoader.source = "";
+            }
+
+            target: settingDlgLoader.item
+        }
+
+    }
+
     // 阴影
     BoxShadow {
         anchors.fill: parent
@@ -77,6 +90,15 @@ TitleBar {
 
         ThemeMenu {
             width: 200
+        }
+
+        MenuItem {
+            id: settingsControl
+
+            text: "设置"
+            onTriggered: {
+                settingDlgLoader.setSource("../dialogs/SettingsDialog.qml");
+            }
         }
 
         QuitAction {

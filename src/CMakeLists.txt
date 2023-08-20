@@ -22,10 +22,12 @@ qtquick_compiler_add_resources(RCC_SOURCES ${RESOURCES})
 
 # 保证src目录下的头文件全局可见
 include_directories(.)
+include_directories(./cpp)
 include_directories(./cpp/network)
 include_directories(./cpp/player)
 
 aux_source_directory(./ ALLSOURCE)
+aux_source_directory(./cpp ALLSOURCE)
 aux_source_directory(./cpp/network ALLSOURCE)
 aux_source_directory(./cpp/player ALLSOURCE)
 

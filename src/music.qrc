@@ -51,6 +51,9 @@
 
         <file>qml/favorite/Favorite.qml</file>
 
+        <file>qml/dialogs/SettingsDialog.qml</file>
+        <file>qml/dialogs/CloseDialog.qml</file>
+        
         <file>util/Util.qml</file>
         <file>util/qmldir</file>
     </qresource>

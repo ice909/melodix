@@ -6,6 +6,7 @@
 
 #include "network.h"
 #include "player.h"
+#include "worker.h"
 
 DWIDGET_USE_NAMESPACE;
 DCORE_USE_NAMESPACE;
@@ -46,7 +47,9 @@ int main(int argc, char *argv[])
     qmlRegisterType<Network>("network", 1, 0, "Network");
     qmlRegisterType<Player>("player", 1, 0, "Player");
 
+    Worker m_worker;
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("worker", &m_worker);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     return app->exec();
 }
