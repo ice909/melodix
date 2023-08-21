@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     app->setOrganizationName("ice");
     app->setApplicationName("DigiMusic");
 
-    app->setApplicationVersion(APP_VERSION);
+    app->setApplicationVersion(DApplication::buildVersion(APP_VERSION));
     app->setQuitOnLastWindowClosed(false);
 
     DLogManager::registerConsoleAppender();

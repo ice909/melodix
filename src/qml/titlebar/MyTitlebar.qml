@@ -51,6 +51,17 @@ TitleBar {
         }
     }
 
+    aboutDialog: AboutDialog {
+        width: 400
+        modality: Qt.NonModal
+        version: Qt.application.version
+        productName: "Digi Music"
+        productIcon: "digimusic"
+        description: "音乐播放器"
+        websiteName: "ice"
+        websiteLink: "https://github.com/student-ice"
+    }
+
     content: ColumnLayout {
         Rectangle {
             color: "transparent"
@@ -99,6 +110,11 @@ TitleBar {
             onTriggered: {
                 settingDlgLoader.setSource("../dialogs/SettingsDialog.qml");
             }
+        }
+
+        AboutAction {
+            text: "关于"
+            aboutDialog: root.aboutDialog
         }
 
         QuitAction {
