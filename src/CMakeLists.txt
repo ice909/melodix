@@ -47,7 +47,3 @@ target_link_libraries(${BIN_NAME} ${TARGET_LIBS})
 
 # 安装 digimusic
 install(TARGETS ${BIN_NAME} DESTINATION ${APP_BIN_INSTALL_DIR})
-# 安装 desktop
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/../${BIN_NAME}.desktop" DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
-# 安装 icon
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/dsg/img/digimusic.svg" DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/apps)
