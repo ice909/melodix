@@ -397,7 +397,7 @@ FloatingPanel {
                     width: 36
                     height: 36
                     anchors.verticalCenter: parent.verticalCenter
-                    icon.name: checked ? "toolbar_lrc_checked" : "toolbar_lrc"
+                    icon.name: "toolbar_lrc"
                     icon.width: 36
                     icon.height: 36
                     checkable: true
@@ -414,7 +414,7 @@ FloatingPanel {
                     width: 36
                     height: 36
                     anchors.verticalCenter: parent.verticalCenter
-                    icon.name: iMute ? (checked ? "toolbar_volume-_checked" : "toolbar_volume-") : (checked ? "toolbar_volume+_checked" : "toolbar_volume+")
+                    icon.name: iMute ? "toolbar_volume-" : "toolbar_volume+"
                     icon.width: 36
                     icon.height: 36
                     checkable: true
@@ -436,7 +436,7 @@ FloatingPanel {
                     width: 36
                     height: 36
                     anchors.verticalCenter: parent.verticalCenter
-                    icon.name: checked ? "toolbar_playlist_checked" : "toolbar_playlist"
+                    icon.name: "toolbar_playlist"
                     icon.width: 36
                     icon.height: 36
                     checkable: true
@@ -446,7 +446,7 @@ FloatingPanel {
 
                     ToolTip {
                         visible: listBtn.hovered
-                        text: qsTr("播放列表")
+                        text: "播放列表"
                     }
 
                 }
