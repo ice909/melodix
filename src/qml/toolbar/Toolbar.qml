@@ -57,13 +57,13 @@ FloatingPanel {
         songTitle = player.getName();
         artistStr = player.getArtist();
         picUrl = player.getPic();
-        console.log(player.getId());
         var musicId = player.getId();
         var index = -1;
         for (const id of userFavoriteSongsID) {
-            if (id == musicId)
+            if (id == musicId) {
                 index = 0;
-
+                break;
+            }
         }
         if (index != -1)
             favorite = true;
@@ -103,6 +103,34 @@ FloatingPanel {
         currentTime = "0:00";
         songTitle = "";
         artistStr = "";
+    }
+
+    function likeMusic() {
+        function onReply(reply) {
+            network.onSendReplyFinished.disconnect(onReply);
+            var code = JSON.parse(reply).code;
+            if (code == 200) {
+                if (!favorite) {
+                    console.log("已添加到我喜欢的歌曲");
+                    favorite = true;
+                    userFavoriteSongsID.push(player.getId());
+                } else {
+                    console.log("已经从我喜欢的歌曲中移除");
+                    favorite = false;
+                    var id = player.getId();
+                    for (var i = 0; i < userFavoriteSongsID.length; i++) {
+                        if (userFavoriteSongsID[i] == id)
+                            userFavoriteSongsID[i] = 0;
+
+                    }
+                }
+            } else {
+                console.log("请求失败");
+            }
+        }
+
+        network.onSendReplyFinished.connect(onReply);
+        network.makeRequest("/like?id=" + player.getId() + "&like=" + !favorite);
     }
 
     height: 60
@@ -232,6 +260,7 @@ FloatingPanel {
                     icon.height: 36
                     enabled: songTitle.length === 0 ? false : true
                     onClicked: {
+                        likeMusic();
                     }
 
                     ToolTip {

@@ -47,7 +47,8 @@ void Network::makeRequest(QString api)
     if (!m_cookie.isEmpty()
         && (api.startsWith("/song/url") || api.startsWith("/user/playlist")
             || api.startsWith("/playlist/track/all") || api.startsWith("/digitalAlbum/purchased")
-            || api.startsWith("/artist/sublist") || api.startsWith("/mv/sublist"))) {
+            || api.startsWith("/artist/sublist") || api.startsWith("/mv/sublist")
+            || api.startsWith("/like"))) {
         // 设置请求头的Cookie值
         request.setHeader(QNetworkRequest::CookieHeader, QVariant::fromValue(m_request_cookies));
     }
