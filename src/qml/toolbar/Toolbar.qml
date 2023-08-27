@@ -8,15 +8,35 @@ import org.deepin.dtk 1.0
 FloatingPanel {
     id: toolbarRoot
 
+    // 歌曲名称
     property string songTitle: ""
+    // 歌曲作者
     property string artistStr: ""
+    // 歌曲封面
     property string picUrl: ""
+    // 是否为我喜欢的歌曲
     property bool favorite: false
+    // 当前歌曲播放进度
     property int currentPosition: 0
+    // 当前歌曲总时长
     property int duration: 0
-    property string totalTime: "0:00"
+    // 格式化的歌曲播放进度
     property string currentTime: "0:00"
+    // 格式化的歌曲总时长
+    property string totalTime: "0:00"
+    // 是否静音
     property bool iMute: false
+    // 播放状态：暂停/播放
+    property bool playStatus: false
+    // 播放模式
+    // 1~4 单曲循环 顺序播放 循环播放 随机播放
+    property int playMode: 3
+    // 播放模式对应的图标
+    property var modeIcon: ["toolbar_music_repeatcycle", "toolbar_music_sequence", "toolbar_music_repeat", "toolbar_music_shuffle"]
+    // 播放模式对应的tooltip
+    property var modeIconTooltTip: ["单曲循环", "顺序播放", "循环播放", "随机播放"]
+    // 是否显示音量调节面板
+    property bool isVolSliderShow: false
     property int contentItemSpacing: 8
     property int leftPaddingWidth: 20
     property int rightPaddingWidth: 10
@@ -24,11 +44,6 @@ FloatingPanel {
     property int infoRectWidth: 142
     property int playControlRectWidth: 220
     property int rightAreaRectWidth: 228
-    property bool playStatus: false
-    property int playMode: 3
-    property bool isVolSliderShow: false
-    property var modeIcon: ["toolbar_music_repeatcycle", "toolbar_music_sequence", "toolbar_music_repeat", "toolbar_music_shuffle"]
-    property var modeIconTooltTip: ["单曲循环", "顺序播放", "循环播放", "随机播放"]
 
     signal playlistBtnClicked()
     signal lyricToggleClicked()
@@ -42,20 +57,18 @@ FloatingPanel {
         songTitle = player.getName();
         artistStr = player.getArtist();
         picUrl = player.getPic();
-        console.log(player.getId())
+        console.log(player.getId());
         var musicId = player.getId();
-        var index = -1
-        for (const id of userFavoriteSongsID)
-        {
-            if (id == musicId) {
-                index = 0
-            }
+        var index = -1;
+        for (const id of userFavoriteSongsID) {
+            if (id == musicId)
+                index = 0;
+
         }
-        if(index != -1){
-            favorite = true
-        }else {
-            favorite = false
-        }
+        if (index != -1)
+            favorite = true;
+        else
+            favorite = false;
     }
 
     function onPlayStateChanged() {
