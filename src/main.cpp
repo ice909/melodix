@@ -3,6 +3,7 @@
 #include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QCommandLineParser>
 
 #include "network.h"
 #include "player.h"
