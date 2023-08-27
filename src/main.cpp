@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     DApplication *app = new DApplication(argc, argv);
     app->setAttribute(Qt::AA_UseHighDpiPixmaps);
     app->setOrganizationName("ice");
-    app->setApplicationName("DigiMusic");
+    app->setApplicationName("Digi Music");
 
     app->setApplicationVersion(DApplication::buildVersion(APP_VERSION));
     app->setQuitOnLastWindowClosed(false);
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     DLogManager::registerFileAppender();
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("music player.");
+    parser.setApplicationDescription("Digi Music is an online music player with a beautiful interface.");
     parser.addHelpOption();
     parser.addVersionOption();
     parser.process(*app);

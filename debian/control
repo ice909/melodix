@@ -2,23 +2,21 @@ Source: digimusic
 Section: admin
 Priority: optional
 Maintainer: ice <tonimayloneya@gmail.com>
-Build-Depends:
- debhelper-compat (= 12),
- cmake,
- pkg-config,
- qtbase5-dev,
- qtdeclarative5-dev,
- libdtkcommon-dev,
- libdtkcore-dev,
- libdtkgui-dev,
- libdtkdeclarative-dev,
- qttools5-dev-tools,
+Build-Depends: debhelper-compat (= 12),
+  cmake,
+  pkg-config,
+  qtbase5-dev,
+  qtdeclarative5-dev,
+  libdtkcommon-dev,
+  libdtkcore-dev,
+  libdtkgui-dev,
+  libdtkdeclarative-dev,
+  qttools5-dev-tools,
 Standards-Version: 4.6.0
 Rules-Requires-Root: no
 
 Package: digimusic
 Architecture: any
-Depends: 
- ${shlibs:Depends}, 
- ${misc:Depends},
-Description: music player
+Depends: ${shlibs:Depends},
+  ${misc:Depends},
+Description: Digi Music是一款界面美观的在线音乐播放器

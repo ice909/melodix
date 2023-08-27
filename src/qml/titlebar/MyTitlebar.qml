@@ -57,7 +57,7 @@ TitleBar {
         version: Qt.application.version
         productName: "Digi Music"
         productIcon: "digimusic"
-        description: "音乐播放器"
+        description: "Digi Music是一款界面美观的在线音乐播放器"
         websiteName: "ice"
         websiteLink: "https://github.com/student-ice"
     }
