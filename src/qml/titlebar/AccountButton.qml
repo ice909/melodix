@@ -13,8 +13,8 @@ WindowButton {
         id: avatarImage
 
         imgSrc: userAvatar == "" ? "qrc:/dsg/img/avatar.svg" : userAvatar
-        width: 26
-        height: 26
+        width: 30
+        height: 30
         anchors.centerIn: parent
     }
 
