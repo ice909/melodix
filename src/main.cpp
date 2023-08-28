@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     DApplication *app = new DApplication(argc, argv);
     app->setAttribute(Qt::AA_UseHighDpiPixmaps);
     app->setOrganizationName("ice");
-    app->setApplicationName("Digi Music");
+    app->setApplicationName("DigiMusic");
 
     app->setApplicationVersion(DApplication::buildVersion(APP_VERSION));
     app->setQuitOnLastWindowClosed(false);
