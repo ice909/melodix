@@ -159,13 +159,10 @@ Rectangle {
     Connections {
         target: lyricPage
         function onCurrentIndexChanged(index) {
-            if (isFlicking)
-                return ;
+            curIndex = index;
 
-            if (!listViewLyric.flicking)
-                curIndex = index;
-
-            listViewLyric.updateContentY();
+            if (!isFlicking)
+                listViewLyric.updateContentY();
         }
     }
 
