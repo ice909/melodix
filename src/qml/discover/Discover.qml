@@ -314,7 +314,7 @@ Item {
 
         visible: initing
         anchors.fill: root
-        color: Util.backgroundColor
+        color: Util.pageBackgroundColor
 
         Loading {
             anchors.centerIn: parent
