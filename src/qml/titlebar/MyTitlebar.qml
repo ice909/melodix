@@ -12,6 +12,7 @@ TitleBar {
 
     height: DS.Style.titleBar.height
     embedMode: false
+    icon.name: isLyricShow ? "" : "digimusic"
 
     Loader {
         id: settingDlgLoader
