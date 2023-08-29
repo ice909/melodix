@@ -154,6 +154,7 @@ Item {
                     Text {
                         text: userNickname + "喜欢的音乐"
                         font.pixelSize: DTK.fontManager.t3.pixelSize
+                        color: Util.textColor
                     }
 
                 }
@@ -250,6 +251,7 @@ Item {
 
         visible: initing
         anchors.fill: root
+        color: Util.pageBackgroundColor
 
         Loading {
             anchors.centerIn: parent

@@ -1,4 +1,5 @@
 import "../../router"
+import "../../util"
 import "../widgets"
 import QtMultimedia 5.15
 import QtQuick 2.11
@@ -167,6 +168,7 @@ Item {
                                 anchors.verticalCenter: parent.verticalCenter
                                 anchors.left: artistImg.right
                                 anchors.leftMargin: 10
+                                color: Util.textColor
                             }
 
                         }
@@ -181,6 +183,7 @@ Item {
 
                                 font.pixelSize: DTK.fontManager.t4.pixelSize
                                 anchors.top: parent.top
+                                color: Util.textColor
                             }
 
                             Text {
@@ -188,6 +191,7 @@ Item {
 
                                 font.pixelSize: DTK.fontManager.t8.pixelSize
                                 anchors.top: mvName.bottom
+                                color: Util.textColor
                             }
 
                         }
@@ -210,6 +214,7 @@ Item {
                                 font.pixelSize: DTK.fontManager.t4.pixelSize
                                 font.bold: true
                                 height: 20
+                                color: Util.textColor
                             }
 
                             Repeater {
@@ -262,6 +267,7 @@ Item {
                                                         elide: Text.ElideRight
                                                         maximumLineCount: 3
                                                         text: modelData.name
+                                                        color: Util.textColor
                                                     }
 
                                                 }
@@ -275,6 +281,7 @@ Item {
                                                         font.pixelSize: DTK.fontManager.t10.pixelSize
                                                         anchors.verticalCenter: parent.verticalCenter
                                                         text: modelData.artists[0].name
+                                                        color: Util.textColor
                                                     }
 
                                                 }
@@ -308,6 +315,7 @@ Item {
                     text: "热门评论"
                     font.pixelSize: DTK.fontManager.t4.pixelSize
                     anchors.verticalCenter: parent.verticalCenter
+                    color: Util.textColor
                 }
 
             }
@@ -330,6 +338,7 @@ Item {
 
                             width: scrollWidth
                             height: 72
+                            color: "transparent"
 
                             Row {
                                 anchors.fill: parent
@@ -395,6 +404,7 @@ Item {
                                                 elide: Text.ElideRight
                                                 maximumLineCount: 2
                                                 text: modelData.content
+                                                color: Util.textColor
                                             }
 
                                         }
@@ -410,6 +420,7 @@ Item {
                                                 font.pixelSize: DTK.fontManager.t10.pixelSize
                                                 anchors.verticalCenter: parent.verticalCenter
                                                 text: modelData.timeStr
+                                                color: Util.textColor
                                             }
 
                                         }
@@ -424,7 +435,7 @@ Item {
                                 anchors.top: parent.bottom
                                 width: parent.width
                                 height: 0.5
-                                color: "black"
+                                color: Util.pageBackgroundColor
                             }
 
                         }
@@ -442,6 +453,7 @@ Item {
     Rectangle {
         visible: initing
         anchors.fill: root
+        color: Util.pageBackgroundColor
 
         Loading {
             anchors.centerIn: parent

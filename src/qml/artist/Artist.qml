@@ -92,7 +92,6 @@ Item {
         getArtistInfo();
     }
 
-    // 音乐库界面
     ScrollView {
         anchors.fill: parent
         clip: true
@@ -153,6 +152,7 @@ Item {
                                     font.pixelSize: DTK.fontManager.t1.pixelSize
                                     font.bold: true
                                     anchors.verticalCenter: parent.verticalCenter
+                                    color: Util.textColor
                                 }
 
                             }
@@ -166,12 +166,14 @@ Item {
                                     Text {
                                         text: "艺人"
                                         font.pixelSize: DTK.fontManager.t4.pixelSize
+                                        color: Util.textColor
                                     }
 
                                     Text {
                                         id: artist_works
 
                                         font.pixelSize: DTK.fontManager.t6.pixelSize
+                                        color: Util.textColor
                                     }
 
                                 }
@@ -193,6 +195,7 @@ Item {
                                     elide: Text.ElideRight
                                     maximumLineCount: 2
                                     font.pixelSize: DTK.fontManager.t6.pixelSize
+                                    color: Util.textColor
                                 }
 
                             }
@@ -240,6 +243,7 @@ Item {
                     font.pixelSize: DTK.fontManager.t4.pixelSize
                     font.bold: true
                     anchors.verticalCenter: parent.verticalCenter
+                    color: Util.textColor
                 }
 
             }
@@ -287,18 +291,21 @@ Item {
 
                                         font.pixelSize: DTK.fontManager.t5.pixelSize
                                         font.bold: true
+                                        color: Util.textColor
                                     }
 
                                     Text {
                                         id: artist_new_album_time
 
                                         font.pixelSize: DTK.fontManager.t6.pixelSize
+                                        color: Util.textColor
                                     }
 
                                     Text {
                                         id: artist_new_album_count
 
                                         font.pixelSize: DTK.fontManager.t6.pixelSize
+                                        color: Util.textColor
                                     }
 
                                 }
@@ -341,12 +348,14 @@ Item {
 
                                         font.pixelSize: DTK.fontManager.t5.pixelSize
                                         font.bold: true
+                                        color: Util.textColor
                                     }
 
                                     Text {
                                         id: artist_new_mv_time
 
                                         font.pixelSize: DTK.fontManager.t6.pixelSize
+                                        color: Util.textColor
                                     }
 
                                     Text {
@@ -354,6 +363,7 @@ Item {
 
                                         text: "最新MV"
                                         font.pixelSize: DTK.fontManager.t6.pixelSize
+                                        color: Util.textColor
                                     }
 
                                 }
@@ -378,6 +388,7 @@ Item {
                     font.pixelSize: DTK.fontManager.t4.pixelSize
                     font.bold: true
                     anchors.verticalCenter: parent.verticalCenter
+                    color: Util.textColor
                 }
 
             }
@@ -396,6 +407,7 @@ Item {
     Rectangle {
         visible: initing
         anchors.fill: root
+        color: Util.pageBackgroundColor
 
         Loading {
             anchors.centerIn: parent
