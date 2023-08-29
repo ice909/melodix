@@ -1,10 +1,11 @@
-import "../widgets"
 import "../../router"
+import "../../util"
+import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import org.deepin.dtk 1.0
 
-Rectangle {
+Item {
     property alias lists: repeater.model
 
     Grid {
@@ -30,23 +31,22 @@ Rectangle {
                     imgSrc: modelData.picUrl
                     borderRadius: height
 
-                    
                     MouseArea {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
-                            Router.showArtist(modelData.id)
+                            Router.showArtist(modelData.id);
                         }
                     }
-                    
+
                 }
 
                 Rectangle {
-                    color: "transparent"
                     width: parent.width
                     anchors.top: img.bottom
                     anchors.horizontalCenter: img.horizontalCenter
                     height: 30
+                    color: "transparent"
 
                     Text {
                         id: title
@@ -54,21 +54,23 @@ Rectangle {
                         anchors.centerIn: parent
                         font.pixelSize: DTK.fontManager.t4.pixelSize
                         text: modelData.name
+                        color: Util.textColor
 
                         MouseArea {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
                             hoverEnabled: true
                             onEntered: {
-                                title.font.underline = true
+                                title.font.underline = true;
                             }
                             onExited: {
-                                title.font.underline = false
+                                title.font.underline = false;
                             }
                             onClicked: {
-                                Router.showArtist(modelData.id)
+                                Router.showArtist(modelData.id);
                             }
                         }
+
                     }
 
                 }

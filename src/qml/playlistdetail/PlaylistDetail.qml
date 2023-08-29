@@ -201,6 +201,7 @@ Item {
                             height: (parent.height - 40) / 4 - 10
                             font.pixelSize: DTK.fontManager.t3.pixelSize
                             font.bold: true
+                            color: Util.textColor
                         }
 
                         Rectangle {
@@ -215,6 +216,7 @@ Item {
                                 height: parent.height / 2
                                 font.pixelSize: DTK.fontManager.t4.pixelSize
                                 font.bold: true
+                                color: Util.textColor
                             }
 
                             Text {
@@ -224,6 +226,7 @@ Item {
                                 width: parent.width
                                 height: parent.height / 2
                                 font.pixelSize: DTK.fontManager.t5.pixelSize
+                                color: Util.textColor
                             }
 
                         }
@@ -237,6 +240,7 @@ Item {
                             elide: Text.ElideRight
                             maximumLineCount: 3
                             font.pixelSize: DTK.fontManager.t6.pixelSize
+                            color: Util.textColor
                         }
 
                         Rectangle {
@@ -370,6 +374,7 @@ Item {
 
         visible: initing
         anchors.fill: root
+        color: Util.backgroundColor
 
         Loading {
             anchors.centerIn: parent

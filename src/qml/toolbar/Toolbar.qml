@@ -1,4 +1,5 @@
 import "../widgets"
+import "../../util"
 import QtGraphicalEffects 1.0
 import QtQuick 2.11
 import QtQuick.Layouts 1.11
@@ -211,7 +212,7 @@ FloatingPanel {
                     id: title
 
                     width: parent.width
-                    color: Qt.rgba(0, 0, 0, 0.9)
+                    color: Util.textColor
                     text: songTitle
                     font.pixelSize: 14
                     elide: Text.ElideRight
@@ -222,7 +223,7 @@ FloatingPanel {
 
                     width: parent.width
                     text: artistStr
-                    color: Qt.rgba(0, 0, 0, 0.7)
+                    color: Util.textColor
                     elide: Text.ElideRight
 
                     font {
@@ -382,7 +383,7 @@ FloatingPanel {
 
             width: rightAreaRectWidth
             height: parent.height
-            color: "#00000000"
+            color: "transparent"
 
             Row {
                 width: parent.width
@@ -413,7 +414,7 @@ FloatingPanel {
                             horizontalAlignment: Text.AlignRight
                             enabled: songTitle.length === 0 ? false : true
                             text: enabled ? currentTime : "0:00"
-                            color: Qt.rgba(0, 0, 0, 0.7)
+                            color: Util.textColor
                             font: DTK.fontManager.t8
                         }
 
@@ -425,7 +426,7 @@ FloatingPanel {
                             elide: Text.ElideRight
                             enabled: songTitle.length === 0 ? false : true
                             text: "/ " + (enabled ? totalTime : "0:00")
-                            color: Qt.rgba(0, 0, 0, 0.7)
+                            color: Util.textColor
                             font: DTK.fontManager.t8
                         }
 

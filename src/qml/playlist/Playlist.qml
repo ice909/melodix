@@ -1,3 +1,4 @@
+import "../../util"
 import QtGraphicalEffects 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -79,7 +80,7 @@ FloatingPanel {
 
                         text: qsTr("播放列表")
                         font: DTK.fontManager.t5
-                        color: Qt.rgba(0, 0, 0, 0.9)
+                        color: Util.textColor
                     }
 
                 }
@@ -99,7 +100,7 @@ FloatingPanel {
                             id: songsCountText
 
                             text: playlistMediaCount + " 首歌曲"
-                            color: "#7c7c7c"
+                            color: Util.textColor
                             font: DTK.fontManager.t7
                         }
 
@@ -125,7 +126,6 @@ FloatingPanel {
                         }
 
                         textColor: Palette {
-                            normal: palette.text
                             hovered: palette.highlight
                         }
 

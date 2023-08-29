@@ -153,6 +153,7 @@ ApplicationWindow {
         Rectangle {
             anchors.fill: parent
             visible: !isLyricShow
+            color: Util.pageBackgroundColor
 
             Loader {
                 width: parent.width

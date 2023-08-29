@@ -169,6 +169,7 @@ Item {
                             font.bold: true
                             font.pixelSize: DTK.fontManager.t5.pixelSize
                             anchors.verticalCenter: parent.verticalCenter
+                            color: Util.textColor
                         }
 
                     }
@@ -183,6 +184,7 @@ Item {
                             font.bold: true
                             font.pixelSize: DTK.fontManager.t5.pixelSize
                             anchors.verticalCenter: parent.verticalCenter
+                            color: Util.textColor
                         }
 
                     }
@@ -197,6 +199,7 @@ Item {
                             font.bold: true
                             font.pixelSize: DTK.fontManager.t5.pixelSize
                             anchors.verticalCenter: parent.verticalCenter
+                            color: Util.textColor
                         }
 
                     }
@@ -211,6 +214,7 @@ Item {
                             text: "时长"
                             font.bold: true
                             font.pixelSize: DTK.fontManager.t5.pixelSize
+                            color: Util.textColor
                         }
 
                     }
@@ -248,86 +252,70 @@ Item {
                         }
                     }
 
-                    Rectangle {
-                        width: parent.width
-                        height: parent.height
-                        anchors.centerIn: parent
-                        radius: 8
-                        color: parent.hovered ? Qt.rgba(0, 0, 0, 0.08) : Qt.rgba(0, 0, 0, 0)
+                    RowLayout {
+                        anchors.fill: parent
 
-                        Row {
-                            width: parent.width
+                        Label {
+                            id: serialNumber
+
+                            Layout.preferredWidth: 20
+                            Layout.leftMargin: 10
+                            text: index + 1
+                            Layout.alignment: Qt.AlignVCenter
+                        }
+
+                        RoundedImage {
+                            id: imagecell
+
+                            Layout.preferredWidth: imgCellRectWidth
+                            height: imgCellRectWidth
+                            Layout.alignment: Qt.AlignVCenter
+                            imgSrc: modelData.al.picUrl
+                        }
+
+                        Label {
+                            id: musicNameLabel
+
+                            Layout.preferredWidth: (scrollWidth - imagecell.width - timeRectWidth - serialNumber.width - imgCellRectWidth - 10 - 50) / 3
+                            height: 20
+                            elide: Text.ElideRight
+                            text: modelData.name
+                            Layout.alignment: Qt.AlignVCenter
+                            font: DTK.fontManager.t6
+                        }
+
+                        Label {
+                            id: musicSingerLabel
+
+                            Layout.preferredWidth: (scrollWidth - imagecell.width - timeRectWidth - serialNumber.width - 50 - 10) / 3
+                            height: 20
+                            elide: Text.ElideRight
+                            text: modelData.ar[0].name
+                            Layout.alignment: Qt.AlignVCenter
+                            font: DTK.fontManager.t6
+                        }
+
+                        Label {
+                            id: musicAlbumLabel
+
+                            Layout.preferredWidth: (scrollWidth - imagecell.width - timeRectWidth - serialNumber.width - 50 - 10) / 3
+                            height: 20
+                            elide: Text.ElideRight
+                            text: modelData.al.name
+                            Layout.alignment: Qt.AlignVCenter
+                            font: DTK.fontManager.t6
+                        }
+
+                        Label {
+                            id: musicTimeLabel
+
+                            Layout.preferredWidth: timeRectWidth
                             height: parent.height
-                            spacing: 10
-                            leftPadding: 10
-                            anchors.centerIn: parent
-
-                            Label {
-                                id: serialNumber
-
-                                width: 20
-                                text: index + 1
-                                anchors.verticalCenter: parent.verticalCenter
-                            }
-
-                            RoundedImage {
-                                id: imagecell
-
-                                width: imgCellRectWidth
-                                height: imgCellRectWidth
-                                anchors.verticalCenter: parent.verticalCenter
-                                imgSrc: modelData.al.picUrl
-                            }
-
-                            Label {
-                                id: musicNameLabel
-
-                                width: (scrollWidth - imagecell.width - timeRectWidth - serialNumber.width - imgCellRectWidth - 10 - 50) / 3
-                                height: 20
-                                elide: Text.ElideRight
-                                text: modelData.name
-                                anchors.verticalCenter: parent.verticalCenter
-                                font: DTK.fontManager.t6
-                                color: checked ? palette.highlightedText : (imagecell.isCurPlay ? palette.highlight : palette.text)
-                            }
-
-                            Label {
-                                id: musicSingerLabel
-
-                                width: (scrollWidth - imagecell.width - timeRectWidth - serialNumber.width - 50 - 10) / 3
-                                height: 20
-                                color: checked ? palette.highlightedText : "#7C7C7C"
-                                elide: Text.ElideRight
-                                text: modelData.ar[0].name
-                                anchors.verticalCenter: parent.verticalCenter
-                                font: DTK.fontManager.t6
-                            }
-
-                            Label {
-                                id: musicAlbumLabel
-
-                                width: (scrollWidth - imagecell.width - timeRectWidth - serialNumber.width - 50 - 10) / 3
-                                height: 20
-                                color: checked ? palette.highlightedText : "#7C7C7C"
-                                elide: Text.ElideRight
-                                text: modelData.al.name
-                                anchors.verticalCenter: parent.verticalCenter
-                                font: DTK.fontManager.t6
-                            }
-
-                            Label {
-                                id: musicTimeLabel
-
-                                width: timeRectWidth
-                                height: parent.height
-                                color: checked ? palette.highlightedText : "#7C7C7C"
-                                elide: Text.ElideRight
-                                text: Util.formatDuration(modelData.dt)
-                                verticalAlignment: Qt.AlignVCenter
-                                anchors.verticalCenter: parent.verticalCenter
-                                font: DTK.fontManager.t6
-                            }
-
+                            elide: Text.ElideRight
+                            text: Util.formatDuration(modelData.dt)
+                            verticalAlignment: Qt.AlignVCenter
+                            Layout.alignment: Qt.AlignVCenter
+                            font: DTK.fontManager.t6
                         }
 
                     }
@@ -345,6 +333,7 @@ Item {
 
         visible: initing
         anchors.fill: root
+        color: Util.backgroundColor
 
         Loading {
             anchors.centerIn: parent

@@ -75,7 +75,6 @@ ItemDelegate {
                         text: model.title
                         verticalAlignment: Qt.AlignVCenter
                         font: DTK.fontManager.t6
-                        color: checked ? palette.highlightedText : (imagecell.isCurPlay ? palette.highlight : palette.text)
                     }
 
                     Label {
@@ -83,7 +82,6 @@ ItemDelegate {
 
                         width: parent.width
                         height: 17
-                        color: checked ? palette.highlightedText : "#7C7C7C"
                         elide: Text.ElideRight
                         text: model.author
                         verticalAlignment: Qt.AlignVCenter
@@ -99,7 +97,6 @@ ItemDelegate {
 
                 width: timeRectWidth
                 height: parent.height
-                color: checked ? palette.highlightedText : "#7C7C7C"
                 elide: Text.ElideRight
                 text: model.duration
                 verticalAlignment: Qt.AlignVCenter

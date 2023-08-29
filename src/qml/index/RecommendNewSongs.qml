@@ -4,7 +4,7 @@ import QtQuick 2.11
 import QtQuick.Controls 2.4
 import org.deepin.dtk 1.0
 
-Rectangle {
+Item {
     property alias lists: repeater.model
 
     Grid {
@@ -54,6 +54,7 @@ Rectangle {
                                 text: modelData.song.name
                                 elide: Qt.ElideRight
                                 font.pixelSize: DTK.fontManager.t6.pixelSize
+                                color: Util.textColor
                             }
 
                             Text {
@@ -61,6 +62,7 @@ Rectangle {
                                 text: modelData.song.artists[0].name
                                 font.pixelSize: DTK.fontManager.t7.pixelSize
                                 elide: Qt.ElideRight
+                                color: Util.textColor
                             }
 
                         }

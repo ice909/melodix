@@ -1,9 +1,10 @@
 import "../../router"
+import "../../util"
 import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 
-Rectangle {
+Item {
     property ListModel lists
 
     Grid {
@@ -81,6 +82,7 @@ Rectangle {
                         width: parent.width
                         text: modelData.name
                         elide: Qt.ElideRight
+                        color: Util.textColor
 
                         MouseArea {
                             anchors.fill: parent

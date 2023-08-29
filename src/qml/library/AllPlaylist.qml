@@ -1,4 +1,5 @@
 import "../../router"
+import "../../util"
 import "../widgets"
 import QtQuick 2.0
 import QtQuick.Layouts 1.11
@@ -49,6 +50,7 @@ Item {
                         text: modelData.name
                         elide: Qt.ElideRight
                         font.pixelSize: DTK.fontManager.t7.pixelSize
+                        color: Util.textColor
                     }
 
                 }

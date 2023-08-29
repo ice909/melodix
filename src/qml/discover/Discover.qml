@@ -1,4 +1,5 @@
 import "../widgets"
+import "../../util"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -103,6 +104,7 @@ Item {
                 text: "发现"
                 font.pixelSize: DTK.fontManager.t4.pixelSize
                 height: 20
+                color: Util.textColor
             }
 
             ButtonBox {
@@ -312,6 +314,7 @@ Item {
 
         visible: initing
         anchors.fill: root
+        color: Util.backgroundColor
 
         Loading {
             anchors.centerIn: parent

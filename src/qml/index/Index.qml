@@ -1,3 +1,4 @@
+import "../../util"
 import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -84,6 +85,7 @@ Item {
                     text: "推荐歌单"
                     font.pixelSize: DTK.fontManager.t4.pixelSize
                     anchors.verticalCenter: parent.verticalCenter
+                    color: Util.textColor
                 }
 
             }
@@ -110,6 +112,7 @@ Item {
                     text: "推荐新歌"
                     font.pixelSize: DTK.fontManager.t4.pixelSize
                     anchors.verticalCenter: parent.verticalCenter
+                    color: Util.textColor
                 }
 
             }
@@ -136,6 +139,7 @@ Item {
                     text: "热门歌手"
                     font.pixelSize: DTK.fontManager.t4.pixelSize
                     anchors.verticalCenter: parent.verticalCenter
+                    color: Util.textColor
                 }
 
             }
@@ -162,6 +166,7 @@ Item {
                     text: "推荐MV"
                     font.pixelSize: DTK.fontManager.t4.pixelSize
                     anchors.verticalCenter: parent.verticalCenter
+                    color: Util.textColor
                 }
 
             }
@@ -186,6 +191,7 @@ Item {
     Rectangle {
         visible: initing
         anchors.fill: root
+        color: Util.backgroundColor
 
         Loading {
             anchors.centerIn: parent

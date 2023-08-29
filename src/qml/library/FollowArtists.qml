@@ -1,5 +1,6 @@
-import "../widgets"
 import "../../router"
+import "../../util"
+import "../widgets"
 import QtQuick 2.0
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
@@ -47,6 +48,7 @@ Item {
                         anchors.centerIn: parent
                         text: modelData.name
                         font.pixelSize: DTK.fontManager.t5.pixelSize
+                        color: Util.textColor
                     }
 
                 }
@@ -55,7 +57,7 @@ Item {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                        Router.showArtist(modelData.id)
+                        Router.showArtist(modelData.id);
                     }
                 }
 

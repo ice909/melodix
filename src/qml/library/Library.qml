@@ -176,6 +176,7 @@ Item {
                     text: userNickname + "的音乐库"
                     font.pixelSize: DTK.fontManager.t3.pixelSize
                     height: 40
+                    color: Util.textColor
                 }
 
             }
@@ -306,7 +307,6 @@ Item {
                         text: "全部歌单"
                         font.pixelSize: 15
                         checked: true
-                        font.bold: checked ? true : false
                         onClicked: {
                             currentChecked = text;
                             checkedAllPlaylist();
@@ -344,7 +344,7 @@ Item {
                     }
 
                     background: Rectangle {
-                        color: "#F8F8FF"
+                        color: Util.libraryButtonBoxBackground
                         radius: 5
                     }
 
@@ -398,6 +398,7 @@ Item {
 
         visible: initing
         anchors.fill: root
+        color: Util.backgroundColor
 
         Loading {
             anchors.centerIn: parent

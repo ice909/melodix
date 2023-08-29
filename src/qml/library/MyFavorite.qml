@@ -59,6 +59,7 @@ Item {
                             text: modelData.name
                             elide: Qt.ElideRight
                             font.pixelSize: DTK.fontManager.t7.pixelSize
+                            color: Util.textColor
                         }
 
                         Text {
@@ -66,6 +67,7 @@ Item {
                             text: modelData.ar[0].name
                             font.pixelSize: DTK.fontManager.t8.pixelSize
                             elide: Qt.ElideRight
+                            color: Util.textColor
                         }
 
                     }

@@ -45,7 +45,18 @@ Player::Player(QObject *parent)
             &QMediaPlaylist::mediaRemoved,
             this,
             &Player::onMediaCountChanged);
+
+    connect(m_player, QOverload<QMediaPlayer::Error>::of(&QMediaPlayer::error), [=](QMediaPlayer::Error error) {
+        qDebug() << "播放器错误: " << error;
+        stop();
+    });
+
+    connect(m_playlist, &QMediaPlaylist::loadFailed, [=]() {
+        qDebug() << "播放列表加载失败";
+        stop();
+    });
 }
+
 
 void Player::addSignleToPlaylist(const QString &url,
                                  const QString &id,

@@ -1,9 +1,11 @@
 import "../../router"
+import "../../util"
 import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
+import org.deepin.dtk 1.0
 
-Rectangle {
+Item {
     property alias lists: repeater.model
 
     Grid {
@@ -79,6 +81,7 @@ Rectangle {
                         width: parent.width
                         text: modelData.name
                         elide: Qt.ElideRight
+                        color: Util.textColor
                     }
 
                     MouseArea {
