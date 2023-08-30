@@ -2,7 +2,8 @@
 
 Network::Network(QObject *parent)
     : QObject(parent)
-    , m_settings(new QSettings(QDir::homePath() + "/.config/ice/user.ini", QSettings::IniFormat))
+    , m_settings(
+          new QSettings(QDir::homePath() + "/.config/ice/user.ini", QSettings::IniFormat, this))
 {
     m_cookie = m_settings->value("cookieData", "").toString();
     parseCookie();

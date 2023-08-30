@@ -2,14 +2,15 @@
 
 Worker::Worker(QObject *parent)
     : QObject(parent)
-    , m_settings(new QSettings(QDir::homePath() + "/.config/ice/user.ini", QSettings::IniFormat))
+    , m_settings(
+          new QSettings(QDir::homePath() + "/.config/ice/user.ini", QSettings::IniFormat, this))
 {
     m_closeAction = m_settings->value("closeAction", 1).toString();
     m_isAsk = m_settings->value("isAsk", 1).toString();
 }
 
 QString Worker::getCloseAction()
-{   
+{
     return m_closeAction;
 }
 

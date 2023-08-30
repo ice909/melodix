@@ -7,7 +7,8 @@ Player::Player(QObject *parent)
     , m_playlist(new QMediaPlaylist(this))
     , m_singleTrackModel(new PlaylistModel(this))
     , m_singleTrackPlaylist(new QMediaPlaylist(this))
-    , m_settings(new QSettings(QDir::homePath() + "/.config/ice/player.ini", QSettings::IniFormat))
+    , m_settings(
+          new QSettings(QDir::homePath() + "/.config/ice/player.ini", QSettings::IniFormat, this))
 {
     // 读取音量配置
     m_volume = m_settings->value("Volume/DefaultVolume", 50).toInt();
@@ -46,17 +47,18 @@ Player::Player(QObject *parent)
             this,
             &Player::onMediaCountChanged);
 
-    connect(m_player, QOverload<QMediaPlayer::Error>::of(&QMediaPlayer::error), [=](QMediaPlayer::Error error) {
-        qDebug() << "播放器错误: " << error;
-        stop();
-    });
+    connect(m_player,
+            QOverload<QMediaPlayer::Error>::of(&QMediaPlayer::error),
+            [=](QMediaPlayer::Error error) {
+                qDebug() << "播放器错误: " << error;
+                stop();
+            });
 
     connect(m_playlist, &QMediaPlaylist::loadFailed, [=]() {
         qDebug() << "播放列表加载失败";
         stop();
     });
 }
-
 
 void Player::addSignleToPlaylist(const QString &url,
                                  const QString &id,
