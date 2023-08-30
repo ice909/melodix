@@ -12,9 +12,10 @@ WindowButton {
     RoundedImage {
         id: avatarImage
 
-        imgSrc: userAvatar == "" ? "qrc:/dsg/img/avatar.svg" : userAvatar
+        imgSrc: isLogin ? userAvatar : "qrc:/dsg/img/avatar.svg"
         width: 30
         height: 30
+        borderRadius: 30
         anchors.centerIn: parent
     }
 
@@ -24,12 +25,36 @@ WindowButton {
         x: avatarImage.x - 62
         y: parent.height
         width: 150
-        height: 60
+        height: 120
 
         ColumnLayout {
             anchors.centerIn: parent
             width: 130
             spacing: 0
+
+            Rectangle {
+                color: "transparent"
+                width: 48
+                height: 48
+
+                RoundedImage {
+                    id: avatar_image
+
+                    imgSrc: isLogin ? userAvatar : "qrc:/dsg/img/avatar.svg"
+                    width: 48
+                    height: 48
+                    borderRadius: 48
+                }
+
+                Text {
+                    anchors.left: avatar_image.right
+                    anchors.top: avatar_image.top
+                    anchors.leftMargin: 20
+                    color: isLogin ? "black" : "gray"
+                    text: isLogin ? userNickname : ""
+                }
+
+            }
 
             Button {
                 visible: isLogin
