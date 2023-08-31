@@ -1,12 +1,12 @@
 import QtQuick 2.0
-import org.deepin.dtk 1.0
+import org.deepin.dtk 1.0 as D
+import org.deepin.dtk.impl 1.0 as DI
 pragma Singleton
 
 Item {
-    property string pageBackgroundColor: DTK.themeType === ApplicationHelper.LightType ? "#f7f7f7" : "#252525"
-    property string backgroundColor: DTK.themeType === ApplicationHelper.LightType ? "transparent" : "#252525"
-    property string textColor: DTK.themeType === ApplicationHelper.DarkType ? "#FFFFFF" : ""
-    property string libraryButtonBoxBackground: DTK.themeType === ApplicationHelper.LightType ? "#F8F8FF" : "#404040"
+    property string pageBackgroundColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? "#f7f7f7" : "#252525"
+    property string textColor: D.DTK.themeType === DI.ApplicationHelper.DarkType ? "#FFFFFF" : ""
+    property string libraryButtonBoxBackground: D.DTK.themeType === DI.ApplicationHelper.LightType ? "#F8F8FF" : "#404040"
 
     function getTimestamp() {
         return Math.floor(Date.now() / 1000);
