@@ -48,7 +48,7 @@ WindowButton {
 
                 Text {
                     anchors.left: avatar_image.right
-                    anchors.top: avatar_image.top
+                    anchors.verticalCenter: avatar_image.verticalCenter
                     anchors.leftMargin: 20
                     color: isLogin ? "black" : "gray"
                     text: isLogin ? userNickname : ""
