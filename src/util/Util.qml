@@ -9,7 +9,7 @@ Item {
     property string libraryButtonBoxBackground: D.DTK.themeType === DI.ApplicationHelper.LightType ? "#F8F8FF" : "#404040"
 
     function getTimestamp() {
-        return Math.floor(Date.now() / 1000);
+        return Date.now();
     }
 
     function formatTime(time) {
