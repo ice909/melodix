@@ -77,7 +77,10 @@ Item {
 
                 Text {
                     text: "推荐歌单"
-                    font.pixelSize: DTK.fontManager.t4.pixelSize
+                    font {
+                        pixelSize: DTK.fontManager.t4.pixelSize
+                        bold: true
+                    }
                     anchors.verticalCenter: parent.verticalCenter
                     color: Util.textColor
                 }
@@ -104,7 +107,10 @@ Item {
 
                 Text {
                     text: "推荐新歌"
-                    font.pixelSize: DTK.fontManager.t4.pixelSize
+                    font {
+                        pixelSize: DTK.fontManager.t4.pixelSize
+                        bold: true
+                    }
                     anchors.verticalCenter: parent.verticalCenter
                     color: Util.textColor
                 }
@@ -131,7 +137,10 @@ Item {
 
                 Text {
                     text: "热门歌手"
-                    font.pixelSize: DTK.fontManager.t4.pixelSize
+                    font {
+                        pixelSize: DTK.fontManager.t4.pixelSize
+                        bold: true
+                    }
                     anchors.verticalCenter: parent.verticalCenter
                     color: Util.textColor
                 }
@@ -158,7 +167,10 @@ Item {
 
                 Text {
                     text: "推荐MV"
-                    font.pixelSize: DTK.fontManager.t4.pixelSize
+                    font {
+                        pixelSize: DTK.fontManager.t4.pixelSize
+                        bold: true
+                    }
                     anchors.verticalCenter: parent.verticalCenter
                     color: Util.textColor
                 }

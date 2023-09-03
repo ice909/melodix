@@ -23,29 +23,53 @@ Item {
                 height: width + 30
                 color: "transparent"
 
-                RoundedImage {
-                    id: img
+                Rectangle {
+                    id: imgRect
 
                     width: parent.width
                     height: parent.width
-                    imgSrc: modelData.picUrl
-                    borderRadius: height
+                    color: "transparent"
+                    radius: width
 
-                    MouseArea {
-                        anchors.fill: parent
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: {
-                            Router.showArtist(modelData.id);
+                    RoundedImage {
+                        id: img
+
+                        width: parent.width - 10
+                        height: parent.width - 10
+                        imgSrc: modelData.picUrl
+                        borderRadius: height
+                        anchors.centerIn: parent
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onEntered: {
+                                imgRect.color = Qt.rgba(0, 0, 0, 0.2);
+                            }
+                            onExited: {
+                                imgRect.color = "transparent";
+                            }
+                            onPressed: {
+                                imgRect.color = Qt.rgba(0, 0, 0, 0.3);
+                            }
+                            onReleased: {
+                                imgRect.color = Qt.rgba(0, 0, 0, 0.2);
+                            }
+                            onClicked: {
+                                Router.showArtist(modelData.id);
+                            }
                         }
+
                     }
 
                 }
 
                 Rectangle {
                     width: parent.width
-                    anchors.top: img.bottom
-                    anchors.horizontalCenter: img.horizontalCenter
                     height: 30
+                    anchors.top: imgRect.bottom
+                    anchors.horizontalCenter: imgRect.horizontalCenter
                     color: "transparent"
 
                     Text {

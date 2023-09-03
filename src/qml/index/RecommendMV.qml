@@ -23,19 +23,43 @@ Item {
                 height: width / 2.9
                 color: "transparent"
 
-                RoundedImage {
-                    id: img
+                Rectangle {
+                    id: imgRect
 
                     width: parent.width
                     height: parent.height - 30
-                    imgSrc: modelData.picUrl
+                    color: "transparent"
+                    radius: 5
 
-                    MouseArea {
-                        anchors.fill: parent
-                        cursorShape: Qt.PointingHandCursor
-                        onPressed: {
-                            Router.showMv(modelData.id);
+                    RoundedImage {
+                        id: img
+
+                        width: parent.width - 5
+                        height: parent.height - 5
+                        imgSrc: modelData.picUrl
+                        anchors.centerIn: parent
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onEntered: {
+                                imgRect.color = Qt.rgba(0, 0, 0, 0.2);
+                            }
+                            onExited: {
+                                imgRect.color = "transparent";
+                            }
+                            onPressed: {
+                                imgRect.color = Qt.rgba(0, 0, 0, 0.3);
+                            }
+                            onReleased: {
+                                imgRect.color = Qt.rgba(0, 0, 0, 0.2);
+                            }
+                            onClicked: {
+                                Router.showMv(modelData.id);
+                            }
                         }
+
                     }
 
                 }
@@ -44,15 +68,32 @@ Item {
                     width: parent.width
                     height: 30
                     color: "transparent"
-                    anchors.top: img.bottom
-                    anchors.horizontalCenter: img.horizontalCenter
+                    anchors.top: imgRect.bottom
+                    anchors.horizontalCenter: imgRect.horizontalCenter
 
                     Text {
+                        id: title
+
                         anchors.verticalCenter: parent.verticalCenter
                         width: parent.width
                         text: modelData.name
                         elide: Qt.ElideRight
                         color: Util.textColor
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        hoverEnabled: true
+                        onEntered: {
+                            title.font.underline = true;
+                        }
+                        onExited: {
+                            title.font.underline = false;
+                        }
+                        onClicked: {
+                            Router.showMv(modelData.id);
+                        }
                     }
 
                 }
