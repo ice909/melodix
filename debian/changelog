@@ -1,5 +1,30 @@
+digimusic (1.1.0) UNRELEASED; urgency=medium
+
+  * Remove unused variables from cmake
+  * Adjust tray play/pause menu text
+  * Home hot singers random display
+  * Home signer and mv add dynamic effects
+  * Add carousel images to the home page
+  * Fix user nickname not centered
+  * Fixed an event stamp acquisition error
+  * Remove warning 'Object already has a QQmlContext'
+  * Add a global singleton API
+  * Fixing memory leaks
+  * Avatar popup show more information
+  * The title bar displays the program icon
+  * mv、artist、favorite page adapts dark theme
+  * Fixed page loading animation background transparent
+  * Fit dark themes
+  * Fixed lyrics highlighting not toggle when scrolling
+  * Adjust the size of the user profile picture in the title bar
+  * fix system tary loaded failed
+  * Support like or dislike songs
+  * update README
+
+ -- ice <tonimayloneya@gmail.com>  Sun, 3 Sep 2023 18:23:34 +0800
+
 digimusic (1.0.0) UNRELEASED; urgency=medium
 
   * Initial release
 
- -- ice <tonimayloneya@gmail.com>  Sun, 12 Aug 2022 13:42:57 +0800
+ -- ice <tonimayloneya@gmail.com>  Sun, 12 Aug 2023 13:42:57 +0800
