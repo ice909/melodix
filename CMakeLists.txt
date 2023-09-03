@@ -27,8 +27,6 @@ include_directories(${PROJECT_SOURCE_DIR})
 add_definitions(-DAPP_VERSION="${APP_VERSION}")
 add_subdirectory(src)
 
-set(ENV{QT_SELECT} qt5)
-
 # 安装desktop文件
 install(FILES ${CMAKE_SOURCE_DIR}/misc/${PROJECT_NAME}.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
 # 安装icon
