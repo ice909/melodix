@@ -275,6 +275,13 @@ ApplicationWindow {
     P.SystemTrayIcon {
         id: systemTray
 
+        function onPlayStateChanged() {
+            if (player.getPlayState())
+                trayPlayBtn.text = '暂停';
+            else
+                trayPlayBtn.text = '播放';
+        }
+
         visible: true
         iconName: "digimusic"
         tooltip: "DigiMusic"
@@ -289,19 +296,23 @@ ApplicationWindow {
         }
         Component.onCompleted: {
             player.mediaCountChanged.connect(onMediaCountChanged);
+            player.playStateChanged.connect(onPlayStateChanged);
         }
 
         menu: P.Menu {
             P.MenuItem {
                 id: trayPlayBtn
 
-                text: "播放/暂停"
+                text: "播放"
                 enabled: false
                 onTriggered: {
-                    if (player.getPlayState())
+                    if (player.getPlayState()) {
                         player.pause();
-                    else
+                        text = '播放';
+                    } else {
                         player.play();
+                        text = '暂停';
+                    }
                 }
             }
 
