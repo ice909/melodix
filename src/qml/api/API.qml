@@ -51,5 +51,10 @@ Item {
     function getRecommendMV(callback) {
         get("/personalized/mv", callback);
     }
+    
+    // 获取轮播图
+    function getBanner(callback) {
+        get("/banner", callback);
+    }
 
 }

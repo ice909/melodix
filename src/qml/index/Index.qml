@@ -41,22 +41,34 @@ Item {
             });
         }).then((result) => {
             recommendMV.lists = result;
-            initing = false;
-        });
+            return new Promise((resolve, reject) => {
+                API.getBanner((resp) => {
+                    resolve(resp.banners);
+                })
+            })
+        }).then((result) => {
+            banner.imgs = result
+            initing = false
+        })
     }
 
     // 首页界面
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: recommendPlaylist.height + recommendNewSongs.height + hotSigner.height + recommendMV.height + 30 * 4 + 20 * 7 + 5
+        contentHeight: banner.height + recommendPlaylist.height + recommendNewSongs.height + hotSigner.height + recommendMV.height + 30 * 4 + 10 * 8 + 5
 
         Column {
             id: body
 
-            spacing: 20
+            spacing: 10
             x: 20
             y: 5
+            Banner {
+                id: banner
+                width: scrollWidth
+                height: scrollWidth / 5.5
+            }
 
             Rectangle {
                 width: scrollWidth
