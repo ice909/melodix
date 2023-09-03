@@ -44,7 +44,7 @@ Item {
 
     // 获取首页热门歌手
     function getHotSigner(callback) {
-        get("/top/artists?limit=5", callback);
+        get("/top/artists", callback);
     }
 
     // 获取首页推荐MV

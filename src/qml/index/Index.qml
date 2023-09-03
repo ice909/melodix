@@ -33,7 +33,12 @@ Item {
                 });
             });
         }).then((result) => {
-            hotSigner.lists = result;
+            // 从result中取5个歌手，用于热门歌手,一共有50个
+            // 随机选取5个歌手，方法是生成的一个0-44的随机数（包括44）
+            // 然后从生成的随机数开始截取
+            var random = Math.floor(Math.random() * 45)
+            var data = result.splice(random, 5)
+            hotSigner.lists = data
             return new Promise((resolve, reject) => {
                 API.getRecommendMV((resp) => {
                     resolve(resp.result);
