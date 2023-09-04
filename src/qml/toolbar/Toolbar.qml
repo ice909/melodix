@@ -197,12 +197,11 @@ FloatingPanel {
 
         }
 
-        Rectangle {
+        Item {
             id: infoRect
 
             width: infoRectWidth
             height: 40
-            color: "transparent"
             anchors.verticalCenter: parent.verticalCenter
 
             Column {
@@ -238,12 +237,11 @@ FloatingPanel {
 
         }
 
-        Rectangle {
+        Item {
             id: playControlRect
 
             width: playControlRectWidth
             height: parent.height
-            color: "transparent"
             anchors.verticalCenter: parent.verticalCenter
 
             Row {
@@ -378,12 +376,11 @@ FloatingPanel {
             }
         }
 
-        Rectangle {
+        Item {
             id: rightAreaRect
 
             width: rightAreaRectWidth
             height: parent.height
-            color: "transparent"
 
             Row {
                 width: parent.width

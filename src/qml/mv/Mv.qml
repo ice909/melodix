@@ -88,10 +88,9 @@ Item {
             x: 20
             y: 5
 
-            Rectangle {
+            Item {
                 id: headRect
 
-                color: "transparent"
                 width: scrollWidth
                 height: headHeight
 
@@ -102,10 +101,9 @@ Item {
                     Column {
                         spacing: 5
 
-                        Rectangle {
+                        Item {
                             id: videoRect
 
-                            color: "transparent"
                             width: (scrollWidth - 20) / 3 * 2.1
                             height: headHeight - 10 - 120
 
@@ -145,10 +143,9 @@ Item {
 
                         }
 
-                        Rectangle {
+                        Item {
                             id: artistRect
 
-                            color: "transparent"
                             width: videoRect.width
                             height: headHeight - 10 - videoRect.height - 60
 
@@ -173,10 +170,9 @@ Item {
 
                         }
 
-                        Rectangle {
+                        Item {
                             width: videoRect.width
                             height: headHeight - 10 - videoRect.height - artistRect.height
-                            color: "transparent"
 
                             Text {
                                 id: mvName
@@ -198,10 +194,9 @@ Item {
 
                     }
 
-                    Rectangle {
+                    Item {
                         id: relevantRecommendRect
 
-                        color: "transparent"
                         width: (scrollWidth - 20) / 3 * 0.9
                         height: headHeight
 
@@ -220,20 +215,18 @@ Item {
                             Repeater {
                                 id: similarityRepeater
 
-                                Rectangle {
+                                Item {
                                     width: parent.width
                                     height: (parent.height - 10 * 5 - 20) / 5
-                                    color: "transparent"
 
                                     Row {
                                         anchors.fill: parent
                                         spacing: 10
 
-                                        Rectangle {
+                                        Item {
                                             width: (parent.width - 10) / 2
                                             height: parent.height - 10
                                             anchors.verticalCenter: parent.verticalCenter
-                                            color: "transparent"
 
                                             RoundedImage {
                                                 anchors.fill: parent
@@ -242,20 +235,18 @@ Item {
 
                                         }
 
-                                        Rectangle {
+                                        Item {
                                             width: (parent.width - 10) / 2
                                             height: parent.height - 10
                                             anchors.verticalCenter: parent.verticalCenter
-                                            color: "transparent"
 
                                             Column {
                                                 anchors.fill: parent
                                                 spacing: 0
 
-                                                Rectangle {
+                                                Item {
                                                     height: parent.height - 20
                                                     width: parent.width
-                                                    color: "transparent"
 
                                                     Label {
                                                         font.pixelSize: DTK.fontManager.t6.pixelSize
@@ -272,10 +263,9 @@ Item {
 
                                                 }
 
-                                                Rectangle {
+                                                Item {
                                                     height: 20
                                                     width: parent.width
-                                                    color: "transparent"
 
                                                     Text {
                                                         font.pixelSize: DTK.fontManager.t10.pixelSize
@@ -304,10 +294,9 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 id: commentsTitleRect
 
-                color: "transparent"
                 width: scrollWidth
                 height: 30
 
@@ -320,10 +309,9 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 id: commentsRect
 
-                color: "transparent"
                 width: scrollWidth
                 height: hotCommentsCount * 72 + 5 * (hotCommentsCount - 1)
 
@@ -333,22 +321,20 @@ Item {
                     Repeater {
                         id: repeater
 
-                        Rectangle {
+                        Item {
                             id: commentItemRect
 
                             width: scrollWidth
                             height: 72
-                            color: "transparent"
 
                             Row {
                                 anchors.fill: parent
                                 spacing: 10
 
-                                Rectangle {
+                                Item {
                                     width: parent.height - 10
                                     height: width
                                     anchors.verticalCenter: parent.verticalCenter
-                                    color: "transparent"
 
                                     RoundedImage {
                                         id: commentsUserId
@@ -361,19 +347,17 @@ Item {
 
                                 }
 
-                                Rectangle {
+                                Item {
                                     width: parent.width - commentsUserId.width - 10
                                     height: parent.height
-                                    color: "transparent"
 
                                     Column {
                                         spacing: 0
                                         anchors.fill: parent
 
-                                        Rectangle {
+                                        Item {
                                             width: parent.width
                                             height: 20
-                                            color: "transparent"
 
                                             Text {
                                                 id: commentsUserNickName
@@ -387,10 +371,9 @@ Item {
 
                                         }
 
-                                        Rectangle {
+                                        Item {
                                             width: parent.width - 50
                                             height: 40
-                                            color: "transparent"
 
                                             Label {
                                                 id: commentsUserContent
@@ -409,10 +392,9 @@ Item {
 
                                         }
 
-                                        Rectangle {
+                                        Item {
                                             width: parent.width
                                             height: 10
-                                            color: "transparent"
 
                                             Text {
                                                 id: commentReleaseTime
@@ -435,7 +417,7 @@ Item {
                                 anchors.top: parent.bottom
                                 width: parent.width
                                 height: 0.5
-                                color: Util.pageBackgroundColor
+                                color: "#000000"
                             }
 
                         }

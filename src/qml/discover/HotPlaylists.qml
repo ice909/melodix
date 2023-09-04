@@ -20,10 +20,9 @@ Item {
 
             model: lists
 
-            Rectangle {
+            Item {
                 width: (parent.width - 30 * 4) * 0.2
                 height: width + 20
-                color: "transparent"
 
                 Rectangle {
                     id: imgRect
@@ -66,13 +65,12 @@ Item {
 
                 }
 
-                Rectangle {
+                Item {
                     anchors.top: imgRect.bottom
                     anchors.horizontalCenter: imgRect.horizontalCenter
                     width: imgRect.width - 10
                     anchors.leftMargin: 10
                     height: 30
-                    color: "transparent"
 
                     Text {
                         id: hotPlaylistTitle

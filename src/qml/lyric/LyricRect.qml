@@ -1,7 +1,7 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 
-Rectangle {
+Item {
     id: lyricRect
 
     // 当前歌词索引
@@ -15,7 +15,6 @@ Rectangle {
 
     width: parent.width
     height: parent.height
-    color: "#00000000"
     anchors.horizontalCenter: parent.horizontalCenter
 
     Timer {

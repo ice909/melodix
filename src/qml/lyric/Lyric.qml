@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.11
 import QtQuick.Window 2.2
 import org.deepin.dtk 1.0
 
-Rectangle {
+Item {
     id: lyricPage
 
     property string titleStr: ""
@@ -87,7 +87,6 @@ Rectangle {
     width: rootWindow.width
     height: rootWindow.height
     visible: isLyricShow
-    color: "transparent"
     Component.onCompleted: {
         onPlaylistCurrentIndexChanged();
         player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
@@ -119,11 +118,10 @@ Rectangle {
         radius: 128
     }
 
-    Rectangle {
+    Item {
         width: centerAreaWidth
         height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
-        color: "transparent"
 
         Row {
             spacing: 33
@@ -132,19 +130,17 @@ Rectangle {
             topPadding: 70
             anchors.horizontalCenter: parent.horizontalCenter
 
-            Rectangle {
+            Item {
                 id: leftAreaColumn
 
                 width: 426
                 height: parent.height - 141
-                color: "transparent"
 
-                Rectangle {
+                Item {
                     id: leftArea
 
                     width: 426
                     height: 426
-                    color: "transparent"
                     anchors.centerIn: parent
 
                     RoundedImage {
@@ -166,34 +162,31 @@ Rectangle {
                 property int lrcWidth: parent.width - 630
                 property int lrcHeigth: parent.height - 164
 
-                Rectangle {
+                Item {
                     id: rightAreaRect
 
                     width: 440
                     height: rightAreaColumn.lrcHeigth
-                    color: "transparent"
                     visible: true
 
                     Column {
                         spacing: 20
                         anchors.horizontalCenter: parent.horizontalCenter
 
-                        Rectangle {
+                        Item {
                             id: title
 
                             width: 440
                             height: 80
-                            color: "transparent"
 
                             Column {
                                 width: parent.width
                                 height: parent.height
                                 spacing: 9
 
-                                Rectangle {
+                                Item {
                                     width: parent.width
                                     height: 35
-                                    color: "#00000000"
 
                                     Label {
                                         width: parent.width
@@ -205,10 +198,9 @@ Rectangle {
 
                                 }
 
-                                Rectangle {
+                                Item {
                                     width: parent.width
                                     height: 20
-                                    color: "#00000000"
 
                                     Row {
                                         // Text {
@@ -241,10 +233,9 @@ Rectangle {
 
                         }
 
-                        Rectangle {
+                        Item {
                             width: 440
                             height: rightAreaColumn.lrcHeigth - 100
-                            color: "transparent"
                             anchors.horizontalCenter: parent.horizontalCenter
 
                             LyricRect {

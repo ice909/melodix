@@ -151,12 +151,11 @@ Item {
             x: 20
             y: 5
 
-            Rectangle {
+            Item {
                 id: headRect
 
                 width: scrollWidth
                 height: 50
-                color: "transparent"
 
                 RoundedImage {
                     id: avatar_image
@@ -181,12 +180,11 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 id: myFavoriteSongsRect
 
                 width: scrollWidth
                 height: 220
-                color: "transparent"
 
                 Row {
                     anchors.fill: parent
@@ -200,14 +198,13 @@ Item {
                         color: "#eaeffd"
                         radius: 16
 
-                        Rectangle {
+                        Item {
                             width: parent.width - 60
                             height: parent.height - myfavoriteTitle.height - musicCountTitle.height - 50
                             anchors.left: parent.left
                             anchors.leftMargin: 10
                             anchors.top: parent.top
                             anchors.topMargin: 10
-                            color: "transparent"
 
                             Column {
                                 anchors.fill: parent
@@ -275,10 +272,9 @@ Item {
 
                     }
 
-                    Rectangle {
+                    Item {
                         width: parent.width * 0.65 - 60
                         height: parent.height
-                        color: "transparent"
 
                         MyFavorite {
                             id: myFavoriteSongs
@@ -292,12 +288,11 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 id: categoryTabRect
 
                 width: scrollWidth
                 height: 50
-                color: "transparent"
 
                 ButtonBox {
                     anchors.verticalCenter: parent.verticalCenter
@@ -352,12 +347,11 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 id: bottomDataRect
 
                 width: scrollWidth
                 height: currentChecked == "MV" ? ((playlistRows * ((scrollWidth - 30 * 3) * 0.25 - 60)) + (playlistRows - 1) * 10) : ((playlistRows * ((scrollWidth - 30 * 4) * 0.2 + 30)) + (playlistRows - 1) * 10)
-                color: "transparent"
 
                 AllPlaylist {
                     id: userAllPlaylist

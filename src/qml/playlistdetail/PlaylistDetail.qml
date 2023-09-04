@@ -180,10 +180,9 @@ Item {
                     height: width
                 }
 
-                Rectangle {
+                Item {
                     width: scrollWidth - coverImg.width - 10 - 30 - 10 - 30
                     height: coverImg.height
-                    color: "transparent"
 
                     Column {
                         anchors.fill: parent
@@ -204,10 +203,9 @@ Item {
                             color: Util.textColor
                         }
 
-                        Rectangle {
+                        Item {
                             width: parent.width
                             height: (parent.height - 40) / 4
-                            color: "transparent"
 
                             Text {
                                 id: playlistAuthor
@@ -243,10 +241,9 @@ Item {
                             color: Util.textColor
                         }
 
-                        Rectangle {
+                        Item {
                             width: parent.width
                             height: (parent.height - 40) / 4
-                            color: "transparent"
 
                             Row {
                                 spacing: 20

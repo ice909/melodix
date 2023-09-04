@@ -64,8 +64,7 @@ TitleBar {
     }
 
     content: ColumnLayout {
-        Rectangle {
-            color: "transparent"
+        Item {
             Layout.fillWidth: true
             height: root.height
 

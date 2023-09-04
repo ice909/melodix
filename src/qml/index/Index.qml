@@ -75,10 +75,9 @@ Item {
                 height: scrollWidth / 5.5
             }
 
-            Rectangle {
+            Item {
                 width: scrollWidth
                 height: 30
-                color: "transparent"
 
                 Text {
                     text: "推荐歌单"
@@ -92,10 +91,9 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 width: scrollWidth
                 height: ((scrollWidth - 20 * 4) * 0.2 + 30) * 2 + 20
-                color: "transparent"
 
                 RecommendPlaylist {
                     id: recommendPlaylist
@@ -105,10 +103,9 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 width: scrollWidth
                 height: 30
-                color: "transparent"
 
                 Text {
                     text: "推荐新歌"
@@ -122,10 +119,9 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 width: scrollWidth
                 height: (scrollWidth - 100) * 0.33333 * 0.15 * 3 + 20 * 2
-                color: "transparent"
 
                 RecommendNewSongs {
                     id: recommendNewSongs
@@ -135,10 +131,9 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 width: scrollWidth
                 height: 30
-                color: "transparent"
 
                 Text {
                     text: "热门歌手"
@@ -152,10 +147,9 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 width: scrollWidth
                 height: (scrollWidth - 80) * 0.2 + 30
-                color: "transparent"
 
                 HotSigner {
                     id: hotSigner
@@ -165,10 +159,9 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 width: scrollWidth
                 height: 30
-                color: "transparent"
 
                 Text {
                     text: "推荐MV"
@@ -182,10 +175,9 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 width: scrollWidth
                 height: (scrollWidth - 20) * 0.5 / 2.9
-                color: "transparent"
 
                 RecommendMV {
                     id: recommendMV

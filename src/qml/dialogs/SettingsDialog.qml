@@ -39,10 +39,9 @@ Item {
                 spacing: 20
                 y: 5
 
-                Rectangle {
+                Item {
                     width: win.width
                     height: 30
-                    color: "transparent"
 
                     Text {
                         text: "关闭主窗口"
@@ -52,10 +51,9 @@ Item {
 
                 }
 
-                Rectangle {
+                Item {
                     width: win.width
                     height: 30
-                    color: "transparent"
 
                     RadioButton {
                         id: minRB

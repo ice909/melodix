@@ -100,10 +100,9 @@ Popup {
         anchors.fill: parent
         spacing: 10
 
-        Rectangle {
+        Item {
             id: topRect
 
-            color: "transparent"
             width: parent.width
             height: 40
 
@@ -116,8 +115,7 @@ Popup {
 
         }
 
-        Rectangle {
-            color: "transparent"
+        Item {
             width: parent.width
             height: parent.height - topRect.height - 10
 
@@ -128,13 +126,12 @@ Popup {
                 height: parent.height - 50
                 anchors.centerIn: parent
 
-                Rectangle {
+                Item {
                     id: loadAnimation
 
                     visible: initing
                     width: parent.width
                     height: parent.height
-                    color: "transparent"
 
                     Loading {
                         anchors.centerIn: parent

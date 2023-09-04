@@ -32,8 +32,7 @@ WindowButton {
             width: 130
             spacing: 0
 
-            Rectangle {
-                color: "transparent"
+            Item {
                 width: 48
                 height: 48
 

@@ -135,10 +135,9 @@ Item {
             x: 20
             y: 5
 
-            Rectangle {
+            Item {
                 width: scrollWidth
                 height: 40
-                color: "transparent"
 
                 Row {
                     anchors.fill: parent

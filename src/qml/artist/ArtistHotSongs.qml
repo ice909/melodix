@@ -37,7 +37,7 @@ Item {
                     imgSrc: modelData.al.picUrl
                 }
 
-                Rectangle {
+                Item {
                     id: infoRect
 
                     width: parent.width - img.width - 10
@@ -46,7 +46,6 @@ Item {
                     anchors.leftMargin: 5
                     anchors.verticalCenter: img.verticalCenter
                     height: parent.height - 10
-                    color: "transparent"
 
                     Column {
                         anchors.centerIn: parent

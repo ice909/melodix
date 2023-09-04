@@ -56,12 +56,11 @@ FloatingPanel {
         width: parent.width
         height: parent.height
 
-        Rectangle {
+        Item {
             id: headerArea
 
             width: parent.width
             height: headerHeight
-            color: "#00000000"
 
             Column {
                 spacing: 6
@@ -70,10 +69,9 @@ FloatingPanel {
                 width: parent.width - 20
                 height: parent.height
 
-                Rectangle {
+                Item {
                     width: parent.width
                     height: 26
-                    color: "#00000000"
 
                     Text {
                         id: playlistText
@@ -85,16 +83,14 @@ FloatingPanel {
 
                 }
 
-                Rectangle {
+                Item {
                     width: parent.width
                     height: 17
-                    color: "#00000000"
 
-                    Rectangle {
+                    Item {
                         width: parent.width * 0.3
                         height: parent.height
                         anchors.left: parent.left
-                        color: "#00000000"
 
                         Text {
                             id: songsCountText

@@ -52,13 +52,12 @@ ItemDelegate {
                 imgSrc: model.image
             }
 
-            Rectangle {
+            Item {
                 id: musicInfoRect
 
                 width: parent.width - (imgCellRectWidth + timeRectWidth + spacingWidth * 2)
                 height: 40
                 anchors.verticalCenter: parent.verticalCenter
-                color: "transparent"
 
                 Column {
                     width: parent.width

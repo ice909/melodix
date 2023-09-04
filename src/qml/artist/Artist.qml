@@ -104,21 +104,19 @@ Item {
             x: 20
             y: 5
 
-            Rectangle {
+            Item {
                 id: headRect
 
                 width: scrollWidth
                 height: width / 3.5
-                color: "transparent"
 
                 Row {
                     anchors.fill: parent
                     spacing: 30
 
-                    Rectangle {
+                    Item {
                         width: height
                         height: parent.height
-                        color: "transparent"
 
                         RoundedImage {
                             id: artist_avatar
@@ -132,19 +130,17 @@ Item {
 
                     }
 
-                    Rectangle {
+                    Item {
                         width: parent.width / 2
                         height: parent.height
-                        color: "transparent"
 
                         Column {
                             spacing: 20
                             anchors.fill: parent
 
-                            Rectangle {
+                            Item {
                                 width: parent.width
                                 height: (parent.height - 60) / 4
-                                color: "transparent"
 
                                 Text {
                                     id: artist_name
@@ -157,10 +153,9 @@ Item {
 
                             }
 
-                            Rectangle {
+                            Item {
                                 width: parent.width
                                 height: (parent.height - 60) / 4
-                                color: "transparent"
 
                                 Column {
                                     Text {
@@ -180,10 +175,9 @@ Item {
 
                             }
 
-                            Rectangle {
+                            Item {
                                 width: parent.width
                                 height: (parent.height - 60) / 4
-                                color: "transparent"
 
                                 Label {
                                     id: artistDescription
@@ -200,10 +194,9 @@ Item {
 
                             }
 
-                            Rectangle {
+                            Item {
                                 width: parent.width
                                 height: (parent.height - 60) / 4
-                                color: "transparent"
 
                                 RecommandButton {
                                     anchors.verticalCenter: parent.verticalCenter
@@ -233,10 +226,9 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 width: scrollWidth
                 height: 30
-                color: "transparent"
 
                 Text {
                     text: "最新发布"
@@ -248,21 +240,19 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 id: newReleaseRect
 
                 width: scrollWidth
                 height: width / 10
-                color: "transparent"
 
                 Row {
                     anchors.fill: parent
                     spacing: 20
 
-                    Rectangle {
+                    Item {
                         width: (parent.width - 20) / 2
                         height: parent.height
-                        color: "transparent"
 
                         Row {
                             anchors.fill: parent
@@ -276,10 +266,9 @@ Item {
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
-                            Rectangle {
+                            Item {
                                 height: parent.height - 5
                                 width: height * 2
-                                color: "transparent"
                                 anchors.verticalCenter: parent.verticalCenter
 
                                 Column {
@@ -316,10 +305,9 @@ Item {
 
                     }
 
-                    Rectangle {
+                    Item {
                         width: (parent.width - 20) / 2
                         height: parent.height
-                        color: "transparent"
 
                         Row {
                             anchors.fill: parent
@@ -333,10 +321,9 @@ Item {
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
-                            Rectangle {
+                            Item {
                                 height: parent.height - 5
                                 width: height * 1.6
-                                color: "transparent"
                                 anchors.verticalCenter: parent.verticalCenter
 
                                 Column {
@@ -378,10 +365,9 @@ Item {
 
             }
 
-            Rectangle {
+            Item {
                 width: scrollWidth
                 height: 30
-                color: "transparent"
 
                 Text {
                     text: "热门歌曲"

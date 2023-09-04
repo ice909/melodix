@@ -18,10 +18,9 @@ Item {
         Repeater {
             id: repeater
 
-            Rectangle {
+            Item {
                 width: (parent.width - 20) * 0.5
                 height: width / 2.9
-                color: "transparent"
 
                 Rectangle {
                     id: imgRect
@@ -64,10 +63,9 @@ Item {
 
                 }
 
-                Rectangle {
+                Item {
                     width: parent.width
                     height: 30
-                    color: "transparent"
                     anchors.top: imgRect.bottom
                     anchors.horizontalCenter: imgRect.horizontalCenter
 

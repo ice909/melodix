@@ -143,26 +143,23 @@ Item {
             x: 20
             y: 5
 
-            Rectangle {
+            Item {
                 width: scrollWidth
                 height: 30
-                color: "transparent"
 
                 Row {
                     anchors.fill: parent
                     spacing: 10
                     leftPadding: 10
 
-                    Rectangle {
+                    Item {
                         width: 15
                         height: 30
-                        color: "transparent"
                     }
 
-                    Rectangle {
+                    Item {
                         width: imgCellRectWidth + (scrollWidth - timeRectWidth - serialNumberWidth - imgCellRectWidth - 10 - 50) / 3
                         height: 30
-                        color: "transparent"
 
                         Label {
                             text: "歌曲名"
@@ -174,10 +171,9 @@ Item {
 
                     }
 
-                    Rectangle {
+                    Item {
                         width: (scrollWidth - imgCellRectWidth - timeRectWidth - serialNumberWidth - 50 - 10) / 3
                         height: 30
-                        color: "transparent"
 
                         Label {
                             text: "艺人"
@@ -189,10 +185,9 @@ Item {
 
                     }
 
-                    Rectangle {
+                    Item {
                         width: (scrollWidth - imgCellRectWidth - timeRectWidth - serialNumberWidth - 50 - 10) / 3
                         height: 30
-                        color: "transparent"
 
                         Label {
                             text: "专辑"
@@ -204,10 +199,9 @@ Item {
 
                     }
 
-                    Rectangle {
+                    Item {
                         width: (scrollWidth - imgCellRectWidth - timeRectWidth - serialNumberWidth - 50 - 10) / 3
                         height: 30
-                        color: "transparent"
 
                         Label {
                             anchors.verticalCenter: parent.verticalCenter
