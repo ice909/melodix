@@ -81,7 +81,7 @@ Item {
 
             }
             for (var i = urlOffset; i < songs.length; i++) {
-                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, songs[i].ar[0].name, Util.formatDuration(songs[i].dt));
+                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt));
             }
             if (index != -1)
                 player.play(index);
@@ -284,7 +284,7 @@ Item {
                             Layout.preferredWidth: (scrollWidth - imagecell.width - timeRectWidth - serialNumber.width - 50 - 10) / 3
                             height: 20
                             elide: Text.ElideRight
-                            text: modelData.ar[0].name
+                            text: Util.spliceSinger(modelData.ar)
                             Layout.alignment: Qt.AlignVCenter
                             font: DTK.fontManager.t6
                         }
