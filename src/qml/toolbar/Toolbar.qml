@@ -1,5 +1,5 @@
-import "../widgets"
 import "../../util"
+import "../widgets"
 import QtGraphicalEffects 1.0
 import QtQuick 2.11
 import QtQuick.Layouts 1.11
@@ -302,6 +302,9 @@ FloatingPanel {
                     icon.height: 36
                     checkable: true
                     onClicked: {
+                        if (!player.getMediaCount())
+                            return ;
+
                         if (player.getPlayState())
                             player.pause();
                         else
@@ -310,7 +313,7 @@ FloatingPanel {
 
                     ToolTip {
                         visible: playPauseBtn.hovered
-                        text: qsTr("播放/暂停")
+                        text: playStatus ? "暂停" : "播放"
                     }
 
                 }
