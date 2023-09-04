@@ -58,7 +58,7 @@ Item {
 
                             Text {
                                 width: infoRect.width
-                                text: modelData.song.artists[0].name
+                                text: Util.spliceSinger(modelData.song.artists)
                                 font.pixelSize: DTK.fontManager.t7.pixelSize
                                 elide: Qt.ElideRight
                                 color: Util.textColor
@@ -88,7 +88,7 @@ Item {
                     }
                     onClicked: {
                         //点击新歌时，获取歌曲id，拿着歌曲id去获取歌曲url
-                        getMusicUrl(modelData.id, modelData.song.name, modelData.picUrl, modelData.song.artists[0].name, Util.formatDuration(modelData.song.duration));
+                        getMusicUrl(modelData.id, modelData.song.name, modelData.picUrl, Util.spliceSinger(modelData.song.artists), Util.formatDuration(modelData.song.duration));
                     }
                 }
 

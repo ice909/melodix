@@ -29,4 +29,12 @@ Item {
         return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
 
+    function spliceSinger(singer) {
+        var singerArr = [];
+        for (var i = 0; i < singer.length; i++) {
+            singerArr.push(singer[i].name);
+        }
+        return singerArr.join(",");
+    }
+
 }
