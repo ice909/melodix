@@ -76,16 +76,16 @@ Item {
                     cursorShape: Qt.PointingHandCursor
                     hoverEnabled: true
                     onEntered: {
-                        color = Qt.rgba(0, 0, 0, 0.1);
+                        color = Util.mouseHoverColor;
                     }
                     onExited: {
                         color = "transparent";
                     }
                     onPressed: {
-                        color = Qt.rgba(0, 0, 0, 0.2);
+                        color = Util.mousePressedColor;
                     }
                     onReleased: {
-                        color = Qt.rgba(0, 0, 0, 0.1);
+                        color = Util.mouseReleasedColor;
                     }
                     onClicked: {
                         //点击新歌时，获取歌曲id，拿着歌曲id去获取歌曲url

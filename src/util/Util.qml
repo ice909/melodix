@@ -7,6 +7,9 @@ Item {
     property string pageBackgroundColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? "#f7f7f7" : "#252525"
     property string textColor: D.DTK.themeType === DI.ApplicationHelper.DarkType ? "#FFFFFF" : ""
     property string libraryButtonBoxBackground: D.DTK.themeType === DI.ApplicationHelper.LightType ? "#F8F8FF" : "#404040"
+    property string mouseHoverColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? Qt.rgba(0, 0, 0, 0.2) : Qt.rgba(255, 255, 255, 0.3)
+    property string mousePressedColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? Qt.rgba(0, 0, 0, 0.3) : Qt.rgba(255, 255, 255, 0.4)
+    property string mouseReleasedColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? Qt.rgba(0, 0, 0, 0.2) : Qt.rgba(255, 255, 255, 0.3)
 
     function getTimestamp() {
         return Date.now();

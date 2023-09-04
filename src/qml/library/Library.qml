@@ -125,8 +125,8 @@ Item {
             var datas = JSON.parse(reply).data;
             //console.log(JSON.stringify(JSON.parse(reply)))
             console.log("收藏MV数量：" + datas.length);
-            playlistRowCount = Math.ceil(datas.length / 5);
-            console.log("计算出的收藏MV行数：" + playlistRowCount);
+            playlistRows = Math.ceil(datas.length / 5);
+            console.log("计算出的收藏MV行数：" + playlistRows);
             userCollectMVs.lists = datas;
         }
 

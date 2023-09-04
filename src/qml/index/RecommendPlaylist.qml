@@ -45,16 +45,16 @@ Item {
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
                             onEntered: {
-                                imgRect.color = Qt.rgba(0, 0, 0, 0.2);
+                                imgRect.color = Util.mouseHoverColor;
                             }
                             onExited: {
                                 imgRect.color = "transparent";
                             }
                             onPressed: {
-                                imgRect.color = Qt.rgba(0, 0, 0, 0.3);
+                                imgRect.color = Util.mousePressedColor;
                             }
                             onReleased: {
-                                imgRect.color = Qt.rgba(0, 0, 0, 0.2);
+                                imgRect.color = Util.mouseReleasedColor;
                             }
                             onClicked: {
                                 Router.showPlaylistDetail(modelData.id);
