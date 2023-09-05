@@ -209,6 +209,14 @@ void Player::onDurationChanged(qint64 duration)
  */
 void Player::onCurrentIndexChanged(int index)
 {
+    // 判断当前播放歌曲的url是不是为空，
+    // 无版权的歌曲获取到的url是空的，
+    // 这时切换下一首
+    if (m_currentPlaylist->currentMedia().request().url().toString().isEmpty()) {
+        qDebug() << "当前歌曲无版权，切换下一首";
+        next();
+        return;
+    }
     qDebug() << "playlist current index changed signal : " << index;
     if (index == -1) {
         m_currentPlaylist->setCurrentIndex(0);
