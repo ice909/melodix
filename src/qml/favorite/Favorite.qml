@@ -106,11 +106,25 @@ Item {
         network.onSendReplyFinished.connect(onReply);
         network.makeRequest("/user/playlist?uid=" + userID + "&timestamp=" + Util.getTimestamp());
     }
+
+    function onPlaylistCurrentIndexChanged() {
+        currentSelectIndex = player.getCurrentIndex();
+    }
+
+    function onPlaylistCleared() {
+        currentSelectIndex = -1;
+    }
     
     Component.onCompleted: {
+        player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
+        player.playlistCleared.connect(onPlaylistCleared);
         getUserPlayLists()
     }
     
+    Component.onDestruction: {
+        player.playlistCurrentIndexChanged.disconnect(onPlaylistCurrentIndexChanged);
+        player.playlistCleared.disconnect(onPlaylistCleared);
+    }
 
     ListModel {
         id: songListModel
