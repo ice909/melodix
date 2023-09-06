@@ -9,6 +9,7 @@ Player::Player(QObject *parent)
     , m_singleTrackPlaylist(new QMediaPlaylist(this))
     , m_settings(
           new QSettings(QDir::homePath() + "/.config/ice/player.ini", QSettings::IniFormat, this))
+    , m_network(new Network(this))
 {
     // 读取音量配置
     m_volume = m_settings->value("Volume/DefaultVolume", 50).toInt();
@@ -50,8 +51,47 @@ Player::Player(QObject *parent)
     connect(m_player,
             QOverload<QMediaPlayer::Error>::of(&QMediaPlayer::error),
             [=](QMediaPlayer::Error error) {
+                m_currentPlaylist->blockSignals(true);
                 qDebug() << "播放器错误: " << error;
+                int currentIndex = m_currentPlaylist->currentIndex() - 1; 
+                m_currentPlaylist->clear();
+                m_currentPlaylist->blockSignals(false);
                 stop();
+                m_network->getSongUrl(m_currentModel->getAllId());
+                qDebug() << "歌曲所有id:" << m_currentModel->getAllId();
+                connect(m_network, &Network::songUrlRequestFinished, this, [=](QByteArray data) {
+                    // 解析数据, 获取歌曲url, 
+                    // 返回的歌曲url顺序是乱的
+                    // 需要根据歌曲id在model中的位置重新排序
+                    QJsonDocument document = QJsonDocument::fromJson(data);
+                    QJsonObject object = document.object();
+                    QJsonArray array = object["data"].toArray();
+                    qDebug() << "获取到的数组大小: " << array.size();
+                    // 定义一个数组，存放歌曲url,指定数组初始大小
+                    QStringList urls(m_musicIds);
+                    for (int i = 0; i < array.size(); ++i) {
+                        QJsonObject item = array[i].toObject();
+                        int id = item["id"].toInt();
+                        QString url = item["url"].toString();
+                        //qDebug() << " 歌曲id:" << id ;
+                        int index = m_playlistModel->indexofId(QString::number(id));
+                        //qDebug() << "获取歌曲id在数组中的下标:" << index;
+                        if (index != -1) {
+                            urls.replace(index, url);
+                        }
+                    }
+                    qDebug() << "歌曲url获取完成, 歌曲数量:" << urls.size();
+                    m_currentPlaylist->blockSignals(true);
+                    for (int i = 0; i < urls.size(); ++i) {
+                        m_currentPlaylist->addMedia(QUrl(urls[i]));
+                    }
+                    m_currentPlaylist->blockSignals(false);
+                    onMediaCountChanged(0,0);
+                    qDebug() << "播放列表添加完成";
+                    qDebug() << "播放列表大小:" << m_currentPlaylist->mediaCount();
+                    play(currentIndex);
+                });
+                
             });
 
     connect(m_playlist, &QMediaPlaylist::loadFailed, [=]() {
@@ -72,6 +112,7 @@ void Player::addSignleToPlaylist(const QString &url,
     if (m_currentModel != m_singleTrackModel) {
         switchToSingleTrackMode();
     }
+    m_musicIds.append(id);
     emit mediaCountChanged(m_singleTrackModel->rowCount());
     play(m_currentPlaylist->mediaCount() - 1);
 }
@@ -88,6 +129,7 @@ void Player::addPlaylistToPlaylist(const QString &url,
     if (m_currentModel != m_playlistModel) {
         switchToPlaylistMode();
     }
+    m_musicIds.append(id);
 }
 
 void Player::switchToSingleTrackMode()
@@ -99,6 +141,7 @@ void Player::switchToSingleTrackMode()
         // 切换到当前播放列表需要把另一个播放列表清空
         m_playlist->clear();
         m_playlistModel->clear();
+        m_musicIds.clear();
     }
 }
 
@@ -111,6 +154,7 @@ void Player::switchToPlaylistMode()
         // 切换到当前播放列表需要把另一个播放列表清空
         m_singleTrackPlaylist->clear();
         m_singleTrackModel->clear();
+        m_musicIds.clear();
     }
 }
 
@@ -386,6 +430,7 @@ void Player::clearPlaylist()
 
     m_currentPlaylist->clear();
     m_currentModel->clear();
+    m_musicIds.clear();
 
     emit playlistCleared();
 }
@@ -411,4 +456,6 @@ void Player::switchPlaybackMode(int model)
     }
 }
 
-void Player::addAllSongsToPlaylist() {}
+Player::~Player() {
+
+}

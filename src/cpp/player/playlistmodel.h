@@ -44,6 +44,9 @@ public:
     // 清空模型
     void clear();
 
+    // 获取所有id,使用,号拼接成一个字符串
+    QString getAllId();
+
 private:
     struct Song
     {

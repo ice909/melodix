@@ -108,6 +108,16 @@ QString PlaylistModel::getDuration(int index) const
     return m_songs[index].duration;
 }
 
+QString PlaylistModel::getAllId()
+{
+    QString ids;
+    for (int i = 0; i < m_songs.size() - 1; ++i) {
+        ids += m_songs[i].id + ",";
+    }
+    ids += m_songs[m_songs.size() - 1].id;
+    return ids;
+}
+
 int PlaylistModel::indexofId(const QString &id) const
 {
     for (int i = 0; i < m_songs.size(); ++i) {
