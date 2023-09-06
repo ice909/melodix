@@ -16,6 +16,7 @@ Item {
         height: parent.height
         fillMode: Image.PreserveAspectCrop
         antialiasing: true
+        asynchronous: true
         visible: false
     }
 

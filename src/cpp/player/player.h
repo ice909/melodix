@@ -10,14 +10,17 @@
 #include <QObject>
 #include <QSettings>
 #include <QTime>
+#include <QEventLoop>
 
 #include "playlistmodel.h"
+#include "network.h"
 
 class Player : public QObject
 {
     Q_OBJECT
 public:
     explicit Player(QObject *parent = nullptr);
+    ~Player();
     // 播放
     Q_INVOKABLE void play();
     // 播放指定下标的歌曲
@@ -89,8 +92,6 @@ public:
     Q_INVOKABLE void setPlaybackMode(int mode);
     // 设置当前播放歌单Id
     Q_INVOKABLE void setCurrentPlaylistId(const QString &id);
-    // 添加歌单所有歌曲到播放列表
-    Q_INVOKABLE void addAllSongsToPlaylist();
     // 清空播放列表
     Q_INVOKABLE void clearPlaylist();
     // 切换到单曲的播放列表
@@ -115,6 +116,7 @@ public slots:
     void onMediaCountChanged(int start, int end);
 
 private:
+    Network * m_network = nullptr;
     // 播放器配置文件
     QSettings *m_settings = nullptr;
     QMediaPlayer *m_player = nullptr;
@@ -142,6 +144,9 @@ private:
 
     // 当前播放歌单的id
     QString m_currentPlaylistId = "";
+
+    // 歌曲链接失效重新获取歌曲数据的时候会用到
+    QList<QString> m_musicIds ;
 };
 
 #endif // PLAYER_H
