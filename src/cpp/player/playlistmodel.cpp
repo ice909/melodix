@@ -63,6 +63,7 @@ void PlaylistModel::addSong(const QString &id,
     song.author = author;
     song.duration = duration;
     m_songs.append(song);
+    m_musicIds.append(id);
 
     endInsertRows();
 }
@@ -120,17 +121,13 @@ QString PlaylistModel::getAllId()
 
 int PlaylistModel::indexofId(const QString &id) const
 {
-    for (int i = 0; i < m_songs.size(); ++i) {
-        if (m_songs[i].id == id) {
-            return i;
-        }
-    }
-    return -1;
+    return m_musicIds.indexOf(id,-1);
 }
 
 void PlaylistModel::clear()
 {
     beginResetModel();
     m_songs.clear();
+    m_musicIds.clear();
     endResetModel();
 }

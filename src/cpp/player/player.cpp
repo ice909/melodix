@@ -53,14 +53,19 @@ Player::Player(QObject *parent)
             [=](QMediaPlayer::Error error) {
                 m_currentPlaylist->blockSignals(true);
                 qDebug() << "播放器错误: " << error;
-                int currentIndex = m_currentPlaylist->currentIndex() - 1; 
+                int currentIndex = 0;
+                if (m_currentPlaylist->mediaCount() == 1) {
+                    currentIndex = m_currentPlaylist->currentIndex();
+                } else {
+                    currentIndex = m_currentPlaylist->currentIndex() - 1;
+                }
                 m_currentPlaylist->clear();
                 m_currentPlaylist->blockSignals(false);
                 stop();
                 m_network->getSongUrl(m_currentModel->getAllId());
                 qDebug() << "歌曲所有id:" << m_currentModel->getAllId();
                 connect(m_network, &Network::songUrlRequestFinished, this, [=](QByteArray data) {
-                    // 解析数据, 获取歌曲url, 
+                    // 解析数据, 获取歌曲url,
                     // 返回的歌曲url顺序是乱的
                     // 需要根据歌曲id在model中的位置重新排序
                     QJsonDocument document = QJsonDocument::fromJson(data);
@@ -74,8 +79,8 @@ Player::Player(QObject *parent)
                         int id = item["id"].toInt();
                         QString url = item["url"].toString();
                         //qDebug() << " 歌曲id:" << id ;
-                        int index = m_playlistModel->indexofId(QString::number(id));
-                        //qDebug() << "获取歌曲id在数组中的下标:" << index;
+                        int index = m_currentModel->indexofId(QString::number(id));
+                        qDebug() << "获取歌曲id在数组中的下标:" << index << "歌曲url:" << url;
                         if (index != -1) {
                             urls.replace(index, url);
                         }
@@ -86,12 +91,11 @@ Player::Player(QObject *parent)
                         m_currentPlaylist->addMedia(QUrl(urls[i]));
                     }
                     m_currentPlaylist->blockSignals(false);
-                    onMediaCountChanged(0,0);
+                    onMediaCountChanged(0, 0);
                     qDebug() << "播放列表添加完成";
                     qDebug() << "播放列表大小:" << m_currentPlaylist->mediaCount();
                     play(currentIndex);
                 });
-                
             });
 
     connect(m_playlist, &QMediaPlaylist::loadFailed, [=]() {
@@ -134,28 +138,24 @@ void Player::addPlaylistToPlaylist(const QString &url,
 
 void Player::switchToSingleTrackMode()
 {
-    if (m_currentPlaylist != m_singleTrackPlaylist) {
-        m_currentPlaylist = m_singleTrackPlaylist;
-        m_currentModel = m_singleTrackModel;
-        m_player->setPlaylist(m_currentPlaylist);
-        // 切换到当前播放列表需要把另一个播放列表清空
-        m_playlist->clear();
-        m_playlistModel->clear();
-        m_musicIds.clear();
-    }
+    m_currentPlaylist = m_singleTrackPlaylist;
+    m_currentModel = m_singleTrackModel;
+    m_player->setPlaylist(m_currentPlaylist);
+    // 切换到当前播放列表需要把另一个播放列表清空
+    m_playlist->clear();
+    m_playlistModel->clear();
+    m_musicIds.clear();
 }
 
 void Player::switchToPlaylistMode()
 {
-    if (m_currentPlaylist != m_playlist) {
-        m_currentPlaylist = m_playlist;
-        m_currentModel = m_playlistModel;
-        m_player->setPlaylist(m_currentPlaylist);
-        // 切换到当前播放列表需要把另一个播放列表清空
-        m_singleTrackPlaylist->clear();
-        m_singleTrackModel->clear();
-        m_musicIds.clear();
-    }
+    m_currentPlaylist = m_playlist;
+    m_currentModel = m_playlistModel;
+    m_player->setPlaylist(m_currentPlaylist);
+    // 切换到当前播放列表需要把另一个播放列表清空
+    m_singleTrackPlaylist->clear();
+    m_singleTrackModel->clear();
+    m_musicIds.clear();
 }
 
 /************* Controller *****************/
@@ -456,6 +456,4 @@ void Player::switchPlaybackMode(int model)
     }
 }
 
-Player::~Player() {
-
-}
+Player::~Player() {}

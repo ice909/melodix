@@ -58,6 +58,7 @@ private:
     };
 
     QList<Song> m_songs;
+    QStringList m_musicIds;
 };
 
 #endif // PLAYLISTMODEL_H
