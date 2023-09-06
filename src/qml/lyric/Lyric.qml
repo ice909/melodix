@@ -1,4 +1,5 @@
 import "../widgets"
+import "../../util"
 import QtGraphicalEffects 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -9,6 +10,7 @@ import org.deepin.dtk 1.0
 Item {
     id: lyricPage
 
+    property bool initing: true
     property string titleStr: ""
     property string artist: ""
     property string album: ""
@@ -42,6 +44,7 @@ Item {
 
                 }
             }
+            initing = false;
         }
 
         lrcModel.clear();
@@ -282,6 +285,17 @@ Item {
         to: rootWindow.height
         duration: 200
         easing.type: Easing.OutCubic
+    }
+
+    Rectangle {
+        visible: initing
+        anchors.fill: lyricPage
+        color: Util.pageBackgroundColor
+
+        Loading {
+            anchors.centerIn: parent
+        }
+
     }
 
 }
