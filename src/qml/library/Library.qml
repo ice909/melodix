@@ -10,6 +10,7 @@ Item {
     id: root
 
     property bool initing: true
+    property bool switching: false
     property int scrollWidth: rootWindow.width - 40
     // 用户的所有歌单
     property var userPlaylists: []
@@ -20,7 +21,9 @@ Item {
     function checkedAllPlaylist() {
         console.log("获取的歌单数量：" + userPlaylists.length);
         playlistRows = Math.ceil(userPlaylists.length / 5);
+        bottomLoader.item.lists = userPlaylists.slice(1, userPlaylists.length);
         console.log("计算出的歌单行数：" + playlistRows);
+        switching = false;
     }
 
     function getLyric(id) {
@@ -81,7 +84,7 @@ Item {
             getLyric(datas[randomNumber].id);
             musicCountTitle.text = datas.length + "首歌";
             myFavoriteSongs.lists = datas.slice(0, 12);
-            userAllPlaylist.lists = userPlaylists.slice(1, userPlaylists.length);
+            bottomLoader.item.lists = userPlaylists.slice(1, userPlaylists.length);
             initing = false;
         }
 
@@ -94,10 +97,11 @@ Item {
         function onReply(reply) {
             network.onSendReplyFinished.disconnect(onReply);
             var datas = JSON.parse(reply).paidAlbums;
-            userBuyAlbum.lists = datas;
+            bottomLoader.item.lists = datas;
             console.log("已购专辑数量：" + datas.length);
             playlistRows = Math.ceil(datas.length / 5);
             console.log("计算出的已购专辑行数：" + playlistRows);
+            switching = false;
         }
 
         network.onSendReplyFinished.connect(onReply);
@@ -112,7 +116,8 @@ Item {
             console.log("关注艺人数量：" + datas.length);
             playlistRows = Math.ceil(datas.length / 5);
             console.log("计算出的关注艺人行数：" + playlistRows);
-            userFollowArtists.lists = datas;
+            bottomLoader.item.lists = datas;
+            switching = false;
         }
 
         network.onSendReplyFinished.connect(onReply);
@@ -127,7 +132,8 @@ Item {
             console.log("收藏MV数量：" + datas.length);
             playlistRows = Math.ceil(datas.length / 5);
             console.log("计算出的收藏MV行数：" + playlistRows);
-            userCollectMVs.lists = datas;
+            bottomLoader.item.lists = datas;
+            switching = false;
         }
 
         network.onSendReplyFinished.connect(onReply);
@@ -142,7 +148,7 @@ Item {
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: myFavoriteSongsRect.height + headRect.height + categoryTabRect.height + bottomDataRect.height + 5 + 20 * 3
+        contentHeight: myFavoriteSongsRect.height + headRect.height + categoryTabRect.height + bottomLoader.height + 5 + 20 * 3
 
         Column {
             id: body
@@ -303,7 +309,9 @@ Item {
                         font.pixelSize: 15
                         checked: true
                         onClicked: {
+                            switching = true;
                             currentChecked = text;
+                            bottomLoader.setSource("./AllPlaylist.qml")
                             checkedAllPlaylist();
                         }
                     }
@@ -313,7 +321,9 @@ Item {
                         text: "专辑"
                         font.pixelSize: 15
                         onClicked: {
+                            switching = true;
                             currentChecked = text;
+                            bottomLoader.setSource("./BuyAlbums.qml")
                             getUserAlbum();
                         }
                     }
@@ -323,7 +333,9 @@ Item {
                         text: "艺人"
                         font.pixelSize: 15
                         onClicked: {
+                            switching = true;
                             currentChecked = text;
+                            bottomLoader.setSource("./FollowArtists.qml")
                             getFollowArtists();
                         }
                     }
@@ -333,7 +345,9 @@ Item {
                         text: "MV"
                         font.pixelSize: 15
                         onClicked: {
+                            switching = true;
                             currentChecked = text;
+                            bottomLoader.setSource("./CollectMVs.qml")
                             getCollectMvs();
                         }
                     }
@@ -347,39 +361,12 @@ Item {
 
             }
 
-            Item {
-                id: bottomDataRect
+            Loader {
+                id: bottomLoader
 
                 width: scrollWidth
                 height: currentChecked == "MV" ? ((playlistRows * ((scrollWidth - 30 * 3) * 0.25 - 60)) + (playlistRows - 1) * 10) : ((playlistRows * ((scrollWidth - 30 * 4) * 0.2 + 30)) + (playlistRows - 1) * 10)
-
-                AllPlaylist {
-                    id: userAllPlaylist
-
-                    anchors.fill: parent
-                    visible: currentChecked == "全部歌单"
-                }
-
-                BuyAlbums {
-                    id: userBuyAlbum
-
-                    anchors.fill: parent
-                    visible: currentChecked == "专辑"
-                }
-
-                FollowArtists {
-                    id: userFollowArtists
-
-                    anchors.fill: parent
-                    visible: currentChecked == "艺人"
-                }
-
-                CollectMVs {
-                    id: userCollectMVs
-
-                    anchors.fill: parent
-                    visible: currentChecked == "MV"
-                }
+                source: "./AllPlaylist.qml"
 
             }
 
@@ -392,6 +379,22 @@ Item {
 
         visible: initing
         anchors.fill: root
+        color: Util.pageBackgroundColor
+
+        Loading {
+            anchors.centerIn: parent
+        }
+
+    }
+
+    Rectangle {
+        id: switchnimation
+
+        visible: switching
+        width: bottomLoader.width
+        height: bottomLoader.height
+        y: bottomLoader.y
+        x: bottomLoader.x
         color: Util.pageBackgroundColor
 
         Loading {
