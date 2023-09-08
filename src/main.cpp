@@ -1,9 +1,9 @@
 #include <DApplication>
 #include <DLog>
+#include <QCommandLineParser>
 #include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <QCommandLineParser>
 
 #include "network.h"
 #include "player.h"
@@ -37,7 +37,8 @@ int main(int argc, char *argv[])
     DLogManager::registerFileAppender();
 
     QCommandLineParser parser;
-    parser.setApplicationDescription("Digi Music is an online music player with a beautiful interface.");
+    parser.setApplicationDescription(
+        "Digi Music is an online music player with a beautiful interface.");
     parser.addHelpOption();
     parser.addVersionOption();
     parser.process(*app);
