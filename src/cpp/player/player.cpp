@@ -53,12 +53,7 @@ Player::Player(QObject *parent)
             [=](QMediaPlayer::Error error) {
                 m_currentPlaylist->blockSignals(true);
                 qDebug() << "播放器错误: " << error;
-                int currentIndex = 0;
-                if (m_currentPlaylist->mediaCount() == 1) {
-                    currentIndex = m_currentPlaylist->currentIndex();
-                } else {
-                    currentIndex = m_currentPlaylist->currentIndex() - 1;
-                }
+                int currentIndex = m_currentPlaylist->currentIndex() - 1;
                 m_currentPlaylist->clear();
                 m_currentPlaylist->blockSignals(false);
                 stop();
@@ -103,7 +98,18 @@ Player::Player(QObject *parent)
         stop();
     });
 }
-
+/**
+ * 添加单曲到播放列表
+ * 会自动播放最新添加的歌曲
+ *
+ * @param url 歌曲的url
+ * @param id 歌曲的id
+ * @param name 歌曲的名字
+ * @param pic 歌曲的图片（URL）
+ * @param artist 歌曲的作者
+ * @param duration 歌曲的时长（格式化成'00:00'的字符串）
+ *
+ */
 void Player::addSignleToPlaylist(const QString &url,
                                  const QString &id,
                                  const QString &name,
@@ -117,10 +123,20 @@ void Player::addSignleToPlaylist(const QString &url,
         switchToSingleTrackMode();
     }
     m_musicIds.append(id);
-    emit mediaCountChanged(m_singleTrackModel->rowCount());
     play(m_currentPlaylist->mediaCount() - 1);
 }
-
+/**
+ * 添加歌单歌曲到播放列表
+ * 添加后需要由用户受到调用play(index)的方法，播放歌曲
+ *
+ * @param url 歌曲的url
+ * @param id 歌曲的id
+ * @param name 歌曲的名字
+ * @param pic 歌曲的图片（URL）
+ * @param artist 歌曲的作者
+ * @param duration 歌曲的时长（格式化成'00:00'的字符串）
+ *
+ */
 void Player::addPlaylistToPlaylist(const QString &url,
                                    const QString &id,
                                    const QString &name,
@@ -325,8 +341,10 @@ QString Player::getId()
 
 QString Player::getName()
 {
-    if (m_currentPlaylist->mediaCount() != 0)
+    if (m_currentPlaylist->mediaCount() != 0){
+        qDebug() << m_currentModel->getTitle(m_currentPlaylist->currentIndex());
         return m_currentModel->getTitle(m_currentPlaylist->currentIndex());
+    }
 
     return "";
 }
