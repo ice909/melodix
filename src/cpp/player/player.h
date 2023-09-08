@@ -70,8 +70,6 @@ public:
     Q_INVOKABLE int getPlaybackMode();
     // 获取是否静音
     Q_INVOKABLE bool getMute();
-    // 获取播放列表中的歌曲数量
-    Q_INVOKABLE int getPlaylistSize();
     // 获取当前播放歌曲的下标
     Q_INVOKABLE int getCurrentIndex();
     // 获取音量
