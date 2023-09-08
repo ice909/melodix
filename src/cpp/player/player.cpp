@@ -98,6 +98,7 @@ Player::Player(QObject *parent)
         stop();
     });
 }
+
 /**
  * 添加单曲到播放列表
  * 会自动播放最新添加的歌曲
@@ -125,6 +126,7 @@ void Player::addSignleToPlaylist(const QString &url,
     m_musicIds.append(id);
     play(m_currentPlaylist->mediaCount() - 1);
 }
+
 /**
  * 添加歌单歌曲到播放列表
  * 添加后需要由用户受到调用play(index)的方法，播放歌曲
@@ -152,6 +154,14 @@ void Player::addPlaylistToPlaylist(const QString &url,
     m_musicIds.append(id);
 }
 
+/**
+ * 切换到单曲的播放列表
+ *
+ * @param None
+ *
+ * @return None
+ *
+ */
 void Player::switchToSingleTrackMode()
 {
     m_currentPlaylist = m_singleTrackPlaylist;
@@ -163,6 +173,14 @@ void Player::switchToSingleTrackMode()
     m_musicIds.clear();
 }
 
+/**
+ * 切换到歌单的播放列表
+ * 
+ * @param None
+ *
+ * @return None
+ *
+ */
 void Player::switchToPlaylistMode()
 {
     m_currentPlaylist = m_playlist;
@@ -175,7 +193,9 @@ void Player::switchToPlaylistMode()
 }
 
 /************* Controller *****************/
-
+/**
+ * 如果媒体有效，则播放该媒体，并发出指示播放状态变化的信号。
+ */
 void Player::play()
 {
     QMediaPlayer::MediaStatus status = m_player->mediaStatus();
@@ -192,6 +212,14 @@ void Player::play()
     emit playStateChanged();
 }
 
+/**
+ * 播放播放列表中指定索引处的媒体文件.
+ *
+ * @param index 播放列表中的索引
+ *
+ * @return void
+ * 
+ */
 void Player::play(int index)
 {
     QMediaPlayer::MediaStatus status = m_player->mediaStatus();
@@ -204,6 +232,9 @@ void Player::play(int index)
     emit playStateChanged();
 }
 
+/**
+ * 暂停播放
+ */
 void Player::pause()
 {
     m_player->pause();
@@ -211,6 +242,9 @@ void Player::pause()
     emit playStateChanged();
 }
 
+/**
+ * 停止播放
+ */
 void Player::stop()
 {
     m_player->stop();
@@ -218,6 +252,10 @@ void Player::stop()
     emit playStateChanged();
 }
 
+/**
+ * 暂停播放，切换到播放列表中的下一首歌曲，
+ * 然后继续播放。
+ */
 void Player::next()
 {
     pause();
@@ -226,6 +264,10 @@ void Player::next()
     play();
 }
 
+/**
+ * 暂停播放，切换到播放列表中的上一首歌曲，
+ * 然后继续播放。
+ */
 void Player::previous()
 {
     pause();
@@ -298,6 +340,11 @@ void Player::onMediaCountChanged(int start, int end)
 
 /**************** Set ********************/
 
+/**
+ * 设置播放器的音量
+ *
+ * @param volume 音量大小
+ */
 void Player::setVolume(int volume)
 {
     m_volume = volume;
@@ -305,6 +352,11 @@ void Player::setVolume(int volume)
     m_settings->setValue("Volume/DefaultVolume", m_volume);
 }
 
+/**
+ * 设置播放器的静音状态
+ *
+ * @param mute 静音状态 true 为静音，false 为非静音
+ */
 void Player::setMute(bool mute)
 {
     m_mute = mute;
@@ -312,6 +364,14 @@ void Player::setMute(bool mute)
     m_settings->setValue("Volume/Mute", m_mute);
 }
 
+/**
+ * 设置播放器的播放模式
+ *
+ * @param mode 播放模式
+ *
+ * @return void
+ *
+ */
 void Player::setPlaybackMode(int mode)
 {
     switchPlaybackMode(mode);
@@ -319,11 +379,21 @@ void Player::setPlaybackMode(int mode)
     m_settings->setValue("Playback/PlaybackMode", mode);
 }
 
+/**
+ * 设置当前播放列表的ID
+ *
+ * @param id 播放列表的ID
+ */
 void Player::setCurrentPlaylistId(const QString &id)
 {
     m_currentPlaylistId = id;
 }
 
+/**
+ * 设置播放器的位置
+ *
+ * @param newPosition the new position to set
+ */
 void Player::setPosition(qint64 newPosition)
 {
     m_player->setPosition(newPosition);
@@ -331,6 +401,11 @@ void Player::setPosition(qint64 newPosition)
 
 /**************** Get ********************/
 
+/**
+ * 获取当前播放音乐的ID
+ *
+ * @return 当前播放音乐的ID
+ */
 QString Player::getId()
 {
     if (m_currentPlaylist->mediaCount() != 0)
@@ -339,6 +414,11 @@ QString Player::getId()
     return "";
 }
 
+/**
+ * 获取当前播放音乐的名字 
+ * 
+ * @return 当前播放音乐的名字 
+ */
 QString Player::getName()
 {
     if (m_currentPlaylist->mediaCount() != 0){
@@ -349,6 +429,11 @@ QString Player::getName()
     return "";
 }
 
+/**
+ * 获取当前播放音乐的作者
+ *
+ * @return 当前播放音乐的作者
+ */
 QString Player::getArtist()
 {
     if (m_currentPlaylist->mediaCount() != 0)
@@ -357,6 +442,11 @@ QString Player::getArtist()
     return "";
 }
 
+/**
+ * 获取当前播放音乐的图片URL
+ *
+ * @return 当前播放音乐的图片URL
+ */
 QString Player::getPic()
 {
     if (m_currentPlaylist->mediaCount() != 0)
@@ -365,69 +455,125 @@ QString Player::getPic()
     return "qrc:/dsg/img/no_music.svg";
 }
 
+/**
+ * 获取当前播放器的状态
+ *
+ * @return 当前播放器的状态
+ */
 bool Player::getPlayState()
 {
     return m_playState;
 }
 
+/**
+ * 获取当前播放歌曲的时长
+ *
+ * @return 当前播放歌曲的时长
+ */
 qint64 Player::getDuration()
 {
     return m_duration;
 }
 
+/**
+ * 获取当前播放歌曲的进度
+ * 
+ * @return 当前播放歌曲的进度
+ */
 qint64 Player::getPosition()
 {
     return m_position;
 }
 
+/**
+ * 获取播放器的音量
+ * 
+ * @return 播放器的音量
+ */
 int Player::getVolume()
 {
     return m_volume;
 }
 
+/**
+ * 获取播放器是否静音
+ *
+ * @return 播放器的静音状态
+ */
 bool Player::getMute()
 {
     return m_mute;
 }
 
+/**
+ * 获取播放器的播放模式
+ *
+ * @return 播放器的播放模式
+ */
 int Player::getPlaybackMode()
 {
     return m_playbackMode;
 }
 
-int Player::getPlaylistSize()
-{
-    return m_currentPlaylist->mediaCount();
-}
-
+/**
+ * 获取当前播放歌曲在播放列表中的下标
+ *
+ * @return 当前播放歌曲在播放列表中的下标
+ */
 int Player::getCurrentIndex()
 {
     qDebug() << "调用，当前播放歌曲的下标：" << m_currentPlaylist->currentIndex();
     return m_currentPlaylist->currentIndex();
 }
 
+/**
+ * 获取播放列表模型
+ * 是qml中Playlist的数据来源
+ *
+ * @return 播放列表模型
+ */
 QObject *Player::getPlaylistModel()
 {
     return m_currentModel;
 }
 
+/**
+ * 获取格式化的歌曲时长
+ *
+ * @return 格式化的歌曲时长
+ */
 QString Player::getFormatDuration()
 {
     QTime time = QTime::fromMSecsSinceStartOfDay(m_duration);
     return time.toString("m:ss");
 }
 
+/**
+ * 获取格式化的歌曲播放位置
+ *
+ * @return 格式化的歌曲播放位置
+ */
 QString Player::getFormatPosition()
 {
     QTime time = QTime::fromMSecsSinceStartOfDay(m_position);
     return time.toString("m:ss");
 }
 
+/**
+ * 获取当前播放列表的媒体数量
+ *
+ * @return 当前播放列表的媒体数量
+ */
 int Player::getMediaCount()
 {
     return m_currentPlaylist->mediaCount();
 }
 
+/**
+ * 获取当前播放列表的ID
+ *
+ * @return 当前播放列表的ID
+ */
 QString Player::getCurrentPlaylistId()
 {
     return m_currentPlaylistId;
@@ -453,6 +599,13 @@ void Player::clearPlaylist()
     emit playlistCleared();
 }
 
+/**
+ * 切换播放模式
+ *
+ * @param model 播放模式对应的数字
+ *
+ * @return void
+ */
 void Player::switchPlaybackMode(int model)
 {
     switch (model) {
