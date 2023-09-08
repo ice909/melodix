@@ -43,6 +43,7 @@ Item {
                 imgSrc: modelData.imageUrl
                 width: delegateItem.width
                 height: delegateItem.height
+                borderRadius: 10
             }
 
             MouseArea {

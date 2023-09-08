@@ -37,6 +37,8 @@
         <file>qml/titlebar/MySearchEdit.qml</file>
 
         <file>qml/login/LoginDialog.qml</file>
+        <file>qml/login/QRCodeLogin.qml</file>
+        <file>qml/login/PhoneLogin.qml</file>
 
         <file>qml/widgets/RoundedImage.qml</file>
         <file>qml/widgets/Loading.qml</file>
