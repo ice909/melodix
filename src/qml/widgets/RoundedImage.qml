@@ -14,7 +14,7 @@ Item {
         smooth: true
         width: parent.width
         height: parent.height
-        fillMode: Image.PreserveAspectCrop
+        fillMode: Image.PreserveAspectFit
         antialiasing: true
         asynchronous: true
         visible: false
