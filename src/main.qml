@@ -27,10 +27,10 @@ ApplicationWindow {
     property int windowMiniWidth: 1070
     property int windowMiniHeight: 680
 
-    function getMusicUrl(id, name, pic, artist, duration,isVip) {
+    function getMusicUrl(id, name, pic, artist, duration, isVip) {
         function onReply(reply) {
             network.onSongUrlRequestFinished.disconnect(onReply);
-            player.addSignleToPlaylist(JSON.parse(reply).data[0].url, id, name, pic, artist, duration,isVip);
+            player.addSignleToPlaylist(JSON.parse(reply).data[0].url, id, name, pic, artist, duration, isVip);
         }
 
         network.onSongUrlRequestFinished.connect(onReply);
