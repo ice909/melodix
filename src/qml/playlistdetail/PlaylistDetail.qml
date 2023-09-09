@@ -296,8 +296,6 @@ Item {
                     backgroundVisible: false
                     checked: index == currentSelectIndex
                     onClicked: {
-                        console.log("clicked index : " + index);
-                        currentSelectIndex = index;
                         if (!isAddToPlaylist)
                             playPlaylistAllMusic(index);
                         else
