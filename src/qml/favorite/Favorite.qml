@@ -1,5 +1,5 @@
-import "../widgets"
 import "../../util"
+import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -42,7 +42,7 @@ Item {
 
             }
             for (var i = urlOffset; i < songs.length; i++) {
-                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt));
+                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), Util.isVip(songs[i].fee));
             }
             if (index != -1)
                 player.play(index);
@@ -73,7 +73,9 @@ Item {
             var newSongs = JSON.parse(reply).songs;
             songs.push(...newSongs);
             for (const song of newSongs) {
-                songListModel.append({song})
+                songListModel.append({
+                    "song": song
+                });
             }
             listViewCount += newSongs.length;
             offset += newSongs.length;
@@ -88,7 +90,6 @@ Item {
             songlimit = playlistAllSongsCount - offset;
             hasMore = false;
         }
-
         network.onSendReplyFinished.connect(onReply);
         network.makeRequest("/playlist/track/all?id=" + myFavoriteId + "&limit=" + songlimit + "&offset=" + offset);
     }
@@ -98,8 +99,8 @@ Item {
             network.onSendReplyFinished.disconnect(onReply);
             var userPlaylists = JSON.parse(reply).playlist;
             // 第一个为我喜欢的歌单
-            playlistAllSongsCount = userPlaylists[0].trackCount
-            myFavoriteId = userPlaylists[0].id
+            playlistAllSongsCount = userPlaylists[0].trackCount;
+            myFavoriteId = userPlaylists[0].id;
             getMyFavoriteSongs();
         }
 
@@ -114,13 +115,12 @@ Item {
     function onPlaylistCleared() {
         currentSelectIndex = -1;
     }
-    
+
     Component.onCompleted: {
         player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         player.playlistCleared.connect(onPlaylistCleared);
-        getUserPlayLists()
+        getUserPlayLists();
     }
-    
     Component.onDestruction: {
         player.playlistCurrentIndexChanged.disconnect(onPlaylistCurrentIndexChanged);
         player.playlistCleared.disconnect(onPlaylistCleared);
@@ -134,7 +134,6 @@ Item {
     ScrollView {
         anchors.fill: parent
         clip: true
-
         ScrollBar.vertical.onPositionChanged: () => {
             const position = ScrollBar.vertical.position + ScrollBar.vertical.size;
             if (position > 0.99 && !loadMore && hasMore) {
@@ -191,11 +190,10 @@ Item {
                     checked: index == currentSelectIndex
                     onClicked: {
                         currentSelectIndex = index;
-                        if (!isAddToPlaylist) {
-                                playPlaylistMusic(index);
-                        } else {
+                        if (!isAddToPlaylist)
+                            playPlaylistMusic(index);
+                        else
                             player.play(index);
-                        }
                     }
 
                     RowLayout {
@@ -259,6 +257,7 @@ Item {
         }
 
     }
+
     Rectangle {
         id: loadAnimation
 

@@ -15,6 +15,8 @@ FloatingPanel {
     property string artistStr: ""
     // 歌曲封面
     property string picUrl: ""
+    // 歌曲是否为vip歌曲
+    property bool isVip: false
     // 是否为我喜欢的歌曲
     property bool favorite: false
     // 当前歌曲播放进度
@@ -70,6 +72,7 @@ FloatingPanel {
             favorite = true;
         else
             favorite = false;
+        isVip = player.getIsVip();
     }
 
     function onPlayStateChanged() {
@@ -205,16 +208,33 @@ FloatingPanel {
             anchors.verticalCenter: parent.verticalCenter
 
             Column {
-                width: parent.width
+                anchors.fill: parent
+                spacing: 2
 
-                Text {
-                    id: title
-
+                Item {
                     width: parent.width
-                    color: Util.textColor
-                    text: songTitle
-                    font.pixelSize: 14
-                    elide: Text.ElideRight
+                    height: parent.height / 2 - 1
+
+                    Text {
+                        id: title
+
+                        width: parent.width - 40
+                        color: Util.textColor
+                        text: songTitle
+                        font.pixelSize: 13
+                        elide: Text.ElideRight
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    Image {
+                        visible: isVip
+                        anchors.topMargin: 7
+                        anchors.left: title.right
+                        width: 35
+                        height: 25
+                        source: "qrc:/dsg/img/vip.svg"
+                    }
+
                 }
 
                 Text {

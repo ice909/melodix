@@ -18,6 +18,7 @@ public:
     QString getImageUrl(int index) const;
     QString getAuthor(int index) const;
     QString getDuration(int index) const;
+    bool getIsVip(int index) const;
     int indexofId(const QString &id) const;
 
     // 定义角色枚举
@@ -39,7 +40,8 @@ public:
                  const QString &title,
                  const QString &imageUrl,
                  const QString &author,
-                 const QString &duration);
+                 const QString &duration,
+                 const bool &isVip);
 
     // 清空模型
     void clear();
@@ -55,6 +57,7 @@ private:
         QString imageUrl;
         QString author;
         QString duration;
+        bool isVip;
     };
 
     QList<Song> m_songs;

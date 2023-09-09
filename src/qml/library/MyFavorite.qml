@@ -92,7 +92,7 @@ Item {
                     }
                     onClicked: {
                         //点击时，拿着歌曲id去获取歌曲url
-                        getMusicUrl(modelData.id, modelData.name, modelData.al.picUrl, Util.spliceSinger(modelData.ar), Util.formatDuration(modelData.dt));
+                        getMusicUrl(modelData.id, modelData.name, modelData.al.picUrl, Util.spliceSinger(modelData.ar), Util.formatDuration(modelData.dt), Util.isVip(modelData.fee));
                     }
                 }
 
