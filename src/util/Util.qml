@@ -37,4 +37,8 @@ Item {
         return singerArr.join(",");
     }
 
+    function isVip(fee){
+        return fee === 1
+    }
+
 }

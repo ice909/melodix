@@ -39,7 +39,8 @@ public:
                                          const QString &name,
                                          const QString &artist,
                                          const QString &pic,
-                                         const QString &duration);
+                                         const QString &duration,
+                                         const bool &isVip);
 
     // 添加歌单所有歌曲到播放列表
     Q_INVOKABLE void addPlaylistToPlaylist(const QString &url,
@@ -47,7 +48,8 @@ public:
                                            const QString &namem,
                                            const QString &artist,
                                            const QString &pic,
-                                           const QString &duration);
+                                           const QString &duration,
+                                           const bool &isVip);
     // 获取当前正在播放的歌曲ID
     Q_INVOKABLE QString getId();
     // 获取当前正在播放的歌曲名
@@ -64,6 +66,8 @@ public:
     Q_INVOKABLE QString getFormatPosition();
     // 获取格式化成字符串的歌曲总时长
     Q_INVOKABLE QString getFormatDuration();
+    // 获取当前歌曲是否为VIP歌曲
+    Q_INVOKABLE bool getIsVip();
     // 获取播放状态
     Q_INVOKABLE bool getPlayState();
     // 获取播放模式

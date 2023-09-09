@@ -109,6 +109,7 @@ Player::Player(QObject *parent)
  * @param pic 歌曲的图片（URL）
  * @param artist 歌曲的作者
  * @param duration 歌曲的时长（格式化成'00:00'的字符串）
+ * @param isVip 歌曲是否为VIP歌曲
  *
  */
 void Player::addSignleToPlaylist(const QString &url,
@@ -116,10 +117,11 @@ void Player::addSignleToPlaylist(const QString &url,
                                  const QString &name,
                                  const QString &pic,
                                  const QString &artist,
-                                 const QString &duration)
+                                 const QString &duration,
+                                 const bool &isVip)
 {
     m_singleTrackPlaylist->addMedia(QUrl(url));
-    m_singleTrackModel->addSong(id, name, pic, artist, duration);
+    m_singleTrackModel->addSong(id, name, pic, artist, duration, isVip);
     if (m_currentModel != m_singleTrackModel) {
         switchToSingleTrackMode();
     }
@@ -137,6 +139,7 @@ void Player::addSignleToPlaylist(const QString &url,
  * @param pic 歌曲的图片（URL）
  * @param artist 歌曲的作者
  * @param duration 歌曲的时长（格式化成'00:00'的字符串）
+ * @param isVip 歌曲是否为VIP歌曲
  *
  */
 void Player::addPlaylistToPlaylist(const QString &url,
@@ -144,10 +147,11 @@ void Player::addPlaylistToPlaylist(const QString &url,
                                    const QString &name,
                                    const QString &pic,
                                    const QString &artist,
-                                   const QString &duration)
+                                   const QString &duration,
+                                   const bool &isVip)
 {
     m_playlist->addMedia(QUrl(url));
-    m_playlistModel->addSong(id, name, pic, artist, duration);
+    m_playlistModel->addSong(id, name, pic, artist, duration, isVip);
     if (m_currentModel != m_playlistModel) {
         switchToPlaylistMode();
     }
@@ -421,7 +425,7 @@ QString Player::getId()
  */
 QString Player::getName()
 {
-    if (m_currentPlaylist->mediaCount() != 0){
+    if (m_currentPlaylist->mediaCount() != 0) {
         qDebug() << m_currentModel->getTitle(m_currentPlaylist->currentIndex());
         return m_currentModel->getTitle(m_currentPlaylist->currentIndex());
     }
@@ -483,6 +487,14 @@ qint64 Player::getDuration()
 qint64 Player::getPosition()
 {
     return m_position;
+}
+
+bool Player::getIsVip()
+{
+    if (m_currentPlaylist->mediaCount() != 0)
+        return m_currentModel->getIsVip(m_currentPlaylist->currentIndex());
+
+    return false;
 }
 
 /**
