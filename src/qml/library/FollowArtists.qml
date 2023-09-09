@@ -38,7 +38,7 @@ Item {
                         width: parent.height - 5
                         height: parent.height - 5
                         anchors.centerIn: parent
-                        imgSrc: modelData.img1v1Url
+                        imgSrc: modelData.img1v1Url + "?param=" + img.width + "y" + img.height
                         borderRadius: height
                     }
 
