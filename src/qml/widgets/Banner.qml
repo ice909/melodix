@@ -40,7 +40,7 @@ Item {
             RoundedImage {
                 id: image
 
-                imgSrc: modelData.imageUrl
+                imgSrc: modelData.imageUrl + "?param=" + image.width + "y" + image.height
                 width: delegateItem.width
                 height: delegateItem.height
                 borderRadius: 10
