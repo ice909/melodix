@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 if(NOT DEFINED VERSION)
-    set(VERSION 0.1)
+    set(VERSION 1.1.1)
 endif()
 
 set(PROJECT_NAME digimusic)
