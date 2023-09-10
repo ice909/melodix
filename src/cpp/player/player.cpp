@@ -61,24 +61,16 @@ Player::Player(QObject *parent)
                 qDebug() << "歌曲所有id:" << m_currentModel->getAllId();
                 connect(m_network, &Network::songUrlRequestFinished, this, [=](QByteArray data) {
                     // 解析数据, 获取歌曲url,
-                    // 返回的歌曲url顺序是乱的
-                    // 需要根据歌曲id在model中的位置重新排序
                     QJsonDocument document = QJsonDocument::fromJson(data);
                     QJsonObject object = document.object();
                     QJsonArray array = object["data"].toArray();
                     qDebug() << "获取到的数组大小: " << array.size();
-                    // 定义一个数组，存放歌曲url,指定数组初始大小
-                    QStringList urls(m_musicIds);
+                    // 定义一个数组，存放歌曲url
+                    QStringList urls;
                     for (int i = 0; i < array.size(); ++i) {
                         QJsonObject item = array[i].toObject();
-                        int id = item["id"].toInt();
                         QString url = item["url"].toString();
-                        //qDebug() << " 歌曲id:" << id ;
-                        int index = m_currentModel->indexofId(QString::number(id));
-                        qDebug() << "获取歌曲id在数组中的下标:" << index << "歌曲url:" << url;
-                        if (index != -1) {
-                            urls.replace(index, url);
-                        }
+                        urls.append(url);
                     }
                     qDebug() << "歌曲url获取完成, 歌曲数量:" << urls.size();
                     m_currentPlaylist->blockSignals(true);
@@ -125,7 +117,6 @@ void Player::addSignleToPlaylist(const QString &url,
     if (m_currentModel != m_singleTrackModel) {
         switchToSingleTrackMode();
     }
-    m_musicIds.append(id);
     play(m_currentPlaylist->mediaCount() - 1);
 }
 
@@ -155,7 +146,6 @@ void Player::addPlaylistToPlaylist(const QString &url,
     if (m_currentModel != m_playlistModel) {
         switchToPlaylistMode();
     }
-    m_musicIds.append(id);
 }
 
 /**
@@ -174,7 +164,6 @@ void Player::switchToSingleTrackMode()
     // 切换到当前播放列表需要把另一个播放列表清空
     m_playlist->clear();
     m_playlistModel->clear();
-    m_musicIds.clear();
 }
 
 /**
@@ -193,7 +182,6 @@ void Player::switchToPlaylistMode()
     // 切换到当前播放列表需要把另一个播放列表清空
     m_singleTrackPlaylist->clear();
     m_singleTrackModel->clear();
-    m_musicIds.clear();
 }
 
 /************* Controller *****************/
@@ -606,7 +594,6 @@ void Player::clearPlaylist()
 
     m_currentPlaylist->clear();
     m_currentModel->clear();
-    m_musicIds.clear();
 
     emit playlistCleared();
 }

@@ -36,7 +36,7 @@ public slots:
 
 private:
     QNetworkAccessManager *manager = nullptr;
-    QString BASE_URL = "http://81.70.119.233:3000";
+    QString BASE_URL = "http://81.70.119.233:4000";
     // QSettings 对象用于保存和加载 Cookie
     QSettings *m_settings = nullptr;
     QString m_cookie;

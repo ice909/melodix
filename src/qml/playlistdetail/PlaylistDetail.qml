@@ -81,32 +81,44 @@ Item {
         function onReply(reply) {
             network.onSongUrlRequestFinished.disconnect(onReply);
             var urlList = JSON.parse(reply).data;
+            // 获取播放列表中的歌曲url数量，用作偏移量
             var urlOffset = songUrls.length;
+            // 将新的歌曲url添加到songUrls数组中
             for (var i = 0; i < urlList.length; i++) {
-                var song = urlList[i];
-                var songIndex = ids.indexOf(song.id);
-                if (songIndex !== -1)
-                    songUrls[songIndex + urlOffset] = song.url;
-
+                songUrls[i + urlOffset] = urlList[i].url;
             }
+            // 将新的歌曲url添加到播放列表
             for (var i = urlOffset; i < songs.length; i++) {
                 player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt),Util.isVip(songs[i].fee));
             }
+            // 如果没有传入index参数
+            // 则说明点击的是播放按钮
             if (index != -1)
                 player.play(index);
             else
                 player.play(0);
+            // 给player类设置当前的播放列表id
             player.setCurrentPlaylistId(currentPlaylistId);
+            // 如果歌曲url总数等于歌单歌曲总数
+            // 说明全部歌曲都已经添加到了播放列表
             if (songUrls.length == playlistSongAllCount)
                 isAddToPlaylist = true;
 
         }
-
+        // 切换播放列表
         player.switchToPlaylistMode();
         if (player.getCurrentPlaylistId() != "" && player.getCurrentPlaylistId() != currentPlaylistId) {
             console.log("当前歌单和播放列表中以添加的歌曲不是来自同一个歌单，先清空播放列表，再添加歌曲");
             player.clearPlaylist();
         }
+        // 判断点击的歌曲是否已经添加到播放列表
+        // 如果添加了直接播放
+        if (index != -1 && index < songUrls.length) {
+            player.play(index);
+            return;
+        }
+        // 点击的歌曲不在播放列表中
+        // 将不在播放列表中的歌曲添加到播放列表
         var ids = [];
         for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
         // 将所有id使用逗号连接成一个字符串

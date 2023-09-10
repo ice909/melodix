@@ -25,6 +25,7 @@ void Network::parseCookie()
                 if (name == "MUSIC_U") {
                     QNetworkCookie cookie(name, value);
                     m_request_cookies.append(cookie);
+                    return;
                 }
             }
         }
