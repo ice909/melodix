@@ -158,10 +158,13 @@ Item {
     Connections {
         target: lyricPage
         function onCurrentIndexChanged(index) {
-            curIndex = index;
+            if (isFlicking)
+                return ;
 
-            if (!isFlicking)
-                listViewLyric.updateContentY();
+            if (!listViewLyric.flicking)
+                curIndex = index;
+
+            listViewLyric.updateContentY();
         }
     }
 
