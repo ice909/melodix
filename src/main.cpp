@@ -49,9 +49,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<Network>("network", 1, 0, "Network");
     qmlRegisterType<Player>("player", 1, 0, "Player");
 
-    Worker m_worker;
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("worker", &m_worker);
+    engine.rootContext()->setContextProperty("worker", Worker::instance());
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     return app->exec();
 }

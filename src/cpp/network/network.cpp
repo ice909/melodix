@@ -1,11 +1,10 @@
 #include "network.h"
+#include "worker.h"
 
 Network::Network(QObject *parent)
     : QObject(parent)
-    , m_settings(
-          new QSettings(QDir::homePath() + "/.config/ice/user.ini", QSettings::IniFormat, this))
 {
-    m_cookie = m_settings->value("cookie", "").toString();
+    m_cookie = Worker::instance()->getCookie();
     parseCookie();
     manager = new QNetworkAccessManager(this);
     connect(manager, &QNetworkAccessManager::finished, this, &Network::replyFinished);
@@ -101,7 +100,7 @@ void Network::saveCookie(QString cookie)
                 QByteArray name = parts[0].trimmed().toUtf8();
                 QByteArray value = parts[1].trimmed().toUtf8();
                 if (name == "MUSIC_U") {
-                    m_settings->setValue("cookie", cookieItem);
+                    Worker::instance()->setCookie(cookie);
                 }
                 m_request_cookies.append(QNetworkCookie(name, value));
                 m_cookie = cookieItem;
@@ -113,7 +112,7 @@ void Network::saveCookie(QString cookie)
 void Network::logout()
 {
     m_cookie = "";
-    m_settings->setValue("cookie", m_cookie);
+    Worker::instance()->setCookie("");
     m_request_cookies.clear();
     qDebug() << "logout: cookie清除完毕";
 }
