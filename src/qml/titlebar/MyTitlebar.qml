@@ -12,7 +12,7 @@ TitleBar {
 
     height: DS.Style.titleBar.height
     embedMode: false
-    icon.name: isLyricShow ? "" : "digimusic"
+    icon.name: isLyricShow ? "" : "melodix"
 
     Loader {
         id: settingDlgLoader
@@ -55,10 +55,10 @@ TitleBar {
     aboutDialog: AboutDialog {
         width: 400
         modality: Qt.NonModal
-        version: Qt.application.version
-        productName: "Digi Music"
-        productIcon: "digimusic"
-        description: "Digi Music是一款界面美观的在线音乐播放器"
+        version: "1.1.1"
+        productName: "Melodix"
+        productIcon: "melodix"
+        description: "Melodix是一款界面美观的在线音乐播放器"
         websiteName: "ice"
         websiteLink: "https://github.com/student-ice"
     }

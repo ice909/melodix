@@ -4,12 +4,12 @@ if(NOT DEFINED VERSION)
     set(VERSION 1.1.1)
 endif()
 
-set(PROJECT_NAME digimusic)
+set(PROJECT_NAME melodix)
 
 project(${PROJECT_NAME}
     VERSION ${VERSION}
     DESCRIPTION "MusicPlayer"
-    HOMEPAGE_URL "https://github.com/student-ice/music-hub"
+    HOMEPAGE_URL "https://github.com/student-ice/melodix"
     LANGUAGES CXX
 )
 

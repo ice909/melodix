@@ -283,8 +283,8 @@ ApplicationWindow {
         }
 
         visible: true
-        iconName: "digimusic"
-        tooltip: "DigiMusic"
+        iconName: "melodix"
+        tooltip: "Melodix"
         onActivated: {
             if (rootWindow.visibility === 2) {
                 rootWindow.showMinimized();

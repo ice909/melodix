@@ -1,8 +1,8 @@
 [Desktop Entry]
 Categories=Music;
-Exec=/usr/bin/digimusic
-Icon=digimusic
-Name=Digi Music
+Exec=/usr/bin/melodix
+Icon=melodix
+Name=Melodix
 Type=Application
 X-Deepin-TurboType=dtkqml
 
