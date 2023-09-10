@@ -36,9 +36,7 @@ Item {
             var urlOffset = songUrls.length;
             for (var i = 0; i < urlList.length; i++) {
                 var song = urlList[i];
-                var songIndex = ids.indexOf(song.id);
-                if (songIndex !== -1)
-                    songUrls[songIndex + urlOffset] = song.url;
+                songUrls[i + urlOffset] = song.url;
 
             }
             for (var i = urlOffset; i < songs.length; i++) {
@@ -58,6 +56,10 @@ Item {
         if (player.getCurrentPlaylistId() != "" && player.getCurrentPlaylistId() != myFavoriteId) {
             console.log("当前歌单和播放列表中以添加的歌曲不是来自同一个歌单，先清空播放列表，再添加歌曲");
             player.clearPlaylist();
+        }
+        if (index != -1 && index < songUrls.length) {
+            player.play(index);
+            return;
         }
         var ids = [];
         for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
@@ -189,6 +191,7 @@ Item {
                     backgroundVisible: false
                     checked: index == currentSelectIndex
                     onClicked: {
+                        console.log("点击的歌曲索引: " + index);
                         currentSelectIndex = index;
                         if (!isAddToPlaylist)
                             playPlaylistMusic(index);

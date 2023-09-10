@@ -146,9 +146,6 @@ private:
 
     // 当前播放歌单的id
     QString m_currentPlaylistId = "";
-
-    // 歌曲链接失效重新获取歌曲数据的时候会用到
-    QList<QString> m_musicIds ;
 };
 
 #endif // PLAYER_H
