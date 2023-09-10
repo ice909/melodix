@@ -28,13 +28,22 @@ Item {
                     anchors.fill: parent
                     spacing: 10
 
-                    RoundedImage {
-                        id: img
-
-                        width: parent.height - 5
-                        height: parent.height - 5
+                    Item {
+                        width: parent.height + 2
+                        height: parent.height
                         anchors.verticalCenter: parent.verticalCenter
-                        imgSrc: modelData.picUrl
+
+                        RoundedImage {
+                            id: img
+
+                            width: parent.height - 3
+                            height: parent.height - 3
+                            anchors.left: parent.left
+                            anchors.leftMargin: 2
+                            imgSrc: modelData.picUrl
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
                     }
 
                     Item {
@@ -88,7 +97,7 @@ Item {
                     }
                     onClicked: {
                         //点击新歌时，获取歌曲id，拿着歌曲id去获取歌曲url
-                        getMusicUrl(modelData.id, modelData.song.name, modelData.picUrl, Util.spliceSinger(modelData.song.artists), Util.formatDuration(modelData.song.duration),Util.isVip(modelData.song.fee));
+                        getMusicUrl(modelData.id, modelData.song.name, modelData.picUrl, Util.spliceSinger(modelData.song.artists), Util.formatDuration(modelData.song.duration), Util.isVip(modelData.song.fee));
                     }
                 }
 
