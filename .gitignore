@@ -59,6 +59,6 @@ obj-x86_64-linux-gnu
 
 # dpkg-buildpackage
 debian/.*
-debian/digimusic*
+debian/melodix*
 debian/debhelper-build-stamp
 debian/files

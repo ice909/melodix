@@ -19,4 +19,4 @@ Package: melodix
 Architecture: any
 Depends: ${shlibs:Depends},
   ${misc:Depends},
-Description: Digi Music是一款界面美观的在线音乐播放器
+Description: Melodix是一款界面美观的在线音乐播放器

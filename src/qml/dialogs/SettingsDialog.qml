@@ -10,7 +10,7 @@ Item {
     DialogWindow {
         id: win
 
-        icon: "digimusic"
+        icon: "melodix"
         title: "设置"
         height: 400
         width: 400

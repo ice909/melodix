@@ -13,7 +13,7 @@ DialogWindow {
 
     width: 400
     height: 230
-    icon: "digimusic"
+    icon: "melodix"
     modality: Qt.ApplicationModal
 
     Column {
