@@ -38,7 +38,7 @@ Item {
                         width: parent.width - 5
                         height: parent.height - 5
                         anchors.centerIn: parent
-                        imgSrc: modelData.coverUrl + "?param=" + img.width + "y" + img.height
+                        imgSrc: modelData.coverUrl
                     }
 
                     MouseArea {

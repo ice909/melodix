@@ -34,7 +34,7 @@ Item {
                         width: parent.height - 5
                         height: parent.height - 5
                         anchors.verticalCenter: parent.verticalCenter
-                        imgSrc: modelData.picUrl + "?param=" + img.width + "y" + img.height
+                        imgSrc: modelData.picUrl
                     }
 
                     Item {
