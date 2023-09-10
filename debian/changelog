@@ -1,3 +1,29 @@
+digimusic (1.1.1) UNRELEASED; urgency=medium
+
+  * Start the build-deb workflow in the pull resquest
+  * Revert "Fixed lyrics highlighting not toggle when scrolling"
+  * API update, the url returned does not need to be sorted
+  * Performance optimization
+  * update cookie ini
+  * When the song list is cut, the highlight will skip across repeatedly
+  * add vip tag
+  * Fixed interface update causing picture size change
+  * add phone login options
+  * Add a comment to the Player class
+  * library page bottom Resources are loaded dynamically using loader
+  * Fixed PlaylistModel::indexofId not getting the correct index
+  * Fixed single playback would loop indefinitely
+  * Lyrics page added loading animation
+  * Fix song link failed to play
+  * Fix favorite page not binding player signal
+  * Automatically skips non-copyrighted songs
+  * Fix singer display incomplete
+  * update play button tooltip
+  * Normalize the qml code
+  * Extract the same color into define Util
+
+ -- ice <tonimayloneya@gmail.com>  Sun, 10 Sep 2023 11:11:23 +0800
+
 digimusic (1.1.0) UNRELEASED; urgency=medium
 
   * Remove unused variables from cmake
