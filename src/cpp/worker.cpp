@@ -24,6 +24,26 @@ QString Worker::getCookie()
     return m_cookie;
 }
 
+void Worker::saveCookie(QString cookie)
+{
+    if (!cookie.isEmpty()) {
+        QStringList cookieList = m_cookie.split(';');
+        foreach (QString cookieItem, cookieList) {
+            cookieItem = cookieItem.trimmed();
+            QList<QString> parts = cookieItem.split('=');
+            if (parts.length() == 2) {
+                QByteArray name = parts[0].trimmed().toUtf8();
+                QByteArray value = parts[1].trimmed().toUtf8();
+                if (name == "MUSIC_U") {
+                    // 保存cookie到配置文件
+                    setCookie(cookieItem);
+                    return;
+                }
+            }
+        }
+    }
+}
+
 void Worker::setCookie(QString cookie)
 {
     m_cookie = cookie;

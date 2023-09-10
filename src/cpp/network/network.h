@@ -25,6 +25,8 @@ public:
     Q_INVOKABLE void logout();
     // 解析cookie
     void parseCookie();
+    // 登录成功，从worker中获取cookie
+    void login();
 signals:
     void sendReplyFinished(QString);
     void accountReplyFinished(QString);

@@ -56,7 +56,8 @@ Item {
     function handleQRCodeScanned(cookie) {
         // 执行相应的操作，如登录成功后的跳转等
         console.log("登录成功");
-        network.saveCookie(cookie);
+        worker.saveCookie(cookie);
+        network.login();
         getAccountInfo();
         isLogin = true;
         timer.stop();

@@ -14,19 +14,12 @@ void Network::parseCookie()
 {
     m_request_cookies.clear();
     if (!m_cookie.isEmpty()) {
-        QStringList cookieList = m_cookie.split(';');
-        foreach (QString cookieItem, cookieList) {
-            cookieItem = cookieItem.trimmed();
-            QList<QString> parts = cookieItem.split('=');
-            if (parts.length() == 2) {
-                QByteArray name = parts[0].trimmed().toUtf8();
-                QByteArray value = parts[1].trimmed().toUtf8();
-                if (name == "MUSIC_U") {
-                    QNetworkCookie cookie(name, value);
-                    m_request_cookies.append(cookie);
-                    return;
-                }
-            }
+        QList<QString> parts = m_cookie.split('=');
+        if (parts.length() == 2) {
+            QByteArray name = parts[0].trimmed().toUtf8();
+            QByteArray value = parts[1].trimmed().toUtf8();
+            QNetworkCookie cookie(name, value);
+            m_request_cookies.append(cookie);
         }
     }
 }
@@ -115,4 +108,10 @@ void Network::logout()
     Worker::instance()->setCookie("");
     m_request_cookies.clear();
     qDebug() << "logout: cookie清除完毕";
+}
+
+void Network::login()
+{
+    m_cookie = Worker::instance()->getCookie();
+    parseCookie();
 }

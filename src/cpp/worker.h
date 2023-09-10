@@ -19,8 +19,12 @@ public:
     Q_INVOKABLE QString getIsAsk();
     Q_INVOKABLE void setCloseAction(QString action);
     Q_INVOKABLE void setIsAsk(QString action);
+    // 其他对象调用，获取cookie
     Q_INVOKABLE QString getCookie();
+    // 设置cookie,保存到配置文件
     Q_INVOKABLE void setCookie(QString cookie);
+    // 登录成功之后，保存cookie
+    Q_INVOKABLE void saveCookie(QString cookie);
 
 private:
     static QPointer<Worker> INSTANCE;
