@@ -1,4 +1,4 @@
-digimusic (1.1.1) UNRELEASED; urgency=medium
+melodix (1.1.1) UNRELEASED; urgency=medium
 
   * Start the build-deb workflow in the pull resquest
   * Revert "Fixed lyrics highlighting not toggle when scrolling"
@@ -24,7 +24,7 @@ digimusic (1.1.1) UNRELEASED; urgency=medium
 
  -- ice <tonimayloneya@gmail.com>  Sun, 10 Sep 2023 11:11:23 +0800
 
-digimusic (1.1.0) UNRELEASED; urgency=medium
+melodix (1.1.0) UNRELEASED; urgency=medium
 
   * Remove unused variables from cmake
   * Adjust tray play/pause menu text
@@ -49,7 +49,7 @@ digimusic (1.1.0) UNRELEASED; urgency=medium
 
  -- ice <tonimayloneya@gmail.com>  Sun, 3 Sep 2023 18:23:34 +0800
 
-digimusic (1.0.0) UNRELEASED; urgency=medium
+melodix (1.0.0) UNRELEASED; urgency=medium
 
   * Initial release
 
