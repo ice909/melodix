@@ -1,3 +1,17 @@
+melodix (1.1.2) UNRELEASED; urgency=medium
+
+  * update .gitignore
+  * update debian/control
+  * rename Melodix
+  * Home new song picture add left margin
+  * Fixed mv picture not filling up
+  * Move the cookie logic to the worker
+  * The worker is changed to a global singleton
+  * Unset the image size
+  * add phone login options
+
+ -- ice <tonimayloneya@gmail.com>  Sun, 10 Sep 2023 11:11:23 +0800
+
 melodix (1.1.1) UNRELEASED; urgency=medium
 
   * Start the build-deb workflow in the pull resquest
