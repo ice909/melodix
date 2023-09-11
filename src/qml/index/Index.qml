@@ -12,11 +12,11 @@ Item {
     property int scrollWidth: rootWindow.width - 40
 
     Component.onCompleted: {
-        API.banner("0");
-        API.getRecommendedPlaylist("10");
-        API.getRecommendedNewSongs("9");
-        API.getTopArtists();
-        API.getRecommendedMv();
+        api.banner("0");
+        api.getRecommendedPlaylist("10");
+        api.getRecommendedNewSongs("9");
+        api.getTopArtists();
+        api.getRecommendedMv();
         loading = false;
     }
 
@@ -41,7 +41,7 @@ Item {
             recommendedMV.lists = res;
         }
 
-        target: API
+        target: api
     }
 
     // 首页界面

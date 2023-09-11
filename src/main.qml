@@ -212,7 +212,7 @@ ApplicationWindow {
         id: network
     }
     MedlodixAPI{
-        id: API 
+        id: api 
     }
 
     Loader {
