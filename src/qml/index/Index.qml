@@ -1,5 +1,4 @@
 import "../../util"
-import "../api"
 import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -9,59 +8,47 @@ import org.deepin.dtk 1.0
 Item {
     id: root
 
-    property bool initing: true
+    property bool loading: true
     property int scrollWidth: rootWindow.width - 40
 
     Component.onCompleted: {
-        var promise = new Promise((resolve, reject) => {
-            API.getRecommendPlaylist((resp) => {
-                resolve(resp.result);
-            });
-        });
-        promise.then((result) => {
-            recommendPlaylist.lists = result;
-            return new Promise((resolve, reject) => {
-                API.getRecommendNewSongs((resp) => {
-                    resolve(resp.result);
-                });
-            });
-        }).then((result) => {
-            recommendNewSongs.lists = result;
-            return new Promise((resolve, reject) => {
-                API.getHotSigner((resp) => {
-                    resolve(resp.artists);
-                });
-            });
-        }).then((result) => {
-            // 从result中取5个歌手，用于热门歌手,一共有50个
-            // 随机选取5个歌手，方法是生成的一个0-44的随机数（包括44）
-            // 然后从生成的随机数开始截取
-            var random = Math.floor(Math.random() * 45)
-            var data = result.splice(random, 5)
-            hotSigner.lists = data
-            return new Promise((resolve, reject) => {
-                API.getRecommendMV((resp) => {
-                    resolve(resp.result);
-                });
-            });
-        }).then((result) => {
-            recommendMV.lists = result;
-            return new Promise((resolve, reject) => {
-                API.getBanner((resp) => {
-                    resolve(resp.banners);
-                })
-            })
-        }).then((result) => {
-            banner.imgs = result
-            initing = false
-        })
+        API.banner("0");
+        API.getRecommendedPlaylist("10");
+        API.getRecommendedNewSongs("9");
+        API.getTopArtists();
+        API.getRecommendedMv();
+        loading = false;
+    }
+
+    Connections {
+        function onBannerCompleted(res) {
+            banner.imgs = res;
+        }
+
+        function onRecommendedPlaylistCompleted(res) {
+            recommendedPlaylist.lists = res;
+        }
+
+        function onRecommendedNewSongsCompleted(res) {
+            recommendNewSongs.lists = res;
+        }
+
+        function onTopArtistsCompleted(res) {
+            hotSigner.lists = res;
+        }
+
+        function onRecommendedMvCompleted(res) {
+            recommendedMV.lists = res;
+        }
+
+        target: API
     }
 
     // 首页界面
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: banner.height + recommendPlaylist.height + recommendNewSongs.height + hotSigner.height + recommendMV.height + 30 * 4 + 10 * 8 + 5
+        contentHeight: banner.height + recommendedPlaylist.height + recommendNewSongs.height + hotSigner.height + recommendedMV.height + 30 * 4 + 10 * 8 + 5
 
         Column {
             id: body
@@ -69,8 +56,10 @@ Item {
             spacing: 10
             x: 20
             y: 5
+
             Banner {
                 id: banner
+
                 width: scrollWidth
                 height: scrollWidth / 5.5
             }
@@ -81,12 +70,14 @@ Item {
 
                 Text {
                     text: "推荐歌单"
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: Util.textColor
+
                     font {
                         pixelSize: DTK.fontManager.t4.pixelSize
                         bold: true
                     }
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: Util.textColor
+
                 }
 
             }
@@ -96,7 +87,7 @@ Item {
                 height: ((scrollWidth - 20 * 4) * 0.2 + 30) * 2 + 20
 
                 RecommendPlaylist {
-                    id: recommendPlaylist
+                    id: recommendedPlaylist
 
                     anchors.fill: parent
                 }
@@ -109,12 +100,14 @@ Item {
 
                 Text {
                     text: "推荐新歌"
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: Util.textColor
+
                     font {
                         pixelSize: DTK.fontManager.t4.pixelSize
                         bold: true
                     }
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: Util.textColor
+
                 }
 
             }
@@ -137,12 +130,14 @@ Item {
 
                 Text {
                     text: "热门歌手"
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: Util.textColor
+
                     font {
                         pixelSize: DTK.fontManager.t4.pixelSize
                         bold: true
                     }
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: Util.textColor
+
                 }
 
             }
@@ -165,12 +160,14 @@ Item {
 
                 Text {
                     text: "推荐MV"
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: Util.textColor
+
                     font {
                         pixelSize: DTK.fontManager.t4.pixelSize
                         bold: true
                     }
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: Util.textColor
+
                 }
 
             }
@@ -180,7 +177,7 @@ Item {
                 height: (scrollWidth - 20) * 0.5 / 2.9
 
                 RecommendMV {
-                    id: recommendMV
+                    id: recommendedMV
 
                     anchors.fill: parent
                 }
@@ -192,7 +189,7 @@ Item {
     }
 
     Rectangle {
-        visible: initing
+        visible: loading
         anchors.fill: root
         color: Util.pageBackgroundColor
 

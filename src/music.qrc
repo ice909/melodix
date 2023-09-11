@@ -1,9 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-
-        <file>qml/api/API.qml</file>
-        <file>qml/api/qmldir</file>
         
         <file>qml/index/Index.qml</file>
         <file>qml/index/RecommendPlaylist.qml</file>

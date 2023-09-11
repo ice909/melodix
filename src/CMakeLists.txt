@@ -31,6 +31,8 @@ aux_source_directory(./cpp ALLSOURCE)
 aux_source_directory(./cpp/network ALLSOURCE)
 aux_source_directory(./cpp/player ALLSOURCE)
 
+add_subdirectory(api)
+
 add_executable(${BIN_NAME} ${ALLSOURCE} ${RESOURCES})
 
 set(TARGET_LIBS
@@ -41,6 +43,7 @@ set(TARGET_LIBS
     Qt5::Quick
     PkgConfig::Dtk
     ${DtkDeclarative_LIBRARIES}
+    API
 )
 
 target_link_libraries(${BIN_NAME} ${TARGET_LIBS})

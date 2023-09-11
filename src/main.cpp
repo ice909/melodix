@@ -8,6 +8,7 @@
 #include "network.h"
 #include "player.h"
 #include "worker.h"
+#include "api.h"
 
 DWIDGET_USE_NAMESPACE;
 DCORE_USE_NAMESPACE;
@@ -48,6 +49,7 @@ int main(int argc, char *argv[])
     // 在此处注册QML中的C++类型
     qmlRegisterType<Network>("network", 1, 0, "Network");
     qmlRegisterType<Player>("player", 1, 0, "Player");
+    qmlRegisterType<API>("api", 1, 0, "MedlodixAPI");
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("worker", Worker::instance());

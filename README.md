@@ -58,4 +58,4 @@ sudo dpkg-buildpackage -us -uc
 
 如果你有任何问题或者建议，可以通过以下方式联系我：
 
-- 邮箱：tonimayloneya@gmail.com
+- 邮箱：<tonimayloneya@gmail.com>

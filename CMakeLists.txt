@@ -24,8 +24,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS on)
 include_directories(${PROJECT_BINARY_DIR})
 include_directories(${PROJECT_SOURCE_DIR})
 
+find_package(QT NAMES Qt5 REQUIRED COMPONENTS Core Quick)
+
 add_definitions(-DAPP_VERSION="${APP_VERSION}")
 add_subdirectory(src)
+add_subdirectory(3rdparty/MelodixAPI/client)
+
 
 # 安装desktop文件
 install(FILES ${CMAKE_SOURCE_DIR}/misc/${PROJECT_NAME}.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)

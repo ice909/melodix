@@ -5,6 +5,7 @@ import QtQuick.Window 2.11
 import network 1.0
 import org.deepin.dtk 1.0
 import player 1.0
+import api 1.0
 import "qml/playlist"
 import "qml/titlebar"
 import "qml/toolbar"
@@ -209,6 +210,9 @@ ApplicationWindow {
 
     Network {
         id: network
+    }
+    MedlodixAPI{
+        id: API 
     }
 
     Loader {

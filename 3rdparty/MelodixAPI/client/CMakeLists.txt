@@ -1,0 +1,298 @@
+cmake_minimum_required(VERSION 3.2)
+
+project(QtMelodixAPI)
+
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Network Gui)
+
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+
+add_library(${PROJECT_NAME}
+  MDBanner_200_response.h
+  MDBanner_200_response_banners_inner.h
+  MDCellphoneLogin_200_response.h
+  MDCellphoneLogin_200_response_account.h
+  MDCellphoneLogin_200_response_bindings_inner.h
+  MDCellphoneLogin_200_response_profile.h
+  MDCheckMusic_200_response.h
+  MDGetAccountInfo_200_response.h
+  MDGetArtistAlbum_200_response.h
+  MDGetArtistAlbum_200_response_artist.h
+  MDGetArtistAlbum_200_response_hotAlbums_inner.h
+  MDGetArtistAlbum_200_response_hotAlbums_inner_artist.h
+  MDGetArtistAlbum_200_response_hotAlbums_inner_artists_inner.h
+  MDGetArtistDetail_200_response.h
+  MDGetArtistDetail_200_response_data.h
+  MDGetArtistDetail_200_response_data_artist.h
+  MDGetArtistDetail_200_response_data_identify.h
+  MDGetArtistDetail_200_response_data_secondaryExpertIdentiy_inner.h
+  MDGetArtistDetail_200_response_data_user.h
+  MDGetArtistDetail_200_response_data_user_avatarDetail.h
+  MDGetArtistDetail_200_response_data_vipRights.h
+  MDGetArtistDetail_200_response_data_vipRights_rightsInfoDetailDtoList_inner.h
+  MDGetArtistMv_200_response.h
+  MDGetArtistMv_200_response_mvs_inner.h
+  MDGetArtistMv_200_response_mvs_inner_artist.h
+  MDGetArtistSingle_200_response.h
+  MDGetArtistSingle_200_response_artist.h
+  MDGetArtistSingle_200_response_hotSongs_inner.h
+  MDGetArtistSingle_200_response_hotSongs_inner_al.h
+  MDGetArtistSingle_200_response_hotSongs_inner_ar_inner.h
+  MDGetArtistSingle_200_response_hotSongs_inner_h.h
+  MDGetArtistSingle_200_response_hotSongs_inner_privilege.h
+  MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner.h
+  MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivilege.h
+  MDGetArtistSingle_200_response_hotSongs_inner_sq.h
+  MDGetHotComment_200_response.h
+  MDGetHotComment_200_response_hotComments_inner.h
+  MDGetHotComment_200_response_hotComments_inner_beReplied_inner.h
+  MDGetHotComment_200_response_hotComments_inner_beReplied_inner_ipLocation.h
+  MDGetHotComment_200_response_hotComments_inner_beReplied_inner_user.h
+  MDGetHotComment_200_response_hotComments_inner_pendantData.h
+  MDGetHotComment_200_response_hotComments_inner_user.h
+  MDGetHotComment_200_response_hotComments_inner_user_vipRights.h
+  MDGetHotComment_200_response_hotComments_inner_user_vipRights_associator.h
+  MDGetLikeSongId_200_response.h
+  MDGetLoginStatus_200_response.h
+  MDGetLoginStatus_200_response_data.h
+  MDGetLoginStatus_200_response_data_account.h
+  MDGetLoginStatus_200_response_data_profile.h
+  MDGetLyric_200_response.h
+  MDGetLyric_200_response_lrc.h
+  MDGetPlaylistDetail_200_response.h
+  MDGetPlaylistDetail_200_response_playlist.h
+  MDGetPlaylistDetail_200_response_playlist_creator.h
+  MDGetPlaylistDetail_200_response_playlist_trackIds_inner.h
+  MDGetPlaylistDetail_200_response_playlist_tracks_inner.h
+  MDGetPlaylistDetail_200_response_playlist_tracks_inner_al.h
+  MDGetPlaylistDetail_200_response_playlist_tracks_inner_ar_inner.h
+  MDGetPlaylistDetail_200_response_playlist_tracks_inner_h.h
+  MDGetPlaylistDetail_200_response_playlist_tracks_inner_l.h
+  MDGetPlaylistDetail_200_response_privileges_inner.h
+  MDGetPlaylistDetail_200_response_privileges_inner_freeTrialPrivilege.h
+  MDGetPlaylistTrackAll_200_response.h
+  MDGetPlaylistTrackAll_200_response_songs_inner.h
+  MDGetPlaylistTrackAll_200_response_songs_inner_al.h
+  MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData.h
+  MDGetPurchasedAlbum_200_response.h
+  MDGetPurchasedAlbum_200_response_paidAlbums_inner.h
+  MDGetPurchasedAlbum_200_response_paidAlbums_inner_artist.h
+  MDGetPurchasedAlbum_200_response_paidAlbums_inner_artists_inner.h
+  MDGetQrKey_200_response.h
+  MDGetQrKey_200_response_data.h
+  MDGetRecommendedMv_200_response.h
+  MDGetRecommendedMv_200_response_result_inner.h
+  MDGetRecommendedMv_200_response_result_inner_artists_inner.h
+  MDGetRecommendedNewSongs_200_response.h
+  MDGetRecommendedNewSongs_200_response_result_inner.h
+  MDGetRecommendedNewSongs_200_response_result_inner_song.h
+  MDGetRecommendedNewSongs_200_response_result_inner_song_album.h
+  MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner.h
+  MDGetRecommendedNewSongs_200_response_result_inner_song_bMusic.h
+  MDGetRecommendedNewSongs_200_response_result_inner_song_sqMusic.h
+  MDGetRecommendedPlaylist_200_response.h
+  MDGetRecommendedPlaylist_200_response_result_inner.h
+  MDGetSongDetail_200_response.h
+  MDGetSongDetail_200_response_privileges_inner.h
+  MDGetSongDetail_200_response_songs_inner.h
+  MDGetSongDetail_200_response_songs_inner_ar_inner.h
+  MDGetSongUrl_200_response.h
+  MDGetSongUrl_200_response_data_inner.h
+  MDGetSongUrl_200_response_data_inner_freeTimeTrialPrivilege.h
+  MDGetSongUrl_200_response_data_inner_freeTrialPrivilege.h
+  MDGetTopArtists_200_response.h
+  MDGetTopArtists_200_response_artists_inner.h
+  MDGetTopPlaylist_200_response.h
+  MDGetTopPlaylist_200_response_playlists_inner.h
+  MDGetTopPlaylist_200_response_playlists_inner_creator.h
+  MDGetTopPlaylist_200_response_playlists_inner_creator_avatarDetail.h
+  MDGetTopPlaylist_200_response_playlists_inner_creator_experts.h
+  MDGetTopPlaylist_200_response_playlists_inner_subscribers_inner.h
+  MDGetUserPlaylist_200_response.h
+  MDGetUserPlaylist_200_response_playlist_inner.h
+  MDGetUserPlaylist_200_response_playlist_inner_creator.h
+  MDGetUserPlaylist_200_response_playlist_inner_creator_experts.h
+  MDGetUserPlaylist_200_response_playlist_inner_recommendInfo.h
+  MDQrCheck_200_response.h
+  MDQrCreate_200_response.h
+  MDQrCreate_200_response_data.h
+  MDSearch_200_response.h
+  MDSearch_200_response_result.h
+  MDSearch_200_response_result_songs_inner.h
+  MDSearch_200_response_result_songs_inner_ar_inner.h
+  MDSearch_200_response_result_songs_inner_privilege.h
+  MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege.h
+  MDSendCaptcha_200_response.h
+  MDClientApi.h
+  MDHelpers.h
+  MDHttpRequest.h
+  MDObject.h
+  MDEnum.h
+  MDHttpFileElement.h
+  MDServerConfiguration.h
+  MDServerVariable.h
+  MDOauth.h
+  MDBanner_200_response.cpp
+  MDBanner_200_response_banners_inner.cpp
+  MDCellphoneLogin_200_response.cpp
+  MDCellphoneLogin_200_response_account.cpp
+  MDCellphoneLogin_200_response_bindings_inner.cpp
+  MDCellphoneLogin_200_response_profile.cpp
+  MDCheckMusic_200_response.cpp
+  MDGetAccountInfo_200_response.cpp
+  MDGetArtistAlbum_200_response.cpp
+  MDGetArtistAlbum_200_response_artist.cpp
+  MDGetArtistAlbum_200_response_hotAlbums_inner.cpp
+  MDGetArtistAlbum_200_response_hotAlbums_inner_artist.cpp
+  MDGetArtistAlbum_200_response_hotAlbums_inner_artists_inner.cpp
+  MDGetArtistDetail_200_response.cpp
+  MDGetArtistDetail_200_response_data.cpp
+  MDGetArtistDetail_200_response_data_artist.cpp
+  MDGetArtistDetail_200_response_data_identify.cpp
+  MDGetArtistDetail_200_response_data_secondaryExpertIdentiy_inner.cpp
+  MDGetArtistDetail_200_response_data_user.cpp
+  MDGetArtistDetail_200_response_data_user_avatarDetail.cpp
+  MDGetArtistDetail_200_response_data_vipRights.cpp
+  MDGetArtistDetail_200_response_data_vipRights_rightsInfoDetailDtoList_inner.cpp
+  MDGetArtistMv_200_response.cpp
+  MDGetArtistMv_200_response_mvs_inner.cpp
+  MDGetArtistMv_200_response_mvs_inner_artist.cpp
+  MDGetArtistSingle_200_response.cpp
+  MDGetArtistSingle_200_response_artist.cpp
+  MDGetArtistSingle_200_response_hotSongs_inner.cpp
+  MDGetArtistSingle_200_response_hotSongs_inner_al.cpp
+  MDGetArtistSingle_200_response_hotSongs_inner_ar_inner.cpp
+  MDGetArtistSingle_200_response_hotSongs_inner_h.cpp
+  MDGetArtistSingle_200_response_hotSongs_inner_privilege.cpp
+  MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner.cpp
+  MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivilege.cpp
+  MDGetArtistSingle_200_response_hotSongs_inner_sq.cpp
+  MDGetHotComment_200_response.cpp
+  MDGetHotComment_200_response_hotComments_inner.cpp
+  MDGetHotComment_200_response_hotComments_inner_beReplied_inner.cpp
+  MDGetHotComment_200_response_hotComments_inner_beReplied_inner_ipLocation.cpp
+  MDGetHotComment_200_response_hotComments_inner_beReplied_inner_user.cpp
+  MDGetHotComment_200_response_hotComments_inner_pendantData.cpp
+  MDGetHotComment_200_response_hotComments_inner_user.cpp
+  MDGetHotComment_200_response_hotComments_inner_user_vipRights.cpp
+  MDGetHotComment_200_response_hotComments_inner_user_vipRights_associator.cpp
+  MDGetLikeSongId_200_response.cpp
+  MDGetLoginStatus_200_response.cpp
+  MDGetLoginStatus_200_response_data.cpp
+  MDGetLoginStatus_200_response_data_account.cpp
+  MDGetLoginStatus_200_response_data_profile.cpp
+  MDGetLyric_200_response.cpp
+  MDGetLyric_200_response_lrc.cpp
+  MDGetPlaylistDetail_200_response.cpp
+  MDGetPlaylistDetail_200_response_playlist.cpp
+  MDGetPlaylistDetail_200_response_playlist_creator.cpp
+  MDGetPlaylistDetail_200_response_playlist_trackIds_inner.cpp
+  MDGetPlaylistDetail_200_response_playlist_tracks_inner.cpp
+  MDGetPlaylistDetail_200_response_playlist_tracks_inner_al.cpp
+  MDGetPlaylistDetail_200_response_playlist_tracks_inner_ar_inner.cpp
+  MDGetPlaylistDetail_200_response_playlist_tracks_inner_h.cpp
+  MDGetPlaylistDetail_200_response_playlist_tracks_inner_l.cpp
+  MDGetPlaylistDetail_200_response_privileges_inner.cpp
+  MDGetPlaylistDetail_200_response_privileges_inner_freeTrialPrivilege.cpp
+  MDGetPlaylistTrackAll_200_response.cpp
+  MDGetPlaylistTrackAll_200_response_songs_inner.cpp
+  MDGetPlaylistTrackAll_200_response_songs_inner_al.cpp
+  MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData.cpp
+  MDGetPurchasedAlbum_200_response.cpp
+  MDGetPurchasedAlbum_200_response_paidAlbums_inner.cpp
+  MDGetPurchasedAlbum_200_response_paidAlbums_inner_artist.cpp
+  MDGetPurchasedAlbum_200_response_paidAlbums_inner_artists_inner.cpp
+  MDGetQrKey_200_response.cpp
+  MDGetQrKey_200_response_data.cpp
+  MDGetRecommendedMv_200_response.cpp
+  MDGetRecommendedMv_200_response_result_inner.cpp
+  MDGetRecommendedMv_200_response_result_inner_artists_inner.cpp
+  MDGetRecommendedNewSongs_200_response.cpp
+  MDGetRecommendedNewSongs_200_response_result_inner.cpp
+  MDGetRecommendedNewSongs_200_response_result_inner_song.cpp
+  MDGetRecommendedNewSongs_200_response_result_inner_song_album.cpp
+  MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner.cpp
+  MDGetRecommendedNewSongs_200_response_result_inner_song_bMusic.cpp
+  MDGetRecommendedNewSongs_200_response_result_inner_song_sqMusic.cpp
+  MDGetRecommendedPlaylist_200_response.cpp
+  MDGetRecommendedPlaylist_200_response_result_inner.cpp
+  MDGetSongDetail_200_response.cpp
+  MDGetSongDetail_200_response_privileges_inner.cpp
+  MDGetSongDetail_200_response_songs_inner.cpp
+  MDGetSongDetail_200_response_songs_inner_ar_inner.cpp
+  MDGetSongUrl_200_response.cpp
+  MDGetSongUrl_200_response_data_inner.cpp
+  MDGetSongUrl_200_response_data_inner_freeTimeTrialPrivilege.cpp
+  MDGetSongUrl_200_response_data_inner_freeTrialPrivilege.cpp
+  MDGetTopArtists_200_response.cpp
+  MDGetTopArtists_200_response_artists_inner.cpp
+  MDGetTopPlaylist_200_response.cpp
+  MDGetTopPlaylist_200_response_playlists_inner.cpp
+  MDGetTopPlaylist_200_response_playlists_inner_creator.cpp
+  MDGetTopPlaylist_200_response_playlists_inner_creator_avatarDetail.cpp
+  MDGetTopPlaylist_200_response_playlists_inner_creator_experts.cpp
+  MDGetTopPlaylist_200_response_playlists_inner_subscribers_inner.cpp
+  MDGetUserPlaylist_200_response.cpp
+  MDGetUserPlaylist_200_response_playlist_inner.cpp
+  MDGetUserPlaylist_200_response_playlist_inner_creator.cpp
+  MDGetUserPlaylist_200_response_playlist_inner_creator_experts.cpp
+  MDGetUserPlaylist_200_response_playlist_inner_recommendInfo.cpp
+  MDQrCheck_200_response.cpp
+  MDQrCreate_200_response.cpp
+  MDQrCreate_200_response_data.cpp
+  MDSearch_200_response.cpp
+  MDSearch_200_response_result.cpp
+  MDSearch_200_response_result_songs_inner.cpp
+  MDSearch_200_response_result_songs_inner_ar_inner.cpp
+  MDSearch_200_response_result_songs_inner_privilege.cpp
+  MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege.cpp
+  MDSendCaptcha_200_response.cpp
+  MDClientApi.cpp
+  MDHelpers.cpp
+  MDHttpRequest.cpp
+  MDHttpFileElement.cpp
+  MDOauth.cpp
+  )
+
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+
+target_link_libraries(${PROJECT_NAME}
+    PUBLIC
+        Qt${QT_VERSION_MAJOR}::Core
+        Qt${QT_VERSION_MAJOR}::Network
+        Qt${QT_VERSION_MAJOR}::Gui
+
+)
+
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}"
+)
+
+install(
+    TARGETS ${PROJECT_NAME}
+    EXPORT ${PROJECT_NAME}Targets
+    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
+    INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}"
+)
+
+install(
+    FILES ${HEADER_FILES}
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}
+)
+
+install(
+    FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+)
+
+install(
+    EXPORT ${PROJECT_NAME}Targets
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+)

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+json_path=./MelodixAPI.swagger.json
+#json_path=./MelodixAPI.openapi.json
+code_path="./3rdparty/MelodixAPI"
+
+openapi-generator-cli generate \
+    -i $json_path \
+    -o $code_path \
+    -g cpp-qt-client \
+    --additional-properties="optionalProjectFile=false,modelNamePrefix=MD,packageName=QtMelodixAPI,cppNamespace=MelodixAPI"
