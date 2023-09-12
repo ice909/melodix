@@ -342,7 +342,7 @@ Item {
                         onClicked: {
                             switching = true;
                             currentChecked = text;
-                            bottomLoader.setSource("./FollowArtists.qml");
+                            bottomLoader.setSource("../widgets/GridSigner.qml");
                             getFollowArtists();
                         }
                     }
@@ -372,7 +372,7 @@ Item {
                 id: bottomLoader
 
                 width: scrollWidth
-                height: currentChecked == "MV" ? ((playlistRows * ((scrollWidth - 30 * 3) * 0.25 - 60)) + (playlistRows - 1) * 10) : playlistRows * ((scrollWidth - 30 * 4) * 0.2 + 23) + (playlistRows - 1) * 30
+                height: currentChecked == "MV" ? ((playlistRows * ((scrollWidth - 30 * 3) * 0.25 - 60)) + (playlistRows - 1) * 10) : playlistRows * ((scrollWidth - 30 * 4) * 0.2 + 25) + (playlistRows - 1) * 30
                 source: "../widgets/GridPlaylists.qml"
             }
 

@@ -4,7 +4,6 @@
         
         <file>qml/index/Index.qml</file>
         <file>qml/index/RecommendNewSongs.qml</file>
-        <file>qml/index/HotSigner.qml</file>
         <file>qml/index/RecommendMV.qml</file>
 
         <file>qml/discover/Discover.qml</file>
@@ -12,7 +11,6 @@
         <file>qml/library/Library.qml</file>
         <file>qml/library/MyFavorite.qml</file>
         <file>qml/library/BuyAlbums.qml</file>
-        <file>qml/library/FollowArtists.qml</file>
         <file>qml/library/CollectMVs.qml</file>
 
         <file>qml/playlistdetail/PlaylistDetail.qml</file>
@@ -38,6 +36,7 @@
         <file>qml/widgets/Loading.qml</file>
         <file>qml/widgets/Banner.qml</file>
         <file>qml/widgets/GridPlaylists.qml</file>
+        <file>qml/widgets/GridSigner.qml</file>
 
         <file>qml/toolbar/Toolbar.qml</file>
         <file>qml/toolbar/VolumeSlider.qml</file>

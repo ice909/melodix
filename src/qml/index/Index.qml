@@ -145,9 +145,9 @@ Item {
 
             Item {
                 width: scrollWidth
-                height: (scrollWidth - 80) * 0.2 + 30
+                height: (scrollWidth - 30 * 4) * 0.2 + 30
 
-                HotSigner {
+                GridSigner {
                     id: hotSigner
 
                     anchors.fill: parent
