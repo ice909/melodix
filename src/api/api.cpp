@@ -50,6 +50,11 @@ API::API(QObject *parent)
             [&](MDHttpRequestWorker *worker, MDGetLikeSongId_200_response response) {
                 emit userLikeSongIdsCompleted(response.asJsonObject());
             });
+    connect(userApiInstance,
+            &MDClientApi::getSongUrlSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetSongUrl_200_response response) {
+                emit songUrlCompleted(toJsonArray(response.getData()));
+            });
 }
 
 void API::banner(const QString type)
@@ -135,6 +140,11 @@ void API::getAccountInfo()
 void API::getUserLikeSongIds(const QString id)
 {
     userApiInstance->getLikeSongId(id);
+}
+
+void API::getSongUrl(const QString id)
+{
+    userApiInstance->getSongUrl(id);
 }
 
 API::~API()

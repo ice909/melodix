@@ -2,10 +2,10 @@ import Qt.labs.platform 1.1 as P
 import QtQuick 2.11
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
+import api 1.0
 import network 1.0
 import org.deepin.dtk 1.0
 import player 1.0
-import api 1.0
 import "qml/playlist"
 import "qml/titlebar"
 import "qml/toolbar"
@@ -30,13 +30,13 @@ ApplicationWindow {
     property int scrollWidth: rootWindow.width - 40
 
     function getMusicUrl(id, name, pic, artist, duration, isVip) {
-        function onReply(reply) {
-            network.onSongUrlRequestFinished.disconnect(onReply);
-            player.addSignleToPlaylist(JSON.parse(reply).data[0].url, id, name, pic, artist, duration, isVip);
+        function urlCompleted(res) {
+            api.onSongUrlCompleted.disconnect(urlCompleted);
+            player.addSignleToPlaylist(res[0].url, id, name, pic, artist, duration, isVip);
         }
 
-        network.onSongUrlRequestFinished.connect(onReply);
-        network.getSongUrl(id);
+        api.onSongUrlCompleted.connect(urlCompleted);
+        api.getSongUrl(id);
     }
 
     function onMediaCountChanged(count) {
@@ -97,7 +97,6 @@ ApplicationWindow {
     }
 
     Connections {
-        target: api
         function onLoginStatusCompleted(res) {
             if (res.code == 200 && res.account.status == 0 && res.profile != null) {
                 console.log("用户已登录");
@@ -108,6 +107,7 @@ ApplicationWindow {
                 return ;
             }
         }
+
         function onAccountInfoCompleted(profile) {
             userAvatar = profile.avatarUrl;
             userNickname = profile.nickname;
@@ -115,9 +115,12 @@ ApplicationWindow {
             console.log("用户头像 昵称 ID获取成功");
             api.getUserLikeSongIds(userID);
         }
+
         function onUserLikeSongIdsCompleted(res) {
             userFavoriteSongsID = res.ids;
         }
+
+        target: api
     }
 
     Loader {
@@ -194,8 +197,9 @@ ApplicationWindow {
     Network {
         id: network
     }
-    MedlodixAPI{
-        id: api 
+
+    MedlodixAPI {
+        id: api
     }
 
     Loader {
