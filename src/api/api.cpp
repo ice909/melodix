@@ -55,6 +55,16 @@ API::API(QObject *parent)
             [&](MDHttpRequestWorker *worker, MDGetSongUrl_200_response response) {
                 emit songUrlCompleted(toJsonArray(response.getData()));
             });
+    connect(apiInstance,
+            &MDClientApi::getPlaylistDetailSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetPlaylistDetail_200_response response) {
+                emit playlistDetailCompleted(response.getPlaylist().asJsonObject());
+            });
+    connect(apiInstance,
+            &MDClientApi::getPlaylistTrackAllSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetPlaylistTrackAll_200_response response) {
+                emit playlistSongsCompleted(toJsonArray(response.getSongs()));
+            });
 }
 
 void API::banner(const QString type)
@@ -145,6 +155,16 @@ void API::getUserLikeSongIds(const QString id)
 void API::getSongUrl(const QString id)
 {
     userApiInstance->getSongUrl(id);
+}
+
+void API::getPlaylistDetail(const QString id)
+{
+    apiInstance->getPlaylistDetail(id);
+}
+
+void API::getPlaylistSongs(const QString id, const QString limit, const QString offset)
+{
+    apiInstance->getPlaylistTrackAll(id, limit, offset);
 }
 
 API::~API()

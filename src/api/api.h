@@ -27,6 +27,8 @@ public slots:
     void getAccountInfo();
     void getUserLikeSongIds(const QString id);
     void getSongUrl(const QString id);
+    void getPlaylistDetail(const QString id);
+    void getPlaylistSongs(const QString id, const QString limit, const QString offset);
 signals:
     void bannerCompleted(QJsonArray);
     void recommendedPlaylistCompleted(QJsonArray);
@@ -39,6 +41,8 @@ signals:
     void accountInfoCompleted(QJsonObject);
     void userLikeSongIdsCompleted(QJsonObject);
     void songUrlCompleted(QJsonArray);
+    void playlistDetailCompleted(QJsonObject);
+    void playlistSongsCompleted(QJsonArray);
 
 private:
     MDClientApi *apiInstance = nullptr;

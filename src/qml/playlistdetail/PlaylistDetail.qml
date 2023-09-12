@@ -22,7 +22,7 @@ Item {
     // 歌单歌曲总数
     property int playlistSongAllCount: 0
     // 一次加载的歌曲数量
-    property int songLimit: 0
+    property int limit: 0
     // 歌曲偏移量
     property int offset: 0
     // 是否正在“加载更多”
@@ -31,65 +31,29 @@ Item {
     property bool hasMore: true
 
     function getPlaylistSongsInfo() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var newSongs = JSON.parse(reply).songs;
-            songs.push(...newSongs);
-            for (const song of newSongs) listView.model.append({
-                "song": song
-            })
-            initing = false;
-            offset += newSongs.length;
-            loadMore = false;
-            console.log("加载的歌曲数量: songLimit: " + songLimit + " offset: " + offset + " songs数组长度: " + songs.length);
-        }
-
         // 如果当前未添加的歌曲数量大于50的时候，再加载50首
         // 否则通过歌曲总数减去当前的偏移量计算出剩余的歌曲（<50)，全部加载
         if (playlistSongAllCount - offset > 50) {
-            songLimit = 50;
+            limit = 50;
         } else {
-            songLimit = playlistSongAllCount - offset;
+            limit = playlistSongAllCount - offset;
             hasMore = false;
         }
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/playlist/track/all?id=" + currentPlaylistId + "&limit=" + songLimit + "&offset=" + offset);
-    }
-
-    function getPlaylistDetail() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var playlist = JSON.parse(reply).playlist;
-            coverImg.imgSrc = playlist.coverImgUrl;
-            playlistName.text = playlist.name;
-            playlistAuthor.text = "Playlist by " + playlist.creator.nickname;
-            playlistUpdateTime.text = "最后更新于 " + Util.formatTime(playlist.updateTime) + " · " + playlist.trackIds.length + "首歌";
-            if (playlist.description != null)
-                playlistDescription.text = playlist.description.replace(/\n/g, ' ');
-            else
-                playlistDescription.text = "暂无介绍";
-            playlistSongAllCount = playlist.trackIds.length;
-            getPlaylistSongsInfo();
-            console.log("歌单共有：" + playlistSongAllCount + "首歌曲");
-        }
-
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/playlist/detail?id=" + currentPlaylistId);
+        api.getPlaylistSongs(currentPlaylistId, limit, offset);
     }
 
     function playPlaylistAllMusic(index = -1) {
         function onReply(reply) {
-            network.onSongUrlRequestFinished.disconnect(onReply);
-            var urlList = JSON.parse(reply).data;
+            api.onSongUrlCompleted.disconnect(onReply);
             // 获取播放列表中的歌曲url数量，用作偏移量
             var urlOffset = songUrls.length;
             // 将新的歌曲url添加到songUrls数组中
-            for (var i = 0; i < urlList.length; i++) {
-                songUrls[i + urlOffset] = urlList[i].url;
+            for (var i = 0; i < reply.length; i++) {
+                songUrls[i + urlOffset] = reply[i].url;
             }
             // 将新的歌曲url添加到播放列表
             for (var i = urlOffset; i < songs.length; i++) {
-                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt),Util.isVip(songs[i].fee));
+                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), Util.isVip(songs[i].fee));
             }
             // 如果没有传入index参数
             // 则说明点击的是播放按钮
@@ -105,6 +69,7 @@ Item {
                 isAddToPlaylist = true;
 
         }
+
         // 切换播放列表
         player.switchToPlaylistMode();
         if (player.getCurrentPlaylistId() != "" && player.getCurrentPlaylistId() != currentPlaylistId) {
@@ -115,7 +80,7 @@ Item {
         // 如果添加了直接播放
         if (index != -1 && index < songUrls.length) {
             player.play(index);
-            return;
+            return ;
         }
         // 点击的歌曲不在播放列表中
         // 将不在播放列表中的歌曲添加到播放列表
@@ -123,8 +88,8 @@ Item {
         for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
         // 将所有id使用逗号连接成一个字符串
         var concatenatedIds = ids.join(',');
-        network.onSongUrlRequestFinished.connect(onReply);
-        network.getSongUrl(concatenatedIds);
+        api.onSongUrlCompleted.connect(onReply);
+        api.getSongUrl(concatenatedIds);
     }
 
     function onPlaylistCurrentIndexChanged() {
@@ -138,7 +103,8 @@ Item {
     Component.onCompleted: {
         console.log("跳转歌单id为： " + Router.routeCurrent.id);
         currentPlaylistId = Router.routeCurrent.id;
-        getPlaylistDetail();
+        //getPlaylistDetail();
+        api.getPlaylistDetail(currentPlaylistId);
         player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         player.playlistCleared.connect(onPlaylistCleared);
     }
@@ -146,6 +112,37 @@ Item {
         console.log("歌单详情页销毁，断开信号的连接");
         player.playlistCurrentIndexChanged.disconnect(onPlaylistCurrentIndexChanged);
         player.playlistCleared.disconnect(onPlaylistCleared);
+    }
+
+    Connections {
+        function onPlaylistDetailCompleted(playlist) {
+            head.cover = playlist.coverImgUrl;
+            head.name = playlist.name;
+            head.creatorNickname = "Playlist by " + playlist.creator.nickname;
+            head.updateTime = "最后更新于 " + Util.formatTime(playlist.updateTime) + " · " + playlist.trackIds.length + "首歌";
+            if (playlist.description != null)
+                head.description = playlist.description.replace(/\n/g, ' ');
+            else
+                head.description = "暂无介绍";
+            playlistSongAllCount = playlist.trackIds.length;
+            console.log("歌单共有：" + playlistSongAllCount + "首歌曲");
+            getPlaylistSongsInfo();
+        }
+
+        function onPlaylistSongsCompleted(reply) {
+            for (const song of reply) {
+                songs.push(song);
+                listView.model.append({
+                    "song": song
+                });
+            }
+            initing = false;
+            offset += reply.length;
+            loadMore = false;
+            console.log("加载的歌曲数量: limit: " + limit + " offset: " + offset + " songs数组长度: " + songs.length);
+        }
+
+        target: api
     }
 
     ListModel {
@@ -177,119 +174,8 @@ Item {
                 height: 20
             }
 
-            Row {
-                spacing: 30
-
-                Item {
-                    width: 1
-                    height: 1
-                }
-
-                RoundedImage {
-                    id: coverImg
-
-                    width: scrollWidth / 3.9
-                    height: width
-                }
-
-                Item {
-                    width: scrollWidth - coverImg.width - 10 - 30 - 10 - 30
-                    height: coverImg.height
-
-                    Column {
-                        anchors.fill: parent
-                        spacing: 10
-
-                        Item {
-                            width: 10
-                            height: 10
-                        }
-
-                        Text {
-                            id: playlistName
-
-                            width: parent.width
-                            height: (parent.height - 40) / 4 - 10
-                            font.pixelSize: DTK.fontManager.t3.pixelSize
-                            font.bold: true
-                            color: Util.textColor
-                        }
-
-                        Item {
-                            width: parent.width
-                            height: (parent.height - 40) / 4
-
-                            Text {
-                                id: playlistAuthor
-
-                                width: parent.width
-                                height: parent.height / 2
-                                font.pixelSize: DTK.fontManager.t4.pixelSize
-                                font.bold: true
-                                color: Util.textColor
-                            }
-
-                            Text {
-                                id: playlistUpdateTime
-
-                                anchors.top: playlistAuthor.bottom
-                                width: parent.width
-                                height: parent.height / 2
-                                font.pixelSize: DTK.fontManager.t5.pixelSize
-                                color: Util.textColor
-                            }
-
-                        }
-
-                        Label {
-                            id: playlistDescription
-
-                            width: parent.width
-                            height: (parent.height - 40) / 4 + 10
-                            wrapMode: Text.Wrap
-                            elide: Text.ElideRight
-                            maximumLineCount: 3
-                            font.pixelSize: DTK.fontManager.t6.pixelSize
-                            color: Util.textColor
-                        }
-
-                        Item {
-                            width: parent.width
-                            height: (parent.height - 40) / 4
-
-                            Row {
-                                spacing: 20
-
-                                RecommandButton {
-                                    width: 80
-                                    height: 40
-                                    text: "播放"
-                                    font.bold: true
-                                    font.pixelSize: DTK.fontManager.t6.pixelSize
-                                    onClicked: {
-                                        console.log("播放按钮点击");
-                                        if (!isAddToPlaylist)
-                                            playPlaylistAllMusic();
-                                        else
-                                            player.play(0);
-                                    }
-
-                                    icon {
-                                        name: "details_play"
-                                        width: 25
-                                        height: 25
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
+            PlaylistDetailHead {
+                id: head
             }
 
             ListView {

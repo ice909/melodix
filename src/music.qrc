@@ -14,6 +14,7 @@
         <file>qml/library/CollectMVs.qml</file>
 
         <file>qml/playlistdetail/PlaylistDetail.qml</file>
+        <file>qml/playlistdetail/PlaylistDetailHead.qml</file>
 
         <file>qml/mv/Mv.qml</file>
 
