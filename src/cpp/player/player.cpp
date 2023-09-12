@@ -1,4 +1,5 @@
 #include "player.h"
+#include "worker.h"
 
 Player::Player(QObject *parent)
     : QObject(parent)
@@ -9,7 +10,7 @@ Player::Player(QObject *parent)
     , m_singleTrackPlaylist(new QMediaPlaylist(this))
     , m_settings(
           new QSettings(QDir::homePath() + "/.config/ice/player.ini", QSettings::IniFormat, this))
-    , m_network(new Network(this))
+    , m_api(new API(this))
 {
     // 读取音量配置
     m_volume = m_settings->value("Volume/DefaultVolume", 50).toInt();
@@ -57,18 +58,13 @@ Player::Player(QObject *parent)
                 m_currentPlaylist->clear();
                 m_currentPlaylist->blockSignals(false);
                 stop();
-                m_network->getSongUrl(m_currentModel->getAllId());
-                qDebug() << "歌曲所有id:" << m_currentModel->getAllId();
-                connect(m_network, &Network::songUrlRequestFinished, this, [=](QByteArray data) {
-                    // 解析数据, 获取歌曲url,
-                    QJsonDocument document = QJsonDocument::fromJson(data);
-                    QJsonObject object = document.object();
-                    QJsonArray array = object["data"].toArray();
-                    qDebug() << "获取到的数组大小: " << array.size();
+                m_api->getSongUrl(m_currentModel->getAllId());
+                connect(m_api, &API::songUrlCompleted, [&](QJsonArray response) {
+                    qDebug() << "获取到的数组大小: " << response.size();
                     // 定义一个数组，存放歌曲url
                     QStringList urls;
-                    for (int i = 0; i < array.size(); ++i) {
-                        QJsonObject item = array[i].toObject();
+                    for (int i = 0; i < response.size(); ++i) {
+                        QJsonObject item = response[i].toObject();
                         QString url = item["url"].toString();
                         urls.append(url);
                     }
@@ -626,4 +622,10 @@ void Player::switchPlaybackMode(int model)
     }
 }
 
-Player::~Player() {}
+Player::~Player()
+{
+    if (m_api != nullptr) {
+        delete m_api;
+        m_api = nullptr;
+    }
+}

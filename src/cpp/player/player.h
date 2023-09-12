@@ -13,7 +13,7 @@
 #include <QEventLoop>
 
 #include "playlistmodel.h"
-#include "network.h"
+#include "api.h"
 
 class Player : public QObject
 {
@@ -118,7 +118,7 @@ public slots:
     void onMediaCountChanged(int start, int end);
 
 private:
-    Network * m_network = nullptr;
+    API * m_api = nullptr;
     // 播放器配置文件
     QSettings *m_settings = nullptr;
     QMediaPlayer *m_player = nullptr;

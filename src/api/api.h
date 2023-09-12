@@ -46,7 +46,7 @@ signals:
 
 private:
     MDClientApi *apiInstance = nullptr;
-    MDClientApi *apiInstance2 = nullptr;
+    MDClientApi *temporarily = nullptr;
     MDClientApi *userApiInstance = nullptr;
 };
 
