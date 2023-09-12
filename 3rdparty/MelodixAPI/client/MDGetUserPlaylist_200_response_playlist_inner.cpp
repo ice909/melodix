@@ -958,10 +958,10 @@ bool MDGetUserPlaylist_200_response_playlist_inner::is_name_Valid() const{
     return m_name_isValid;
 }
 
-qint32 MDGetUserPlaylist_200_response_playlist_inner::getId() const {
+double MDGetUserPlaylist_200_response_playlist_inner::getId() const {
     return m_id;
 }
-void MDGetUserPlaylist_200_response_playlist_inner::setId(const qint32 &id) {
+void MDGetUserPlaylist_200_response_playlist_inner::setId(const double &id) {
     m_id = id;
     m_id_isSet = true;
 }

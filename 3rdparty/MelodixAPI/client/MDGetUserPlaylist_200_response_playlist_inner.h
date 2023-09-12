@@ -218,8 +218,8 @@ public:
     bool is_name_Set() const;
     bool is_name_Valid() const;
 
-    qint32 getId() const;
-    void setId(const qint32 &id);
+    double getId() const;
+    void setId(const double &id);
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
@@ -379,7 +379,7 @@ private:
     bool m_name_isSet;
     bool m_name_isValid;
 
-    qint32 m_id;
+    double m_id;
     bool m_id_isSet;
     bool m_id_isValid;
 

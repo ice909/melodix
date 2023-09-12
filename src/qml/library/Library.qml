@@ -31,9 +31,8 @@ Item {
 
     function getLyric(id) {
         function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var lrc = JSON.parse(reply).lrc.lyric;
-            var lines = lrc.split("\n");
+            api.onLyricCompleted.disconnect(onReply);
+            var lines = reply.split("\n");
             var lyrics = [];
             for (var i = 0; i < lines.length; i++) {
                 var line = lines[i].trim();
@@ -57,36 +56,18 @@ Item {
             }
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/lyric?id=" + id);
-    }
-
-    // 获取用户歌单
-    function getUserPlayLists() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            userPlaylists = JSON.parse(reply).playlist;
-            console.log("获取的歌单数量：" + userPlaylists.length);
-            playlistRows = Math.ceil(userPlaylists.length / 5);
-            console.log("计算出的歌单行数：" + playlistRows);
-            // 第一个为我喜欢的歌单
-            myLikeListId = userPlaylists[0].id;
-            getPlayListAllMusic();
-        }
-
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/user/playlist?uid=" + userID + "&timestamp=" + Util.getTimestamp());
+        api.onLyricCompleted.connect(onReply);
+        api.getLyric(id);
     }
 
     // 获取歌单前12首歌曲
     function getPlayListAllMusic() {
         function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
+            api.onPlaylistSongsCompleted.disconnect(onReply);
             var randomNumber = Math.floor(Math.random() * 12);
-            var datas = JSON.parse(reply).songs;
-            getLyric(datas[randomNumber].id);
-            musicCountTitle.text = datas.length + "首歌";
-            myFavoriteSongs.lists = datas.slice(0, 12);
+            getLyric(reply[randomNumber].id);
+            musicCountTitle.text = reply.length + "首歌";
+            myFavoriteSongs.lists = reply.slice(0, 12);
             var bottomPlaylists = userPlaylists.slice(1, userPlaylists.length);
             for (const playlist of bottomPlaylists) bottomLoader.item.lists.append({
                 "playlist": playlist
@@ -94,60 +75,69 @@ Item {
             initing = false;
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/playlist/track/all?id=" + myLikeListId + "&timestamp=" + Util.getTimestamp());
+        api.onPlaylistSongsCompleted.connect(onReply);
+        api.getPlaylistSongs(myLikeListId);
     }
 
     // 获取用户购买的专辑
     function getUserAlbum() {
         function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var datas = JSON.parse(reply).paidAlbums;
-            bottomLoader.item.lists = datas;
-            console.log("已购专辑数量：" + datas.length);
-            playlistRows = Math.ceil(datas.length / 5);
+            api.onUserBuyAlbumCompleted.disconnect(onReply);
+            bottomLoader.item.lists = reply;
+            console.log("已购专辑数量：" + reply.length);
+            playlistRows = Math.ceil(reply.length / 5);
             console.log("计算出的已购专辑行数：" + playlistRows);
             switching = false;
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/digitalAlbum/purchased?timestamp=" + Util.getTimestamp());
+        api.onUserBuyAlbumCompleted.connect(onReply);
+        api.getUserBuyAlbum();
     }
 
     // 获取收藏的歌手
     function getFollowArtists() {
         function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var datas = JSON.parse(reply).data;
-            console.log("关注艺人数量：" + datas.length);
-            playlistRows = Math.ceil(datas.length / 5);
+            api.onArtistSublistCompleted.disconnect(onReply);
+            console.log("关注艺人数量：" + reply.length);
+            playlistRows = Math.ceil(reply.length / 5);
             console.log("计算出的关注艺人行数：" + playlistRows);
-            bottomLoader.item.lists = datas;
+            bottomLoader.item.lists = reply;
             switching = false;
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/artist/sublist?timestamp=" + Util.getTimestamp());
+        api.onArtistSublistCompleted.connect(onReply);
+        api.getArtistSublist();
     }
 
     function getCollectMvs() {
         function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var datas = JSON.parse(reply).data;
-            //console.log(JSON.stringify(JSON.parse(reply)))
-            console.log("收藏MV数量：" + datas.length);
-            playlistRows = Math.ceil(datas.length / 5);
+            api.onMvSublistCompleted.disconnect(onReply);
+            console.log("收藏MV数量：" + reply.length);
+            playlistRows = Math.ceil(reply.length / 5);
             console.log("计算出的收藏MV行数：" + playlistRows);
-            bottomLoader.item.lists = datas;
+            bottomLoader.item.lists = reply;
             switching = false;
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/mv/sublist?timestamp=" + Util.getTimestamp());
+        api.onMvSublistCompleted.connect(onReply);
+        api.getMvSublist();
     }
 
     Component.onCompleted: {
-        getUserPlayLists();
+        api.getUserPlaylist(userID);
+    }
+
+    Connections {
+        target: api
+        function onUserPlaylistCompleted(res) {
+            userPlaylists = res;
+            console.log("获取的歌单数量：" + userPlaylists.length);
+            playlistRows = Math.ceil(userPlaylists.length / 5);
+            console.log("计算出的歌单行数：" + playlistRows);
+            // 第一个为我喜欢的歌单
+            myLikeListId = userPlaylists[0].id;
+            getPlayListAllMusic();
+        }
     }
 
     // 音乐库界面

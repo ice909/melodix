@@ -51,6 +51,8 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("getArtistMv", 0);
     _serverConfigs.insert("getArtistSingle", defaultConf);
     _serverIndices.insert("getArtistSingle", 0);
+    _serverConfigs.insert("getArtistSublist", defaultConf);
+    _serverIndices.insert("getArtistSublist", 0);
     _serverConfigs.insert("getHotComment", defaultConf);
     _serverIndices.insert("getHotComment", 0);
     _serverConfigs.insert("getLikeSongId", defaultConf);
@@ -61,6 +63,8 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("getLyric", 0);
     _serverConfigs.insert("getMvDetail", defaultConf);
     _serverIndices.insert("getMvDetail", 0);
+    _serverConfigs.insert("getMvSublist", defaultConf);
+    _serverIndices.insert("getMvSublist", 0);
     _serverConfigs.insert("getMvUrl", defaultConf);
     _serverIndices.insert("getMvUrl", 0);
     _serverConfigs.insert("getPlaylistDetail", defaultConf);
@@ -882,6 +886,71 @@ void MDClientApi::getArtistSingleCallback(MDHttpRequestWorker *worker) {
     }
 }
 
+void MDClientApi::getArtistSublist(const QString &timestamp) {
+    QString fullPath = QString(_serverConfigs["getArtistSublist"][_serverIndices.value("getArtistSublist")].URL()+"/artist/sublist");
+    
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "timestamp", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("timestamp")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(timestamp)));
+    }
+    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    MDHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getArtistSublistCallback);
+    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void MDClientApi::getArtistSublistCallback(MDHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    MDGetArtistSublist_200_response output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getArtistSublistSignal(output);
+        emit getArtistSublistSignalFull(worker, output);
+    } else {
+        emit getArtistSublistSignalE(output, error_type, error_str);
+        emit getArtistSublistSignalEFull(worker, error_type, error_str);
+    }
+}
+
 void MDClientApi::getHotComment(const QString &id, const QString &type) {
     QString fullPath = QString(_serverConfigs["getHotComment"][_serverIndices.value("getHotComment")].URL()+"/comment/hot");
     
@@ -1219,6 +1288,71 @@ void MDClientApi::getMvDetailCallback(MDHttpRequestWorker *worker) {
     } else {
         emit getMvDetailSignalE(output, error_type, error_str);
         emit getMvDetailSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void MDClientApi::getMvSublist(const QString &timestamp) {
+    QString fullPath = QString(_serverConfigs["getMvSublist"][_serverIndices.value("getMvSublist")].URL()+"/mv/sublist");
+    
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "timestamp", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("timestamp")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(timestamp)));
+    }
+    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    MDHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getMvSublistCallback);
+    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void MDClientApi::getMvSublistCallback(MDHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    MDGetMvSublist_200_response output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getMvSublistSignal(output);
+        emit getMvSublistSignalFull(worker, output);
+    } else {
+        emit getMvSublistSignalE(output, error_type, error_str);
+        emit getMvSublistSignalEFull(worker, error_type, error_str);
     }
 }
 

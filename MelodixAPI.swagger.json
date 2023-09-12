@@ -7533,7 +7533,7 @@
                         "type": "string"
                       },
                       "id": {
-                        "type": "integer"
+                        "type": "number"
                       },
                       "coverImgId_str": {
                         "type": "string"
@@ -11853,6 +11853,299 @@
           }
         },
         "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-109823378-run",
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/artist/sublist": {
+      "get": {
+        "summary": "收藏的歌手列表",
+        "x-apifox-folder": "client",
+        "x-apifox-status": "released",
+        "deprecated": false,
+        "description": "可获取收藏的歌手列表",
+        "operationId": "getArtistSublist",
+        "tags": [
+          "client"
+        ],
+        "parameters": [
+          {
+            "name": "MUSIC_U",
+            "in": "cookie",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "xxx"
+          },
+          {
+            "name": "timestamp",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "{% mock 'timestamp' , 'ms' %}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "info": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "trans": {
+                        "type": "null"
+                      },
+                      "alias": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "albumSize": {
+                        "type": "integer"
+                      },
+                      "mvSize": {
+                        "type": "integer"
+                      },
+                      "picId": {
+                        "type": "integer"
+                      },
+                      "picUrl": {
+                        "type": "string"
+                      },
+                      "img1v1Url": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "info",
+                      "id",
+                      "name",
+                      "trans",
+                      "alias",
+                      "albumSize",
+                      "mvSize",
+                      "picId",
+                      "picUrl",
+                      "img1v1Url"
+                    ],
+                    "x-apifox-orders": [
+                      "info",
+                      "id",
+                      "name",
+                      "trans",
+                      "alias",
+                      "albumSize",
+                      "mvSize",
+                      "picId",
+                      "picUrl",
+                      "img1v1Url"
+                    ],
+                    "x-apifox-ignore-properties": []
+                  }
+                },
+                "hasMore": {
+                  "type": "boolean"
+                },
+                "count": {
+                  "type": "integer"
+                },
+                "code": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "data",
+                "hasMore",
+                "count",
+                "code"
+              ],
+              "x-apifox-orders": [
+                "data",
+                "hasMore",
+                "count",
+                "code"
+              ],
+              "x-apifox-ignore-properties": []
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-110166560-run",
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/mv/sublist": {
+      "get": {
+        "summary": "收藏的mv列表",
+        "x-apifox-folder": "client",
+        "x-apifox-status": "released",
+        "deprecated": false,
+        "description": "可获取收藏的 MV 列表",
+        "operationId": "getMvSublist",
+        "tags": [
+          "client"
+        ],
+        "parameters": [
+          {
+            "name": "MUSIC_U",
+            "in": "cookie",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "x-example": "xxx"
+          },
+          {
+            "name": "timestamp",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "{% mock 'timestamp' %}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "integer"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "durationms": {
+                        "type": "integer"
+                      },
+                      "creator": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "userId": {
+                              "type": "integer"
+                            },
+                            "userName": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "userId",
+                            "userName"
+                          ],
+                          "x-apifox-orders": [
+                            "userId",
+                            "userName"
+                          ],
+                          "x-apifox-ignore-properties": []
+                        }
+                      },
+                      "playTime": {
+                        "type": "integer"
+                      },
+                      "coverUrl": {
+                        "type": "string"
+                      },
+                      "vid": {
+                        "type": "string"
+                      },
+                      "aliaName": {
+                        "type": "string",
+                        "x-nullable": true
+                      },
+                      "transName": {
+                        "type": "string",
+                        "x-nullable": true
+                      },
+                      "alg": {
+                        "type": "null"
+                      },
+                      "markTypes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "title",
+                      "durationms",
+                      "creator",
+                      "playTime",
+                      "coverUrl",
+                      "vid",
+                      "aliaName",
+                      "transName",
+                      "alg",
+                      "markTypes"
+                    ],
+                    "x-apifox-orders": [
+                      "type",
+                      "title",
+                      "durationms",
+                      "creator",
+                      "playTime",
+                      "coverUrl",
+                      "vid",
+                      "aliaName",
+                      "transName",
+                      "alg",
+                      "markTypes"
+                    ],
+                    "x-apifox-ignore-properties": []
+                  }
+                },
+                "hasMore": {
+                  "type": "boolean"
+                },
+                "count": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "code",
+                "data",
+                "hasMore",
+                "count"
+              ],
+              "x-apifox-orders": [
+                "code",
+                "data",
+                "hasMore",
+                "count"
+              ],
+              "x-apifox-ignore-properties": []
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-110168758-run",
         "produces": [
           "application/json"
         ]

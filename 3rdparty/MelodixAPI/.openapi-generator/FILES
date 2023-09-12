@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 client/CMakeLists.txt
 client/Config.cmake.in
@@ -75,6 +74,10 @@ client/MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivileg
 client/MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivilege.h
 client/MDGetArtistSingle_200_response_hotSongs_inner_sq.cpp
 client/MDGetArtistSingle_200_response_hotSongs_inner_sq.h
+client/MDGetArtistSublist_200_response.cpp
+client/MDGetArtistSublist_200_response.h
+client/MDGetArtistSublist_200_response_data_inner.cpp
+client/MDGetArtistSublist_200_response_data_inner.h
 client/MDGetHotComment_200_response.cpp
 client/MDGetHotComment_200_response.h
 client/MDGetHotComment_200_response_hotComments_inner.cpp
@@ -107,6 +110,12 @@ client/MDGetLyric_200_response.cpp
 client/MDGetLyric_200_response.h
 client/MDGetLyric_200_response_lrc.cpp
 client/MDGetLyric_200_response_lrc.h
+client/MDGetMvSublist_200_response.cpp
+client/MDGetMvSublist_200_response.h
+client/MDGetMvSublist_200_response_data_inner.cpp
+client/MDGetMvSublist_200_response_data_inner.h
+client/MDGetMvSublist_200_response_data_inner_creator_inner.cpp
+client/MDGetMvSublist_200_response_data_inner_creator_inner.h
 client/MDGetPlaylistDetail_200_response.cpp
 client/MDGetPlaylistDetail_200_response.h
 client/MDGetPlaylistDetail_200_response_playlist.cpp

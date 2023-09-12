@@ -65,6 +65,32 @@ API::API(QObject *parent)
             [&](MDHttpRequestWorker *worker, MDGetPlaylistTrackAll_200_response response) {
                 emit playlistSongsCompleted(toJsonArray(response.getSongs()));
             });
+    connect(userApiInstance,
+            &MDClientApi::getUserPlaylistSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetUserPlaylist_200_response response) {
+                emit userPlaylistCompleted(toJsonArray(response.getPlaylist()));
+            });
+    connect(apiInstance,
+            &MDClientApi::getLyricSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetLyric_200_response response) {
+                emit lyricCompleted(response.getLrc().getLyric());
+            });
+    connect(userApiInstance,
+            &MDClientApi::getPurchasedAlbumSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetPurchasedAlbum_200_response response) {
+                emit userBuyAlbumCompleted(toJsonArray(response.getPaidAlbums()));
+            });
+    connect(userApiInstance,
+            &MDClientApi::getArtistSublistSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetArtistSublist_200_response response) {
+                emit artistSublistCompleted(toJsonArray(response.getData()));
+            });
+    connect(userApiInstance,
+            &MDClientApi::getMvSublistSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetMvSublist_200_response response) {
+                emit mvSublistCompleted(toJsonArray(response.getData()));
+            });
+    
 }
 
 void API::banner(const QString type)
@@ -165,6 +191,36 @@ void API::getPlaylistDetail(const QString id)
 void API::getPlaylistSongs(const QString id, const QString limit, const QString offset)
 {
     apiInstance->getPlaylistTrackAll(id, limit, offset);
+}
+
+void API::getPlaylistSongs(const QString id)
+{
+    apiInstance->getPlaylistTrackAll(id);
+}
+
+void API::getUserPlaylist(const QString id)
+{
+    userApiInstance->getUserPlaylist(id);
+}
+
+void API::getLyric(const QString id)
+{
+    apiInstance->getLyric(id);
+}
+
+void API::getUserBuyAlbum()
+{
+    userApiInstance->getPurchasedAlbum();
+}
+
+void API::getArtistSublist()
+{
+    userApiInstance->getArtistSublist(QString::number(QDateTime::currentMSecsSinceEpoch()));
+}
+
+void API::getMvSublist()
+{
+    userApiInstance->getMvSublist(QString::number(QDateTime::currentMSecsSinceEpoch()));
 }
 
 API::~API()

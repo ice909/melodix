@@ -43,6 +43,8 @@ add_library(${PROJECT_NAME}
   MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner.h
   MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivilege.h
   MDGetArtistSingle_200_response_hotSongs_inner_sq.h
+  MDGetArtistSublist_200_response.h
+  MDGetArtistSublist_200_response_data_inner.h
   MDGetHotComment_200_response.h
   MDGetHotComment_200_response_hotComments_inner.h
   MDGetHotComment_200_response_hotComments_inner_beReplied_inner.h
@@ -59,6 +61,9 @@ add_library(${PROJECT_NAME}
   MDGetLoginStatus_200_response_data_profile.h
   MDGetLyric_200_response.h
   MDGetLyric_200_response_lrc.h
+  MDGetMvSublist_200_response.h
+  MDGetMvSublist_200_response_data_inner.h
+  MDGetMvSublist_200_response_data_inner_creator_inner.h
   MDGetPlaylistDetail_200_response.h
   MDGetPlaylistDetail_200_response_playlist.h
   MDGetPlaylistDetail_200_response_playlist_creator.h
@@ -167,6 +172,8 @@ add_library(${PROJECT_NAME}
   MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner.cpp
   MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivilege.cpp
   MDGetArtistSingle_200_response_hotSongs_inner_sq.cpp
+  MDGetArtistSublist_200_response.cpp
+  MDGetArtistSublist_200_response_data_inner.cpp
   MDGetHotComment_200_response.cpp
   MDGetHotComment_200_response_hotComments_inner.cpp
   MDGetHotComment_200_response_hotComments_inner_beReplied_inner.cpp
@@ -183,6 +190,9 @@ add_library(${PROJECT_NAME}
   MDGetLoginStatus_200_response_data_profile.cpp
   MDGetLyric_200_response.cpp
   MDGetLyric_200_response_lrc.cpp
+  MDGetMvSublist_200_response.cpp
+  MDGetMvSublist_200_response_data_inner.cpp
+  MDGetMvSublist_200_response_data_inner_creator_inner.cpp
   MDGetPlaylistDetail_200_response.cpp
   MDGetPlaylistDetail_200_response_playlist.cpp
   MDGetPlaylistDetail_200_response_playlist_creator.cpp

@@ -31,6 +31,20 @@ Item {
     property bool hasMore: true
 
     function getPlaylistSongsInfo() {
+        function onReply(reply) {
+            api.onPlaylistSongsCompleted.disconnect(onReply);
+            for (const song of reply) {
+                songs.push(song);
+                listView.model.append({
+                    "song": song
+                });
+            }
+            initing = false;
+            offset += reply.length;
+            loadMore = false;
+            console.log("加载的歌曲数量: limit: " + limit + " offset: " + offset + " songs数组长度: " + songs.length);
+        }
+
         // 如果当前未添加的歌曲数量大于50的时候，再加载50首
         // 否则通过歌曲总数减去当前的偏移量计算出剩余的歌曲（<50)，全部加载
         if (playlistSongAllCount - offset > 50) {
@@ -39,6 +53,7 @@ Item {
             limit = playlistSongAllCount - offset;
             hasMore = false;
         }
+        api.onPlaylistSongsCompleted.connect(onReply);
         api.getPlaylistSongs(currentPlaylistId, limit, offset);
     }
 
@@ -127,19 +142,6 @@ Item {
             playlistSongAllCount = playlist.trackIds.length;
             console.log("歌单共有：" + playlistSongAllCount + "首歌曲");
             getPlaylistSongsInfo();
-        }
-
-        function onPlaylistSongsCompleted(reply) {
-            for (const song of reply) {
-                songs.push(song);
-                listView.model.append({
-                    "song": song
-                });
-            }
-            initing = false;
-            offset += reply.length;
-            loadMore = false;
-            console.log("加载的歌曲数量: limit: " + limit + " offset: " + offset + " songs数组长度: " + songs.length);
         }
 
         target: api
