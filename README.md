@@ -1,61 +1,68 @@
-# Digi Music
+# Melodix Music
 
-Digi Music是一个使用QML开发的在线音乐播放器，旨在为用户提供便捷的音乐播放体验。
+Melodix Music is an online Music player, interface using QMl technology building, data from [NeteaseCloudMusicApi] (<https://github.com/Binaryify/NeteaseCloudMusicApi>)
 
-## 功能特点
+## Functional characteristics
 
-- 支持网易云账户登录
-- 搜索音乐
+- Online Music playback: Melodix Music can play music online by obtaining data from the NeteaseCloudMusicApi.
 
-## 安装和运行
+- NetEase Cloud Account Login support: Users can log in to Melodix Music using their NetEase Cloud account in order to access their personal music library and playlists.
 
-1. 克隆项目到本地:
+- Music Search: Melodix Music offers a convenient search function that allows users to quickly find the music they want to listen to. Users can search for music by song title.
 
-```bash
-git clone https://github.com/student-ice/digimusic.git
-```
+- Playlist management: Melodix Music allows users to create and manage their own playlists. Users can add their favorite songs to a playlist and enjoy their music anytime, anywhere.
 
-2. 安装所需的依赖:
+- Playback control: Melodix Music provides basic playback control functions such as play, pause, previous song, next song, and more. Users can easily control the progress and volume of music.
 
-```bash
-cd digimusic
-sudo apt build-dep .
-```
+## Installation and operation
 
-3. 编译：
+1. Clone the project locally:
 
-```bash
-cmake -B build
-cmake --build build
-```
+    ```bash
+    git clone https://github.com/student-ice/melodix.git
+    ```
 
-4. 安装：
+2. Dependencies required for installation:
 
-```bash
-sudo make install
-```
+    ```bash
+    cd melodix
+    sudo apt build-dep .
+    ```
 
-5. 打包:
+3. Compile:
 
-```bash
-sudo dpkg-buildpackage -us -uc
-```
+    ```bash
+    cmake -B build
+    cmake --build build
+    ```
 
-## 技术栈
+4. install：
 
-- 前端：使用QML语言构建用户界面。
-- 后端：使用[NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
+    ```bash
+    sudo make install
+    ```
 
-## 贡献
+5. Build package:
 
-如果你对这个项目感兴趣，欢迎提交PR或者提出建议和问题。我会尽快回复和处理。
+    ```bash
+    sudo dpkg-buildpackage -us -uc
+    ```
 
-## 许可证
+## Technology stack
 
-该项目基于GPL-3.0许可证。详情请参阅[LICENSE](./LICENSE)文件。
+- Front-end: Build the user interface using the QML language.
+- Data sources: use [NeteaseCloudMusicApi] (<https://github.com/Binaryify/NeteaseCloudMusicApi>)
 
-## 联系方式
+## Contribution
 
-如果你有任何问题或者建议，可以通过以下方式联系我：
+If you are interested in this project, feel free to submit PRs or provide suggestions and issues. I will respond and address them as soon as possible.
 
-- 邮箱：<tonimayloneya@gmail.com>
+## License
+
+This project is licensed under the GPL-3.0 License. For more details, please refer to the [LICENSE](./LICENSE) file.
+
+## Contact
+
+If you have any questions or suggestions, you can reach me through the following channels:
+
+- Email: <tonimayloneya@gmail.com>
