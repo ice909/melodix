@@ -1,7 +1,7 @@
 {
   "info": {
     "title": "MelodixAPI",
-    "description": "",
+    "description": "Melodix API",
     "version": "1.0.0"
   },
   "tags": [
@@ -11165,7 +11165,7 @@
                         "type": "integer"
                       },
                       "albumId": {
-                        "type": "integer"
+                        "type": "number"
                       },
                       "cover": {
                         "type": "string"
