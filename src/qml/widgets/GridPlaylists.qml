@@ -37,7 +37,7 @@ Item {
                         width: parent.width - 10
                         height: parent.width - 10
                         anchors.centerIn: parent
-                        imgSrc: modelData.coverImgUrl || modelData.picUrl
+                        imgSrc: modelData.coverImgUrl || modelData.picUrl || modelData.cover
 
                         MouseArea {
                             anchors.fill: parent
@@ -77,7 +77,7 @@ Item {
                         anchors.left: parent.left
                         anchors.verticalCenter: parent.verticalCenter
                         width: parent.width
-                        text: modelData.name
+                        text: modelData.name || modelData.albumName
                         elide: Qt.ElideRight
                         color: Util.textColor
 

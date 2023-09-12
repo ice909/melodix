@@ -97,6 +97,7 @@ Item {
 
             spacing: 20
             x: 20
+            y: 5
 
             Text {
                 text: "发现"

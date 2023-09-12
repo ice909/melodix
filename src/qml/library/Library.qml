@@ -1,6 +1,6 @@
-import "../widgets"
 import "../../router"
 import "../../util"
+import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -22,8 +22,9 @@ Item {
         console.log("获取的歌单数量：" + userPlaylists.length);
         playlistRows = Math.ceil(userPlaylists.length / 5);
         var bottomPlaylists = userPlaylists.slice(1, userPlaylists.length);
-        for (const playlist of bottomPlaylists)
-            bottomLoader.item.lists.append({"playlist": playlist});
+        for (const playlist of bottomPlaylists) bottomLoader.item.lists.append({
+            "playlist": playlist
+        })
         console.log("计算出的歌单行数：" + playlistRows);
         switching = false;
     }
@@ -87,8 +88,9 @@ Item {
             musicCountTitle.text = datas.length + "首歌";
             myFavoriteSongs.lists = datas.slice(0, 12);
             var bottomPlaylists = userPlaylists.slice(1, userPlaylists.length);
-            for (const playlist of bottomPlaylists)
-            bottomLoader.item.lists.append({"playlist": playlist});
+            for (const playlist of bottomPlaylists) bottomLoader.item.lists.append({
+                "playlist": playlist
+            })
             initing = false;
         }
 
@@ -101,7 +103,9 @@ Item {
         function onReply(reply) {
             network.onSendReplyFinished.disconnect(onReply);
             var datas = JSON.parse(reply).paidAlbums;
-            bottomLoader.item.lists = datas;
+            for (const playlist of datas) bottomLoader.item.lists.append({
+                "playlist": playlist
+            })
             console.log("已购专辑数量：" + datas.length);
             playlistRows = Math.ceil(datas.length / 5);
             console.log("计算出的已购专辑行数：" + playlistRows);
@@ -272,13 +276,11 @@ Item {
                             anchors.leftMargin: 10
                         }
 
-                        
                         MouseArea {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
-                            onClicked: Router.showFavorite();
+                            onClicked: Router.showFavorite()
                         }
-                        
 
                     }
 
@@ -315,7 +317,7 @@ Item {
                         onClicked: {
                             switching = true;
                             currentChecked = text;
-                            bottomLoader.setSource("../widgets/GridPlaylists.qml")
+                            bottomLoader.setSource("../widgets/GridPlaylists.qml");
                             checkedAllPlaylist();
                         }
                     }
@@ -327,7 +329,8 @@ Item {
                         onClicked: {
                             switching = true;
                             currentChecked = text;
-                            bottomLoader.setSource("./BuyAlbums.qml")
+                            bottomLoader.setSource("");
+                            bottomLoader.setSource("../widgets/GridPlaylists.qml");
                             getUserAlbum();
                         }
                     }
@@ -339,7 +342,7 @@ Item {
                         onClicked: {
                             switching = true;
                             currentChecked = text;
-                            bottomLoader.setSource("./FollowArtists.qml")
+                            bottomLoader.setSource("./FollowArtists.qml");
                             getFollowArtists();
                         }
                     }
@@ -351,7 +354,7 @@ Item {
                         onClicked: {
                             switching = true;
                             currentChecked = text;
-                            bottomLoader.setSource("./CollectMVs.qml")
+                            bottomLoader.setSource("./CollectMVs.qml");
                             getCollectMvs();
                         }
                     }
@@ -369,9 +372,8 @@ Item {
                 id: bottomLoader
 
                 width: scrollWidth
-                height: currentChecked == "MV" ? ((playlistRows * ((scrollWidth - 30 * 3) * 0.25 - 60)) + (playlistRows - 1) * 10) : playlistRows * ((scrollWidth - 30 * 4) * 0.2 + 22) + (playlistRows - 1) * 30
+                height: currentChecked == "MV" ? ((playlistRows * ((scrollWidth - 30 * 3) * 0.25 - 60)) + (playlistRows - 1) * 10) : playlistRows * ((scrollWidth - 30 * 4) * 0.2 + 23) + (playlistRows - 1) * 30
                 source: "../widgets/GridPlaylists.qml"
-
             }
 
         }
