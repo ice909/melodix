@@ -296,11 +296,11 @@ Item {
 
             }
 
-            HotPlaylists {
+            GridPlaylists {
                 id: hotPlaylists
 
                 width: scrollWidth
-                height: playlistRows * 202 + (playlistRows - 1) * 30
+                height: playlistRows * ((scrollWidth - 30 * 4) * 0.2 + 20) + (playlistRows - 1) * 30
             }
 
         }

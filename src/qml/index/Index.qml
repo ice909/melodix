@@ -25,7 +25,9 @@ Item {
         }
 
         function onRecommendedPlaylistCompleted(res) {
-            recommendedPlaylist.lists = res;
+            for (const playlist of res) recommendedPlaylist.lists.append({
+                "playlist": playlist
+            })
         }
 
         function onRecommendedNewSongsCompleted(res) {
@@ -83,9 +85,9 @@ Item {
 
             Item {
                 width: scrollWidth
-                height: ((scrollWidth - 20 * 4) * 0.2 + 30) * 2 + 20
+                height: ((scrollWidth - 30 * 4) * 0.2 + 22) * 2 + 30
 
-                RecommendPlaylist {
+                GridPlaylists {
                     id: recommendedPlaylist
 
                     anchors.fill: parent

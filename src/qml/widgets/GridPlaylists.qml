@@ -1,27 +1,27 @@
 import "../../router"
 import "../../util"
-import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
-import org.deepin.dtk 1.0
 
 Item {
-    property alias lists: repeater.model
+    property ListModel lists
 
     Grid {
         id: gridLayout
 
         anchors.fill: parent
         columns: 5
-        columnSpacing: 20
-        rowSpacing: 20
+        columnSpacing: 30
+        rowSpacing: 30
 
         Repeater {
             id: repeater
 
+            model: lists
+
             Item {
-                width: (parent.width - 20 * 4) * 0.2
-                height: width + 30
+                width: (scrollWidth - 30 * 4) * 0.2
+                height: width + 20
 
                 Rectangle {
                     id: imgRect
@@ -35,9 +35,9 @@ Item {
                         id: img
 
                         width: parent.width - 10
-                        height: parent.height - 10
+                        height: parent.width - 10
                         anchors.centerIn: parent
-                        imgSrc: modelData.picUrl
+                        imgSrc: modelData.coverImgUrl || modelData.picUrl
 
                         MouseArea {
                             anchors.fill: parent
@@ -72,7 +72,7 @@ Item {
                     height: 30
 
                     Text {
-                        id: playlistTitle
+                        id: hotPlaylistTitle
 
                         anchors.left: parent.left
                         anchors.verticalCenter: parent.verticalCenter
@@ -80,21 +80,22 @@ Item {
                         text: modelData.name
                         elide: Qt.ElideRight
                         color: Util.textColor
-                    }
 
-                    MouseArea {
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onEntered: {
-                            playlistTitle.font.underline = true;
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onEntered: {
+                                hotPlaylistTitle.font.underline = true;
+                            }
+                            onExited: {
+                                hotPlaylistTitle.font.underline = false;
+                            }
+                            onClicked: {
+                                Router.showPlaylistDetail(modelData.id);
+                            }
                         }
-                        onExited: {
-                            playlistTitle.font.underline = false;
-                        }
-                        onClicked: {
-                            Router.showPlaylistDetail(modelData.id);
-                        }
+
                     }
 
                 }
@@ -103,6 +104,9 @@ Item {
 
         }
 
+    }
+
+    lists: ListModel {
     }
 
 }

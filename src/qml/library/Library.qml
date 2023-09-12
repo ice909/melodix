@@ -21,7 +21,9 @@ Item {
     function checkedAllPlaylist() {
         console.log("获取的歌单数量：" + userPlaylists.length);
         playlistRows = Math.ceil(userPlaylists.length / 5);
-        bottomLoader.item.lists = userPlaylists.slice(1, userPlaylists.length);
+        var bottomPlaylists = userPlaylists.slice(1, userPlaylists.length);
+        for (const playlist of bottomPlaylists)
+            bottomLoader.item.lists.append({"playlist": playlist});
         console.log("计算出的歌单行数：" + playlistRows);
         switching = false;
     }
@@ -84,7 +86,9 @@ Item {
             getLyric(datas[randomNumber].id);
             musicCountTitle.text = datas.length + "首歌";
             myFavoriteSongs.lists = datas.slice(0, 12);
-            bottomLoader.item.lists = userPlaylists.slice(1, userPlaylists.length);
+            var bottomPlaylists = userPlaylists.slice(1, userPlaylists.length);
+            for (const playlist of bottomPlaylists)
+            bottomLoader.item.lists.append({"playlist": playlist});
             initing = false;
         }
 
@@ -311,7 +315,7 @@ Item {
                         onClicked: {
                             switching = true;
                             currentChecked = text;
-                            bottomLoader.setSource("./AllPlaylist.qml")
+                            bottomLoader.setSource("../widgets/GridPlaylists.qml")
                             checkedAllPlaylist();
                         }
                     }
@@ -365,8 +369,8 @@ Item {
                 id: bottomLoader
 
                 width: scrollWidth
-                height: currentChecked == "MV" ? ((playlistRows * ((scrollWidth - 30 * 3) * 0.25 - 60)) + (playlistRows - 1) * 10) : ((playlistRows * ((scrollWidth - 30 * 4) * 0.2 + 30)) + (playlistRows - 1) * 10)
-                source: "./AllPlaylist.qml"
+                height: currentChecked == "MV" ? ((playlistRows * ((scrollWidth - 30 * 3) * 0.25 - 60)) + (playlistRows - 1) * 10) : playlistRows * ((scrollWidth - 30 * 4) * 0.2 + 22) + (playlistRows - 1) * 30
+                source: "../widgets/GridPlaylists.qml"
 
             }
 
