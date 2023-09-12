@@ -9,7 +9,6 @@ Item {
     id: root
 
     property bool loading: true
-    property int scrollWidth: rootWindow.width - 40
 
     Component.onCompleted: {
         api.banner("0");

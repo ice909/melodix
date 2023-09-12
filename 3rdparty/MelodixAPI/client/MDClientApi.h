@@ -207,12 +207,12 @@ public:
     void getTopArtists();
 
     /**
-    * @param[in]  cat QString [optional]
+    * @param[in]  cat QString [required]
     * @param[in]  order QString [optional]
     * @param[in]  limit QString [optional]
     * @param[in]  offset QString [optional]
     */
-    void getTopPlaylist(const ::MelodixAPI::OptionalParam<QString> &cat = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &order = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &offset = ::MelodixAPI::OptionalParam<QString>());
+    void getTopPlaylist(const QString &cat, const ::MelodixAPI::OptionalParam<QString> &order = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &offset = ::MelodixAPI::OptionalParam<QString>());
 
     /**
     * @param[in]  uid QString [required]

@@ -1,5 +1,5 @@
-import "../widgets"
 import "../../util"
+import "../widgets"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -9,14 +9,13 @@ Item {
     id: root
 
     property bool initing: true
-    property int scrollWidth: rootWindow.width - 40
     property string currentCategory: "全部" // 默认选中全部分类
     // 当前显示歌单的行数
     property int playlistRows: 0
     // 当前显示歌单的总数
     property int playlistCount: 0
     // 一次取出的歌曲数量
-    property int songlimit: 0
+    property int limit: 0
     // 歌曲偏移量
     property int offset: 0
     // 是否正在“加载更多”
@@ -30,54 +29,53 @@ Item {
         hotPlaylists.lists.clear();
         hasMore = true;
         offset = 0;
-        songlimit = 0;
+        limit = 0;
+        playlistCount = 0;
         playlistRows = 0;
-        getPlaylistCount();
+        api.getTopPlaylistCount(currentCategory);
     }
 
-    function getHotPlaylist() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            //console.log(JSON.stringify(JSON.parse(reply)))
-            var playlists = JSON.parse(reply).playlists;
-            for (const playlist of playlists) hotPlaylists.lists.append({
-                "playlist": playlist
-            })
-            console.log("获取的歌单数量：" + playlists.length);
-            playlistRows += Math.ceil(playlists.length / 5);
-            console.log("计算出的歌单行数：" + playlistRows);
-            offset += playlists.length;
-            console.log("加载的歌曲数量: songlimit: " + songlimit + " offset: " + offset);
-            initing = false;
-            loadMore = false;
-        }
-
+    function moreLoading() {
         if (playlistCount - offset > 50) {
-            songlimit = 50;
+            limit = 50;
         } else {
-            songlimit = playlistCount - offset;
+            limit = playlistCount - offset;
             hasMore = false;
         }
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/top/playlist?cat=" + currentCategory + "&limit=" + songlimit + "&offset=" + offset);
-    }
-
-    function getPlaylistCount(first = false) {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            playlistCount = JSON.parse(reply).total;
-            getHotPlaylist();
-        }
-
-        if (!first)
-            loadAnimation.anchors.topMargin = tabBtns.height + 40;
-
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/top/playlist?cat=" + currentCategory);
+        api.getTopPlaylist(currentCategory, 'hot', limit, offset);
     }
 
     Component.onCompleted: {
-        getPlaylistCount(true);
+        api.getTopPlaylistCount(currentCategory);
+    }
+
+    Connections {
+        function onTopPlaylistCountCompleted(count) {
+            console.log("count: " + count);
+            playlistCount = count;
+            if (playlistCount - offset > 50) {
+                limit = 50;
+            } else {
+                limit = playlistCount - offset;
+                hasMore = false;
+            }
+            api.getTopPlaylist(currentCategory, 'hot', limit, offset);
+        }
+
+        function onTopPlaylistCompleted(res) {
+            for (const playlist of res) hotPlaylists.lists.append({
+                "playlist": playlist
+            })
+            playlistRows += Math.ceil(res.length / 5);
+            console.log("歌单总行数：" + playlistRows);
+            offset += res.length;
+            console.log("加载的歌曲数量: limit: " + limit + " offset: " + offset);
+            initing = false;
+            loadMore = false;
+            loadAnimation.anchors.topMargin = tabBtns.height + 40;
+        }
+
+        target: api
     }
 
     // 发现界面
@@ -90,7 +88,7 @@ Item {
             if (position > 0.99 && !loadMore && hasMore) {
                 console.log("position: " + position + " 滚动到底部，加载更多");
                 loadMore = true;
-                getHotPlaylist();
+                moreLoading();
             }
         }
 

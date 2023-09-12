@@ -4167,7 +4167,7 @@
             "name": "cat",
             "in": "query",
             "description": " tag, 比如 \" 华语 \"、\" 古风 \" 、\" 欧美 \"、\" 流行 \", 默认为 \"全部\",可从歌单分类接口获取(/playlist/catlist)",
-            "required": false,
+            "required": true,
             "type": "string",
             "x-example": "全部"
           },
@@ -4211,7 +4211,7 @@
                         "type": "string"
                       },
                       "id": {
-                        "type": "integer"
+                        "type": "number"
                       },
                       "trackNumberUpdateTime": {
                         "type": "integer"

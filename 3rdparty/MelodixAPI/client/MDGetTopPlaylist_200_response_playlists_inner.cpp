@@ -369,10 +369,10 @@ bool MDGetTopPlaylist_200_response_playlists_inner::is_name_Valid() const{
     return m_name_isValid;
 }
 
-qint32 MDGetTopPlaylist_200_response_playlists_inner::getId() const {
+double MDGetTopPlaylist_200_response_playlists_inner::getId() const {
     return m_id;
 }
-void MDGetTopPlaylist_200_response_playlists_inner::setId(const qint32 &id) {
+void MDGetTopPlaylist_200_response_playlists_inner::setId(const double &id) {
     m_id = id;
     m_id_isSet = true;
 }

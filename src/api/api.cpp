@@ -1,12 +1,12 @@
 #include "api.h"
 
-#include <QEventLoop>
 #include <QDebug>
+#include <QEventLoop>
 #include <QRandomGenerator>
 
 template<typename T>
 QJsonArray toJsonArray(QList<T> list)
-{   
+{
     QJsonArray arr;
     for (auto item : list) {
         arr.append(item.asJsonObject());
@@ -14,24 +14,56 @@ QJsonArray toJsonArray(QList<T> list)
     return arr;
 }
 
-API::API(QObject *parent) : QObject(parent)
+API::API(QObject *parent)
+    : QObject(parent)
+    , apiInstance(new MDClientApi)
+    , apiInstance2(new MDClientApi)
 {
-    apiInstance = new MDClientApi;
+    connect(apiInstance2,
+            &MDClientApi::getTopPlaylistSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetTopPlaylist_200_response response) {
+                emit topPlaylistCountCompleted(response.getTotal());
+            });
+    connect(apiInstance,
+            &MDClientApi::getTopPlaylistSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetTopPlaylist_200_response response) {
+                emit topPlaylistCompleted(toJsonArray(response.getPlaylists()));
+            });
+}
+
+void API::banner(const QString type)
+{
+    apiInstance->banner(type);
     connect(apiInstance,
             &MDClientApi::bannerSignalFull,
             [&](MDHttpRequestWorker *worker, MDBanner_200_response response) {
                 emit bannerCompleted(toJsonArray(response.getBanners()));
             });
+}
+
+void API::getRecommendedPlaylist(const QString limit)
+{
+    apiInstance->getRecommendedPlaylist(limit);
     connect(apiInstance,
             &MDClientApi::getRecommendedPlaylistSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetRecommendedPlaylist_200_response response) {                
+            [&](MDHttpRequestWorker *worker, MDGetRecommendedPlaylist_200_response response) {
                 emit recommendedPlaylistCompleted(toJsonArray(response.getResult()));
             });
+}
+
+void API::getRecommendedNewSongs(const QString limit)
+{
+    apiInstance->getRecommendedNewSongs(limit);
     connect(apiInstance,
             &MDClientApi::getRecommendedNewSongsSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetRecommendedNewSongs_200_response response) {
                 emit recommendedNewSongsCompleted(toJsonArray(response.getResult()));
             });
+}
+
+void API::getTopArtists()
+{
+    apiInstance->getTopArtists();
     connect(apiInstance,
             &MDClientApi::getTopArtistsSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetTopArtists_200_response response) {
@@ -44,6 +76,11 @@ API::API(QObject *parent) : QObject(parent)
                 artists = artists.mid(index, 5);
                 emit topArtistsCompleted(toJsonArray(artists));
             });
+}
+
+void API::getRecommendedMv()
+{
+    apiInstance->getRecommendedMv();
     connect(apiInstance,
             &MDClientApi::getRecommendedMvSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetRecommendedMv_200_response response) {
@@ -51,27 +88,27 @@ API::API(QObject *parent) : QObject(parent)
             });
 }
 
-void API::banner(const QString type)
+void API::getTopPlaylistCount(const QString cat)
 {
-    apiInstance->banner(type);
+    apiInstance2->getTopPlaylist(cat);
 }
 
-void API::getRecommendedPlaylist(const QString limit)
+void API::getTopPlaylist(const QString cat,
+                         const QString order,
+                         const QString limit,
+                         const QString offset)
 {
-    apiInstance->getRecommendedPlaylist(limit);
+    apiInstance->getTopPlaylist(cat, order, limit, offset);
 }
 
-void API::getRecommendedNewSongs(const QString limit)
+API::~API()
 {
-    apiInstance->getRecommendedNewSongs(limit);
-}
-
-void API::getTopArtists()
-{
-    apiInstance->getTopArtists();
-}
-
-void API::getRecommendedMv()
-{
-    apiInstance->getRecommendedMv();
+    if (apiInstance != nullptr) {
+        delete apiInstance;
+        apiInstance = nullptr;
+    }
+    if (apiInstance2 != nullptr) {
+        delete apiInstance2;
+        apiInstance2 = nullptr;
+    }
 }

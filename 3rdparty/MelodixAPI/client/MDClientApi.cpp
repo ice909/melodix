@@ -1918,11 +1918,11 @@ void MDClientApi::getTopArtistsCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getTopPlaylist(const ::MelodixAPI::OptionalParam<QString> &cat, const ::MelodixAPI::OptionalParam<QString> &order, const ::MelodixAPI::OptionalParam<QString> &limit, const ::MelodixAPI::OptionalParam<QString> &offset) {
+void MDClientApi::getTopPlaylist(const QString &cat, const ::MelodixAPI::OptionalParam<QString> &order, const ::MelodixAPI::OptionalParam<QString> &limit, const ::MelodixAPI::OptionalParam<QString> &offset) {
     QString fullPath = QString(_serverConfigs["getTopPlaylist"][_serverIndices.value("getTopPlaylist")].URL()+"/top/playlist");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
-    if (cat.hasValue())
+    
     {
         queryStyle = "";
         if (queryStyle == "")
@@ -1935,7 +1935,7 @@ void MDClientApi::getTopPlaylist(const ::MelodixAPI::OptionalParam<QString> &cat
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("cat")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(cat.value())));
+        fullPath.append(QUrl::toPercentEncoding("cat")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(cat)));
     }
     if (order.hasValue())
     {
