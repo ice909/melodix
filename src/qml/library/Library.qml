@@ -103,9 +103,7 @@ Item {
         function onReply(reply) {
             network.onSendReplyFinished.disconnect(onReply);
             var datas = JSON.parse(reply).paidAlbums;
-            for (const playlist of datas) bottomLoader.item.lists.append({
-                "playlist": playlist
-            })
+            bottomLoader.item.lists = datas;
             console.log("已购专辑数量：" + datas.length);
             playlistRows = Math.ceil(datas.length / 5);
             console.log("计算出的已购专辑行数：" + playlistRows);
@@ -330,7 +328,7 @@ Item {
                             switching = true;
                             currentChecked = text;
                             bottomLoader.setSource("");
-                            bottomLoader.setSource("../widgets/GridPlaylists.qml");
+                            bottomLoader.setSource("./BuyAlbums.qml");
                             getUserAlbum();
                         }
                     }

@@ -1,3 +1,4 @@
+import "../../router"
 import "../../util"
 import "../widgets"
 import QtQuick 2.0
@@ -20,8 +21,8 @@ Item {
             id: repeater
 
             Item {
-                width: (parent.width - 30 * 4) * 0.2
-                height: width + 30
+                width: (scrollWidth - 30 * 4) * 0.2
+                height: width + 20
 
                 Rectangle {
                     id: imgRect
@@ -56,6 +57,9 @@ Item {
                         onReleased: {
                             imgRect.color = Util.mouseReleasedColor;
                         }
+                        onClicked: {
+                            Router.showPlaylistDetail(modelData.albumId);
+                        }
                     }
 
                 }
@@ -64,7 +68,7 @@ Item {
                     anchors.top: imgRect.bottom
                     anchors.horizontalCenter: imgRect.horizontalCenter
                     width: imgRect.width
-                    height: 30
+                    height: 20
 
                     Text {
                         id: title
@@ -89,7 +93,7 @@ Item {
                             title.font.underline = false;
                         }
                         onClicked: {
-                            Router.showPlaylistDetail(modelData.id);
+                            Router.showPlaylistDetail(modelData.albumId);
                         }
                     }
 
