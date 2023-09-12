@@ -23,6 +23,9 @@ public slots:
                         const QString order,
                         const QString limit,
                         const QString offset);
+    void getLoginStatus();
+    void getAccountInfo();
+    void getUserLikeSongIds(const QString id);
 signals:
     void bannerCompleted(QJsonArray);
     void recommendedPlaylistCompleted(QJsonArray);
@@ -31,10 +34,14 @@ signals:
     void recommendedMvCompleted(QJsonArray);
     void topPlaylistCountCompleted(qint32);
     void topPlaylistCompleted(QJsonArray);
+    void loginStatusCompleted(QJsonObject);
+    void accountInfoCompleted(QJsonObject);
+    void userLikeSongIdsCompleted(QJsonObject);
 
 private:
     MDClientApi *apiInstance = nullptr;
     MDClientApi *apiInstance2 = nullptr;
+    MDClientApi *userApiInstance = nullptr;
 };
 
 #endif // MELODIX_API_H

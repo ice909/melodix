@@ -1,7 +1,8 @@
 #include "api.h"
+#include "worker.h"
 
+#include <QDateTime>
 #include <QDebug>
-#include <QEventLoop>
 #include <QRandomGenerator>
 
 template<typename T>
@@ -18,7 +19,12 @@ API::API(QObject *parent)
     : QObject(parent)
     , apiInstance(new MDClientApi)
     , apiInstance2(new MDClientApi)
+    , userApiInstance(new MDClientApi)
 {
+    QString cookie = Worker::instance()->getCookie();
+    if (!cookie.isEmpty()) {
+        userApiInstance->addHeaders("Cookie", cookie);
+    }
     connect(apiInstance2,
             &MDClientApi::getTopPlaylistSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetTopPlaylist_200_response response) {
@@ -28,6 +34,21 @@ API::API(QObject *parent)
             &MDClientApi::getTopPlaylistSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetTopPlaylist_200_response response) {
                 emit topPlaylistCompleted(toJsonArray(response.getPlaylists()));
+            });
+    connect(userApiInstance,
+            &MDClientApi::getLoginStatusSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetLoginStatus_200_response response) {
+                emit loginStatusCompleted(response.getData().asJsonObject());
+            });
+    connect(userApiInstance,
+            &MDClientApi::getAccountInfoSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetAccountInfo_200_response response) {
+                emit accountInfoCompleted(response.getProfile().asJsonObject());
+            });
+    connect(userApiInstance,
+            &MDClientApi::getLikeSongIdSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetLikeSongId_200_response response) {
+                emit userLikeSongIdsCompleted(response.asJsonObject());
             });
 }
 
@@ -101,6 +122,21 @@ void API::getTopPlaylist(const QString cat,
     apiInstance->getTopPlaylist(cat, order, limit, offset);
 }
 
+void API::getLoginStatus()
+{
+    userApiInstance->getLoginStatus(QString::number(QDateTime::currentMSecsSinceEpoch()));
+}
+
+void API::getAccountInfo()
+{
+    userApiInstance->getAccountInfo(QDateTime::currentMSecsSinceEpoch());
+}
+
+void API::getUserLikeSongIds(const QString id)
+{
+    userApiInstance->getLikeSongId(id);
+}
+
 API::~API()
 {
     if (apiInstance != nullptr) {
@@ -110,5 +146,9 @@ API::~API()
     if (apiInstance2 != nullptr) {
         delete apiInstance2;
         apiInstance2 = nullptr;
+    }
+    if (userApiInstance != nullptr) {
+        delete userApiInstance;
+        userApiInstance = nullptr;
     }
 }

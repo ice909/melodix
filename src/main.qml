@@ -39,48 +39,6 @@ ApplicationWindow {
         network.getSongUrl(id);
     }
 
-    function getUserFavoriteSongID() {
-        function onReply(reply) {
-            network.onAccountReplyFinished.disconnect(onReply);
-            userFavoriteSongsID = JSON.parse(reply).ids;
-        }
-
-        network.onAccountReplyFinished.connect(onReply);
-        network.accountInfo("/likelist?uid=" + userID);
-    }
-
-    function getAccountInfo() {
-        function onReply(reply) {
-            network.onAccountReplyFinished.disconnect(onReply);
-            userAvatar = JSON.parse(reply).profile.avatarUrl;
-            userNickname = JSON.parse(reply).profile.nickname;
-            userID = JSON.parse(reply).profile.userId;
-            console.log("用户头像 昵称 ID获取成功");
-            getUserFavoriteSongID();
-        }
-
-        network.onAccountReplyFinished.connect(onReply);
-        network.accountInfo("/user/account?timestamp=" + Util.getTimestamp());
-    }
-
-    function refreshAccount() {
-        function onReply(reply) {
-            network.onAccountReplyFinished.disconnect(onReply);
-            var userData = JSON.parse(reply).data;
-            if (userData.code == 200 && userData.account.status == 0 && userData.profile != null) {
-                console.log("用户已登录");
-                isLogin = true;
-                getAccountInfo();
-            } else {
-                console.log("还未登录");
-                return ;
-            }
-        }
-
-        network.onAccountReplyFinished.connect(onReply);
-        network.accountInfo("/login/status?timestamp=" + Util.getTimestamp());
-    }
-
     function onMediaCountChanged(count) {
         if (count == 0) {
             trayPreAction.enabled = false;
@@ -135,7 +93,31 @@ ApplicationWindow {
         }
     }
     Component.onCompleted: {
-        refreshAccount();
+        api.getLoginStatus();
+    }
+
+    Connections {
+        target: api
+        function onLoginStatusCompleted(res) {
+            if (res.code == 200 && res.account.status == 0 && res.profile != null) {
+                console.log("用户已登录");
+                isLogin = true;
+                api.getAccountInfo();
+            } else {
+                console.log("还未登录");
+                return ;
+            }
+        }
+        function onAccountInfoCompleted(profile) {
+            userAvatar = profile.avatarUrl;
+            userNickname = profile.nickname;
+            userID = profile.userId;
+            console.log("用户头像 昵称 ID获取成功");
+            api.getUserLikeSongIds(userID);
+        }
+        function onUserLikeSongIdsCompleted(res) {
+            userFavoriteSongsID = res.ids;
+        }
     }
 
     Loader {

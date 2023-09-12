@@ -104,8 +104,10 @@ public:
     */
     void checkMusic(const QString &id, const ::MelodixAPI::OptionalParam<QString> &br = ::MelodixAPI::OptionalParam<QString>());
 
-
-    void getAccountInfo();
+    /**
+    * @param[in]  timestamp double [required]
+    */
+    void getAccountInfo(const double &timestamp);
 
     /**
     * @param[in]  id QString [required]

@@ -542,9 +542,25 @@ void MDClientApi::checkMusicCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getAccountInfo() {
+void MDClientApi::getAccountInfo(const double &timestamp) {
     QString fullPath = QString(_serverConfigs["getAccountInfo"][_serverIndices.value("getAccountInfo")].URL()+"/user/account");
     
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "timestamp", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("timestamp")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(timestamp)));
+    }
     MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
