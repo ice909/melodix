@@ -124,8 +124,12 @@ API::API(QObject *parent)
             [&](MDHttpRequestWorker *worker, MDGetSimiMv_200_response response) {
                 emit simiMvCompleted(toJsonArray(response.getMvs()));
             });
+    connect(apiInstance,
+            &MDClientApi::searchSignalFull,
+            [&](MDHttpRequestWorker *worker, MDSearch_200_response response) {
+                emit searchCompleted(response.getResult().asJsonObject());
+            });
 }
-
 void API::banner(const QString type)
 {
     apiInstance->banner(type);
@@ -287,6 +291,16 @@ void API::getMvHotComment(const QString id, const QString type)
 void API::getSimiMv(const QString id)
 {
     apiInstance->getSimiMv(id);
+}
+
+void API::search(const QString keyword)
+{
+    apiInstance->search(keyword);
+}
+
+void API::search(const QString keyword, const QString limit, const QString offset)
+{
+    apiInstance->search(keyword, limit, offset);
 }
 
 API::~API()

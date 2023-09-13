@@ -42,6 +42,8 @@ public slots:
     void getMvDetail(const QString id);
     void getMvHotComment(const QString id,const QString type);
     void getSimiMv(const QString id);
+    void search(const QString keyword);
+    void search(const QString keyword, const QString limit, const QString offset);
 signals:
     void bannerCompleted(QJsonArray);
     void recommendedPlaylistCompleted(QJsonArray);
@@ -68,6 +70,7 @@ signals:
     void mvDetailCompleted(QJsonObject);
     void hotCommentCompleted(QJsonArray);
     void simiMvCompleted(QJsonArray);
+    void searchCompleted(QJsonObject);
 
 private:
     MDClientApi *apiInstance = nullptr;

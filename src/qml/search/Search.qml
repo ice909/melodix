@@ -21,7 +21,7 @@ Item {
     // 歌曲偏移量
     property int offset: 0
     // 一次加载的歌曲数量
-    property int songLimit: 0
+    property int limit: 0
     // 是否正在“加载更多”
     property bool loadMore: false
     // 是否加载完全部歌曲
@@ -32,49 +32,49 @@ Item {
     property int serialNumberWidth: 20
 
     function getSearchSongsInfo() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var newSongs = JSON.parse(reply).result.songs;
-            songs.push(...newSongs);
-            for (const song of newSongs) listView.model.append({
-                "song": song
-            })
+        function onReply(result) {
+            api.onSearchCompleted.disconnect(onReply);
+            var newSongs = result.songs;
+            for (const song of newSongs) {
+                songs.push(song);
+                listView.model.append({
+                    "song": song
+                });
+            }
             initing = false;
             offset += newSongs.length;
             loadMore = false;
-            console.log("加载的歌曲数量: songLimit: " + songLimit + " offset: " + offset + " songs数组长度: " + songs.length);
+            console.log("加载的歌曲数量: limit: " + limit + " offset: " + offset + " songs数组长度: " + songs.length);
         }
 
         if (songListCount - offset > 50) {
-            songLimit = 50;
+            limit = 50;
         } else {
-            songLimit = songListCount - offset;
+            limit = songListCount - offset;
             hasMore = false;
         }
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/cloudsearch?keywords=" + Router.routeCurrent.key + "&offset=" + offset + "&limit=" + songLimit);
+        api.onSearchCompleted.connect(onReply);
+        api.search(Router.routeCurrent.key, limit, offset);
     }
 
     function getSearchResult(offset = 0) {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var result = JSON.parse(reply).result;
+        function onReply(result) {
+            api.onSearchCompleted.disconnect(onReply);
             songListCount = result.songCount;
             console.log("搜索到的歌曲共有：" + songListCount + "首");
             getSearchSongsInfo();
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/cloudsearch?keywords=" + Router.routeCurrent.key);
+        api.onSearchCompleted.connect(onReply);
+        api.search(Router.routeCurrent.key);
     }
 
     function playSearchAllMusic(index = -1) {
-        function onReply(reply) {
-            network.onSongUrlRequestFinished.disconnect(onReply);
-            var urlList = JSON.parse(reply).data;
+        function onReply(data) {
+            api.onSongUrlCompleted.disconnect(onReply);
             var urlOffset = songUrls.length;
-            for (var i = 0; i < urlList.length; i++) {
-                var song = urlList[i];
+            for (var i = 0; i < data.length; i++) {
+                var song = data[i];
                 var songIndex = ids.indexOf(song.id);
                 if (songIndex !== -1)
                     songUrls[songIndex + urlOffset] = song.url;
@@ -102,8 +102,8 @@ Item {
         for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
         // 将所有id使用逗号连接成一个字符串
         var concatenatedIds = ids.join(',');
-        network.onSongUrlRequestFinished.connect(onReply);
-        network.getSongUrl(concatenatedIds);
+        api.onSongUrlCompleted.connect(onReply);
+        api.getSongUrl(concatenatedIds);
     }
 
     function onPlaylistCurrentIndexChanged() {
