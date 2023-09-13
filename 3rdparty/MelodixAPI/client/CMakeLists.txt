@@ -61,9 +61,17 @@ add_library(${PROJECT_NAME}
   MDGetLoginStatus_200_response_data_profile.h
   MDGetLyric_200_response.h
   MDGetLyric_200_response_lrc.h
+  MDGetMvDetail_200_response.h
+  MDGetMvDetail_200_response_data.h
+  MDGetMvDetail_200_response_data_artists_inner.h
+  MDGetMvDetail_200_response_data_brs_inner.h
+  MDGetMvDetail_200_response_data_videoGroup_inner.h
+  MDGetMvDetail_200_response_mp.h
   MDGetMvSublist_200_response.h
   MDGetMvSublist_200_response_data_inner.h
   MDGetMvSublist_200_response_data_inner_creator_inner.h
+  MDGetMvUrl_200_response.h
+  MDGetMvUrl_200_response_data.h
   MDGetPlaylistDetail_200_response.h
   MDGetPlaylistDetail_200_response_playlist.h
   MDGetPlaylistDetail_200_response_playlist_creator.h
@@ -97,6 +105,9 @@ add_library(${PROJECT_NAME}
   MDGetRecommendedNewSongs_200_response_result_inner_song_sqMusic.h
   MDGetRecommendedPlaylist_200_response.h
   MDGetRecommendedPlaylist_200_response_result_inner.h
+  MDGetSimiMv_200_response.h
+  MDGetSimiMv_200_response_mvs_inner.h
+  MDGetSimiMv_200_response_mvs_inner_artists_inner.h
   MDGetSongDetail_200_response.h
   MDGetSongDetail_200_response_privileges_inner.h
   MDGetSongDetail_200_response_songs_inner.h
@@ -190,9 +201,17 @@ add_library(${PROJECT_NAME}
   MDGetLoginStatus_200_response_data_profile.cpp
   MDGetLyric_200_response.cpp
   MDGetLyric_200_response_lrc.cpp
+  MDGetMvDetail_200_response.cpp
+  MDGetMvDetail_200_response_data.cpp
+  MDGetMvDetail_200_response_data_artists_inner.cpp
+  MDGetMvDetail_200_response_data_brs_inner.cpp
+  MDGetMvDetail_200_response_data_videoGroup_inner.cpp
+  MDGetMvDetail_200_response_mp.cpp
   MDGetMvSublist_200_response.cpp
   MDGetMvSublist_200_response_data_inner.cpp
   MDGetMvSublist_200_response_data_inner_creator_inner.cpp
+  MDGetMvUrl_200_response.cpp
+  MDGetMvUrl_200_response_data.cpp
   MDGetPlaylistDetail_200_response.cpp
   MDGetPlaylistDetail_200_response_playlist.cpp
   MDGetPlaylistDetail_200_response_playlist_creator.cpp
@@ -226,6 +245,9 @@ add_library(${PROJECT_NAME}
   MDGetRecommendedNewSongs_200_response_result_inner_song_sqMusic.cpp
   MDGetRecommendedPlaylist_200_response.cpp
   MDGetRecommendedPlaylist_200_response_result_inner.cpp
+  MDGetSimiMv_200_response.cpp
+  MDGetSimiMv_200_response_mvs_inner.cpp
+  MDGetSimiMv_200_response_mvs_inner_artists_inner.cpp
   MDGetSongDetail_200_response.cpp
   MDGetSongDetail_200_response_privileges_inner.cpp
   MDGetSongDetail_200_response_songs_inner.cpp

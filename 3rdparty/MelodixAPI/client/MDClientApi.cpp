@@ -81,6 +81,8 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("getRecommendedNewSongs", 0);
     _serverConfigs.insert("getRecommendedPlaylist", defaultConf);
     _serverIndices.insert("getRecommendedPlaylist", 0);
+    _serverConfigs.insert("getSimiMv", defaultConf);
+    _serverIndices.insert("getSimiMv", 0);
     _serverConfigs.insert("getSongDetail", defaultConf);
     _serverIndices.insert("getSongDetail", 0);
     _serverConfigs.insert("getSongUrl", defaultConf);
@@ -1279,7 +1281,7 @@ void MDClientApi::getMvDetailCallback(MDHttpRequestWorker *worker) {
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    MDObject output(QString(worker->response));
+    MDGetMvDetail_200_response output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
@@ -1424,7 +1426,7 @@ void MDClientApi::getMvUrlCallback(MDHttpRequestWorker *worker) {
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    MDObject output(QString(worker->response));
+    MDGetMvUrl_200_response output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
@@ -1886,6 +1888,71 @@ void MDClientApi::getRecommendedPlaylistCallback(MDHttpRequestWorker *worker) {
     } else {
         emit getRecommendedPlaylistSignalE(output, error_type, error_str);
         emit getRecommendedPlaylistSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void MDClientApi::getSimiMv(const QString &mvid) {
+    QString fullPath = QString(_serverConfigs["getSimiMv"][_serverIndices.value("getSimiMv")].URL()+"/simi/mv");
+    
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "mvid", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("mvid")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(mvid)));
+    }
+    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    MDHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getSimiMvCallback);
+    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void MDClientApi::getSimiMvCallback(MDHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    MDGetSimiMv_200_response output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getSimiMvSignal(output);
+        emit getSimiMvSignalFull(worker, output);
+    } else {
+        emit getSimiMvSignalE(output, error_type, error_str);
+        emit getSimiMvSignalEFull(worker, error_type, error_str);
     }
 }
 

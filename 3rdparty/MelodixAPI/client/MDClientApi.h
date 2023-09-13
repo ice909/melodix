@@ -30,7 +30,9 @@
 #include "MDGetLikeSongId_200_response.h"
 #include "MDGetLoginStatus_200_response.h"
 #include "MDGetLyric_200_response.h"
+#include "MDGetMvDetail_200_response.h"
 #include "MDGetMvSublist_200_response.h"
+#include "MDGetMvUrl_200_response.h"
 #include "MDGetPlaylistDetail_200_response.h"
 #include "MDGetPlaylistTrackAll_200_response.h"
 #include "MDGetPurchasedAlbum_200_response.h"
@@ -38,6 +40,7 @@
 #include "MDGetRecommendedMv_200_response.h"
 #include "MDGetRecommendedNewSongs_200_response.h"
 #include "MDGetRecommendedPlaylist_200_response.h"
+#include "MDGetSimiMv_200_response.h"
 #include "MDGetSongDetail_200_response.h"
 #include "MDGetSongUrl_200_response.h"
 #include "MDGetTopArtists_200_response.h"
@@ -208,6 +211,11 @@ public:
     void getRecommendedPlaylist(const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>());
 
     /**
+    * @param[in]  mvid QString [required]
+    */
+    void getSimiMv(const QString &mvid);
+
+    /**
     * @param[in]  ids QString [required]
     */
     void getSongDetail(const QString &ids);
@@ -310,6 +318,7 @@ private:
     void getRecommendedMvCallback(MDHttpRequestWorker *worker);
     void getRecommendedNewSongsCallback(MDHttpRequestWorker *worker);
     void getRecommendedPlaylistCallback(MDHttpRequestWorker *worker);
+    void getSimiMvCallback(MDHttpRequestWorker *worker);
     void getSongDetailCallback(MDHttpRequestWorker *worker);
     void getSongUrlCallback(MDHttpRequestWorker *worker);
     void getTopArtistsCallback(MDHttpRequestWorker *worker);
@@ -336,9 +345,9 @@ signals:
     void getLikeSongIdSignal(MDGetLikeSongId_200_response summary);
     void getLoginStatusSignal(MDGetLoginStatus_200_response summary);
     void getLyricSignal(MDGetLyric_200_response summary);
-    void getMvDetailSignal(MDObject summary);
+    void getMvDetailSignal(MDGetMvDetail_200_response summary);
     void getMvSublistSignal(MDGetMvSublist_200_response summary);
-    void getMvUrlSignal(MDObject summary);
+    void getMvUrlSignal(MDGetMvUrl_200_response summary);
     void getPlaylistDetailSignal(MDGetPlaylistDetail_200_response summary);
     void getPlaylistTrackAllSignal(MDGetPlaylistTrackAll_200_response summary);
     void getPurchasedAlbumSignal(MDGetPurchasedAlbum_200_response summary);
@@ -346,6 +355,7 @@ signals:
     void getRecommendedMvSignal(MDGetRecommendedMv_200_response summary);
     void getRecommendedNewSongsSignal(MDGetRecommendedNewSongs_200_response summary);
     void getRecommendedPlaylistSignal(MDGetRecommendedPlaylist_200_response summary);
+    void getSimiMvSignal(MDGetSimiMv_200_response summary);
     void getSongDetailSignal(MDGetSongDetail_200_response summary);
     void getSongUrlSignal(MDGetSongUrl_200_response summary);
     void getTopArtistsSignal(MDGetTopArtists_200_response summary);
@@ -370,9 +380,9 @@ signals:
     void getLikeSongIdSignalFull(MDHttpRequestWorker *worker, MDGetLikeSongId_200_response summary);
     void getLoginStatusSignalFull(MDHttpRequestWorker *worker, MDGetLoginStatus_200_response summary);
     void getLyricSignalFull(MDHttpRequestWorker *worker, MDGetLyric_200_response summary);
-    void getMvDetailSignalFull(MDHttpRequestWorker *worker, MDObject summary);
+    void getMvDetailSignalFull(MDHttpRequestWorker *worker, MDGetMvDetail_200_response summary);
     void getMvSublistSignalFull(MDHttpRequestWorker *worker, MDGetMvSublist_200_response summary);
-    void getMvUrlSignalFull(MDHttpRequestWorker *worker, MDObject summary);
+    void getMvUrlSignalFull(MDHttpRequestWorker *worker, MDGetMvUrl_200_response summary);
     void getPlaylistDetailSignalFull(MDHttpRequestWorker *worker, MDGetPlaylistDetail_200_response summary);
     void getPlaylistTrackAllSignalFull(MDHttpRequestWorker *worker, MDGetPlaylistTrackAll_200_response summary);
     void getPurchasedAlbumSignalFull(MDHttpRequestWorker *worker, MDGetPurchasedAlbum_200_response summary);
@@ -380,6 +390,7 @@ signals:
     void getRecommendedMvSignalFull(MDHttpRequestWorker *worker, MDGetRecommendedMv_200_response summary);
     void getRecommendedNewSongsSignalFull(MDHttpRequestWorker *worker, MDGetRecommendedNewSongs_200_response summary);
     void getRecommendedPlaylistSignalFull(MDHttpRequestWorker *worker, MDGetRecommendedPlaylist_200_response summary);
+    void getSimiMvSignalFull(MDHttpRequestWorker *worker, MDGetSimiMv_200_response summary);
     void getSongDetailSignalFull(MDHttpRequestWorker *worker, MDGetSongDetail_200_response summary);
     void getSongUrlSignalFull(MDHttpRequestWorker *worker, MDGetSongUrl_200_response summary);
     void getTopArtistsSignalFull(MDHttpRequestWorker *worker, MDGetTopArtists_200_response summary);
@@ -404,9 +415,9 @@ signals:
     void getLikeSongIdSignalE(MDGetLikeSongId_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getLoginStatusSignalE(MDGetLoginStatus_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getLyricSignalE(MDGetLyric_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void getMvDetailSignalE(MDObject summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getMvDetailSignalE(MDGetMvDetail_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getMvSublistSignalE(MDGetMvSublist_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void getMvUrlSignalE(MDObject summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getMvUrlSignalE(MDGetMvUrl_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getPlaylistDetailSignalE(MDGetPlaylistDetail_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getPlaylistTrackAllSignalE(MDGetPlaylistTrackAll_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getPurchasedAlbumSignalE(MDGetPurchasedAlbum_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
@@ -414,6 +425,7 @@ signals:
     void getRecommendedMvSignalE(MDGetRecommendedMv_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getRecommendedNewSongsSignalE(MDGetRecommendedNewSongs_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getRecommendedPlaylistSignalE(MDGetRecommendedPlaylist_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getSimiMvSignalE(MDGetSimiMv_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getSongDetailSignalE(MDGetSongDetail_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getSongUrlSignalE(MDGetSongUrl_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getTopArtistsSignalE(MDGetTopArtists_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
@@ -448,6 +460,7 @@ signals:
     void getRecommendedMvSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getRecommendedNewSongsSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getRecommendedPlaylistSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getSimiMvSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getSongDetailSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getSongUrlSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getTopArtistsSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);

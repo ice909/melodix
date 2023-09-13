@@ -8489,9 +8489,90 @@
             "description": "成功",
             "schema": {
               "type": "object",
-              "properties": {},
-              "x-apifox-ignore-properties": [],
-              "x-apifox-orders": []
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "r": {
+                      "type": "integer"
+                    },
+                    "size": {
+                      "type": "integer"
+                    },
+                    "md5": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "expi": {
+                      "type": "integer"
+                    },
+                    "fee": {
+                      "type": "integer"
+                    },
+                    "mvFee": {
+                      "type": "integer"
+                    },
+                    "st": {
+                      "type": "integer"
+                    },
+                    "promotionVo": {
+                      "type": "null"
+                    },
+                    "msg": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "url",
+                    "r",
+                    "size",
+                    "md5",
+                    "code",
+                    "expi",
+                    "fee",
+                    "mvFee",
+                    "st",
+                    "promotionVo",
+                    "msg"
+                  ],
+                  "x-apifox-orders": [
+                    "id",
+                    "url",
+                    "r",
+                    "size",
+                    "md5",
+                    "code",
+                    "expi",
+                    "fee",
+                    "mvFee",
+                    "st",
+                    "promotionVo",
+                    "msg"
+                  ],
+                  "x-apifox-ignore-properties": []
+                }
+              },
+              "required": [
+                "code",
+                "data"
+              ],
+              "x-apifox-orders": [
+                "code",
+                "data"
+              ],
+              "x-apifox-ignore-properties": []
             }
           }
         },
@@ -8527,9 +8608,312 @@
             "description": "成功",
             "schema": {
               "type": "object",
-              "properties": {},
-              "x-apifox-ignore-properties": [],
-              "x-apifox-orders": []
+              "properties": {
+                "loadingPic": {
+                  "type": "string"
+                },
+                "bufferPic": {
+                  "type": "string"
+                },
+                "loadingPicFS": {
+                  "type": "string"
+                },
+                "bufferPicFS": {
+                  "type": "string"
+                },
+                "subed": {
+                  "type": "boolean"
+                },
+                "mp": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "fee": {
+                      "type": "integer"
+                    },
+                    "mvFee": {
+                      "type": "integer"
+                    },
+                    "payed": {
+                      "type": "integer"
+                    },
+                    "pl": {
+                      "type": "integer"
+                    },
+                    "dl": {
+                      "type": "integer"
+                    },
+                    "cp": {
+                      "type": "integer"
+                    },
+                    "sid": {
+                      "type": "integer"
+                    },
+                    "st": {
+                      "type": "integer"
+                    },
+                    "normal": {
+                      "type": "boolean"
+                    },
+                    "unauthorized": {
+                      "type": "boolean"
+                    },
+                    "msg": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "fee",
+                    "mvFee",
+                    "payed",
+                    "pl",
+                    "dl",
+                    "cp",
+                    "sid",
+                    "st",
+                    "normal",
+                    "unauthorized",
+                    "msg"
+                  ],
+                  "x-apifox-orders": [
+                    "id",
+                    "fee",
+                    "mvFee",
+                    "payed",
+                    "pl",
+                    "dl",
+                    "cp",
+                    "sid",
+                    "st",
+                    "normal",
+                    "unauthorized",
+                    "msg"
+                  ],
+                  "x-apifox-ignore-properties": []
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "artistId": {
+                      "type": "integer"
+                    },
+                    "artistName": {
+                      "type": "string"
+                    },
+                    "briefDesc": {
+                      "type": "string"
+                    },
+                    "desc": {
+                      "type": "null"
+                    },
+                    "cover": {
+                      "type": "string"
+                    },
+                    "coverId_str": {
+                      "type": "string"
+                    },
+                    "coverId": {
+                      "type": "integer"
+                    },
+                    "playCount": {
+                      "type": "integer"
+                    },
+                    "subCount": {
+                      "type": "integer"
+                    },
+                    "shareCount": {
+                      "type": "integer"
+                    },
+                    "commentCount": {
+                      "type": "integer"
+                    },
+                    "duration": {
+                      "type": "integer"
+                    },
+                    "nType": {
+                      "type": "integer"
+                    },
+                    "publishTime": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "null"
+                    },
+                    "brs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "size": {
+                            "type": "integer"
+                          },
+                          "br": {
+                            "type": "integer"
+                          },
+                          "point": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "size",
+                          "br",
+                          "point"
+                        ],
+                        "x-apifox-orders": [
+                          "size",
+                          "br",
+                          "point"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      }
+                    },
+                    "artists": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "img1v1Url": {
+                            "type": "string"
+                          },
+                          "followed": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "img1v1Url",
+                          "followed"
+                        ],
+                        "x-apifox-orders": [
+                          "id",
+                          "name",
+                          "img1v1Url",
+                          "followed"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      }
+                    },
+                    "commentThreadId": {
+                      "type": "string"
+                    },
+                    "videoGroup": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "type"
+                        ],
+                        "x-apifox-orders": [
+                          "id",
+                          "name",
+                          "type"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "artistId",
+                    "artistName",
+                    "briefDesc",
+                    "desc",
+                    "cover",
+                    "coverId_str",
+                    "coverId",
+                    "playCount",
+                    "subCount",
+                    "shareCount",
+                    "commentCount",
+                    "duration",
+                    "nType",
+                    "publishTime",
+                    "price",
+                    "brs",
+                    "artists",
+                    "commentThreadId",
+                    "videoGroup"
+                  ],
+                  "x-apifox-orders": [
+                    "id",
+                    "name",
+                    "artistId",
+                    "artistName",
+                    "briefDesc",
+                    "desc",
+                    "cover",
+                    "coverId_str",
+                    "coverId",
+                    "playCount",
+                    "subCount",
+                    "shareCount",
+                    "commentCount",
+                    "duration",
+                    "nType",
+                    "publishTime",
+                    "price",
+                    "brs",
+                    "artists",
+                    "commentThreadId",
+                    "videoGroup"
+                  ],
+                  "x-apifox-ignore-properties": []
+                },
+                "code": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "loadingPic",
+                "bufferPic",
+                "loadingPicFS",
+                "bufferPicFS",
+                "subed",
+                "mp",
+                "data",
+                "code"
+              ],
+              "x-apifox-orders": [
+                "loadingPic",
+                "bufferPic",
+                "loadingPicFS",
+                "bufferPicFS",
+                "subed",
+                "mp",
+                "data",
+                "code"
+              ],
+              "x-apifox-ignore-properties": []
             }
           }
         },
@@ -12146,6 +12530,161 @@
           }
         },
         "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-110168758-run",
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/simi/mv": {
+      "get": {
+        "summary": "相似MV",
+        "x-apifox-folder": "client",
+        "x-apifox-status": "released",
+        "deprecated": false,
+        "description": "传入 mvid 可获取相似 mv",
+        "operationId": "getSimiMv",
+        "tags": [
+          "client"
+        ],
+        "parameters": [
+          {
+            "name": "mvid",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "5436712"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mvs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "cover": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "playCount": {
+                        "type": "integer"
+                      },
+                      "briefDesc": {
+                        "type": "string"
+                      },
+                      "desc": {
+                        "type": "null"
+                      },
+                      "artistName": {
+                        "type": "string"
+                      },
+                      "artistId": {
+                        "type": "integer"
+                      },
+                      "duration": {
+                        "type": "integer"
+                      },
+                      "mark": {
+                        "type": "integer"
+                      },
+                      "artists": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "alias": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "transNames": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "name",
+                            "alias",
+                            "transNames"
+                          ],
+                          "x-apifox-orders": [
+                            "id",
+                            "name",
+                            "alias",
+                            "transNames"
+                          ],
+                          "x-apifox-ignore-properties": []
+                        }
+                      },
+                      "alg": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "cover",
+                      "name",
+                      "playCount",
+                      "briefDesc",
+                      "desc",
+                      "artistName",
+                      "artistId",
+                      "duration",
+                      "mark",
+                      "artists",
+                      "alg"
+                    ],
+                    "x-apifox-orders": [
+                      "id",
+                      "cover",
+                      "name",
+                      "playCount",
+                      "briefDesc",
+                      "desc",
+                      "artistName",
+                      "artistId",
+                      "duration",
+                      "mark",
+                      "artists",
+                      "alg"
+                    ],
+                    "x-apifox-ignore-properties": []
+                  }
+                },
+                "code": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "mvs",
+                "code"
+              ],
+              "x-apifox-orders": [
+                "mvs",
+                "code"
+              ],
+              "x-apifox-ignore-properties": []
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-110526436-run",
         "produces": [
           "application/json"
         ]
