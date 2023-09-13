@@ -252,6 +252,8 @@ client/MDHttpFileElement.cpp
 client/MDHttpFileElement.h
 client/MDHttpRequest.cpp
 client/MDHttpRequest.h
+client/MDLikeMusic_200_response.cpp
+client/MDLikeMusic_200_response.h
 client/MDOauth.cpp
 client/MDOauth.h
 client/MDObject.h

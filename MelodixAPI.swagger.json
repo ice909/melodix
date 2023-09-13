@@ -12697,6 +12697,90 @@
           "application/json"
         ]
       }
+    },
+    "/like": {
+      "get": {
+        "summary": "喜欢音乐",
+        "x-apifox-folder": "client",
+        "x-apifox-status": "released",
+        "deprecated": false,
+        "description": "传入音乐 id, 可喜欢该音乐",
+        "operationId": "likeMusic",
+        "tags": [
+          "client"
+        ],
+        "parameters": [
+          {
+            "name": "MUSIC_U",
+            "in": "cookie",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "x-example": "00D83B39F431A50930F4CB07B7B77ADA51199C6C83D20C46AE23337A0F424EAF3D08BAEFCA5220348A97769370124B5C8F9C0862DB5894808CA56A6FD371EE4FDB5AC586B43B2AF0CFD396D0F2B0E72C50A95C12F484E7AF984B7627095C6A64A9A75BF756481865C0E143A0CC41E2279581D350146C107F5EC8BEC88260152F8F84CD796295E9E3EFE9F8A7FFF9207970EEE436987C33D0229B85B4BD5D26C3C5640D22E112579B4DEA347B07B3F2EB549A9E8AF1F6718E4C3D54F27A6AAE978E7CB7A9EE21F7B90AF5D2BE426BC16542A2D363E2681E62D13371C655918FC93F8B73251ED033F717AD69146899F722640881CB160483C476D4870F1193ECF04090B7B6820A85E380E41FF8BBADB0226939F64B1BA07A81C77DBA866F9C5F3E11D49D1A3620798ECCA64E9E00645E43AB4F7B4981709EC10CFEAA19B92F1FB747BBC8B308C091A6E6A577A907501B69CE"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "347230"
+          },
+          {
+            "name": "like",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "false"
+          },
+          {
+            "name": "timestamp",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "{% mock 'timestamp' , 'ms' %}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "songs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "playlistId": {
+                  "type": "integer"
+                },
+                "code": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "songs",
+                "playlistId",
+                "code"
+              ],
+              "x-apifox-ignore-properties": [],
+              "x-apifox-orders": [
+                "songs",
+                "playlistId",
+                "code"
+              ]
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-110529803-run",
+        "produces": [
+          "application/json"
+        ]
+      }
     }
   },
   "swagger": "2.0",

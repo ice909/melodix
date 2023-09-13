@@ -129,6 +129,7 @@ add_library(${PROJECT_NAME}
   MDGetUserPlaylist_200_response_playlist_inner_creator.h
   MDGetUserPlaylist_200_response_playlist_inner_creator_experts.h
   MDGetUserPlaylist_200_response_playlist_inner_recommendInfo.h
+  MDLikeMusic_200_response.h
   MDQrCheck_200_response.h
   MDQrCreate_200_response.h
   MDQrCreate_200_response_data.h
@@ -269,6 +270,7 @@ add_library(${PROJECT_NAME}
   MDGetUserPlaylist_200_response_playlist_inner_creator.cpp
   MDGetUserPlaylist_200_response_playlist_inner_creator_experts.cpp
   MDGetUserPlaylist_200_response_playlist_inner_recommendInfo.cpp
+  MDLikeMusic_200_response.cpp
   MDQrCheck_200_response.cpp
   MDQrCreate_200_response.cpp
   MDQrCreate_200_response_data.cpp

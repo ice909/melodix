@@ -46,6 +46,7 @@
 #include "MDGetTopArtists_200_response.h"
 #include "MDGetTopPlaylist_200_response.h"
 #include "MDGetUserPlaylist_200_response.h"
+#include "MDLikeMusic_200_response.h"
 #include "MDObject.h"
 #include "MDQrCheck_200_response.h"
 #include "MDQrCreate_200_response.h"
@@ -242,6 +243,13 @@ public:
     void getUserPlaylist(const QString &uid);
 
     /**
+    * @param[in]  id QString [required]
+    * @param[in]  like QString [required]
+    * @param[in]  timestamp QString [required]
+    */
+    void likeMusic(const QString &id, const QString &like, const QString &timestamp);
+
+    /**
     * @param[in]  key QString [required]
     * @param[in]  body MDObject [optional]
     */
@@ -325,6 +333,7 @@ private:
     void getTopArtistsCallback(MDHttpRequestWorker *worker);
     void getTopPlaylistCallback(MDHttpRequestWorker *worker);
     void getUserPlaylistCallback(MDHttpRequestWorker *worker);
+    void likeMusicCallback(MDHttpRequestWorker *worker);
     void qrCheckCallback(MDHttpRequestWorker *worker);
     void qrCreateCallback(MDHttpRequestWorker *worker);
     void searchCallback(MDHttpRequestWorker *worker);
@@ -362,6 +371,7 @@ signals:
     void getTopArtistsSignal(MDGetTopArtists_200_response summary);
     void getTopPlaylistSignal(MDGetTopPlaylist_200_response summary);
     void getUserPlaylistSignal(MDGetUserPlaylist_200_response summary);
+    void likeMusicSignal(MDLikeMusic_200_response summary);
     void qrCheckSignal(MDQrCheck_200_response summary);
     void qrCreateSignal(MDQrCreate_200_response summary);
     void searchSignal(MDSearch_200_response summary);
@@ -397,6 +407,7 @@ signals:
     void getTopArtistsSignalFull(MDHttpRequestWorker *worker, MDGetTopArtists_200_response summary);
     void getTopPlaylistSignalFull(MDHttpRequestWorker *worker, MDGetTopPlaylist_200_response summary);
     void getUserPlaylistSignalFull(MDHttpRequestWorker *worker, MDGetUserPlaylist_200_response summary);
+    void likeMusicSignalFull(MDHttpRequestWorker *worker, MDLikeMusic_200_response summary);
     void qrCheckSignalFull(MDHttpRequestWorker *worker, MDQrCheck_200_response summary);
     void qrCreateSignalFull(MDHttpRequestWorker *worker, MDQrCreate_200_response summary);
     void searchSignalFull(MDHttpRequestWorker *worker, MDSearch_200_response summary);
@@ -432,6 +443,7 @@ signals:
     void getTopArtistsSignalE(MDGetTopArtists_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getTopPlaylistSignalE(MDGetTopPlaylist_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserPlaylistSignalE(MDGetUserPlaylist_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void likeMusicSignalE(MDLikeMusic_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void qrCheckSignalE(MDQrCheck_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void qrCreateSignalE(MDQrCreate_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void searchSignalE(MDSearch_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
@@ -467,6 +479,7 @@ signals:
     void getTopArtistsSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getTopPlaylistSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserPlaylistSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void likeMusicSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void qrCheckSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void qrCreateSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void searchSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);

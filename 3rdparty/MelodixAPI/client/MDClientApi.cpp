@@ -93,6 +93,8 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("getTopPlaylist", 0);
     _serverConfigs.insert("getUserPlaylist", defaultConf);
     _serverIndices.insert("getUserPlaylist", 0);
+    _serverConfigs.insert("likeMusic", defaultConf);
+    _serverIndices.insert("likeMusic", 0);
     _serverConfigs.insert("qrCheck", defaultConf);
     _serverIndices.insert("qrCheck", 0);
     _serverConfigs.insert("qrCreate", defaultConf);
@@ -2307,6 +2309,101 @@ void MDClientApi::getUserPlaylistCallback(MDHttpRequestWorker *worker) {
     } else {
         emit getUserPlaylistSignalE(output, error_type, error_str);
         emit getUserPlaylistSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void MDClientApi::likeMusic(const QString &id, const QString &like, const QString &timestamp) {
+    QString fullPath = QString(_serverConfigs["likeMusic"][_serverIndices.value("likeMusic")].URL()+"/like");
+    
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "id", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(id)));
+    }
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "like", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("like")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(like)));
+    }
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "timestamp", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("timestamp")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(timestamp)));
+    }
+    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    MDHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::likeMusicCallback);
+    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void MDClientApi::likeMusicCallback(MDHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    MDLikeMusic_200_response output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit likeMusicSignal(output);
+        emit likeMusicSignalFull(worker, output);
+    } else {
+        emit likeMusicSignalE(output, error_type, error_str);
+        emit likeMusicSignalEFull(worker, error_type, error_str);
     }
 }
 
