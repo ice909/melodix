@@ -9,6 +9,7 @@ Item {
     id: root
 
     property bool loading: true
+    property int count: 0
 
     Component.onCompleted: {
         api.banner("0");
@@ -16,30 +17,49 @@ Item {
         api.getRecommendedNewSongs("9");
         api.getTopArtists();
         api.getRecommendedMv();
-        loading = false;
     }
 
     Connections {
         function onBannerCompleted(res) {
             banner.imgs = res;
+            count++;
+            if (count === 5)
+                loading = false;
+
         }
 
         function onRecommendedPlaylistCompleted(res) {
             for (const playlist of res) recommendedPlaylist.lists.append({
                 "playlist": playlist
             })
+            count++;
+            if (count === 5)
+                loading = false;
+
         }
 
         function onRecommendedNewSongsCompleted(res) {
             recommendNewSongs.lists = res;
+            count++;
+            if (count === 5)
+                loading = false;
+
         }
 
         function onTopArtistsCompleted(res) {
             hotSigner.lists = res;
+            count++;
+            if (count === 5)
+                loading = false;
+
         }
 
         function onRecommendedMvCompleted(res) {
             recommendedMV.lists = res;
+            count++;
+            if (count === 5)
+                loading = false;
+
         }
 
         target: api
