@@ -18,7 +18,6 @@ public slots:
     void getRecommendedNewSongs(const QString limit);
     void getTopArtists();
     void getRecommendedMv();
-    void getTopPlaylistCount(const QString cat);
     void getTopPlaylist(const QString cat,
                         const QString order,
                         const QString limit,
@@ -41,8 +40,7 @@ signals:
     void recommendedNewSongsCompleted(QJsonArray);
     void topArtistsCompleted(QJsonArray);
     void recommendedMvCompleted(QJsonArray);
-    void topPlaylistCountCompleted(qint32);
-    void topPlaylistCompleted(QJsonArray);
+    void topPlaylistCompleted(QJsonObject);
     void loginStatusCompleted(QJsonObject);
     void accountInfoCompleted(QJsonObject);
     void userLikeSongIdsCompleted(QJsonObject);
@@ -57,7 +55,6 @@ signals:
 
 private:
     MDClientApi *apiInstance = nullptr;
-    MDClientApi *temporarily = nullptr;
     MDClientApi *userApiInstance = nullptr;
 };
 

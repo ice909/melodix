@@ -15,7 +15,7 @@ Item {
     // 当前显示歌单的总数
     property int playlistCount: 0
     // 一次取出的歌曲数量
-    property int limit: 0
+    property int limit: 50
     // 歌曲偏移量
     property int offset: 0
     // 是否正在“加载更多”
@@ -29,10 +29,10 @@ Item {
         hotPlaylists.lists.clear();
         hasMore = true;
         offset = 0;
-        limit = 0;
+        limit = 50;
         playlistCount = 0;
         playlistRows = 0;
-        api.getTopPlaylistCount(currentCategory);
+        api.getTopPlaylist(currentCategory, 'hot', limit, offset);
     }
 
     function moreLoading() {
@@ -46,29 +46,19 @@ Item {
     }
 
     Component.onCompleted: {
-        api.getTopPlaylistCount(currentCategory);
+        api.getTopPlaylist(currentCategory, 'hot', limit, offset);
     }
 
     Connections {
-        function onTopPlaylistCountCompleted(count) {
-            console.log("count: " + count);
-            playlistCount = count;
-            if (playlistCount - offset > 50) {
-                limit = 50;
-            } else {
-                limit = playlistCount - offset;
-                hasMore = false;
-            }
-            api.getTopPlaylist(currentCategory, 'hot', limit, offset);
-        }
 
         function onTopPlaylistCompleted(res) {
-            for (const playlist of res) hotPlaylists.lists.append({
+            playlistCount = res.total;
+            for (const playlist of res.playlists) hotPlaylists.lists.append({
                 "playlist": playlist
             })
-            playlistRows += Math.ceil(res.length / 5);
+            playlistRows += Math.ceil(res.playlists.length / 5);
             console.log("歌单总行数：" + playlistRows);
-            offset += res.length;
+            offset += res.playlists.length;
             console.log("加载的歌曲数量: limit: " + limit + " offset: " + offset);
             initing = false;
             loadMore = false;

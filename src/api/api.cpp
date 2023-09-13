@@ -18,22 +18,16 @@ QJsonArray toJsonArray(QList<T> list)
 API::API(QObject *parent)
     : QObject(parent)
     , apiInstance(new MDClientApi)
-    , temporarily(new MDClientApi)
     , userApiInstance(new MDClientApi)
 {
     QString cookie = Worker::instance()->getCookie();
     if (!cookie.isEmpty()) {
         userApiInstance->addHeaders("Cookie", cookie);
     }
-    connect(temporarily,
-            &MDClientApi::getTopPlaylistSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetTopPlaylist_200_response response) {
-                emit topPlaylistCountCompleted(response.getTotal());
-            });
     connect(apiInstance,
             &MDClientApi::getTopPlaylistSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetTopPlaylist_200_response response) {
-                emit topPlaylistCompleted(toJsonArray(response.getPlaylists()));
+                emit topPlaylistCompleted(response.asJsonObject());
             });
     connect(userApiInstance,
             &MDClientApi::getLoginStatusSignalFull,
@@ -150,11 +144,6 @@ void API::getRecommendedMv()
             });
 }
 
-void API::getTopPlaylistCount(const QString cat)
-{
-    temporarily->getTopPlaylist(cat);
-}
-
 void API::getTopPlaylist(const QString cat,
                          const QString order,
                          const QString limit,
@@ -228,10 +217,6 @@ API::~API()
     if (apiInstance != nullptr) {
         delete apiInstance;
         apiInstance = nullptr;
-    }
-    if (temporarily != nullptr) {
-        delete temporarily;
-        temporarily = nullptr;
     }
     if (userApiInstance != nullptr) {
         delete userApiInstance;
