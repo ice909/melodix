@@ -21,9 +21,8 @@ Item {
     signal currentIndexChanged(int index)
 
     function getLyric() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var lrc = JSON.parse(reply).lrc.lyric;
+        function onReply(lrc) {
+            api.onLyricCompleted.disconnect(onReply);
             var lines = lrc.split("\n");
             for (var i = 0; i < lines.length; i++) {
                 var line = lines[i].trim();
@@ -48,8 +47,8 @@ Item {
         }
 
         lrcModel.clear();
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/lyric?id=" + player.getId());
+        api.onLyricCompleted.connect(onReply);
+        api.getLyric(player.getId());
     }
 
     function lyricWindowUp() {
