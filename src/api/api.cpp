@@ -129,6 +129,11 @@ API::API(QObject *parent)
             [&](MDHttpRequestWorker *worker, MDSearch_200_response response) {
                 emit searchCompleted(response.getResult().asJsonObject());
             });
+    connect(userApiInstance,
+            &MDClientApi::likeMusicSignalFull,
+            [&](MDHttpRequestWorker *worker, MDLikeMusic_200_response response) {
+                emit likeMusicCompleted(response.asJsonObject());
+            });
 }
 void API::banner(const QString type)
 {
@@ -301,6 +306,11 @@ void API::search(const QString keyword)
 void API::search(const QString keyword, const QString limit, const QString offset)
 {
     apiInstance->search(keyword, limit, offset);
+}
+
+void API::likeMusic(const QString id,const QString like)
+{
+    userApiInstance->likeMusic(id,like,QString::number(QDateTime::currentMSecsSinceEpoch()));
 }
 
 API::~API()

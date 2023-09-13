@@ -111,9 +111,8 @@ FloatingPanel {
 
     function likeMusic() {
         function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var code = JSON.parse(reply).code;
-            if (code == 200) {
+            api.onLikeMusicCompleted.disconnect(onReply);
+            if (reply.code === 200) {
                 if (!favorite) {
                     console.log("已添加到我喜欢的歌曲");
                     favorite = true;
@@ -133,8 +132,8 @@ FloatingPanel {
             }
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/like?id=" + player.getId() + "&like=" + !favorite);
+        api.onLikeMusicCompleted.connect(onReply);
+        api.likeMusic(player.getId(), favorite ? "false" : "true");
     }
 
     height: 60

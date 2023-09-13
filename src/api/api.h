@@ -44,6 +44,7 @@ public slots:
     void getSimiMv(const QString id);
     void search(const QString keyword);
     void search(const QString keyword, const QString limit, const QString offset);
+    void likeMusic(const QString id,const QString like);
 signals:
     void bannerCompleted(QJsonArray);
     void recommendedPlaylistCompleted(QJsonArray);
@@ -71,6 +72,7 @@ signals:
     void hotCommentCompleted(QJsonArray);
     void simiMvCompleted(QJsonArray);
     void searchCompleted(QJsonObject);
+    void likeMusicCompleted(QJsonObject);
 
 private:
     MDClientApi *apiInstance = nullptr;
