@@ -48,7 +48,9 @@ Item {
     // 喜欢的歌曲页
     property var routeFavorite: {
         "path": "favourite",
-        "component": "qml/favorite/Favorite.qml"
+        "component": "qml/favorite/Favorite.qml",
+        "id": "",
+        "count": ""
     }
 
     // 路由后退信号
@@ -122,8 +124,10 @@ Item {
     }
 
     // 显示喜欢的歌曲页
-    function showFavorite() {
+    function showFavorite(id,count) {
         const r = clone(routeFavorite);
+        r.id = id;
+        r.count = count;
         routeCurrent = r;
         routeHistory.push(r);
         signalNavigate(r,false);

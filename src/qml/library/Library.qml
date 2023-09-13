@@ -15,6 +15,7 @@ Item {
     // 用户的所有歌单
     property var userPlaylists: []
     property string myLikeListId: ""
+    property string myLikeSongCount: ""
     property string currentChecked: "全部歌单"
     property int playlistRows: 0
 
@@ -136,6 +137,7 @@ Item {
             console.log("计算出的歌单行数：" + playlistRows);
             // 第一个为我喜欢的歌单
             myLikeListId = userPlaylists[0].id;
+            myLikeSongCount = userPlaylists[0].trackCount;
             getPlayListAllMusic();
         }
     }
@@ -267,7 +269,7 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
-                            onClicked: Router.showFavorite()
+                            onClicked: Router.showFavorite(myLikeListId,myLikeSongCount)
                         }
 
                     }

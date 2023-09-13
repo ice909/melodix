@@ -1,5 +1,6 @@
 import "../../util"
 import "../widgets"
+import "../../router"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -21,7 +22,7 @@ Item {
     property var songUrls: []
     property bool initing: true
     // 一次取出的歌曲数量
-    property int songlimit: 0
+    property int limit: 0
     // 偏移量
     property int offset: 0
     // 是否正在“加载更多”
@@ -30,12 +31,11 @@ Item {
     property bool hasMore: true
 
     function playPlaylistMusic(index = -1) {
-        function onReply(reply) {
-            network.onSongUrlRequestFinished.disconnect(onReply);
-            var urlList = JSON.parse(reply).data;
+        function onReply(urls) {
+            api.onSongUrlCompleted.disconnect(onReply);
             var urlOffset = songUrls.length;
-            for (var i = 0; i < urlList.length; i++) {
-                var song = urlList[i];
+            for (var i = 0; i < urls.length; i++) {
+                var song = urls[i];
                 songUrls[i + urlOffset] = song.url;
 
             }
@@ -65,16 +65,15 @@ Item {
         for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
         // 将所有id使用逗号连接成一个字符串
         var concatenatedIds = ids.join(',');
-        network.onSongUrlRequestFinished.connect(onReply);
-        network.getSongUrl(concatenatedIds);
+        api.onSongUrlCompleted.connect(onReply);
+        api.getSongUrl(concatenatedIds);
     }
 
     function getMyFavoriteSongs() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var newSongs = JSON.parse(reply).songs;
-            songs.push(...newSongs);
+        function onReply(newSongs) {
+            api.onPlaylistSongsCompleted.disconnect(onReply);
             for (const song of newSongs) {
+                songs.push(song);
                 songListModel.append({
                     "song": song
                 });
@@ -83,31 +82,17 @@ Item {
             offset += newSongs.length;
             loadMore = false;
             initing = false;
-            console.log("加载的歌曲数量: songlimit: " + songlimit + " offset: " + offset + " songs数组长度: " + songs.length);
+            console.log("加载的歌曲数量: limit: " + limit + " offset: " + offset + " songs数组长度: " + songs.length);
         }
 
         if (playlistAllSongsCount - offset > 50) {
-            songlimit = 50;
+            limit = 50;
         } else {
-            songlimit = playlistAllSongsCount - offset;
+            limit = playlistAllSongsCount - offset;
             hasMore = false;
         }
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/playlist/track/all?id=" + myFavoriteId + "&limit=" + songlimit + "&offset=" + offset);
-    }
-
-    function getUserPlayLists() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var userPlaylists = JSON.parse(reply).playlist;
-            // 第一个为我喜欢的歌单
-            playlistAllSongsCount = userPlaylists[0].trackCount;
-            myFavoriteId = userPlaylists[0].id;
-            getMyFavoriteSongs();
-        }
-
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/user/playlist?uid=" + userID + "&timestamp=" + Util.getTimestamp());
+        api.onPlaylistSongsCompleted.connect(onReply);
+        api.getPlaylistSongs(myFavoriteId, limit, offset);
     }
 
     function onPlaylistCurrentIndexChanged() {
@@ -119,9 +104,11 @@ Item {
     }
 
     Component.onCompleted: {
+        playlistAllSongsCount = Router.routeCurrent.count
+        myFavoriteId = Router.routeCurrent.id
         player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         player.playlistCleared.connect(onPlaylistCleared);
-        getUserPlayLists();
+        getMyFavoriteSongs();
     }
     Component.onDestruction: {
         player.playlistCurrentIndexChanged.disconnect(onPlaylistCurrentIndexChanged);
