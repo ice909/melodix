@@ -14,9 +14,8 @@ Item {
     property int hotSongsCount: 0
 
     function getArtistSongs() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var songs = JSON.parse(reply).hotSongs;
+        function onReply(songs) {
+            api.onArtistSongsCompleted.disconnect(onReply);
             if(songs.length > 12){
                 hotSongsCount = 3
                 artist_hot_songs.lists = songs.slice(0, 12);
@@ -30,14 +29,13 @@ Item {
             initing = false;
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/artists?id=" + Router.routeCurrent.id);
+        api.onArtistSongsCompleted.connect(onReply);
+        api.getArtistSongs(Router.routeCurrent.id);
     }
 
     function getArtistMv() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var mvs = JSON.parse(reply).mvs;
+        function onReply(mvs) {
+            api.onArtistMvCompleted.disconnect(onReply);
             if (mvs.length > 0) {
                 artist_new_mv_cover.imgSrc = mvs[0].imgurl16v9;
                 artist_new_mv_name.text = mvs[0].name;
@@ -49,14 +47,13 @@ Item {
             getArtistSongs();
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/artist/mv?id=" + Router.routeCurrent.id);
+        api.onArtistMvCompleted.connect(onReply);
+        api.getArtistMv(Router.routeCurrent.id);
     }
 
     function getArtistNewAlbum() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var hotAlbums = JSON.parse(reply).hotAlbums;
+        function onReply(hotAlbums) {
+            api.onArtistAlbumCompleted.disconnect(onReply);
             if (hotAlbums.length > 0)
                 artist_new_album_cover.imgSrc = hotAlbums[0].blurPicUrl;
 
@@ -66,26 +63,25 @@ Item {
             getArtistMv();
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/artist/album?id=" + Router.routeCurrent.id);
+        api.onArtistAlbumCompleted.connect(onReply);
+        api.getArtistAlbum(Router.routeCurrent.id);
     }
 
     function getArtistInfo() {
         function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var data = JSON.parse(reply).data;
-            artist_avatar.imgSrc = data.artist.avatar;
-            artist_name.text = data.artist.name;
-            artist_works.text = data.artist.musicSize + " 首歌 · " + data.artist.albumSize + " 张专辑 · " + data.artist.albumSize + " 个MV";
-            if (data.artist.briefDesc == "")
+            api.onArtistDetailCompleted.disconnect(onReply);
+            artist_avatar.imgSrc = reply.artist.avatar;
+            artist_name.text = reply.artist.name;
+            artist_works.text = reply.artist.musicSize + " 首歌 · " + reply.artist.albumSize + " 张专辑 · " + reply.artist.albumSize + " 个MV";
+            if (reply.artist.briefDesc == "")
                 artistDescription.text = "暂无介绍";
             else
-                artistDescription.text = data.artist.briefDesc;
+                artistDescription.text = reply.artist.briefDesc;
             getArtistNewAlbum();
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/artist/detail?id=" + Router.routeCurrent.id);
+        api.onArtistDetailCompleted.connect(onReply);
+        api.getArtistDetail(Router.routeCurrent.id);
     }
 
     Component.onCompleted: {

@@ -84,7 +84,26 @@ API::API(QObject *parent)
             [&](MDHttpRequestWorker *worker, MDGetMvSublist_200_response response) {
                 emit mvSublistCompleted(toJsonArray(response.getData()));
             });
-    
+    connect(apiInstance,
+            &MDClientApi::getArtistDetailSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetArtistDetail_200_response response) {
+                emit artistDetailCompleted(response.getData().asJsonObject());
+            });
+    connect(apiInstance,
+            &MDClientApi::getArtistAlbumSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetArtistAlbum_200_response response) {
+                emit artistAlbumCompleted(toJsonArray(response.getHotAlbums()));
+            });
+    connect(apiInstance,
+            &MDClientApi::getArtistMvSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetArtistMv_200_response response) {
+                emit artistMvCompleted(toJsonArray(response.getMvs()));
+            });
+    connect(apiInstance,
+            &MDClientApi::getArtistSingleSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetArtistSingle_200_response response) {
+                emit artistSongsCompleted(toJsonArray(response.getHotSongs()));
+            });
 }
 
 void API::banner(const QString type)
@@ -208,6 +227,26 @@ void API::getArtistSublist()
 void API::getMvSublist()
 {
     userApiInstance->getMvSublist(QString::number(QDateTime::currentMSecsSinceEpoch()));
+}
+
+void API::getArtistDetail(const QString id)
+{
+    apiInstance->getArtistDetail(id);
+}
+
+void API::getArtistAlbum(const QString id)
+{
+    apiInstance->getArtistAlbum(id);
+}
+
+void API::getArtistMv(const QString id)
+{
+    apiInstance->getArtistMv(id);
+}
+
+void API::getArtistSongs(const QString id)
+{
+    apiInstance->getArtistSingle(id);
 }
 
 API::~API()
