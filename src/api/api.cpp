@@ -104,6 +104,26 @@ API::API(QObject *parent)
             [&](MDHttpRequestWorker *worker, MDGetArtistSingle_200_response response) {
                 emit artistSongsCompleted(toJsonArray(response.getHotSongs()));
             });
+    connect(apiInstance,
+            &MDClientApi::getMvUrlSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetMvUrl_200_response response) {
+                emit mvUrlCompleted(response.getData().asJsonObject());
+            });
+    connect(apiInstance,
+            &MDClientApi::getMvDetailSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetMvDetail_200_response response) {
+                emit mvDetailCompleted(response.getData().asJsonObject());
+            });
+    connect(apiInstance,
+            &MDClientApi::getHotCommentSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetHotComment_200_response response) {
+                emit hotCommentCompleted(toJsonArray(response.getHotComments()));
+            });
+    connect(apiInstance,
+            &MDClientApi::getSimiMvSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetSimiMv_200_response response) {
+                emit simiMvCompleted(toJsonArray(response.getMvs()));
+            });
 }
 
 void API::banner(const QString type)
@@ -247,6 +267,26 @@ void API::getArtistMv(const QString id)
 void API::getArtistSongs(const QString id)
 {
     apiInstance->getArtistSingle(id);
+}
+
+void API::getMvUrl(const QString id)
+{
+    apiInstance->getMvUrl(id);
+}
+
+void API::getMvDetail(const QString id)
+{
+    apiInstance->getMvDetail(id);
+}
+
+void API::getMvHotComment(const QString id, const QString type)
+{
+    apiInstance->getHotComment(id, type);
+}
+
+void API::getSimiMv(const QString id)
+{
+    apiInstance->getSimiMv(id);
 }
 
 API::~API()

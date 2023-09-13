@@ -18,9 +18,8 @@ Item {
     property int hotCommentsCount: 0
 
     function getSimilarityMv() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var data = JSON.parse(reply).mvs;
+        function onReply(data) {
+            api.onSimiMvCompleted.disconnect(onReply);
             if (data.length > 5)
                 data = data.slice(0, 5);
 
@@ -28,27 +27,25 @@ Item {
             initing = false;
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/simi/mv?mvid=" + Router.routeCurrent.id);
+        api.onSimiMvCompleted.connect(onReply);
+        api.getSimiMv(Router.routeCurrent.id);
     }
 
     function getMvHotComment() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var data = JSON.parse(reply).hotComments;
+        function onReply(data) {
+            api.onHotCommentCompleted.disconnect(onReply);
             hotCommentsCount = data.length;
             repeater.model = data;
             getSimilarityMv();
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/comment/hot?id=" + Router.routeCurrent.id + "&type=1");
+        api.onHotCommentCompleted.connect(onReply);
+        api.getMvHotComment(Router.routeCurrent.id,"1");
     }
 
     function getMvDetail() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var data = JSON.parse(reply).data;
+        function onReply(data) {
+            api.onMvDetailCompleted.disconnect(onReply);
             artistImg.imgSrc = data.artists[0].img1v1Url;
             artistName.text = data.artists[0].name;
             mvName.text = data.name;
@@ -56,19 +53,19 @@ Item {
             getMvHotComment();
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/mv/detail?mvid=" + Router.routeCurrent.id);
+        api.onMvDetailCompleted.connect(onReply);
+        api.getMvDetail(Router.routeCurrent.id);
     }
 
     function getMvUrl() {
         function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            mvVideo.source = JSON.parse(reply).data.url;
+            api.onMvUrlCompleted.disconnect(onReply);
+            mvVideo.source = reply.url;
             getMvDetail();
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/mv/url?id=" + Router.routeCurrent.id);
+        api.onMvUrlCompleted.connect(onReply);
+        api.getMvUrl(Router.routeCurrent.id);
     }
 
     Component.onCompleted: {
