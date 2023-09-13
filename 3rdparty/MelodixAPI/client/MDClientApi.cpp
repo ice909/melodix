@@ -2460,7 +2460,7 @@ void MDClientApi::qrCreateCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::search(const QString &keywords, const ::MelodixAPI::OptionalParam<QString> &limit, const ::MelodixAPI::OptionalParam<QString> &type) {
+void MDClientApi::search(const QString &keywords, const ::MelodixAPI::OptionalParam<QString> &limit, const ::MelodixAPI::OptionalParam<QString> &offset, const ::MelodixAPI::OptionalParam<QString> &type) {
     QString fullPath = QString(_serverConfigs["search"][_serverIndices.value("search")].URL()+"/cloudsearch");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2493,6 +2493,21 @@ void MDClientApi::search(const QString &keywords, const ::MelodixAPI::OptionalPa
             fullPath.append("?");
 
         fullPath.append(QUrl::toPercentEncoding("limit")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(limit.value())));
+    }
+    if (offset.hasValue())
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "offset", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("offset")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(offset.value())));
     }
     if (type.hasValue())
     {

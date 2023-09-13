@@ -47,6 +47,16 @@ public:
     bool is_user_consumable_Set() const;
     bool is_user_consumable_Valid() const;
 
+    qint32 getListenType() const;
+    void setListenType(const qint32 &listen_type);
+    bool is_listen_type_Set() const;
+    bool is_listen_type_Valid() const;
+
+    qint32 getCannotListenReason() const;
+    void setCannotListenReason(const qint32 &cannot_listen_reason);
+    bool is_cannot_listen_reason_Set() const;
+    bool is_cannot_listen_reason_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -60,6 +70,14 @@ private:
     bool m_user_consumable;
     bool m_user_consumable_isSet;
     bool m_user_consumable_isValid;
+
+    qint32 m_listen_type;
+    bool m_listen_type_isSet;
+    bool m_listen_type_isValid;
+
+    qint32 m_cannot_listen_reason;
+    bool m_cannot_listen_reason_isSet;
+    bool m_cannot_listen_reason_isValid;
 };
 
 } // namespace MelodixAPI

@@ -20,8 +20,9 @@
 
 #include <QJsonObject>
 
+#include "MDGetArtistSingle_200_response_hotSongs_inner_h.h"
 #include "MDGetArtistSingle_200_response_hotSongs_inner_sq.h"
-#include "MDGetPlaylistTrackAll_200_response_songs_inner_al.h"
+#include "MDGetPlaylistDetail_200_response_playlist_tracks_inner_al.h"
 #include "MDSearch_200_response_result_songs_inner_ar_inner.h"
 #include "MDSearch_200_response_result_songs_inner_privilege.h"
 #include <QList>
@@ -32,7 +33,8 @@
 
 namespace MelodixAPI {
 class MDSearch_200_response_result_songs_inner_ar_inner;
-class MDGetPlaylistTrackAll_200_response_songs_inner_al;
+class MDGetPlaylistDetail_200_response_playlist_tracks_inner_al;
+class MDGetArtistSingle_200_response_hotSongs_inner_h;
 class MDGetArtistSingle_200_response_hotSongs_inner_sq;
 class MDSearch_200_response_result_songs_inner_privilege;
 
@@ -107,8 +109,8 @@ public:
     bool is_cf_Set() const;
     bool is_cf_Valid() const;
 
-    MDGetPlaylistTrackAll_200_response_songs_inner_al getAl() const;
-    void setAl(const MDGetPlaylistTrackAll_200_response_songs_inner_al &al);
+    MDGetPlaylistDetail_200_response_playlist_tracks_inner_al getAl() const;
+    void setAl(const MDGetPlaylistDetail_200_response_playlist_tracks_inner_al &al);
     bool is_al_Set() const;
     bool is_al_Valid() const;
 
@@ -117,18 +119,18 @@ public:
     bool is_dt_Set() const;
     bool is_dt_Valid() const;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq getH() const;
-    void setH(const MDGetArtistSingle_200_response_hotSongs_inner_sq &h);
+    MDGetArtistSingle_200_response_hotSongs_inner_h getH() const;
+    void setH(const MDGetArtistSingle_200_response_hotSongs_inner_h &h);
     bool is_h_Set() const;
     bool is_h_Valid() const;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq getM() const;
-    void setM(const MDGetArtistSingle_200_response_hotSongs_inner_sq &m);
+    MDGetArtistSingle_200_response_hotSongs_inner_h getM() const;
+    void setM(const MDGetArtistSingle_200_response_hotSongs_inner_h &m);
     bool is_m_Set() const;
     bool is_m_Valid() const;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq getL() const;
-    void setL(const MDGetArtistSingle_200_response_hotSongs_inner_sq &l);
+    MDGetArtistSingle_200_response_hotSongs_inner_h getL() const;
+    void setL(const MDGetArtistSingle_200_response_hotSongs_inner_h &l);
     bool is_l_Set() const;
     bool is_l_Valid() const;
 
@@ -202,11 +204,6 @@ public:
     bool is_single_Set() const;
     bool is_single_Valid() const;
 
-    qint32 getRtype() const;
-    void setRtype(const qint32 &rtype);
-    bool is_rtype_Set() const;
-    bool is_rtype_Valid() const;
-
     qint32 getMst() const;
     void setMst(const qint32 &mst);
     bool is_mst_Set() const;
@@ -221,6 +218,11 @@ public:
     void setMv(const qint32 &mv);
     bool is_mv_Set() const;
     bool is_mv_Valid() const;
+
+    qint32 getRtype() const;
+    void setRtype(const qint32 &rtype);
+    bool is_rtype_Set() const;
+    bool is_rtype_Valid() const;
 
     qint32 getPublishTime() const;
     void setPublishTime(const qint32 &publish_time);
@@ -291,7 +293,7 @@ private:
     bool m_cf_isSet;
     bool m_cf_isValid;
 
-    MDGetPlaylistTrackAll_200_response_songs_inner_al m_al;
+    MDGetPlaylistDetail_200_response_playlist_tracks_inner_al m_al;
     bool m_al_isSet;
     bool m_al_isValid;
 
@@ -299,15 +301,15 @@ private:
     bool m_dt_isSet;
     bool m_dt_isValid;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq m_h;
+    MDGetArtistSingle_200_response_hotSongs_inner_h m_h;
     bool m_h_isSet;
     bool m_h_isValid;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq m_m;
+    MDGetArtistSingle_200_response_hotSongs_inner_h m_m;
     bool m_m_isSet;
     bool m_m_isValid;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq m_l;
+    MDGetArtistSingle_200_response_hotSongs_inner_h m_l;
     bool m_l_isSet;
     bool m_l_isValid;
 
@@ -367,10 +369,6 @@ private:
     bool m_single_isSet;
     bool m_single_isValid;
 
-    qint32 m_rtype;
-    bool m_rtype_isSet;
-    bool m_rtype_isValid;
-
     qint32 m_mst;
     bool m_mst_isSet;
     bool m_mst_isValid;
@@ -382,6 +380,10 @@ private:
     qint32 m_mv;
     bool m_mv_isSet;
     bool m_mv_isValid;
+
+    qint32 m_rtype;
+    bool m_rtype_isSet;
+    bool m_rtype_isValid;
 
     qint32 m_publish_time;
     bool m_publish_time_isSet;

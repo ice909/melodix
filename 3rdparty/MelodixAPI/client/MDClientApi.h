@@ -256,9 +256,10 @@ public:
     /**
     * @param[in]  keywords QString [required]
     * @param[in]  limit QString [optional]
+    * @param[in]  offset QString [optional]
     * @param[in]  type QString [optional]
     */
-    void search(const QString &keywords, const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &type = ::MelodixAPI::OptionalParam<QString>());
+    void search(const QString &keywords, const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &offset = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &type = ::MelodixAPI::OptionalParam<QString>());
 
     /**
     * @param[in]  phone QString [required]

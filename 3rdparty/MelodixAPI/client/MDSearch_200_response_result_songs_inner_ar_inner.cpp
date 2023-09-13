@@ -214,7 +214,7 @@ bool MDSearch_200_response_result_songs_inner_ar_inner::isSet() const {
 
 bool MDSearch_200_response_result_songs_inner_ar_inner::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_name_isValid && m_tns_isValid && m_alias_isValid && true;
+    return m_id_isValid && m_name_isValid && m_tns_isValid && m_alias_isValid && m_alia_isValid && true;
 }
 
 } // namespace MelodixAPI

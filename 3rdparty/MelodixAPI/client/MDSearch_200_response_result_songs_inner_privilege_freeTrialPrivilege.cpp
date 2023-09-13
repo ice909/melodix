@@ -38,6 +38,12 @@ void MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::init
 
     m_user_consumable_isSet = false;
     m_user_consumable_isValid = false;
+
+    m_listen_type_isSet = false;
+    m_listen_type_isValid = false;
+
+    m_cannot_listen_reason_isSet = false;
+    m_cannot_listen_reason_isValid = false;
 }
 
 void MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::fromJson(QString jsonString) {
@@ -54,6 +60,12 @@ void MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::from
 
     m_user_consumable_isValid = ::MelodixAPI::fromJsonValue(m_user_consumable, json[QString("userConsumable")]);
     m_user_consumable_isSet = !json[QString("userConsumable")].isNull() && m_user_consumable_isValid;
+
+    m_listen_type_isValid = ::MelodixAPI::fromJsonValue(m_listen_type, json[QString("listenType")]);
+    m_listen_type_isSet = !json[QString("listenType")].isNull() && m_listen_type_isValid;
+
+    m_cannot_listen_reason_isValid = ::MelodixAPI::fromJsonValue(m_cannot_listen_reason, json[QString("cannotListenReason")]);
+    m_cannot_listen_reason_isSet = !json[QString("cannotListenReason")].isNull() && m_cannot_listen_reason_isValid;
 }
 
 QString MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::asJson() const {
@@ -70,6 +82,12 @@ QJsonObject MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivileg
     }
     if (m_user_consumable_isSet) {
         obj.insert(QString("userConsumable"), ::MelodixAPI::toJsonValue(m_user_consumable));
+    }
+    if (m_listen_type_isSet) {
+        obj.insert(QString("listenType"), ::MelodixAPI::toJsonValue(m_listen_type));
+    }
+    if (m_cannot_listen_reason_isSet) {
+        obj.insert(QString("cannotListenReason"), ::MelodixAPI::toJsonValue(m_cannot_listen_reason));
     }
     return obj;
 }
@@ -106,6 +124,38 @@ bool MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::is_u
     return m_user_consumable_isValid;
 }
 
+qint32 MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::getListenType() const {
+    return m_listen_type;
+}
+void MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::setListenType(const qint32 &listen_type) {
+    m_listen_type = listen_type;
+    m_listen_type_isSet = true;
+}
+
+bool MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::is_listen_type_Set() const{
+    return m_listen_type_isSet;
+}
+
+bool MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::is_listen_type_Valid() const{
+    return m_listen_type_isValid;
+}
+
+qint32 MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::getCannotListenReason() const {
+    return m_cannot_listen_reason;
+}
+void MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::setCannotListenReason(const qint32 &cannot_listen_reason) {
+    m_cannot_listen_reason = cannot_listen_reason;
+    m_cannot_listen_reason_isSet = true;
+}
+
+bool MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::is_cannot_listen_reason_Set() const{
+    return m_cannot_listen_reason_isSet;
+}
+
+bool MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::is_cannot_listen_reason_Valid() const{
+    return m_cannot_listen_reason_isValid;
+}
+
 bool MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -118,13 +168,23 @@ bool MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::isSe
             isObjectUpdated = true;
             break;
         }
+
+        if (m_listen_type_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_cannot_listen_reason_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
     } while (false);
     return isObjectUpdated;
 }
 
 bool MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_res_consumable_isValid && m_user_consumable_isValid && true;
+    return m_res_consumable_isValid && m_user_consumable_isValid && m_listen_type_isValid && m_cannot_listen_reason_isValid && true;
 }
 
 } // namespace MelodixAPI

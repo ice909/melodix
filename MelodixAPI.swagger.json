@@ -7688,10 +7688,18 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "返回数量 , 默认为 30 offset : 偏移数量，用于分页 , 如 : 如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0",
+            "description": "返回数量 , 默认为 30 ",
             "required": false,
             "type": "string",
             "x-example": "30"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "偏移数量，用于分页 , 如 : 如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0",
+            "required": false,
+            "type": "string",
+            "x-example": "0"
           },
           {
             "name": "type",
@@ -7765,7 +7773,8 @@
                                 "id",
                                 "name",
                                 "tns",
-                                "alias"
+                                "alias",
+                                "alia"
                               ],
                               "x-apifox-orders": [
                                 "id",
@@ -7835,6 +7844,7 @@
                               "name",
                               "picUrl",
                               "tns",
+                              "pic_str",
                               "pic"
                             ],
                             "x-apifox-orders": [
@@ -7883,8 +7893,7 @@
                               "vd",
                               "sr"
                             ],
-                            "x-apifox-ignore-properties": [],
-                            "x-nullable": true
+                            "x-apifox-ignore-properties": []
                           },
                           "m": {
                             "type": "object",
@@ -7919,8 +7928,7 @@
                               "vd",
                               "sr"
                             ],
-                            "x-apifox-ignore-properties": [],
-                            "x-nullable": true
+                            "x-apifox-ignore-properties": []
                           },
                           "l": {
                             "type": "object",
@@ -7955,8 +7963,7 @@
                               "vd",
                               "sr"
                             ],
-                            "x-apifox-ignore-properties": [],
-                            "x-nullable": true
+                            "x-apifox-ignore-properties": []
                           },
                           "sq": {
                             "type": "object",
@@ -8090,12 +8097,6 @@
                           "noCopyrightRcmd": {
                             "type": "null"
                           },
-                          "rtype": {
-                            "type": "integer"
-                          },
-                          "rurl": {
-                            "type": "null"
-                          },
                           "mst": {
                             "type": "integer"
                           },
@@ -8104,6 +8105,12 @@
                           },
                           "mv": {
                             "type": "integer"
+                          },
+                          "rtype": {
+                            "type": "integer"
+                          },
+                          "rurl": {
+                            "type": "null"
                           },
                           "publishTime": {
                             "type": "integer"
@@ -8193,10 +8200,10 @@
                                     "type": "boolean"
                                   },
                                   "listenType": {
-                                    "type": "null"
+                                    "type": "integer"
                                   },
                                   "cannotListenReason": {
-                                    "type": "null"
+                                    "type": "integer"
                                   }
                                 },
                                 "required": [
@@ -8357,13 +8364,14 @@
                           "entertainmentTags",
                           "single",
                           "noCopyrightRcmd",
-                          "rtype",
-                          "rurl",
-                          "mv",
                           "mst",
                           "cp",
+                          "mv",
+                          "rtype",
+                          "rurl",
                           "publishTime",
-                          "privilege"
+                          "privilege",
+                          "tns"
                         ],
                         "x-apifox-orders": [
                           "name",
@@ -8405,11 +8413,11 @@
                           "entertainmentTags",
                           "single",
                           "noCopyrightRcmd",
-                          "rtype",
-                          "rurl",
                           "mst",
                           "cp",
                           "mv",
+                          "rtype",
+                          "rurl",
                           "publishTime",
                           "privilege",
                           "tns"

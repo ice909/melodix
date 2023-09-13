@@ -126,9 +126,6 @@ void MDSearch_200_response_result_songs_inner::initializeModel() {
     m_single_isSet = false;
     m_single_isValid = false;
 
-    m_rtype_isSet = false;
-    m_rtype_isValid = false;
-
     m_mst_isSet = false;
     m_mst_isValid = false;
 
@@ -137,6 +134,9 @@ void MDSearch_200_response_result_songs_inner::initializeModel() {
 
     m_mv_isSet = false;
     m_mv_isValid = false;
+
+    m_rtype_isSet = false;
+    m_rtype_isValid = false;
 
     m_publish_time_isSet = false;
     m_publish_time_isValid = false;
@@ -250,9 +250,6 @@ void MDSearch_200_response_result_songs_inner::fromJsonObject(QJsonObject json) 
     m_single_isValid = ::MelodixAPI::fromJsonValue(m_single, json[QString("single")]);
     m_single_isSet = !json[QString("single")].isNull() && m_single_isValid;
 
-    m_rtype_isValid = ::MelodixAPI::fromJsonValue(m_rtype, json[QString("rtype")]);
-    m_rtype_isSet = !json[QString("rtype")].isNull() && m_rtype_isValid;
-
     m_mst_isValid = ::MelodixAPI::fromJsonValue(m_mst, json[QString("mst")]);
     m_mst_isSet = !json[QString("mst")].isNull() && m_mst_isValid;
 
@@ -261,6 +258,9 @@ void MDSearch_200_response_result_songs_inner::fromJsonObject(QJsonObject json) 
 
     m_mv_isValid = ::MelodixAPI::fromJsonValue(m_mv, json[QString("mv")]);
     m_mv_isSet = !json[QString("mv")].isNull() && m_mv_isValid;
+
+    m_rtype_isValid = ::MelodixAPI::fromJsonValue(m_rtype, json[QString("rtype")]);
+    m_rtype_isSet = !json[QString("rtype")].isNull() && m_rtype_isValid;
 
     m_publish_time_isValid = ::MelodixAPI::fromJsonValue(m_publish_time, json[QString("publishTime")]);
     m_publish_time_isSet = !json[QString("publishTime")].isNull() && m_publish_time_isValid;
@@ -374,9 +374,6 @@ QJsonObject MDSearch_200_response_result_songs_inner::asJsonObject() const {
     if (m_single_isSet) {
         obj.insert(QString("single"), ::MelodixAPI::toJsonValue(m_single));
     }
-    if (m_rtype_isSet) {
-        obj.insert(QString("rtype"), ::MelodixAPI::toJsonValue(m_rtype));
-    }
     if (m_mst_isSet) {
         obj.insert(QString("mst"), ::MelodixAPI::toJsonValue(m_mst));
     }
@@ -385,6 +382,9 @@ QJsonObject MDSearch_200_response_result_songs_inner::asJsonObject() const {
     }
     if (m_mv_isSet) {
         obj.insert(QString("mv"), ::MelodixAPI::toJsonValue(m_mv));
+    }
+    if (m_rtype_isSet) {
+        obj.insert(QString("rtype"), ::MelodixAPI::toJsonValue(m_rtype));
     }
     if (m_publish_time_isSet) {
         obj.insert(QString("publishTime"), ::MelodixAPI::toJsonValue(m_publish_time));
@@ -590,10 +590,10 @@ bool MDSearch_200_response_result_songs_inner::is_cf_Valid() const{
     return m_cf_isValid;
 }
 
-MDGetPlaylistTrackAll_200_response_songs_inner_al MDSearch_200_response_result_songs_inner::getAl() const {
+MDGetPlaylistDetail_200_response_playlist_tracks_inner_al MDSearch_200_response_result_songs_inner::getAl() const {
     return m_al;
 }
-void MDSearch_200_response_result_songs_inner::setAl(const MDGetPlaylistTrackAll_200_response_songs_inner_al &al) {
+void MDSearch_200_response_result_songs_inner::setAl(const MDGetPlaylistDetail_200_response_playlist_tracks_inner_al &al) {
     m_al = al;
     m_al_isSet = true;
 }
@@ -622,10 +622,10 @@ bool MDSearch_200_response_result_songs_inner::is_dt_Valid() const{
     return m_dt_isValid;
 }
 
-MDGetArtistSingle_200_response_hotSongs_inner_sq MDSearch_200_response_result_songs_inner::getH() const {
+MDGetArtistSingle_200_response_hotSongs_inner_h MDSearch_200_response_result_songs_inner::getH() const {
     return m_h;
 }
-void MDSearch_200_response_result_songs_inner::setH(const MDGetArtistSingle_200_response_hotSongs_inner_sq &h) {
+void MDSearch_200_response_result_songs_inner::setH(const MDGetArtistSingle_200_response_hotSongs_inner_h &h) {
     m_h = h;
     m_h_isSet = true;
 }
@@ -638,10 +638,10 @@ bool MDSearch_200_response_result_songs_inner::is_h_Valid() const{
     return m_h_isValid;
 }
 
-MDGetArtistSingle_200_response_hotSongs_inner_sq MDSearch_200_response_result_songs_inner::getM() const {
+MDGetArtistSingle_200_response_hotSongs_inner_h MDSearch_200_response_result_songs_inner::getM() const {
     return m_m;
 }
-void MDSearch_200_response_result_songs_inner::setM(const MDGetArtistSingle_200_response_hotSongs_inner_sq &m) {
+void MDSearch_200_response_result_songs_inner::setM(const MDGetArtistSingle_200_response_hotSongs_inner_h &m) {
     m_m = m;
     m_m_isSet = true;
 }
@@ -654,10 +654,10 @@ bool MDSearch_200_response_result_songs_inner::is_m_Valid() const{
     return m_m_isValid;
 }
 
-MDGetArtistSingle_200_response_hotSongs_inner_sq MDSearch_200_response_result_songs_inner::getL() const {
+MDGetArtistSingle_200_response_hotSongs_inner_h MDSearch_200_response_result_songs_inner::getL() const {
     return m_l;
 }
-void MDSearch_200_response_result_songs_inner::setL(const MDGetArtistSingle_200_response_hotSongs_inner_sq &l) {
+void MDSearch_200_response_result_songs_inner::setL(const MDGetArtistSingle_200_response_hotSongs_inner_h &l) {
     m_l = l;
     m_l_isSet = true;
 }
@@ -894,22 +894,6 @@ bool MDSearch_200_response_result_songs_inner::is_single_Valid() const{
     return m_single_isValid;
 }
 
-qint32 MDSearch_200_response_result_songs_inner::getRtype() const {
-    return m_rtype;
-}
-void MDSearch_200_response_result_songs_inner::setRtype(const qint32 &rtype) {
-    m_rtype = rtype;
-    m_rtype_isSet = true;
-}
-
-bool MDSearch_200_response_result_songs_inner::is_rtype_Set() const{
-    return m_rtype_isSet;
-}
-
-bool MDSearch_200_response_result_songs_inner::is_rtype_Valid() const{
-    return m_rtype_isValid;
-}
-
 qint32 MDSearch_200_response_result_songs_inner::getMst() const {
     return m_mst;
 }
@@ -956,6 +940,22 @@ bool MDSearch_200_response_result_songs_inner::is_mv_Set() const{
 
 bool MDSearch_200_response_result_songs_inner::is_mv_Valid() const{
     return m_mv_isValid;
+}
+
+qint32 MDSearch_200_response_result_songs_inner::getRtype() const {
+    return m_rtype;
+}
+void MDSearch_200_response_result_songs_inner::setRtype(const qint32 &rtype) {
+    m_rtype = rtype;
+    m_rtype_isSet = true;
+}
+
+bool MDSearch_200_response_result_songs_inner::is_rtype_Set() const{
+    return m_rtype_isSet;
+}
+
+bool MDSearch_200_response_result_songs_inner::is_rtype_Valid() const{
+    return m_rtype_isValid;
 }
 
 qint32 MDSearch_200_response_result_songs_inner::getPublishTime() const {
@@ -1164,11 +1164,6 @@ bool MDSearch_200_response_result_songs_inner::isSet() const {
             break;
         }
 
-        if (m_rtype_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_mst_isSet) {
             isObjectUpdated = true;
             break;
@@ -1180,6 +1175,11 @@ bool MDSearch_200_response_result_songs_inner::isSet() const {
         }
 
         if (m_mv_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_rtype_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -1204,7 +1204,7 @@ bool MDSearch_200_response_result_songs_inner::isSet() const {
 
 bool MDSearch_200_response_result_songs_inner::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_name_isValid && m_id_isValid && m_pst_isValid && m_t_isValid && m_ar_isValid && m_alia_isValid && m_pop_isValid && m_st_isValid && m_rt_isValid && m_fee_isValid && m_v_isValid && m_cf_isValid && m_al_isValid && m_dt_isValid && m_h_isValid && m_m_isValid && m_l_isValid && m_sq_isValid && m_hr_isValid && m_cd_isValid && m_no_isValid && m_ftype_isValid && m_rt_urls_isValid && m_dj_id_isValid && m_copyright_isValid && m_s_id_isValid && m_mark_isValid && m_origin_cover_type_isValid && m_resource_state_isValid && m_version_isValid && m_single_isValid && m_rtype_isValid && m_mst_isValid && m_cp_isValid && m_mv_isValid && m_publish_time_isValid && m_privilege_isValid && true;
+    return m_name_isValid && m_id_isValid && m_pst_isValid && m_t_isValid && m_ar_isValid && m_alia_isValid && m_pop_isValid && m_st_isValid && m_rt_isValid && m_fee_isValid && m_v_isValid && m_cf_isValid && m_al_isValid && m_dt_isValid && m_h_isValid && m_m_isValid && m_l_isValid && m_sq_isValid && m_hr_isValid && m_cd_isValid && m_no_isValid && m_ftype_isValid && m_rt_urls_isValid && m_dj_id_isValid && m_copyright_isValid && m_s_id_isValid && m_mark_isValid && m_origin_cover_type_isValid && m_resource_state_isValid && m_version_isValid && m_single_isValid && m_mst_isValid && m_cp_isValid && m_mv_isValid && m_rtype_isValid && m_publish_time_isValid && m_privilege_isValid && m_tns_isValid && true;
 }
 
 } // namespace MelodixAPI
