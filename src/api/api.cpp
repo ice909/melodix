@@ -126,10 +126,8 @@ void API::getTopArtists()
                 QList<MDGetTopArtists_200_response_artists_inner> artists = response.getArtists();
                 // 获取的热门歌手共有50个
                 // 生成一个0～45的随机数
-                QRandomGenerator random;
-                int index = random.bounded(45);
                 // 从随机数开始取5个
-                artists = artists.mid(index, 5);
+                artists = artists.mid(QRandomGenerator::global()->bounded(45), 5);
                 emit topArtistsCompleted(toJsonArray(artists));
             });
 }
