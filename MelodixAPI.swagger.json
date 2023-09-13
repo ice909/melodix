@@ -12759,7 +12759,7 @@
                   "type": "integer"
                 },
                 "code": {
-                  "type": "integer"
+                  "type": "number"
                 }
               },
               "required": [
@@ -12767,12 +12767,12 @@
                 "playlistId",
                 "code"
               ],
-              "x-apifox-ignore-properties": [],
               "x-apifox-orders": [
                 "songs",
                 "playlistId",
                 "code"
-              ]
+              ],
+              "x-apifox-ignore-properties": []
             }
           }
         },

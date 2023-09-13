@@ -49,8 +49,8 @@ public:
     bool is_playlist_id_Set() const;
     bool is_playlist_id_Valid() const;
 
-    qint32 getCode() const;
-    void setCode(const qint32 &code);
+    double getCode() const;
+    void setCode(const double &code);
     bool is_code_Set() const;
     bool is_code_Valid() const;
 
@@ -68,7 +68,7 @@ private:
     bool m_playlist_id_isSet;
     bool m_playlist_id_isValid;
 
-    qint32 m_code;
+    double m_code;
     bool m_code_isSet;
     bool m_code_isValid;
 };

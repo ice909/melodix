@@ -115,10 +115,10 @@ bool MDLikeMusic_200_response::is_playlist_id_Valid() const{
     return m_playlist_id_isValid;
 }
 
-qint32 MDLikeMusic_200_response::getCode() const {
+double MDLikeMusic_200_response::getCode() const {
     return m_code;
 }
-void MDLikeMusic_200_response::setCode(const qint32 &code) {
+void MDLikeMusic_200_response::setCode(const double &code) {
     m_code = code;
     m_code_isSet = true;
 }
