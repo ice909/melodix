@@ -47,7 +47,6 @@
 #include "MDGetTopPlaylist_200_response.h"
 #include "MDGetUserPlaylist_200_response.h"
 #include "MDLikeMusic_200_response.h"
-#include "MDObject.h"
 #include "MDQrCheck_200_response.h"
 #include "MDQrCreate_200_response.h"
 #include "MDSearch_200_response.h"
@@ -195,8 +194,10 @@ public:
     */
     void getPurchasedAlbum(const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>());
 
-
-    void getQrKey();
+    /**
+    * @param[in]  timestamp QString [required]
+    */
+    void getQrKey(const QString &timestamp);
 
 
     void getRecommendedMv();
@@ -251,15 +252,16 @@ public:
 
     /**
     * @param[in]  key QString [required]
-    * @param[in]  body MDObject [optional]
+    * @param[in]  timestamp QString [required]
     */
-    void qrCheck(const QString &key, const ::MelodixAPI::OptionalParam<MDObject> &body = ::MelodixAPI::OptionalParam<MDObject>());
+    void qrCheck(const QString &key, const QString &timestamp);
 
     /**
     * @param[in]  key QString [required]
+    * @param[in]  timestamp QString [required]
     * @param[in]  qrimg double [optional]
     */
-    void qrCreate(const QString &key, const ::MelodixAPI::OptionalParam<double> &qrimg = ::MelodixAPI::OptionalParam<double>());
+    void qrCreate(const QString &key, const QString &timestamp, const ::MelodixAPI::OptionalParam<double> &qrimg = ::MelodixAPI::OptionalParam<double>());
 
     /**
     * @param[in]  keywords QString [required]

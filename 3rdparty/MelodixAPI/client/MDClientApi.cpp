@@ -1665,9 +1665,25 @@ void MDClientApi::getPurchasedAlbumCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getQrKey() {
+void MDClientApi::getQrKey(const QString &timestamp) {
     QString fullPath = QString(_serverConfigs["getQrKey"][_serverIndices.value("getQrKey")].URL()+"/login/qr/key");
     
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "timestamp", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("timestamp")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(timestamp)));
+    }
     MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -2407,7 +2423,7 @@ void MDClientApi::likeMusicCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::qrCheck(const QString &key, const ::MelodixAPI::OptionalParam<MDObject> &body) {
+void MDClientApi::qrCheck(const QString &key, const QString &timestamp) {
     QString fullPath = QString(_serverConfigs["qrCheck"][_serverIndices.value("qrCheck")].URL()+"/login/qr/check");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2426,17 +2442,27 @@ void MDClientApi::qrCheck(const QString &key, const ::MelodixAPI::OptionalParam<
 
         fullPath.append(QUrl::toPercentEncoding("key")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(key)));
     }
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "timestamp", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("timestamp")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(timestamp)));
+    }
     MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
     MDHttpRequestInput input(fullPath, "GET");
 
-    if (body.hasValue()){
 
-        
-        QByteArray output = body.value().asJson().toUtf8();
-        input.request_body.append(output);
-    }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
@@ -2477,7 +2503,7 @@ void MDClientApi::qrCheckCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::qrCreate(const QString &key, const ::MelodixAPI::OptionalParam<double> &qrimg) {
+void MDClientApi::qrCreate(const QString &key, const QString &timestamp, const ::MelodixAPI::OptionalParam<double> &qrimg) {
     QString fullPath = QString(_serverConfigs["qrCreate"][_serverIndices.value("qrCreate")].URL()+"/login/qr/create");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2495,6 +2521,21 @@ void MDClientApi::qrCreate(const QString &key, const ::MelodixAPI::OptionalParam
             fullPath.append("?");
 
         fullPath.append(QUrl::toPercentEncoding("key")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(key)));
+    }
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "timestamp", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("timestamp")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(timestamp)));
     }
     if (qrimg.hasValue())
     {

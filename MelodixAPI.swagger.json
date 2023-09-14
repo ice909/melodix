@@ -21,7 +21,16 @@
         "tags": [
           "client"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "timestamp",
+            "in": "query",
+            "description": "时间戳",
+            "required": true,
+            "type": "string",
+            "x-example": "{% mock 'timestamp' , 'ms' %}"
+          }
+        ],
         "responses": {
           "200": {
             "description": "成功",
@@ -7111,6 +7120,14 @@
             "x-example": "ee7a08e0-8561-4a0d-aeb1-a528f4b20dac"
           },
           {
+            "name": "timestamp",
+            "in": "query",
+            "description": "时间戳",
+            "required": true,
+            "type": "string",
+            "x-example": "{% mock 'timestamp' , 'ms' %}"
+          },
+          {
             "name": "qrimg",
             "in": "query",
             "description": "传入后会额外返回二维码图片 base64 编码",
@@ -11963,14 +11980,12 @@
             "x-example": "ee7a08e0-8561-4a0d-aeb1-a528f4b20dac"
           },
           {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {},
-              "x-apifox-ignore-properties": [],
-              "x-apifox-orders": []
-            }
+            "name": "timestamp",
+            "in": "query",
+            "description": "时间戳",
+            "required": true,
+            "type": "string",
+            "x-example": "{% mock 'timestamp' , 'ms' %}"
           }
         ],
         "responses": {
@@ -12050,9 +12065,6 @@
           }
         },
         "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-109505784-run",
-        "consumes": [
-          "application/json"
-        ],
         "produces": [
           "application/json"
         ]
