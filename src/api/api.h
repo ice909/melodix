@@ -45,6 +45,9 @@ public slots:
     void search(const QString keyword);
     void search(const QString keyword, const QString limit, const QString offset);
     void likeMusic(const QString id,const QString like);
+    void getQrKey();
+    void generateQRCode(const QString unikey);
+    void qrCheck(const QString unikey);
 signals:
     void bannerCompleted(QJsonArray);
     void recommendedPlaylistCompleted(QJsonArray);
@@ -73,6 +76,9 @@ signals:
     void simiMvCompleted(QJsonArray);
     void searchCompleted(QJsonObject);
     void likeMusicCompleted(QJsonObject);
+    void getQrKeyCompleted(QJsonObject);
+    void createQRCodeCompleted(QJsonObject);
+    void qrCheckCompleted(QJsonObject);
 
 private:
     MDClientApi *apiInstance = nullptr;

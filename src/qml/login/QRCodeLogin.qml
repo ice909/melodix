@@ -11,33 +11,32 @@ Item {
     // 生成二维码key
     function generateQRCodeKey() {
         function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            unikey = JSON.parse(reply).data.unikey;
+            api.onGetQrKeyCompleted.disconnect(onReply);
+            unikey = reply.unikey;
             generateQRCode();
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/login/qr/key?timestamp=" + Util.getTimestamp());
+        api.onGetQrKeyCompleted.connect(onReply);
+        api.getQrKey();
     }
 
     // 生成二维码
     function generateQRCode() {
         function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            qrCode.imgSrc = JSON.parse(reply).data.qrimg;
+            api.onCreateQRCodeCompleted.disconnect(onReply);
+            qrCode.imgSrc = reply.qrimg;
             initing = false;
             timer.start();
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/login/qr/create?key=" + unikey + "&qrimg=true&timestamp=" + Util.getTimestamp());
+        api.onCreateQRCodeCompleted.connect(onReply);
+        api.generateQRCode(unikey);
     }
 
     // 二维码检测扫码状态
     function checkQRCodeStatus() {
-        function onReply(reply) {
-            network.onSendReplyFinished.disconnect(onReply);
-            var status = JSON.parse(reply);
+        function onReply(status) {
+            api.onQrCheckCompleted.disconnect(onReply);
             if (status.code == 800)
                 handleQRCodeExpired();
             else if (status.code == 801)
@@ -48,8 +47,8 @@ Item {
                 handleQRCodeScanned(status.cookie); // 登录成功
         }
 
-        network.onSendReplyFinished.connect(onReply);
-        network.makeRequest("/login/qr/check?key=" + unikey + "&timestamp=" + Util.getTimestamp());
+        api.onQrCheckCompleted.connect(onReply);
+        api.qrCheck(unikey);
     }
 
     // 处理二维码被扫描后的逻辑

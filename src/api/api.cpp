@@ -134,6 +134,21 @@ API::API(QObject *parent)
             [&](MDHttpRequestWorker *worker, MDLikeMusic_200_response response) {
                 emit likeMusicCompleted(response.asJsonObject());
             });
+    connect(apiInstance,
+            &MDClientApi::getQrKeySignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetQrKey_200_response response) {
+                emit getQrKeyCompleted(response.getData().asJsonObject());        
+            });
+    connect(apiInstance,
+            &MDClientApi::qrCreateSignalFull,
+            [&](MDHttpRequestWorker *worker, MDQrCreate_200_response response) {
+                emit createQRCodeCompleted(response.getData().asJsonObject());
+            });
+    connect(apiInstance,
+            &MDClientApi::qrCheckSignalFull,
+            [&](MDHttpRequestWorker *worker, MDQrCheck_200_response response) {
+                emit qrCheckCompleted(response.asJsonObject());
+            });
 }
 void API::banner(const QString type)
 {
@@ -311,6 +326,20 @@ void API::search(const QString keyword, const QString limit, const QString offse
 void API::likeMusic(const QString id,const QString like)
 {
     userApiInstance->likeMusic(id,like,QString::number(QDateTime::currentMSecsSinceEpoch()));
+}
+
+void API::getQrKey()
+{
+    apiInstance->getQrKey(QString::number(QDateTime::currentMSecsSinceEpoch()));
+}
+
+void API::generateQRCode(const QString unikey)
+{
+    apiInstance->qrCreate(unikey,QString::number(QDateTime::currentMSecsSinceEpoch()),1);
+}
+
+void API::qrCheck(const QString unikey){
+    apiInstance->qrCheck(unikey,QString::number(QDateTime::currentMSecsSinceEpoch()));
 }
 
 API::~API()
