@@ -8,7 +8,15 @@ jobs:
             - uses: actions/checkout@v3
               with: 
                     token: ${{ secrets.PRIVATE_TOKEN }}
-                    path: "digimusic"
+                    path: "melodix"
+
+            - name: Replacement source
+              run: |
+                  echo -e "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse\n" | sudo tee /etc/apt/sources.list
+                  echo -e "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse\n" | sudo tee -a /etc/apt/sources.list
+                  echo -e "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse\n" | sudo tee -a /etc/apt/sources.list
+                  echo -e "deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse\n" | sudo tee -a /etc/apt/sources.list
+                  sudo apt update
                 
             - name: Install dependency
               run: sudo apt install libdtkwidget-dev doxygen qtmultimedia5-dev
@@ -68,9 +76,9 @@ jobs:
                   cd ../
                   sudo apt install ./*.deb
 
-            - name: build and pack digimusic
+            - name: build and pack melodix
               run: |
-                    cd digimusic
+                    cd melodix
                     cmake -B build
                     cmake --build build -j $(nproc)
                     sudo dpkg-buildpackage -us -uc -b
