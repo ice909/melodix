@@ -17,6 +17,7 @@
         <file>qml/playlistdetail/PlaylistDetailHead.qml</file>
 
         <file>qml/mv/Mv.qml</file>
+        <file>qml/mv/MvComment.qml</file>
 
         <file>qml/lyric/Lyric.qml</file>
         <file>qml/lyric/LyricRect.qml</file>
