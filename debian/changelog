@@ -1,3 +1,42 @@
+melodix (1.1.3) UNRELEASED; urgency=medium
+
+  * Adjust directory structure
+  * remove network class
+  * fix qrcode login failed
+  * Repair build failure
+  * qrlogin use new API
+  * update `qrcheck` interface
+  * likeMusic Feature use new API
+  * update `/like` interface
+  * add `/like` interface
+  * search Page use new API
+  * update `/search` interface
+  * mv page use new API
+  * add `/simi/mv` interface
+  * lyric Page use new API
+  * favorite Page use new API
+  * Fixed home page loading animation ending prematurely
+  * artistDetail Page uses the new API
+  * Fixed generating random numbers always 8
+  * Optimize the discover page data loading logic
+  * Add `/mv/sublist` and `/artist/sublist` interfaces
+  * Player uses the new API to get the song url
+  * The playlist details page uses the new api
+  * get musicUrl use new API
+  * update MelodixAPI.swagger.json
+  * Home login verification using the new API
+  * update MelodixAPI.swagger.json
+  * Fix album cover click cannot be redirected
+  * Add the GridSigner component for use on all pages
+  * update README.md
+  * The BugAlbum component is replaced with the GridPlaylists component
+  * Home page, Discovery page, Music library page, playlist share one component
+  * The discovery page uses the new API
+  * IDs cannot start with an uppercase letter
+  * Use openapi-generator to generate http api
+
+ -- ice <tonimayloneya@gmail.com>  Sat, 16 Sep 2023 16:54:23 +0800
+
 melodix (1.1.2) UNRELEASED; urgency=medium
 
   * update .gitignore
