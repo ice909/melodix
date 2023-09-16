@@ -5,7 +5,6 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "network.h"
 #include "player.h"
 #include "worker.h"
 #include "api.h"
@@ -47,7 +46,6 @@ int main(int argc, char *argv[])
     app->loadTranslator();
 
     // 在此处注册QML中的C++类型
-    qmlRegisterType<Network>("network", 1, 0, "Network");
     qmlRegisterType<Player>("player", 1, 0, "Player");
     qmlRegisterType<API>("api", 1, 0, "MedlodixAPI");
 

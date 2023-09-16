@@ -3,7 +3,6 @@ import QtQuick 2.11
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
 import api 1.0
-import network 1.0
 import org.deepin.dtk 1.0
 import player 1.0
 import "qml/playlist"
@@ -192,10 +191,6 @@ ApplicationWindow {
         }
 
         target: Router
-    }
-
-    Network {
-        id: network
     }
 
     MedlodixAPI {
