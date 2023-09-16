@@ -56,8 +56,8 @@ Item {
         // 执行相应的操作，如登录成功后的跳转等
         console.log("登录成功");
         worker.saveCookie(cookie);
-        network.login();
-        getAccountInfo();
+        api.addCookie();
+        api.getAccountInfo();
         isLogin = true;
         timer.stop();
         root.close();

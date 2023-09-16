@@ -20,10 +20,7 @@ API::API(QObject *parent)
     , apiInstance(new MDClientApi)
     , userApiInstance(new MDClientApi)
 {
-    QString cookie = Worker::instance()->getCookie();
-    if (!cookie.isEmpty()) {
-        userApiInstance->addHeaders("Cookie", cookie);
-    }
+    addCookie();
     connect(apiInstance,
             &MDClientApi::getTopPlaylistSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetTopPlaylist_200_response response) {
@@ -352,4 +349,18 @@ API::~API()
         delete userApiInstance;
         userApiInstance = nullptr;
     }
+}
+
+void API::addCookie()
+{
+    QString cookie = Worker::instance()->getCookie();
+    if (!cookie.isEmpty()) {
+        userApiInstance->addHeaders("Cookie", cookie);
+    }
+}
+
+void API::logout()
+{
+    userApiInstance->addHeaders("Cookie", "");
+    Worker::instance()->setCookie("");
 }

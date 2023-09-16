@@ -63,7 +63,7 @@ WindowButton {
                 Layout.bottomMargin: 10
                 text: "登出"
                 onClicked: {
-                    network.logout();
+                    api.logout();
                     userAvatar = "";
                     isLogin = false;
                     accountMenu.close();

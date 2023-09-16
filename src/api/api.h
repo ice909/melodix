@@ -12,7 +12,10 @@ class API : public QObject
 public:
     explicit API(QObject *parent = nullptr);
     ~API();
+
 public slots:
+    void addCookie();
+    void logout();
     void banner(const QString type);
     void getRecommendedPlaylist(const QString limit);
     void getRecommendedNewSongs(const QString limit);

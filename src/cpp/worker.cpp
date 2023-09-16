@@ -27,7 +27,7 @@ QString Worker::getCookie()
 void Worker::saveCookie(QString cookie)
 {
     if (!cookie.isEmpty()) {
-        QStringList cookieList = m_cookie.split(';');
+        QStringList cookieList = cookie.split(';');
         foreach (QString cookieItem, cookieList) {
             cookieItem = cookieItem.trimmed();
             QList<QString> parts = cookieItem.split('=');
