@@ -5,6 +5,40 @@ import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
 
 Item {
+    property int time: 59
+
+    function verifyCaptcha() {
+        // 验证验证码
+        function onReply(reply) {
+            api.onVerifyCaptchaCompleted.disconnect(onReply);
+            if (reply.data === true)
+                login();
+
+        }
+
+        if (phone.text !== "" && code.text != "") {
+            api.onVerifyCaptchaCompleted.connect(onReply);
+            api.verifyCaptcha(phone.text, code.text);
+        }
+    }
+
+    function login() {
+        function onReply(reply) {
+            api.onCellphoneLoginCompleted.disconnect(onReply);
+            worker.saveCookie(reply.cookie);
+            api.addCookie();
+            api.getAccountInfo();
+            isLogin = true;
+            sendCaptchaTimer.stop();
+            root.close();
+        }
+
+        if (phone.text !== "" && code.text != "") {
+            api.onCellphoneLoginCompleted.connect(onReply);
+            api.phoneLogin(phone.text, "", code.text);
+        }
+    }
+
     anchors.fill: parent
 
     ColumnLayout {
@@ -69,9 +103,26 @@ Item {
                 }
 
                 RecommandButton {
+                    id: captchaBtn
+
                     width: 100
                     text: "获取验证码"
+                    enabled: phone.text !== "" && phone.text.length === 11
                     anchors.verticalCenter: parent.verticalCenter
+                    onClicked: {
+                        console.log("获取验证码按钮被点击");
+                        api.onSendCaptchaCompleted.connect(onReply);
+                        api.getCaptcha(phone.text);
+                    }
+
+                    function onReply() {
+                        api.onSendCaptchaCompleted.disconnect(onReply);
+                        console.log("验证码发送成功");
+                        captchaBtn.enabled = false;
+                        captchaBtn.text = "59s后重发";
+                        sendCaptchaTimer.start();
+                    }
+
                 }
 
             }
@@ -88,26 +139,32 @@ Item {
             text: "登录"
             enabled: phone.text !== "" && code.text !== ""
             Layout.fillWidth: true
-        }
-
-        Text {
-            text: "网易风控，暂时无法登录"
-            font.pixelSize: 18
-            font.bold: true
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        Text {
-            text: "请使用二维码登录"
-            font.pixelSize: 18
-            font.bold: true
-            Layout.alignment: Qt.AlignHCenter
+            onClicked: {
+                verifyCaptcha();
+            }
         }
 
         Item {
             Layout.fillHeight: true
         }
 
+    }
+
+    Timer {
+        id: sendCaptchaTimer
+
+        repeat: true
+        onTriggered: {
+            time--;
+            if (time !== 0) {
+                captchaBtn.text = time + "s后重发";
+            } else {
+                time = 59;
+                captchaBtn.text = "获取验证码";
+                captchaBtn.enabled = true;
+                sendCaptchaTimer.stop();
+            }
+        }
     }
 
 }

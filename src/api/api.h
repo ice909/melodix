@@ -43,14 +43,17 @@ public slots:
     void getArtistSongs(const QString id);
     void getMvUrl(const QString id);
     void getMvDetail(const QString id);
-    void getMvHotComment(const QString id,const QString type);
+    void getMvHotComment(const QString id, const QString type);
     void getSimiMv(const QString id);
     void search(const QString keyword);
     void search(const QString keyword, const QString limit, const QString offset);
-    void likeMusic(const QString id,const QString like);
+    void likeMusic(const QString id, const QString like);
     void getQrKey();
     void generateQRCode(const QString unikey);
     void qrCheck(const QString unikey);
+    void getCaptcha(const QString phone);
+    void verifyCaptcha(const QString phone, const QString captcha);
+    void phoneLogin(const QString phone, const QString password, const QString captcha);
 signals:
     void bannerCompleted(QJsonArray);
     void recommendedPlaylistCompleted(QJsonArray);
@@ -82,6 +85,9 @@ signals:
     void getQrKeyCompleted(QJsonObject);
     void createQRCodeCompleted(QJsonObject);
     void qrCheckCompleted(QJsonObject);
+    void sendCaptchaCompleted();
+    void verifyCaptchaCompleted(QJsonObject);
+    void cellphoneLoginCompleted(QJsonObject);
 
 private:
     MDClientApi *apiInstance = nullptr;

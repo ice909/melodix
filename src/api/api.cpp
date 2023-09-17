@@ -134,7 +134,7 @@ API::API(QObject *parent)
     connect(apiInstance,
             &MDClientApi::getQrKeySignalFull,
             [&](MDHttpRequestWorker *worker, MDGetQrKey_200_response response) {
-                emit getQrKeyCompleted(response.getData().asJsonObject());        
+                emit getQrKeyCompleted(response.getData().asJsonObject());
             });
     connect(apiInstance,
             &MDClientApi::qrCreateSignalFull,
@@ -145,6 +145,21 @@ API::API(QObject *parent)
             &MDClientApi::qrCheckSignalFull,
             [&](MDHttpRequestWorker *worker, MDQrCheck_200_response response) {
                 emit qrCheckCompleted(response.asJsonObject());
+            });
+    connect(apiInstance,
+            &MDClientApi::sendCaptchaSignalFull,
+            [&](MDHttpRequestWorker *worker, MDSendCaptcha_200_response response) {
+                emit sendCaptchaCompleted();
+            });
+    connect(apiInstance,
+            &MDClientApi::verifyCaptchaSignalFull,
+            [&](MDHttpRequestWorker *worker, MDSendCaptcha_200_response response) {
+                emit verifyCaptchaCompleted(response.asJsonObject());
+            });
+    connect(apiInstance,
+            &MDClientApi::cellphoneLoginSignalFull,
+            [&](MDHttpRequestWorker *worker, MDCellphoneLogin_200_response response) {
+                emit cellphoneLoginCompleted(response.asJsonObject());
             });
 }
 void API::banner(const QString type)
@@ -320,9 +335,9 @@ void API::search(const QString keyword, const QString limit, const QString offse
     apiInstance->search(keyword, limit, offset);
 }
 
-void API::likeMusic(const QString id,const QString like)
+void API::likeMusic(const QString id, const QString like)
 {
-    userApiInstance->likeMusic(id,like,QString::number(QDateTime::currentMSecsSinceEpoch()));
+    userApiInstance->likeMusic(id, like, QString::number(QDateTime::currentMSecsSinceEpoch()));
 }
 
 void API::getQrKey()
@@ -332,11 +347,27 @@ void API::getQrKey()
 
 void API::generateQRCode(const QString unikey)
 {
-    apiInstance->qrCreate(unikey,QString::number(QDateTime::currentMSecsSinceEpoch()),1);
+    apiInstance->qrCreate(unikey, QString::number(QDateTime::currentMSecsSinceEpoch()), 1);
 }
 
-void API::qrCheck(const QString unikey){
-    apiInstance->qrCheck(unikey,QString::number(QDateTime::currentMSecsSinceEpoch()));
+void API::qrCheck(const QString unikey)
+{
+    apiInstance->qrCheck(unikey, QString::number(QDateTime::currentMSecsSinceEpoch()));
+}
+
+void API::getCaptcha(const QString phone)
+{
+    apiInstance->sendCaptcha(phone);
+}
+
+void API::verifyCaptcha(const QString phone, const QString captcha)
+{
+    apiInstance->verifyCaptcha(phone, captcha);
+}
+
+void API::phoneLogin(const QString phone, const QString password, const QString captcha)
+{
+    apiInstance->cellphoneLogin(phone, password, captcha);
 }
 
 API::~API()
