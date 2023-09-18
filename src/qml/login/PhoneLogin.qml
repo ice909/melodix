@@ -13,7 +13,10 @@ Item {
             api.onVerifyCaptchaCompleted.disconnect(onReply);
             if (reply.data === true)
                 login();
-
+            else {
+                code.text = "";
+                code.showAlert = true
+            }
         }
 
         if (phone.text !== "" && code.text != "") {
@@ -100,6 +103,7 @@ Item {
                     width: 115
                     placeholderText: "请输入验证码"
                     anchors.verticalCenter: parent.verticalCenter
+                    alertText: "验证码有误"
                 }
 
                 RecommandButton {
