@@ -39,6 +39,14 @@ Popup {
             }
 
             ToolButton {
+                text: "密码登录"
+                checkable: true
+                onClicked: {
+                    loginLoader.setSource("./PasswordLogin.qml");
+                }
+            }
+
+            ToolButton {
                 text: "扫码登录"
                 checkable: true
                 onClicked: {
@@ -58,7 +66,7 @@ Popup {
 
             width: root.width - 20
             height: root.height - tabBtn.height - 20
-            source: "./PhoneLogin.qml"
+            source: "./CaptchaLogin.qml"
         }
 
     }
