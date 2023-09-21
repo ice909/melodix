@@ -1,3 +1,14 @@
+melodix (1.1.4) UNRELEASED; urgency=medium
+
+  * mv comment is defined as a new component
+  * Add mobile verification code login function
+  * Adding verification code error message
+  * Optimize memory usage
+  * add phone login interface
+  * Add mobile phone number + password login function
+
+ -- ice <tonimayloneya@gmail.com>  Thu, 21 Sep 2023 21:40:33 +0800
+
 melodix (1.1.3) UNRELEASED; urgency=medium
 
   * Adjust directory structure

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 if(NOT DEFINED VERSION)
-    set(VERSION 1.1.3)
+    set(VERSION 1.1.4)
 endif()
 
 set(PROJECT_NAME melodix)
