@@ -202,58 +202,7 @@ Item {
                             player.play(index);
                     }
 
-                    RowLayout {
-                        anchors.fill: parent
-
-                        RoundedImage {
-                            Layout.leftMargin: 10
-                            imgSrc: modelData.al.picUrl
-                            height: 45
-                            width: 45
-                        }
-
-                        Item {
-                            Layout.preferredWidth: 300
-                            Layout.alignment: Qt.AlignVCenter
-                            Layout.leftMargin: 5
-                            height: 45
-
-                            Label {
-                                id: title
-
-                                width: 280
-                                text: modelData.name
-                                anchors.left: parent.left
-                                anchors.top: parent.top
-                                anchors.topMargin: 2.5
-                                font.bold: true
-                                elide: Qt.ElideRight
-                            }
-
-                            Label {
-                                width: 280
-                                text: Util.spliceSinger(modelData.ar)
-                                anchors.left: parent.left
-                                anchors.top: title.bottom
-                                elide: Qt.ElideRight
-                            }
-
-                        }
-
-                        Label {
-                            text: modelData.al.name
-                        }
-
-                        Item {
-                            Layout.fillWidth: true
-                        }
-
-                        Label {
-                            Layout.rightMargin: 10
-                            font.bold: true
-                            text: Util.formatDuration(modelData.dt)
-                        }
-
+                    PlaylistDetailDelegate {
                     }
 
                 }

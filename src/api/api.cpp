@@ -399,4 +399,5 @@ void API::logout()
 {
     userApiInstance->addHeaders("Cookie", "");
     Worker::instance()->setCookie("");
+    qDebug() << "cookie已清除";
 }

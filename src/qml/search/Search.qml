@@ -126,7 +126,7 @@ Item {
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: 30 * 2 + 5 + 20 + listView.height
+        contentHeight: 5 + 20 + listView.height
         ScrollBar.vertical.onPositionChanged: () => {
             const position = ScrollBar.vertical.position + ScrollBar.vertical.size;
             if (position > 0.99 && !loadMore && hasMore) {
@@ -142,80 +142,6 @@ Item {
             spacing: 20
             x: 20
             y: 5
-
-            Item {
-                width: scrollWidth
-                height: 30
-
-                Row {
-                    anchors.fill: parent
-                    spacing: 10
-                    leftPadding: 10
-
-                    Item {
-                        width: 15
-                        height: 30
-                    }
-
-                    Item {
-                        width: imgCellRectWidth + (scrollWidth - timeRectWidth - serialNumberWidth - imgCellRectWidth - 10 - 50) / 3
-                        height: 30
-
-                        Label {
-                            text: "歌曲名"
-                            font.bold: true
-                            font.pixelSize: DTK.fontManager.t5.pixelSize
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: Util.textColor
-                        }
-
-                    }
-
-                    Item {
-                        width: (scrollWidth - imgCellRectWidth - timeRectWidth - serialNumberWidth - 50 - 10) / 3
-                        height: 30
-
-                        Label {
-                            text: "艺人"
-                            font.bold: true
-                            font.pixelSize: DTK.fontManager.t5.pixelSize
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: Util.textColor
-                        }
-
-                    }
-
-                    Item {
-                        width: (scrollWidth - imgCellRectWidth - timeRectWidth - serialNumberWidth - 50 - 10) / 3
-                        height: 30
-
-                        Label {
-                            text: "专辑"
-                            font.bold: true
-                            font.pixelSize: DTK.fontManager.t5.pixelSize
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: Util.textColor
-                        }
-
-                    }
-
-                    Item {
-                        width: (scrollWidth - imgCellRectWidth - timeRectWidth - serialNumberWidth - 50 - 10) / 3
-                        height: 30
-
-                        Label {
-                            anchors.verticalCenter: parent.verticalCenter
-                            text: "时长"
-                            font.bold: true
-                            font.pixelSize: DTK.fontManager.t5.pixelSize
-                            color: Util.textColor
-                        }
-
-                    }
-
-                }
-
-            }
 
             ListView {
                 id: listView
@@ -246,72 +172,7 @@ Item {
                         }
                     }
 
-                    RowLayout {
-                        anchors.fill: parent
-
-                        Label {
-                            id: serialNumber
-
-                            Layout.preferredWidth: 20
-                            Layout.leftMargin: 10
-                            text: index + 1
-                            Layout.alignment: Qt.AlignVCenter
-                        }
-
-                        RoundedImage {
-                            id: imagecell
-
-                            Layout.preferredWidth: imgCellRectWidth
-                            height: imgCellRectWidth
-                            Layout.alignment: Qt.AlignVCenter
-                            imgSrc: modelData.al.picUrl
-                        }
-
-                        Label {
-                            id: musicNameLabel
-
-                            Layout.preferredWidth: (scrollWidth - imagecell.width - timeRectWidth - serialNumber.width - imgCellRectWidth - 10 - 50) / 3
-                            height: 20
-                            elide: Text.ElideRight
-                            text: modelData.name
-                            Layout.alignment: Qt.AlignVCenter
-                            font: DTK.fontManager.t6
-                        }
-
-                        Label {
-                            id: musicSingerLabel
-
-                            Layout.preferredWidth: (scrollWidth - imagecell.width - timeRectWidth - serialNumber.width - 50 - 10) / 3
-                            height: 20
-                            elide: Text.ElideRight
-                            text: Util.spliceSinger(modelData.ar)
-                            Layout.alignment: Qt.AlignVCenter
-                            font: DTK.fontManager.t6
-                        }
-
-                        Label {
-                            id: musicAlbumLabel
-
-                            Layout.preferredWidth: (scrollWidth - imagecell.width - timeRectWidth - serialNumber.width - 50 - 10) / 3
-                            height: 20
-                            elide: Text.ElideRight
-                            text: modelData.al.name
-                            Layout.alignment: Qt.AlignVCenter
-                            font: DTK.fontManager.t6
-                        }
-
-                        Label {
-                            id: musicTimeLabel
-
-                            Layout.preferredWidth: timeRectWidth
-                            height: parent.height
-                            elide: Text.ElideRight
-                            text: Util.formatDuration(modelData.dt)
-                            verticalAlignment: Qt.AlignVCenter
-                            Layout.alignment: Qt.AlignVCenter
-                            font: DTK.fontManager.t6
-                        }
-
+                    PlaylistDetailDelegate {
                     }
 
                 }
