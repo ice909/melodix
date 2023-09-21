@@ -34,7 +34,7 @@ Popup {
                 checked: true
                 checkable: true
                 onClicked: {
-                    loginLoader.setSource("./PhoneLogin.qml");
+                    loginLoader.setSource("./CaptchaLogin.qml");
                 }
             }
 

@@ -53,6 +53,7 @@ public slots:
     void qrCheck(const QString unikey);
     void getCaptcha(const QString phone);
     void verifyCaptcha(const QString phone, const QString captcha);
+    void phoneLogin(const QString phone, const QString password);
     void phoneLogin(const QString phone, const QString password, const QString captcha);
 signals:
     void bannerCompleted(QJsonArray);

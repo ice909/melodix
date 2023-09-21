@@ -365,6 +365,11 @@ void API::verifyCaptcha(const QString phone, const QString captcha)
     apiInstance->verifyCaptcha(phone, captcha);
 }
 
+void API::phoneLogin(const QString phone, const QString password)
+{
+    apiInstance->cellphoneLogin(phone, password);
+}
+
 void API::phoneLogin(const QString phone, const QString password, const QString captcha)
 {
     apiInstance->cellphoneLogin(phone, password, captcha);
