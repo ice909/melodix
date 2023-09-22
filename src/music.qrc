@@ -41,6 +41,7 @@
         <file>qml/widgets/GridPlaylists.qml</file>
         <file>qml/widgets/GridSigner.qml</file>
         <file>qml/widgets/PlaylistDetailDelegate.qml</file>
+        <file>qml/widgets/RightClickMenu.qml</file>
 
         <file>qml/toolbar/Toolbar.qml</file>
         <file>qml/toolbar/VolumeSlider.qml</file>
