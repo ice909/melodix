@@ -2,6 +2,7 @@ import "../../router"
 import "../../util"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
+import org.deepin.dtk 1.0
 
 Item {
     property ListModel lists
@@ -87,13 +88,21 @@ Item {
                             cursorShape: Qt.PointingHandCursor
                             onEntered: {
                                 hotPlaylistTitle.font.underline = true;
+                                tooltip.visible = true;
                             }
                             onExited: {
                                 hotPlaylistTitle.font.underline = false;
+                                tooltip.visible = false;
                             }
                             onClicked: {
                                 Router.showPlaylistDetail(modelData.id);
                             }
+                        }
+
+                        ToolTip {
+                            id: tooltip
+                            text: modelData.name
+                            visible: false
                         }
 
                     }

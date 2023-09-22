@@ -211,6 +211,9 @@ Item {
                         }
                         onPressed: {
                             if (mouse.button === Qt.RightButton) {
+                                rightClickMenu.clickIndex = index;
+                                rightClickMenu.playState = player.getPlayState();
+                                rightClickMenu.playIndex = player.getCurrentIndex();
                                 rightClickMenu.popup();
                             }
                         }

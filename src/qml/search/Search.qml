@@ -8,6 +8,7 @@ import org.deepin.dtk 1.0
 Item {
     id: root
 
+    property Menu rightClickMenu: RightClickMenu{}
     property string currentPlaylistId: ""
     property int selectedIndex: -1
     property bool initing: true
@@ -169,6 +170,14 @@ Item {
                                 playSearchAllMusic(index);
                             else
                                 player.play(index);
+                        }
+                        onPressed: {
+                            if (mouse.button === Qt.RightButton) {
+                                rightClickMenu.clickIndex = index;
+                                rightClickMenu.playState = player.getPlayState();
+                                rightClickMenu.playIndex = player.getCurrentIndex();
+                                rightClickMenu.popup();
+                            }
                         }
                     }
 

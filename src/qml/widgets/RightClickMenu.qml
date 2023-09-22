@@ -7,10 +7,8 @@ import org.deepin.dtk 1.0
 
 Menu {
     property bool playState: false
-
-    Component.onCompleted: {
-        playState = player.getPlayState();
-    }
+    property int clickIndex: -1
+    property int playIndex: -1
 
     Connections {
         function onPlayStateChanged() {
@@ -23,15 +21,22 @@ Menu {
     MenuItem {
         id: playOrPauseBtn
 
-        text: playState ? "暂停" : "播放"
+        text: clickIndex == playIndex ? (playState ? "暂停" : "播放") : "播放"
         onTriggered: {
+            if (clickIndex === -1)
+                return ;
+
             if (!player.getMediaCount())
                 return ;
 
-            if (playState)
+            if (playState && clickIndex === playIndex) {
                 player.pause();
-            else
-                player.play();
+            } else {
+                if (clickIndex !== playIndex)
+                    player.play(clickIndex);
+                else
+                    player.play();
+            }
         }
     }
 
