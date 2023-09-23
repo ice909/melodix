@@ -9,7 +9,6 @@ import org.deepin.dtk 1.0
 Item {
     id: root
 
-    property Menu rightClickMenu: RightClickMenu{}
     property bool initing: true
     property int scrollWidth: rootWindow.width - 40
     // 是否已经将歌单全部歌曲添加到了播放列表
@@ -191,37 +190,7 @@ Item {
                 model: songListModel
                 clip: true
 
-                delegate: ItemDelegate {
-                    width: listView.width - 40
-                    height: 55
-                    backgroundVisible: false
-                    checked: index == currentSelectIndex
-                    MouseArea {
-                        id: mouseArea
-
-                        acceptedButtons: Qt.RightButton | Qt.LeftButton
-                        anchors.fill: parent
-                        onDoubleClicked: {
-                            console.log("clicked index : " + index);
-                            currentSelectIndex = index;
-                            if (!isAddToPlaylist)
-                                playPlaylistAllMusic(index);
-                            else
-                                player.play(index);
-                        }
-                        onPressed: {
-                            if (mouse.button === Qt.RightButton) {
-                                rightClickMenu.clickIndex = index;
-                                rightClickMenu.playState = player.getPlayState();
-                                rightClickMenu.playIndex = player.getCurrentIndex();
-                                rightClickMenu.popup();
-                            }
-                        }
-                    }
-
-                    PlaylistDetailDelegate {
-                    }
-
+                delegate: ListViewDelegate {
                 }
 
             }

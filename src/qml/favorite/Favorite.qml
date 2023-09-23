@@ -1,6 +1,6 @@
+import "../../router"
 import "../../util"
 import "../widgets"
-import "../../router"
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -30,14 +30,13 @@ Item {
     // 是否加载完全部歌曲
     property bool hasMore: true
 
-    function playPlaylistMusic(index = -1) {
+    function playPlaylistAllMusic(index = -1) {
         function onReply(urls) {
             api.onSongUrlCompleted.disconnect(onReply);
             var urlOffset = songUrls.length;
             for (var i = 0; i < urls.length; i++) {
                 var song = urls[i];
                 songUrls[i + urlOffset] = song.url;
-
             }
             for (var i = urlOffset; i < songs.length; i++) {
                 player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), Util.isVip(songs[i].fee));
@@ -59,7 +58,7 @@ Item {
         }
         if (index != -1 && index < songUrls.length) {
             player.play(index);
-            return;
+            return ;
         }
         var ids = [];
         for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
@@ -104,8 +103,8 @@ Item {
     }
 
     Component.onCompleted: {
-        playlistAllSongsCount = Router.routeCurrent.count
-        myFavoriteId = Router.routeCurrent.id
+        playlistAllSongsCount = Router.routeCurrent.count;
+        myFavoriteId = Router.routeCurrent.id;
         player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         player.playlistCleared.connect(onPlaylistCleared);
         getMyFavoriteSongs();
@@ -172,74 +171,7 @@ Item {
                 model: songListModel
                 clip: true
 
-                delegate: ItemDelegate {
-                    width: listView.width - 40
-                    height: 55
-                    backgroundVisible: false
-                    checked: index == currentSelectIndex
-                    onClicked: {
-                        console.log("点击的歌曲索引: " + index);
-                        currentSelectIndex = index;
-                        if (!isAddToPlaylist)
-                            playPlaylistMusic(index);
-                        else
-                            player.play(index);
-                    }
-
-                    RowLayout {
-                        anchors.fill: parent
-
-                        RoundedImage {
-                            Layout.leftMargin: 10
-                            imgSrc: modelData.al.picUrl
-                            height: 45
-                            width: 45
-                        }
-
-                        Item {
-                            Layout.preferredWidth: 300
-                            Layout.alignment: Qt.AlignVCenter
-                            Layout.leftMargin: 5
-                            height: 45
-
-                            Label {
-                                id: title
-
-                                width: 280
-                                text: modelData.name
-                                anchors.left: parent.left
-                                anchors.top: parent.top
-                                anchors.topMargin: 2.5
-                                font.bold: true
-                                elide: Qt.ElideRight
-                            }
-
-                            Label {
-                                width: 280
-                                text: Util.spliceSinger(modelData.ar)
-                                anchors.left: parent.left
-                                anchors.top: title.bottom
-                                elide: Qt.ElideRight
-                            }
-
-                        }
-
-                        Label {
-                            text: modelData.al.name
-                        }
-
-                        Item {
-                            Layout.fillWidth: true
-                        }
-
-                        Label {
-                            Layout.rightMargin: 10
-                            font.bold: true
-                            text: Util.formatDuration(modelData.dt)
-                        }
-
-                    }
-
+                delegate: ListViewDelegate {
                 }
 
             }

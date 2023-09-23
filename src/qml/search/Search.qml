@@ -8,9 +8,8 @@ import org.deepin.dtk 1.0
 Item {
     id: root
 
-    property Menu rightClickMenu: RightClickMenu{}
     property string currentPlaylistId: ""
-    property int selectedIndex: -1
+    property int currentSelectIndex: -1
     property bool initing: true
     property var songs: []
     property var songUrls: []
@@ -70,7 +69,7 @@ Item {
         api.search(Router.routeCurrent.key);
     }
 
-    function playSearchAllMusic(index = -1) {
+    function playPlaylistAllMusic(index = -1) {
         function onReply(data) {
             api.onSongUrlCompleted.disconnect(onReply);
             var urlOffset = songUrls.length;
@@ -108,7 +107,7 @@ Item {
     }
 
     function onPlaylistCurrentIndexChanged() {
-        selectedIndex = player.getCurrentIndex();
+        currentSelectIndex = player.getCurrentIndex();
     }
 
     Component.onCompleted: {
@@ -151,39 +150,7 @@ Item {
                 height: offset * 56
                 model: songListModel
 
-                delegate: ItemDelegate {
-                    width: scrollWidth
-                    height: 56
-                    backgroundVisible: index % 2 === 0
-                    hoverEnabled: true
-                    checked: index === selectedIndex
-
-                    MouseArea {
-                        id: mouseArea
-
-                        acceptedButtons: Qt.RightButton | Qt.LeftButton
-                        anchors.fill: parent
-                        onDoubleClicked: {
-                            console.log("clicked index : " + index);
-                            selectedIndex = index;
-                            if (!isAddToPlaylist)
-                                playSearchAllMusic(index);
-                            else
-                                player.play(index);
-                        }
-                        onPressed: {
-                            if (mouse.button === Qt.RightButton) {
-                                rightClickMenu.clickIndex = index;
-                                rightClickMenu.playState = player.getPlayState();
-                                rightClickMenu.playIndex = player.getCurrentIndex();
-                                rightClickMenu.popup();
-                            }
-                        }
-                    }
-
-                    PlaylistDetailDelegate {
-                    }
-
+                delegate: ListViewDelegate {
                 }
 
             }

@@ -40,7 +40,7 @@
         <file>qml/widgets/Banner.qml</file>
         <file>qml/widgets/GridPlaylists.qml</file>
         <file>qml/widgets/GridSigner.qml</file>
-        <file>qml/widgets/PlaylistDetailDelegate.qml</file>
+        <file>qml/widgets/ListViewDelegate.qml</file>
         <file>qml/widgets/RightClickMenu.qml</file>
 
         <file>qml/toolbar/Toolbar.qml</file>
