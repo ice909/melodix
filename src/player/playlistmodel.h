@@ -18,6 +18,7 @@ public:
     QString getImageUrl(int index) const;
     QString getAuthor(int index) const;
     QString getDuration(int index) const;
+    QString getAlbum(int index) const;
     bool getIsVip(int index) const;
     int indexofId(const QString &id) const;
 
@@ -27,7 +28,9 @@ public:
         TitleRole,
         ImageRole,
         AuthorRole,
-        DurationRole
+        DurationRole,
+        AlbumRole,
+        IsVipRole
     };
 
     // 重写 QAbstractListModel 的成员函数
@@ -41,6 +44,7 @@ public:
                  const QString &imageUrl,
                  const QString &author,
                  const QString &duration,
+                 const QString &album,
                  const bool &isVip);
 
     // 清空模型
@@ -57,6 +61,7 @@ private:
         QString imageUrl;
         QString author;
         QString duration;
+        QString album;
         bool isVip;
     };
 

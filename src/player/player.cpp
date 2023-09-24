@@ -106,10 +106,11 @@ void Player::addSignleToPlaylist(const QString &url,
                                  const QString &pic,
                                  const QString &artist,
                                  const QString &duration,
+                                 const QString &album,
                                  const bool &isVip)
 {
     m_singleTrackPlaylist->addMedia(QUrl(url));
-    m_singleTrackModel->addSong(id, name, pic, artist, duration, isVip);
+    m_singleTrackModel->addSong(id, name, pic, artist, duration, album, isVip);
     if (m_currentModel != m_singleTrackModel) {
         switchToSingleTrackMode();
     }
@@ -135,10 +136,11 @@ void Player::addPlaylistToPlaylist(const QString &url,
                                    const QString &pic,
                                    const QString &artist,
                                    const QString &duration,
+                                   const QString &album,
                                    const bool &isVip)
 {
     m_playlist->addMedia(QUrl(url));
-    m_playlistModel->addSong(id, name, pic, artist, duration, isVip);
+    m_playlistModel->addSong(id, name, pic, artist, duration, album, isVip);
     if (m_currentModel != m_playlistModel) {
         switchToPlaylistMode();
     }
@@ -471,6 +473,12 @@ qint64 Player::getDuration()
 qint64 Player::getPosition()
 {
     return m_position;
+}
+
+QString Player::getAlbum()
+{
+    if (m_currentPlaylist->mediaCount() != 0)
+        return m_currentModel->getAlbum(m_currentPlaylist->currentIndex());
 }
 
 bool Player::getIsVip()

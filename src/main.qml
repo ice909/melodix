@@ -28,10 +28,10 @@ ApplicationWindow {
     property int windowMiniHeight: 680
     property int scrollWidth: rootWindow.width - 40
 
-    function getMusicUrl(id, name, pic, artist, duration, isVip) {
+    function getMusicUrl(id, name, pic, artist, duration, album, isVip) {
         function urlCompleted(res) {
             api.onSongUrlCompleted.disconnect(urlCompleted);
-            player.addSignleToPlaylist(res[0].url, id, name, pic, artist, duration, isVip);
+            player.addSignleToPlaylist(res[0].url, id, name, pic, artist, duration, album, isVip);
         }
 
         api.onSongUrlCompleted.connect(urlCompleted);

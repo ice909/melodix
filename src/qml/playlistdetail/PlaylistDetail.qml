@@ -68,7 +68,7 @@ Item {
             }
             // 将新的歌曲url添加到播放列表
             for (var i = urlOffset; i < songs.length; i++) {
-                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), Util.isVip(songs[i].fee));
+                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));
             }
             // 如果没有传入index参数
             // 则说明点击的是播放按钮

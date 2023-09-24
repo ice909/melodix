@@ -39,7 +39,7 @@ Item {
                 songUrls[i + urlOffset] = song.url;
             }
             for (var i = urlOffset; i < songs.length; i++) {
-                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), Util.isVip(songs[i].fee));
+                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));
             }
             if (index != -1)
                 player.play(index);
