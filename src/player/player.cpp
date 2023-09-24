@@ -109,8 +109,14 @@ void Player::addSignleToPlaylist(const QString &url,
                                  const QString &album,
                                  const bool &isVip)
 {
-    m_singleTrackPlaylist->addMedia(QUrl(url));
-    m_singleTrackModel->addSong(id, name, pic, artist, duration, album, isVip);
+    // 判断添加的歌曲是否已经在播放列表中
+    int index = m_currentModel->indexOfId(id);
+    if (index != -1) {
+        m_currentPlaylist->moveMedia(index, m_currentPlaylist->mediaCount() - 1);
+    } else {
+        m_singleTrackPlaylist->addMedia(QUrl(url));
+        m_singleTrackModel->addSong(id, name, pic, artist, duration, album, isVip);
+    }
     if (m_currentModel != m_singleTrackModel) {
         switchToSingleTrackMode();
     }
@@ -139,8 +145,13 @@ void Player::addPlaylistToPlaylist(const QString &url,
                                    const QString &album,
                                    const bool &isVip)
 {
-    m_playlist->addMedia(QUrl(url));
-    m_playlistModel->addSong(id, name, pic, artist, duration, album, isVip);
+    int index = m_currentModel->indexOfId(id);
+    if (index != -1) {
+        m_currentPlaylist->moveMedia(index, m_currentPlaylist->mediaCount() - 1);
+    }else {
+        m_playlist->addMedia(QUrl(url));
+        m_playlistModel->addSong(id, name, pic, artist, duration, album, isVip);
+    }
     if (m_currentModel != m_playlistModel) {
         switchToPlaylistMode();
     }
@@ -479,6 +490,7 @@ QString Player::getAlbum()
 {
     if (m_currentPlaylist->mediaCount() != 0)
         return m_currentModel->getAlbum(m_currentPlaylist->currentIndex());
+    return QString();
 }
 
 bool Player::getIsVip()

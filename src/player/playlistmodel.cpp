@@ -142,7 +142,7 @@ QString PlaylistModel::getAllId()
     return ids;
 }
 
-int PlaylistModel::indexofId(const QString &id) const
+int PlaylistModel::indexOfId(const QString &id) const
 {
     int index = -1;
     for (int i = 0; i < m_songs.size(); ++i) {

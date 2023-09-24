@@ -20,7 +20,7 @@ public:
     QString getDuration(int index) const;
     QString getAlbum(int index) const;
     bool getIsVip(int index) const;
-    int indexofId(const QString &id) const;
+    int indexOfId(const QString &id) const;
 
     // 定义角色枚举
     enum PlaylistRoles {
