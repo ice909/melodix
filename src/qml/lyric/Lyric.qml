@@ -66,6 +66,7 @@ Item {
         titleStr = player.getName();
         artist = player.getArtist();
         bgImgPath = player.getPic();
+        album = player.getAlbum();
     }
 
     function onPositionChanged() {
@@ -205,14 +206,6 @@ Item {
                                     height: 20
 
                                     Row {
-                                        // Text {
-                                        //     width: 174
-                                        //     height: parent.height
-                                        //     color: "#aa000000"
-                                        //     text: "专辑" + ": %1".arg(album.length == 0 ? "未知" : album)
-                                        //     font: DTK.fontManager.t6
-                                        //     elide: Text.ElideRight
-                                        // }
 
                                         width: parent.width
                                         height: parent.height
@@ -223,6 +216,15 @@ Item {
                                             height: parent.height
                                             color: "#aa000000"
                                             text: "艺人" + (": %1".arg(artist.length == 0 ? "未知" : artist))
+                                            font: DTK.fontManager.t6
+                                            elide: Text.ElideRight
+                                        }
+
+                                        Text {
+                                            width: 174
+                                            height: parent.height
+                                            color: "#aa000000"
+                                            text: "专辑" + ": %1".arg(album.length == 0 ? "未知" : album)
                                             font: DTK.fontManager.t6
                                             elide: Text.ElideRight
                                         }
