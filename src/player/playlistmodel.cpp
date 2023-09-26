@@ -160,3 +160,12 @@ void PlaylistModel::clear()
     m_songs.clear();
     endResetModel();
 }
+
+void PlaylistModel::interchangeSong(const int index,const int to)
+{
+    // 交换两个Song
+    m_songs.move(index, to);
+    QModelIndex topLeft = createIndex(0, 0);
+    QModelIndex bottomRight = createIndex(m_songs.count() - 1, 0);
+    emit dataChanged(topLeft, bottomRight);
+}

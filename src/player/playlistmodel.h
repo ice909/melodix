@@ -21,6 +21,7 @@ public:
     QString getAlbum(int index) const;
     bool getIsVip(int index) const;
     int indexOfId(const QString &id) const;
+    void interchangeSong(const int index, const int to);
 
     // 定义角色枚举
     enum PlaylistRoles {

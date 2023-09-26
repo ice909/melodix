@@ -110,9 +110,10 @@ void Player::addSignleToPlaylist(const QString &url,
                                  const bool &isVip)
 {
     // 判断添加的歌曲是否已经在播放列表中
-    int index = m_currentModel->indexOfId(id);
+    int index = m_singleTrackModel->indexOfId(id);
     if (index != -1) {
-        m_currentPlaylist->moveMedia(index, m_currentPlaylist->mediaCount() - 1);
+        m_singleTrackPlaylist->moveMedia(index, m_currentPlaylist->mediaCount() - 1);
+        m_singleTrackModel->interchangeSong(index, m_singleTrackPlaylist->mediaCount() - 1);
     } else {
         m_singleTrackPlaylist->addMedia(QUrl(url));
         m_singleTrackModel->addSong(id, name, pic, artist, duration, album, isVip);
@@ -120,6 +121,7 @@ void Player::addSignleToPlaylist(const QString &url,
     if (m_currentModel != m_singleTrackModel) {
         switchToSingleTrackMode();
     }
+    emit mediaCountChanged(m_currentPlaylist->mediaCount());
     play(m_currentPlaylist->mediaCount() - 1);
 }
 
@@ -145,13 +147,8 @@ void Player::addPlaylistToPlaylist(const QString &url,
                                    const QString &album,
                                    const bool &isVip)
 {
-    int index = m_currentModel->indexOfId(id);
-    if (index != -1) {
-        m_currentPlaylist->moveMedia(index, m_currentPlaylist->mediaCount() - 1);
-    }else {
-        m_playlist->addMedia(QUrl(url));
-        m_playlistModel->addSong(id, name, pic, artist, duration, album, isVip);
-    }
+    m_playlist->addMedia(QUrl(url));
+    m_playlistModel->addSong(id, name, pic, artist, duration, album, isVip);
     if (m_currentModel != m_playlistModel) {
         switchToPlaylistMode();
     }
@@ -320,7 +317,7 @@ void Player::onCurrentIndexChanged(int index)
         next();
         return;
     }
-    qDebug() << "playlist current index changed signal : " << index;
+    //qDebug() << "playlist current index changed signal : " << index;
     if (index == -1) {
         m_currentPlaylist->setCurrentIndex(0);
     }
