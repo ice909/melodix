@@ -100,7 +100,7 @@ Player::Player(QObject *parent)
  * @param isVip 歌曲是否为VIP歌曲
  *
  */
-void Player::addSignleToPlaylist(const QString &url,
+void Player::addSingleToPlaylist(const QString &url,
                                  const QString &id,
                                  const QString &name,
                                  const QString &pic,
@@ -112,7 +112,7 @@ void Player::addSignleToPlaylist(const QString &url,
     // 判断添加的歌曲是否已经在播放列表中
     int index = m_singleTrackModel->indexOfId(id);
     if (index != -1) {
-        m_singleTrackPlaylist->moveMedia(index, m_currentPlaylist->mediaCount() - 1);
+        m_singleTrackPlaylist->moveMedia(index, m_singleTrackPlaylist->mediaCount() - 1);
         m_singleTrackModel->interchangeSong(index, m_singleTrackPlaylist->mediaCount() - 1);
     } else {
         m_singleTrackPlaylist->addMedia(QUrl(url));

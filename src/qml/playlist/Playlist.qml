@@ -24,7 +24,7 @@ FloatingPanel {
     }
 
     function onMediaCountChanged(newCount) {
-        console.log("Playlist 媒体数量改变: " + newCount)
+        console.log("Playlist 媒体数量改变: " + newCount);
         playlistMediaCount = newCount;
         playlistView.model = player.getPlaylistModel();
     }
@@ -36,10 +36,6 @@ FloatingPanel {
             return ;
 
         playlistView.contentY = selectedIndex * 56;
-    }
-
-    function onModeAndPlaylist() {
-        console.log("播放模型切换");
     }
 
     Component.onCompleted: {

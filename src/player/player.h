@@ -34,7 +34,7 @@ public:
     // 上一首
     Q_INVOKABLE void previous();
     // 添加单个歌曲到播放列表
-    Q_INVOKABLE void addSignleToPlaylist(const QString &url,
+    Q_INVOKABLE void addSingleToPlaylist(const QString &url,
                                          const QString &id,
                                          const QString &name,
                                          const QString &artist,
