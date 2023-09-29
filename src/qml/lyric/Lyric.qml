@@ -212,7 +212,7 @@ Item {
                                         spacing: 30
 
                                         Text {
-                                            width: 174
+                                            width: 205
                                             height: parent.height
                                             color: "#aa000000"
                                             text: "艺人" + (": %1".arg(artist.length == 0 ? "未知" : artist))
@@ -221,7 +221,7 @@ Item {
                                         }
 
                                         Text {
-                                            width: 174
+                                            width: 205
                                             height: parent.height
                                             color: "#aa000000"
                                             text: "专辑" + ": %1".arg(album.length == 0 ? "未知" : album)

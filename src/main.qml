@@ -31,7 +31,7 @@ ApplicationWindow {
     function getMusicUrl(id, name, pic, artist, duration, album, isVip) {
         function urlCompleted(res) {
             api.onSongUrlCompleted.disconnect(urlCompleted);
-            player.addSignleToPlaylist(res[0].url, id, name, pic, artist, duration, album, isVip);
+            player.addSingleToPlaylist(res[0].url, id, name, pic, artist, duration, album, isVip);
         }
 
         api.onSongUrlCompleted.connect(urlCompleted);
