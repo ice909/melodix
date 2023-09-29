@@ -15,11 +15,12 @@ Item {
         Repeater {
             id: repeater
 
-            Item {
+            Rectangle {
                 id: commentItemRect
 
                 width: scrollWidth
                 height: 72
+                color: index % 2 == 0 ? "#f5f5f5" : "#ffffff"
 
                 Row {
                     anchors.fill: parent
@@ -105,13 +106,6 @@ Item {
 
                     }
 
-                }
-
-                Rectangle {
-                    anchors.top: parent.bottom
-                    width: parent.width
-                    height: 0.5
-                    color: "#000000"
                 }
 
             }
