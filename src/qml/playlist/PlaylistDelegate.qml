@@ -1,4 +1,5 @@
 import "../widgets"
+import Melodix.Player 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.11
@@ -25,7 +26,7 @@ ItemDelegate {
             playlistView.currentIndex = index;
             selectedIndex = index;
             console.log("index: " + index + " currentIndex: " + playlistView.currentIndex);
-            player.play(index);
+            Player.play(index);
         }
     }
 

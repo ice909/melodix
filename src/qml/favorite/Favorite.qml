@@ -1,6 +1,7 @@
 import "../../router"
 import "../../util"
 import "../widgets"
+import Melodix.Player 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -39,25 +40,25 @@ Item {
                 songUrls[i + urlOffset] = song.url;
             }
             for (var i = urlOffset; i < songs.length; i++) {
-                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));
+                Player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));
             }
             if (index != -1)
-                player.play(index);
+                Player.play(index);
             else
-                player.play(0);
-            player.setCurrentPlaylistId(myFavoriteId);
+                Player.play(0);
+            Player.setCurrentPlaylistId(myFavoriteId);
             if (songUrls.length == playlistAllSongsCount)
                 isAddToPlaylist = true;
 
         }
 
-        player.switchToPlaylistMode();
-        if (player.getCurrentPlaylistId() != "" && player.getCurrentPlaylistId() != myFavoriteId) {
+        Player.switchToPlaylistMode();
+        if (Player.getCurrentPlaylistId() != "" && Player.getCurrentPlaylistId() != myFavoriteId) {
             console.log("当前歌单和播放列表中以添加的歌曲不是来自同一个歌单，先清空播放列表，再添加歌曲");
-            player.clearPlaylist();
+            Player.clearPlaylist();
         }
         if (index != -1 && index < songUrls.length) {
-            player.play(index);
+            Player.play(index);
             return ;
         }
         var ids = [];
@@ -95,7 +96,7 @@ Item {
     }
 
     function onPlaylistCurrentIndexChanged() {
-        currentSelectIndex = player.getCurrentIndex();
+        currentSelectIndex = Player.getCurrentIndex();
     }
 
     function onPlaylistCleared() {
@@ -105,13 +106,13 @@ Item {
     Component.onCompleted: {
         playlistAllSongsCount = Router.routeCurrent.count;
         myFavoriteId = Router.routeCurrent.id;
-        player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
-        player.playlistCleared.connect(onPlaylistCleared);
+        Player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
+        Player.playlistCleared.connect(onPlaylistCleared);
         getMyFavoriteSongs();
     }
     Component.onDestruction: {
-        player.playlistCurrentIndexChanged.disconnect(onPlaylistCurrentIndexChanged);
-        player.playlistCleared.disconnect(onPlaylistCleared);
+        Player.playlistCurrentIndexChanged.disconnect(onPlaylistCurrentIndexChanged);
+        Player.playlistCleared.disconnect(onPlaylistCleared);
     }
 
     ListModel {

@@ -1,4 +1,5 @@
 import "../../util"
+import Melodix.Player 1.0
 import QtGraphicalEffects 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -26,12 +27,12 @@ FloatingPanel {
     function onMediaCountChanged(newCount) {
         console.log("Playlist 媒体数量改变: " + newCount);
         playlistMediaCount = newCount;
-        playlistView.model = player.getPlaylistModel();
+        playlistView.model = Player.getPlaylistModel();
     }
 
     function onPlaylistCurrentIndexChanged() {
-        selectedIndex = player.getCurrentIndex();
-        console.log("player的playlistCurrentIndexChanged信号触发， selectedIndex: " + selectedIndex);
+        selectedIndex = Player.getCurrentIndex();
+        console.log("Player的playlistCurrentIndexChanged信号触发， selectedIndex: " + selectedIndex);
         if (selectedIndex > (playlistMediaCount - (playlistView.height / 56) + 1))
             return ;
 
@@ -39,8 +40,8 @@ FloatingPanel {
     }
 
     Component.onCompleted: {
-        player.mediaCountChanged.connect(onMediaCountChanged);
-        player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
+        Player.mediaCountChanged.connect(onMediaCountChanged);
+        Player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
     }
     visible: isPlaylistShow
     width: 320
@@ -114,7 +115,7 @@ FloatingPanel {
                         spacing: 1
                         padding: 0
                         onClicked: {
-                            player.clearPlaylist();
+                            Player.clearPlaylist();
                         }
 
                         textColor: Palette {

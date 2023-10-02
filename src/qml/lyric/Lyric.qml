@@ -1,5 +1,6 @@
-import "../widgets"
 import "../../util"
+import "../widgets"
+import Melodix.Player 1.0
 import QtGraphicalEffects 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -48,7 +49,7 @@ Item {
 
         lrcModel.clear();
         api.onLyricCompleted.connect(onReply);
-        api.getLyric(player.getId());
+        api.getLyric(Player.getId());
     }
 
     function lyricWindowUp() {
@@ -63,14 +64,14 @@ Item {
 
     function onPlaylistCurrentIndexChanged() {
         getLyric();
-        titleStr = player.getName();
-        artist = player.getArtist();
-        bgImgPath = player.getPic();
-        album = player.getAlbum();
+        titleStr = Player.getName();
+        artist = Player.getArtist();
+        bgImgPath = Player.getPic();
+        album = Player.getAlbum();
     }
 
     function onPositionChanged() {
-        var position = player.getPosition();
+        var position = Player.getPosition();
         position = position + 500;
         //二分法查找位置
         var lt, rt;
@@ -92,8 +93,8 @@ Item {
     visible: isLyricShow
     Component.onCompleted: {
         onPlaylistCurrentIndexChanged();
-        player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
-        player.positionChanged.connect(onPositionChanged);
+        Player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
+        Player.positionChanged.connect(onPositionChanged);
     }
 
     Image {
@@ -206,7 +207,6 @@ Item {
                                     height: 20
 
                                     Row {
-
                                         width: parent.width
                                         height: parent.height
                                         spacing: 30
@@ -266,6 +266,17 @@ Item {
         target: lyricHideAnimation
     }
 
+    Rectangle {
+        visible: initing
+        anchors.fill: lyricPage
+        color: Util.pageBackgroundColor
+
+        Loading {
+            anchors.centerIn: parent
+        }
+
+    }
+
     lrcModel: ListModel {
     }
 
@@ -286,17 +297,6 @@ Item {
         to: rootWindow.height
         duration: 200
         easing.type: Easing.OutCubic
-    }
-
-    Rectangle {
-        visible: initing
-        anchors.fill: lyricPage
-        color: Util.pageBackgroundColor
-
-        Loading {
-            anchors.centerIn: parent
-        }
-
     }
 
 }

@@ -1,5 +1,6 @@
 import "../../util"
 import "../widgets"
+import Melodix.Player 1.0
 import QtGraphicalEffects 1.0
 import QtQuick 2.11
 import QtQuick.Layouts 1.11
@@ -57,10 +58,10 @@ FloatingPanel {
 
     function onPlaylistCurrentIndexChanged() {
         console.log("播放列表 currentIndex 改变");
-        songTitle = player.getName();
-        artistStr = player.getArtist();
-        picUrl = player.getPic();
-        var musicId = player.getId();
+        songTitle = Player.getName();
+        artistStr = Player.getArtist();
+        picUrl = Player.getPic();
+        var musicId = Player.getId();
         var index = -1;
         for (const id of userFavoriteSongsID) {
             if (id == musicId) {
@@ -72,21 +73,21 @@ FloatingPanel {
             favorite = true;
         else
             favorite = false;
-        isVip = player.getIsVip();
+        isVip = Player.getIsVip();
     }
 
     function onPlayStateChanged() {
-        playStatus = player.getPlayState();
+        playStatus = Player.getPlayState();
     }
 
     function onDurationChanged() {
-        duration = player.getDuration();
-        totalTime = player.getFormatDuration();
+        duration = Player.getDuration();
+        totalTime = Player.getFormatDuration();
     }
 
     function onPositionChanged() {
-        currentPosition = player.getPosition();
-        currentTime = player.getFormatPosition();
+        currentPosition = Player.getPosition();
+        currentTime = Player.getFormatPosition();
     }
 
     function onVolSliderHoveredChanged() {
@@ -116,11 +117,11 @@ FloatingPanel {
                 if (!favorite) {
                     console.log("已添加到我喜欢的歌曲");
                     favorite = true;
-                    userFavoriteSongsID.push(player.getId());
+                    userFavoriteSongsID.push(Player.getId());
                 } else {
                     console.log("已经从我喜欢的歌曲中移除");
                     favorite = false;
-                    var id = player.getId();
+                    var id = Player.getId();
                     for (var i = 0; i < userFavoriteSongsID.length; i++) {
                         if (userFavoriteSongsID[i] == id)
                             userFavoriteSongsID[i] = 0;
@@ -133,19 +134,19 @@ FloatingPanel {
         }
 
         api.onLikeMusicCompleted.connect(onReply);
-        api.likeMusic(player.getId(), favorite ? "false" : "true");
+        api.likeMusic(Player.getId(), favorite ? "false" : "true");
     }
 
     height: 60
     width: parent.width
     z: 10
     Component.onCompleted: {
-        player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
-        player.playStateChanged.connect(onPlayStateChanged);
-        player.durationChanged.connect(onDurationChanged);
-        player.positionChanged.connect(onPositionChanged);
-        player.playlistCleared.connect(onPlaylistCleared);
-        playMode = player.getPlaybackMode();
+        Player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
+        Player.playStateChanged.connect(onPlayStateChanged);
+        Player.durationChanged.connect(onDurationChanged);
+        Player.positionChanged.connect(onPositionChanged);
+        Player.playlistCleared.connect(onPlaylistCleared);
+        playMode = Player.getPlaybackMode();
     }
 
     anchors {
@@ -300,7 +301,7 @@ FloatingPanel {
                     checkable: true
                     enabled: songTitle.length === 0 ? false : true
                     onClicked: {
-                        player.previous();
+                        Player.previous();
                     }
 
                     ToolTip {
@@ -321,13 +322,13 @@ FloatingPanel {
                     icon.height: 36
                     checkable: true
                     onClicked: {
-                        if (!player.getMediaCount())
+                        if (!Player.getMediaCount())
                             return ;
 
-                        if (player.getPlayState())
-                            player.pause();
+                        if (Player.getPlayState())
+                            Player.pause();
                         else
-                            player.play();
+                            Player.play();
                     }
 
                     ToolTip {
@@ -349,7 +350,7 @@ FloatingPanel {
                     checkable: true
                     enabled: songTitle.length === 0 ? false : true
                     onClicked: {
-                        player.next();
+                        Player.next();
                     }
 
                     ToolTip {
@@ -373,7 +374,7 @@ FloatingPanel {
                             playMode = 1;
                         else
                             playMode++;
-                        player.setPlaybackMode(playMode);
+                        Player.setPlaybackMode(playMode);
                     }
 
                     ToolTip {
@@ -394,7 +395,7 @@ FloatingPanel {
             value: currentPosition
             to: duration
             onMoved: {
-                player.setPosition(value);
+                Player.setPosition(value);
             }
         }
 

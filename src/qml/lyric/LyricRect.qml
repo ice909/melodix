@@ -1,3 +1,4 @@
+import Melodix.Player 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 
@@ -38,10 +39,10 @@ Item {
                 //console.log("originY:" + originY + "     currentIndex:" + currentIndex + "      " )
                 listViewLyric.contentY = 0 + originY;
             } else {
-                if (currentIndex <= lrcModel.count - Math.round(lyricRect.height / 2 / itemHeight))
-                    //highlightItemHeight
+                //highlightItemHeight
+                //console.log("originY:" + originY + "     contentY:" + contentY)
 
-                    //console.log("originY:" + originY + "     contentY:" + contentY)
+                if (currentIndex <= lrcModel.count - Math.round(lyricRect.height / 2 / itemHeight))
                     listViewLyric.contentY = (currentIndex - Math.round((lyricRect.height - itemHeight) / itemHeight / 2)) * itemHeight + originY;
 
             }
@@ -147,7 +148,7 @@ Item {
                     console.log("歌词双击:  index:" + index);
                     curIndex = index;
                     var time = lrcModel.get(curIndex)["time"];
-                    player.setPosition(time);
+                    Player.setPosition(time);
                 }
             }
 
@@ -156,7 +157,6 @@ Item {
     }
 
     Connections {
-        target: lyricPage
         function onCurrentIndexChanged(index) {
             if (isFlicking)
                 return ;
@@ -166,6 +166,8 @@ Item {
 
             listViewLyric.updateContentY();
         }
+
+        target: lyricPage
     }
 
 }

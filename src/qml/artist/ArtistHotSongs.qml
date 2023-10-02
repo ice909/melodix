@@ -1,5 +1,5 @@
-import "../widgets"
 import "../../util"
+import "../widgets"
 import QtQuick 2.0
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
@@ -90,7 +90,6 @@ Item {
                         color = Qt.rgba(0, 0, 0, 0.1);
                     }
                     onClicked: {
-                        //点击时，拿着歌曲id去获取歌曲url
                         getMusicUrl(modelData.id, modelData.name, modelData.al.picUrl, modelData.ar[0].name, Util.formatDuration(modelData.dt), modelData.al.name, Util.isVip(modelData.fee));
                     }
                 }

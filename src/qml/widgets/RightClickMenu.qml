@@ -1,6 +1,7 @@
 import "../../router"
 import "../../util"
 import "../widgets"
+import Melodix.Player 1.0
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
@@ -12,10 +13,10 @@ Menu {
 
     Connections {
         function onPlayStateChanged() {
-            playState = player.getPlayState();
+            playState = Player.getPlayState();
         }
 
-        target: player
+        target: Player
     }
 
     MenuItem {
@@ -26,16 +27,16 @@ Menu {
             if (clickIndex === -1)
                 return ;
 
-            if (!player.getMediaCount())
+            if (!Player.getMediaCount())
                 return ;
 
             if (playState && clickIndex === playIndex) {
-                player.pause();
+                Player.pause();
             } else {
                 if (clickIndex !== playIndex)
-                    player.play(clickIndex);
+                    Player.play(clickIndex);
                 else
-                    player.play();
+                    Player.play();
             }
         }
     }

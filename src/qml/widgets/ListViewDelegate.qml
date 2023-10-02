@@ -1,6 +1,7 @@
 import "../../router"
 import "../../util"
 import "../widgets"
+import Melodix.Player 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -9,13 +10,11 @@ import org.deepin.dtk 1.0
 ItemDelegate {
     property Menu rightClickMenu
 
-    rightClickMenu: RightClickMenu {
-    }
-
     width: listView.width - 40
     height: 55
     backgroundVisible: false
     checked: index == currentSelectIndex
+
     MouseArea {
         id: mouseArea
 
@@ -27,13 +26,13 @@ ItemDelegate {
             if (!isAddToPlaylist)
                 playPlaylistAllMusic(index);
             else
-                player.play(index);
+                Player.play(index);
         }
         onPressed: {
             if (mouse.button === Qt.RightButton) {
                 rightClickMenu.clickIndex = index;
-                rightClickMenu.playState = player.getPlayState();
-                rightClickMenu.playIndex = player.getCurrentIndex();
+                rightClickMenu.playState = Player.getPlayState();
+                rightClickMenu.playIndex = Player.getCurrentIndex();
                 rightClickMenu.popup();
             }
         }
@@ -91,6 +90,9 @@ ItemDelegate {
             text: Util.formatDuration(modelData.dt)
         }
 
+    }
+
+    rightClickMenu: RightClickMenu {
     }
 
 }

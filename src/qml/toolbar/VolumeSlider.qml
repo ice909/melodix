@@ -1,3 +1,4 @@
+import Melodix.Player 1.0
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.11
@@ -14,8 +15,8 @@ FloatingPanel {
     height: 250
     visible: false
     Component.onCompleted: {
-        volume = player.getVolume();
-        isMute = player.getMute();
+        volume = Player.getVolume();
+        isMute = Player.getMute();
     }
 
     MouseArea {
@@ -60,7 +61,7 @@ FloatingPanel {
             value: volume
             orientation: Qt.Vertical
             onValueChanged: {
-                player.setVolume(value);
+                Player.setVolume(value);
             }
         }
 
@@ -71,7 +72,7 @@ FloatingPanel {
             Layout.alignment: Qt.AlignHCenter
             onClicked: {
                 isMute = !isMute;
-                player.setMute(isMute);
+                Player.setMute(isMute);
             }
         }
 

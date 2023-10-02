@@ -1,6 +1,16 @@
 #include "player.h"
 #include "worker.h"
 
+QPointer<Player> Player::INSTANCE = nullptr;
+
+Player *Player::instance()
+{
+    if (INSTANCE.isNull())
+        INSTANCE = new Player;
+
+    return INSTANCE;
+}
+
 Player::Player(QObject *parent)
     : QObject(parent)
     , m_player(new QMediaPlayer(this))

@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <QDir>
+#include <QEventLoop>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -10,15 +11,15 @@
 #include <QObject>
 #include <QSettings>
 #include <QTime>
-#include <QEventLoop>
 
-#include "playlistmodel.h"
 #include "api.h"
+#include "playlistmodel.h"
 
 class Player : public QObject
 {
     Q_OBJECT
 public:
+    static Player *instance();
     explicit Player(QObject *parent = nullptr);
     ~Player();
     // 播放
@@ -122,7 +123,8 @@ public slots:
     void onMediaCountChanged(int start, int end);
 
 private:
-    API * m_api = nullptr;
+    static QPointer<Player> INSTANCE;
+    API *m_api = nullptr;
     // 播放器配置文件
     QSettings *m_settings = nullptr;
     QMediaPlayer *m_player = nullptr;

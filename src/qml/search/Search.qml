@@ -1,6 +1,7 @@
 import "../../router"
 import "../../util"
 import "../widgets"
+import Melodix.Player 1.0
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
@@ -80,16 +81,16 @@ Item {
             }
             // 将新的歌曲url添加到播放列表
             for (var i = urlOffset; i < songs.length; i++) {
-                player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));
+                Player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));
             }
             // 如果没有传入index参数
             // 则说明点击的是播放按钮
             if (index != -1)
-                player.play(index);
+                Player.play(index);
             else
-                player.play(0);
-            // 给player类设置当前的播放列表id
-            player.setCurrentPlaylistId(currentPlaylistId);
+                Player.play(0);
+            // 给Player类设置当前的播放列表id
+            Player.setCurrentPlaylistId(currentPlaylistId);
             // 如果歌曲url总数等于歌单歌曲总数
             // 说明全部歌曲都已经添加到了播放列表
             if (songUrls.length == songListCount)
@@ -98,15 +99,15 @@ Item {
         }
 
         // 切换播放列表
-        player.switchToPlaylistMode();
-        if (player.getCurrentPlaylistId() != "" && player.getCurrentPlaylistId() != currentPlaylistId) {
+        Player.switchToPlaylistMode();
+        if (Player.getCurrentPlaylistId() != "" && Player.getCurrentPlaylistId() != currentPlaylistId) {
             console.log("当前歌单和播放列表中以添加的歌曲不是来自同一个歌单，先清空播放列表，再添加歌曲");
-            player.clearPlaylist();
+            Player.clearPlaylist();
         }
         // 判断点击的歌曲是否已经添加到播放列表
         // 如果添加了直接播放
         if (index != -1 && index < songUrls.length) {
-            player.play(index);
+            Player.play(index);
             return ;
         }
         // 点击的歌曲不在播放列表中
@@ -120,16 +121,16 @@ Item {
     }
 
     function onPlaylistCurrentIndexChanged() {
-        currentSelectIndex = player.getCurrentIndex();
+        currentSelectIndex = Player.getCurrentIndex();
     }
 
     Component.onCompleted: {
         getSearchResult();
         currentPlaylistId = Router.routeCurrent.key;
-        player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
+        Player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
     }
     Component.onDestruction: {
-        player.playlistCurrentIndexChanged.disconnect(onPlaylistCurrentIndexChanged);
+        Player.playlistCurrentIndexChanged.disconnect(onPlaylistCurrentIndexChanged);
     }
 
     ListModel {

@@ -1,10 +1,10 @@
+import Melodix.Player 1.0
 import Qt.labs.platform 1.1 as P
 import QtQuick 2.11
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
 import api 1.0
 import org.deepin.dtk 1.0
-import player 1.0
 import "qml/playlist"
 import "qml/titlebar"
 import "qml/toolbar"
@@ -31,7 +31,7 @@ ApplicationWindow {
     function getMusicUrl(id, name, pic, artist, duration, album, isVip) {
         function urlCompleted(res) {
             api.onSongUrlCompleted.disconnect(urlCompleted);
-            player.addSingleToPlaylist(res[0].url, id, name, pic, artist, duration, album, isVip);
+            Player.addSingleToPlaylist(res[0].url, id, name, pic, artist, duration, album, isVip);
         }
 
         api.onSongUrlCompleted.connect(urlCompleted);
@@ -161,10 +161,6 @@ ApplicationWindow {
         id: toolbox
     }
 
-    Player {
-        id: player
-    }
-
     Connections {
         // 路由导航，添加一个页面
         function onSignalNavigate(route, overlay) {
@@ -262,7 +258,7 @@ ApplicationWindow {
         id: systemTray
 
         function onPlayStateChanged() {
-            if (player.getPlayState())
+            if (Player.getPlayState())
                 trayPlayBtn.text = '暂停';
             else
                 trayPlayBtn.text = '播放';
@@ -281,8 +277,8 @@ ApplicationWindow {
             }
         }
         Component.onCompleted: {
-            player.mediaCountChanged.connect(onMediaCountChanged);
-            player.playStateChanged.connect(onPlayStateChanged);
+            Player.mediaCountChanged.connect(onMediaCountChanged);
+            Player.playStateChanged.connect(onPlayStateChanged);
         }
 
         menu: P.Menu {
@@ -292,11 +288,11 @@ ApplicationWindow {
                 text: "播放"
                 enabled: false
                 onTriggered: {
-                    if (player.getPlayState()) {
-                        player.pause();
+                    if (Player.getPlayState()) {
+                        Player.pause();
                         text = '播放';
                     } else {
-                        player.play();
+                        Player.play();
                         text = '暂停';
                     }
                 }
@@ -307,7 +303,7 @@ ApplicationWindow {
 
                 text: "上一首"
                 enabled: false
-                onTriggered: player.previous()
+                onTriggered: Player.previous()
             }
 
             P.MenuItem {
@@ -315,7 +311,7 @@ ApplicationWindow {
 
                 text: "下一首"
                 enabled: false
-                onTriggered: player.next()
+                onTriggered: Player.next()
             }
 
             P.MenuItem {
