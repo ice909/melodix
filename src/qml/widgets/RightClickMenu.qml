@@ -27,6 +27,10 @@ Menu {
             if (clickIndex === -1)
                 return ;
 
+            if (playIndex === -1) {
+                playPlaylistAllMusic(index);
+                return ;
+            }
             if (!Player.getMediaCount())
                 return ;
 
