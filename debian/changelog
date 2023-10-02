@@ -1,3 +1,22 @@
+melodix (1.1.5) UNRELEASED; urgency=medium
+
+  * Deploy Github Page
+  * Fix when there are no songs in the playlist, right-clicking does not work
+  * The Player class is refactored to use the singleton pattern
+  * MV comments an even number of added background colors
+  * Adjust lyrics page artist and album width
+  * fix typo signle -> single
+  * Fixed Playlist data not updating after song moves
+  * If the same song is added to the playlist repeatedly, only one song will be added
+  * The lyric page displays the album
+  * playlist model add `album` fields
+  * Optimize duplicate code
+  * Fixed right-click unable to play the specified song
+  * add right click menu for music listview
+  * Optimize the code structure
+
+ -- ice <tonimayloneya@gmail.com>  Mon, 2 Oct 2023 16:10:23 +0800
+
 melodix (1.1.4) UNRELEASED; urgency=medium
 
   * mv comment is defined as a new component
