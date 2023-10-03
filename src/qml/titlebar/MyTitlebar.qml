@@ -55,7 +55,7 @@ TitleBar {
     aboutDialog: AboutDialog {
         width: 400
         modality: Qt.NonModal
-        version: "1.1.1"
+        version: Qt.application.version
         productName: "Melodix"
         productIcon: "melodix"
         description: "Melodix是一款界面美观的在线音乐播放器"
