@@ -75,7 +75,7 @@ Item {
             id: body
 
             spacing: 10
-            x: 20
+            x: Util.pageLeftPadding
             y: 5
 
             Banner {

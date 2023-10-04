@@ -12,6 +12,7 @@ Item {
     property string mouseReleasedColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? Qt.rgba(0, 0, 0, 0.2) : Qt.rgba(255, 255, 255, 0.3)
     property string sidebarBlendColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? "#bbf7f7f7" : "#dd252525"
     property string sidebarRightBorderColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? "#eee7e7e7" : "#ee252525"
+    property int pageLeftPadding: 10
 
     function getTimestamp() {
         return Date.now();

@@ -133,7 +133,7 @@ Item {
 
         Column {
             spacing: 20
-            x: 20
+            x: Util.pageLeftPadding
             y: 5
 
             Item {

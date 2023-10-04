@@ -27,7 +27,7 @@ ApplicationWindow {
     property bool isLyricShow: false
     property int windowMiniWidth: 1070
     property int windowMiniHeight: 680
-    property int scrollWidth: rootWindow.width - 40 - sidebar.width
+    property int scrollWidth: rootWindow.width - Util.pageLeftPadding * 2 - sidebar.width
 
     function getMusicUrl(id, name, pic, artist, duration, album, isVip) {
         function urlCompleted(res) {
