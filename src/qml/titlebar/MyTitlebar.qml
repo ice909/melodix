@@ -12,6 +12,7 @@ TitleBar {
 
     height: DS.Style.titleBar.height
     embedMode: false
+    hoverEnabled: false
     icon.name: isLyricShow ? "" : "melodix"
 
     Loader {
