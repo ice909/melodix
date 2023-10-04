@@ -197,11 +197,10 @@ ApplicationWindow {
 
         // 回到首页，清空多于页面，释放内存
         function onSignalGoHome(route) {
-            console.log("go home");
             for (var i = pages.count - 1; i > 0; i--) {
                 pages.model.remove(i);
             }
-            console.log(pages.count);
+            console.log("回到首页,剩余页面数量: " + pages.count);
         }
 
         target: Router

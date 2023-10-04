@@ -69,6 +69,10 @@ Item {
 
     // 显示发现页
     function showDiscover() {
+        // 如果当前路由是发现页，不做任何操作
+        if (routeCurrent.path === routeDiscover.path) {
+            return ;
+        }
         const r = clone(routeDiscover);
         signalNavigate(r, false);
         routeCurrent = r;
@@ -77,6 +81,10 @@ Item {
 
     // 显示音乐库
     function showLibrary() {
+        // 如果当前路由是音乐库，不做任何操作
+        if (routeCurrent.path === routeLibrary.path) {
+            return ;
+        }
         const r = clone(routeLibrary);
         signalNavigate(r, false);
         routeCurrent = r;
