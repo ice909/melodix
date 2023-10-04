@@ -8,6 +8,7 @@ import org.deepin.dtk 1.0
 import "qml/playlist"
 import "qml/titlebar"
 import "qml/toolbar"
+import "qml/widgets"
 import "router"
 import "util"
 
@@ -26,7 +27,7 @@ ApplicationWindow {
     property bool isLyricShow: false
     property int windowMiniWidth: 1070
     property int windowMiniHeight: 680
-    property int scrollWidth: rootWindow.width - 40
+    property int scrollWidth: rootWindow.width - 40 - sidebar.width
 
     function getMusicUrl(id, name, pic, artist, duration, album, isVip) {
         function urlCompleted(res) {
@@ -126,6 +127,18 @@ ApplicationWindow {
         id: closeDlgLoader
     }
 
+    Sidebar {
+        id: sidebar
+
+        visible: !isLyricShow
+
+        anchors {
+            left: parent.left
+            top: parent.top
+        }
+
+    }
+
     Repeater {
         id: pages
 
@@ -137,13 +150,18 @@ ApplicationWindow {
         }
 
         Rectangle {
-            anchors.fill: parent
+            width: parent.width - sidebar.width
+            height: parent.height - 70
             visible: !isLyricShow
             color: Util.pageBackgroundColor
 
+            anchors {
+                left: sidebar.right
+                top: parent.top
+            }
+
             Loader {
-                width: parent.width
-                height: parent.height - 70
+                anchors.fill: parent
             }
 
         }
@@ -331,17 +349,49 @@ ApplicationWindow {
         id: _background
 
         anchors.fill: parent
-        color: Qt.rgba(0, 0, 0, 0.01)
+        color: "transparent"
 
-        BoxShadow {
+        Row {
             anchors.fill: _background
-            shadowOffsetX: 0
-            shadowOffsetY: 4
-            shadowColor: Qt.rgba(0, 0, 0, 0.05)
-            shadowBlur: 10
-            cornerRadius: _background.radius
-            spread: 0
-            hollow: true
+
+            BehindWindowBlur {
+                id: leftBgArea
+
+                width: sidebar.width
+                height: parent.height
+                anchors.top: parent.top
+                blendColor: Util.sidebarBlendColor
+
+                Rectangle {
+                    width: 1
+                    height: parent.height
+                    anchors.right: parent.right
+                    color: Util.sidebarRightBorderColor
+                }
+
+            }
+
+            Rectangle {
+                id: rightBgArea
+
+                width: parent.width - leftBgArea.width
+                height: 50
+                anchors.top: parent.top
+                color: Qt.rgba(0, 0, 0, 0.01)
+
+                BoxShadow {
+                    anchors.fill: rightBgArea
+                    shadowOffsetX: 0
+                    shadowOffsetY: 4
+                    shadowColor: Qt.rgba(0, 0, 0, 0.05)
+                    shadowBlur: 10
+                    cornerRadius: rightBgArea.radius
+                    spread: 0
+                    hollow: true
+                }
+
+            }
+
         }
 
     }

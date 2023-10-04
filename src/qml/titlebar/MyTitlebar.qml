@@ -27,16 +27,6 @@ TitleBar {
 
     }
 
-    // 阴影
-    BoxShadow {
-        anchors.fill: parent
-        shadowBlur: 10
-        shadowColor: Qt.rgba(0, 0, 0, 0.03)
-        shadowOffsetX: 0
-        shadowOffsetY: 4
-        hollow: true
-    }
-
     leftContent: ToolButton {
         visible: Router.routeCurrent !== Router.routeIndex || isLyricShow
         width: 36
@@ -68,18 +58,10 @@ TitleBar {
             Layout.fillWidth: true
             height: root.height
 
-            TabButton {
-                anchors.centerIn: parent
-                height: 36
-                visible: !isLyricShow
-            }
-
             MySearchEdit {
                 visible: !isLyricShow
-                anchors.right: accoutBtn.left
-                anchors.rightMargin: 10
-                anchors.verticalCenter: parent.verticalCenter
-                width: parent.width / 4.2
+                anchors.centerIn: parent
+                width: parent.width / 3
             }
 
             AccountButton {

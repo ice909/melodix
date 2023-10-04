@@ -6,6 +6,7 @@ Item {
     property var routeCurrent: routeIndex
     // 路由历史记录
     property var routeHistory: [routeIndex]
+    property ListModel routeModel
     // 首页
     property var routeIndex: {
         "path": "index",
@@ -113,24 +114,24 @@ Item {
         routeHistory.push(r);
         signalNavigate(r, false);
     }
-    
+
     // 显示艺人详情页
     function showArtist(id) {
         const r = clone(routeArtist);
         r.id = id;
         routeCurrent = r;
         routeHistory.push(r);
-        signalNavigate(r,false);
+        signalNavigate(r, false);
     }
 
     // 显示喜欢的歌曲页
-    function showFavorite(id,count) {
+    function showFavorite(id, count) {
         const r = clone(routeFavorite);
         r.id = id;
         r.count = count;
         routeCurrent = r;
         routeHistory.push(r);
-        signalNavigate(r,false);
+        signalNavigate(r, false);
     }
 
     // 复制对象
@@ -145,6 +146,24 @@ Item {
         console.log("route back", JSON.stringify(r));
         routeCurrent = r;
         signalBack();
+    }
+
+    routeModel: ListModel {
+        ListElement {
+            iconName: "music"
+            _text: "首页"
+        }
+
+        ListElement {
+            iconName: "music"
+            _text: "发现"
+        }
+
+        ListElement {
+            iconName: "music"
+            _text: "音乐库"
+        }
+
     }
 
 }

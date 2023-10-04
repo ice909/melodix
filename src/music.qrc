@@ -26,7 +26,6 @@
         <file>router/qmldir</file>
 
         <file>qml/titlebar/MyTitlebar.qml</file>
-        <file>qml/titlebar/TabButton.qml</file>
         <file>qml/titlebar/AccountButton.qml</file>
         <file>qml/titlebar/MySearchEdit.qml</file>
 
@@ -42,6 +41,7 @@
         <file>qml/widgets/GridSigner.qml</file>
         <file>qml/widgets/ListViewDelegate.qml</file>
         <file>qml/widgets/RightClickMenu.qml</file>
+        <file>qml/widgets/Sidebar.qml</file>
 
         <file>qml/toolbar/Toolbar.qml</file>
         <file>qml/toolbar/VolumeSlider.qml</file>
