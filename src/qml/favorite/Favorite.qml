@@ -10,7 +10,6 @@ import org.deepin.dtk 1.0
 Item {
     id: root
 
-    property int scrollWidth: rootWindow.width - 40
     // 歌单所有歌曲是否以经全部添加到了播放列表
     property bool isAddToPlaylist: false
     property string myFavoriteId: ""

@@ -11,7 +11,6 @@ Item {
 
     property bool initing: true
     property bool switching: false
-    property int scrollWidth: rootWindow.width - 40
     // 用户的所有歌单
     property var userPlaylists: []
     property string myLikeListId: ""

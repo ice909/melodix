@@ -11,7 +11,6 @@ Item {
     id: root
 
     property bool initing: true
-    property int scrollWidth: rootWindow.width - 40
     property int headHeight: rootWindow.height - 140
     property bool isPlaying: false
     // 热门评论数量

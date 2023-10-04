@@ -20,7 +20,7 @@ Item {
 
             Rectangle {
                 width: (parent.width - 100) * 0.33333
-                height: width * 0.15
+                height: (width * 0.15 * 3 + 20 * 2 - (20 * 2)) / 3 + 10
                 color: "transparent"
                 radius: 5
 

@@ -9,7 +9,6 @@ import org.deepin.dtk 1.0
 Item {
     id: root
 
-    property int scrollWidth: rootWindow.width - 40
     property bool initing: true
     property int hotSongsCount: 0
 

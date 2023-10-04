@@ -11,7 +11,6 @@ Item {
     id: root
 
     property bool initing: true
-    property int scrollWidth: rootWindow.width - 40
     // 是否已经将歌单全部歌曲添加到了播放列表
     property bool isAddToPlaylist: false
     property string currentPlaylistId: ""

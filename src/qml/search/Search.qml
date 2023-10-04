@@ -14,7 +14,6 @@ Item {
     property bool initing: true
     property var songs: []
     property var songUrls: []
-    property int scrollWidth: rootWindow.width - 40
     // 是否已经将歌单全部歌曲添加到了播放列表
     property bool isAddToPlaylist: false
     // 搜索到的歌曲总量
