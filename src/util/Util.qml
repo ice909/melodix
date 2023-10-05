@@ -13,6 +13,7 @@ Item {
     property string sidebarBlendColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? "#bbf7f7f7" : "#dd252525"
     property string sidebarRightBorderColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? "#eee7e7e7" : "#ee252525"
     property int pageLeftPadding: 10
+    property string sidebarBgColorWhenlyricShow: D.DTK.themeType === DI.ApplicationHelper.LightType ? "#ffffff" : "#252525"
 
     function getTimestamp() {
         return Date.now();

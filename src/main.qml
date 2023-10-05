@@ -364,6 +364,7 @@ ApplicationWindow {
                 Rectangle {
                     width: 1
                     height: parent.height
+                    visible: !isLyricShow
                     anchors.right: parent.right
                     color: Util.sidebarRightBorderColor
                 }

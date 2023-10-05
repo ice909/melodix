@@ -1,4 +1,5 @@
 import "../../router"
+import "../../util"
 import QtQuick 2.11
 import QtQuick.Layouts 1.11
 import org.deepin.dtk 1.0
@@ -8,7 +9,7 @@ Rectangle {
 
     width: 150
     height: parent.height
-    color: "transparent"
+    color: isLyricShow ? Util.sidebarBgColorWhenlyricShow : "transparent"
 
     Column {
         anchors.fill: parent
