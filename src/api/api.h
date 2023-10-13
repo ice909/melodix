@@ -3,6 +3,7 @@
 
 #include <MDClientApi.h>
 #include <QObject>
+#include <QPointer>
 
 using namespace MelodixAPI;
 
@@ -10,6 +11,7 @@ class API : public QObject
 {
     Q_OBJECT
 public:
+    static API *instance();
     explicit API(QObject *parent = nullptr);
     ~API();
 
@@ -91,6 +93,7 @@ signals:
     void cellphoneLoginCompleted(QJsonObject);
 
 private:
+    static QPointer<API> INSTANCE; 
     MDClientApi *apiInstance = nullptr;
     MDClientApi *userApiInstance = nullptr;
 };

@@ -1,6 +1,7 @@
 import "../../router"
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -31,7 +32,7 @@ Item {
 
     function getLyric(id) {
         function onReply(reply) {
-            api.onLyricCompleted.disconnect(onReply);
+            API.onLyricCompleted.disconnect(onReply);
             var lines = reply.split("\n");
             var lyrics = [];
             for (var i = 0; i < lines.length; i++) {
@@ -56,14 +57,14 @@ Item {
             }
         }
 
-        api.onLyricCompleted.connect(onReply);
-        api.getLyric(id);
+        API.onLyricCompleted.connect(onReply);
+        API.getLyric(id);
     }
 
     // 获取歌单前12首歌曲
     function getPlayListAllMusic() {
         function onReply(reply) {
-            api.onPlaylistSongsCompleted.disconnect(onReply);
+            API.onPlaylistSongsCompleted.disconnect(onReply);
             var randomNumber = Math.floor(Math.random() * 12);
             getLyric(reply[randomNumber].id);
             musicCountTitle.text = reply.length + "首歌";
@@ -75,14 +76,14 @@ Item {
             initing = false;
         }
 
-        api.onPlaylistSongsCompleted.connect(onReply);
-        api.getPlaylistSongs(myLikeListId);
+        API.onPlaylistSongsCompleted.connect(onReply);
+        API.getPlaylistSongs(myLikeListId);
     }
 
     // 获取用户购买的专辑
     function getUserAlbum() {
         function onReply(reply) {
-            api.onUserBuyAlbumCompleted.disconnect(onReply);
+            API.onUserBuyAlbumCompleted.disconnect(onReply);
             bottomLoader.item.lists = reply;
             console.log("已购专辑数量：" + reply.length);
             playlistRows = Math.ceil(reply.length / 5);
@@ -90,14 +91,14 @@ Item {
             switching = false;
         }
 
-        api.onUserBuyAlbumCompleted.connect(onReply);
-        api.getUserBuyAlbum();
+        API.onUserBuyAlbumCompleted.connect(onReply);
+        API.getUserBuyAlbum();
     }
 
     // 获取收藏的歌手
     function getFollowArtists() {
         function onReply(reply) {
-            api.onArtistSublistCompleted.disconnect(onReply);
+            API.onArtistSublistCompleted.disconnect(onReply);
             console.log("关注艺人数量：" + reply.length);
             playlistRows = Math.ceil(reply.length / 5);
             console.log("计算出的关注艺人行数：" + playlistRows);
@@ -105,13 +106,13 @@ Item {
             switching = false;
         }
 
-        api.onArtistSublistCompleted.connect(onReply);
-        api.getArtistSublist();
+        API.onArtistSublistCompleted.connect(onReply);
+        API.getArtistSublist();
     }
 
     function getCollectMvs() {
         function onReply(reply) {
-            api.onMvSublistCompleted.disconnect(onReply);
+            API.onMvSublistCompleted.disconnect(onReply);
             console.log("收藏MV数量：" + reply.length);
             playlistRows = Math.ceil(reply.length / 5);
             console.log("计算出的收藏MV行数：" + playlistRows);
@@ -119,16 +120,15 @@ Item {
             switching = false;
         }
 
-        api.onMvSublistCompleted.connect(onReply);
-        api.getMvSublist();
+        API.onMvSublistCompleted.connect(onReply);
+        API.getMvSublist();
     }
 
     Component.onCompleted: {
-        api.getUserPlaylist(userID);
+        API.getUserPlaylist(userID);
     }
 
     Connections {
-        target: api
         function onUserPlaylistCompleted(res) {
             userPlaylists = res;
             console.log("获取的歌单数量：" + userPlaylists.length);
@@ -139,6 +139,8 @@ Item {
             myLikeSongCount = userPlaylists[0].trackCount;
             getPlayListAllMusic();
         }
+
+        target: API
     }
 
     // 音乐库界面
@@ -268,7 +270,7 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
-                            onClicked: Router.showFavorite(myLikeListId,myLikeSongCount)
+                            onClicked: Router.showFavorite(myLikeListId, myLikeSongCount)
                         }
 
                     }

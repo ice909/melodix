@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 
     // 在此处注册QML中的C++类型
     qmlRegisterSingletonInstance<Player>("Melodix.Player", 1, 0, "Player", Player::instance());
-    qmlRegisterType<API>("api", 1, 0, "MedlodixAPI");
+    qmlRegisterSingletonInstance<API>("Melodix.API", 1, 0, "API", API::instance());
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("worker", Worker::instance());

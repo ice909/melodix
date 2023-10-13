@@ -1,6 +1,7 @@
 import "../../router"
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import QtMultimedia 5.15
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -18,7 +19,7 @@ Item {
 
     function getSimilarityMv() {
         function onReply(data) {
-            api.onSimiMvCompleted.disconnect(onReply);
+            API.onSimiMvCompleted.disconnect(onReply);
             if (data.length > 5)
                 data = data.slice(0, 5);
 
@@ -26,25 +27,25 @@ Item {
             initing = false;
         }
 
-        api.onSimiMvCompleted.connect(onReply);
-        api.getSimiMv(Router.routeCurrent.id);
+        API.onSimiMvCompleted.connect(onReply);
+        API.getSimiMv(Router.routeCurrent.id);
     }
 
     function getMvHotComment() {
         function onReply(data) {
-            api.onHotCommentCompleted.disconnect(onReply);
+            API.onHotCommentCompleted.disconnect(onReply);
             hotCommentsCount = data.length;
             commentsRect.lists = data;
             getSimilarityMv();
         }
 
-        api.onHotCommentCompleted.connect(onReply);
-        api.getMvHotComment(Router.routeCurrent.id,"1");
+        API.onHotCommentCompleted.connect(onReply);
+        API.getMvHotComment(Router.routeCurrent.id,"1");
     }
 
     function getMvDetail() {
         function onReply(data) {
-            api.onMvDetailCompleted.disconnect(onReply);
+            API.onMvDetailCompleted.disconnect(onReply);
             artistImg.imgSrc = data.artists[0].img1v1Url;
             artistName.text = data.artists[0].name;
             mvName.text = data.name;
@@ -52,19 +53,19 @@ Item {
             getMvHotComment();
         }
 
-        api.onMvDetailCompleted.connect(onReply);
-        api.getMvDetail(Router.routeCurrent.id);
+        API.onMvDetailCompleted.connect(onReply);
+        API.getMvDetail(Router.routeCurrent.id);
     }
 
     function getMvUrl() {
         function onReply(reply) {
-            api.onMvUrlCompleted.disconnect(onReply);
+            API.onMvUrlCompleted.disconnect(onReply);
             mvVideo.source = reply.url;
             getMvDetail();
         }
 
-        api.onMvUrlCompleted.connect(onReply);
-        api.getMvUrl(Router.routeCurrent.id);
+        API.onMvUrlCompleted.connect(onReply);
+        API.getMvUrl(Router.routeCurrent.id);
     }
 
     Component.onCompleted: {

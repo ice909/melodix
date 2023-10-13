@@ -1,5 +1,6 @@
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import Melodix.Player 1.0
 import QtGraphicalEffects 1.0
 import QtQuick 2.11
@@ -112,7 +113,7 @@ FloatingPanel {
 
     function likeMusic() {
         function onReply(reply) {
-            api.onLikeMusicCompleted.disconnect(onReply);
+            API.onLikeMusicCompleted.disconnect(onReply);
             if (reply.code === 200) {
                 if (!favorite) {
                     console.log("已添加到我喜欢的歌曲");
@@ -133,8 +134,8 @@ FloatingPanel {
             }
         }
 
-        api.onLikeMusicCompleted.connect(onReply);
-        api.likeMusic(Player.getId(), favorite ? "false" : "true");
+        API.onLikeMusicCompleted.connect(onReply);
+        API.likeMusic(Player.getId(), favorite ? "false" : "true");
     }
 
     height: 60

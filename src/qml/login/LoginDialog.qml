@@ -1,5 +1,6 @@
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0

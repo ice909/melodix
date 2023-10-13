@@ -5,6 +5,16 @@
 #include <QDebug>
 #include <QRandomGenerator>
 
+QPointer<API> API::INSTANCE = nullptr;
+
+API *API::instance()
+{
+    if (INSTANCE.isNull())
+        INSTANCE = new API;
+
+    return INSTANCE;
+}
+
 template<typename T>
 QJsonArray toJsonArray(QList<T> list)
 {

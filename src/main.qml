@@ -1,9 +1,9 @@
+import Melodix.API 1.0
 import Melodix.Player 1.0
 import Qt.labs.platform 1.1 as P
 import QtQuick 2.11
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
-import api 1.0
 import org.deepin.dtk 1.0
 import "qml/playlist"
 import "qml/titlebar"
@@ -31,12 +31,12 @@ ApplicationWindow {
 
     function getMusicUrl(id, name, pic, artist, duration, album, isVip) {
         function urlCompleted(res) {
-            api.onSongUrlCompleted.disconnect(urlCompleted);
+            API.onSongUrlCompleted.disconnect(urlCompleted);
             Player.addSingleToPlaylist(res[0].url, id, name, pic, artist, duration, album, isVip);
         }
 
-        api.onSongUrlCompleted.connect(urlCompleted);
-        api.getSongUrl(id);
+        API.onSongUrlCompleted.connect(urlCompleted);
+        API.getSongUrl(id);
     }
 
     function onMediaCountChanged(count) {
@@ -93,7 +93,7 @@ ApplicationWindow {
         }
     }
     Component.onCompleted: {
-        api.getLoginStatus();
+        API.getLoginStatus();
     }
 
     Connections {
@@ -101,7 +101,7 @@ ApplicationWindow {
             if (res.code == 200 && res.account.status == 0 && res.profile != null) {
                 console.log("用户已登录");
                 isLogin = true;
-                api.getAccountInfo();
+                API.getAccountInfo();
             } else {
                 console.log("还未登录");
                 return ;
@@ -113,14 +113,14 @@ ApplicationWindow {
             userNickname = profile.nickname;
             userID = profile.userId;
             console.log("用户头像 昵称 ID获取成功");
-            api.getUserLikeSongIds(userID);
+            API.getUserLikeSongIds(userID);
         }
 
         function onUserLikeSongIdsCompleted(res) {
             userFavoriteSongsID = res.ids;
         }
 
-        target: api
+        target: API
     }
 
     Loader {
@@ -204,10 +204,6 @@ ApplicationWindow {
         }
 
         target: Router
-    }
-
-    MedlodixAPI {
-        id: api
     }
 
     Loader {

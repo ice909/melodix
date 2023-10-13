@@ -1,5 +1,6 @@
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -32,7 +33,7 @@ Item {
         limit = 50;
         playlistCount = 0;
         playlistRows = 0;
-        api.getTopPlaylist(currentCategory, 'hot', limit, offset);
+        API.getTopPlaylist(currentCategory, 'hot', limit, offset);
     }
 
     function moreLoading() {
@@ -42,11 +43,11 @@ Item {
             limit = playlistCount - offset;
             hasMore = false;
         }
-        api.getTopPlaylist(currentCategory, 'hot', limit, offset);
+        API.getTopPlaylist(currentCategory, 'hot', limit, offset);
     }
 
     Component.onCompleted: {
-        api.getTopPlaylist(currentCategory, 'hot', limit, offset);
+        API.getTopPlaylist(currentCategory, 'hot', limit, offset);
     }
 
     Connections {
@@ -65,7 +66,7 @@ Item {
             loadAnimation.anchors.topMargin = tabBtns.height + 40;
         }
 
-        target: api
+        target: API
     }
 
     // 发现界面

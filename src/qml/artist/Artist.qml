@@ -1,6 +1,7 @@
 import "../../router"
 import "../widgets"
 import "../../util"
+import Melodix.API 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -14,7 +15,7 @@ Item {
 
     function getArtistSongs() {
         function onReply(songs) {
-            api.onArtistSongsCompleted.disconnect(onReply);
+            API.onArtistSongsCompleted.disconnect(onReply);
             if(songs.length > 12){
                 hotSongsCount = 3
                 artist_hot_songs.lists = songs.slice(0, 12);
@@ -28,13 +29,13 @@ Item {
             initing = false;
         }
 
-        api.onArtistSongsCompleted.connect(onReply);
-        api.getArtistSongs(Router.routeCurrent.id);
+        API.onArtistSongsCompleted.connect(onReply);
+        API.getArtistSongs(Router.routeCurrent.id);
     }
 
     function getArtistMv() {
         function onReply(mvs) {
-            api.onArtistMvCompleted.disconnect(onReply);
+            API.onArtistMvCompleted.disconnect(onReply);
             if (mvs.length > 0) {
                 artist_new_mv_cover.imgSrc = mvs[0].imgurl16v9;
                 artist_new_mv_name.text = mvs[0].name;
@@ -46,13 +47,13 @@ Item {
             getArtistSongs();
         }
 
-        api.onArtistMvCompleted.connect(onReply);
-        api.getArtistMv(Router.routeCurrent.id);
+        API.onArtistMvCompleted.connect(onReply);
+        API.getArtistMv(Router.routeCurrent.id);
     }
 
     function getArtistNewAlbum() {
         function onReply(hotAlbums) {
-            api.onArtistAlbumCompleted.disconnect(onReply);
+            API.onArtistAlbumCompleted.disconnect(onReply);
             if (hotAlbums.length > 0)
                 artist_new_album_cover.imgSrc = hotAlbums[0].blurPicUrl;
 
@@ -62,13 +63,13 @@ Item {
             getArtistMv();
         }
 
-        api.onArtistAlbumCompleted.connect(onReply);
-        api.getArtistAlbum(Router.routeCurrent.id);
+        API.onArtistAlbumCompleted.connect(onReply);
+        API.getArtistAlbum(Router.routeCurrent.id);
     }
 
     function getArtistInfo() {
         function onReply(reply) {
-            api.onArtistDetailCompleted.disconnect(onReply);
+            API.onArtistDetailCompleted.disconnect(onReply);
             artist_avatar.imgSrc = reply.artist.avatar;
             artist_name.text = reply.artist.name;
             artist_works.text = reply.artist.musicSize + " 首歌 · " + reply.artist.albumSize + " 张专辑 · " + reply.artist.albumSize + " 个MV";
@@ -79,8 +80,8 @@ Item {
             getArtistNewAlbum();
         }
 
-        api.onArtistDetailCompleted.connect(onReply);
-        api.getArtistDetail(Router.routeCurrent.id);
+        API.onArtistDetailCompleted.connect(onReply);
+        API.getArtistDetail(Router.routeCurrent.id);
     }
 
     Component.onCompleted: {

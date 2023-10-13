@@ -1,5 +1,6 @@
 import "../../router"
 import "../widgets"
+import Melodix.API 1.0
 import QtQuick 2.11
 import QtQuick.Layouts 1.7
 import org.deepin.dtk 1.0
@@ -63,7 +64,7 @@ WindowButton {
                 Layout.bottomMargin: 10
                 text: "登出"
                 onClicked: {
-                    api.logout();
+                    API.logout();
                     userAvatar = "";
                     isLogin = false;
                     accountMenu.close();

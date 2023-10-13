@@ -1,6 +1,7 @@
 import "../../router"
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import Melodix.Player 1.0
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
@@ -33,7 +34,7 @@ Item {
 
     function getSearchSongsInfo() {
         function onReply(result) {
-            api.onSearchCompleted.disconnect(onReply);
+            API.onSearchCompleted.disconnect(onReply);
             var newSongs = result.songs;
             for (const song of newSongs) {
                 songs.push(song);
@@ -53,25 +54,25 @@ Item {
             limit = songListCount - offset;
             hasMore = false;
         }
-        api.onSearchCompleted.connect(onReply);
-        api.search(Router.routeCurrent.key, limit, offset);
+        API.onSearchCompleted.connect(onReply);
+        API.search(Router.routeCurrent.key, limit, offset);
     }
 
     function getSearchResult(offset = 0) {
         function onReply(result) {
-            api.onSearchCompleted.disconnect(onReply);
+            API.onSearchCompleted.disconnect(onReply);
             songListCount = result.songCount;
             console.log("搜索到的歌曲共有：" + songListCount + "首");
             getSearchSongsInfo();
         }
 
-        api.onSearchCompleted.connect(onReply);
-        api.search(Router.routeCurrent.key);
+        API.onSearchCompleted.connect(onReply);
+        API.search(Router.routeCurrent.key);
     }
 
     function playPlaylistAllMusic(index = -1) {
         function onReply(reply) {
-            api.onSongUrlCompleted.disconnect(onReply);
+            API.onSongUrlCompleted.disconnect(onReply);
             // 获取播放列表中的歌曲url数量，用作偏移量
             var urlOffset = songUrls.length;
             // 将新的歌曲url添加到songUrls数组中
@@ -115,8 +116,8 @@ Item {
         for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
         // 将所有id使用逗号连接成一个字符串
         var concatenatedIds = ids.join(',');
-        api.onSongUrlCompleted.connect(onReply);
-        api.getSongUrl(concatenatedIds);
+        API.onSongUrlCompleted.connect(onReply);
+        API.getSongUrl(concatenatedIds);
     }
 
     function onPlaylistCurrentIndexChanged() {

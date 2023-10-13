@@ -1,5 +1,6 @@
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
@@ -7,16 +8,16 @@ import org.deepin.dtk 1.0
 Item {
     function passwordLogin() {
         function onReply(reply) {
-            api.onCellphoneLoginCompleted.disconnect(onReply);
+            API.onCellphoneLoginCompleted.disconnect(onReply);
             worker.saveCookie(reply.cookie);
-            api.addCookie();
-            api.getAccountInfo();
+            API.addCookie();
+            API.getAccountInfo();
             isLogin = true;
             root.close();
         }
 
-        api.onCellphoneLoginCompleted.connect(onReply);
-        api.phoneLogin(phone.text, password.text);
+        API.onCellphoneLoginCompleted.connect(onReply);
+        API.phoneLogin(phone.text, password.text);
     }
 
     anchors.fill: parent

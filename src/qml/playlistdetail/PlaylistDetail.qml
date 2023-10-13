@@ -1,6 +1,7 @@
 import "../../router"
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import Melodix.Player 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -32,7 +33,7 @@ Item {
 
     function getPlaylistSongsInfo() {
         function onReply(reply) {
-            api.onPlaylistSongsCompleted.disconnect(onReply);
+            API.onPlaylistSongsCompleted.disconnect(onReply);
             for (const song of reply) {
                 songs.push(song);
                 listView.model.append({
@@ -53,13 +54,13 @@ Item {
             limit = playlistSongAllCount - offset;
             hasMore = false;
         }
-        api.onPlaylistSongsCompleted.connect(onReply);
-        api.getPlaylistSongs(currentPlaylistId, limit, offset);
+        API.onPlaylistSongsCompleted.connect(onReply);
+        API.getPlaylistSongs(currentPlaylistId, limit, offset);
     }
 
     function playPlaylistAllMusic(index = -1) {
         function onReply(reply) {
-            api.onSongUrlCompleted.disconnect(onReply);
+            API.onSongUrlCompleted.disconnect(onReply);
             // 获取播放列表中的歌曲url数量，用作偏移量
             var urlOffset = songUrls.length;
             // 将新的歌曲url添加到songUrls数组中
@@ -103,8 +104,8 @@ Item {
         for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
         // 将所有id使用逗号连接成一个字符串
         var concatenatedIds = ids.join(',');
-        api.onSongUrlCompleted.connect(onReply);
-        api.getSongUrl(concatenatedIds);
+        API.onSongUrlCompleted.connect(onReply);
+        API.getSongUrl(concatenatedIds);
     }
 
     function onPlaylistCurrentIndexChanged() {
@@ -119,7 +120,7 @@ Item {
         console.log("跳转歌单id为： " + Router.routeCurrent.id);
         currentPlaylistId = Router.routeCurrent.id;
         //getPlaylistDetail();
-        api.getPlaylistDetail(currentPlaylistId);
+        API.getPlaylistDetail(currentPlaylistId);
         Player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         Player.playlistCleared.connect(onPlaylistCleared);
     }
@@ -144,7 +145,7 @@ Item {
             getPlaylistSongsInfo();
         }
 
-        target: api
+        target: API
     }
 
     ListModel {

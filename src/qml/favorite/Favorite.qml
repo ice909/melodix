@@ -1,6 +1,7 @@
 import "../../router"
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import Melodix.Player 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -32,7 +33,7 @@ Item {
 
     function playPlaylistAllMusic(index = -1) {
         function onReply(urls) {
-            api.onSongUrlCompleted.disconnect(onReply);
+            API.onSongUrlCompleted.disconnect(onReply);
             var urlOffset = songUrls.length;
             for (var i = 0; i < urls.length; i++) {
                 var song = urls[i];
@@ -64,13 +65,13 @@ Item {
         for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
         // 将所有id使用逗号连接成一个字符串
         var concatenatedIds = ids.join(',');
-        api.onSongUrlCompleted.connect(onReply);
-        api.getSongUrl(concatenatedIds);
+        API.onSongUrlCompleted.connect(onReply);
+        API.getSongUrl(concatenatedIds);
     }
 
     function getMyFavoriteSongs() {
         function onReply(newSongs) {
-            api.onPlaylistSongsCompleted.disconnect(onReply);
+            API.onPlaylistSongsCompleted.disconnect(onReply);
             for (const song of newSongs) {
                 songs.push(song);
                 songListModel.append({
@@ -90,8 +91,8 @@ Item {
             limit = playlistAllSongsCount - offset;
             hasMore = false;
         }
-        api.onPlaylistSongsCompleted.connect(onReply);
-        api.getPlaylistSongs(myFavoriteId, limit, offset);
+        API.onPlaylistSongsCompleted.connect(onReply);
+        API.getPlaylistSongs(myFavoriteId, limit, offset);
     }
 
     function onPlaylistCurrentIndexChanged() {

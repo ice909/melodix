@@ -1,5 +1,6 @@
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.15
@@ -12,11 +13,11 @@ Item {
     property int count: 0
 
     Component.onCompleted: {
-        api.banner("0");
-        api.getRecommendedPlaylist("10");
-        api.getRecommendedNewSongs("9");
-        api.getTopArtists();
-        api.getRecommendedMv();
+        API.banner("0");
+        API.getRecommendedPlaylist("10");
+        API.getRecommendedNewSongs("9");
+        API.getTopArtists();
+        API.getRecommendedMv();
     }
 
     Connections {
@@ -62,7 +63,7 @@ Item {
 
         }
 
-        target: api
+        target: API
     }
 
     // 首页界面

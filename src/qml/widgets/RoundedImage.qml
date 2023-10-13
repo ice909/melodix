@@ -11,8 +11,8 @@ Item {
 
         anchors.centerIn: parent
         source: imgSrc
-        sourceSize.width: 300
-        sourceSize.height: 300
+        sourceSize.width: 400
+        sourceSize.height: 400
         smooth: true
         width: parent.width
         height: parent.height

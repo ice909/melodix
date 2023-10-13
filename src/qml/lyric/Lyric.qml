@@ -1,5 +1,6 @@
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import Melodix.Player 1.0
 import QtGraphicalEffects 1.0
 import QtQuick 2.11
@@ -23,7 +24,7 @@ Item {
 
     function getLyric() {
         function onReply(lrc) {
-            api.onLyricCompleted.disconnect(onReply);
+            API.onLyricCompleted.disconnect(onReply);
             var lines = lrc.split("\n");
             for (var i = 0; i < lines.length; i++) {
                 var line = lines[i].trim();
@@ -48,8 +49,8 @@ Item {
         }
 
         lrcModel.clear();
-        api.onLyricCompleted.connect(onReply);
-        api.getLyric(Player.getId());
+        API.onLyricCompleted.connect(onReply);
+        API.getLyric(Player.getId());
     }
 
     function lyricWindowUp() {

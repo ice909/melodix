@@ -1,5 +1,6 @@
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
@@ -10,7 +11,7 @@ Item {
     function verifyCaptcha() {
         // 验证验证码
         function onReply(reply) {
-            api.onVerifyCaptchaCompleted.disconnect(onReply);
+            API.onVerifyCaptchaCompleted.disconnect(onReply);
             if (reply.data === true)
                 login();
             else {
@@ -20,25 +21,25 @@ Item {
         }
 
         if (phone.text !== "" && code.text != "") {
-            api.onVerifyCaptchaCompleted.connect(onReply);
-            api.verifyCaptcha(phone.text, code.text);
+            API.onVerifyCaptchaCompleted.connect(onReply);
+            API.verifyCaptcha(phone.text, code.text);
         }
     }
 
     function login() {
         function onReply(reply) {
-            api.onCellphoneLoginCompleted.disconnect(onReply);
+            API.onCellphoneLoginCompleted.disconnect(onReply);
             worker.saveCookie(reply.cookie);
-            api.addCookie();
-            api.getAccountInfo();
+            API.addCookie();
+            API.getAccountInfo();
             isLogin = true;
             sendCaptchaTimer.stop();
             root.close();
         }
 
         if (phone.text !== "" && code.text != "") {
-            api.onCellphoneLoginCompleted.connect(onReply);
-            api.phoneLogin(phone.text, "", code.text);
+            API.onCellphoneLoginCompleted.connect(onReply);
+            API.phoneLogin(phone.text, "", code.text);
         }
     }
 
@@ -115,12 +116,12 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     onClicked: {
                         console.log("获取验证码按钮被点击");
-                        api.onSendCaptchaCompleted.connect(onReply);
-                        api.getCaptcha(phone.text);
+                        API.onSendCaptchaCompleted.connect(onReply);
+                        API.getCaptcha(phone.text);
                     }
 
                     function onReply() {
-                        api.onSendCaptchaCompleted.disconnect(onReply);
+                        API.onSendCaptchaCompleted.disconnect(onReply);
                         console.log("验证码发送成功");
                         captchaBtn.enabled = false;
                         captchaBtn.text = "59s后重发";

@@ -1,5 +1,6 @@
 import "../../util"
 import "../widgets"
+import Melodix.API 1.0
 import QtQuick 2.11
 import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
@@ -11,32 +12,32 @@ Item {
     // 生成二维码key
     function generateQRCodeKey() {
         function onReply(reply) {
-            api.onGetQrKeyCompleted.disconnect(onReply);
+            API.onGetQrKeyCompleted.disconnect(onReply);
             unikey = reply.unikey;
             generateQRCode();
         }
 
-        api.onGetQrKeyCompleted.connect(onReply);
-        api.getQrKey();
+        API.onGetQrKeyCompleted.connect(onReply);
+        API.getQrKey();
     }
 
     // 生成二维码
     function generateQRCode() {
         function onReply(reply) {
-            api.onCreateQRCodeCompleted.disconnect(onReply);
+            API.onCreateQRCodeCompleted.disconnect(onReply);
             qrCode.imgSrc = reply.qrimg;
             initing = false;
             timer.start();
         }
 
-        api.onCreateQRCodeCompleted.connect(onReply);
-        api.generateQRCode(unikey);
+        API.onCreateQRCodeCompleted.connect(onReply);
+        API.generateQRCode(unikey);
     }
 
     // 二维码检测扫码状态
     function checkQRCodeStatus() {
         function onReply(status) {
-            api.onQrCheckCompleted.disconnect(onReply);
+            API.onQrCheckCompleted.disconnect(onReply);
             if (status.code == 800)
                 handleQRCodeExpired();
             else if (status.code == 801)
@@ -47,8 +48,8 @@ Item {
                 handleQRCodeScanned(status.cookie); // 登录成功
         }
 
-        api.onQrCheckCompleted.connect(onReply);
-        api.qrCheck(unikey);
+        API.onQrCheckCompleted.connect(onReply);
+        API.qrCheck(unikey);
     }
 
     // 处理二维码被扫描后的逻辑
@@ -56,8 +57,8 @@ Item {
         // 执行相应的操作，如登录成功后的跳转等
         console.log("登录成功");
         worker.saveCookie(cookie);
-        api.addCookie();
-        api.getAccountInfo();
+        API.addCookie();
+        API.getAccountInfo();
         isLogin = true;
         timer.stop();
         root.close();
