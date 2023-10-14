@@ -349,13 +349,24 @@ ApplicationWindow {
         Row {
             anchors.fill: _background
 
-            BehindWindowBlur {
+            Rectangle {
                 id: leftBgArea
 
                 width: sidebar.width
                 height: parent.height
                 anchors.top: parent.top
-                blendColor: Util.sidebarBlendColor
+                color: Qt.rgba(0, 0, 0, 0.01)
+
+                BoxShadow {
+                    anchors.fill: leftBgArea
+                    shadowOffsetX: 0
+                    shadowOffsetY: 4
+                    shadowColor: Qt.rgba(0, 0, 0, 0.05)
+                    shadowBlur: 10
+                    cornerRadius: leftBgArea.radius
+                    spread: 0
+                    hollow: true
+                }
 
                 Rectangle {
                     width: 1
