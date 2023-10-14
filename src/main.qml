@@ -355,7 +355,7 @@ ApplicationWindow {
                 width: sidebar.width
                 height: parent.height
                 anchors.top: parent.top
-                color: Qt.rgba(0, 0, 0, 0.01)
+                color: "#e9e9e9"
 
                 BoxShadow {
                     anchors.fill: leftBgArea
