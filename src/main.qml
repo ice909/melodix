@@ -355,7 +355,7 @@ ApplicationWindow {
                 width: sidebar.width
                 height: parent.height
                 anchors.top: parent.top
-                color: "#e9e9e9"
+                color: Util.sidebarBackgroundColor
 
                 BoxShadow {
                     anchors.fill: leftBgArea

@@ -68,6 +68,14 @@ TitleBar {
             AccountButton {
                 id: accoutBtn
 
+                anchors.right: noticeBtn.left
+                width: parent.height
+                height: parent.height
+            }
+
+            NoticeButton {
+                id: noticeBtn
+
                 anchors.right: parent.right
                 width: parent.height
                 height: parent.height

@@ -21,5 +21,8 @@
         <file>dsg/icons/toolbar_volume+.dci</file>
         <file>dsg/icons/playlist_delete.dci</file>
         <file>dsg/icons/details_play.dci</file>
+
+        <file>dsg/icons/message-light.svg</file>
+        <file>dsg/icons/message-dark.svg</file>
     </qresource>
 </RCC>
