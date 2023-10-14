@@ -1,9 +1,11 @@
 #ifndef WORKER_H
 #define WORKER_H
 
+#include <QObject>
+#include <QDesktopServices>
+#include <QUrl>
 #include <QDebug>
 #include <QDir>
-#include <QObject>
 #include <QSettings>
 #include <QPointer>
 
@@ -25,6 +27,8 @@ public:
     Q_INVOKABLE void setCookie(QString cookie);
     // 登录成功之后，保存cookie
     Q_INVOKABLE void saveCookie(QString cookie);
+    // 打开网站
+    Q_INVOKABLE void openUrl(QString url);
 
 private:
     static QPointer<Worker> INSTANCE;

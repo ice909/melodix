@@ -26,14 +26,16 @@ WindowButton {
         x: avatarImage.x - 62
         y: parent.height
         width: 150
-        height: 120
+        // 30 * 2 是按钮高度，10 * 2是spacing ，10是margin-bottom
+        height: avatar_item.height + 30 * 2 + 10 * 2 + 20
 
         ColumnLayout {
             anchors.centerIn: parent
             width: 130
-            spacing: 0
+            spacing: 10
 
             Item {
+                id: avatar_item
                 width: 48
                 height: 48
 
@@ -56,13 +58,25 @@ WindowButton {
 
             }
 
+            // 个人中心按钮
             Button {
                 visible: isLogin
                 Layout.fillWidth: true
-                height: 40
-                Layout.topMargin: 10
-                Layout.bottomMargin: 10
+                Layout.preferredHeight: 30
+                text: "个人中心"
+                ColorSelector.family: Palette.CrystalColor
+                onClicked: {
+                    worker.openUrl("https://music.163.com/#/user/home?id=" + userID);
+                    accountMenu.close();
+                }
+            }
+
+            Button {
+                visible: isLogin
+                Layout.fillWidth: true
+                Layout.preferredHeight: 30
                 text: "登出"
+                ColorSelector.family: Palette.CrystalColor
                 onClicked: {
                     API.logout();
                     userAvatar = "";
@@ -75,9 +89,7 @@ WindowButton {
             RecommandButton {
                 visible: !isLogin
                 Layout.fillWidth: true
-                height: 40
-                Layout.topMargin: 10
-                Layout.bottomMargin: 10
+                Layout.preferredHeight: 30
                 text: "登录"
                 onClicked: {
                     loginDialog.setSource("");

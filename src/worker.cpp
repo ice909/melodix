@@ -72,4 +72,9 @@ void Worker::setIsAsk(QString action)
     m_settings->setValue("isAsk", m_isAsk);
 }
 
+void Worker::openUrl(QString url)
+{
+    QDesktopServices::openUrl(QUrl(url));
+}
+
 Worker::~Worker() {}
