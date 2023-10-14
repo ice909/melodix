@@ -13,9 +13,9 @@ Item {
     property int count: 0
 
     Component.onCompleted: {
-        API.banner("0");
-        API.getRecommendedPlaylist("10");
-        API.getRecommendedNewSongs("9");
+        API.banner(0);
+        API.getRecommendedPlaylist(10);
+        API.getRecommendedNewSongs(9);
         API.getTopArtists();
         API.getRecommendedMv();
     }

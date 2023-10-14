@@ -172,7 +172,7 @@ API::API(QObject *parent)
                 emit cellphoneLoginCompleted(response.asJsonObject());
             });
 }
-void API::banner(const QString type)
+void API::banner(const int type)
 {
     apiInstance->banner(type);
     connect(apiInstance,
@@ -182,7 +182,7 @@ void API::banner(const QString type)
             });
 }
 
-void API::getRecommendedPlaylist(const QString limit)
+void API::getRecommendedPlaylist(const int limit)
 {
     apiInstance->getRecommendedPlaylist(limit);
     connect(apiInstance,
@@ -192,7 +192,7 @@ void API::getRecommendedPlaylist(const QString limit)
             });
 }
 
-void API::getRecommendedNewSongs(const QString limit)
+void API::getRecommendedNewSongs(const int limit)
 {
     apiInstance->getRecommendedNewSongs(limit);
     connect(apiInstance,
@@ -229,15 +229,15 @@ void API::getRecommendedMv()
 
 void API::getTopPlaylist(const QString cat,
                          const QString order,
-                         const QString limit,
-                         const QString offset)
+                         const int limit,
+                         const int offset)
 {
     apiInstance->getTopPlaylist(cat, order, limit, offset);
 }
 
 void API::getLoginStatus()
 {
-    userApiInstance->getLoginStatus(QString::number(QDateTime::currentMSecsSinceEpoch()));
+    userApiInstance->getLoginStatus(QDateTime::currentMSecsSinceEpoch());
 }
 
 void API::getAccountInfo()
@@ -260,7 +260,7 @@ void API::getPlaylistDetail(const QString id)
     apiInstance->getPlaylistDetail(id);
 }
 
-void API::getPlaylistSongs(const QString id, const QString limit, const QString offset)
+void API::getPlaylistSongs(const QString id, const int limit, const int offset)
 {
     apiInstance->getPlaylistTrackAll(id, limit, offset);
 }
@@ -277,6 +277,7 @@ void API::getUserPlaylist(const QString id)
 
 void API::getLyric(const QString id)
 {
+    qDebug() << "获取歌词";
     apiInstance->getLyric(id);
 }
 
@@ -287,12 +288,12 @@ void API::getUserBuyAlbum()
 
 void API::getArtistSublist()
 {
-    userApiInstance->getArtistSublist(QString::number(QDateTime::currentMSecsSinceEpoch()));
+    userApiInstance->getArtistSublist(QDateTime::currentMSecsSinceEpoch());
 }
 
 void API::getMvSublist()
 {
-    userApiInstance->getMvSublist(QString::number(QDateTime::currentMSecsSinceEpoch()));
+    userApiInstance->getMvSublist(QDateTime::currentMSecsSinceEpoch());
 }
 
 void API::getArtistDetail(const QString id)
@@ -325,7 +326,7 @@ void API::getMvDetail(const QString id)
     apiInstance->getMvDetail(id);
 }
 
-void API::getMvHotComment(const QString id, const QString type)
+void API::getMvHotComment(const QString id, const int type)
 {
     apiInstance->getHotComment(id, type);
 }
@@ -340,47 +341,47 @@ void API::search(const QString keyword)
     apiInstance->search(keyword);
 }
 
-void API::search(const QString keyword, const QString limit, const QString offset)
+void API::search(const QString keyword, const int limit, const int offset)
 {
     apiInstance->search(keyword, limit, offset);
 }
 
 void API::likeMusic(const QString id, const QString like)
 {
-    userApiInstance->likeMusic(id, like, QString::number(QDateTime::currentMSecsSinceEpoch()));
+    userApiInstance->likeMusic(id, like, QDateTime::currentMSecsSinceEpoch());
 }
 
 void API::getQrKey()
 {
-    apiInstance->getQrKey(QString::number(QDateTime::currentMSecsSinceEpoch()));
+    apiInstance->getQrKey(QDateTime::currentMSecsSinceEpoch());
 }
 
 void API::generateQRCode(const QString unikey)
 {
-    apiInstance->qrCreate(unikey, QString::number(QDateTime::currentMSecsSinceEpoch()), 1);
+    apiInstance->qrCreate(unikey, QDateTime::currentMSecsSinceEpoch(), 1);
 }
 
 void API::qrCheck(const QString unikey)
 {
-    apiInstance->qrCheck(unikey, QString::number(QDateTime::currentMSecsSinceEpoch()));
+    apiInstance->qrCheck(unikey, QDateTime::currentMSecsSinceEpoch());
 }
 
-void API::getCaptcha(const QString phone)
+void API::getCaptcha(const int phone)
 {
     apiInstance->sendCaptcha(phone);
 }
 
-void API::verifyCaptcha(const QString phone, const QString captcha)
+void API::verifyCaptcha(const int phone, const int captcha)
 {
     apiInstance->verifyCaptcha(phone, captcha);
 }
 
-void API::phoneLogin(const QString phone, const QString password)
+void API::phoneLogin(const int phone, const QString password)
 {
     apiInstance->cellphoneLogin(phone, password);
 }
 
-void API::phoneLogin(const QString phone, const QString password, const QString captcha)
+void API::phoneLogin(const int phone, const QString password, const int captcha)
 {
     apiInstance->cellphoneLogin(phone, password, captcha);
 }

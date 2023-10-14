@@ -18,22 +18,22 @@ public:
 public slots:
     void addCookie();
     void logout();
-    void banner(const QString type);
-    void getRecommendedPlaylist(const QString limit);
-    void getRecommendedNewSongs(const QString limit);
+    void banner(const int type);
+    void getRecommendedPlaylist(const int limit);
+    void getRecommendedNewSongs(const int limit);
     void getTopArtists();
     void getRecommendedMv();
     void getTopPlaylist(const QString cat,
                         const QString order,
-                        const QString limit,
-                        const QString offset);
+                        const int limit,
+                        const int offset);
     void getLoginStatus();
     void getAccountInfo();
     void getUserLikeSongIds(const QString id);
     void getSongUrl(const QString id);
     void getPlaylistDetail(const QString id);
     void getPlaylistSongs(const QString id);
-    void getPlaylistSongs(const QString id, const QString limit, const QString offset);
+    void getPlaylistSongs(const QString id, const int limit, const int offset);
     void getUserPlaylist(const QString id);
     void getLyric(const QString id);
     void getUserBuyAlbum();
@@ -45,18 +45,18 @@ public slots:
     void getArtistSongs(const QString id);
     void getMvUrl(const QString id);
     void getMvDetail(const QString id);
-    void getMvHotComment(const QString id, const QString type);
+    void getMvHotComment(const QString id, const int type);
     void getSimiMv(const QString id);
     void search(const QString keyword);
-    void search(const QString keyword, const QString limit, const QString offset);
+    void search(const QString keyword, const int limit, const int offset);
     void likeMusic(const QString id, const QString like);
     void getQrKey();
     void generateQRCode(const QString unikey);
     void qrCheck(const QString unikey);
-    void getCaptcha(const QString phone);
-    void verifyCaptcha(const QString phone, const QString captcha);
-    void phoneLogin(const QString phone, const QString password);
-    void phoneLogin(const QString phone, const QString password, const QString captcha);
+    void getCaptcha(const int phone);
+    void verifyCaptcha(const int phone, const int captcha);
+    void phoneLogin(const int phone, const QString password);
+    void phoneLogin(const int phone, const QString password, const int captcha);
 signals:
     void bannerCompleted(QJsonArray);
     void recommendedPlaylistCompleted(QJsonArray);

@@ -36,7 +36,7 @@ public:
     Q_INVOKABLE void previous();
     // 添加单个歌曲到播放列表
     Q_INVOKABLE void addSingleToPlaylist(const QString &url,
-                                         const QString &id,
+                                         const int &id,
                                          const QString &name,
                                          const QString &artist,
                                          const QString &pic,
@@ -46,7 +46,7 @@ public:
 
     // 添加歌单所有歌曲到播放列表
     Q_INVOKABLE void addPlaylistToPlaylist(const QString &url,
-                                           const QString &id,
+                                           const int &id,
                                            const QString &name,
                                            const QString &artist,
                                            const QString &pic,
@@ -54,7 +54,7 @@ public:
                                            const QString &album,
                                            const bool &isVip);
     // 获取当前正在播放的歌曲ID
-    Q_INVOKABLE QString getId();
+    Q_INVOKABLE int getId();
     // 获取当前正在播放的歌曲名
     Q_INVOKABLE QString getName();
     // 获取当前正在播放的歌曲作者

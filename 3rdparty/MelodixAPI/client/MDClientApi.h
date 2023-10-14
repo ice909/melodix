@@ -90,24 +90,24 @@ public:
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
     /**
-    * @param[in]  type QString [optional]
+    * @param[in]  type double [optional]
     */
-    void banner(const ::MelodixAPI::OptionalParam<QString> &type = ::MelodixAPI::OptionalParam<QString>());
+    void banner(const ::MelodixAPI::OptionalParam<double> &type = ::MelodixAPI::OptionalParam<double>());
 
     /**
-    * @param[in]  phone QString [required]
+    * @param[in]  phone double [required]
     * @param[in]  password QString [required]
-    * @param[in]  captcha QString [optional]
-    * @param[in]  countrycode QString [optional]
+    * @param[in]  captcha double [optional]
+    * @param[in]  countrycode double [optional]
     * @param[in]  md5_password QString [optional]
     */
-    void cellphoneLogin(const QString &phone, const QString &password, const ::MelodixAPI::OptionalParam<QString> &captcha = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &countrycode = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &md5_password = ::MelodixAPI::OptionalParam<QString>());
+    void cellphoneLogin(const double &phone, const QString &password, const ::MelodixAPI::OptionalParam<double> &captcha = ::MelodixAPI::OptionalParam<double>(), const ::MelodixAPI::OptionalParam<double> &countrycode = ::MelodixAPI::OptionalParam<double>(), const ::MelodixAPI::OptionalParam<QString> &md5_password = ::MelodixAPI::OptionalParam<QString>());
 
     /**
     * @param[in]  id QString [required]
-    * @param[in]  br QString [optional]
+    * @param[in]  br double [optional]
     */
-    void checkMusic(const QString &id, const ::MelodixAPI::OptionalParam<QString> &br = ::MelodixAPI::OptionalParam<QString>());
+    void checkMusic(const QString &id, const ::MelodixAPI::OptionalParam<double> &br = ::MelodixAPI::OptionalParam<double>());
 
     /**
     * @param[in]  timestamp double [required]
@@ -116,9 +116,9 @@ public:
 
     /**
     * @param[in]  id QString [required]
-    * @param[in]  limit QString [optional]
+    * @param[in]  limit double [optional]
     */
-    void getArtistAlbum(const QString &id, const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>());
+    void getArtistAlbum(const QString &id, const ::MelodixAPI::OptionalParam<double> &limit = ::MelodixAPI::OptionalParam<double>());
 
     /**
     * @param[in]  id QString [required]
@@ -136,15 +136,15 @@ public:
     void getArtistSingle(const QString &id);
 
     /**
-    * @param[in]  timestamp QString [required]
+    * @param[in]  timestamp double [required]
     */
-    void getArtistSublist(const QString &timestamp);
+    void getArtistSublist(const double &timestamp);
 
     /**
     * @param[in]  id QString [required]
-    * @param[in]  type QString [required]
+    * @param[in]  type double [required]
     */
-    void getHotComment(const QString &id, const QString &type);
+    void getHotComment(const QString &id, const double &type);
 
     /**
     * @param[in]  uid QString [required]
@@ -152,9 +152,9 @@ public:
     void getLikeSongId(const QString &uid);
 
     /**
-    * @param[in]  timestamp QString [required]
+    * @param[in]  timestamp double [required]
     */
-    void getLoginStatus(const QString &timestamp);
+    void getLoginStatus(const double &timestamp);
 
     /**
     * @param[in]  id QString [required]
@@ -167,9 +167,9 @@ public:
     void getMvDetail(const QString &mvid);
 
     /**
-    * @param[in]  timestamp QString [required]
+    * @param[in]  timestamp double [required]
     */
-    void getMvSublist(const QString &timestamp);
+    void getMvSublist(const double &timestamp);
 
     /**
     * @param[in]  id QString [required]
@@ -184,33 +184,33 @@ public:
 
     /**
     * @param[in]  id QString [required]
-    * @param[in]  limit QString [optional]
-    * @param[in]  offset QString [optional]
+    * @param[in]  limit double [optional]
+    * @param[in]  offset double [optional]
     */
-    void getPlaylistTrackAll(const QString &id, const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &offset = ::MelodixAPI::OptionalParam<QString>());
+    void getPlaylistTrackAll(const QString &id, const ::MelodixAPI::OptionalParam<double> &limit = ::MelodixAPI::OptionalParam<double>(), const ::MelodixAPI::OptionalParam<double> &offset = ::MelodixAPI::OptionalParam<double>());
 
     /**
-    * @param[in]  limit QString [optional]
+    * @param[in]  limit double [optional]
     */
-    void getPurchasedAlbum(const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>());
+    void getPurchasedAlbum(const ::MelodixAPI::OptionalParam<double> &limit = ::MelodixAPI::OptionalParam<double>());
 
     /**
-    * @param[in]  timestamp QString [required]
+    * @param[in]  timestamp double [required]
     */
-    void getQrKey(const QString &timestamp);
+    void getQrKey(const double &timestamp);
 
 
     void getRecommendedMv();
 
     /**
-    * @param[in]  limit QString [optional]
+    * @param[in]  limit double [optional]
     */
-    void getRecommendedNewSongs(const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>());
+    void getRecommendedNewSongs(const ::MelodixAPI::OptionalParam<double> &limit = ::MelodixAPI::OptionalParam<double>());
 
     /**
-    * @param[in]  limit QString [optional]
+    * @param[in]  limit double [optional]
     */
-    void getRecommendedPlaylist(const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>());
+    void getRecommendedPlaylist(const ::MelodixAPI::OptionalParam<double> &limit = ::MelodixAPI::OptionalParam<double>());
 
     /**
     * @param[in]  mvid QString [required]
@@ -233,10 +233,10 @@ public:
     /**
     * @param[in]  cat QString [required]
     * @param[in]  order QString [optional]
-    * @param[in]  limit QString [optional]
-    * @param[in]  offset QString [optional]
+    * @param[in]  limit double [optional]
+    * @param[in]  offset double [optional]
     */
-    void getTopPlaylist(const QString &cat, const ::MelodixAPI::OptionalParam<QString> &order = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &offset = ::MelodixAPI::OptionalParam<QString>());
+    void getTopPlaylist(const QString &cat, const ::MelodixAPI::OptionalParam<QString> &order = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<double> &limit = ::MelodixAPI::OptionalParam<double>(), const ::MelodixAPI::OptionalParam<double> &offset = ::MelodixAPI::OptionalParam<double>());
 
     /**
     * @param[in]  uid QString [required]
@@ -246,42 +246,42 @@ public:
     /**
     * @param[in]  id QString [required]
     * @param[in]  like QString [required]
-    * @param[in]  timestamp QString [required]
+    * @param[in]  timestamp double [required]
     */
-    void likeMusic(const QString &id, const QString &like, const QString &timestamp);
+    void likeMusic(const QString &id, const QString &like, const double &timestamp);
 
     /**
     * @param[in]  key QString [required]
-    * @param[in]  timestamp QString [required]
+    * @param[in]  timestamp double [required]
     */
-    void qrCheck(const QString &key, const QString &timestamp);
+    void qrCheck(const QString &key, const double &timestamp);
 
     /**
     * @param[in]  key QString [required]
-    * @param[in]  timestamp QString [required]
+    * @param[in]  timestamp double [required]
     * @param[in]  qrimg double [optional]
     */
-    void qrCreate(const QString &key, const QString &timestamp, const ::MelodixAPI::OptionalParam<double> &qrimg = ::MelodixAPI::OptionalParam<double>());
+    void qrCreate(const QString &key, const double &timestamp, const ::MelodixAPI::OptionalParam<double> &qrimg = ::MelodixAPI::OptionalParam<double>());
 
     /**
     * @param[in]  keywords QString [required]
-    * @param[in]  limit QString [optional]
-    * @param[in]  offset QString [optional]
-    * @param[in]  type QString [optional]
+    * @param[in]  limit double [optional]
+    * @param[in]  offset double [optional]
+    * @param[in]  type double [optional]
     */
-    void search(const QString &keywords, const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &offset = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &type = ::MelodixAPI::OptionalParam<QString>());
+    void search(const QString &keywords, const ::MelodixAPI::OptionalParam<double> &limit = ::MelodixAPI::OptionalParam<double>(), const ::MelodixAPI::OptionalParam<double> &offset = ::MelodixAPI::OptionalParam<double>(), const ::MelodixAPI::OptionalParam<double> &type = ::MelodixAPI::OptionalParam<double>());
 
     /**
-    * @param[in]  phone QString [required]
-    * @param[in]  ctcode QString [optional]
+    * @param[in]  phone double [required]
+    * @param[in]  ctcode double [optional]
     */
-    void sendCaptcha(const QString &phone, const ::MelodixAPI::OptionalParam<QString> &ctcode = ::MelodixAPI::OptionalParam<QString>());
+    void sendCaptcha(const double &phone, const ::MelodixAPI::OptionalParam<double> &ctcode = ::MelodixAPI::OptionalParam<double>());
 
     /**
-    * @param[in]  phone QString [required]
-    * @param[in]  captcha QString [required]
+    * @param[in]  phone double [required]
+    * @param[in]  captcha double [required]
     */
-    void verifyCaptcha(const QString &phone, const QString &captcha);
+    void verifyCaptcha(const double &phone, const double &captcha);
 
 
 private:

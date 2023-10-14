@@ -32,7 +32,7 @@ using namespace test_namespace;
 
 class Example : public QObject {
     Q_OBJECT
-    QString create();
+    double create();
 public slots:
    void exampleFunction1();
 };
@@ -47,8 +47,8 @@ example.cpp:
 #include <QTimer>
 #include <QEventLoop>
 
-QString Example::create(){
-    QString obj;
+double Example::create(){
+    double obj;
  return obj;
 }
 
@@ -64,7 +64,7 @@ void Example::exampleFunction1(){
           loop.quit();
       });
 
-      QString type = create(); // QString | 资源类型,对应以下类型,默认为 0 即 PC  0: pc  1: android  2: iphone  3: ipad
+      double type = create(); // double | 资源类型,对应以下类型,默认为 0 即 PC  0: pc  1: android  2: iphone  3: ipad
       apiInstance.banner(type);
       QTimer::singleShot(5000, &loop, &QEventLoop::quit);
       loop.exec();

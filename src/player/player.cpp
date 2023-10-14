@@ -111,7 +111,7 @@ Player::Player(QObject *parent)
  *
  */
 void Player::addSingleToPlaylist(const QString &url,
-                                 const QString &id,
+                                 const int &id,
                                  const QString &name,
                                  const QString &pic,
                                  const QString &artist,
@@ -149,7 +149,7 @@ void Player::addSingleToPlaylist(const QString &url,
  *
  */
 void Player::addPlaylistToPlaylist(const QString &url,
-                                   const QString &id,
+                                   const int &id,
                                    const QString &name,
                                    const QString &pic,
                                    const QString &artist,
@@ -414,12 +414,12 @@ void Player::setPosition(qint64 newPosition)
  *
  * @return 当前播放音乐的ID
  */
-QString Player::getId()
+int Player::getId()
 {
     if (m_currentPlaylist->mediaCount() != 0)
         return m_currentModel->getId(m_currentPlaylist->currentIndex());
 
-    return "";
+    return 0;
 }
 
 /**

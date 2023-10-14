@@ -280,7 +280,7 @@ QString MDClientApi::getParamStyleDelimiter(const QString &style, const QString 
     }
 }
 
-void MDClientApi::banner(const ::MelodixAPI::OptionalParam<QString> &type) {
+void MDClientApi::banner(const ::MelodixAPI::OptionalParam<double> &type) {
     QString fullPath = QString(_serverConfigs["banner"][_serverIndices.value("banner")].URL()+"/banner");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -345,7 +345,7 @@ void MDClientApi::bannerCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::cellphoneLogin(const QString &phone, const QString &password, const ::MelodixAPI::OptionalParam<QString> &captcha, const ::MelodixAPI::OptionalParam<QString> &countrycode, const ::MelodixAPI::OptionalParam<QString> &md5_password) {
+void MDClientApi::cellphoneLogin(const double &phone, const QString &password, const ::MelodixAPI::OptionalParam<double> &captcha, const ::MelodixAPI::OptionalParam<double> &countrycode, const ::MelodixAPI::OptionalParam<QString> &md5_password) {
     QString fullPath = QString(_serverConfigs["cellphoneLogin"][_serverIndices.value("cellphoneLogin")].URL()+"/login/cellphone");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -470,7 +470,7 @@ void MDClientApi::cellphoneLoginCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::checkMusic(const QString &id, const ::MelodixAPI::OptionalParam<QString> &br) {
+void MDClientApi::checkMusic(const QString &id, const ::MelodixAPI::OptionalParam<double> &br) {
     QString fullPath = QString(_serverConfigs["checkMusic"][_serverIndices.value("checkMusic")].URL()+"/check/music");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -615,7 +615,7 @@ void MDClientApi::getAccountInfoCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getArtistAlbum(const QString &id, const ::MelodixAPI::OptionalParam<QString> &limit) {
+void MDClientApi::getArtistAlbum(const QString &id, const ::MelodixAPI::OptionalParam<double> &limit) {
     QString fullPath = QString(_serverConfigs["getArtistAlbum"][_serverIndices.value("getArtistAlbum")].URL()+"/artist/album");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -890,7 +890,7 @@ void MDClientApi::getArtistSingleCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getArtistSublist(const QString &timestamp) {
+void MDClientApi::getArtistSublist(const double &timestamp) {
     QString fullPath = QString(_serverConfigs["getArtistSublist"][_serverIndices.value("getArtistSublist")].URL()+"/artist/sublist");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -955,7 +955,7 @@ void MDClientApi::getArtistSublistCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getHotComment(const QString &id, const QString &type) {
+void MDClientApi::getHotComment(const QString &id, const double &type) {
     QString fullPath = QString(_serverConfigs["getHotComment"][_serverIndices.value("getHotComment")].URL()+"/comment/hot");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -1100,7 +1100,7 @@ void MDClientApi::getLikeSongIdCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getLoginStatus(const QString &timestamp) {
+void MDClientApi::getLoginStatus(const double &timestamp) {
     QString fullPath = QString(_serverConfigs["getLoginStatus"][_serverIndices.value("getLoginStatus")].URL()+"/login/status");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -1295,7 +1295,7 @@ void MDClientApi::getMvDetailCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getMvSublist(const QString &timestamp) {
+void MDClientApi::getMvSublist(const double &timestamp) {
     QString fullPath = QString(_serverConfigs["getMvSublist"][_serverIndices.value("getMvSublist")].URL()+"/mv/sublist");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -1505,7 +1505,7 @@ void MDClientApi::getPlaylistDetailCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getPlaylistTrackAll(const QString &id, const ::MelodixAPI::OptionalParam<QString> &limit, const ::MelodixAPI::OptionalParam<QString> &offset) {
+void MDClientApi::getPlaylistTrackAll(const QString &id, const ::MelodixAPI::OptionalParam<double> &limit, const ::MelodixAPI::OptionalParam<double> &offset) {
     QString fullPath = QString(_serverConfigs["getPlaylistTrackAll"][_serverIndices.value("getPlaylistTrackAll")].URL()+"/playlist/track/all");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -1600,7 +1600,7 @@ void MDClientApi::getPlaylistTrackAllCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getPurchasedAlbum(const ::MelodixAPI::OptionalParam<QString> &limit) {
+void MDClientApi::getPurchasedAlbum(const ::MelodixAPI::OptionalParam<double> &limit) {
     QString fullPath = QString(_serverConfigs["getPurchasedAlbum"][_serverIndices.value("getPurchasedAlbum")].URL()+"/digitalAlbum/purchased");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -1665,7 +1665,7 @@ void MDClientApi::getPurchasedAlbumCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getQrKey(const QString &timestamp) {
+void MDClientApi::getQrKey(const double &timestamp) {
     QString fullPath = QString(_serverConfigs["getQrKey"][_serverIndices.value("getQrKey")].URL()+"/login/qr/key");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -1779,7 +1779,7 @@ void MDClientApi::getRecommendedMvCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getRecommendedNewSongs(const ::MelodixAPI::OptionalParam<QString> &limit) {
+void MDClientApi::getRecommendedNewSongs(const ::MelodixAPI::OptionalParam<double> &limit) {
     QString fullPath = QString(_serverConfigs["getRecommendedNewSongs"][_serverIndices.value("getRecommendedNewSongs")].URL()+"/personalized/newsong");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -1844,7 +1844,7 @@ void MDClientApi::getRecommendedNewSongsCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getRecommendedPlaylist(const ::MelodixAPI::OptionalParam<QString> &limit) {
+void MDClientApi::getRecommendedPlaylist(const ::MelodixAPI::OptionalParam<double> &limit) {
     QString fullPath = QString(_serverConfigs["getRecommendedPlaylist"][_serverIndices.value("getRecommendedPlaylist")].URL()+"/personalized");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2153,7 +2153,7 @@ void MDClientApi::getTopArtistsCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getTopPlaylist(const QString &cat, const ::MelodixAPI::OptionalParam<QString> &order, const ::MelodixAPI::OptionalParam<QString> &limit, const ::MelodixAPI::OptionalParam<QString> &offset) {
+void MDClientApi::getTopPlaylist(const QString &cat, const ::MelodixAPI::OptionalParam<QString> &order, const ::MelodixAPI::OptionalParam<double> &limit, const ::MelodixAPI::OptionalParam<double> &offset) {
     QString fullPath = QString(_serverConfigs["getTopPlaylist"][_serverIndices.value("getTopPlaylist")].URL()+"/top/playlist");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2328,7 +2328,7 @@ void MDClientApi::getUserPlaylistCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::likeMusic(const QString &id, const QString &like, const QString &timestamp) {
+void MDClientApi::likeMusic(const QString &id, const QString &like, const double &timestamp) {
     QString fullPath = QString(_serverConfigs["likeMusic"][_serverIndices.value("likeMusic")].URL()+"/like");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2423,7 +2423,7 @@ void MDClientApi::likeMusicCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::qrCheck(const QString &key, const QString &timestamp) {
+void MDClientApi::qrCheck(const QString &key, const double &timestamp) {
     QString fullPath = QString(_serverConfigs["qrCheck"][_serverIndices.value("qrCheck")].URL()+"/login/qr/check");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2503,7 +2503,7 @@ void MDClientApi::qrCheckCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::qrCreate(const QString &key, const QString &timestamp, const ::MelodixAPI::OptionalParam<double> &qrimg) {
+void MDClientApi::qrCreate(const QString &key, const double &timestamp, const ::MelodixAPI::OptionalParam<double> &qrimg) {
     QString fullPath = QString(_serverConfigs["qrCreate"][_serverIndices.value("qrCreate")].URL()+"/login/qr/create");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2598,7 +2598,7 @@ void MDClientApi::qrCreateCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::search(const QString &keywords, const ::MelodixAPI::OptionalParam<QString> &limit, const ::MelodixAPI::OptionalParam<QString> &offset, const ::MelodixAPI::OptionalParam<QString> &type) {
+void MDClientApi::search(const QString &keywords, const ::MelodixAPI::OptionalParam<double> &limit, const ::MelodixAPI::OptionalParam<double> &offset, const ::MelodixAPI::OptionalParam<double> &type) {
     QString fullPath = QString(_serverConfigs["search"][_serverIndices.value("search")].URL()+"/cloudsearch");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2708,7 +2708,7 @@ void MDClientApi::searchCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::sendCaptcha(const QString &phone, const ::MelodixAPI::OptionalParam<QString> &ctcode) {
+void MDClientApi::sendCaptcha(const double &phone, const ::MelodixAPI::OptionalParam<double> &ctcode) {
     QString fullPath = QString(_serverConfigs["sendCaptcha"][_serverIndices.value("sendCaptcha")].URL()+"/captcha/sent");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2788,7 +2788,7 @@ void MDClientApi::sendCaptchaCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::verifyCaptcha(const QString &phone, const QString &captcha) {
+void MDClientApi::verifyCaptcha(const double &phone, const double &captcha) {
     QString fullPath = QString(_serverConfigs["verifyCaptcha"][_serverIndices.value("verifyCaptcha")].URL()+"/captcha/verify");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;

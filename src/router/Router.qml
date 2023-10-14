@@ -26,7 +26,7 @@ Item {
     property var routePlaylistDetail: {
         "path": "playlist",
         "component": "qml/playlistdetail/PlaylistDetail.qml",
-        "id": ""
+        "id": 0
     }
     // 搜索结果页
     property var routeSearch: {

@@ -13,14 +13,14 @@ class PlaylistModel : public QAbstractListModel
 public:
     explicit PlaylistModel(QObject *parent = nullptr);
 
-    QString getId(int index) const;
+    int getId(int index) const;
     QString getTitle(int index) const;
     QString getImageUrl(int index) const;
     QString getAuthor(int index) const;
     QString getDuration(int index) const;
     QString getAlbum(int index) const;
     bool getIsVip(int index) const;
-    int indexOfId(const QString &id) const;
+    int indexOfId(const int &id) const;
     void interchangeSong(const int index, const int to);
 
     // 定义角色枚举
@@ -40,7 +40,7 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     // 自定义方法用于添加歌曲
-    void addSong(const QString &id,
+    void addSong(const int &id,
                  const QString &title,
                  const QString &imageUrl,
                  const QString &author,
@@ -57,7 +57,7 @@ public:
 private:
     struct Song
     {
-        QString id;
+        int id;
         QString title;
         QString imageUrl;
         QString author;

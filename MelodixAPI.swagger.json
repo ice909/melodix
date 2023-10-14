@@ -27,7 +27,7 @@
             "in": "query",
             "description": "时间戳",
             "required": true,
-            "type": "string",
+            "type": "number",
             "x-example": "{% mock 'timestamp' , 'ms' %}"
           }
         ],
@@ -833,7 +833,7 @@
             "in": "query",
             "description": "偏移量",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "2"
           }
         ],
@@ -2455,7 +2455,7 @@
             "in": "query",
             "description": "偏移量",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "10"
           }
         ],
@@ -2582,7 +2582,7 @@
             "in": "query",
             "description": "取出数量",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "9"
           }
         ],
@@ -4201,7 +4201,7 @@
             "in": "query",
             "description": "取出歌单数量，默认为50",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "50"
           },
           {
@@ -4209,7 +4209,7 @@
             "in": "query",
             "description": "偏移数量 , 用于分页 , 如 :( 评论页数 -1)*50, 其中 50 为 limit 的值",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "50"
           }
         ],
@@ -6301,7 +6301,7 @@
             "in": "query",
             "description": "取出数量",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "100"
           },
           {
@@ -6309,7 +6309,7 @@
             "in": "query",
             "description": "偏移量",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "0"
           }
         ],
@@ -7124,7 +7124,7 @@
             "in": "query",
             "description": "时间戳",
             "required": true,
-            "type": "string",
+            "type": "number",
             "x-example": "{% mock 'timestamp' , 'ms' %}"
           },
           {
@@ -7707,7 +7707,7 @@
             "in": "query",
             "description": "返回数量 , 默认为 30 ",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "30"
           },
           {
@@ -7715,7 +7715,7 @@
             "in": "query",
             "description": "偏移数量，用于分页 , 如 : 如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "0"
           },
           {
@@ -7723,7 +7723,7 @@
             "in": "query",
             "description": "搜索类型；默认为 1 即单曲 , 取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合, 2000:声音(搜索声音返回字段格式会不一样)",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "1"
           }
         ],
@@ -8973,7 +8973,7 @@
             "in": "query",
             "description": "数字 , 资源类型 , 对应歌曲 , mv, 专辑 , 歌单 , 电台, 视频对应以下类型\n\n0: 歌曲\n\n1: mv\n\n2: 歌单\n\n3: 专辑\n\n4: 电台节目\n\n5: 视频\n\n6: 动态\n\n7: 电台",
             "required": true,
-            "type": "string",
+            "type": "number",
             "x-example": "1"
           }
         ],
@@ -9593,7 +9593,7 @@
             "in": "query",
             "description": "时间戳",
             "required": true,
-            "type": "string",
+            "type": "number",
             "x-example": "{% mock 'timestamp' , 'ms' %}"
           }
         ],
@@ -9926,7 +9926,7 @@
             "in": "query",
             "description": "手机号",
             "required": true,
-            "type": "string",
+            "type": "number",
             "x-example": "17335002895"
           },
           {
@@ -9934,7 +9934,7 @@
             "in": "query",
             "description": "国家区号,默认 86 即中国",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "86"
           }
         ],
@@ -9986,7 +9986,7 @@
             "in": "query",
             "description": "手机号",
             "required": true,
-            "type": "string",
+            "type": "number",
             "x-example": "17323415325"
           },
           {
@@ -10002,7 +10002,7 @@
             "in": "query",
             "description": "验证码,使用 /captcha/sent接口传入手机号获取验证码,调用此接口传入验证码,可使用验证码登录,传入后 password 参数将失效",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "4288"
           },
           {
@@ -10010,7 +10010,7 @@
             "in": "query",
             "description": "国家码，用于国外手机号登录，例如美国传入：1",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "1"
           },
           {
@@ -10502,7 +10502,7 @@
             "in": "query",
             "description": "码率,默认设置了 999000 即最大码率,如果要 320k 则可设置为 320000,其他类推",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": ""
           }
         ],
@@ -11171,7 +11171,7 @@
             "in": "query",
             "description": "",
             "required": true,
-            "type": "string",
+            "type": "number",
             "x-example": "17335002895"
           },
           {
@@ -11179,7 +11179,7 @@
             "in": "query",
             "description": "",
             "required": true,
-            "type": "string",
+            "type": "number",
             "x-example": "4288"
           }
         ],
@@ -11568,7 +11568,7 @@
             "in": "query",
             "description": "取出数量",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "10"
           }
         ],
@@ -11984,7 +11984,7 @@
             "in": "query",
             "description": "时间戳",
             "required": true,
-            "type": "string",
+            "type": "number",
             "x-example": "{% mock 'timestamp' , 'ms' %}"
           }
         ],
@@ -12087,7 +12087,7 @@
             "in": "query",
             "description": "资源类型,对应以下类型,默认为 0 即 PC\n\n0: pc\n\n1: android\n\n2: iphone\n\n3: ipad",
             "required": false,
-            "type": "string",
+            "type": "number",
             "x-example": "0"
           }
         ],
@@ -12287,7 +12287,7 @@
             "in": "query",
             "description": "",
             "required": true,
-            "type": "string",
+            "type": "number",
             "x-example": "{% mock 'timestamp' , 'ms' %}"
           }
         ],
@@ -12420,7 +12420,7 @@
             "in": "query",
             "description": "",
             "required": true,
-            "type": "string",
+            "type": "number",
             "x-example": "{% mock 'timestamp' %}"
           }
         ],
@@ -12751,7 +12751,7 @@
             "in": "query",
             "description": "",
             "required": true,
-            "type": "string",
+            "type": "number",
             "x-example": "{% mock 'timestamp' , 'ms' %}"
           }
         ],
