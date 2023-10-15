@@ -4,12 +4,11 @@ import QtQuick 2.11
 import QtQuick.Layouts 1.11
 import org.deepin.dtk 1.0
 
-Rectangle {
+Item {
     property int selectedIndex: 0
 
     width: 150
     height: parent.height
-    color: isLyricShow ? Util.sidebarBgColorWhenlyricShow : "transparent"
 
     Column {
         anchors.fill: parent
