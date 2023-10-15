@@ -5,6 +5,8 @@ import QtQuick.Controls 2.4
 Item {
     property string imgSrc: ""
     property int borderRadius: 5
+    property bool isRotating: false
+    property real rotationPosition: 0
 
     Image {
         id: image
@@ -34,11 +36,26 @@ Item {
     }
 
     OpacityMask {
+        id: opacityMask
         anchors.fill: image
         source: image
         maskSource: mask
         visible: true
         antialiasing: true
+    }
+
+    RotationAnimation {
+        id: rotationAnimation
+        target: opacityMask
+        property: "rotation"
+        from: rotationPosition
+        to: rotationPosition + 360
+        duration: 20000
+        loops: Animation.Infinite
+        running: isRotating
+        onStopped: {
+            rotationPosition = opacityMask.rotation % 360
+        }
     }
 
 }

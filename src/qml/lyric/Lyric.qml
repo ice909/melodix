@@ -69,6 +69,7 @@ Item {
         artist = Player.getArtist();
         bgImgPath = Player.getPic();
         album = Player.getAlbum();
+        coverImg.rotationPosition = 0;
     }
 
     function onPositionChanged() {
@@ -89,13 +90,19 @@ Item {
         currentIndexChanged(lt);
     }
 
+    function onPlayStateChanged() {
+        coverImg.isRotating = Player.getPlayState();
+    }
+
     width: rootWindow.width
     height: rootWindow.height
     visible: isLyricShow
     Component.onCompleted: {
         onPlaylistCurrentIndexChanged();
+        onPlayStateChanged();
         Player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         Player.positionChanged.connect(onPositionChanged);
+        Player.playStateChanged.connect(onPlayStateChanged);
     }
 
     Image {
@@ -154,6 +161,7 @@ Item {
                         width: parent.width / 1.5
                         height: width
                         imgSrc: bgImgPath
+                        borderRadius: height
                         anchors.centerIn: parent
                     }
 
