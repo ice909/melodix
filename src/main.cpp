@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonInstance<API>("Melodix.API", 1, 0, "API", API::instance());
 
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("worker", Worker::instance());
+    engine.rootContext()->setContextProperty("Worker", Worker::instance());
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     return app->exec();
 }

@@ -18,8 +18,8 @@ Item {
             root.closed();
         }
         Component.onCompleted: {
-            var action = worker.getCloseAction();
-            var isAsk = worker.getIsAsk();
+            var action = Worker.getCloseAction();
+            var isAsk = Worker.getIsAsk();
             if (isAsk == "1")
                 asktRB.checked = true;
             else if (action == "1")
@@ -63,8 +63,8 @@ Item {
                         text: "最小化到系统托盘"
                         font.pixelSize: DTK.fontManager.t7.pixelSize
                         onClicked: {
-                            worker.setCloseAction("1");
-                            worker.setIsAsk("2");
+                            Worker.setCloseAction("1");
+                            Worker.setIsAsk("2");
                         }
                     }
 
@@ -77,8 +77,8 @@ Item {
                         text: "退出"
                         font.pixelSize: DTK.fontManager.t7.pixelSize
                         onClicked: {
-                            worker.setCloseAction("2");
-                            worker.setIsAsk("2");
+                            Worker.setCloseAction("2");
+                            Worker.setIsAsk("2");
                         }
                     }
 
@@ -91,7 +91,7 @@ Item {
                         text: "总是询问"
                         font.pixelSize: DTK.fontManager.t7.pixelSize
                         onClicked: {
-                            worker.setIsAsk("1");
+                            Worker.setIsAsk("1");
                         }
                     }
 

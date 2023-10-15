@@ -29,7 +29,7 @@ Item {
     function login() {
         function onReply(reply) {
             API.onCellphoneLoginCompleted.disconnect(onReply);
-            worker.saveCookie(reply.cookie);
+            Worker.saveCookie(reply.cookie);
             API.addCookie();
             API.getAccountInfo();
             isLogin = true;

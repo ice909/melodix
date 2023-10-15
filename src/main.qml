@@ -82,9 +82,9 @@ ApplicationWindow {
             closeDlgLoader.item.isMinimize = false;
             return ;
         }
-        var isAsk = worker.getIsAsk();
+        var isAsk = Worker.getIsAsk();
         if (isAsk == "2") {
-            if (worker.getCloseAction() == "2")
+            if (Worker.getCloseAction() == "2")
                 Qt.quit();
 
         } else {

@@ -101,11 +101,11 @@ DialogWindow {
                 height: 30
                 text: "确定"
                 onClicked: {
-                    worker.setCloseAction(closeAction);
+                    Worker.setCloseAction(closeAction);
                     if (isAsk)
-                        worker.setIsAsk("2");
+                        Worker.setIsAsk("2");
                     else
-                        worker.setIsAsk("1");
+                        Worker.setIsAsk("1");
                     if (closeAction == "1") {
                         isMinimize = true;
                         close();

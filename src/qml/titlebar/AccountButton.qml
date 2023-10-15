@@ -36,6 +36,7 @@ WindowButton {
 
             Item {
                 id: avatar_item
+
                 width: 48
                 height: 48
 
@@ -66,7 +67,7 @@ WindowButton {
                 text: "个人中心"
                 ColorSelector.family: Palette.CrystalColor
                 onClicked: {
-                    worker.openUrl("https://music.163.com/#/user/home?id=" + userID);
+                    Worker.openUrl("https://music.163.com/#/user/home?id=" + userID);
                     accountMenu.close();
                 }
             }
