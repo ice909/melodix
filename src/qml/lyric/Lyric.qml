@@ -69,6 +69,7 @@ Item {
         artist = Player.getArtist();
         bgImgPath = Player.getPic();
         album = Player.getAlbum();
+        coverImg.isRotating = false;
         coverImg.rotationPosition = 0;
     }
 
