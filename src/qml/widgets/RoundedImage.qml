@@ -7,12 +7,13 @@ Item {
     property int borderRadius: 5
     property bool isRotating: false
     property real rotationPosition: 0
+    property bool isIndexMV: false
 
     Image {
         id: image
 
         anchors.centerIn: parent
-        source: imgSrc === "" ? "" : (imgSrc + "?param=400y400")
+        source: imgSrc === "" ? "" : (isIndexMV ? imgSrc : imgSrc + "?param=400y400")
         sourceSize.width: 400
         sourceSize.height: 400
         smooth: true
@@ -37,6 +38,7 @@ Item {
 
     OpacityMask {
         id: opacityMask
+
         anchors.fill: image
         source: image
         maskSource: mask
@@ -46,6 +48,7 @@ Item {
 
     RotationAnimation {
         id: rotationAnimation
+
         target: opacityMask
         property: "rotation"
         from: rotationPosition
@@ -54,7 +57,7 @@ Item {
         loops: Animation.Infinite
         running: isRotating
         onStopped: {
-            rotationPosition = opacityMask.rotation % 360
+            rotationPosition = opacityMask.rotation % 360;
         }
     }
 

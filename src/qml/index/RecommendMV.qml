@@ -36,6 +36,7 @@ Item {
                         width: parent.width - 5
                         height: parent.height - 5
                         imgSrc: modelData.picUrl
+                        isIndexMV: true
                         anchors.centerIn: parent
 
                         MouseArea {
