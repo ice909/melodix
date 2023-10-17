@@ -13,7 +13,7 @@ Item {
         id: image
 
         anchors.centerIn: parent
-        source: imgSrc === "" ? "" : (isIndexMV ? imgSrc : imgSrc + "?param=400y400")
+        source: imgSrc === "" ? "" : (isIndexMV ? imgSrc : imgSrc + "?param=800y800")
         sourceSize.width: 400
         sourceSize.height: 400
         smooth: true

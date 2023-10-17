@@ -39,7 +39,7 @@ Row {
 
             Item {
                 width: 10
-                height: 10
+                height: 5
             }
 
             Text {
@@ -72,6 +72,7 @@ Row {
                     id: playlistUpdateTime
 
                     anchors.top: playlistAuthor.bottom
+                    anchors.topMargin: 2
                     width: parent.width
                     height: parent.height / 2
                     font.pixelSize: DTK.fontManager.t5.pixelSize
@@ -98,9 +99,6 @@ Row {
                 width: parent.width
                 height: (parent.height - 40) / 4
 
-                Row {
-                    spacing: 20
-
                     RecommandButton {
                         width: 80
                         height: 40
@@ -122,8 +120,6 @@ Row {
                         }
 
                     }
-
-                }
 
             }
 

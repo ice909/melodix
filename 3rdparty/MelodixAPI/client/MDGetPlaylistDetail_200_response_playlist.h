@@ -107,8 +107,8 @@ public:
     bool is_new_imported_Set() const;
     bool is_new_imported_Valid() const;
 
-    qint32 getUpdateTime() const;
-    void setUpdateTime(const qint32 &update_time);
+    double getUpdateTime() const;
+    void setUpdateTime(const double &update_time);
     bool is_update_time_Set() const;
     bool is_update_time_Valid() const;
 
@@ -281,7 +281,7 @@ private:
     bool m_new_imported_isSet;
     bool m_new_imported_isValid;
 
-    qint32 m_update_time;
+    double m_update_time;
     bool m_update_time_isSet;
     bool m_update_time_isValid;
 

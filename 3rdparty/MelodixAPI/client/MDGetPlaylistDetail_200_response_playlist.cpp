@@ -572,10 +572,10 @@ bool MDGetPlaylistDetail_200_response_playlist::is_new_imported_Valid() const{
     return m_new_imported_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_playlist::getUpdateTime() const {
+double MDGetPlaylistDetail_200_response_playlist::getUpdateTime() const {
     return m_update_time;
 }
-void MDGetPlaylistDetail_200_response_playlist::setUpdateTime(const qint32 &update_time) {
+void MDGetPlaylistDetail_200_response_playlist::setUpdateTime(const double &update_time) {
     m_update_time = update_time;
     m_update_time_isSet = true;
 }
