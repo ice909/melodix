@@ -24,5 +24,11 @@
 
         <file>dsg/icons/message-light.svg</file>
         <file>dsg/icons/message-dark.svg</file>
+        <file>dsg/icons/index-light.svg</file>
+        <file>dsg/icons/index-dark.svg</file>
+        <file>dsg/icons/discover-light.svg</file>
+        <file>dsg/icons/discover-dark.svg</file>
+        <file>dsg/icons/library-light.svg</file>
+        <file>dsg/icons/library-dark.svg</file>
     </qresource>
 </RCC>

@@ -1,4 +1,6 @@
+import "../util"
 import QtQuick 2.0
+import org.deepin.dtk 1.0 as D
 pragma Singleton
 
 Item {
@@ -70,9 +72,9 @@ Item {
     // 显示发现页
     function showDiscover() {
         // 如果当前路由是发现页，不做任何操作
-        if (routeCurrent.path === routeDiscover.path) {
+        if (routeCurrent.path === routeDiscover.path)
             return ;
-        }
+
         const r = clone(routeDiscover);
         signalNavigate(r, false);
         routeCurrent = r;
@@ -82,9 +84,9 @@ Item {
     // 显示音乐库
     function showLibrary() {
         // 如果当前路由是音乐库，不做任何操作
-        if (routeCurrent.path === routeLibrary.path) {
+        if (routeCurrent.path === routeLibrary.path)
             return ;
-        }
+
         const r = clone(routeLibrary);
         signalNavigate(r, false);
         routeCurrent = r;
@@ -156,19 +158,43 @@ Item {
         signalBack();
     }
 
+    function onThemeTypeChanged() {
+        if (D.DTK.themeType == 2) {
+            routeModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-dark.svg");
+            routeModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-dark.svg");
+            routeModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-dark.svg");
+        } else {
+            routeModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-light.svg");
+            routeModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-light.svg");
+            routeModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-light.svg");
+        }
+    }
+
+    Component.onCompleted: {
+        if (D.DTK.themeType === 2) {
+            routeModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-dark.svg");
+            routeModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-dark.svg");
+            routeModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-dark.svg");
+        }
+        D.DTK.themeTypeChanged.connect(onThemeTypeChanged);
+    }
+    Component.onDestruction: {
+        D.DTK.themeTypeChanged.disconnect(onThemeTypeChanged);
+    }
+
     routeModel: ListModel {
         ListElement {
-            iconName: "music"
+            iconName: "qrc:/dsg/icons/index-light.svg"
             _text: "首页"
         }
 
         ListElement {
-            iconName: "music"
+            iconName: "qrc:/dsg/icons/discover-light.svg"
             _text: "发现"
         }
 
         ListElement {
-            iconName: "music"
+            iconName: "qrc:/dsg/icons/library-light.svg"
             _text: "音乐库"
         }
 

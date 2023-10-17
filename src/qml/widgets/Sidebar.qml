@@ -1,7 +1,7 @@
 import "../../router"
 import "../../util"
 import QtQuick 2.11
-import QtQuick.Layouts 1.11
+import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
 
 Item {
@@ -15,6 +15,7 @@ Item {
         padding: 5
 
         ListView {
+            id: listView
             width: parent.width - 10
             height: parent.height - 10
             model: Router.routeModel
@@ -23,26 +24,46 @@ Item {
             delegate: ItemDelegate {
                 width: parent.width
                 height: 36
-                icon.name: iconName
                 checked: index === selectedIndex
-                text: _text
                 font.pixelSize: 16
                 font.bold: true
                 backgroundVisible: false
-                onClicked: {
-                    switch (text) {
-                    case "首页":
-                        Router.showIndex();
-                        selectedIndex = index;
-                        break;
-                    case "发现":
-                        Router.showDiscover();
-                        selectedIndex = index;
-                        break;
-                    case "音乐库":
-                        Router.showLibrary();
-                        selectedIndex = index;
-                        break;
+
+                MouseArea {
+                    id: mouseArea
+
+                    acceptedButtons: Qt.LeftButton
+                    anchors.fill: parent
+                    onPressed: {
+                        switch (index) {
+                        case 0:
+                            Router.showIndex();
+                            selectedIndex = index;
+                            break;
+                        case 1:
+                            Router.showDiscover();
+                            selectedIndex = index;
+                            break;
+                        case 2:
+                            Router.showLibrary();
+                            selectedIndex = index;
+                            break;
+                        }
+                    }
+                }
+                RowLayout {
+                    anchors.fill: parent
+                    Image {
+                        Layout.leftMargin: 10
+                        Layout.preferredWidth: 24
+                        Layout.preferredHeight: 24
+                        source: iconName
+                    }
+                    Label {
+                        text: _text
+                    }
+                    Item {
+                        Layout.fillWidth: true
                     }
                 }
             }
