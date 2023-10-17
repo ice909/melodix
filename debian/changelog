@@ -1,3 +1,30 @@
+melodix (1.1.6) UNRELEASED; urgency=medium
+
+  * Add ICONS for sidebar buttons
+  * fix playlist.updateTime is NULL
+  * fix index page The mv cover is incomplete
+  * Fix cover rotation Angle does not reset when a new song is added and played
+  * Fixed warning printing when imgSrc of RoundedImage is empty
+  * worker is changed to Worker in qml
+  * Fixed some song album covers showing blurred
+  * Lyrics page images support rotation when music is playing
+  * Fix Util. SidebarBgColorWhenlyricShow does not exist
+  * Add notification button to title bar
+  * User pop-up Add Personal center button
+  * Adjust the sidebar background color -> #e9e9e9
+  * Don't use BehindWindowBlur for now
+  * Adjust some interface parameter types
+  * API classes use the singleton pattern
+  * Fixed the Sidebar background on the left side when the lyrics page is not loaded
+  * fix mouse over the title bar icon highlights
+  * Adjust the page margins 20 -> 10
+  * Fixed incomplete display of page content due to sidebar taking up part of the width
+  * Avoid creating a Discover Page and a Library Page repeatedly
+  * Add sidebar placement application navigation buttons
+  * Fix error about dialog box application version number display
+
+ -- ice <tonimayloneya@gmail.com>  Tue, 17 Oct 2023 17:05:45 +0800
+
 melodix (1.1.5) UNRELEASED; urgency=medium
 
   * Deploy Github Page
