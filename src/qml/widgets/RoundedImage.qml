@@ -8,12 +8,13 @@ Item {
     property bool isRotating: false
     property real rotationPosition: 0
     property bool isIndexMV: false
+    property bool isBanner: false
 
     Image {
         id: image
 
         anchors.centerIn: parent
-        source: imgSrc === "" ? "" : (isIndexMV ? imgSrc : imgSrc + "?param=800y800")
+        source: imgSrc === "" ? "" : ((isIndexMV || isBanner) ? imgSrc : imgSrc + "?param=800y800")
         sourceSize.width: 400
         sourceSize.height: 400
         smooth: true
