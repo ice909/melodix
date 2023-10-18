@@ -23,6 +23,7 @@ ApplicationWindow {
     property string userID: ""
     // 我喜欢的所有歌曲的id
     property var userFavoriteSongsID: []
+    property string userFavoritePlaylistId: ""
     property bool isPlaylistShow: false
     property bool isLyricShow: false
     property int windowMiniWidth: 1070
@@ -117,7 +118,14 @@ ApplicationWindow {
         }
 
         function onUserLikeSongIdsCompleted(res) {
+            function userFavoritePlaylistIdCompleted(res) {
+                API.onUserPlaylistCompleted.disconnect(userFavoritePlaylistIdCompleted);
+                userFavoritePlaylistId = res[0].id;
+            }
+
             userFavoriteSongsID = res.ids;
+            API.onUserPlaylistCompleted.connect(userFavoritePlaylistIdCompleted);
+            API.getUserPlaylist(userID);
         }
 
         target: API

@@ -8,7 +8,8 @@ Item {
     property var routeCurrent: routeIndex
     // 路由历史记录
     property var routeHistory: [routeIndex]
-    property ListModel routeModel
+    property ListModel pageModel
+    property ListModel userListViewModel
     // 首页
     property var routeIndex: {
         "path": "index",
@@ -160,21 +161,24 @@ Item {
 
     function onThemeTypeChanged() {
         if (D.DTK.themeType == 2) {
-            routeModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-dark.svg");
-            routeModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-dark.svg");
-            routeModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-dark.svg");
+            pageModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-dark.svg");
+            pageModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-dark.svg");
+            pageModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-dark.svg");
+            userListViewModel.setProperty(0, "iconName", "qrc:/dsg/icons/favourite-dark.svg");
         } else {
-            routeModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-light.svg");
-            routeModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-light.svg");
-            routeModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-light.svg");
+            pageModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-light.svg");
+            pageModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-light.svg");
+            pageModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-light.svg");
+            userListViewModel.setProperty(0, "iconName", "qrc:/dsg/icons/favourite-light.svg");
         }
     }
 
     Component.onCompleted: {
         if (D.DTK.themeType === 2) {
-            routeModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-dark.svg");
-            routeModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-dark.svg");
-            routeModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-dark.svg");
+            pageModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-dark.svg");
+            pageModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-dark.svg");
+            pageModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-dark.svg");
+            userListViewModel.setProperty(0, "iconName", "qrc:/dsg/icons/favourite-dark.svg");
         }
         D.DTK.themeTypeChanged.connect(onThemeTypeChanged);
     }
@@ -182,7 +186,7 @@ Item {
         D.DTK.themeTypeChanged.disconnect(onThemeTypeChanged);
     }
 
-    routeModel: ListModel {
+    pageModel: ListModel {
         ListElement {
             iconName: "qrc:/dsg/icons/index-light.svg"
             _text: "首页"
@@ -196,6 +200,14 @@ Item {
         ListElement {
             iconName: "qrc:/dsg/icons/library-light.svg"
             _text: "音乐库"
+        }
+
+    }
+
+    userListViewModel: ListModel {
+        ListElement {
+            iconName: "qrc:/dsg/icons/favourite-light.svg"
+            _text: "我喜欢的音乐"
         }
 
     }

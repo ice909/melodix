@@ -30,5 +30,7 @@
         <file>dsg/icons/discover-dark.svg</file>
         <file>dsg/icons/library-light.svg</file>
         <file>dsg/icons/library-dark.svg</file>
+        <file>dsg/icons/favourite-light.svg</file>
+        <file>dsg/icons/favourite-dark.svg</file>
     </qresource>
 </RCC>
