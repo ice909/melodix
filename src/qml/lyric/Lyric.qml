@@ -17,7 +17,6 @@ Item {
     property string artist: ""
     property string album: ""
     property string bgImgPath: "qrc:/dsg/img/music.svg"
-    property int centerAreaWidth: 899
     property ListModel lrcModel
 
     signal currentIndexChanged(int index)
@@ -132,7 +131,7 @@ Item {
     }
 
     Item {
-        width: centerAreaWidth
+        width: scrollWidth * 0.95
         height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
 
@@ -146,20 +145,20 @@ Item {
             Item {
                 id: leftAreaColumn
 
-                width: 426
+                width: parent.width / 2
                 height: parent.height - 141
 
                 Item {
                     id: leftArea
 
-                    width: 426
-                    height: 426
+                    width: parent.width * 0.9
+                    height: width
                     anchors.centerIn: parent
 
                     RoundedImage {
                         id: coverImg
 
-                        width: parent.width / 1.5
+                        width: parent.width * 0.72
                         height: width
                         imgSrc: bgImgPath
                         borderRadius: height

@@ -28,7 +28,7 @@ Item {
                 width: parent.width
                 height: 36
                 checked: index === pageSelectedIndex
-                font.pixelSize: 16
+                font.pixelSize: 14
                 font.bold: true
                 backgroundVisible: false
 
@@ -103,7 +103,7 @@ Item {
                 width: parent.width
                 height: 36
                 checked: index === userListViewSelectedIndex
-                font.pixelSize: 16
+                font.pixelSize: 14
                 font.bold: true
                 backgroundVisible: false
 
