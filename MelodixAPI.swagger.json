@@ -11367,7 +11367,7 @@
                       "type": "string"
                     },
                     "birthday": {
-                      "type": "integer"
+                      "type": "number"
                     },
                     "authority": {
                       "type": "integer"

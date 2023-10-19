@@ -21,6 +21,11 @@ ApplicationWindow {
     property string userAvatar: ""
     property string userNickname: ""
     property string userID: ""
+    property int userGender: 0
+    property string userSignature: ""
+    property int userCity: 0
+    property int userProvince: 0
+    property string userBirthday: ""
     // 我喜欢的所有歌曲的id
     property var userFavoriteSongsID: []
     property string userFavoritePlaylistId: ""
@@ -113,7 +118,12 @@ ApplicationWindow {
             userAvatar = profile.avatarUrl;
             userNickname = profile.nickname;
             userID = profile.userId;
-            console.log("用户头像 昵称 ID获取成功");
+            userGender = profile.gender
+            userSignature = profile.signature
+            userCity = profile.city
+            userProvince = profile.province
+            userBirthday = profile.birthday
+            console.log("用户信息获取成功");
             API.getUserLikeSongIds(userID);
         }
 

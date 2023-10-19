@@ -56,6 +56,16 @@ Item {
         "id": "",
         "count": ""
     }
+    // 登录页
+    property var routeLogin: {
+        "path": "login",
+        "component": "qml/login/Login.qml"
+    }
+    // 个人中心页
+    property var routeUser: {
+        "path": "user",
+        "component": "qml/user/User.qml"
+    }
 
     // 路由后退信号
     signal signalBack()
@@ -140,6 +150,20 @@ Item {
         const r = clone(routeFavorite);
         r.id = id;
         r.count = count;
+        routeCurrent = r;
+        routeHistory.push(r);
+        signalNavigate(r, false);
+    }
+    // 显示登录页
+    function showLogin() {
+        const r = clone(routeLogin);
+        routeCurrent = r;
+        routeHistory.push(r);
+        signalNavigate(r, false);
+    }
+    // 显示个人中心页
+    function showUser() {
+        const r = clone(routeUser);
         routeCurrent = r;
         routeHistory.push(r);
         signalNavigate(r, false);

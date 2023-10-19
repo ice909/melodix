@@ -101,7 +101,7 @@ Item {
                     id: code
 
                     anchors.leftMargin: 15
-                    width: 115
+                    width: parent.width - 50 - 100 - 10
                     placeholderText: "请输入验证码"
                     anchors.verticalCenter: parent.verticalCenter
                     alertText: "验证码有误"

@@ -9,7 +9,11 @@ WindowButton {
     onClicked: {
         
         console.log("头像被点击")
-        //TODO: 未登录时跳转到登录页面 登录后跳转到个人中心
+        if (!isLogin) {
+            Router.showLogin();
+        } else {
+            Router.showUser();
+        }
     }
 
     RoundedImage {

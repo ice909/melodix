@@ -114,8 +114,9 @@ Item {
                 id: qrCode
 
                 width: parent.width - 50
-                height: parent.height - 50
+                height: parent.height
                 anchors.centerIn: parent
+                isLoginQrCode: true
 
                 Item {
                     id: loadAnimation

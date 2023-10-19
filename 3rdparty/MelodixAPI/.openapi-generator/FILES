@@ -20,6 +20,8 @@ client/MDClientApi.h
 client/MDEnum.h
 client/MDGetAccountInfo_200_response.cpp
 client/MDGetAccountInfo_200_response.h
+client/MDGetAccountInfo_200_response_profile.cpp
+client/MDGetAccountInfo_200_response_profile.h
 client/MDGetArtistAlbum_200_response.cpp
 client/MDGetArtistAlbum_200_response.h
 client/MDGetArtistAlbum_200_response_artist.cpp

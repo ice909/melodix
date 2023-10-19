@@ -31,7 +31,7 @@
         <file>qml/titlebar/NoticeButton.qml</file>
         <file>qml/titlebar/NickNameButton.qml</file>
 
-        <file>qml/login/LoginDialog.qml</file>
+        <file>qml/login/Login.qml</file>
         <file>qml/login/QRCodeLogin.qml</file>
         <file>qml/login/CaptchaLogin.qml</file>
         <file>qml/login/PasswordLogin.qml</file>
@@ -63,5 +63,7 @@
         
         <file>util/Util.qml</file>
         <file>util/qmldir</file>
+
+        <file>qml/user/User.qml</file>
     </qresource>
 </RCC>

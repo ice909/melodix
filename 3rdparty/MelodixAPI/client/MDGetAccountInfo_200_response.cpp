@@ -115,10 +115,10 @@ bool MDGetAccountInfo_200_response::is_account_Valid() const{
     return m_account_isValid;
 }
 
-MDGetLoginStatus_200_response_data_profile MDGetAccountInfo_200_response::getProfile() const {
+MDGetAccountInfo_200_response_profile MDGetAccountInfo_200_response::getProfile() const {
     return m_profile;
 }
-void MDGetAccountInfo_200_response::setProfile(const MDGetLoginStatus_200_response_data_profile &profile) {
+void MDGetAccountInfo_200_response::setProfile(const MDGetAccountInfo_200_response_profile &profile) {
     m_profile = profile;
     m_profile_isSet = true;
 }
