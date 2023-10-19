@@ -26,9 +26,10 @@
         <file>router/qmldir</file>
 
         <file>qml/titlebar/MyTitlebar.qml</file>
-        <file>qml/titlebar/AccountButton.qml</file>
+        <file>qml/titlebar/AvatarButton.qml</file>
         <file>qml/titlebar/MySearchEdit.qml</file>
         <file>qml/titlebar/NoticeButton.qml</file>
+        <file>qml/titlebar/NickNameButton.qml</file>
 
         <file>qml/login/LoginDialog.qml</file>
         <file>qml/login/QRCodeLogin.qml</file>

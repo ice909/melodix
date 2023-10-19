@@ -65,11 +65,19 @@ TitleBar {
                 width: parent.width / 3
             }
 
-            AccountButton {
+            AvatarButton {
                 id: accoutBtn
 
-                anchors.right: noticeBtn.left
+                anchors.right: nickNameBtn.left
                 width: parent.height
+                height: parent.height
+            }
+
+            NickNameButton {
+                id: nickNameBtn
+
+                anchors.right: noticeBtn.left
+                width: parent.height * 1.5
                 height: parent.height
             }
 

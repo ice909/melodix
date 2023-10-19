@@ -6,58 +6,36 @@ import QtQuick.Layouts 1.7
 import org.deepin.dtk 1.0
 
 WindowButton {
+
+    Label {
+        
+        anchors.fill: parent
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        text: isLogin ? userNickname : "未登录"
+    }    
+
     onClicked: {
-        accountMenu.open();
-    }
-
-    RoundedImage {
-        id: avatarImage
-
-        imgSrc: isLogin ? userAvatar : "qrc:/dsg/img/avatar.svg"
-        width: 30
-        height: 30
-        borderRadius: 30
-        anchors.centerIn: parent
+        console.log("nickname clicked");
+        accountMenu.visible = !accountMenu.visible;
     }
 
     Popup {
         id: accountMenu
+        //TODO: 重新布局
 
-        x: avatarImage.x - 62
-        y: parent.height
+        x: root.x - 62
+        y: root.height
+        visible: false
         width: 150
         // 30 * 2 是按钮高度，10 * 2是spacing ，10是margin-bottom
-        height: avatar_item.height + 30 * 2 + 10 * 2 + 20
+        height: 30 * 2 + 10 + 20
+        z: 1
 
         ColumnLayout {
             anchors.centerIn: parent
             width: 130
             spacing: 10
-
-            Item {
-                id: avatar_item
-
-                width: 48
-                height: 48
-
-                RoundedImage {
-                    id: avatar_image
-
-                    imgSrc: isLogin ? userAvatar : "qrc:/dsg/img/avatar.svg"
-                    width: 48
-                    height: 48
-                    borderRadius: 48
-                }
-
-                Text {
-                    anchors.left: avatar_image.right
-                    anchors.verticalCenter: avatar_image.verticalCenter
-                    anchors.leftMargin: 20
-                    color: isLogin ? "black" : "gray"
-                    text: isLogin ? userNickname : ""
-                }
-
-            }
 
             // 个人中心按钮
             Button {
@@ -105,6 +83,14 @@ WindowButton {
             blurRadius: 20
         }
 
-    }
+        
+        Component.onCompleted: console.log("accountMenu completed");
+        
 
+    }
+    background: Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+    }
+    
 }
