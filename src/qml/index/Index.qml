@@ -48,7 +48,7 @@ Item {
         function onRecommendedPlaylistCompleted(res) {
             let newRes = [];
             if (res.length > 10)
-                newRes = res.slice(0, 10);
+                newRes = res.slice(1, 11);
             else
                 newRes = res;
             for (const playlist of newRes) recommendedPlaylist.lists.append({

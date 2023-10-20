@@ -129,6 +129,8 @@ add_library(${PROJECT_NAME}
   MDGetTopPlaylist_200_response_playlists_inner_creator_avatarDetail.h
   MDGetTopPlaylist_200_response_playlists_inner_creator_experts.h
   MDGetTopPlaylist_200_response_playlists_inner_subscribers_inner.h
+  MDGetUserLevel_200_response.h
+  MDGetUserLevel_200_response_data.h
   MDGetUserPlaylist_200_response.h
   MDGetUserPlaylist_200_response_playlist_inner.h
   MDGetUserPlaylist_200_response_playlist_inner_creator.h
@@ -276,6 +278,8 @@ add_library(${PROJECT_NAME}
   MDGetTopPlaylist_200_response_playlists_inner_creator_avatarDetail.cpp
   MDGetTopPlaylist_200_response_playlists_inner_creator_experts.cpp
   MDGetTopPlaylist_200_response_playlists_inner_subscribers_inner.cpp
+  MDGetUserLevel_200_response.cpp
+  MDGetUserLevel_200_response_data.cpp
   MDGetUserPlaylist_200_response.cpp
   MDGetUserPlaylist_200_response_playlist_inner.cpp
   MDGetUserPlaylist_200_response_playlist_inner_creator.cpp

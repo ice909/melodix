@@ -13225,6 +13225,110 @@
           "application/json"
         ]
       }
+    },
+    "/user/level": {
+      "get": {
+        "summary": "获取用户等级信息",
+        "x-apifox-folder": "client",
+        "x-apifox-status": "released",
+        "deprecated": false,
+        "description": "登录后调用此接口 , 可以获取用户等级信息,包含当前登录天数,听歌次数,下一等级需要的登录天数和听歌次数,当前等级进度,对应 https://music.163.com/#/user/level",
+        "operationId": "getUserLevel",
+        "tags": [
+          "client"
+        ],
+        "parameters": [
+          {
+            "name": "MUSIC_U",
+            "in": "cookie",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "xxx"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "full": {
+                  "type": "boolean"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "userId": {
+                      "type": "integer"
+                    },
+                    "info": {
+                      "type": "string"
+                    },
+                    "progress": {
+                      "type": "integer"
+                    },
+                    "nextPlayCount": {
+                      "type": "integer"
+                    },
+                    "nextLoginCount": {
+                      "type": "integer"
+                    },
+                    "nowPlayCount": {
+                      "type": "integer"
+                    },
+                    "nowLoginCount": {
+                      "type": "integer"
+                    },
+                    "level": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "userId",
+                    "info",
+                    "progress",
+                    "nextPlayCount",
+                    "nextLoginCount",
+                    "nowPlayCount",
+                    "nowLoginCount",
+                    "level"
+                  ],
+                  "x-apifox-orders": [
+                    "userId",
+                    "info",
+                    "progress",
+                    "nextPlayCount",
+                    "nextLoginCount",
+                    "nowPlayCount",
+                    "nowLoginCount",
+                    "level"
+                  ],
+                  "x-apifox-ignore-properties": []
+                },
+                "code": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "full",
+                "data",
+                "code"
+              ],
+              "x-apifox-orders": [
+                "full",
+                "data",
+                "code"
+              ],
+              "x-apifox-ignore-properties": []
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-118447282-run",
+        "produces": [
+          "application/json"
+        ]
+      }
     }
   },
   "swagger": "2.0",
