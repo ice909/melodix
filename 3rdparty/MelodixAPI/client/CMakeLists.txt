@@ -15,6 +15,7 @@ add_library(${PROJECT_NAME}
   MDCellphoneLogin_200_response_bindings_inner.h
   MDCellphoneLogin_200_response_profile.h
   MDCheckMusic_200_response.h
+  MDCheckNickname_200_response.h
   MDGetAccountInfo_200_response.h
   MDGetAccountInfo_200_response_profile.h
   MDGetArtistAlbum_200_response.h
@@ -94,6 +95,9 @@ add_library(${PROJECT_NAME}
   MDGetPurchasedAlbum_200_response_paidAlbums_inner_artists_inner.h
   MDGetQrKey_200_response.h
   MDGetQrKey_200_response_data.h
+  MDGetRecommendResource_200_response.h
+  MDGetRecommendResource_200_response_recommend_inner.h
+  MDGetRecommendResource_200_response_recommend_inner_creator.h
   MDGetRecommendedMv_200_response.h
   MDGetRecommendedMv_200_response_result_inner.h
   MDGetRecommendedMv_200_response_result_inner_artists_inner.h
@@ -141,6 +145,7 @@ add_library(${PROJECT_NAME}
   MDSearch_200_response_result_songs_inner_privilege.h
   MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege.h
   MDSendCaptcha_200_response.h
+  MDUpdateUserInfo_200_response.h
   MDClientApi.h
   MDHelpers.h
   MDHttpRequest.h
@@ -157,6 +162,7 @@ add_library(${PROJECT_NAME}
   MDCellphoneLogin_200_response_bindings_inner.cpp
   MDCellphoneLogin_200_response_profile.cpp
   MDCheckMusic_200_response.cpp
+  MDCheckNickname_200_response.cpp
   MDGetAccountInfo_200_response.cpp
   MDGetAccountInfo_200_response_profile.cpp
   MDGetArtistAlbum_200_response.cpp
@@ -236,6 +242,9 @@ add_library(${PROJECT_NAME}
   MDGetPurchasedAlbum_200_response_paidAlbums_inner_artists_inner.cpp
   MDGetQrKey_200_response.cpp
   MDGetQrKey_200_response_data.cpp
+  MDGetRecommendResource_200_response.cpp
+  MDGetRecommendResource_200_response_recommend_inner.cpp
+  MDGetRecommendResource_200_response_recommend_inner_creator.cpp
   MDGetRecommendedMv_200_response.cpp
   MDGetRecommendedMv_200_response_result_inner.cpp
   MDGetRecommendedMv_200_response_result_inner_artists_inner.cpp
@@ -283,6 +292,7 @@ add_library(${PROJECT_NAME}
   MDSearch_200_response_result_songs_inner_privilege.cpp
   MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege.cpp
   MDSendCaptcha_200_response.cpp
+  MDUpdateUserInfo_200_response.cpp
   MDClientApi.cpp
   MDHelpers.cpp
   MDHttpRequest.cpp

@@ -20,6 +20,7 @@ public slots:
     void logout();
     void banner(const int type);
     void getRecommendedPlaylist(const int limit);
+    void getRecommendResource();
     void getRecommendedNewSongs(const int limit);
     void getTopArtists();
     void getRecommendedMv();

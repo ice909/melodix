@@ -12793,6 +12793,438 @@
           "application/json"
         ]
       }
+    },
+    "/user/update": {
+      "get": {
+        "summary": "更新用户信息",
+        "x-apifox-folder": "client",
+        "x-apifox-status": "released",
+        "deprecated": false,
+        "description": "登录后调用此接口 , 传入相关信息,可以更新用户信息",
+        "operationId": "updateUserInfo",
+        "tags": [
+          "client"
+        ],
+        "parameters": [
+          {
+            "name": "MUSIC_U",
+            "in": "cookie",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "003D81881884B70DE7B073CA0B57EBDFD5140277CD05DAB03996945589440109D800E7570C44430AA88B8B006F5FDDF4117992D1A0768DC451296ACF8806F3B7DC0DC6676994B5371473D4F6D1B37E6EB42B3D660604083C2F29DD4935C60638A1FBFD83F99DA489D6DA449DE943AC965BBA12F5C9BC886A77924A261DE02F254070682B3561A78F00D955DF851D5AF83EC5104FDB7ABDBD69EEDF55ED87AACA945880A72123EEAF40CD60645FB762554B52D3A10A5F090F49E7D045CED14EB509DA2F3962A2A082D553CA2314524DDB4514E73FDDD7FE691C44A3D6B2A03D307081DA22B775A3388E9357BAE451A4A630280F6E5059C79E2EF2C93594D8DA95B60CD05FF60066FE9E3F195CD4345041A4332320464C2463107236048183237AE2A8ED8C39656C49BFE87ED79731A6F174F574C51338F53A0918BB3F03AD3389ACD97CA95780676BCE03221B2CB4DA9C9D"
+          },
+          {
+            "name": "gender",
+            "in": "query",
+            "description": "性别 0:保密 1:男性 2:女性",
+            "required": true,
+            "type": "string",
+            "x-example": "1"
+          },
+          {
+            "name": "signature",
+            "in": "query",
+            "description": "用户签名",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "城市id",
+            "required": true,
+            "type": "string",
+            "x-example": "140900"
+          },
+          {
+            "name": "nickname",
+            "in": "query",
+            "description": "用户昵称",
+            "required": true,
+            "type": "string",
+            "x-example": "Ausasa_j2Xs"
+          },
+          {
+            "name": "birthday",
+            "in": "query",
+            "description": "出生日期,时间戳 unix timestamp",
+            "required": true,
+            "type": "string",
+            "x-example": "1031500800000"
+          },
+          {
+            "name": "province",
+            "in": "query",
+            "description": "省份id",
+            "required": true,
+            "type": "string",
+            "x-example": "140000"
+          },
+          {
+            "name": "timestamp",
+            "in": "query",
+            "description": "时间戳",
+            "required": true,
+            "type": "string",
+            "x-example": "{% mock 'timestamp' , 'ms' %}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "null"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "message": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "msg",
+                "code",
+                "message"
+              ],
+              "x-apifox-ignore-properties": [],
+              "x-apifox-orders": [
+                "msg",
+                "code",
+                "message"
+              ]
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-118234611-run",
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/nickname/check": {
+      "get": {
+        "summary": "重复昵称检测",
+        "x-apifox-folder": "client",
+        "x-apifox-status": "released",
+        "deprecated": false,
+        "description": "调用此接口 ,可检测昵称是否重复,并提供备用昵称 必选参数 : nickname : 昵称",
+        "operationId": "checkNickname",
+        "tags": [
+          "client"
+        ],
+        "parameters": [
+          {
+            "name": "nickname",
+            "in": "query",
+            "description": "昵称",
+            "required": true,
+            "type": "string",
+            "x-example": "Ausasa"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nickname": {
+                  "type": "string"
+                },
+                "candidateNicknames": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "duplicated": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "nickname",
+                "candidateNicknames",
+                "duplicated",
+                "code"
+              ],
+              "x-apifox-ignore-properties": [],
+              "x-apifox-orders": [
+                "nickname",
+                "candidateNicknames",
+                "duplicated",
+                "code"
+              ]
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-118234694-run",
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/recommend/resource": {
+      "get": {
+        "summary": "获取每日推荐歌单",
+        "x-apifox-folder": "client",
+        "x-apifox-status": "released",
+        "deprecated": false,
+        "description": "调用此接口 , 可获得每日推荐歌单 ( 需要登录 )",
+        "operationId": "getRecommendResource",
+        "tags": [
+          "client"
+        ],
+        "parameters": [
+          {
+            "name": "MUSIC_U",
+            "in": "cookie",
+            "description": "",
+            "required": false,
+            "type": "string",
+            "x-example": "xxx"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "recommend": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "type": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "copywriter": {
+                        "type": "string"
+                      },
+                      "picUrl": {
+                        "type": "string"
+                      },
+                      "playcount": {
+                        "type": "integer"
+                      },
+                      "createTime": {
+                        "type": "integer"
+                      },
+                      "creator": {
+                        "type": "object",
+                        "properties": {
+                          "detailDescription": {
+                            "type": "string"
+                          },
+                          "defaultAvatar": {
+                            "type": "boolean"
+                          },
+                          "expertTags": {
+                            "type": "null"
+                          },
+                          "djStatus": {
+                            "type": "integer"
+                          },
+                          "followed": {
+                            "type": "boolean"
+                          },
+                          "avatarImgId": {
+                            "type": "integer"
+                          },
+                          "backgroundImgId": {
+                            "type": "integer"
+                          },
+                          "avatarImgIdStr": {
+                            "type": "string"
+                          },
+                          "backgroundImgIdStr": {
+                            "type": "string"
+                          },
+                          "accountStatus": {
+                            "type": "integer"
+                          },
+                          "vipType": {
+                            "type": "integer"
+                          },
+                          "province": {
+                            "type": "integer"
+                          },
+                          "avatarUrl": {
+                            "type": "string"
+                          },
+                          "authStatus": {
+                            "type": "integer"
+                          },
+                          "userType": {
+                            "type": "integer"
+                          },
+                          "nickname": {
+                            "type": "string"
+                          },
+                          "gender": {
+                            "type": "integer"
+                          },
+                          "birthday": {
+                            "type": "integer"
+                          },
+                          "city": {
+                            "type": "integer"
+                          },
+                          "backgroundUrl": {
+                            "type": "string"
+                          },
+                          "remarkName": {
+                            "type": "null"
+                          },
+                          "mutual": {
+                            "type": "boolean"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "userId": {
+                            "type": "integer"
+                          },
+                          "signature": {
+                            "type": "string"
+                          },
+                          "authority": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "detailDescription",
+                          "defaultAvatar",
+                          "expertTags",
+                          "djStatus",
+                          "followed",
+                          "avatarImgId",
+                          "backgroundImgId",
+                          "avatarImgIdStr",
+                          "backgroundImgIdStr",
+                          "accountStatus",
+                          "vipType",
+                          "province",
+                          "avatarUrl",
+                          "authStatus",
+                          "userType",
+                          "nickname",
+                          "gender",
+                          "birthday",
+                          "city",
+                          "backgroundUrl",
+                          "remarkName",
+                          "mutual",
+                          "description",
+                          "userId",
+                          "signature",
+                          "authority"
+                        ],
+                        "x-apifox-orders": [
+                          "detailDescription",
+                          "defaultAvatar",
+                          "expertTags",
+                          "djStatus",
+                          "followed",
+                          "avatarImgId",
+                          "backgroundImgId",
+                          "avatarImgIdStr",
+                          "backgroundImgIdStr",
+                          "accountStatus",
+                          "vipType",
+                          "province",
+                          "avatarUrl",
+                          "authStatus",
+                          "userType",
+                          "nickname",
+                          "gender",
+                          "birthday",
+                          "city",
+                          "backgroundUrl",
+                          "remarkName",
+                          "mutual",
+                          "description",
+                          "userId",
+                          "signature",
+                          "authority"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      },
+                      "trackCount": {
+                        "type": "integer"
+                      },
+                      "userId": {
+                        "type": "integer"
+                      },
+                      "alg": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "type",
+                      "name",
+                      "copywriter",
+                      "picUrl",
+                      "playcount",
+                      "createTime",
+                      "creator",
+                      "trackCount",
+                      "userId",
+                      "alg"
+                    ],
+                    "x-apifox-orders": [
+                      "id",
+                      "type",
+                      "name",
+                      "copywriter",
+                      "picUrl",
+                      "playcount",
+                      "createTime",
+                      "creator",
+                      "trackCount",
+                      "userId",
+                      "alg"
+                    ],
+                    "x-apifox-ignore-properties": []
+                  }
+                }
+              },
+              "required": [
+                "code",
+                "recommend"
+              ],
+              "x-apifox-orders": [
+                "code",
+                "recommend"
+              ],
+              "x-apifox-ignore-properties": []
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-118304441-run",
+        "produces": [
+          "application/json"
+        ]
+      }
     }
   },
   "swagger": "2.0",

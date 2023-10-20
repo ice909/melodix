@@ -15,6 +15,8 @@ client/MDCellphoneLogin_200_response_profile.cpp
 client/MDCellphoneLogin_200_response_profile.h
 client/MDCheckMusic_200_response.cpp
 client/MDCheckMusic_200_response.h
+client/MDCheckNickname_200_response.cpp
+client/MDCheckNickname_200_response.h
 client/MDClientApi.cpp
 client/MDClientApi.h
 client/MDEnum.h
@@ -176,6 +178,12 @@ client/MDGetQrKey_200_response.cpp
 client/MDGetQrKey_200_response.h
 client/MDGetQrKey_200_response_data.cpp
 client/MDGetQrKey_200_response_data.h
+client/MDGetRecommendResource_200_response.cpp
+client/MDGetRecommendResource_200_response.h
+client/MDGetRecommendResource_200_response_recommend_inner.cpp
+client/MDGetRecommendResource_200_response_recommend_inner.h
+client/MDGetRecommendResource_200_response_recommend_inner_creator.cpp
+client/MDGetRecommendResource_200_response_recommend_inner_creator.h
 client/MDGetRecommendedMv_200_response.cpp
 client/MDGetRecommendedMv_200_response.h
 client/MDGetRecommendedMv_200_response_result_inner.cpp
@@ -281,3 +289,5 @@ client/MDSendCaptcha_200_response.cpp
 client/MDSendCaptcha_200_response.h
 client/MDServerConfiguration.h
 client/MDServerVariable.h
+client/MDUpdateUserInfo_200_response.cpp
+client/MDUpdateUserInfo_200_response.h

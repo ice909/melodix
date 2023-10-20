@@ -192,6 +192,16 @@ void API::getRecommendedPlaylist(const int limit)
             });
 }
 
+void API::getRecommendResource()
+{
+    userApiInstance->getRecommendResource();
+    connect(userApiInstance,
+            &MDClientApi::getRecommendResourceSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetRecommendResource_200_response response) {
+                emit recommendedPlaylistCompleted(toJsonArray(response.getRecommend()));
+            });
+}
+
 void API::getRecommendedNewSongs(const int limit)
 {
     apiInstance->getRecommendedNewSongs(limit);

@@ -41,6 +41,8 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("cellphoneLogin", 0);
     _serverConfigs.insert("checkMusic", defaultConf);
     _serverIndices.insert("checkMusic", 0);
+    _serverConfigs.insert("checkNickname", defaultConf);
+    _serverIndices.insert("checkNickname", 0);
     _serverConfigs.insert("getAccountInfo", defaultConf);
     _serverIndices.insert("getAccountInfo", 0);
     _serverConfigs.insert("getArtistAlbum", defaultConf);
@@ -75,6 +77,8 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("getPurchasedAlbum", 0);
     _serverConfigs.insert("getQrKey", defaultConf);
     _serverIndices.insert("getQrKey", 0);
+    _serverConfigs.insert("getRecommendResource", defaultConf);
+    _serverIndices.insert("getRecommendResource", 0);
     _serverConfigs.insert("getRecommendedMv", defaultConf);
     _serverIndices.insert("getRecommendedMv", 0);
     _serverConfigs.insert("getRecommendedNewSongs", defaultConf);
@@ -103,6 +107,8 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("search", 0);
     _serverConfigs.insert("sendCaptcha", defaultConf);
     _serverIndices.insert("sendCaptcha", 0);
+    _serverConfigs.insert("updateUserInfo", defaultConf);
+    _serverIndices.insert("updateUserInfo", 0);
     _serverConfigs.insert("verifyCaptcha", defaultConf);
     _serverIndices.insert("verifyCaptcha", 0);
 }
@@ -547,6 +553,71 @@ void MDClientApi::checkMusicCallback(MDHttpRequestWorker *worker) {
     } else {
         emit checkMusicSignalE(output, error_type, error_str);
         emit checkMusicSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void MDClientApi::checkNickname(const QString &nickname) {
+    QString fullPath = QString(_serverConfigs["checkNickname"][_serverIndices.value("checkNickname")].URL()+"/nickname/check");
+    
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "nickname", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("nickname")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(nickname)));
+    }
+    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    MDHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::checkNicknameCallback);
+    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void MDClientApi::checkNicknameCallback(MDHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    MDCheckNickname_200_response output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit checkNicknameSignal(output);
+        emit checkNicknameSignalFull(worker, output);
+    } else {
+        emit checkNicknameSignalE(output, error_type, error_str);
+        emit checkNicknameSignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -1730,6 +1801,55 @@ void MDClientApi::getQrKeyCallback(MDHttpRequestWorker *worker) {
     }
 }
 
+void MDClientApi::getRecommendResource() {
+    QString fullPath = QString(_serverConfigs["getRecommendResource"][_serverIndices.value("getRecommendResource")].URL()+"/recommend/resource");
+    
+    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    MDHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getRecommendResourceCallback);
+    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void MDClientApi::getRecommendResourceCallback(MDHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    MDGetRecommendResource_200_response output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getRecommendResourceSignal(output);
+        emit getRecommendResourceSignalFull(worker, output);
+    } else {
+        emit getRecommendResourceSignalE(output, error_type, error_str);
+        emit getRecommendResourceSignalEFull(worker, error_type, error_str);
+    }
+}
+
 void MDClientApi::getRecommendedMv() {
     QString fullPath = QString(_serverConfigs["getRecommendedMv"][_serverIndices.value("getRecommendedMv")].URL()+"/personalized/mv");
     
@@ -2785,6 +2905,161 @@ void MDClientApi::sendCaptchaCallback(MDHttpRequestWorker *worker) {
     } else {
         emit sendCaptchaSignalE(output, error_type, error_str);
         emit sendCaptchaSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void MDClientApi::updateUserInfo(const QString &gender, const QString &signature, const QString &city, const QString &nickname, const QString &birthday, const QString &province, const QString &timestamp) {
+    QString fullPath = QString(_serverConfigs["updateUserInfo"][_serverIndices.value("updateUserInfo")].URL()+"/user/update");
+    
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "gender", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("gender")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(gender)));
+    }
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "signature", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("signature")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(signature)));
+    }
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "city", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("city")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(city)));
+    }
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "nickname", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("nickname")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(nickname)));
+    }
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "birthday", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("birthday")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(birthday)));
+    }
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "province", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("province")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(province)));
+    }
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "timestamp", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("timestamp")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(timestamp)));
+    }
+    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    MDHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::updateUserInfoCallback);
+    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void MDClientApi::updateUserInfoCallback(MDHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    MDUpdateUserInfo_200_response output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit updateUserInfoSignal(output);
+        emit updateUserInfoSignalFull(worker, output);
+    } else {
+        emit updateUserInfoSignalE(output, error_type, error_str);
+        emit updateUserInfoSignalEFull(worker, error_type, error_str);
     }
 }
 
