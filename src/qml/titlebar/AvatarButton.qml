@@ -7,8 +7,6 @@ import org.deepin.dtk 1.0
 
 WindowButton {
     onClicked: {
-        
-        console.log("头像被点击")
         if (!isLogin) {
             Router.showLogin();
         } else {

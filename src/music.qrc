@@ -58,12 +58,13 @@
 
         <file>qml/favorite/Favorite.qml</file>
 
-        <file>qml/dialogs/SettingsDialog.qml</file>
         <file>qml/dialogs/CloseDialog.qml</file>
         
         <file>util/Util.qml</file>
         <file>util/qmldir</file>
 
         <file>qml/user/User.qml</file>
+
+        <file>qml/settings/Settings.qml</file>
     </qresource>
 </RCC>

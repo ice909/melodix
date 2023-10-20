@@ -15,19 +15,6 @@ TitleBar {
     hoverEnabled: false
     icon.name: isLyricShow ? "" : "melodix"
 
-    Loader {
-        id: settingDlgLoader
-
-        Connections {
-            function onClosed() {
-                settingDlgLoader.source = "";
-            }
-
-            target: settingDlgLoader.item
-        }
-
-    }
-
     leftContent: ToolButton {
         visible: Router.routeCurrent !== Router.routeIndex || isLyricShow
         width: 36
@@ -107,7 +94,7 @@ TitleBar {
 
             text: "设置"
             onTriggered: {
-                settingDlgLoader.setSource("../dialogs/SettingsDialog.qml");
+                Router.showSettings();
             }
         }
 

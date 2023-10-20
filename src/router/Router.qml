@@ -66,6 +66,11 @@ Item {
         "path": "user",
         "component": "qml/user/User.qml"
     }
+    // 设置页
+    property var routeSetting: {
+        "path": "setting",
+        "component": "qml/settings/Settings.qml"
+    }
 
     // 路由后退信号
     signal signalBack()
@@ -164,6 +169,13 @@ Item {
     // 显示个人中心页
     function showUser() {
         const r = clone(routeUser);
+        routeCurrent = r;
+        routeHistory.push(r);
+        signalNavigate(r, false);
+    }
+    // 显示设置页
+    function showSettings() {
+        const r = clone(routeSetting);
         routeCurrent = r;
         routeHistory.push(r);
         signalNavigate(r, false);

@@ -236,10 +236,6 @@ ApplicationWindow {
         id: lrcWindowLoader
     }
 
-    Loader {
-        id: loginDialog
-    }
-
     Connections {
         id: toolboxConnect
 
