@@ -155,10 +155,10 @@ QJsonObject MDGetRecommendResource_200_response_recommend_inner::asJsonObject() 
     return obj;
 }
 
-qint32 MDGetRecommendResource_200_response_recommend_inner::getId() const {
+double MDGetRecommendResource_200_response_recommend_inner::getId() const {
     return m_id;
 }
-void MDGetRecommendResource_200_response_recommend_inner::setId(const qint32 &id) {
+void MDGetRecommendResource_200_response_recommend_inner::setId(const double &id) {
     m_id = id;
     m_id_isSet = true;
 }

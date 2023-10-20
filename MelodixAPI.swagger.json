@@ -13008,7 +13008,7 @@
                     "type": "object",
                     "properties": {
                       "id": {
-                        "type": "integer"
+                        "type": "number"
                       },
                       "type": {
                         "type": "integer"

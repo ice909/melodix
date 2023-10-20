@@ -12,29 +12,32 @@ Item {
     property bool loading: true
     property int count: 0
 
-    Component.onCompleted: {
-        API.banner(0);
-        API.getRecommendedPlaylist(10);
-        API.getRecommendedNewSongs(9);
-        API.getTopArtists();
-        API.getRecommendedMv();
-    }
-
     Connections {
+        function onLoginStatusCompleted(res) {
+            API.banner(0);
+            if (res.code == 200 && res.account.status == 0 && res.profile != null)
+                API.getRecommendResource();
+            else
+                API.getRecommendedPlaylist(10);
+            API.getRecommendedNewSongs(9);
+            API.getTopArtists();
+            API.getRecommendedMv();
+        }
+
         function onBannerCompleted(res) {
             for (let i = 0; i < res.length; i++) {
                 // 左右两个轮播图
                 // 左边展示一半，右边展示一半
                 if (i % 2 === 0)
                     left_banner.model.append({
-                        "img": res[i].imageUrl,
-                        "url": res[i].url || ""
-                    });
+                    "img": res[i].imageUrl,
+                    "url": res[i].url || ""
+                });
                 else
                     right_banner.model.append({
-                        "img": res[i].imageUrl,
-                        "url": res[i].url || ""
-                    });
+                    "img": res[i].imageUrl,
+                    "url": res[i].url || ""
+                });
             }
             count++;
             if (count === 5)
@@ -43,7 +46,12 @@ Item {
         }
 
         function onRecommendedPlaylistCompleted(res) {
-            for (const playlist of res) recommendedPlaylist.lists.append({
+            let newRes = [];
+            if (res.length > 10)
+                newRes = res.slice(0, 10);
+            else
+                newRes = res;
+            for (const playlist of newRes) recommendedPlaylist.lists.append({
                 "playlist": playlist
             })
             count++;
