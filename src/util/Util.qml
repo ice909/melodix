@@ -45,4 +45,21 @@ Item {
         return fee === 1;
     }
 
+    function getProvince(code) {
+        switch(code) {
+        case 140000:
+            return "山西省";
+        //TODO: 待添加其他省份
+        }
+    }
+
+    function getCity(code) {
+        switch(code) {
+        case 140100:
+            return "太原市";
+        case 140900:
+            return "忻州市";
+        }
+    }
+
 }
