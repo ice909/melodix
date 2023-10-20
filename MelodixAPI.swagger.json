@@ -13329,6 +13329,657 @@
           "application/json"
         ]
       }
+    },
+    "/user/detail": {
+      "get": {
+        "summary": "获取用户详情",
+        "x-apifox-folder": "client",
+        "x-apifox-status": "released",
+        "deprecated": false,
+        "description": "登录后调用此接口 , 传入用户 id, 可以获取用户详情",
+        "operationId": "getUserDetail",
+        "tags": [
+          "client"
+        ],
+        "parameters": [
+          {
+            "name": "MUSIC_U",
+            "in": "cookie",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "xxx"
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "1510375943"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "identify": {
+                  "type": "object",
+                  "properties": {
+                    "imageUrl": {
+                      "type": "string"
+                    },
+                    "imageDesc": {
+                      "type": "string"
+                    },
+                    "actionUrl": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "imageUrl",
+                    "imageDesc",
+                    "actionUrl"
+                  ],
+                  "x-apifox-orders": [
+                    "imageUrl",
+                    "imageDesc",
+                    "actionUrl"
+                  ],
+                  "x-apifox-ignore-properties": []
+                },
+                "products": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "productionTypeName": {
+                        "type": "string"
+                      },
+                      "productionTypeId": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "productionTypeName",
+                      "productionTypeId"
+                    ],
+                    "x-apifox-orders": [
+                      "productionTypeName",
+                      "productionTypeId"
+                    ],
+                    "x-apifox-ignore-properties": []
+                  }
+                },
+                "level": {
+                  "type": "integer"
+                },
+                "listenSongs": {
+                  "type": "integer"
+                },
+                "userPoint": {
+                  "type": "object",
+                  "properties": {
+                    "userId": {
+                      "type": "integer"
+                    },
+                    "balance": {
+                      "type": "integer"
+                    },
+                    "updateTime": {
+                      "type": "integer"
+                    },
+                    "version": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "type": "integer"
+                    },
+                    "blockBalance": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "userId",
+                    "balance",
+                    "updateTime",
+                    "version",
+                    "status",
+                    "blockBalance"
+                  ],
+                  "x-apifox-orders": [
+                    "userId",
+                    "balance",
+                    "updateTime",
+                    "version",
+                    "status",
+                    "blockBalance"
+                  ],
+                  "x-apifox-ignore-properties": []
+                },
+                "mobileSign": {
+                  "type": "boolean"
+                },
+                "pcSign": {
+                  "type": "boolean"
+                },
+                "profile": {
+                  "type": "object",
+                  "properties": {
+                    "privacyItemUnlimit": {
+                      "type": "object",
+                      "properties": {
+                        "area": {
+                          "type": "boolean"
+                        },
+                        "college": {
+                          "type": "boolean"
+                        },
+                        "gender": {
+                          "type": "boolean"
+                        },
+                        "age": {
+                          "type": "boolean"
+                        },
+                        "villageAge": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "area",
+                        "college",
+                        "gender",
+                        "age",
+                        "villageAge"
+                      ],
+                      "x-apifox-orders": [
+                        "area",
+                        "college",
+                        "gender",
+                        "age",
+                        "villageAge"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "avatarDetail": {
+                      "type": "object",
+                      "properties": {
+                        "userType": {
+                          "type": "null"
+                        },
+                        "identityLevel": {
+                          "type": "integer"
+                        },
+                        "identityIconUrl": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "userType",
+                        "identityLevel",
+                        "identityIconUrl"
+                      ],
+                      "x-apifox-orders": [
+                        "userType",
+                        "identityLevel",
+                        "identityIconUrl"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "avatarImgId": {
+                      "type": "integer"
+                    },
+                    "gender": {
+                      "type": "integer"
+                    },
+                    "nickname": {
+                      "type": "string"
+                    },
+                    "birthday": {
+                      "type": "integer"
+                    },
+                    "authStatus": {
+                      "type": "integer"
+                    },
+                    "detailDescription": {
+                      "type": "string"
+                    },
+                    "experts": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apifox-orders": [],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "expertTags": {
+                      "type": "null"
+                    },
+                    "createTime": {
+                      "type": "integer"
+                    },
+                    "mutual": {
+                      "type": "boolean"
+                    },
+                    "remarkName": {
+                      "type": "null"
+                    },
+                    "vipType": {
+                      "type": "integer"
+                    },
+                    "backgroundImgIdStr": {
+                      "type": "string"
+                    },
+                    "avatarImgIdStr": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "userId": {
+                      "type": "integer"
+                    },
+                    "avatarUrl": {
+                      "type": "string"
+                    },
+                    "backgroundImgId": {
+                      "type": "integer"
+                    },
+                    "backgroundUrl": {
+                      "type": "string"
+                    },
+                    "userType": {
+                      "type": "integer"
+                    },
+                    "accountStatus": {
+                      "type": "integer"
+                    },
+                    "province": {
+                      "type": "integer"
+                    },
+                    "djStatus": {
+                      "type": "integer"
+                    },
+                    "city": {
+                      "type": "integer"
+                    },
+                    "defaultAvatar": {
+                      "type": "boolean"
+                    },
+                    "followed": {
+                      "type": "boolean"
+                    },
+                    "signature": {
+                      "type": "string"
+                    },
+                    "authority": {
+                      "type": "integer"
+                    },
+                    "allAuthTypes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "integer"
+                          },
+                          "desc": {
+                            "type": "string"
+                          },
+                          "tags": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "x-apifox-orders": [
+                          "type",
+                          "desc",
+                          "tags"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      }
+                    },
+                    "followeds": {
+                      "type": "integer"
+                    },
+                    "follows": {
+                      "type": "integer"
+                    },
+                    "blacklist": {
+                      "type": "boolean"
+                    },
+                    "artistId": {
+                      "type": "integer"
+                    },
+                    "eventCount": {
+                      "type": "integer"
+                    },
+                    "allSubscribedCount": {
+                      "type": "integer"
+                    },
+                    "playlistBeSubscribedCount": {
+                      "type": "integer"
+                    },
+                    "mainAuthType": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "integer"
+                        },
+                        "desc": {
+                          "type": "string"
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "desc",
+                        "tags"
+                      ],
+                      "x-apifox-orders": [
+                        "type",
+                        "desc",
+                        "tags"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "followTime": {
+                      "type": "null"
+                    },
+                    "followMe": {
+                      "type": "boolean"
+                    },
+                    "artistIdentity": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer"
+                      }
+                    },
+                    "cCount": {
+                      "type": "integer"
+                    },
+                    "inBlacklist": {
+                      "type": "boolean"
+                    },
+                    "sDJPCount": {
+                      "type": "integer"
+                    },
+                    "artistName": {
+                      "type": "string"
+                    },
+                    "playlistCount": {
+                      "type": "integer"
+                    },
+                    "sCount": {
+                      "type": "integer"
+                    },
+                    "newFollows": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "privacyItemUnlimit",
+                    "avatarDetail",
+                    "avatarImgId",
+                    "gender",
+                    "nickname",
+                    "birthday",
+                    "authStatus",
+                    "detailDescription",
+                    "experts",
+                    "expertTags",
+                    "createTime",
+                    "mutual",
+                    "remarkName",
+                    "vipType",
+                    "backgroundImgIdStr",
+                    "avatarImgIdStr",
+                    "description",
+                    "userId",
+                    "avatarUrl",
+                    "backgroundImgId",
+                    "backgroundUrl",
+                    "userType",
+                    "accountStatus",
+                    "province",
+                    "djStatus",
+                    "city",
+                    "defaultAvatar",
+                    "followed",
+                    "signature",
+                    "authority",
+                    "allAuthTypes",
+                    "followeds",
+                    "follows",
+                    "blacklist",
+                    "artistId",
+                    "eventCount",
+                    "allSubscribedCount",
+                    "playlistBeSubscribedCount",
+                    "mainAuthType",
+                    "followTime",
+                    "followMe",
+                    "artistIdentity",
+                    "cCount",
+                    "inBlacklist",
+                    "sDJPCount",
+                    "artistName",
+                    "playlistCount",
+                    "sCount",
+                    "newFollows"
+                  ],
+                  "x-apifox-orders": [
+                    "privacyItemUnlimit",
+                    "avatarDetail",
+                    "avatarImgId",
+                    "gender",
+                    "nickname",
+                    "birthday",
+                    "authStatus",
+                    "detailDescription",
+                    "experts",
+                    "expertTags",
+                    "createTime",
+                    "mutual",
+                    "remarkName",
+                    "vipType",
+                    "backgroundImgIdStr",
+                    "avatarImgIdStr",
+                    "description",
+                    "userId",
+                    "avatarUrl",
+                    "backgroundImgId",
+                    "backgroundUrl",
+                    "userType",
+                    "accountStatus",
+                    "province",
+                    "djStatus",
+                    "city",
+                    "defaultAvatar",
+                    "followed",
+                    "signature",
+                    "authority",
+                    "allAuthTypes",
+                    "followeds",
+                    "follows",
+                    "blacklist",
+                    "artistId",
+                    "eventCount",
+                    "allSubscribedCount",
+                    "playlistBeSubscribedCount",
+                    "mainAuthType",
+                    "followTime",
+                    "followMe",
+                    "artistIdentity",
+                    "cCount",
+                    "inBlacklist",
+                    "sDJPCount",
+                    "artistName",
+                    "playlistCount",
+                    "sCount",
+                    "newFollows"
+                  ],
+                  "x-apifox-ignore-properties": []
+                },
+                "peopleCanSeeMyPlayRecord": {
+                  "type": "boolean"
+                },
+                "bindings": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      },
+                      "expired": {
+                        "type": "boolean"
+                      },
+                      "userId": {
+                        "type": "integer"
+                      },
+                      "bindingTime": {
+                        "type": "integer"
+                      },
+                      "expiresIn": {
+                        "type": "integer"
+                      },
+                      "refreshTime": {
+                        "type": "integer"
+                      },
+                      "tokenJsonStr": {
+                        "type": "null"
+                      },
+                      "id": {
+                        "type": "integer"
+                      },
+                      "type": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "url",
+                      "expired",
+                      "userId",
+                      "bindingTime",
+                      "expiresIn",
+                      "refreshTime",
+                      "tokenJsonStr",
+                      "id",
+                      "type"
+                    ],
+                    "x-apifox-orders": [
+                      "url",
+                      "expired",
+                      "userId",
+                      "bindingTime",
+                      "expiresIn",
+                      "refreshTime",
+                      "tokenJsonStr",
+                      "id",
+                      "type"
+                    ],
+                    "x-apifox-ignore-properties": []
+                  }
+                },
+                "adValid": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "newUser": {
+                  "type": "boolean"
+                },
+                "recallUser": {
+                  "type": "boolean"
+                },
+                "createTime": {
+                  "type": "integer"
+                },
+                "createDays": {
+                  "type": "integer"
+                },
+                "profileVillageInfo": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "imageUrl": {
+                      "type": "null"
+                    },
+                    "targetUrl": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "imageUrl",
+                    "targetUrl"
+                  ],
+                  "x-apifox-orders": [
+                    "title",
+                    "imageUrl",
+                    "targetUrl"
+                  ],
+                  "x-apifox-ignore-properties": []
+                }
+              },
+              "required": [
+                "identify",
+                "products",
+                "level",
+                "listenSongs",
+                "userPoint",
+                "mobileSign",
+                "pcSign",
+                "profile",
+                "peopleCanSeeMyPlayRecord",
+                "bindings",
+                "adValid",
+                "code",
+                "newUser",
+                "recallUser",
+                "createTime",
+                "createDays",
+                "profileVillageInfo"
+              ],
+              "x-apifox-orders": [
+                "identify",
+                "products",
+                "level",
+                "listenSongs",
+                "userPoint",
+                "mobileSign",
+                "pcSign",
+                "profile",
+                "peopleCanSeeMyPlayRecord",
+                "bindings",
+                "adValid",
+                "code",
+                "newUser",
+                "recallUser",
+                "createTime",
+                "createDays",
+                "profileVillageInfo"
+              ],
+              "x-apifox-ignore-properties": []
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-118477238-run",
+        "produces": [
+          "application/json"
+        ]
+      }
     }
   },
   "swagger": "2.0",

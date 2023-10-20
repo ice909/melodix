@@ -129,6 +129,17 @@ add_library(${PROJECT_NAME}
   MDGetTopPlaylist_200_response_playlists_inner_creator_avatarDetail.h
   MDGetTopPlaylist_200_response_playlists_inner_creator_experts.h
   MDGetTopPlaylist_200_response_playlists_inner_subscribers_inner.h
+  MDGetUserDetail_200_response.h
+  MDGetUserDetail_200_response_bindings_inner.h
+  MDGetUserDetail_200_response_identify.h
+  MDGetUserDetail_200_response_products_inner.h
+  MDGetUserDetail_200_response_profile.h
+  MDGetUserDetail_200_response_profileVillageInfo.h
+  MDGetUserDetail_200_response_profile_allAuthTypes_inner.h
+  MDGetUserDetail_200_response_profile_avatarDetail.h
+  MDGetUserDetail_200_response_profile_mainAuthType.h
+  MDGetUserDetail_200_response_profile_privacyItemUnlimit.h
+  MDGetUserDetail_200_response_userPoint.h
   MDGetUserLevel_200_response.h
   MDGetUserLevel_200_response_data.h
   MDGetUserPlaylist_200_response.h
@@ -278,6 +289,17 @@ add_library(${PROJECT_NAME}
   MDGetTopPlaylist_200_response_playlists_inner_creator_avatarDetail.cpp
   MDGetTopPlaylist_200_response_playlists_inner_creator_experts.cpp
   MDGetTopPlaylist_200_response_playlists_inner_subscribers_inner.cpp
+  MDGetUserDetail_200_response.cpp
+  MDGetUserDetail_200_response_bindings_inner.cpp
+  MDGetUserDetail_200_response_identify.cpp
+  MDGetUserDetail_200_response_products_inner.cpp
+  MDGetUserDetail_200_response_profile.cpp
+  MDGetUserDetail_200_response_profileVillageInfo.cpp
+  MDGetUserDetail_200_response_profile_allAuthTypes_inner.cpp
+  MDGetUserDetail_200_response_profile_avatarDetail.cpp
+  MDGetUserDetail_200_response_profile_mainAuthType.cpp
+  MDGetUserDetail_200_response_profile_privacyItemUnlimit.cpp
+  MDGetUserDetail_200_response_userPoint.cpp
   MDGetUserLevel_200_response.cpp
   MDGetUserLevel_200_response_data.cpp
   MDGetUserPlaylist_200_response.cpp

@@ -176,6 +176,11 @@ API::API(QObject *parent)
             [&](MDHttpRequestWorker *worker, MDGetUserLevel_200_response response) {
                 emit userLevelCompleted(response.getData().asJsonObject());
             });
+    connect(userApiInstance,
+            &MDClientApi::getUserDetailSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetUserDetail_200_response response) {
+                emit userDetailCompleted(response.asJsonObject());
+            });
 }
 void API::banner(const int type)
 {
@@ -404,6 +409,11 @@ void API::phoneLogin(const int phone, const QString password, const int captcha)
 void API::getUserLevel()
 {
     userApiInstance->getUserLevel();
+}
+
+void API::getUserDetail(const QString uid)
+{
+    userApiInstance->getUserDetail(uid);
 }
 
 API::~API()

@@ -95,6 +95,8 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("getTopArtists", 0);
     _serverConfigs.insert("getTopPlaylist", defaultConf);
     _serverIndices.insert("getTopPlaylist", 0);
+    _serverConfigs.insert("getUserDetail", defaultConf);
+    _serverIndices.insert("getUserDetail", 0);
     _serverConfigs.insert("getUserLevel", defaultConf);
     _serverIndices.insert("getUserLevel", 0);
     _serverConfigs.insert("getUserPlaylist", defaultConf);
@@ -2382,6 +2384,71 @@ void MDClientApi::getTopPlaylistCallback(MDHttpRequestWorker *worker) {
     } else {
         emit getTopPlaylistSignalE(output, error_type, error_str);
         emit getTopPlaylistSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void MDClientApi::getUserDetail(const QString &uid) {
+    QString fullPath = QString(_serverConfigs["getUserDetail"][_serverIndices.value("getUserDetail")].URL()+"/user/detail");
+    
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "uid", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("uid")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(uid)));
+    }
+    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    MDHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getUserDetailCallback);
+    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void MDClientApi::getUserDetailCallback(MDHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    MDGetUserDetail_200_response output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getUserDetailSignal(output);
+        emit getUserDetailSignalFull(worker, output);
+    } else {
+        emit getUserDetailSignalE(output, error_type, error_str);
+        emit getUserDetailSignalEFull(worker, error_type, error_str);
     }
 }
 
