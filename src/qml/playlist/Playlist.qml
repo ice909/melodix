@@ -25,7 +25,6 @@ FloatingPanel {
     }
 
     function onMediaCountChanged(newCount) {
-        console.log("Playlist 媒体数量改变: " + newCount);
         playlistMediaCount = newCount;
         playlistView.model = Player.getPlaylistModel();
     }

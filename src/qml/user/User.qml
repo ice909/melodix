@@ -16,6 +16,26 @@ Item {
     property int followsCount: 0
     property int followedsCount: 0
 
+    function getUserPlaylist() {
+        function onReply(res) {
+            API.onUserPlaylistCompleted.disconnect(onReply);
+            let count = 0;
+            for (const playlist of res) {
+                if (playlist.creator.userId == userID) {
+                    contentLoader.item.lists.append({
+                        "playlist": playlist
+                    })
+                    count++;
+                }
+            }
+            contentLoader.item.playlistRows = Math.ceil(count / 5);
+            loading = false;
+        }
+
+        API.onUserPlaylistCompleted.connect(onReply);
+        API.getUserPlaylist(userID);
+    }
+
     Component.onCompleted: API.getUserDetail(userID)
 
     Connections {
@@ -25,7 +45,7 @@ Item {
             musicianDesc = data.identify.imageDesc
             followsCount = data.profile.follows
             followedsCount = data.profile.followeds
-            loading = false;
+            getUserPlaylist();
         }
 
         target: API
@@ -34,7 +54,7 @@ Item {
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: 100
+        contentHeight: headRect.height + contentRect.height + 10
 
         Column {
             id: body
@@ -43,224 +63,284 @@ Item {
             x: Util.pageLeftPadding
             y: 5
 
-            Row {
-                spacing: 20
+            Rectangle {
+                id: headRect
+                width: scrollWidth
+                height: scrollWidth * 0.23
+                color: "blue"
 
-                Item {
-                    width: 20
-                    height: 1
-                }
+                Row {
+                    anchors.fill: parent
+                    spacing: 20
 
-                RoundedImage {
-                    id: avatarImg
+                    Item {
+                        width: 20
+                        height: 1
+                    }
 
-                    width: scrollWidth * 0.25
-                    height: width
-                    borderRadius: width
-                    imgSrc: userAvatar
-                }
+                    RoundedImage {
+                        id: avatarImg
 
-                Item {
-                    width: scrollWidth - avatarImg.width - 40
-                    height: parent.height
+                        width: headRect.height
+                        height: width
+                        borderRadius: width
+                        imgSrc: userAvatar
+                    }
 
-                    Column {
-                        anchors.fill: parent
+                    Item {
+                        width: scrollWidth - avatarImg.width - 40
+                        height: parent.height
 
-                        Item {
-                            width: 1
-                            height: 10
-                        }
+                        Column {
+                            anchors.fill: parent
 
-                        Item {
-                            width: parent.width
-                            height: 40
+                            Item {
+                                width: 1
+                                height: 10
+                            }
 
-                            Row {
-                                spacing: 20
-                                anchors.fill: parent
+                            Item {
+                                width: parent.width
+                                height: 40
 
-                                TextInput {
-                                    id: usernameInput
+                                Row {
+                                    spacing: 20
+                                    anchors.fill: parent
 
-                                    readOnly: true
-                                    text: userNickname
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    font.pixelSize: 26
-                                    font.bold: true
-                                    visible: true
-                                }
+                                    TextInput {
+                                        id: usernameInput
 
-                                TextField {
-                                    id: editInput
-
-                                    visible: false
-                                    selectByMouse: true
-                                    width: usernameInput.width
-                                    height: usernameInput.height
-                                    font.pixelSize: 20
-                                    font.bold: true
-                                    onAccepted: {
-                                        editInput.visible = false;
-                                        usernameInput.visible = true;
+                                        readOnly: true
+                                        text: userNickname
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        font.pixelSize: 26
+                                        font.bold: true
+                                        visible: true
                                     }
-                                }
-                                // 右边需要一个编辑用户名按钮
 
-                                Button {
-                                    id: editUsernameBtn
+                                    TextField {
+                                        id: editInput
 
-                                    width: 50
-                                    height: 30
-                                    text: "编辑"
-                                    font.pixelSize: 14
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    ColorSelector.family: Palette.CrystalColor
-                                    onClicked: {
-                                        if (usernameInput.visible) {
-                                            text = "保存";
-                                            editInput.text = usernameInput.text;
-                                            editInput.visible = true;
-                                            usernameInput.visible = false;
-                                            editInput.forceActiveFocus();
-                                        } else {
-                                            text = "编辑";
-                                            usernameInput.text = editInput.text;
+                                        visible: false
+                                        selectByMouse: true
+                                        width: usernameInput.width
+                                        height: usernameInput.height
+                                        font.pixelSize: 20
+                                        font.bold: true
+                                        onAccepted: {
                                             editInput.visible = false;
                                             usernameInput.visible = true;
                                         }
                                     }
+                                    // 右边需要一个编辑用户名按钮
+
+                                    Button {
+                                        id: editUsernameBtn
+
+                                        width: 50
+                                        height: 30
+                                        text: "编辑"
+                                        font.pixelSize: 14
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        ColorSelector.family: Palette.CrystalColor
+                                        onClicked: {
+                                            if (usernameInput.visible) {
+                                                text = "保存";
+                                                editInput.text = usernameInput.text;
+                                                editInput.visible = true;
+                                                usernameInput.visible = false;
+                                                editInput.forceActiveFocus();
+                                            } else {
+                                                text = "编辑";
+                                                usernameInput.text = editInput.text;
+                                                editInput.visible = false;
+                                                usernameInput.visible = true;
+                                            }
+                                        }
+                                    }
+
                                 }
 
                             }
 
-                        }
+                            Item {
+                                width: parent.width
+                                height: 40
 
-                        Item {
-                            width: parent.width
-                            height: 40
+                                Row {
+                                    spacing: 10
+                                    anchors.fill: parent
 
-                            Row {
-                                spacing: 10
-                                anchors.fill: parent
+                                    Image {
+                                        width: 50
+                                        height: 20
+                                        source: "qrc:/dsg/img/svip6.png"
+                                        anchors.verticalCenter: parent.verticalCenter
+                                    }
 
-                                Image {
-                                    width: 50
-                                    height: 20
-                                    source: "qrc:/dsg/img/svip6.png"
-                                    anchors.verticalCenter: parent.verticalCenter
-                                }
+                                    Rectangle {
+                                        width: 190
+                                        height: 20
+                                        color: "transparent"
+                                        visible: musicianPic !== ""
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        Row {
+                                            anchors.fill: parent
+                                            spacing: 5
 
-                                Rectangle {
-                                    width: 190
-                                    height: 20
-                                    color: "transparent"
-                                    visible: musicianPic !== ""
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    Row {
-                                        anchors.fill: parent
-                                        spacing: 5
+                                            Image {
+                                                width: 20
+                                                height: 20
+                                                source: musicianPic
+                                                anchors.verticalCenter: parent.verticalCenter
+                                            }
 
-                                        Image {
-                                            width: 20
-                                            height: 20
-                                            source: musicianPic
-                                            anchors.verticalCenter: parent.verticalCenter
+                                            Text {
+                                                color: "#e03a24"
+                                                text: musicianDesc
+                                                font.pixelSize: 12
+                                                anchors.verticalCenter: parent.verticalCenter
+                                            }
+                                        }
+                                    }
+
+                                    Rectangle {
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        width: 40
+                                        height: 20
+                                        radius: 10
+
+                                        border {
+                                            width: 1
+                                            color: "#e03a24"
                                         }
 
                                         Text {
-                                            color: "#e03a24"
-                                            text: musicianDesc
+                                            anchors.centerIn: parent
+                                            text: "Lv." + userLevel
                                             font.pixelSize: 12
-                                            anchors.verticalCenter: parent.verticalCenter
+                                            color: "#e03a24"
                                         }
+
                                     }
+
+                                    Rectangle {
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        width: 25
+                                        height: 25
+                                        radius: 25
+                                        color: userGender == 1 ? "#eaf4ff" : "#fde5ed"
+
+                                        Image {
+                                            anchors.centerIn: parent
+                                            width: 20
+                                            height: 20
+                                            source: userGender == 1 ? "qrc:/dsg/img/man.svg" : "qrc:/dsg/img/women.svg"
+                                        }
+
+                                    }
+
                                 }
 
-                                Rectangle {
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    width: 40
-                                    height: 20
-                                    radius: 10
+                            }
 
-                                    border {
-                                        width: 1
-                                        color: "#e03a24"
+                            Item {
+                                width: parent.width
+                                height: 60
+                                Row {
+                                    anchors.fill: parent
+                                    spacing: 20
+
+                                    Text {
+                                        text: "关注 " + followsCount
+                                        font.pixelSize: 18
+                                        font.bold: true
+                                        color: "#000"
+                                        anchors.verticalCenter: parent.verticalCenter
                                     }
 
                                     Text {
-                                        anchors.centerIn: parent
-                                        text: "Lv." + userLevel
-                                        font.pixelSize: 12
-                                        color: "#e03a24"
+                                        text: "粉丝 " + followedsCount
+                                        font.pixelSize: 18
+                                        font.bold: true
+                                        color: "#000"
+                                        anchors.verticalCenter: parent.verticalCenter
                                     }
-
                                 }
+                            }
 
-                                Rectangle {
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    width: 25
-                                    height: 25
-                                    radius: 25
-                                    color: userGender == 1 ? "#eaf4ff" : "#fde5ed"
+                            Item {
+                                width: parent.width
+                                height: 40
 
-                                    Image {
-                                        anchors.centerIn: parent
-                                        width: 20
-                                        height: 20
-                                        source: userGender == 1 ? "qrc:/dsg/img/man.svg" : "qrc:/dsg/img/women.svg"
+                                Row {
+                                    anchors.fill: parent
+                                    spacing: 20
+                                    Text {
+                                        text: "地区: " + Util.getProvince(userProvince) + " " + Util.getCity(userCity)
+                                        anchors.verticalCenter: parent.verticalCenter
                                     }
-
-                                }
-
-                            }
-
-                        }
-
-                        Item {
-                            width: parent.width
-                            height: 60
-                            Row {
-                                anchors.fill: parent
-                                spacing: 20
-
-                                Text {
-                                    text: "关注 " + followsCount
-                                    font.pixelSize: 18
-                                    font.bold: true
-                                    color: "#000"
-                                    anchors.verticalCenter: parent.verticalCenter
-                                }
-
-                                Text {
-                                    text: "粉丝 " + followedsCount
-                                    font.pixelSize: 18
-                                    font.bold: true
-                                    color: "#000"
-                                    anchors.verticalCenter: parent.verticalCenter
                                 }
                             }
-                        }
 
-                        Item {
-                            width: parent.width
-                            height: 40
-
-                            Row {
-                                anchors.fill: parent
-                                spacing: 20
-                                Text {
-                                    text: "地区: " + Util.getProvince(userProvince) + " " + Util.getCity(userCity)
-                                    anchors.verticalCenter: parent.verticalCenter
-                                }
-                            }
                         }
 
                     }
 
                 }
-
             }
+
+            Rectangle {
+                id: contentRect
+                width: scrollWidth
+                height: btnBox.height + 20 + contentLoader.height
+                color: "yellow"
+
+                Column {
+                    anchors.fill: parent
+                    spacing: 20
+                    ButtonBox {
+                        id: btnBox
+                        ToolButton {
+                            leftPadding: 20
+                            rightPadding: 20
+                            text: "歌单"
+                            font.pixelSize: 18
+                            font.bold: checked ? true : false
+                            checked: true
+                            checkable: true
+                        }
+                        ToolButton {
+                            leftPadding: 20
+                            rightPadding: 20
+                            text: "动态"
+                            font.pixelSize: 18
+                            font.bold: checked ? true : false
+                            checkable: true
+                        }
+                        ToolButton {
+                            leftPadding: 20
+                            rightPadding: 20
+                            text: "播客"
+                            font.pixelSize: 18
+                            font.bold: checked ? true : false
+                            checkable: true
+                        }
+
+                        background: Rectangle {
+                            anchors.fill: parent
+                            color: "transparent"
+                        }
+                    }
+                    Loader {
+                        id: contentLoader
+                        width: scrollWidth
+                        height: item.height
+                        source: "../widgets/UserCreatePlaylist.qml"
+                    }
+                }
+            }
+            
 
         }
 

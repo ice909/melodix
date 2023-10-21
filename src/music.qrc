@@ -44,6 +44,7 @@
         <file>qml/widgets/ListViewDelegate.qml</file>
         <file>qml/widgets/RightClickMenu.qml</file>
         <file>qml/widgets/Sidebar.qml</file>
+        <file>qml/widgets/UserCreatePlaylist.qml</file>
 
         <file>qml/toolbar/Toolbar.qml</file>
         <file>qml/toolbar/VolumeSlider.qml</file>

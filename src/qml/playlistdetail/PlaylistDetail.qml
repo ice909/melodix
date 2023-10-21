@@ -135,12 +135,12 @@ Item {
             head.cover = playlist.coverImgUrl;
             head.name = playlist.name;
             head.creatorNickname = "Playlist by " + playlist.creator.nickname;
-            head.updateTime = "最后更新于 " + Util.formatTime(playlist.updateTime) + " · " + playlist.trackIds.length + "首歌";
+            head.updateTime = "最后更新于 " + Util.formatTime(playlist.updateTime) + " · " + playlist.trackCount + "首歌";
             if (playlist.description != null)
                 head.description = playlist.description.replace(/\n/g, ' ');
             else
                 head.description = "暂无介绍";
-            playlistSongAllCount = playlist.trackIds.length;
+            playlistSongAllCount = playlist.trackCount;
             console.log("歌单共有：" + playlistSongAllCount + "首歌曲");
             getPlaylistSongsInfo();
         }
