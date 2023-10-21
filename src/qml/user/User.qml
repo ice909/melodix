@@ -19,16 +19,25 @@ Item {
     function getUserPlaylist() {
         function onReply(res) {
             API.onUserPlaylistCompleted.disconnect(onReply);
-            let count = 0;
+            let createCount = 0;
+            let collectCount = 0;
             for (const playlist of res) {
                 if (playlist.creator.userId == userID) {
-                    contentLoader.item.lists.append({
+                    // 满足条件,说明是自己创建的歌单
+                    contentLoader.item.createLists.append({
                         "playlist": playlist
-                    })
-                    count++;
+                    });
+                    createCount++;
+                } else {
+                    // 否则是收藏的歌单
+                    contentLoader.item.collectLists.append({
+                        "playlist": playlist
+                    });
+                    collectCount++;
                 }
             }
-            contentLoader.item.playlistRows = Math.ceil(count / 5);
+            contentLoader.item.createPlaylistRows = Math.ceil(createCount / 5);
+            contentLoader.item.collectPlaylistRows = Math.ceil(collectCount / 5);
             loading = false;
         }
 
@@ -41,10 +50,10 @@ Item {
     Connections {
         function onUserDetailCompleted(data) {
             userLevel = data.level;
-            musicianPic = data.identify.imageUrl
-            musicianDesc = data.identify.imageDesc
-            followsCount = data.profile.follows
-            followedsCount = data.profile.followeds
+            musicianPic = data.identify.imageUrl;
+            musicianDesc = data.identify.imageDesc;
+            followsCount = data.profile.follows;
+            followedsCount = data.profile.followeds;
             getUserPlaylist();
         }
 
@@ -63,235 +72,16 @@ Item {
             x: Util.pageLeftPadding
             y: 5
 
-            Rectangle {
+            UserHeaderRegion {
                 id: headRect
+
                 width: scrollWidth
                 height: scrollWidth * 0.23
-                color: "blue"
-
-                Row {
-                    anchors.fill: parent
-                    spacing: 20
-
-                    Item {
-                        width: 20
-                        height: 1
-                    }
-
-                    RoundedImage {
-                        id: avatarImg
-
-                        width: headRect.height
-                        height: width
-                        borderRadius: width
-                        imgSrc: userAvatar
-                    }
-
-                    Item {
-                        width: scrollWidth - avatarImg.width - 40
-                        height: parent.height
-
-                        Column {
-                            anchors.fill: parent
-
-                            Item {
-                                width: 1
-                                height: 10
-                            }
-
-                            Item {
-                                width: parent.width
-                                height: 40
-
-                                Row {
-                                    spacing: 20
-                                    anchors.fill: parent
-
-                                    TextInput {
-                                        id: usernameInput
-
-                                        readOnly: true
-                                        text: userNickname
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        font.pixelSize: 26
-                                        font.bold: true
-                                        visible: true
-                                    }
-
-                                    TextField {
-                                        id: editInput
-
-                                        visible: false
-                                        selectByMouse: true
-                                        width: usernameInput.width
-                                        height: usernameInput.height
-                                        font.pixelSize: 20
-                                        font.bold: true
-                                        onAccepted: {
-                                            editInput.visible = false;
-                                            usernameInput.visible = true;
-                                        }
-                                    }
-                                    // 右边需要一个编辑用户名按钮
-
-                                    Button {
-                                        id: editUsernameBtn
-
-                                        width: 50
-                                        height: 30
-                                        text: "编辑"
-                                        font.pixelSize: 14
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        ColorSelector.family: Palette.CrystalColor
-                                        onClicked: {
-                                            if (usernameInput.visible) {
-                                                text = "保存";
-                                                editInput.text = usernameInput.text;
-                                                editInput.visible = true;
-                                                usernameInput.visible = false;
-                                                editInput.forceActiveFocus();
-                                            } else {
-                                                text = "编辑";
-                                                usernameInput.text = editInput.text;
-                                                editInput.visible = false;
-                                                usernameInput.visible = true;
-                                            }
-                                        }
-                                    }
-
-                                }
-
-                            }
-
-                            Item {
-                                width: parent.width
-                                height: 40
-
-                                Row {
-                                    spacing: 10
-                                    anchors.fill: parent
-
-                                    Image {
-                                        width: 50
-                                        height: 20
-                                        source: "qrc:/dsg/img/svip6.png"
-                                        anchors.verticalCenter: parent.verticalCenter
-                                    }
-
-                                    Rectangle {
-                                        width: 190
-                                        height: 20
-                                        color: "transparent"
-                                        visible: musicianPic !== ""
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        Row {
-                                            anchors.fill: parent
-                                            spacing: 5
-
-                                            Image {
-                                                width: 20
-                                                height: 20
-                                                source: musicianPic
-                                                anchors.verticalCenter: parent.verticalCenter
-                                            }
-
-                                            Text {
-                                                color: "#e03a24"
-                                                text: musicianDesc
-                                                font.pixelSize: 12
-                                                anchors.verticalCenter: parent.verticalCenter
-                                            }
-                                        }
-                                    }
-
-                                    Rectangle {
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        width: 40
-                                        height: 20
-                                        radius: 10
-
-                                        border {
-                                            width: 1
-                                            color: "#e03a24"
-                                        }
-
-                                        Text {
-                                            anchors.centerIn: parent
-                                            text: "Lv." + userLevel
-                                            font.pixelSize: 12
-                                            color: "#e03a24"
-                                        }
-
-                                    }
-
-                                    Rectangle {
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        width: 25
-                                        height: 25
-                                        radius: 25
-                                        color: userGender == 1 ? "#eaf4ff" : "#fde5ed"
-
-                                        Image {
-                                            anchors.centerIn: parent
-                                            width: 20
-                                            height: 20
-                                            source: userGender == 1 ? "qrc:/dsg/img/man.svg" : "qrc:/dsg/img/women.svg"
-                                        }
-
-                                    }
-
-                                }
-
-                            }
-
-                            Item {
-                                width: parent.width
-                                height: 60
-                                Row {
-                                    anchors.fill: parent
-                                    spacing: 20
-
-                                    Text {
-                                        text: "关注 " + followsCount
-                                        font.pixelSize: 18
-                                        font.bold: true
-                                        color: "#000"
-                                        anchors.verticalCenter: parent.verticalCenter
-                                    }
-
-                                    Text {
-                                        text: "粉丝 " + followedsCount
-                                        font.pixelSize: 18
-                                        font.bold: true
-                                        color: "#000"
-                                        anchors.verticalCenter: parent.verticalCenter
-                                    }
-                                }
-                            }
-
-                            Item {
-                                width: parent.width
-                                height: 40
-
-                                Row {
-                                    anchors.fill: parent
-                                    spacing: 20
-                                    Text {
-                                        text: "地区: " + Util.getProvince(userProvince) + " " + Util.getCity(userCity)
-                                        anchors.verticalCenter: parent.verticalCenter
-                                    }
-                                }
-                            }
-
-                        }
-
-                    }
-
-                }
             }
 
             Rectangle {
                 id: contentRect
+
                 width: scrollWidth
                 height: btnBox.height + 20 + contentLoader.height
                 color: "yellow"
@@ -299,8 +89,10 @@ Item {
                 Column {
                     anchors.fill: parent
                     spacing: 20
+
                     ButtonBox {
                         id: btnBox
+
                         ToolButton {
                             leftPadding: 20
                             rightPadding: 20
@@ -310,6 +102,7 @@ Item {
                             checked: true
                             checkable: true
                         }
+
                         ToolButton {
                             leftPadding: 20
                             rightPadding: 20
@@ -318,6 +111,7 @@ Item {
                             font.bold: checked ? true : false
                             checkable: true
                         }
+
                         ToolButton {
                             leftPadding: 20
                             rightPadding: 20
@@ -331,16 +125,20 @@ Item {
                             anchors.fill: parent
                             color: "transparent"
                         }
+
                     }
+
                     Loader {
                         id: contentLoader
+
                         width: scrollWidth
                         height: item.height
-                        source: "../widgets/UserCreatePlaylist.qml"
+                        source: "../widgets/UserPlaylist.qml"
                     }
+
                 }
+
             }
-            
 
         }
 
