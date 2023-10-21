@@ -60,6 +60,7 @@ public slots:
     void phoneLogin(const int phone, const QString password, const int captcha);
     void getUserLevel();
     void getUserDetail(const QString uid);
+    void getUserDynamic(const QString uid);
 signals:
     void bannerCompleted(QJsonArray);
     void recommendedPlaylistCompleted(QJsonArray);
@@ -96,6 +97,7 @@ signals:
     void cellphoneLoginCompleted(QJsonObject);
     void userLevelCompleted(QJsonObject);
     void userDetailCompleted(QJsonObject);
+    void userDynamicCompleted(QJsonObject);
 
 private:
     static QPointer<API> INSTANCE; 

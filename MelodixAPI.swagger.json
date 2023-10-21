@@ -13980,6 +13980,1811 @@
           "application/json"
         ]
       }
+    },
+    "/user/event": {
+      "get": {
+        "summary": "获取用户动态",
+        "x-apifox-folder": "client",
+        "x-apifox-status": "released",
+        "deprecated": false,
+        "description": "登录后调用此接口 , 传入用户 id, 可以获取用户动态\n\n返回结果的type参数对应:\n```\n18 分享单曲\n19 分享专辑\n17、28 分享电台节目\n22 转发\n39 发布视频\n35、13 分享歌单\n24 分享专栏文章\n41、21 分享视频\n```",
+        "operationId": "getUserDynamic",
+        "tags": [
+          "client"
+        ],
+        "parameters": [
+          {
+            "name": "MUSIC_U",
+            "in": "cookie",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "xxx"
+          },
+          {
+            "name": "uid",
+            "in": "query",
+            "description": "用户 id",
+            "required": true,
+            "type": "string",
+            "x-example": "1510375943"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "返回数量 , 默认为 30",
+            "required": false,
+            "type": "string",
+            "x-example": "1"
+          },
+          {
+            "name": "lasttime",
+            "in": "query",
+            "description": "返回数据的 lasttime ,默认-1,传入上一次返回结果的 lasttime,将会返回下一页的数据",
+            "required": false,
+            "type": "string",
+            "x-example": "1558011138743"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lasttime": {
+                  "type": "integer"
+                },
+                "more": {
+                  "type": "boolean"
+                },
+                "size": {
+                  "type": "integer"
+                },
+                "events": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "musicianSay": {
+                        "type": "boolean"
+                      },
+                      "actName": {
+                        "type": "string",
+                        "x-nullable": true
+                      },
+                      "identityLabels": {
+                        "type": "null"
+                      },
+                      "socialUser": {
+                        "type": "null"
+                      },
+                      "pendantData": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "imageUrl": {
+                            "type": "string"
+                          },
+                          "imageAndroidUrl": {
+                            "type": "string"
+                          },
+                          "imageIosUrl": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "imageUrl",
+                          "imageAndroidUrl",
+                          "imageIosUrl"
+                        ],
+                        "x-apifox-orders": [
+                          "id",
+                          "imageUrl",
+                          "imageAndroidUrl",
+                          "imageIosUrl"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      },
+                      "forwardCount": {
+                        "type": "integer"
+                      },
+                      "lotteryEventData": {
+                        "type": "null"
+                      },
+                      "discussId": {
+                        "type": "string"
+                      },
+                      "encryptUserId": {
+                        "type": "string"
+                      },
+                      "insiteForwardCount": {
+                        "type": "integer"
+                      },
+                      "info": {
+                        "type": "object",
+                        "properties": {
+                          "commentThread": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "resourceInfo": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "integer"
+                                  },
+                                  "userId": {
+                                    "type": "integer"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "imgUrl": {
+                                    "type": "null"
+                                  },
+                                  "creator": {
+                                    "type": "null"
+                                  },
+                                  "artistAreaCode": {
+                                    "type": "integer"
+                                  },
+                                  "subTitle": {
+                                    "type": "null"
+                                  },
+                                  "resourceTypeStr": {
+                                    "type": "null"
+                                  },
+                                  "webUrl": {
+                                    "type": "null"
+                                  },
+                                  "resourceSpecialType": {
+                                    "type": "null"
+                                  },
+                                  "userIds": {
+                                    "type": "null"
+                                  },
+                                  "artistId": {
+                                    "type": "integer"
+                                  },
+                                  "eventType": {
+                                    "type": "integer"
+                                  },
+                                  "encodedId": {
+                                    "type": "null"
+                                  },
+                                  "resourceType": {
+                                    "type": "null"
+                                  },
+                                  "nativeUrl": {
+                                    "type": "null"
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "userId",
+                                  "name",
+                                  "imgUrl",
+                                  "creator",
+                                  "artistAreaCode",
+                                  "subTitle",
+                                  "resourceTypeStr",
+                                  "webUrl",
+                                  "resourceSpecialType",
+                                  "userIds",
+                                  "artistId",
+                                  "eventType",
+                                  "encodedId",
+                                  "resourceType",
+                                  "nativeUrl"
+                                ],
+                                "x-apifox-orders": [
+                                  "id",
+                                  "userId",
+                                  "name",
+                                  "imgUrl",
+                                  "creator",
+                                  "artistAreaCode",
+                                  "subTitle",
+                                  "resourceTypeStr",
+                                  "webUrl",
+                                  "resourceSpecialType",
+                                  "userIds",
+                                  "artistId",
+                                  "eventType",
+                                  "encodedId",
+                                  "resourceType",
+                                  "nativeUrl"
+                                ],
+                                "x-apifox-ignore-properties": []
+                              },
+                              "resourceType": {
+                                "type": "integer"
+                              },
+                              "commentCount": {
+                                "type": "integer"
+                              },
+                              "likedCount": {
+                                "type": "integer"
+                              },
+                              "shareCount": {
+                                "type": "integer"
+                              },
+                              "hotCount": {
+                                "type": "integer"
+                              },
+                              "latestLikedUsers": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "s": {
+                                      "type": "integer"
+                                    },
+                                    "t": {
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "required": [
+                                    "s",
+                                    "t"
+                                  ],
+                                  "x-apifox-orders": [
+                                    "s",
+                                    "t"
+                                  ],
+                                  "x-apifox-ignore-properties": []
+                                }
+                              },
+                              "resourceId": {
+                                "type": "integer"
+                              },
+                              "resourceOwnerId": {
+                                "type": "integer"
+                              },
+                              "resourceTitle": {
+                                "type": "string",
+                                "x-nullable": true
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "resourceInfo",
+                              "resourceType",
+                              "commentCount",
+                              "likedCount",
+                              "shareCount",
+                              "hotCount",
+                              "latestLikedUsers",
+                              "resourceId",
+                              "resourceOwnerId",
+                              "resourceTitle"
+                            ],
+                            "x-apifox-orders": [
+                              "id",
+                              "resourceInfo",
+                              "resourceType",
+                              "commentCount",
+                              "likedCount",
+                              "shareCount",
+                              "hotCount",
+                              "latestLikedUsers",
+                              "resourceId",
+                              "resourceOwnerId",
+                              "resourceTitle"
+                            ],
+                            "x-apifox-ignore-properties": []
+                          },
+                          "latestLikedUsers": {
+                            "type": "null"
+                          },
+                          "liked": {
+                            "type": "boolean"
+                          },
+                          "comments": {
+                            "type": "null"
+                          },
+                          "resourceType": {
+                            "type": "integer"
+                          },
+                          "resourceId": {
+                            "type": "integer"
+                          },
+                          "commentCount": {
+                            "type": "integer"
+                          },
+                          "likedCount": {
+                            "type": "integer"
+                          },
+                          "shareCount": {
+                            "type": "integer"
+                          },
+                          "threadId": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "commentThread",
+                          "latestLikedUsers",
+                          "liked",
+                          "comments",
+                          "resourceType",
+                          "resourceId",
+                          "commentCount",
+                          "likedCount",
+                          "shareCount",
+                          "threadId"
+                        ],
+                        "x-apifox-orders": [
+                          "commentThread",
+                          "latestLikedUsers",
+                          "liked",
+                          "comments",
+                          "resourceType",
+                          "resourceId",
+                          "commentCount",
+                          "likedCount",
+                          "shareCount",
+                          "threadId"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      },
+                      "topEvent": {
+                        "type": "boolean"
+                      },
+                      "threadId": {
+                        "type": "string"
+                      },
+                      "tailMark": {
+                        "type": "object",
+                        "properties": {
+                          "markTitle": {
+                            "type": "string"
+                          },
+                          "markType": {
+                            "type": "string"
+                          },
+                          "markResourceId": {
+                            "type": "string"
+                          },
+                          "markOrpheusUrl": {
+                            "type": "string"
+                          },
+                          "extInfo": {
+                            "type": "null"
+                          },
+                          "circle": {
+                            "type": "object",
+                            "properties": {
+                              "imageUrl": {
+                                "type": "string"
+                              },
+                              "postCount": {
+                                "type": "string"
+                              },
+                              "member": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "imageUrl",
+                              "postCount",
+                              "member"
+                            ],
+                            "x-apifox-orders": [
+                              "imageUrl",
+                              "postCount",
+                              "member"
+                            ],
+                            "x-apifox-ignore-properties": []
+                          }
+                        },
+                        "required": [
+                          "markTitle",
+                          "markType",
+                          "markResourceId",
+                          "markOrpheusUrl",
+                          "extInfo",
+                          "circle"
+                        ],
+                        "x-apifox-orders": [
+                          "markTitle",
+                          "markType",
+                          "markResourceId",
+                          "markOrpheusUrl",
+                          "extInfo",
+                          "circle"
+                        ],
+                        "x-apifox-ignore-properties": [],
+                        "x-nullable": true
+                      },
+                      "typeDesc": {
+                        "type": "string"
+                      },
+                      "alterLinkUrl": {
+                        "type": "null"
+                      },
+                      "alterLinkWebviewUrl": {
+                        "type": "null"
+                      },
+                      "privacySetting": {
+                        "type": "integer",
+                        "x-nullable": true
+                      },
+                      "privacySettingInfo": {
+                        "type": "object",
+                        "properties": {
+                          "desc": {
+                            "type": "string",
+                            "x-nullable": true
+                          }
+                        },
+                        "required": [
+                          "desc"
+                        ],
+                        "x-apifox-orders": [
+                          "desc"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      },
+                      "question": {
+                        "type": "null"
+                      },
+                      "voice": {
+                        "type": "null"
+                      },
+                      "topActivityInfos": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "bottomActivityInfos": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "relatedId": {
+                              "type": "null"
+                            },
+                            "type": {
+                              "type": "integer"
+                            },
+                            "subType": {
+                              "type": "integer",
+                              "x-nullable": true
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "icon": {
+                              "type": "string",
+                              "x-nullable": true
+                            },
+                            "target": {
+                              "type": "string"
+                            },
+                            "h5Target": {
+                              "type": "string",
+                              "x-nullable": true
+                            },
+                            "throughInfo": {
+                              "type": "null"
+                            },
+                            "ext": {
+                              "type": "string",
+                              "x-nullable": true
+                            },
+                            "parent": {
+                              "type": "null"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "relatedId",
+                            "type",
+                            "subType",
+                            "name",
+                            "icon",
+                            "target",
+                            "h5Target",
+                            "throughInfo",
+                            "ext",
+                            "parent"
+                          ],
+                          "x-apifox-orders": [
+                            "id",
+                            "relatedId",
+                            "type",
+                            "subType",
+                            "name",
+                            "icon",
+                            "target",
+                            "h5Target",
+                            "throughInfo",
+                            "ext",
+                            "parent"
+                          ],
+                          "x-apifox-ignore-properties": []
+                        }
+                      },
+                      "h5Target": {
+                        "type": "null"
+                      },
+                      "more": {
+                        "type": "boolean"
+                      },
+                      "logInfo": {
+                        "type": "null"
+                      },
+                      "eventActionToast": {
+                        "type": "null"
+                      },
+                      "relationTopic": {
+                        "type": "boolean",
+                        "x-nullable": true
+                      },
+                      "extType": {
+                        "type": "string",
+                        "x-nullable": true
+                      },
+                      "extSource": {
+                        "type": "null"
+                      },
+                      "distributionType": {
+                        "type": "null"
+                      },
+                      "srcResId": {
+                        "type": "null"
+                      },
+                      "srcResType": {
+                        "type": "null"
+                      },
+                      "srcResThreadId": {
+                        "type": "null"
+                      },
+                      "location": {
+                        "type": "null"
+                      },
+                      "ipLocation": {
+                        "type": "object",
+                        "properties": {
+                          "ip": {
+                            "type": "null"
+                          },
+                          "location": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "ip",
+                          "location"
+                        ],
+                        "x-apifox-orders": [
+                          "ip",
+                          "location"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      },
+                      "anonymityInfo": {
+                        "type": "object",
+                        "properties": {
+                          "anonymous": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "null"
+                          },
+                          "avatarUrl": {
+                            "type": "null"
+                          },
+                          "me": {
+                            "type": "integer"
+                          },
+                          "labelIcons": {
+                            "type": "null"
+                          }
+                        },
+                        "required": [
+                          "anonymous",
+                          "name",
+                          "avatarUrl",
+                          "me",
+                          "labelIcons"
+                        ],
+                        "x-apifox-orders": [
+                          "anonymous",
+                          "name",
+                          "avatarUrl",
+                          "me",
+                          "labelIcons"
+                        ],
+                        "x-apifox-ignore-properties": [],
+                        "x-nullable": true
+                      },
+                      "pointTopicInfo": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "null"
+                          },
+                          "type": {
+                            "type": "null"
+                          },
+                          "subType": {
+                            "type": "null"
+                          },
+                          "name": {
+                            "type": "null"
+                          },
+                          "icon": {
+                            "type": "null"
+                          },
+                          "desc": {
+                            "type": "null"
+                          },
+                          "target": {
+                            "type": "null"
+                          },
+                          "throughInfo": {
+                            "type": "null"
+                          },
+                          "ext": {
+                            "type": "null"
+                          },
+                          "parent": {
+                            "type": "null"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "subType",
+                          "name",
+                          "icon",
+                          "desc",
+                          "target",
+                          "throughInfo",
+                          "ext",
+                          "parent"
+                        ],
+                        "x-apifox-orders": [
+                          "id",
+                          "type",
+                          "subType",
+                          "name",
+                          "icon",
+                          "desc",
+                          "target",
+                          "throughInfo",
+                          "ext",
+                          "parent"
+                        ],
+                        "x-apifox-ignore-properties": [],
+                        "x-nullable": true
+                      },
+                      "commentInfo": {
+                        "type": "null"
+                      },
+                      "owner": {
+                        "type": "boolean"
+                      },
+                      "commentTargetUrl": {
+                        "type": "null"
+                      },
+                      "resourceUniqueId": {
+                        "type": "string"
+                      },
+                      "showFollowButton": {
+                        "type": "boolean"
+                      },
+                      "tmplId": {
+                        "type": "integer"
+                      },
+                      "expireTime": {
+                        "type": "integer"
+                      },
+                      "rcmdInfo": {
+                        "type": "null"
+                      },
+                      "pics": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "height": {
+                              "type": "integer"
+                            },
+                            "originUrl": {
+                              "type": "string"
+                            },
+                            "squareUrl": {
+                              "type": "string"
+                            },
+                            "rectangleUrl": {
+                              "type": "string"
+                            },
+                            "pcSquareUrl": {
+                              "type": "string"
+                            },
+                            "pcRectangleUrl": {
+                              "type": "string"
+                            },
+                            "format": {
+                              "type": "string"
+                            },
+                            "width": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "height",
+                            "originUrl",
+                            "squareUrl",
+                            "rectangleUrl",
+                            "pcSquareUrl",
+                            "pcRectangleUrl",
+                            "format",
+                            "width"
+                          ],
+                          "x-apifox-orders": [
+                            "height",
+                            "originUrl",
+                            "squareUrl",
+                            "rectangleUrl",
+                            "pcSquareUrl",
+                            "pcRectangleUrl",
+                            "format",
+                            "width"
+                          ],
+                          "x-apifox-ignore-properties": []
+                        }
+                      },
+                      "json": {
+                        "type": "string"
+                      },
+                      "user": {
+                        "type": "object",
+                        "properties": {
+                          "defaultAvatar": {
+                            "type": "boolean"
+                          },
+                          "province": {
+                            "type": "integer"
+                          },
+                          "authStatus": {
+                            "type": "integer"
+                          },
+                          "followed": {
+                            "type": "boolean"
+                          },
+                          "avatarUrl": {
+                            "type": "string"
+                          },
+                          "accountStatus": {
+                            "type": "integer"
+                          },
+                          "gender": {
+                            "type": "integer"
+                          },
+                          "city": {
+                            "type": "integer"
+                          },
+                          "birthday": {
+                            "type": "integer"
+                          },
+                          "userId": {
+                            "type": "integer"
+                          },
+                          "userType": {
+                            "type": "integer"
+                          },
+                          "nickname": {
+                            "type": "string"
+                          },
+                          "signature": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "detailDescription": {
+                            "type": "string"
+                          },
+                          "avatarImgId": {
+                            "type": "integer"
+                          },
+                          "backgroundImgId": {
+                            "type": "integer"
+                          },
+                          "backgroundUrl": {
+                            "type": "string"
+                          },
+                          "authority": {
+                            "type": "integer"
+                          },
+                          "mutual": {
+                            "type": "boolean"
+                          },
+                          "expertTags": {
+                            "type": "null"
+                          },
+                          "experts": {
+                            "type": "null"
+                          },
+                          "djStatus": {
+                            "type": "integer"
+                          },
+                          "vipType": {
+                            "type": "integer"
+                          },
+                          "remarkName": {
+                            "type": "null"
+                          },
+                          "authenticationTypes": {
+                            "type": "integer"
+                          },
+                          "avatarDetail": {
+                            "type": "object",
+                            "properties": {
+                              "userType": {
+                                "type": "integer"
+                              },
+                              "identityLevel": {
+                                "type": "integer"
+                              },
+                              "identityIconUrl": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "userType",
+                              "identityLevel",
+                              "identityIconUrl"
+                            ],
+                            "x-apifox-orders": [
+                              "userType",
+                              "identityLevel",
+                              "identityIconUrl"
+                            ],
+                            "x-apifox-ignore-properties": []
+                          },
+                          "backgroundImgIdStr": {
+                            "type": "string"
+                          },
+                          "avatarImgIdStr": {
+                            "type": "string"
+                          },
+                          "anchor": {
+                            "type": "boolean"
+                          },
+                          "urlAnalyze": {
+                            "type": "boolean"
+                          },
+                          "vipRights": {
+                            "type": "object",
+                            "properties": {
+                              "associator": {
+                                "type": "object",
+                                "properties": {
+                                  "vipCode": {
+                                    "type": "integer"
+                                  },
+                                  "rights": {
+                                    "type": "boolean"
+                                  },
+                                  "iconUrl": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "vipCode",
+                                  "rights",
+                                  "iconUrl"
+                                ],
+                                "x-apifox-orders": [
+                                  "vipCode",
+                                  "rights",
+                                  "iconUrl"
+                                ],
+                                "x-apifox-ignore-properties": []
+                              },
+                              "musicPackage": {
+                                "type": "object",
+                                "properties": {
+                                  "vipCode": {
+                                    "type": "integer"
+                                  },
+                                  "rights": {
+                                    "type": "boolean"
+                                  },
+                                  "iconUrl": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "vipCode",
+                                  "rights",
+                                  "iconUrl"
+                                ],
+                                "x-apifox-orders": [
+                                  "vipCode",
+                                  "rights",
+                                  "iconUrl"
+                                ],
+                                "x-apifox-ignore-properties": []
+                              },
+                              "redplus": {
+                                "type": "object",
+                                "properties": {
+                                  "vipCode": {
+                                    "type": "integer"
+                                  },
+                                  "rights": {
+                                    "type": "boolean"
+                                  },
+                                  "iconUrl": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "vipCode",
+                                  "rights",
+                                  "iconUrl"
+                                ],
+                                "x-apifox-orders": [
+                                  "vipCode",
+                                  "rights",
+                                  "iconUrl"
+                                ],
+                                "x-apifox-ignore-properties": []
+                              },
+                              "redVipAnnualCount": {
+                                "type": "integer"
+                              },
+                              "redVipLevel": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "associator",
+                              "musicPackage",
+                              "redplus",
+                              "redVipAnnualCount",
+                              "redVipLevel"
+                            ],
+                            "x-apifox-orders": [
+                              "associator",
+                              "musicPackage",
+                              "redplus",
+                              "redVipAnnualCount",
+                              "redVipLevel"
+                            ],
+                            "x-apifox-ignore-properties": []
+                          },
+                          "commonIdentity": {
+                            "type": "null"
+                          },
+                          "followeds": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "defaultAvatar",
+                          "province",
+                          "authStatus",
+                          "followed",
+                          "avatarUrl",
+                          "accountStatus",
+                          "gender",
+                          "city",
+                          "birthday",
+                          "userId",
+                          "userType",
+                          "nickname",
+                          "signature",
+                          "description",
+                          "detailDescription",
+                          "avatarImgId",
+                          "backgroundImgId",
+                          "backgroundUrl",
+                          "authority",
+                          "mutual",
+                          "expertTags",
+                          "experts",
+                          "djStatus",
+                          "vipType",
+                          "remarkName",
+                          "authenticationTypes",
+                          "avatarDetail",
+                          "backgroundImgIdStr",
+                          "avatarImgIdStr",
+                          "anchor",
+                          "urlAnalyze",
+                          "vipRights",
+                          "commonIdentity",
+                          "followeds"
+                        ],
+                        "x-apifox-orders": [
+                          "defaultAvatar",
+                          "province",
+                          "authStatus",
+                          "followed",
+                          "avatarUrl",
+                          "accountStatus",
+                          "gender",
+                          "city",
+                          "birthday",
+                          "userId",
+                          "userType",
+                          "nickname",
+                          "signature",
+                          "description",
+                          "detailDescription",
+                          "avatarImgId",
+                          "backgroundImgId",
+                          "backgroundUrl",
+                          "authority",
+                          "mutual",
+                          "expertTags",
+                          "experts",
+                          "djStatus",
+                          "vipType",
+                          "remarkName",
+                          "authenticationTypes",
+                          "avatarDetail",
+                          "backgroundImgIdStr",
+                          "avatarImgIdStr",
+                          "anchor",
+                          "urlAnalyze",
+                          "vipRights",
+                          "commonIdentity",
+                          "followeds"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      },
+                      "eventTime": {
+                        "type": "integer"
+                      },
+                      "uuid": {
+                        "type": "string",
+                        "x-nullable": true
+                      },
+                      "extJsonInfo": {
+                        "type": "object",
+                        "properties": {
+                          "actId": {
+                            "type": "integer"
+                          },
+                          "actIds": {
+                            "type": "array",
+                            "items": {
+                              "type": "integer"
+                            }
+                          },
+                          "uuid": {
+                            "type": "string",
+                            "x-nullable": true
+                          },
+                          "extType": {
+                            "type": "string",
+                            "x-nullable": true
+                          },
+                          "extSource": {
+                            "type": "null"
+                          },
+                          "distributionType": {
+                            "type": "null"
+                          },
+                          "extId": {
+                            "type": "string",
+                            "x-nullable": true
+                          },
+                          "srcResId": {
+                            "type": "null"
+                          },
+                          "srcResType": {
+                            "type": "null"
+                          },
+                          "circleId": {
+                            "type": "string",
+                            "x-nullable": true
+                          },
+                          "circlePubType": {
+                            "type": "null"
+                          },
+                          "extParams": {
+                            "type": "object",
+                            "properties": {},
+                            "x-apifox-orders": [],
+                            "x-apifox-ignore-properties": []
+                          },
+                          "tailMark": {
+                            "type": "null"
+                          },
+                          "privacySetting": {
+                            "type": "integer",
+                            "x-nullable": true
+                          },
+                          "typeDesc": {
+                            "type": "null"
+                          },
+                          "questionId": {
+                            "type": "null"
+                          },
+                          "voiceInfo": {
+                            "type": "null"
+                          },
+                          "pointTopicInfo": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "null"
+                              },
+                              "relatedId": {
+                                "type": "null"
+                              },
+                              "type": {
+                                "type": "null"
+                              },
+                              "subType": {
+                                "type": "null"
+                              },
+                              "name": {
+                                "type": "null"
+                              },
+                              "icon": {
+                                "type": "null"
+                              },
+                              "target": {
+                                "type": "null"
+                              },
+                              "h5Target": {
+                                "type": "null"
+                              },
+                              "throughInfo": {
+                                "type": "null"
+                              },
+                              "ext": {
+                                "type": "null"
+                              },
+                              "parent": {
+                                "type": "null"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "relatedId",
+                              "type",
+                              "subType",
+                              "name",
+                              "icon",
+                              "target",
+                              "h5Target",
+                              "throughInfo",
+                              "ext",
+                              "parent"
+                            ],
+                            "x-apifox-orders": [
+                              "id",
+                              "relatedId",
+                              "type",
+                              "subType",
+                              "name",
+                              "icon",
+                              "target",
+                              "h5Target",
+                              "throughInfo",
+                              "ext",
+                              "parent"
+                            ],
+                            "x-apifox-ignore-properties": [],
+                            "x-nullable": true
+                          },
+                          "activityInfos": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "relatedId": {
+                                  "type": "null"
+                                },
+                                "type": {
+                                  "type": "integer"
+                                },
+                                "subType": {
+                                  "type": "integer"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "icon": {
+                                  "type": "string"
+                                },
+                                "target": {
+                                  "type": "string"
+                                },
+                                "h5Target": {
+                                  "type": "null"
+                                },
+                                "throughInfo": {
+                                  "type": "null"
+                                },
+                                "ext": {
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "type": "null"
+                                }
+                              },
+                              "x-apifox-orders": [
+                                "id",
+                                "relatedId",
+                                "type",
+                                "subType",
+                                "name",
+                                "icon",
+                                "target",
+                                "h5Target",
+                                "throughInfo",
+                                "ext",
+                                "parent"
+                              ],
+                              "x-apifox-ignore-properties": []
+                            }
+                          },
+                          "anonymityInfo": {
+                            "type": "object",
+                            "properties": {
+                              "anonymous": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "null"
+                              },
+                              "avatarUrl": {
+                                "type": "null"
+                              }
+                            },
+                            "required": [
+                              "anonymous",
+                              "name",
+                              "avatarUrl"
+                            ],
+                            "x-apifox-orders": [
+                              "anonymous",
+                              "name",
+                              "avatarUrl"
+                            ],
+                            "x-apifox-ignore-properties": [],
+                            "x-nullable": true
+                          },
+                          "socialUserId": {
+                            "type": "null"
+                          },
+                          "socialSpaceVisible": {
+                            "type": "null"
+                          },
+                          "titleAlias": {
+                            "type": "null"
+                          },
+                          "gradeSnapshotId": {
+                            "type": "null"
+                          },
+                          "changeExtTypeTime": {
+                            "type": "null"
+                          },
+                          "algScores": {
+                            "type": "null"
+                          },
+                          "location": {
+                            "type": "null"
+                          },
+                          "publishTag": {
+                            "type": "null"
+                          },
+                          "recommendStatus": {
+                            "type": "integer"
+                          },
+                          "firstRecommendTime": {
+                            "type": "integer"
+                          },
+                          "momentScore": {
+                            "type": "null"
+                          }
+                        },
+                        "required": [
+                          "actId",
+                          "actIds",
+                          "uuid",
+                          "extType",
+                          "extSource",
+                          "distributionType",
+                          "extId",
+                          "srcResId",
+                          "srcResType",
+                          "circleId",
+                          "circlePubType",
+                          "extParams",
+                          "tailMark",
+                          "privacySetting",
+                          "typeDesc",
+                          "questionId",
+                          "voiceInfo",
+                          "pointTopicInfo",
+                          "activityInfos",
+                          "anonymityInfo",
+                          "socialUserId",
+                          "socialSpaceVisible",
+                          "titleAlias",
+                          "gradeSnapshotId",
+                          "changeExtTypeTime",
+                          "algScores",
+                          "location",
+                          "publishTag",
+                          "recommendStatus",
+                          "firstRecommendTime",
+                          "momentScore"
+                        ],
+                        "x-apifox-orders": [
+                          "actId",
+                          "actIds",
+                          "uuid",
+                          "extType",
+                          "extSource",
+                          "distributionType",
+                          "extId",
+                          "srcResId",
+                          "srcResType",
+                          "circleId",
+                          "circlePubType",
+                          "extParams",
+                          "tailMark",
+                          "privacySetting",
+                          "typeDesc",
+                          "questionId",
+                          "voiceInfo",
+                          "pointTopicInfo",
+                          "activityInfos",
+                          "anonymityInfo",
+                          "socialUserId",
+                          "socialSpaceVisible",
+                          "titleAlias",
+                          "gradeSnapshotId",
+                          "changeExtTypeTime",
+                          "algScores",
+                          "location",
+                          "publishTag",
+                          "recommendStatus",
+                          "firstRecommendTime",
+                          "momentScore"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      },
+                      "actId": {
+                        "type": "integer"
+                      },
+                      "showTime": {
+                        "type": "integer"
+                      },
+                      "xInfo": {
+                        "type": "object",
+                        "properties": {
+                          "topEvent": {
+                            "type": "boolean"
+                          },
+                          "insiteForwardCount": {
+                            "type": "integer"
+                          },
+                          "info": {
+                            "type": "object",
+                            "properties": {
+                              "commentThread": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "resourceInfo": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "integer"
+                                      },
+                                      "userId": {
+                                        "type": "integer"
+                                      },
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "imgUrl": {
+                                        "type": "null"
+                                      },
+                                      "creator": {
+                                        "type": "null"
+                                      },
+                                      "artistAreaCode": {
+                                        "type": "integer"
+                                      },
+                                      "subTitle": {
+                                        "type": "null"
+                                      },
+                                      "resourceTypeStr": {
+                                        "type": "null"
+                                      },
+                                      "webUrl": {
+                                        "type": "null"
+                                      },
+                                      "resourceSpecialType": {
+                                        "type": "null"
+                                      },
+                                      "userIds": {
+                                        "type": "null"
+                                      },
+                                      "artistId": {
+                                        "type": "integer"
+                                      },
+                                      "eventType": {
+                                        "type": "integer"
+                                      },
+                                      "encodedId": {
+                                        "type": "null"
+                                      },
+                                      "resourceType": {
+                                        "type": "null"
+                                      },
+                                      "nativeUrl": {
+                                        "type": "null"
+                                      }
+                                    },
+                                    "required": [
+                                      "id",
+                                      "userId",
+                                      "name",
+                                      "imgUrl",
+                                      "creator",
+                                      "artistAreaCode",
+                                      "subTitle",
+                                      "resourceTypeStr",
+                                      "webUrl",
+                                      "resourceSpecialType",
+                                      "userIds",
+                                      "artistId",
+                                      "eventType",
+                                      "encodedId",
+                                      "resourceType",
+                                      "nativeUrl"
+                                    ],
+                                    "x-apifox-orders": [
+                                      "id",
+                                      "userId",
+                                      "name",
+                                      "imgUrl",
+                                      "creator",
+                                      "artistAreaCode",
+                                      "subTitle",
+                                      "resourceTypeStr",
+                                      "webUrl",
+                                      "resourceSpecialType",
+                                      "userIds",
+                                      "artistId",
+                                      "eventType",
+                                      "encodedId",
+                                      "resourceType",
+                                      "nativeUrl"
+                                    ],
+                                    "x-apifox-ignore-properties": []
+                                  },
+                                  "resourceType": {
+                                    "type": "integer"
+                                  },
+                                  "commentCount": {
+                                    "type": "integer"
+                                  },
+                                  "likedCount": {
+                                    "type": "integer"
+                                  },
+                                  "shareCount": {
+                                    "type": "integer"
+                                  },
+                                  "hotCount": {
+                                    "type": "integer"
+                                  },
+                                  "latestLikedUsers": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "s": {
+                                          "type": "integer"
+                                        },
+                                        "t": {
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "required": [
+                                        "s",
+                                        "t"
+                                      ],
+                                      "x-apifox-orders": [
+                                        "s",
+                                        "t"
+                                      ],
+                                      "x-apifox-ignore-properties": []
+                                    }
+                                  },
+                                  "resourceId": {
+                                    "type": "integer"
+                                  },
+                                  "resourceOwnerId": {
+                                    "type": "integer"
+                                  },
+                                  "resourceTitle": {
+                                    "type": "string",
+                                    "x-nullable": true
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "resourceInfo",
+                                  "resourceType",
+                                  "commentCount",
+                                  "likedCount",
+                                  "shareCount",
+                                  "hotCount",
+                                  "latestLikedUsers",
+                                  "resourceId",
+                                  "resourceOwnerId",
+                                  "resourceTitle"
+                                ],
+                                "x-apifox-orders": [
+                                  "id",
+                                  "resourceInfo",
+                                  "resourceType",
+                                  "commentCount",
+                                  "likedCount",
+                                  "shareCount",
+                                  "hotCount",
+                                  "latestLikedUsers",
+                                  "resourceId",
+                                  "resourceOwnerId",
+                                  "resourceTitle"
+                                ],
+                                "x-apifox-ignore-properties": []
+                              },
+                              "latestLikedUsers": {
+                                "type": "null"
+                              },
+                              "liked": {
+                                "type": "boolean"
+                              },
+                              "comments": {
+                                "type": "null"
+                              },
+                              "resourceType": {
+                                "type": "integer"
+                              },
+                              "resourceId": {
+                                "type": "integer"
+                              },
+                              "commentCount": {
+                                "type": "integer"
+                              },
+                              "likedCount": {
+                                "type": "integer"
+                              },
+                              "shareCount": {
+                                "type": "integer"
+                              },
+                              "threadId": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "commentThread",
+                              "latestLikedUsers",
+                              "liked",
+                              "comments",
+                              "resourceType",
+                              "resourceId",
+                              "commentCount",
+                              "likedCount",
+                              "shareCount",
+                              "threadId"
+                            ],
+                            "x-apifox-orders": [
+                              "commentThread",
+                              "latestLikedUsers",
+                              "liked",
+                              "comments",
+                              "resourceType",
+                              "resourceId",
+                              "commentCount",
+                              "likedCount",
+                              "shareCount",
+                              "threadId"
+                            ],
+                            "x-apifox-ignore-properties": []
+                          }
+                        },
+                        "required": [
+                          "topEvent",
+                          "insiteForwardCount",
+                          "info"
+                        ],
+                        "x-apifox-orders": [
+                          "topEvent",
+                          "insiteForwardCount",
+                          "info"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      },
+                      "id": {
+                        "type": "integer"
+                      },
+                      "type": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "musicianSay",
+                      "actName",
+                      "identityLabels",
+                      "socialUser",
+                      "pendantData",
+                      "forwardCount",
+                      "lotteryEventData",
+                      "discussId",
+                      "encryptUserId",
+                      "insiteForwardCount",
+                      "info",
+                      "topEvent",
+                      "threadId",
+                      "tailMark",
+                      "typeDesc",
+                      "alterLinkUrl",
+                      "alterLinkWebviewUrl",
+                      "privacySetting",
+                      "privacySettingInfo",
+                      "question",
+                      "voice",
+                      "topActivityInfos",
+                      "bottomActivityInfos",
+                      "h5Target",
+                      "more",
+                      "logInfo",
+                      "eventActionToast",
+                      "relationTopic",
+                      "extType",
+                      "extSource",
+                      "distributionType",
+                      "srcResId",
+                      "srcResType",
+                      "srcResThreadId",
+                      "location",
+                      "ipLocation",
+                      "anonymityInfo",
+                      "pointTopicInfo",
+                      "commentInfo",
+                      "owner",
+                      "commentTargetUrl",
+                      "resourceUniqueId",
+                      "showFollowButton",
+                      "tmplId",
+                      "expireTime",
+                      "rcmdInfo",
+                      "pics",
+                      "json",
+                      "user",
+                      "eventTime",
+                      "uuid",
+                      "extJsonInfo",
+                      "actId",
+                      "showTime",
+                      "xInfo",
+                      "id",
+                      "type"
+                    ],
+                    "x-apifox-orders": [
+                      "musicianSay",
+                      "actName",
+                      "identityLabels",
+                      "socialUser",
+                      "pendantData",
+                      "forwardCount",
+                      "lotteryEventData",
+                      "discussId",
+                      "encryptUserId",
+                      "insiteForwardCount",
+                      "info",
+                      "topEvent",
+                      "threadId",
+                      "tailMark",
+                      "typeDesc",
+                      "alterLinkUrl",
+                      "alterLinkWebviewUrl",
+                      "privacySetting",
+                      "privacySettingInfo",
+                      "question",
+                      "voice",
+                      "topActivityInfos",
+                      "bottomActivityInfos",
+                      "h5Target",
+                      "more",
+                      "logInfo",
+                      "eventActionToast",
+                      "relationTopic",
+                      "extType",
+                      "extSource",
+                      "distributionType",
+                      "srcResId",
+                      "srcResType",
+                      "srcResThreadId",
+                      "location",
+                      "ipLocation",
+                      "anonymityInfo",
+                      "pointTopicInfo",
+                      "commentInfo",
+                      "owner",
+                      "commentTargetUrl",
+                      "resourceUniqueId",
+                      "showFollowButton",
+                      "tmplId",
+                      "expireTime",
+                      "rcmdInfo",
+                      "pics",
+                      "json",
+                      "user",
+                      "eventTime",
+                      "uuid",
+                      "extJsonInfo",
+                      "actId",
+                      "showTime",
+                      "xInfo",
+                      "id",
+                      "type"
+                    ],
+                    "x-apifox-ignore-properties": []
+                  }
+                },
+                "code": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "lasttime",
+                "more",
+                "size",
+                "events",
+                "code"
+              ],
+              "x-apifox-orders": [
+                "lasttime",
+                "more",
+                "size",
+                "events",
+                "code"
+              ],
+              "x-apifox-ignore-properties": []
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-118634305-run",
+        "produces": [
+          "application/json"
+        ]
+      }
     }
   },
   "swagger": "2.0",

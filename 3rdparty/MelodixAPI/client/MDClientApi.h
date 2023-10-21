@@ -48,6 +48,7 @@
 #include "MDGetTopArtists_200_response.h"
 #include "MDGetTopPlaylist_200_response.h"
 #include "MDGetUserDetail_200_response.h"
+#include "MDGetUserDynamic_200_response.h"
 #include "MDGetUserLevel_200_response.h"
 #include "MDGetUserPlaylist_200_response.h"
 #include "MDLikeMusic_200_response.h"
@@ -256,6 +257,13 @@ public:
     */
     void getUserDetail(const QString &uid);
 
+    /**
+    * @param[in]  uid QString [required]
+    * @param[in]  limit QString [optional]
+    * @param[in]  lasttime QString [optional]
+    */
+    void getUserDynamic(const QString &uid, const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &lasttime = ::MelodixAPI::OptionalParam<QString>());
+
 
     void getUserLevel();
 
@@ -369,6 +377,7 @@ private:
     void getTopArtistsCallback(MDHttpRequestWorker *worker);
     void getTopPlaylistCallback(MDHttpRequestWorker *worker);
     void getUserDetailCallback(MDHttpRequestWorker *worker);
+    void getUserDynamicCallback(MDHttpRequestWorker *worker);
     void getUserLevelCallback(MDHttpRequestWorker *worker);
     void getUserPlaylistCallback(MDHttpRequestWorker *worker);
     void likeMusicCallback(MDHttpRequestWorker *worker);
@@ -412,6 +421,7 @@ signals:
     void getTopArtistsSignal(MDGetTopArtists_200_response summary);
     void getTopPlaylistSignal(MDGetTopPlaylist_200_response summary);
     void getUserDetailSignal(MDGetUserDetail_200_response summary);
+    void getUserDynamicSignal(MDGetUserDynamic_200_response summary);
     void getUserLevelSignal(MDGetUserLevel_200_response summary);
     void getUserPlaylistSignal(MDGetUserPlaylist_200_response summary);
     void likeMusicSignal(MDLikeMusic_200_response summary);
@@ -453,6 +463,7 @@ signals:
     void getTopArtistsSignalFull(MDHttpRequestWorker *worker, MDGetTopArtists_200_response summary);
     void getTopPlaylistSignalFull(MDHttpRequestWorker *worker, MDGetTopPlaylist_200_response summary);
     void getUserDetailSignalFull(MDHttpRequestWorker *worker, MDGetUserDetail_200_response summary);
+    void getUserDynamicSignalFull(MDHttpRequestWorker *worker, MDGetUserDynamic_200_response summary);
     void getUserLevelSignalFull(MDHttpRequestWorker *worker, MDGetUserLevel_200_response summary);
     void getUserPlaylistSignalFull(MDHttpRequestWorker *worker, MDGetUserPlaylist_200_response summary);
     void likeMusicSignalFull(MDHttpRequestWorker *worker, MDLikeMusic_200_response summary);
@@ -494,6 +505,7 @@ signals:
     void getTopArtistsSignalE(MDGetTopArtists_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getTopPlaylistSignalE(MDGetTopPlaylist_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserDetailSignalE(MDGetUserDetail_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getUserDynamicSignalE(MDGetUserDynamic_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserLevelSignalE(MDGetUserLevel_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserPlaylistSignalE(MDGetUserPlaylist_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void likeMusicSignalE(MDLikeMusic_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
@@ -535,6 +547,7 @@ signals:
     void getTopArtistsSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getTopPlaylistSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserDetailSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getUserDynamicSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserLevelSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserPlaylistSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void likeMusicSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);

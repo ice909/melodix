@@ -181,6 +181,11 @@ API::API(QObject *parent)
             [&](MDHttpRequestWorker *worker, MDGetUserDetail_200_response response) {
                 emit userDetailCompleted(response.asJsonObject());
             });
+    connect(userApiInstance,
+            &MDClientApi::getUserDynamicSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetUserDynamic_200_response response) {
+                emit userDynamicCompleted(response.asJsonObject());
+            });
 }
 void API::banner(const int type)
 {
@@ -414,6 +419,11 @@ void API::getUserLevel()
 void API::getUserDetail(const QString uid)
 {
     userApiInstance->getUserDetail(uid);
+}
+
+void API::getUserDynamic(const QString uid)
+{
+    userApiInstance->getUserDynamic(uid);
 }
 
 API::~API()
