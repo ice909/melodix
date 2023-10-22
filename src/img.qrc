@@ -7,6 +7,8 @@
         <file>dsg/img/svip6.png</file>
         <file>dsg/img/man.svg</file>
         <file>dsg/img/women.svg</file>
+        <file>dsg/img/play.svg</file>
+        <file>dsg/img/bar-chart.svg</file>
 
         <file>dsg/icons/toolbar_previous.dci</file>
         <file>dsg/icons/toolbar_pause.dci</file>
@@ -35,5 +37,12 @@
         <file>dsg/icons/library-dark.svg</file>
         <file>dsg/icons/favourite-light.svg</file>
         <file>dsg/icons/favourite-dark.svg</file>
+
+        <file>dsg/icons/praise-light.svg</file>
+        <file>dsg/icons/praise-dark.svg</file>
+        <file>dsg/icons/comment-light.svg</file>
+        <file>dsg/icons/comment-dark.svg</file>
+        <file>dsg/icons/share-light.svg</file>
+        <file>dsg/icons/share-dark.svg</file>
     </qresource>
 </RCC>

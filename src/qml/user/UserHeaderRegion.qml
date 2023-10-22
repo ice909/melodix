@@ -9,24 +9,26 @@ import org.deepin.dtk 1.0
 Rectangle {
     id: root
 
-    color: "blue"
+    color: "#fff"
+    radius: 10
 
     Row {
         anchors.fill: parent
         spacing: 20
 
         Item {
-            width: 20
+            width: 10
             height: 1
         }
 
         RoundedImage {
             id: avatarImg
 
-            width: parent.height
+            width: parent.height - 20
             height: width
             borderRadius: width
             imgSrc: userAvatar
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Item {
@@ -238,6 +240,16 @@ Rectangle {
 
         }
 
+    }
+
+    BoxShadow {
+        anchors.fill: parent
+        shadowBlur: 6
+        shadowColor: Qt.rgba(0, 0, 0, 0.2)
+        shadowOffsetX: 0
+        shadowOffsetY: 1
+        cornerRadius: parent.radius
+        hollow: true
     }
 
 }

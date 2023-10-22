@@ -10,12 +10,15 @@ Item {
     property bool isIndexMV: false
     property bool isBanner: false
     property bool isLoginQrCode: false
+    property bool isDynamic: false
+    // 是否是本地图片
+    property bool isLocal: false
 
     Image {
         id: image
 
         anchors.centerIn: parent
-        source: imgSrc === "" ? "" : ((isIndexMV || isBanner || isLoginQrCode) ? imgSrc : imgSrc + "?param=800y800")
+        source: imgSrc === "" ? "" : ((isIndexMV || isBanner || isLoginQrCode || isDynamic || isLocal) ? imgSrc : imgSrc + "?param=800y800")
         sourceSize.width: 400
         sourceSize.height: 400
         smooth: true

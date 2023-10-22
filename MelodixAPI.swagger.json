@@ -15052,7 +15052,7 @@
                         "x-apifox-ignore-properties": []
                       },
                       "eventTime": {
-                        "type": "integer"
+                        "type": "number"
                       },
                       "uuid": {
                         "type": "string",

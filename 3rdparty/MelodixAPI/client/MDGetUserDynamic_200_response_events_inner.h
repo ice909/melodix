@@ -212,8 +212,8 @@ public:
     bool is_user_Set() const;
     bool is_user_Valid() const;
 
-    qint32 getEventTime() const;
-    void setEventTime(const qint32 &event_time);
+    double getEventTime() const;
+    void setEventTime(const double &event_time);
     bool is_event_time_Set() const;
     bool is_event_time_Valid() const;
 
@@ -378,7 +378,7 @@ private:
     bool m_user_isSet;
     bool m_user_isValid;
 
-    qint32 m_event_time;
+    double m_event_time;
     bool m_event_time_isSet;
     bool m_event_time_isValid;
 

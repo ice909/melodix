@@ -46,20 +46,50 @@ Item {
     }
 
     function getProvince(code) {
-        switch(code) {
+        //TODO: 待添加其他省份
+        switch (code) {
         case 140000:
             return "山西省";
-        //TODO: 待添加其他省份
         }
     }
 
     function getCity(code) {
-        switch(code) {
+        switch (code) {
         case 140100:
             return "太原市";
         case 140900:
             return "忻州市";
         }
+    }
+
+    function formatDynamicTime(time) {
+        var date = new Date(time);
+        var year = date.getFullYear(); // 年份
+        var month = (date.getMonth() + 1).toString().padStart(2, '0'); // 月份（注意要加1，因为月份从0开始）
+        var day = date.getDate(); // 日期
+        // 如果是今年,就不返回年份,只返回月份和日期
+        if (year === new Date().getFullYear())
+            return month + '-' + day;
+
+        return year + '-' + month + '-' + day;
+    }
+
+    // 格式化播放量
+    function formatPlayCount(playCount) {
+        if (playCount > 1e+08)
+            return (playCount / 1e+08).toFixed(1) + "亿";
+        else if (playCount > 10000)
+            return (playCount / 10000).toFixed(1) + "万";
+        else
+            return playCount;
+    }
+
+    // 格式化视频时长
+    function formatVideoDuration(duration) {
+        // duration 单位是秒
+        var minutes = Math.floor(duration / 60);
+        var seconds = Math.floor(duration % 60);
+        return (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
 
 }

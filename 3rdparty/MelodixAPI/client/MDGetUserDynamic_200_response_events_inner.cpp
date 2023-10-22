@@ -878,10 +878,10 @@ bool MDGetUserDynamic_200_response_events_inner::is_user_Valid() const{
     return m_user_isValid;
 }
 
-qint32 MDGetUserDynamic_200_response_events_inner::getEventTime() const {
+double MDGetUserDynamic_200_response_events_inner::getEventTime() const {
     return m_event_time;
 }
-void MDGetUserDynamic_200_response_events_inner::setEventTime(const qint32 &event_time) {
+void MDGetUserDynamic_200_response_events_inner::setEventTime(const double &event_time) {
     m_event_time = event_time;
     m_event_time_isSet = true;
 }

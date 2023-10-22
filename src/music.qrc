@@ -44,7 +44,8 @@
         <file>qml/widgets/ListViewDelegate.qml</file>
         <file>qml/widgets/RightClickMenu.qml</file>
         <file>qml/widgets/Sidebar.qml</file>
-        <file>qml/widgets/UserPlaylist.qml</file>
+        <file>qml/widgets/PlayTime.qml</file>
+        <file>qml/widgets/Duration.qml</file>
 
         <file>qml/toolbar/Toolbar.qml</file>
         <file>qml/toolbar/VolumeSlider.qml</file>
@@ -66,6 +67,8 @@
 
         <file>qml/user/User.qml</file>
         <file>qml/user/UserHeaderRegion.qml</file>
+        <file>qml/user/UserPlaylist.qml</file>
+        <file>qml/user/UserDynamic.qml</file>
 
         <file>qml/settings/Settings.qml</file>
     </qresource>
