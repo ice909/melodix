@@ -8,13 +8,9 @@ import org.deepin.dtk 1.0
 Item {
     id: root
 
-    MouseArea {
-        anchors.fill: parent
-        hoverEnabled: true
-    }
-
     Item {
         id: centerArea
+
         width: parent.width / 2
         height: parent.height * 0.8
         anchors.centerIn: parent

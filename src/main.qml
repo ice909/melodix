@@ -163,19 +163,23 @@ ApplicationWindow {
         onItemAdded: {
             const index = pages.count - 1;
             const model = pages.model.get(index);
-            const loader = pages.itemAt(index).children[0];
+            const loader = pages.itemAt(index).children[1];
             loader.setSource(model.source);
         }
 
         Rectangle {
             width: parent.width - sidebar.width
             height: parent.height - 70
-            visible: !isLyricShow
             color: Util.pageBackgroundColor
 
             anchors {
                 left: sidebar.right
                 top: parent.top
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
             }
 
             Loader {
