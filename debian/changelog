@@ -1,3 +1,24 @@
+melodix (1.1.7) UNRELEASED; urgency=medium
+
+  * fixed page mouse event penetration
+  * Realize personal center page dynamic module
+  * add `/user/event` interface
+  * The Personal center page displays user-collect playlists
+  * The Personal center page displays user-created playlists
+  * add settings page
+  * Complete the top layout of the personal center page
+  * add `/user/detail` interface
+  * add `/user/level` interface
+  * If you are logged in, the Recommended Playlist shows the recommended playlist of the day
+  * add `/recommend/resource` interface
+  * Add a login page and a Personal center page
+  * The title bar displays both the avatar and the nickname
+  * Adjust the sidebar font size and lyrics page cover size
+  * Add my favorite music item to the sidebar
+  * Adjust the home page carousel style
+
+ -- ice <tonimayloneya@gmail.com>  Tue, 24 Oct 2023 13:40:21 +0800
+
 melodix (1.1.6) UNRELEASED; urgency=medium
 
   * Add ICONS for sidebar buttons
