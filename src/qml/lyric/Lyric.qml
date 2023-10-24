@@ -53,13 +53,13 @@ Item {
     }
 
     function lyricWindowUp() {
-        if (isLyricShow) {
-            lyricHideAnimation.start();
-        } else {
-            lyricPage.y = rootWindow.height;
-            lyricRaiseAnimation.start();
-            isLyricShow = true;
-        }
+        lyricPage.y = rootWindow.height;
+        lyricRaiseAnimation.start();
+        isLyricShow = true;
+    }
+
+    function lyricWindowDown() {
+        lyricHideAnimation.start();
     }
 
     function onPlaylistCurrentIndexChanged() {
@@ -128,6 +128,11 @@ Item {
         anchors.fill: bgImg
         source: bgImg
         radius: 128
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
     }
 
     Item {
@@ -267,14 +272,6 @@ Item {
 
     }
 
-    Connections {
-        function onStopped() {
-            isLyricShow = false;
-        }
-
-        target: lyricHideAnimation
-    }
-
     Rectangle {
         visible: initing
         anchors.fill: lyricPage
@@ -284,6 +281,14 @@ Item {
             anchors.centerIn: parent
         }
 
+    }
+
+    Connections {
+        function onStopped() {
+            isLyricShow = false;
+        }
+
+        target: lyricHideAnimation
     }
 
     lrcModel: ListModel {

@@ -153,15 +153,6 @@ Item {
                             }
                         }
 
-                        ToolButton {
-                            leftPadding: 20
-                            rightPadding: 20
-                            text: "播客"
-                            font.pixelSize: 18
-                            font.bold: checked ? true : false
-                            checkable: true
-                        }
-
                         background: Rectangle {
                             anchors.fill: parent
                             color: "#fff"

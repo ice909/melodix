@@ -145,6 +145,11 @@ ApplicationWindow {
         id: closeDlgLoader
     }
 
+    Loader {
+        id: noticeLoader
+        anchors.fill: parent
+    }
+
     Sidebar {
         id: sidebar
 
@@ -170,6 +175,7 @@ ApplicationWindow {
         Rectangle {
             width: parent.width - sidebar.width
             height: parent.height - 70
+            visible: !isLyricShow
             color: Util.pageBackgroundColor
 
             anchors {
@@ -254,9 +260,12 @@ ApplicationWindow {
             if (lrcWindowLoader.status === Loader.Null) {
                 lrcWindowLoader.setSource("qml/lyric/Lyric.qml");
                 lrcWindowLoader.item.y = -50;
-            }
-            if (lrcWindowLoader.status === Loader.Ready)
                 lrcWindowLoader.item.lyricWindowUp();
+            }else if (isLyricShow) {
+                lrcWindowLoader.item.lyricWindowDown();
+            } else {
+                lrcWindowLoader.item.lyricWindowUp();
+            }
 
         }
 
@@ -265,13 +274,15 @@ ApplicationWindow {
 
     Connections {
         function onLrcHideBtnClicked() {
-            if (lrcWindowLoader.status === Loader.Null) {
-                lrcWindowLoader.setSource("LyricWindow.qml");
-                lrcWindowLoader.item.y = -50;
-            }
-            if (lrcWindowLoader.status === Loader.Ready)
-                lrcWindowLoader.item.lyricWindowUp();
+            lrcWindowLoader.item.lyricWindowDown();
 
+        }
+
+        function onNoticeBtnClicked() {
+            if (noticeLoader.status === Loader.Null)
+                noticeLoader.setSource("Notice.qml");
+            if (noticeLoader.status === Loader.Ready)
+                noticeLoader.item.noticeWindowUp();
         }
 
         target: titleBar
