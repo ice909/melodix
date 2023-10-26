@@ -28,7 +28,6 @@
         <file>qml/titlebar/MyTitlebar.qml</file>
         <file>qml/titlebar/AvatarButton.qml</file>
         <file>qml/titlebar/MySearchEdit.qml</file>
-        <file>qml/titlebar/NoticeButton.qml</file>
         <file>qml/titlebar/NickNameButton.qml</file>
 
         <file>qml/login/Login.qml</file>

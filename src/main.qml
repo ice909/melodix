@@ -278,13 +278,6 @@ ApplicationWindow {
 
         }
 
-        function onNoticeBtnClicked() {
-            if (noticeLoader.status === Loader.Null)
-                noticeLoader.setSource("Notice.qml");
-            if (noticeLoader.status === Loader.Ready)
-                noticeLoader.item.noticeWindowUp();
-        }
-
         target: titleBar
     }
 

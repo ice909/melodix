@@ -27,8 +27,6 @@
         <file>dsg/icons/playlist_delete.dci</file>
         <file>dsg/icons/details_play.dci</file>
 
-        <file>dsg/icons/message-light.svg</file>
-        <file>dsg/icons/message-dark.svg</file>
         <file>dsg/icons/index-light.svg</file>
         <file>dsg/icons/index-dark.svg</file>
         <file>dsg/icons/discover-light.svg</file>

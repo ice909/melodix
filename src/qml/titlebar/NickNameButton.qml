@@ -29,7 +29,7 @@ WindowButton {
         visible: false
         width: 150
         // 30 * 2 是按钮高度，10 * 2是spacing ，10是margin-bottom
-        height: 30 * 2 + 10 + 20
+        height: 30 * 3 + 10 * 2 + 20
         z: 1
 
         ColumnLayout {
@@ -46,6 +46,19 @@ WindowButton {
                 ColorSelector.family: Palette.CrystalColor
                 onClicked: {
                     Worker.openUrl("https://music.163.com/#/user/home?id=" + userID);
+                    accountMenu.close();
+                }
+            }
+
+            // 我的消息按钮
+            Button {
+                visible: isLogin
+                Layout.fillWidth: true
+                Layout.preferredHeight: 30
+                text: "我的消息"
+                ColorSelector.family: Palette.CrystalColor
+                onClicked: {
+                    Worker.openUrl("https://music.163.com/#/msg/m/private");
                     accountMenu.close();
                 }
             }

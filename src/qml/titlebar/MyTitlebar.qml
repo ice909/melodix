@@ -63,19 +63,10 @@ TitleBar {
             NickNameButton {
                 id: nickNameBtn
 
-                anchors.right: noticeBtn.left
+                anchors.right: parent.right
                 width: parent.height * 1.5
                 height: parent.height
             }
-
-            NoticeButton {
-                id: noticeBtn
-
-                anchors.right: parent.right
-                width: parent.height
-                height: parent.height
-            }
-
         }
 
     }
