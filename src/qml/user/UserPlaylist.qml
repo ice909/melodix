@@ -34,9 +34,10 @@ Item {
             height: userCreatePlaylistTitle.height + userCreatePlaylistGrid.height + 20
 
             Column {
-                width: parent.width
+                width: parent.width - 20
                 height: parent.height - 10
                 spacing: 10
+                x: 10
                 y: 5
 
                 Item {
@@ -57,7 +58,7 @@ Item {
                     id: userCreatePlaylistGrid
 
                     width: parent.width
-                    height: createPlaylistRows * ((scrollWidth - 30 * 4) * 0.2 + 25) + (createPlaylistRows - 1) * 30
+                    height: createPlaylistRows * ((width - 30 * 4) * 0.2 + 21) + (createPlaylistRows - 1) * 30
                 }
 
             }
@@ -83,9 +84,10 @@ Item {
             height: userCollectPlaylistTitle.height + userCollectPlaylistGrid.height + 20
 
             Column {
-                width: parent.width
+                width: parent.width - 20
                 height: parent.height - 10
                 spacing: 10
+                x: 10
                 y: 5
 
                 Item {
@@ -106,7 +108,7 @@ Item {
                     id: userCollectPlaylistGrid
 
                     width: parent.width
-                    height: collectPlaylistRows * ((scrollWidth - 30 * 4) * 0.2 + 25) + (collectPlaylistRows - 1) * 30
+                    height: collectPlaylistRows * ((width - 30 * 4) * 0.2 + 21) + (collectPlaylistRows - 1) * 30
                 }
 
             }

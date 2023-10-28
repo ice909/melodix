@@ -21,54 +21,63 @@ Item {
             model: lists
 
             Item {
-                width: (scrollWidth - 30 * 4) * 0.2
+                width: (gridLayout.width - 30 * 4) * 0.2
                 height: width + 20
 
-                Rectangle {
-                    id: imgRect
+                RoundedImage {
+                    // 鼠标悬浮时显示播放图标
+                    // Image {
+                    //     id: playIcon
+                    //     anchors.centerIn: parent
+                    //     visible: false
+                    //     width: 40
+                    //     height: 40
+                    //     source: "qrc:/dsg/icons/play.svg"
+                    // }
+
+                    id: img
 
                     width: parent.width
                     height: parent.width
-                    color: "transparent"
-                    radius: 5
+                    anchors.centerIn: parent
+                    imgSrc: modelData.coverImgUrl || modelData.picUrl || modelData.cover
 
-                    RoundedImage {
-                        id: img
-
-                        width: parent.width - 10
-                        height: parent.width - 10
-                        anchors.centerIn: parent
-                        imgSrc: modelData.coverImgUrl || modelData.picUrl || modelData.cover
-
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            cursorShape: Qt.PointingHandCursor
-                            onEntered: {
-                                imgRect.color = Util.mouseHoverColor;
-                            }
-                            onExited: {
-                                imgRect.color = "transparent";
-                            }
-                            onPressed: {
-                                imgRect.color = Util.mousePressedColor;
-                            }
-                            onReleased: {
-                                imgRect.color = Util.mouseReleasedColor;
-                            }
-                            onClicked: {
-                                Router.showPlaylistDetail(modelData.id);
-                            }
+                    MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onEntered: {
+                            //playIcon.visible = true;
+                            imgShadow.visible = true;
                         }
+                        onExited: {
+                            //playIcon.visible = false;
+                            imgShadow.visible = false;
+                        }
+                        onClicked: {
+                            Router.showPlaylistDetail(modelData.id);
+                        }
+                    }
 
+                    BoxShadow {
+                        id: imgShadow
+
+                        visible: false
+                        anchors.fill: parent
+                        shadowBlur: 5
+                        shadowColor: palette.highlight
+                        spread: 1
+                        shadowOffsetX: 0
+                        shadowOffsetY: 0
+                        cornerRadius: 5
+                        hollow: true
                     }
 
                 }
 
                 Item {
-                    anchors.top: imgRect.bottom
-                    anchors.horizontalCenter: imgRect.horizontalCenter
-                    width: imgRect.width - 10
+                    anchors.top: img.bottom
+                    width: img.width
                     anchors.leftMargin: 10
                     height: 30
 
@@ -101,6 +110,7 @@ Item {
 
                         ToolTip {
                             id: tooltip
+
                             text: modelData.name
                             visible: false
                         }

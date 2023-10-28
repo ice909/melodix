@@ -42,5 +42,7 @@
         <file>dsg/icons/comment-dark.svg</file>
         <file>dsg/icons/share-light.svg</file>
         <file>dsg/icons/share-dark.svg</file>
+
+        <file>dsg/icons/play.svg</file>
     </qresource>
 </RCC>
