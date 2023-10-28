@@ -18,7 +18,8 @@ Item {
     // 发现
     property var routeDiscover: {
         "path": "discover",
-        "component": "qml/discover/Discover.qml"
+        "component": "qml/discover/Discover.qml",
+        "showRecommend": false
     }
     // 音乐库
     property var routeLibrary: {
@@ -86,14 +87,15 @@ Item {
     }
 
     // 显示发现页
-    function showDiscover() {
+    function showDiscover(checkRecommend = false) {
         // 如果当前路由是发现页，不做任何操作
         if (routeCurrent.path === routeDiscover.path)
             return ;
 
         const r = clone(routeDiscover);
-        signalNavigate(r, false);
+        r.showRecommend = checkRecommend;
         routeCurrent = r;
+        signalNavigate(r, false);
         routeHistory.push(r);
     }
 
@@ -159,6 +161,7 @@ Item {
         routeHistory.push(r);
         signalNavigate(r, false);
     }
+
     // 显示登录页
     function showLogin() {
         const r = clone(routeLogin);
@@ -166,6 +169,7 @@ Item {
         routeHistory.push(r);
         signalNavigate(r, false);
     }
+
     // 显示个人中心页
     function showUser() {
         const r = clone(routeUser);
@@ -173,6 +177,7 @@ Item {
         routeHistory.push(r);
         signalNavigate(r, false);
     }
+
     // 显示设置页
     function showSettings() {
         const r = clone(routeSetting);

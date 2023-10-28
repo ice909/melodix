@@ -1970,7 +1970,7 @@ void MDClientApi::getRecommendedNewSongsCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getRecommendedPlaylist(const ::MelodixAPI::OptionalParam<double> &limit) {
+void MDClientApi::getRecommendedPlaylist(const ::MelodixAPI::OptionalParam<double> &limit, const ::MelodixAPI::OptionalParam<double> &offset) {
     QString fullPath = QString(_serverConfigs["getRecommendedPlaylist"][_serverIndices.value("getRecommendedPlaylist")].URL()+"/personalized");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -1988,6 +1988,21 @@ void MDClientApi::getRecommendedPlaylist(const ::MelodixAPI::OptionalParam<doubl
             fullPath.append("?");
 
         fullPath.append(QUrl::toPercentEncoding("limit")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(limit.value())));
+    }
+    if (offset.hasValue())
+    {
+        queryStyle = "";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "offset", false);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("offset")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(offset.value())));
     }
     MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);

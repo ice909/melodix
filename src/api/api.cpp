@@ -207,6 +207,16 @@ void API::getRecommendedPlaylist(const int limit)
             });
 }
 
+void API::getRecommendedPlaylist(const int limit, const int offset)
+{
+    apiInstance->getRecommendedPlaylist(limit, offset);
+    connect(apiInstance,
+            &MDClientApi::getRecommendedPlaylistSignalFull,
+            [&](MDHttpRequestWorker *worker, MDGetRecommendedPlaylist_200_response response) {
+                emit recommendedPlaylistCompleted(toJsonArray(response.getResult()));
+            });
+}
+
 void API::getRecommendResource()
 {
     userApiInstance->getRecommendResource();
@@ -252,10 +262,7 @@ void API::getRecommendedMv()
             });
 }
 
-void API::getTopPlaylist(const QString cat,
-                         const QString order,
-                         const int limit,
-                         const int offset)
+void API::getTopPlaylist(const QString cat, const QString order, const int limit, const int offset)
 {
     apiInstance->getTopPlaylist(cat, order, limit, offset);
 }

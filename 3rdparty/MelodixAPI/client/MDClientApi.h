@@ -223,8 +223,9 @@ public:
 
     /**
     * @param[in]  limit double [optional]
+    * @param[in]  offset double [optional]
     */
-    void getRecommendedPlaylist(const ::MelodixAPI::OptionalParam<double> &limit = ::MelodixAPI::OptionalParam<double>());
+    void getRecommendedPlaylist(const ::MelodixAPI::OptionalParam<double> &limit = ::MelodixAPI::OptionalParam<double>(), const ::MelodixAPI::OptionalParam<double> &offset = ::MelodixAPI::OptionalParam<double>());
 
     /**
     * @param[in]  mvid QString [required]

@@ -1,3 +1,4 @@
+import "../../router"
 import "../../util"
 import "../widgets"
 import Melodix.API 1.0
@@ -12,13 +13,34 @@ Item {
     property bool loading: true
     property int count: 0
 
+    function getRecommendedPlaylist(res) {
+        function onReply(res) {
+            API.onRecommendedPlaylistCompleted.disconnect(onReply);
+            let newRes = [];
+            if (res.length > 10)
+                newRes = res.slice(1, 11);
+            else
+                newRes = res;
+            for (const playlist of newRes) recommendedPlaylist.lists.append({
+                "playlist": playlist
+            })
+            count++;
+            if (count === 5)
+                loading = false;
+
+        }
+
+        API.onRecommendedPlaylistCompleted.connect(onReply);
+        if (res.code == 200 && res.account.status == 0 && res.profile != null)
+            API.getRecommendResource();
+        else
+            API.getRecommendedPlaylist(10);
+    }
+
     Connections {
         function onLoginStatusCompleted(res) {
             API.banner(0);
-            if (res.code == 200 && res.account.status == 0 && res.profile != null)
-                API.getRecommendResource();
-            else
-                API.getRecommendedPlaylist(10);
+            getRecommendedPlaylist(res);
             API.getRecommendedNewSongs(9);
             API.getTopArtists();
             API.getRecommendedMv();
@@ -39,21 +61,6 @@ Item {
                     "url": res[i].url || "https://music.163.com"
                 });
             }
-            count++;
-            if (count === 5)
-                loading = false;
-
-        }
-
-        function onRecommendedPlaylistCompleted(res) {
-            let newRes = [];
-            if (res.length > 10)
-                newRes = res.slice(1, 11);
-            else
-                newRes = res;
-            for (const playlist of newRes) recommendedPlaylist.lists.append({
-                "playlist": playlist
-            })
             count++;
             if (count === 5)
                 loading = false;
@@ -91,7 +98,7 @@ Item {
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: left_banner.height + recommendedPlaylist.height + recommendNewSongs.height + hotSigner.height + recommendedMV.height + 30 * 4 + 10 * 8 + 5
+        contentHeight: left_banner.height + recommendedPlaylist.height + recommendNewSongs.height + hotSigner.height + recommendedMV.height + 40 * 4 + 10 * 8 + 5
 
         Column {
             id: body
@@ -131,7 +138,7 @@ Item {
 
             Item {
                 width: scrollWidth
-                height: 30
+                height: 40
 
                 Text {
                     text: "推荐歌单"
@@ -143,6 +150,18 @@ Item {
                         bold: true
                     }
 
+                }
+
+                ToolButton {
+                    anchors.right: parent.right
+                    anchors.rightMargin: 5
+                    anchors.verticalCenter: parent.verticalCenter
+                    height: 30
+                    text: "查看全部"
+                    onClicked: {
+                        sidebar.pageSelectedIndex = 1;
+                        Router.showDiscover(true);
+                    }
                 }
 
             }
@@ -161,7 +180,7 @@ Item {
 
             Item {
                 width: scrollWidth
-                height: 30
+                height: 40
 
                 Text {
                     text: "推荐新歌"
@@ -191,7 +210,7 @@ Item {
 
             Item {
                 width: scrollWidth
-                height: 30
+                height: 40
 
                 Text {
                     text: "热门歌手"
@@ -221,7 +240,7 @@ Item {
 
             Item {
                 width: scrollWidth
-                height: 30
+                height: 40
 
                 Text {
                     text: "推荐MV"

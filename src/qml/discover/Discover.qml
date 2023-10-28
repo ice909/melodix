@@ -1,3 +1,4 @@
+import "../../router"
 import "../../util"
 import "../widgets"
 import Melodix.API 1.0
@@ -33,7 +34,10 @@ Item {
         limit = 50;
         playlistCount = 0;
         playlistRows = 0;
-        API.getTopPlaylist(currentCategory, 'hot', limit, offset);
+        if (currentCategory === "推荐歌单")
+            getRecommendResource();
+        else
+            API.getTopPlaylist(currentCategory, 'hot', limit, offset);
     }
 
     function moreLoading() {
@@ -46,12 +50,32 @@ Item {
         API.getTopPlaylist(currentCategory, 'hot', limit, offset);
     }
 
+    function getRecommendResource() {
+        function onReply(res) {
+            API.onRecommendedPlaylistCompleted.disconnect(onReply);
+            for (const playlist of res) hotPlaylists.lists.append({
+                "playlist": playlist
+            })
+            playlistRows += Math.ceil(res.length / 5);
+            initing = false;
+            loadMore = false;
+            hasMore = false;
+        }
+
+        API.onRecommendedPlaylistCompleted.connect(onReply);
+        API.getRecommendResource();
+    }
+
     Component.onCompleted: {
-        API.getTopPlaylist(currentCategory, 'hot', limit, offset);
+        if (Router.routeCurrent.showRecommend) {
+            currentCategory = "推荐歌单";
+            getRecommendResource();
+        } else {
+            API.getTopPlaylist(currentCategory, 'hot', limit, offset);
+        }
     }
 
     Connections {
-
         function onTopPlaylistCompleted(res) {
             playlistCount = res.total;
             for (const playlist of res.playlists) hotPlaylists.lists.append({
@@ -73,7 +97,7 @@ Item {
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: hotPlaylists.height + tabBtns.height + 20 + 20 * 3
+        contentHeight: hotPlaylists.height + tabBtns.height + 20 + 20 * 3 + 5
         ScrollBar.vertical.onPositionChanged: () => {
             const position = ScrollBar.vertical.position + ScrollBar.vertical.size;
             if (position > 0.99 && !loadMore && hasMore) {
@@ -103,6 +127,19 @@ Item {
                 ToolButton {
                     checkable: true
                     text: "全部"
+                    font.pixelSize: 15
+                    checked: currentCategory == text
+                    onClicked: {
+                        if (currentCategory != text) {
+                            currentCategory = text;
+                            switchBeforeClear();
+                        }
+                    }
+                }
+
+                ToolButton {
+                    checkable: true
+                    text: "推荐歌单"
                     font.pixelSize: 15
                     checked: currentCategory == text
                     onClicked: {

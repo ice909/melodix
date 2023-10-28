@@ -20,14 +20,12 @@ public slots:
     void logout();
     void banner(const int type);
     void getRecommendedPlaylist(const int limit);
+    void getRecommendedPlaylist(const int limit, const int offset);
     void getRecommendResource();
     void getRecommendedNewSongs(const int limit);
     void getTopArtists();
     void getRecommendedMv();
-    void getTopPlaylist(const QString cat,
-                        const QString order,
-                        const int limit,
-                        const int offset);
+    void getTopPlaylist(const QString cat, const QString order, const int limit, const int offset);
     void getLoginStatus();
     void getAccountInfo();
     void getUserLikeSongIds(const QString id);
@@ -100,7 +98,7 @@ signals:
     void userDynamicCompleted(QJsonObject);
 
 private:
-    static QPointer<API> INSTANCE; 
+    static QPointer<API> INSTANCE;
     MDClientApi *apiInstance = nullptr;
     MDClientApi *userApiInstance = nullptr;
 };

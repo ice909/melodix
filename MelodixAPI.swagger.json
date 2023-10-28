@@ -2453,10 +2453,18 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "偏移量",
+            "description": "取出数量",
             "required": false,
             "type": "number",
             "x-example": "10"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "偏移量",
+            "required": false,
+            "type": "number",
+            "x-example": "1"
           }
         ],
         "responses": {
