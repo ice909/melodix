@@ -48,6 +48,9 @@ void MDBanner_200_response_banners_inner::initializeModel() {
     m_type_title_isSet = false;
     m_type_title_isValid = false;
 
+    m_url_isSet = false;
+    m_url_isValid = false;
+
     m_exclusive_isSet = false;
     m_exclusive_isValid = false;
 
@@ -85,6 +88,9 @@ void MDBanner_200_response_banners_inner::fromJsonObject(QJsonObject json) {
     m_type_title_isValid = ::MelodixAPI::fromJsonValue(m_type_title, json[QString("typeTitle")]);
     m_type_title_isSet = !json[QString("typeTitle")].isNull() && m_type_title_isValid;
 
+    m_url_isValid = ::MelodixAPI::fromJsonValue(m_url, json[QString("url")]);
+    m_url_isSet = !json[QString("url")].isNull() && m_url_isValid;
+
     m_exclusive_isValid = ::MelodixAPI::fromJsonValue(m_exclusive, json[QString("exclusive")]);
     m_exclusive_isSet = !json[QString("exclusive")].isNull() && m_exclusive_isValid;
 
@@ -121,6 +127,9 @@ QJsonObject MDBanner_200_response_banners_inner::asJsonObject() const {
     }
     if (m_type_title_isSet) {
         obj.insert(QString("typeTitle"), ::MelodixAPI::toJsonValue(m_type_title));
+    }
+    if (m_url_isSet) {
+        obj.insert(QString("url"), ::MelodixAPI::toJsonValue(m_url));
     }
     if (m_exclusive_isSet) {
         obj.insert(QString("exclusive"), ::MelodixAPI::toJsonValue(m_exclusive));
@@ -217,6 +226,22 @@ bool MDBanner_200_response_banners_inner::is_type_title_Valid() const{
     return m_type_title_isValid;
 }
 
+QString MDBanner_200_response_banners_inner::getUrl() const {
+    return m_url;
+}
+void MDBanner_200_response_banners_inner::setUrl(const QString &url) {
+    m_url = url;
+    m_url_isSet = true;
+}
+
+bool MDBanner_200_response_banners_inner::is_url_Set() const{
+    return m_url_isSet;
+}
+
+bool MDBanner_200_response_banners_inner::is_url_Valid() const{
+    return m_url_isValid;
+}
+
 bool MDBanner_200_response_banners_inner::isExclusive() const {
     return m_exclusive;
 }
@@ -309,6 +334,11 @@ bool MDBanner_200_response_banners_inner::isSet() const {
             break;
         }
 
+        if (m_url_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
         if (m_exclusive_isSet) {
             isObjectUpdated = true;
             break;
@@ -334,7 +364,7 @@ bool MDBanner_200_response_banners_inner::isSet() const {
 
 bool MDBanner_200_response_banners_inner::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_image_url_isValid && m_target_id_isValid && m_target_type_isValid && m_title_color_isValid && m_type_title_isValid && m_exclusive_isValid && m_encode_id_isValid && m_scm_isValid && m_banner_biz_type_isValid && true;
+    return m_image_url_isValid && m_target_id_isValid && m_target_type_isValid && m_title_color_isValid && m_type_title_isValid && m_url_isValid && m_exclusive_isValid && m_encode_id_isValid && m_scm_isValid && m_banner_biz_type_isValid && true;
 }
 
 } // namespace MelodixAPI

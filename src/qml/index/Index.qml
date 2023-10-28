@@ -31,12 +31,12 @@ Item {
                 if (i % 2 === 0)
                     left_banner.model.append({
                     "img": res[i].imageUrl,
-                    "url": res[i].url || ""
+                    "url": res[i].url || "https://music.163.com"
                 });
                 else
                     right_banner.model.append({
                     "img": res[i].imageUrl,
-                    "url": res[i].url || ""
+                    "url": res[i].url || "https://music.163.com"
                 });
             }
             count++;

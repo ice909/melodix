@@ -12121,7 +12121,7 @@
                         "type": "string"
                       },
                       "url": {
-                        "type": "null"
+                        "type": "string"
                       },
                       "exclusive": {
                         "type": "boolean"

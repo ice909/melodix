@@ -63,6 +63,11 @@ public:
     bool is_type_title_Set() const;
     bool is_type_title_Valid() const;
 
+    QString getUrl() const;
+    void setUrl(const QString &url);
+    bool is_url_Set() const;
+    bool is_url_Valid() const;
+
     bool isExclusive() const;
     void setExclusive(const bool &exclusive);
     bool is_exclusive_Set() const;
@@ -108,6 +113,10 @@ private:
     QString m_type_title;
     bool m_type_title_isSet;
     bool m_type_title_isValid;
+
+    QString m_url;
+    bool m_url_isSet;
+    bool m_url_isValid;
 
     bool m_exclusive;
     bool m_exclusive_isSet;

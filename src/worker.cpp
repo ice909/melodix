@@ -2,7 +2,8 @@
 
 QPointer<Worker> Worker::INSTANCE = nullptr;
 
-Worker* Worker::instance(){
+Worker *Worker::instance()
+{
     if (INSTANCE.isNull())
         INSTANCE = new Worker;
 
@@ -74,6 +75,8 @@ void Worker::setIsAsk(QString action)
 
 void Worker::openUrl(QString url)
 {
+    if (url.isEmpty())
+        return;
     QDesktopServices::openUrl(QUrl(url));
 }
 
