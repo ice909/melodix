@@ -69,6 +69,12 @@ Control {
         x: rootWindow.width - 320 - 10
         y: 5
 
+        MouseArea {
+            anchors.fill: parent
+            onWheel: {
+            }
+        }
+
         Column {
             width: parent.width
             height: parent.height
