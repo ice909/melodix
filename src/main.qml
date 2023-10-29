@@ -5,6 +5,7 @@ import QtQuick 2.11
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
 import org.deepin.dtk 1.0
+import org.deepin.dtk.style 1.0 as DS
 import "qml/playlist"
 import "qml/titlebar"
 import "qml/toolbar"
@@ -67,19 +68,6 @@ ApplicationWindow {
     DWindow.enabled: true
     DWindow.alphaBufferSize: 8
     flags: Qt.Window | Qt.WindowMinMaxButtonsHint | Qt.WindowCloseButtonHint | Qt.WindowTitleHint
-    onActiveChanged: {
-        //窗口显示完成后加载播放列表
-        if (active && playlistLoader.status === Loader.Null) {
-            playlistLoader.setSource("qml/playlist/Playlist.qml");
-            playlistLoader.item.width = 320;
-            playlistLoader.item.height = rootWindow.height - 90 - 50;
-            playlistLoader.item.y = height - playlistLoader.item.height - 80 - 50;
-            playlistLoader.item.playlistHided.connect(function() {
-                toolbox.updatePlaylistBtnStatus(false);
-                isPlaylistShow = false;
-            });
-        }
-    }
     onClosing: {
         if (closeDlgLoader.status === Loader.Null)
             closeDlgLoader.setSource("qml/dialogs/CloseDialog.qml");
@@ -118,11 +106,11 @@ ApplicationWindow {
             userAvatar = profile.avatarUrl;
             userNickname = profile.nickname;
             userID = profile.userId;
-            userGender = profile.gender
-            userSignature = profile.signature
-            userCity = profile.city
-            userProvince = profile.province
-            userBirthday = profile.birthday
+            userGender = profile.gender;
+            userSignature = profile.signature;
+            userCity = profile.city;
+            userProvince = profile.province;
+            userBirthday = profile.birthday;
             console.log("用户信息获取成功");
             API.getUserLikeSongIds(userID);
         }
@@ -147,6 +135,7 @@ ApplicationWindow {
 
     Loader {
         id: noticeLoader
+
         anchors.fill: parent
     }
 
@@ -237,8 +226,9 @@ ApplicationWindow {
     Loader {
         id: playlistLoader
 
-        width: 320
-        height: parent.height - 90
+        width: rootWindow.width
+        height: rootWindow.height - 70 - DS.Style.titleBar.height
+        source: "qml/playlist/Playlist.qml"
         z: 5
     }
 
@@ -250,8 +240,10 @@ ApplicationWindow {
         id: toolboxConnect
 
         function onPlaylistBtnClicked() {
-            if (playlistLoader.status === Loader.Ready) {
-                playlistLoader.item.playlistRaise();
+            if (isPlaylistShow) {
+                playlistLoader.item.playlistHide();
+            } else {
+                playlistLoader.item.playlistShow();
                 isPlaylistShow = true;
             }
         }
@@ -261,21 +253,27 @@ ApplicationWindow {
                 lrcWindowLoader.setSource("qml/lyric/Lyric.qml");
                 lrcWindowLoader.item.y = -50;
                 lrcWindowLoader.item.lyricWindowUp();
-            }else if (isLyricShow) {
+            } else if (isLyricShow) {
                 lrcWindowLoader.item.lyricWindowDown();
             } else {
                 lrcWindowLoader.item.lyricWindowUp();
             }
-
         }
 
         target: toolbox
     }
 
     Connections {
+        function onPlaylistHided() {
+            isPlaylistShow = false;
+        }
+
+        target: playlistLoader.item
+    }
+
+    Connections {
         function onLrcHideBtnClicked() {
             lrcWindowLoader.item.lyricWindowDown();
-
         }
 
         target: titleBar

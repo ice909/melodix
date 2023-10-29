@@ -53,10 +53,6 @@ FloatingPanel {
     signal playlistBtnClicked()
     signal lyricToggleClicked()
 
-    function updatePlaylistBtnStatus(checked) {
-        listBtn.checked = checked;
-    }
-
     function onPlaylistCurrentIndexChanged() {
         console.log("播放列表 currentIndex 改变");
         songTitle = Player.getName();
@@ -504,6 +500,7 @@ FloatingPanel {
                     icon.width: 36
                     icon.height: 36
                     checkable: true
+                    checked: isPlaylistShow
                     onClicked: {
                         playlistBtnClicked();
                     }

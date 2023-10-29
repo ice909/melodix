@@ -7,8 +7,8 @@ import org.deepin.dtk 1.0
 import org.deepin.dtk.impl 1.0 as D
 import org.deepin.dtk.style 1.0 as DS
 
-FloatingPanel {
-    id: playlistRoot
+Control {
+    id: root
 
     property int headerHeight: 73
     property int playlistHeight: rootWindow.height - 90
@@ -17,11 +17,12 @@ FloatingPanel {
 
     signal playlistHided()
 
-    function playlistRaise() {
-        if (!isPlaylistShow)
-            playlistRaiseAnimation.start();
-        else
-            playlistHideAnimation.start();
+    function playlistShow() {
+        playlistRaiseAnimation.start();
+    }
+
+    function playlistHide() {
+        playlistHideAnimation.start();
     }
 
     function onMediaCountChanged(newCount) {
@@ -38,87 +39,109 @@ FloatingPanel {
         playlistView.contentY = selectedIndex * 56;
     }
 
+    visible: isPlaylistShow
     Component.onCompleted: {
         Player.mediaCountChanged.connect(onMediaCountChanged);
         Player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
+        console.log(root.width, root.height);
     }
-    visible: isPlaylistShow
-    width: 320
-    height: playlistHeight
-    radius: 8
-    x: rootWindow.width - 320 - 10
 
-    Column {
-        width: parent.width
-        height: parent.height
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
 
-        Item {
-            id: headerArea
+        MouseArea {
+            width: rootWindow.width - 320 - 10
+            height: parent.height
+            onClicked: {
+                playlistHideAnimation.start();
+            }
+        }
 
+    }
+
+    FloatingPanel {
+        id: playlistRoot
+
+        width: 320
+        height: root.height - 10
+        radius: 8
+        x: rootWindow.width - 320 - 10
+        y: 5
+
+        Column {
             width: parent.width
-            height: headerHeight
+            height: parent.height
 
-            Column {
-                spacing: 6
-                topPadding: 10
-                leftPadding: 10
-                width: parent.width - 20
-                height: parent.height
+            Item {
+                id: headerArea
 
-                Item {
-                    width: parent.width
-                    height: 26
+                width: parent.width
+                height: headerHeight
 
-                    Text {
-                        id: playlistText
-
-                        text: qsTr("播放列表")
-                        font: DTK.fontManager.t5
-                        color: Util.textColor
-                    }
-
-                }
-
-                Item {
-                    width: parent.width
-                    height: 17
+                Column {
+                    spacing: 6
+                    topPadding: 10
+                    leftPadding: 10
+                    width: parent.width - 20
+                    height: parent.height
 
                     Item {
-                        width: parent.width * 0.3
-                        height: parent.height
-                        anchors.left: parent.left
+                        width: parent.width
+                        height: 26
 
                         Text {
-                            id: songsCountText
+                            id: playlistText
 
-                            text: playlistMediaCount + " 首歌曲"
+                            text: qsTr("播放列表")
+                            font: DTK.fontManager.t5
                             color: Util.textColor
-                            font: DTK.fontManager.t7
                         }
 
                     }
 
-                    ToolButton {
-                        id: deleteBtn
+                    Item {
+                        width: parent.width
+                        height: 17
 
-                        height: 20
-                        anchors.right: parent.right
-                        anchors.rightMargin: 2
-                        icon.name: "playlist_delete"
-                        icon.width: 20
-                        icon.height: 20
-                        enabled: playlistMediaCount == 0 ? false : true
-                        text: "清空"
-                        font: DTK.fontManager.t9
-                        display: AbstractButton.TextBesideIcon
-                        spacing: 1
-                        padding: 0
-                        onClicked: {
-                            Player.clearPlaylist();
+                        Item {
+                            width: parent.width * 0.3
+                            height: parent.height
+                            anchors.left: parent.left
+
+                            Text {
+                                id: songsCountText
+
+                                text: playlistMediaCount + " 首歌曲"
+                                color: Util.textColor
+                                font: DTK.fontManager.t7
+                            }
+
                         }
 
-                        textColor: Palette {
-                            hovered: palette.highlight
+                        ToolButton {
+                            id: deleteBtn
+
+                            height: 20
+                            anchors.right: parent.right
+                            anchors.rightMargin: 2
+                            icon.name: "playlist_delete"
+                            icon.width: 20
+                            icon.height: 20
+                            enabled: playlistMediaCount == 0 ? false : true
+                            text: "清空"
+                            font: DTK.fontManager.t9
+                            display: AbstractButton.TextBesideIcon
+                            spacing: 1
+                            padding: 0
+                            onClicked: {
+                                Player.clearPlaylist();
+                            }
+
+                            textColor: Palette {
+                                hovered: palette.highlight
+                            }
+
                         }
 
                     }
@@ -127,100 +150,100 @@ FloatingPanel {
 
             }
 
-        }
+            ListView {
+                id: playlistView
 
-        ListView {
-            id: playlistView
+                width: parent.width
+                height: parent.height - headerHeight
+                anchors.left: parent.left
+                clip: true
+                focus: true
 
-            width: parent.width
-            height: parent.height - headerHeight
-            anchors.left: parent.left
-            clip: true
-            focus: true
+                ScrollBar.vertical: ScrollBar {
+                }
 
-            ScrollBar.vertical: ScrollBar {
-            }
+                delegate: PlaylistDelegate {
+                    id: playlistDelegate
 
-            delegate: PlaylistDelegate {
-                id: playlistDelegate
+                    width: 300
+                    height: 56
+                    x: 10
+                    backgroundVisible: index % 2 === 0
+                }
 
-                width: 300
-                height: 56
-                x: 10
-                backgroundVisible: index % 2 === 0
-            }
-
-        }
-
-    }
-
-    Connections {
-        function onStopped() {
-            isPlaylistShow = false;
-        }
-
-        target: playlistHideAnimation
-    }
-
-    background: D.InWindowBlur {
-        implicitWidth: playlistRoot.width
-        implicitHeight: playlistRoot.height
-        radius: 32
-        offscreen: true
-
-        D.ItemViewport {
-            anchors.fill: parent
-            fixed: true
-            sourceItem: parent
-            radius: playlistRoot.radius
-            hideSource: false
-        }
-
-        BoxShadow {
-            anchors.fill: backgroundRect
-            shadowOffsetX: 0
-            shadowOffsetY: 4
-            shadowColor: playlistRoot.D.ColorSelector.dropShadowColor
-            shadowBlur: 20
-            cornerRadius: backgroundRect.radius
-            spread: 0
-            hollow: true
-        }
-
-        Rectangle {
-            id: backgroundRect
-
-            anchors.fill: parent
-            radius: playlistRoot.radius
-            color: playlistRoot.D.ColorSelector.backgroundColor
-
-            border {
-                width: 0
             }
 
         }
 
-    }
+        Connections {
+            function onStopped() {
+                isPlaylistShow = false;
+            }
 
-    NumberAnimation on x {
-        id: playlistRaiseAnimation
+            target: playlistHideAnimation
+        }
 
-        running: false
-        from: rootWindow.width
-        to: rootWindow.width - width - 10
-        duration: 500
-        easing.type: Easing.OutQuart
-    }
+        background: D.InWindowBlur {
+            implicitWidth: playlistRoot.width
+            implicitHeight: playlistRoot.height
+            radius: 32
+            offscreen: true
 
-    NumberAnimation on x {
-        id: playlistHideAnimation
+            D.ItemViewport {
+                anchors.fill: parent
+                fixed: true
+                sourceItem: parent
+                radius: playlistRoot.radius
+                hideSource: false
+            }
 
-        running: false
-        from: rootWindow.width - width - 10
-        to: rootWindow.width
-        duration: 300
-        easing.type: Easing.OutQuart
-        onStopped: playlistHided()
+            BoxShadow {
+                anchors.fill: backgroundRect
+                shadowOffsetX: 0
+                shadowOffsetY: 4
+                shadowColor: playlistRoot.D.ColorSelector.dropShadowColor
+                shadowBlur: 20
+                cornerRadius: backgroundRect.radius
+                spread: 0
+                hollow: true
+            }
+
+            Rectangle {
+                id: backgroundRect
+
+                anchors.fill: parent
+                radius: playlistRoot.radius
+                color: playlistRoot.D.ColorSelector.backgroundColor
+
+                border {
+                    width: 0
+                }
+
+            }
+
+        }
+
+        NumberAnimation on x {
+            id: playlistRaiseAnimation
+
+            running: false
+            from: rootWindow.width
+            to: rootWindow.width - 320 - 10
+            duration: 500
+            easing.type: Easing.OutQuart
+        }
+
+        NumberAnimation on x {
+            id: playlistHideAnimation
+
+            running: false
+            from: rootWindow.width - 320 - 10
+            to: rootWindow.width
+            duration: 300
+            easing.type: Easing.OutQuart
+            onStopped: playlistHided()
+        }
+
     }
 
 }
