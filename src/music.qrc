@@ -70,5 +70,6 @@
         <file>qml/user/UserDynamic.qml</file>
 
         <file>qml/settings/Settings.qml</file>
+        <file>qml/settings/Common.qml</file>
     </qresource>
 </RCC>

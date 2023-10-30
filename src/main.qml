@@ -14,8 +14,6 @@ import "router"
 import "util"
 
 ApplicationWindow {
-    // 获取账户信息
-
     id: rootWindow
 
     property bool isLogin: false
