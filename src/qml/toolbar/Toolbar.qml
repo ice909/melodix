@@ -43,7 +43,7 @@ FloatingPanel {
     // 是否显示音量调节面板
     property bool isVolSliderShow: false
     property int contentItemSpacing: 8
-    property int leftPaddingWidth: 20
+    property int leftPaddingWidth: 10
     property int rightPaddingWidth: 10
     property int coverRectWidth: 40
     property int infoRectWidth: 142
@@ -180,6 +180,7 @@ FloatingPanel {
         anchors.fill: parent
         spacing: contentItemSpacing
         leftPadding: leftPaddingWidth
+        rightPadding: rightPaddingWidth
 
         Rectangle {
             width: coverRectWidth
@@ -221,6 +222,29 @@ FloatingPanel {
                         font.pixelSize: 13
                         elide: Text.ElideRight
                         anchors.verticalCenter: parent.verticalCenter
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onEntered: {
+                                if (songTitle.length > 0)
+                                    titleTooltip.visible = true;
+
+                            }
+                            onExited: {
+                                if (songTitle.length > 0)
+                                    titleTooltip.visible = false;
+
+                            }
+                        }
+
+                        ToolTip {
+                            id: titleTooltip
+
+                            text: songTitle
+                        }
+
                     }
 
                     Image {
@@ -246,6 +270,28 @@ FloatingPanel {
                         family: "SourceHanSansSC, SourceHanSansSC-Normal"
                         pixelSize: 12
                         weight: Font.Medium
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onEntered: {
+                            if (artistStr.length > 0)
+                                artistTooltip.visible = true;
+
+                        }
+                        onExited: {
+                            if (artistStr.length > 0)
+                                artistTooltip.visible = false;
+
+                        }
+                    }
+
+                    ToolTip {
+                        id: artistTooltip
+
+                        text: artistStr
                     }
 
                 }
