@@ -1,3 +1,17 @@
+melodix (1.2.0) UNRELEASED; urgency=medium
+
+  * fix Toolbar leftPadding is different from rightPadding
+  * The Settings page adds the Settings Category tab
+  * Fixed mouse wheel event penetrating playlist
+  * Optimize playlist display/hide logic
+  * Home recommended Playlist Add View all buttons
+  * update `/banner` interface
+  * Cover of the track mouse hover background color to follow the active color
+  * Nickname pop-up menu Add My message button
+  * fix lyric fixed page mouse event penetration
+
+ -- ice <tonimayloneya@gmail.com>  Tue, 21 Nov 2023 21:20:21 +0800
+
 melodix (1.1.7) UNRELEASED; urgency=medium
 
   * fixed page mouse event penetration
