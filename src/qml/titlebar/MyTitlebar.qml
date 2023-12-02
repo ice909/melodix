@@ -52,21 +52,14 @@ TitleBar {
                 width: parent.width / 3
             }
 
-            AvatarButton {
-                id: accoutBtn
-
-                anchors.right: nickNameBtn.left
-                width: parent.height
-                height: parent.height
-            }
-
             NickNameButton {
                 id: nickNameBtn
 
                 anchors.right: parent.right
-                width: parent.height * 1.5
+                width: 100
                 height: parent.height
             }
+
         }
 
     }

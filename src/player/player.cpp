@@ -204,6 +204,19 @@ void Player::stop()
 }
 
 /**
+ * 播放或暂停 
+ */
+void Player::playOrPause()
+{
+    if (m_playState) {
+        pause();
+    } else {
+        play();
+    }
+    emit playStateChanged();
+}
+
+/**
  * 暂停播放，切换到播放列表中的下一首歌曲，
  * 然后继续播放。
  */

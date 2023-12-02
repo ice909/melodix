@@ -26,7 +26,6 @@
         <file>router/qmldir</file>
 
         <file>qml/titlebar/MyTitlebar.qml</file>
-        <file>qml/titlebar/AvatarButton.qml</file>
         <file>qml/titlebar/MySearchEdit.qml</file>
         <file>qml/titlebar/NickNameButton.qml</file>
 
@@ -63,12 +62,7 @@
         
         <file>util/Util.qml</file>
         <file>util/qmldir</file>
-
-        <file>qml/user/User.qml</file>
-        <file>qml/user/UserHeaderRegion.qml</file>
-        <file>qml/user/UserPlaylist.qml</file>
-        <file>qml/user/UserDynamic.qml</file>
-
+        
         <file>qml/settings/Settings.qml</file>
         <file>qml/settings/Common.qml</file>
     </qresource>

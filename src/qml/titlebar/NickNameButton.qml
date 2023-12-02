@@ -6,31 +6,50 @@ import QtQuick.Layouts 1.7
 import org.deepin.dtk 1.0
 
 WindowButton {
-
-    Label {
-        
-        anchors.fill: parent
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-        text: isLogin ? userNickname : "未登录"
-    }    
-
     onClicked: {
-        console.log("nickname clicked");
         accountMenu.visible = !accountMenu.visible;
     }
 
+    Row {
+        anchors.fill: parent
+
+        RoundedImage {
+            id: avatarImage
+
+            imgSrc: isLogin ? userAvatar : "qrc:/dsg/img/avatar.svg"
+            width: 35
+            height: 35
+            borderRadius: 35
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        Item {
+            width: 10
+            height: 10
+        }
+
+        Text {
+            anchors.verticalCenter: parent.verticalCenter
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
+            text: isLogin ? userNickname : "未登录"
+        }
+
+    }
+
     Popup {
-        id: accountMenu
         //TODO: 重新布局
 
-        x: root.x - 62
+        id: accountMenu
+
+        x: root.x - 25
         y: root.height
         visible: false
         width: 150
         // 30 * 2 是按钮高度，10 * 2是spacing ，10是margin-bottom
         height: 30 * 3 + 10 * 2 + 20
         z: 1
+        Component.onCompleted: console.log("accountMenu completed")
 
         ColumnLayout {
             anchors.centerIn: parent
@@ -96,14 +115,11 @@ WindowButton {
             blurRadius: 20
         }
 
-        
-        Component.onCompleted: console.log("accountMenu completed");
-        
-
     }
+
     background: Rectangle {
         anchors.fill: parent
         color: "transparent"
     }
-    
+
 }

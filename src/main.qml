@@ -154,6 +154,12 @@ ApplicationWindow {
             height: parent.height - 70
             visible: !isLyricShow
             color: Util.pageBackgroundColor
+            focus: true
+            Keys.onPressed: {
+                if (event.key === Qt.Key_Space)
+                    Player.playOrPause();
+
+            }
 
             anchors {
                 left: sidebar.right

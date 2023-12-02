@@ -62,11 +62,6 @@ Item {
         "path": "login",
         "component": "qml/login/Login.qml"
     }
-    // 个人中心页
-    property var routeUser: {
-        "path": "user",
-        "component": "qml/user/User.qml"
-    }
     // 设置页
     property var routeSetting: {
         "path": "setting",
@@ -165,14 +160,6 @@ Item {
     // 显示登录页
     function showLogin() {
         const r = clone(routeLogin);
-        routeCurrent = r;
-        routeHistory.push(r);
-        signalNavigate(r, false);
-    }
-
-    // 显示个人中心页
-    function showUser() {
-        const r = clone(routeUser);
         routeCurrent = r;
         routeHistory.push(r);
         signalNavigate(r, false);

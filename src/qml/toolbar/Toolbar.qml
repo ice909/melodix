@@ -134,6 +134,11 @@ FloatingPanel {
         API.likeMusic(Player.getId(), favorite ? "false" : "true");
     }
 
+    Keys.onPressed: {
+        if (event.key === Qt.Key_Space)
+            Player.playOrPause();
+
+    }
     height: 60
     width: parent.width
     z: 10

@@ -27,6 +27,8 @@ public slots:
     void pause();
     // 停止
     void stop();
+    // 播放或暂停
+    void playOrPause();
     // 下一首
     void next();
     // 上一首
