@@ -8,6 +8,7 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.2
 import org.deepin.dtk 1.0
+import org.deepin.dtk.style 1.0 as DS
 
 Item {
     id: lyricPage
@@ -17,6 +18,8 @@ Item {
     property string artist: ""
     property string album: ""
     property string bgImgPath: "qrc:/dsg/img/music.svg"
+    // 是否有歌词
+    property bool hasLyric: true
     property ListModel lrcModel
 
     signal currentIndexChanged(int index)
@@ -24,6 +27,11 @@ Item {
     function getLyric() {
         function onReply(lrc) {
             API.onLyricCompleted.disconnect(onReply);
+            if (lrc === "") {
+                hasLyric = false;
+                return ;
+            }
+            hasLyric = true;
             var lines = lrc.split("\n");
             for (var i = 0; i < lines.length; i++) {
                 var line = lines[i].trim();
@@ -131,7 +139,10 @@ Item {
     }
 
     MouseArea {
-        anchors.fill: parent
+        width: parent.width
+        height: parent.height - DS.Style.titleBar.height
+        anchors.top: parent.top
+        anchors.topMargin: DS.Style.titleBar.height
         hoverEnabled: true
     }
 
@@ -258,6 +269,25 @@ Item {
 
                             LyricRect {
                                 id: lyricRect
+
+                                visible: hasLyric
+                            }
+
+                            Rectangle {
+                                id: noLyricRect
+
+                                anchors.fill: parent
+                                visible: !hasLyric
+                                color: "transparent"
+
+                                Text {
+                                    anchors.centerIn: parent
+                                    text: "暂无歌词"
+                                    font: DTK.fontManager.t6
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+
                             }
 
                         }

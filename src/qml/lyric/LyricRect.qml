@@ -39,9 +39,6 @@ Item {
                 //console.log("originY:" + originY + "     currentIndex:" + currentIndex + "      " )
                 listViewLyric.contentY = 0 + originY;
             } else {
-                //highlightItemHeight
-                //console.log("originY:" + originY + "     contentY:" + contentY)
-
                 if (currentIndex <= lrcModel.count - Math.round(lyricRect.height / 2 / itemHeight))
                     listViewLyric.contentY = (currentIndex - Math.round((lyricRect.height - itemHeight) / itemHeight / 2)) * itemHeight + originY;
 
@@ -144,6 +141,7 @@ Item {
                 id: mouseArea
 
                 anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
                 onDoubleClicked: {
                     console.log("歌词双击:  index:" + index);
                     curIndex = index;
