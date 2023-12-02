@@ -1,3 +1,10 @@
+melodix (1.2.1) UNRELEASED; urgency=medium
+
+  * refactor Player
+  * update interface /artists -> /artist/top/song
+
+ -- ice <tonimayloneya@gmail.com>  Sat, 2 Dec 2023 11:07:45 +0800
+
 melodix (1.2.0) UNRELEASED; urgency=medium
 
   * fix Toolbar leftPadding is different from rightPadding
