@@ -1,5 +1,11 @@
 #include "player.h"
+#include "api.h"
+#include "playlistmodel.h"
 #include "worker.h"
+
+#include <QDir>
+#include <QJsonObject>
+#include <QTime>
 
 QPointer<Player> Player::INSTANCE = nullptr;
 
@@ -14,10 +20,8 @@ Player *Player::instance()
 Player::Player(QObject *parent)
     : QObject(parent)
     , m_player(new QMediaPlayer(this))
-    , m_playlistModel(new PlaylistModel(this))
-    , m_playlist(new QMediaPlaylist(this))
-    , m_singleTrackModel(new PlaylistModel(this))
-    , m_singleTrackPlaylist(new QMediaPlaylist(this))
+    , m_playlist(new Playlist(this))
+    , m_singleTrackPlaylist(new Playlist(this))
     , m_settings(
           new QSettings(QDir::homePath() + "/.config/ice/player.ini", QSettings::IniFormat, this))
     , m_api(new API(this))
@@ -26,82 +30,36 @@ Player::Player(QObject *parent)
     m_volume = m_settings->value("Volume/DefaultVolume", 50).toInt();
     // 读取静音配置
     m_mute = m_settings->value("Volume/Mute", false).toBool();
-    // 读取播放模式配置 把第一种播放模式去除，只要后面三种
-    int playbackMode = m_settings->value("Playback/PlaybackMode", 3).toInt();
-    switchPlaybackMode(playbackMode);
+    // 读取播放模式配置
+    m_playbackMode = Playlist::PlayMode(m_settings->value("Playback/PlaybackMode", 1).toInt());
 
-    m_currentModel = m_singleTrackModel;
     m_currentPlaylist = m_singleTrackPlaylist;
-    m_player->setPlaylist(m_currentPlaylist);
 
-    m_singleTrackPlaylist->setPlaybackMode(m_playbackMode);
-    m_playlist->setPlaybackMode(m_playbackMode);
+    m_singleTrackPlaylist->setPlayMode(m_playbackMode);
+    m_playlist->setPlayMode(m_playbackMode);
 
     // 设置音量
     m_player->setVolume(m_volume);
     // 连接信号槽
     connect(m_player, &QMediaPlayer::positionChanged, this, &Player::onPositionChanged);
     connect(m_player, &QMediaPlayer::durationChanged, this, &Player::onDurationChanged);
+    connect(m_player, &QMediaPlayer::mediaStatusChanged, this, &Player::onMediaStatusChanged);
     /*******************************/
-    connect(m_playlist, &QMediaPlaylist::currentIndexChanged, this, &Player::onCurrentIndexChanged);
-    connect(m_playlist, &QMediaPlaylist::mediaInserted, this, &Player::onMediaCountChanged);
-    connect(m_playlist, &QMediaPlaylist::mediaRemoved, this, &Player::onMediaCountChanged);
+    connect(m_playlist, &Playlist::currentIndexChanged, this, &Player::onCurrentIndexChanged);
+    connect(m_playlist, &Playlist::songCountChanged, this, &Player::onMediaCountChanged);
     connect(m_singleTrackPlaylist,
-            &QMediaPlaylist::currentIndexChanged,
+            &Playlist::currentIndexChanged,
             this,
             &Player::onCurrentIndexChanged);
-    connect(m_singleTrackPlaylist,
-            &QMediaPlaylist::mediaInserted,
-            this,
-            &Player::onMediaCountChanged);
-    connect(m_singleTrackPlaylist,
-            &QMediaPlaylist::mediaRemoved,
-            this,
-            &Player::onMediaCountChanged);
+    connect(m_singleTrackPlaylist, &Playlist::songCountChanged, this, &Player::onMediaCountChanged);
 
-    connect(m_player,
-            QOverload<QMediaPlayer::Error>::of(&QMediaPlayer::error),
-            [=](QMediaPlayer::Error error) {
-                m_currentPlaylist->blockSignals(true);
-                qDebug() << "播放器错误: " << error;
-                int currentIndex = m_currentPlaylist->currentIndex() - 1;
-                m_currentPlaylist->clear();
-                m_currentPlaylist->blockSignals(false);
-                stop();
-                m_api->getSongUrl(m_currentModel->getAllId());
-                connect(m_api, &API::songUrlCompleted, [&](QJsonArray response) {
-                    qDebug() << "获取到的数组大小: " << response.size();
-                    // 定义一个数组，存放歌曲url
-                    QStringList urls;
-                    for (int i = 0; i < response.size(); ++i) {
-                        QJsonObject item = response[i].toObject();
-                        QString url = item["url"].toString();
-                        urls.append(url);
-                    }
-                    qDebug() << "歌曲url获取完成, 歌曲数量:" << urls.size();
-                    m_currentPlaylist->blockSignals(true);
-                    for (int i = 0; i < urls.size(); ++i) {
-                        m_currentPlaylist->addMedia(QUrl(urls[i]));
-                    }
-                    m_currentPlaylist->blockSignals(false);
-                    onMediaCountChanged(0, 0);
-                    qDebug() << "播放列表添加完成";
-                    qDebug() << "播放列表大小:" << m_currentPlaylist->mediaCount();
-                    play(currentIndex);
-                });
-            });
-
-    connect(m_playlist, &QMediaPlaylist::loadFailed, [=]() {
-        qDebug() << "播放列表加载失败";
-        stop();
-    });
+    connect(m_api, &API::songUrlCompleted, this, &Player::onSongUrlReady);
 }
 
 /**
  * 添加单曲到播放列表
  * 会自动播放最新添加的歌曲
  *
- * @param url 歌曲的url
  * @param id 歌曲的id
  * @param name 歌曲的名字
  * @param pic 歌曲的图片（URL）
@@ -110,36 +68,33 @@ Player::Player(QObject *parent)
  * @param isVip 歌曲是否为VIP歌曲
  *
  */
-void Player::addSingleToPlaylist(const QString &url,
-                                 const int &id,
+void Player::addSingleToPlaylist(const int &id,
                                  const QString &name,
-                                 const QString &pic,
                                  const QString &artist,
+                                 const QString &pic,
                                  const QString &duration,
                                  const QString &album,
                                  const bool &isVip)
 {
-    // 判断添加的歌曲是否已经在播放列表中
-    int index = m_singleTrackModel->indexOfId(id);
+    // 判断要添加的歌曲是否已经在播放列表中
+    int index = m_singleTrackPlaylist->isSongExist(id);
     if (index != -1) {
-        m_singleTrackPlaylist->moveMedia(index, m_singleTrackPlaylist->mediaCount() - 1);
-        m_singleTrackModel->interchangeSong(index, m_singleTrackPlaylist->mediaCount() - 1);
+        qDebug() << "歌曲已经存在";
+        // 将歌曲移动到播放列表的最后
+        m_singleTrackPlaylist->moveToLast(index);
     } else {
-        m_singleTrackPlaylist->addMedia(QUrl(url));
-        m_singleTrackModel->addSong(id, name, pic, artist, duration, album, isVip);
+        m_singleTrackPlaylist->addSong(id, name, artist, pic, duration, album, isVip);
     }
-    if (m_currentModel != m_singleTrackModel) {
+    if (m_currentPlaylist != m_singleTrackPlaylist) {
         switchToSingleTrackMode();
     }
-    emit mediaCountChanged(m_currentPlaylist->mediaCount());
-    play(m_currentPlaylist->mediaCount() - 1);
+    play(m_currentPlaylist->getSongCount() - 1);
 }
 
 /**
  * 添加歌单歌曲到播放列表
- * 添加后需要由用户受到调用play(index)的方法，播放歌曲
+ * 添加后需要调用play(index)的方法，播放歌曲
  *
- * @param url 歌曲的url
  * @param id 歌曲的id
  * @param name 歌曲的名字
  * @param pic 歌曲的图片（URL）
@@ -148,18 +103,16 @@ void Player::addSingleToPlaylist(const QString &url,
  * @param isVip 歌曲是否为VIP歌曲
  *
  */
-void Player::addPlaylistToPlaylist(const QString &url,
-                                   const int &id,
+void Player::addPlaylistToPlaylist(const int &id,
                                    const QString &name,
-                                   const QString &pic,
                                    const QString &artist,
+                                   const QString &pic,
                                    const QString &duration,
                                    const QString &album,
                                    const bool &isVip)
 {
-    m_playlist->addMedia(QUrl(url));
-    m_playlistModel->addSong(id, name, pic, artist, duration, album, isVip);
-    if (m_currentModel != m_playlistModel) {
+    m_playlist->addSong(id, name, artist, pic, duration, album, isVip);
+    if (m_currentPlaylist != m_playlist) {
         switchToPlaylistMode();
     }
 }
@@ -175,11 +128,8 @@ void Player::addPlaylistToPlaylist(const QString &url,
 void Player::switchToSingleTrackMode()
 {
     m_currentPlaylist = m_singleTrackPlaylist;
-    m_currentModel = m_singleTrackModel;
-    m_player->setPlaylist(m_currentPlaylist);
     // 切换到当前播放列表需要把另一个播放列表清空
     m_playlist->clear();
-    m_playlistModel->clear();
 }
 
 /**
@@ -193,11 +143,8 @@ void Player::switchToSingleTrackMode()
 void Player::switchToPlaylistMode()
 {
     m_currentPlaylist = m_playlist;
-    m_currentModel = m_playlistModel;
-    m_player->setPlaylist(m_currentPlaylist);
     // 切换到当前播放列表需要把另一个播放列表清空
     m_singleTrackPlaylist->clear();
-    m_singleTrackModel->clear();
 }
 
 /************* Controller *****************/
@@ -230,10 +177,6 @@ void Player::play()
  */
 void Player::play(int index)
 {
-    QMediaPlayer::MediaStatus status = m_player->mediaStatus();
-    if (status == QMediaPlayer::UnknownMediaStatus || status == QMediaPlayer::EndOfMedia
-        || status == QMediaPlayer::InvalidMedia)
-        return;
     m_currentPlaylist->setCurrentIndex(index);
     play();
     m_playState = true;
@@ -266,10 +209,7 @@ void Player::stop()
  */
 void Player::next()
 {
-    pause();
     m_currentPlaylist->next();
-    qDebug() << "切换下一首：" << m_currentPlaylist->currentIndex();
-    play();
 }
 
 /**
@@ -278,10 +218,7 @@ void Player::next()
  */
 void Player::previous()
 {
-    pause();
     m_currentPlaylist->previous();
-    qDebug() << "切换上一首：" << m_currentPlaylist->currentIndex();
-    play();
 }
 
 /*************** Slots ********************/
@@ -319,18 +256,10 @@ void Player::onDurationChanged(qint64 duration)
  */
 void Player::onCurrentIndexChanged(int index)
 {
-    // 判断当前播放歌曲的url是不是为空，
-    // 无版权的歌曲获取到的url是空的，
-    // 这时切换下一首
-    if (m_currentPlaylist->currentMedia().request().url().toString().isEmpty()) {
-        qDebug() << "当前歌曲无版权，切换下一首";
-        next();
-        return;
-    }
-    //qDebug() << "playlist current index changed signal : " << index;
-    if (index == -1) {
-        m_currentPlaylist->setCurrentIndex(0);
-    }
+    const int id = m_currentPlaylist->getCurrentId();
+
+    getSongUrlById(id);
+
     emit playlistCurrentIndexChanged();
 }
 
@@ -341,9 +270,23 @@ void Player::onCurrentIndexChanged(int index)
  * @param end 媒体计数变化结束索引
  *
  */
-void Player::onMediaCountChanged(int start, int end)
+void Player::onMediaCountChanged(int count)
 {
-    emit mediaCountChanged(m_currentPlaylist->mediaCount());
+    emit mediaCountChanged(m_currentPlaylist->getSongCount());
+}
+
+/**
+ * 当媒体状态发生变化时触发
+ *
+ * @param status 媒体状态
+ *
+ */
+void Player::onMediaStatusChanged(QMediaPlayer::MediaStatus status)
+{
+    if (status == QMediaPlayer::EndOfMedia) {
+        qDebug() << "播放结束";
+        m_currentPlaylist->next();
+    }
 }
 
 /**************** Set ********************/
@@ -382,8 +325,8 @@ void Player::setMute(bool mute)
  */
 void Player::setPlaybackMode(int mode)
 {
-    switchPlaybackMode(mode);
-    m_currentPlaylist->setPlaybackMode(m_playbackMode);
+    m_playbackMode = Playlist::PlayMode(mode);
+    m_currentPlaylist->setPlayMode(m_playbackMode);
     m_settings->setValue("Playback/PlaybackMode", mode);
 }
 
@@ -416,8 +359,8 @@ void Player::setPosition(qint64 newPosition)
  */
 int Player::getId()
 {
-    if (m_currentPlaylist->mediaCount() != 0)
-        return m_currentModel->getId(m_currentPlaylist->currentIndex());
+    if (m_currentPlaylist->getSongCount() != 0)
+        return m_currentPlaylist->getCurrentId();
 
     return 0;
 }
@@ -429,9 +372,8 @@ int Player::getId()
  */
 QString Player::getName()
 {
-    if (m_currentPlaylist->mediaCount() != 0) {
-        qDebug() << m_currentModel->getTitle(m_currentPlaylist->currentIndex());
-        return m_currentModel->getTitle(m_currentPlaylist->currentIndex());
+    if (m_currentPlaylist->getSongCount() != 0) {
+        return m_currentPlaylist->getCurrentName();
     }
 
     return "";
@@ -444,8 +386,8 @@ QString Player::getName()
  */
 QString Player::getArtist()
 {
-    if (m_currentPlaylist->mediaCount() != 0)
-        return m_currentModel->getAuthor(m_currentPlaylist->currentIndex());
+    if (m_currentPlaylist->getSongCount() != 0)
+        return m_currentPlaylist->getCurrentArtist();
 
     return "";
 }
@@ -457,8 +399,8 @@ QString Player::getArtist()
  */
 QString Player::getPic()
 {
-    if (m_currentPlaylist->mediaCount() != 0)
-        return m_currentModel->getImageUrl(m_currentPlaylist->currentIndex());
+    if (m_currentPlaylist->getSongCount() != 0)
+        return m_currentPlaylist->getCurrentPic();
 
     return "qrc:/dsg/img/no_music.svg";
 }
@@ -495,15 +437,15 @@ qint64 Player::getPosition()
 
 QString Player::getAlbum()
 {
-    if (m_currentPlaylist->mediaCount() != 0)
-        return m_currentModel->getAlbum(m_currentPlaylist->currentIndex());
+    if (m_currentPlaylist->getSongCount() != 0)
+        return m_currentPlaylist->getCurrentAlbum();
     return QString();
 }
 
 bool Player::getIsVip()
 {
-    if (m_currentPlaylist->mediaCount() != 0)
-        return m_currentModel->getIsVip(m_currentPlaylist->currentIndex());
+    if (m_currentPlaylist->getSongCount() != 0)
+        return m_currentPlaylist->getCurrentIsVip();
 
     return false;
 }
@@ -545,8 +487,8 @@ int Player::getPlaybackMode()
  */
 int Player::getCurrentIndex()
 {
-    qDebug() << "调用，当前播放歌曲的下标：" << m_currentPlaylist->currentIndex();
-    return m_currentPlaylist->currentIndex();
+    qDebug() << "当前播放歌曲的下标：" << m_currentPlaylist->getCurrentIndex();
+    return m_currentPlaylist->getCurrentIndex();
 }
 
 /**
@@ -557,7 +499,7 @@ int Player::getCurrentIndex()
  */
 QObject *Player::getPlaylistModel()
 {
-    return m_currentModel;
+    return m_currentPlaylist->getPlaylistModel();
 }
 
 /**
@@ -589,7 +531,7 @@ QString Player::getFormatPosition()
  */
 int Player::getMediaCount()
 {
-    return m_currentPlaylist->mediaCount();
+    return m_currentPlaylist->getSongCount();
 }
 
 /**
@@ -616,37 +558,33 @@ void Player::clearPlaylist()
     m_duration = 0;
 
     m_currentPlaylist->clear();
-    m_currentModel->clear();
 
     emit playlistCleared();
 }
 
 /**
- * 切换播放模式
+ * 根据歌曲ID去请求歌曲Url
  *
- * @param model 播放模式对应的数字
+ * @param id 歌曲ID
  *
  * @return void
  */
-void Player::switchPlaybackMode(int model)
+void Player::getSongUrlById(const int &id)
 {
-    switch (model) {
-    case 1:
-        m_playbackMode = QMediaPlaylist::CurrentItemInLoop;
-        break;
-    case 2:
-        m_playbackMode = QMediaPlaylist::Sequential;
-        break;
-    case 3:
-        m_playbackMode = QMediaPlaylist::Loop;
-        break;
-    case 4:
-        m_playbackMode = QMediaPlaylist::Random;
-        break;
-    default:
-        m_playbackMode = QMediaPlaylist::Loop;
-        break;
+    m_api->getSongUrl(QString::number(id));
+}
+
+void Player::onSongUrlReady(const QJsonArray &response)
+{
+    qDebug() << "获取歌曲Url完成";
+    const QString url = response[0].toObject()["url"].toString();
+    if (url.isEmpty()) {
+        qDebug() << "歌曲无版权";
+        m_currentPlaylist->next();
+        return;
     }
+    m_player->setMedia(QUrl(url));
+    play();
 }
 
 Player::~Player()

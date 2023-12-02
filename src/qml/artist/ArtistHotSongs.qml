@@ -1,5 +1,6 @@
 import "../../util"
 import "../widgets"
+import Melodix.Player 1.0
 import QtQuick 2.0
 import QtQuick.Layouts 1.11
 import QtQuick.Window 2.11
@@ -90,7 +91,7 @@ Item {
                         color = Qt.rgba(0, 0, 0, 0.1);
                     }
                     onClicked: {
-                        getMusicUrl(modelData.id, modelData.name, modelData.al.picUrl, modelData.ar[0].name, Util.formatDuration(modelData.dt), modelData.al.name, Util.isVip(modelData.fee));
+                        Player.addSingleToPlaylist(modelData.id, modelData.name, modelData.ar[0].name, modelData.al.picUrl, Util.formatDuration(modelData.dt), modelData.al.name, Util.isVip(modelData.fee));
                     }
                 }
 

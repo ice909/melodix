@@ -1,6 +1,6 @@
 import "../../router"
-import "../widgets"
 import "../../util"
+import "../widgets"
 import Melodix.API 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -16,16 +16,13 @@ Item {
     function getArtistSongs() {
         function onReply(songs) {
             API.onArtistSongsCompleted.disconnect(onReply);
-            if(songs.length > 12){
-                hotSongsCount = 3
+            if (songs.length > 12) {
+                hotSongsCount = 3;
                 artist_hot_songs.lists = songs.slice(0, 12);
-            }else {
+            } else {
                 hotSongsCount = Math.ceil(songs.length / 4);
                 artist_hot_songs.lists = songs.slice(0, hotSongsCount);
             }
-            
-            
-            
             initing = false;
         }
 
@@ -379,7 +376,7 @@ Item {
                 id: artist_hot_songs
 
                 width: scrollWidth
-                height: (scrollWidth - 30 * 3)  / 16 * hotSongsCount + 10 * 2
+                height: (scrollWidth - 30 * 3) / 16 * hotSongsCount + 10 * 2
             }
 
         }

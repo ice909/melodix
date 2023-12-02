@@ -34,12 +34,12 @@ FloatingPanel {
     // 播放状态：暂停/播放
     property bool playStatus: false
     // 播放模式
-    // 1~4 单曲循环 顺序播放 循环播放 随机播放
-    property int playMode: 3
+    // 0~2 单曲循环 循环播放 随机播放
+    property int playMode: 1
     // 播放模式对应的图标
-    property var modeIcon: ["toolbar_music_repeatcycle", "toolbar_music_sequence", "toolbar_music_repeat", "toolbar_music_shuffle"]
+    property var modeIcon: ["toolbar_music_repeatcycle", "toolbar_music_repeat", "toolbar_music_shuffle"]
     // 播放模式对应的tooltip
-    property var modeIconTooltTip: ["单曲循环", "顺序播放", "循环播放", "随机播放"]
+    property var modeIconTooltTip: ["单曲循环", "循环播放", "随机播放"]
     // 是否显示音量调节面板
     property bool isVolSliderShow: false
     property int contentItemSpacing: 8
@@ -409,12 +409,12 @@ FloatingPanel {
                     width: 36
                     height: 36
                     anchors.verticalCenter: parent.verticalCenter
-                    icon.name: modeIcon[playMode - 1]
+                    icon.name: modeIcon[playMode]
                     icon.width: 36
                     icon.height: 36
                     onClicked: {
-                        if (playMode == 4)
-                            playMode = 1;
+                        if (playMode == 2)
+                            playMode = 0;
                         else
                             playMode++;
                         Player.setPlaybackMode(playMode);
@@ -422,7 +422,7 @@ FloatingPanel {
 
                     ToolTip {
                         visible: playModeBtn.hovered
-                        text: modeIconTooltTip[playMode - 1]
+                        text: modeIconTooltTip[playMode]
                     }
 
                 }

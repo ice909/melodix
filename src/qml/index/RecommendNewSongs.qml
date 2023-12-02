@@ -1,5 +1,6 @@
 import "../../util"
 import "../widgets"
+import Melodix.Player 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import org.deepin.dtk 1.0
@@ -96,8 +97,7 @@ Item {
                         color = Util.mouseReleasedColor;
                     }
                     onClicked: {
-                        //点击新歌时，获取歌曲id，拿着歌曲id去获取歌曲url
-                        getMusicUrl(modelData.id, modelData.song.name, modelData.picUrl, Util.spliceSinger(modelData.song.artists), Util.formatDuration(modelData.song.duration), modelData.song.album.name, Util.isVip(modelData.song.fee));
+                        Player.addSingleToPlaylist(modelData.id, modelData.song.name, Util.spliceSinger(modelData.song.artists), modelData.picUrl, Util.formatDuration(modelData.song.duration), modelData.song.album.name, Util.isVip(modelData.song.fee));
                     }
                 }
 

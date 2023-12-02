@@ -54,8 +54,8 @@ QHash<int, QByteArray> PlaylistModel::roleNames() const
 
 void PlaylistModel::addSong(const int &id,
                             const QString &title,
-                            const QString &imageUrl,
                             const QString &author,
+                            const QString &imageUrl,
                             const QString &duration,
                             const QString &album,
                             const bool &isVip)
@@ -65,8 +65,8 @@ void PlaylistModel::addSong(const int &id,
     Song song;
     song.id = id;
     song.title = title;
-    song.imageUrl = imageUrl;
     song.author = author;
+    song.imageUrl = imageUrl;
     song.duration = duration;
     song.album = album;
     song.isVip = isVip;
@@ -161,7 +161,7 @@ void PlaylistModel::clear()
     endResetModel();
 }
 
-void PlaylistModel::interchangeSong(const int index,const int to)
+void PlaylistModel::interchangeSong(const int index, const int to)
 {
     // 交换两个Song
     m_songs.move(index, to);

@@ -14,14 +14,14 @@ Item {
     // 歌单所有歌曲是否以经全部添加到了播放列表
     property bool isAddToPlaylist: false
     property string myFavoriteId: ""
-    property int playlistAllSongsCount: 0
-    property int listViewCount: 0
+    // 歌单歌曲总数
+    property int playlistSongAllCount: 0
+    // 当前播放的歌曲在歌单中的索引
     property int currentSelectIndex: -1
     // 保存添加到listview的数据
     property var songs: []
-    // 保存添加到播放列表的歌曲url,以及可以作为判断已经添加到播放列表的歌曲数
-    property var songUrls: []
-    property bool initing: true
+    // 已经添加到播放列表的歌曲数量
+    property int playlistSongCount: 0
     // 一次取出的歌曲数量
     property int limit: 0
     // 偏移量
@@ -30,43 +30,39 @@ Item {
     property bool loadMore: false
     // 是否加载完全部歌曲
     property bool hasMore: true
+    property bool initing: true
 
     function playPlaylistAllMusic(index = -1) {
-        function onReply(urls) {
-            API.onSongUrlCompleted.disconnect(onReply);
-            var urlOffset = songUrls.length;
-            for (var i = 0; i < urls.length; i++) {
-                var song = urls[i];
-                songUrls[i + urlOffset] = song.url;
-            }
-            for (var i = urlOffset; i < songs.length; i++) {
-                Player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));
-            }
-            if (index != -1)
-                Player.play(index);
-            else
-                Player.play(0);
-            Player.setCurrentPlaylistId(myFavoriteId);
-            if (songUrls.length == playlistAllSongsCount)
-                isAddToPlaylist = true;
-
-        }
-
         Player.switchToPlaylistMode();
         if (Player.getCurrentPlaylistId() != "" && Player.getCurrentPlaylistId() != myFavoriteId) {
             console.log("当前歌单和播放列表中以添加的歌曲不是来自同一个歌单，先清空播放列表，再添加歌曲");
             Player.clearPlaylist();
         }
-        if (index != -1 && index < songUrls.length) {
+        // 判断点击的歌曲是否已经添加到播放列表
+        // 如果添加了直接播放
+        if (index != -1 && index < playlistSongCount) {
             Player.play(index);
             return ;
         }
-        var ids = [];
-        for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
-        // 将所有id使用逗号连接成一个字符串
-        var concatenatedIds = ids.join(',');
-        API.onSongUrlCompleted.connect(onReply);
-        API.getSongUrl(concatenatedIds);
+        // 点击的歌曲不在播放列表中
+        // 将不在播放列表中的歌曲添加到播放列表
+        for (var i = playlistSongCount; i < songs.length; i++) {
+            Player.addPlaylistToPlaylist(songs[i].id, songs[i].name, Util.spliceSinger(songs[i].ar), songs[i].al.picUrl, Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));
+        }
+        playlistSongCount = songs.length;
+        // 如果没有传入index参数
+        // 则说明点击的是播放按钮
+        if (index != -1)
+            Player.play(index);
+        else
+            Player.play(0);
+        // 给Player类设置当前的播放列表id
+        Player.setCurrentPlaylistId(myFavoriteId);
+        // 如果playlistSongCount等于歌单歌曲总数
+        // 说明全部歌曲都已经添加到了播放列表
+        if (playlistSongCount == playlistSongAllCount)
+            isAddToPlaylist = true;
+
     }
 
     function getMyFavoriteSongs() {
@@ -78,17 +74,16 @@ Item {
                     "song": song
                 });
             }
-            listViewCount += newSongs.length;
             offset += newSongs.length;
             loadMore = false;
             initing = false;
             console.log("加载的歌曲数量: limit: " + limit + " offset: " + offset + " songs数组长度: " + songs.length);
         }
 
-        if (playlistAllSongsCount - offset > 50) {
+        if (playlistSongAllCount - offset > 50) {
             limit = 50;
         } else {
-            limit = playlistAllSongsCount - offset;
+            limit = playlistSongAllCount - offset;
             hasMore = false;
         }
         API.onPlaylistSongsCompleted.connect(onReply);
@@ -104,7 +99,7 @@ Item {
     }
 
     Component.onCompleted: {
-        playlistAllSongsCount = Router.routeCurrent.count;
+        playlistSongAllCount = Router.routeCurrent.count;
         myFavoriteId = Router.routeCurrent.id;
         Player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         Player.playlistCleared.connect(onPlaylistCleared);
@@ -167,7 +162,7 @@ Item {
 
                 width: scrollWidth
                 x: 20
-                height: listViewCount * 55 + (listViewCount - 1) * 5 + 30
+                height: offset * 55 + (offset - 1) * 5 + 30
                 spacing: 5
                 model: songListModel
                 clip: true

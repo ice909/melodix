@@ -16,9 +16,9 @@ Item {
     property bool isAddToPlaylist: false
     property string currentPlaylistId: ""
     property var songs: []
-    // 保存添加到播放列表的歌曲url,以及可以作为判断已经添加到播放列表的歌曲数
-    property var songUrls: []
-    // 已经加载到listview中的歌曲数量
+    // 已经添加到播放列表的歌曲数量
+    property int playlistSongCount: 0
+    // 当前选中的歌曲索引
     property int currentSelectIndex: -1
     // 歌单歌曲总数
     property int playlistSongAllCount: 0
@@ -59,33 +59,6 @@ Item {
     }
 
     function playPlaylistAllMusic(index = -1) {
-        function onReply(reply) {
-            API.onSongUrlCompleted.disconnect(onReply);
-            // 获取播放列表中的歌曲url数量，用作偏移量
-            var urlOffset = songUrls.length;
-            // 将新的歌曲url添加到songUrls数组中
-            for (var i = 0; i < reply.length; i++) {
-                songUrls[i + urlOffset] = reply[i].url;
-            }
-            // 将新的歌曲url添加到播放列表
-            for (var i = urlOffset; i < songs.length; i++) {
-                Player.addPlaylistToPlaylist(songUrls[i], songs[i].id, songs[i].name, songs[i].al.picUrl, Util.spliceSinger(songs[i].ar), Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));
-            }
-            // 如果没有传入index参数
-            // 则说明点击的是播放按钮
-            if (index != -1)
-                Player.play(index);
-            else
-                Player.play(0);
-            // 给Player类设置当前的播放列表id
-            Player.setCurrentPlaylistId(currentPlaylistId);
-            // 如果歌曲url总数等于歌单歌曲总数
-            // 说明全部歌曲都已经添加到了播放列表
-            if (songUrls.length == playlistSongAllCount)
-                isAddToPlaylist = true;
-
-        }
-
         // 切换播放列表
         Player.switchToPlaylistMode();
         if (Player.getCurrentPlaylistId() != "" && Player.getCurrentPlaylistId() != currentPlaylistId) {
@@ -94,18 +67,29 @@ Item {
         }
         // 判断点击的歌曲是否已经添加到播放列表
         // 如果添加了直接播放
-        if (index != -1 && index < songUrls.length) {
+        if (index != -1 && index < playlistSongCount) {
             Player.play(index);
             return ;
         }
         // 点击的歌曲不在播放列表中
         // 将不在播放列表中的歌曲添加到播放列表
-        var ids = [];
-        for (var i = songUrls.length; i < songs.length; i++) ids.push(songs[i].id)
-        // 将所有id使用逗号连接成一个字符串
-        var concatenatedIds = ids.join(',');
-        API.onSongUrlCompleted.connect(onReply);
-        API.getSongUrl(concatenatedIds);
+        for (var i = playlistSongCount; i < songs.length; i++) {
+            Player.addPlaylistToPlaylist(songs[i].id, songs[i].name, Util.spliceSinger(songs[i].ar), songs[i].al.picUrl, Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));
+        }
+        playlistSongCount = songs.length;
+        // 如果没有传入index参数
+        // 则说明点击的是播放按钮
+        if (index != -1)
+            Player.play(index);
+        else
+            Player.play(0);
+        // 给Player类设置当前的播放列表id
+        Player.setCurrentPlaylistId(currentPlaylistId);
+        // 如果playlistSongCount等于歌单歌曲总数
+        // 说明全部歌曲都已经添加到了播放列表
+        if (playlistSongCount == playlistSongAllCount)
+            isAddToPlaylist = true;
+
     }
 
     function onPlaylistCurrentIndexChanged() {

@@ -1,20 +1,15 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <QDir>
-#include <QEventLoop>
 #include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
 #include <QMediaPlayer>
-#include <QMediaPlaylist>
 #include <QObject>
 #include <QSettings>
-#include <QTime>
 
-#include "api.h"
-#include "playlistmodel.h"
+#include "playlist.h"
 
+class API;
+class PlaylistModel;
 class Player : public QObject
 {
     Q_OBJECT
@@ -22,89 +17,91 @@ public:
     static Player *instance();
     explicit Player(QObject *parent = nullptr);
     ~Player();
+
+public slots:
     // 播放
-    Q_INVOKABLE void play();
+    void play();
     // 播放指定下标的歌曲
-    Q_INVOKABLE void play(int index);
+    void play(int index);
     // 暂停
-    Q_INVOKABLE void pause();
+    void pause();
     // 停止
-    Q_INVOKABLE void stop();
+    void stop();
     // 下一首
-    Q_INVOKABLE void next();
+    void next();
     // 上一首
-    Q_INVOKABLE void previous();
+    void previous();
     // 添加单个歌曲到播放列表
-    Q_INVOKABLE void addSingleToPlaylist(const QString &url,
-                                         const int &id,
-                                         const QString &name,
-                                         const QString &artist,
-                                         const QString &pic,
-                                         const QString &duration,
-                                         const QString &album,
-                                         const bool &isVip);
+    void addSingleToPlaylist(const int &id,
+                             const QString &name,
+                             const QString &artist,
+                             const QString &pic,
+                             const QString &duration,
+                             const QString &album,
+                             const bool &isVip);
 
     // 添加歌单所有歌曲到播放列表
-    Q_INVOKABLE void addPlaylistToPlaylist(const QString &url,
-                                           const int &id,
-                                           const QString &name,
-                                           const QString &artist,
-                                           const QString &pic,
-                                           const QString &duration,
-                                           const QString &album,
-                                           const bool &isVip);
+    void addPlaylistToPlaylist(const int &id,
+                               const QString &name,
+                               const QString &artist,
+                               const QString &pic,
+                               const QString &duration,
+                               const QString &album,
+                               const bool &isVip);
     // 获取当前正在播放的歌曲ID
-    Q_INVOKABLE int getId();
+    int getId();
     // 获取当前正在播放的歌曲名
-    Q_INVOKABLE QString getName();
+    QString getName();
     // 获取当前正在播放的歌曲作者
-    Q_INVOKABLE QString getArtist();
+    QString getArtist();
     // 获取当前正在播放的歌曲图片Url
-    Q_INVOKABLE QString getPic();
+    QString getPic();
     // 获取当前歌曲播放进度
-    Q_INVOKABLE qint64 getPosition();
+    qint64 getPosition();
     // 获取当前歌曲总时长
-    Q_INVOKABLE qint64 getDuration();
+    qint64 getDuration();
     // 获取当前播放歌曲所属的专辑名
-    Q_INVOKABLE QString getAlbum();
+    QString getAlbum();
     // 获取格式化成字符串的歌曲播放进度
-    Q_INVOKABLE QString getFormatPosition();
+    QString getFormatPosition();
     // 获取格式化成字符串的歌曲总时长
-    Q_INVOKABLE QString getFormatDuration();
+    QString getFormatDuration();
     // 获取当前歌曲是否为VIP歌曲
-    Q_INVOKABLE bool getIsVip();
+    bool getIsVip();
     // 获取播放状态
-    Q_INVOKABLE bool getPlayState();
+    bool getPlayState();
     // 获取播放模式
-    Q_INVOKABLE int getPlaybackMode();
+    int getPlaybackMode();
     // 获取是否静音
-    Q_INVOKABLE bool getMute();
+    bool getMute();
     // 获取当前播放歌曲的下标
-    Q_INVOKABLE int getCurrentIndex();
+    int getCurrentIndex();
     // 获取音量
-    Q_INVOKABLE int getVolume();
+    int getVolume();
     // 获取播放列表数据
-    Q_INVOKABLE QObject *getPlaylistModel();
+    QObject *getPlaylistModel();
     // 获取播放列表媒体数量
-    Q_INVOKABLE int getMediaCount();
+    int getMediaCount();
     // 获取当前播放列表第一首歌曲的id
-    Q_INVOKABLE QString getCurrentPlaylistId();
+    QString getCurrentPlaylistId();
     // 设置当前音乐播放进度
-    Q_INVOKABLE void setPosition(qint64 newPosition);
+    void setPosition(qint64 newPosition);
     // 设置音量
-    Q_INVOKABLE void setVolume(int volume);
+    void setVolume(int volume);
     // 设置是否静音
-    Q_INVOKABLE void setMute(bool mute);
+    void setMute(bool mute);
     // 设置播放模式
-    Q_INVOKABLE void setPlaybackMode(int mode);
+    void setPlaybackMode(int mode);
     // 设置当前播放歌单Id
-    Q_INVOKABLE void setCurrentPlaylistId(const QString &id);
+    void setCurrentPlaylistId(const QString &id);
     // 清空播放列表
-    Q_INVOKABLE void clearPlaylist();
+    void clearPlaylist();
     // 切换到单曲的播放列表
-    Q_INVOKABLE void switchToSingleTrackMode();
+    void switchToSingleTrackMode();
+    // 根据歌曲ID去请求歌曲Url
+    void getSongUrlById(const int &id);
     // 切换到歌单的播放列表
-    Q_INVOKABLE void switchToPlaylistMode();
+    void switchToPlaylistMode();
 signals:
     void playStateChanged();
     void durationChanged();
@@ -114,15 +111,19 @@ signals:
     // 播放列表已被清空
     void playlistCleared();
 
-private:
-    void switchPlaybackMode(int mode);
 public slots:
     void onPositionChanged(qint64 new_position);
     void onDurationChanged(qint64 duration);
     void onCurrentIndexChanged(int index);
-    void onMediaCountChanged(int start, int end);
+    void onMediaCountChanged(int count);
+    // 获取歌曲Url,请求完成
+    void onSongUrlReady(const QJsonArray &response);
+    void onMediaStatusChanged(QMediaPlayer::MediaStatus status);
 
 private:
+    // 当前播放歌曲的下标
+    int m_currentIndex = 0;
+
     static QPointer<Player> INSTANCE;
     API *m_api = nullptr;
     // 播放器配置文件
@@ -139,16 +140,13 @@ private:
     // 是否静音
     int m_mute;
     // 播放模式
-    QMediaPlaylist::PlaybackMode m_playbackMode;
+    Playlist::PlayMode m_playbackMode;
     // 单曲播放列表
-    QMediaPlaylist *m_singleTrackPlaylist = nullptr;
-    PlaylistModel *m_singleTrackModel = nullptr;
+    Playlist *m_singleTrackPlaylist = nullptr;
     // 歌单播放列表
-    QMediaPlaylist *m_playlist = nullptr;
-    PlaylistModel *m_playlistModel = nullptr;
+    Playlist *m_playlist = nullptr;
     // 当前播放列表
-    PlaylistModel *m_currentModel = nullptr;
-    QMediaPlaylist *m_currentPlaylist = nullptr;
+    Playlist *m_currentPlaylist = nullptr;
 
     // 当前播放歌单的id
     QString m_currentPlaylistId = "";

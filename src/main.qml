@@ -34,16 +34,6 @@ ApplicationWindow {
     property int windowMiniHeight: 680
     property int scrollWidth: rootWindow.width - Util.pageLeftPadding * 2 - sidebar.width
 
-    function getMusicUrl(id, name, pic, artist, duration, album, isVip) {
-        function urlCompleted(res) {
-            API.onSongUrlCompleted.disconnect(urlCompleted);
-            Player.addSingleToPlaylist(res[0].url, id, name, pic, artist, duration, album, isVip);
-        }
-
-        API.onSongUrlCompleted.connect(urlCompleted);
-        API.getSongUrl(id);
-    }
-
     function onMediaCountChanged(count) {
         if (count == 0) {
             trayPreAction.enabled = false;

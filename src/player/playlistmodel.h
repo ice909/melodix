@@ -42,8 +42,8 @@ public:
     // 自定义方法用于添加歌曲
     void addSong(const int &id,
                  const QString &title,
-                 const QString &imageUrl,
                  const QString &author,
+                 const QString &imageUrl,
                  const QString &duration,
                  const QString &album,
                  const bool &isVip);
@@ -59,8 +59,8 @@ private:
     {
         int id;
         QString title;
-        QString imageUrl;
         QString author;
+        QString imageUrl;
         QString duration;
         QString album;
         bool isVip;
