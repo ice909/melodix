@@ -99,10 +99,10 @@ bool MDGetPlaylistTrackAll_200_response::is_songs_Valid() const{
     return m_songs_isValid;
 }
 
-QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege> MDGetPlaylistTrackAll_200_response::getPrivileges() const {
+QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege> MDGetPlaylistTrackAll_200_response::getPrivileges() const {
     return m_privileges;
 }
-void MDGetPlaylistTrackAll_200_response::setPrivileges(const QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege> &privileges) {
+void MDGetPlaylistTrackAll_200_response::setPrivileges(const QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege> &privileges) {
     m_privileges = privileges;
     m_privileges_isSet = true;
 }

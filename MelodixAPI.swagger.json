@@ -1503,7 +1503,7 @@
         ]
       }
     },
-    "/artists": {
+    "/artist/top/song": {
       "get": {
         "summary": "获取歌手单曲",
         "x-apifox-folder": "client",
@@ -1530,114 +1530,28 @@
             "schema": {
               "type": "object",
               "properties": {
-                "artist": {
-                  "type": "object",
-                  "properties": {
-                    "img1v1Id": {
-                      "type": "integer"
-                    },
-                    "topicPerson": {
-                      "type": "integer"
-                    },
-                    "followed": {
-                      "type": "boolean"
-                    },
-                    "alias": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "picId": {
-                      "type": "integer"
-                    },
-                    "musicSize": {
-                      "type": "integer"
-                    },
-                    "albumSize": {
-                      "type": "integer"
-                    },
-                    "briefDesc": {
-                      "type": "string"
-                    },
-                    "picUrl": {
-                      "type": "string"
-                    },
-                    "img1v1Url": {
-                      "type": "string"
-                    },
-                    "trans": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "id": {
-                      "type": "integer"
-                    },
-                    "publishTime": {
-                      "type": "integer"
-                    },
-                    "picId_str": {
-                      "type": "string"
-                    },
-                    "img1v1Id_str": {
-                      "type": "string"
-                    },
-                    "mvSize": {
-                      "type": "integer"
-                    }
-                  },
-                  "required": [
-                    "img1v1Id",
-                    "topicPerson",
-                    "trans",
-                    "alias",
-                    "picId",
-                    "briefDesc",
-                    "musicSize",
-                    "albumSize",
-                    "picUrl",
-                    "img1v1Url",
-                    "followed",
-                    "name",
-                    "id",
-                    "publishTime",
-                    "picId_str",
-                    "img1v1Id_str",
-                    "mvSize"
-                  ],
-                  "x-apifox-orders": [
-                    "img1v1Id",
-                    "topicPerson",
-                    "followed",
-                    "alias",
-                    "picId",
-                    "musicSize",
-                    "albumSize",
-                    "briefDesc",
-                    "picUrl",
-                    "img1v1Url",
-                    "trans",
-                    "name",
-                    "id",
-                    "publishTime",
-                    "picId_str",
-                    "img1v1Id_str",
-                    "mvSize"
-                  ],
-                  "x-apifox-ignore-properties": []
+                "code": {
+                  "type": "integer"
                 },
-                "hotSongs": {
+                "more": {
+                  "type": "boolean"
+                },
+                "songs": {
                   "type": "array",
                   "items": {
                     "type": "object",
                     "properties": {
-                      "rtUrls": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
+                      "name": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "integer"
+                      },
+                      "pst": {
+                        "type": "integer"
+                      },
+                      "t": {
+                        "type": "integer"
                       },
                       "ar": {
                         "type": "array",
@@ -1650,7 +1564,13 @@
                             "name": {
                               "type": "string"
                             },
-                            "alia": {
+                            "tns": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "alias": {
                               "type": "array",
                               "items": {
                                 "type": "string"
@@ -1660,15 +1580,36 @@
                           "required": [
                             "id",
                             "name",
-                            "alia"
+                            "tns",
+                            "alias"
                           ],
                           "x-apifox-orders": [
                             "id",
                             "name",
-                            "alia"
+                            "tns",
+                            "alias"
                           ],
                           "x-apifox-ignore-properties": []
                         }
+                      },
+                      "pop": {
+                        "type": "integer"
+                      },
+                      "st": {
+                        "type": "integer"
+                      },
+                      "rt": {
+                        "type": "string",
+                        "x-nullable": true
+                      },
+                      "fee": {
+                        "type": "integer"
+                      },
+                      "v": {
+                        "type": "integer"
+                      },
+                      "cf": {
+                        "type": "string"
                       },
                       "al": {
                         "type": "object",
@@ -1682,29 +1623,24 @@
                           "picUrl": {
                             "type": "string"
                           },
-                          "pic_str": {
-                            "type": "string"
-                          },
-                          "pic": {
-                            "type": "integer"
-                          },
-                          "alia": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
                           "tns": {
                             "type": "array",
                             "items": {
                               "type": "string"
                             }
+                          },
+                          "pic_str": {
+                            "type": "string"
+                          },
+                          "pic": {
+                            "type": "integer"
                           }
                         },
                         "required": [
                           "id",
                           "name",
                           "picUrl",
+                          "tns",
                           "pic_str",
                           "pic"
                         ],
@@ -1712,63 +1648,86 @@
                           "id",
                           "name",
                           "picUrl",
+                          "tns",
                           "pic_str",
-                          "pic",
-                          "alia",
-                          "tns"
+                          "pic"
                         ],
                         "x-apifox-ignore-properties": []
-                      },
-                      "st": {
-                        "type": "integer"
-                      },
-                      "noCopyrightRcmd": {
-                        "type": "null"
-                      },
-                      "songJumpInfo": {
-                        "type": "null"
-                      },
-                      "ftype": {
-                        "type": "integer"
-                      },
-                      "rtype": {
-                        "type": "integer"
-                      },
-                      "rurl": {
-                        "type": "null"
-                      },
-                      "pst": {
-                        "type": "integer"
-                      },
-                      "alia": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "pop": {
-                        "type": "integer"
-                      },
-                      "rt": {
-                        "type": "string",
-                        "x-nullable": true
-                      },
-                      "mst": {
-                        "type": "integer"
-                      },
-                      "cp": {
-                        "type": "integer"
-                      },
-                      "crbt": {
-                        "type": "null"
-                      },
-                      "cf": {
-                        "type": "string"
                       },
                       "dt": {
                         "type": "integer"
                       },
                       "h": {
+                        "type": "object",
+                        "properties": {
+                          "br": {
+                            "type": "integer"
+                          },
+                          "fid": {
+                            "type": "integer"
+                          },
+                          "size": {
+                            "type": "integer"
+                          },
+                          "vd": {
+                            "type": "integer"
+                          },
+                          "sr": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "br",
+                          "fid",
+                          "size",
+                          "vd",
+                          "sr"
+                        ],
+                        "x-apifox-orders": [
+                          "br",
+                          "fid",
+                          "size",
+                          "vd",
+                          "sr"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      },
+                      "m": {
+                        "type": "object",
+                        "properties": {
+                          "br": {
+                            "type": "integer"
+                          },
+                          "fid": {
+                            "type": "integer"
+                          },
+                          "size": {
+                            "type": "integer"
+                          },
+                          "vd": {
+                            "type": "integer"
+                          },
+                          "sr": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "br",
+                          "fid",
+                          "size",
+                          "vd",
+                          "sr"
+                        ],
+                        "x-apifox-orders": [
+                          "br",
+                          "fid",
+                          "size",
+                          "vd",
+                          "sr"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      },
+                      "l": {
                         "type": "object",
                         "properties": {
                           "br": {
@@ -1836,8 +1795,7 @@
                           "vd",
                           "sr"
                         ],
-                        "x-apifox-ignore-properties": [],
-                        "x-nullable": true
+                        "x-apifox-ignore-properties": []
                       },
                       "hr": {
                         "type": "object",
@@ -1875,408 +1833,246 @@
                         "x-apifox-ignore-properties": [],
                         "x-nullable": true
                       },
-                      "l": {
-                        "type": "object",
-                        "properties": {
-                          "br": {
-                            "type": "integer"
-                          },
-                          "fid": {
-                            "type": "integer"
-                          },
-                          "size": {
-                            "type": "integer"
-                          },
-                          "vd": {
-                            "type": "integer"
-                          },
-                          "sr": {
-                            "type": "integer"
-                          }
-                        },
-                        "required": [
-                          "br",
-                          "fid",
-                          "size",
-                          "vd",
-                          "sr"
-                        ],
-                        "x-apifox-orders": [
-                          "br",
-                          "fid",
-                          "size",
-                          "vd",
-                          "sr"
-                        ],
-                        "x-apifox-ignore-properties": []
-                      },
-                      "rtUrl": {
+                      "a": {
                         "type": "null"
                       },
-                      "djId": {
-                        "type": "integer"
+                      "cd": {
+                        "type": "string"
                       },
                       "no": {
                         "type": "integer"
                       },
-                      "fee": {
+                      "rtUrl": {
+                        "type": "null"
+                      },
+                      "ftype": {
+                        "type": "integer"
+                      },
+                      "copyright": {
+                        "type": "integer"
+                      },
+                      "s_id": {
+                        "type": "integer"
+                      },
+                      "mark": {
+                        "type": "integer"
+                      },
+                      "originCoverType": {
+                        "type": "integer"
+                      },
+                      "originSongSimpleData": {
+                        "type": "object",
+                        "properties": {
+                          "songId": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "artists": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "integer"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              },
+                              "x-apifox-orders": [
+                                "id",
+                                "name"
+                              ],
+                              "x-apifox-ignore-properties": []
+                            }
+                          },
+                          "albumMeta": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name"
+                            ],
+                            "x-apifox-orders": [
+                              "id",
+                              "name"
+                            ],
+                            "x-apifox-ignore-properties": []
+                          }
+                        },
+                        "required": [
+                          "songId",
+                          "name",
+                          "artists",
+                          "albumMeta"
+                        ],
+                        "x-apifox-orders": [
+                          "songId",
+                          "name",
+                          "artists",
+                          "albumMeta"
+                        ],
+                        "x-apifox-ignore-properties": [],
+                        "x-nullable": true
+                      },
+                      "tagPicList": {
+                        "type": "null"
+                      },
+                      "resourceState": {
+                        "type": "boolean"
+                      },
+                      "version": {
+                        "type": "integer"
+                      },
+                      "songJumpInfo": {
+                        "type": "null"
+                      },
+                      "entertainmentTags": {
+                        "type": "null"
+                      },
+                      "awardTags": {
+                        "type": "null"
+                      },
+                      "single": {
+                        "type": "integer"
+                      },
+                      "noCopyrightRcmd": {
+                        "type": "null"
+                      },
+                      "rtype": {
+                        "type": "integer"
+                      },
+                      "rurl": {
+                        "type": "null"
+                      },
+                      "mst": {
+                        "type": "integer"
+                      },
+                      "cp": {
                         "type": "integer"
                       },
                       "mv": {
                         "type": "integer"
                       },
-                      "t": {
+                      "publishTime": {
                         "type": "integer"
                       },
-                      "v": {
-                        "type": "integer"
-                      },
-                      "cd": {
-                        "type": "string"
-                      },
-                      "a": {
-                        "type": "null"
-                      },
-                      "m": {
-                        "type": "object",
-                        "properties": {
-                          "br": {
-                            "type": "integer"
-                          },
-                          "fid": {
-                            "type": "integer"
-                          },
-                          "size": {
-                            "type": "integer"
-                          },
-                          "vd": {
-                            "type": "integer"
-                          },
-                          "sr": {
-                            "type": "integer"
-                          }
-                        },
-                        "required": [
-                          "br",
-                          "fid",
-                          "size",
-                          "vd",
-                          "sr"
-                        ],
-                        "x-apifox-orders": [
-                          "br",
-                          "fid",
-                          "size",
-                          "vd",
-                          "sr"
-                        ],
-                        "x-apifox-ignore-properties": []
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "id": {
-                        "type": "integer"
-                      },
-                      "privilege": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "integer"
-                          },
-                          "fee": {
-                            "type": "integer"
-                          },
-                          "payed": {
-                            "type": "integer"
-                          },
-                          "st": {
-                            "type": "integer"
-                          },
-                          "pl": {
-                            "type": "integer"
-                          },
-                          "dl": {
-                            "type": "integer"
-                          },
-                          "sp": {
-                            "type": "integer"
-                          },
-                          "cp": {
-                            "type": "integer"
-                          },
-                          "subp": {
-                            "type": "integer"
-                          },
-                          "cs": {
-                            "type": "boolean"
-                          },
-                          "maxbr": {
-                            "type": "integer"
-                          },
-                          "fl": {
-                            "type": "integer"
-                          },
-                          "toast": {
-                            "type": "boolean"
-                          },
-                          "flag": {
-                            "type": "integer"
-                          },
-                          "preSell": {
-                            "type": "boolean"
-                          },
-                          "playMaxbr": {
-                            "type": "integer"
-                          },
-                          "downloadMaxbr": {
-                            "type": "integer"
-                          },
-                          "maxBrLevel": {
-                            "type": "string"
-                          },
-                          "playMaxBrLevel": {
-                            "type": "string"
-                          },
-                          "downloadMaxBrLevel": {
-                            "type": "string"
-                          },
-                          "plLevel": {
-                            "type": "string"
-                          },
-                          "dlLevel": {
-                            "type": "string"
-                          },
-                          "flLevel": {
-                            "type": "string"
-                          },
-                          "rscl": {
-                            "type": "null"
-                          },
-                          "freeTrialPrivilege": {
-                            "type": "object",
-                            "properties": {
-                              "resConsumable": {
-                                "type": "boolean"
-                              },
-                              "userConsumable": {
-                                "type": "boolean"
-                              },
-                              "listenType": {
-                                "type": "null"
-                              }
-                            },
-                            "required": [
-                              "resConsumable",
-                              "userConsumable",
-                              "listenType"
-                            ],
-                            "x-apifox-orders": [
-                              "resConsumable",
-                              "userConsumable",
-                              "listenType"
-                            ],
-                            "x-apifox-ignore-properties": []
-                          },
-                          "chargeInfoList": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "rate": {
-                                  "type": "integer"
-                                },
-                                "chargeUrl": {
-                                  "type": "null"
-                                },
-                                "chargeMessage": {
-                                  "type": "null"
-                                },
-                                "chargeType": {
-                                  "type": "integer"
-                                }
-                              },
-                              "required": [
-                                "rate",
-                                "chargeUrl",
-                                "chargeMessage",
-                                "chargeType"
-                              ],
-                              "x-apifox-orders": [
-                                "rate",
-                                "chargeUrl",
-                                "chargeMessage",
-                                "chargeType"
-                              ],
-                              "x-apifox-ignore-properties": []
-                            }
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "fee",
-                          "payed",
-                          "st",
-                          "pl",
-                          "dl",
-                          "sp",
-                          "cp",
-                          "subp",
-                          "cs",
-                          "maxbr",
-                          "fl",
-                          "toast",
-                          "flag",
-                          "preSell",
-                          "playMaxbr",
-                          "downloadMaxbr",
-                          "maxBrLevel",
-                          "playMaxBrLevel",
-                          "downloadMaxBrLevel",
-                          "plLevel",
-                          "dlLevel",
-                          "flLevel",
-                          "rscl",
-                          "freeTrialPrivilege",
-                          "chargeInfoList"
-                        ],
-                        "x-apifox-orders": [
-                          "id",
-                          "fee",
-                          "payed",
-                          "st",
-                          "pl",
-                          "dl",
-                          "sp",
-                          "cp",
-                          "subp",
-                          "cs",
-                          "maxbr",
-                          "fl",
-                          "toast",
-                          "flag",
-                          "preSell",
-                          "playMaxbr",
-                          "downloadMaxbr",
-                          "maxBrLevel",
-                          "playMaxBrLevel",
-                          "downloadMaxBrLevel",
-                          "plLevel",
-                          "dlLevel",
-                          "flLevel",
-                          "rscl",
-                          "freeTrialPrivilege",
-                          "chargeInfoList"
-                        ],
-                        "x-apifox-ignore-properties": []
-                      },
-                      "tns": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "eq": {
+                      "awardName": {
                         "type": "string"
                       }
                     },
                     "required": [
-                      "rtUrls",
-                      "ar",
-                      "al",
-                      "st",
-                      "noCopyrightRcmd",
-                      "songJumpInfo",
-                      "rtype",
-                      "rurl",
-                      "pst",
-                      "alia",
-                      "pop",
-                      "rt",
-                      "mst",
-                      "cp",
-                      "crbt",
-                      "cf",
-                      "dt",
-                      "h",
-                      "sq",
-                      "hr",
-                      "l",
-                      "rtUrl",
-                      "ftype",
-                      "djId",
-                      "no",
-                      "fee",
-                      "mv",
-                      "t",
-                      "v",
-                      "cd",
-                      "a",
-                      "m",
                       "name",
                       "id",
-                      "privilege"
+                      "pst",
+                      "t",
+                      "ar",
+                      "pop",
+                      "st",
+                      "rt",
+                      "fee",
+                      "v",
+                      "cf",
+                      "al",
+                      "dt",
+                      "h",
+                      "m",
+                      "l",
+                      "sq",
+                      "hr",
+                      "a",
+                      "cd",
+                      "no",
+                      "rtUrl",
+                      "ftype",
+                      "copyright",
+                      "s_id",
+                      "mark",
+                      "originCoverType",
+                      "originSongSimpleData",
+                      "tagPicList",
+                      "resourceState",
+                      "version",
+                      "songJumpInfo",
+                      "entertainmentTags",
+                      "awardTags",
+                      "single",
+                      "noCopyrightRcmd",
+                      "rtype",
+                      "rurl",
+                      "mst",
+                      "cp",
+                      "mv",
+                      "publishTime",
+                      "awardName"
                     ],
                     "x-apifox-orders": [
-                      "rtUrls",
-                      "ar",
-                      "al",
-                      "st",
-                      "noCopyrightRcmd",
-                      "songJumpInfo",
-                      "ftype",
-                      "rtype",
-                      "rurl",
-                      "pst",
-                      "alia",
-                      "pop",
-                      "rt",
-                      "mst",
-                      "cp",
-                      "crbt",
-                      "cf",
-                      "dt",
-                      "h",
-                      "sq",
-                      "hr",
-                      "l",
-                      "rtUrl",
-                      "djId",
-                      "no",
-                      "fee",
-                      "mv",
-                      "t",
-                      "v",
-                      "cd",
-                      "a",
-                      "m",
                       "name",
                       "id",
-                      "privilege",
-                      "tns",
-                      "eq"
+                      "pst",
+                      "t",
+                      "ar",
+                      "pop",
+                      "st",
+                      "rt",
+                      "fee",
+                      "v",
+                      "cf",
+                      "al",
+                      "dt",
+                      "h",
+                      "m",
+                      "l",
+                      "sq",
+                      "hr",
+                      "a",
+                      "cd",
+                      "no",
+                      "rtUrl",
+                      "ftype",
+                      "copyright",
+                      "s_id",
+                      "mark",
+                      "originCoverType",
+                      "originSongSimpleData",
+                      "tagPicList",
+                      "resourceState",
+                      "version",
+                      "songJumpInfo",
+                      "entertainmentTags",
+                      "awardTags",
+                      "single",
+                      "noCopyrightRcmd",
+                      "rtype",
+                      "rurl",
+                      "mst",
+                      "cp",
+                      "mv",
+                      "publishTime",
+                      "awardName"
                     ],
                     "x-apifox-ignore-properties": []
                   }
-                },
-                "more": {
-                  "type": "boolean"
-                },
-                "code": {
-                  "type": "integer"
                 }
               },
               "required": [
-                "artist",
-                "hotSongs",
+                "code",
                 "more",
-                "code"
+                "songs"
               ],
               "x-apifox-orders": [
-                "artist",
-                "hotSongs",
+                "code",
                 "more",
-                "code"
+                "songs"
               ],
               "x-apifox-ignore-properties": []
             }

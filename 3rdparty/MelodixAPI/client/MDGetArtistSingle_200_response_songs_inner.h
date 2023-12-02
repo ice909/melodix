@@ -10,21 +10,21 @@
  */
 
 /*
- * MDSearch_200_response_result_songs_inner.h
+ * MDGetArtistSingle_200_response_songs_inner.h
  *
  * 
  */
 
-#ifndef MDSearch_200_response_result_songs_inner_H
-#define MDSearch_200_response_result_songs_inner_H
+#ifndef MDGetArtistSingle_200_response_songs_inner_H
+#define MDGetArtistSingle_200_response_songs_inner_H
 
 #include <QJsonObject>
 
 #include "MDGetArtistSingle_200_response_songs_inner_al.h"
+#include "MDGetArtistSingle_200_response_songs_inner_ar_inner.h"
 #include "MDGetArtistSingle_200_response_songs_inner_h.h"
 #include "MDGetArtistSingle_200_response_songs_inner_hr.h"
-#include "MDSearch_200_response_result_songs_inner_ar_inner.h"
-#include "MDSearch_200_response_result_songs_inner_privilege.h"
+#include "MDGetArtistSingle_200_response_songs_inner_originSongSimpleData.h"
 #include <QList>
 #include <QString>
 
@@ -32,17 +32,17 @@
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDSearch_200_response_result_songs_inner_ar_inner;
+class MDGetArtistSingle_200_response_songs_inner_ar_inner;
 class MDGetArtistSingle_200_response_songs_inner_al;
 class MDGetArtistSingle_200_response_songs_inner_h;
 class MDGetArtistSingle_200_response_songs_inner_hr;
-class MDSearch_200_response_result_songs_inner_privilege;
+class MDGetArtistSingle_200_response_songs_inner_originSongSimpleData;
 
-class MDSearch_200_response_result_songs_inner : public MDObject {
+class MDGetArtistSingle_200_response_songs_inner : public MDObject {
 public:
-    MDSearch_200_response_result_songs_inner();
-    MDSearch_200_response_result_songs_inner(QString json);
-    ~MDSearch_200_response_result_songs_inner() override;
+    MDGetArtistSingle_200_response_songs_inner();
+    MDGetArtistSingle_200_response_songs_inner(QString json);
+    ~MDGetArtistSingle_200_response_songs_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -69,15 +69,10 @@ public:
     bool is_t_Set() const;
     bool is_t_Valid() const;
 
-    QList<MDSearch_200_response_result_songs_inner_ar_inner> getAr() const;
-    void setAr(const QList<MDSearch_200_response_result_songs_inner_ar_inner> &ar);
+    QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> getAr() const;
+    void setAr(const QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> &ar);
     bool is_ar_Set() const;
     bool is_ar_Valid() const;
-
-    QList<QString> getAlia() const;
-    void setAlia(const QList<QString> &alia);
-    bool is_alia_Set() const;
-    bool is_alia_Valid() const;
 
     qint32 getPop() const;
     void setPop(const qint32 &pop);
@@ -134,8 +129,8 @@ public:
     bool is_l_Set() const;
     bool is_l_Valid() const;
 
-    MDGetArtistSingle_200_response_songs_inner_hr getSq() const;
-    void setSq(const MDGetArtistSingle_200_response_songs_inner_hr &sq);
+    MDGetArtistSingle_200_response_songs_inner_h getSq() const;
+    void setSq(const MDGetArtistSingle_200_response_songs_inner_h &sq);
     bool is_sq_Set() const;
     bool is_sq_Valid() const;
 
@@ -159,16 +154,6 @@ public:
     bool is_ftype_Set() const;
     bool is_ftype_Valid() const;
 
-    QList<QString> getRtUrls() const;
-    void setRtUrls(const QList<QString> &rt_urls);
-    bool is_rt_urls_Set() const;
-    bool is_rt_urls_Valid() const;
-
-    qint32 getDjId() const;
-    void setDjId(const qint32 &dj_id);
-    bool is_dj_id_Set() const;
-    bool is_dj_id_Valid() const;
-
     qint32 getCopyright() const;
     void setCopyright(const qint32 &copyright);
     bool is_copyright_Set() const;
@@ -189,6 +174,11 @@ public:
     bool is_origin_cover_type_Set() const;
     bool is_origin_cover_type_Valid() const;
 
+    MDGetArtistSingle_200_response_songs_inner_originSongSimpleData getOriginSongSimpleData() const;
+    void setOriginSongSimpleData(const MDGetArtistSingle_200_response_songs_inner_originSongSimpleData &origin_song_simple_data);
+    bool is_origin_song_simple_data_Set() const;
+    bool is_origin_song_simple_data_Valid() const;
+
     bool isResourceState() const;
     void setResourceState(const bool &resource_state);
     bool is_resource_state_Set() const;
@@ -203,6 +193,11 @@ public:
     void setSingle(const qint32 &single);
     bool is_single_Set() const;
     bool is_single_Valid() const;
+
+    qint32 getRtype() const;
+    void setRtype(const qint32 &rtype);
+    bool is_rtype_Set() const;
+    bool is_rtype_Valid() const;
 
     qint32 getMst() const;
     void setMst(const qint32 &mst);
@@ -219,25 +214,15 @@ public:
     bool is_mv_Set() const;
     bool is_mv_Valid() const;
 
-    qint32 getRtype() const;
-    void setRtype(const qint32 &rtype);
-    bool is_rtype_Set() const;
-    bool is_rtype_Valid() const;
-
     qint32 getPublishTime() const;
     void setPublishTime(const qint32 &publish_time);
     bool is_publish_time_Set() const;
     bool is_publish_time_Valid() const;
 
-    MDSearch_200_response_result_songs_inner_privilege getPrivilege() const;
-    void setPrivilege(const MDSearch_200_response_result_songs_inner_privilege &privilege);
-    bool is_privilege_Set() const;
-    bool is_privilege_Valid() const;
-
-    QList<QString> getTns() const;
-    void setTns(const QList<QString> &tns);
-    bool is_tns_Set() const;
-    bool is_tns_Valid() const;
+    QString getAwardName() const;
+    void setAwardName(const QString &award_name);
+    bool is_award_name_Set() const;
+    bool is_award_name_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -261,13 +246,9 @@ private:
     bool m_t_isSet;
     bool m_t_isValid;
 
-    QList<MDSearch_200_response_result_songs_inner_ar_inner> m_ar;
+    QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> m_ar;
     bool m_ar_isSet;
     bool m_ar_isValid;
-
-    QList<QString> m_alia;
-    bool m_alia_isSet;
-    bool m_alia_isValid;
 
     qint32 m_pop;
     bool m_pop_isSet;
@@ -313,7 +294,7 @@ private:
     bool m_l_isSet;
     bool m_l_isValid;
 
-    MDGetArtistSingle_200_response_songs_inner_hr m_sq;
+    MDGetArtistSingle_200_response_songs_inner_h m_sq;
     bool m_sq_isSet;
     bool m_sq_isValid;
 
@@ -333,14 +314,6 @@ private:
     bool m_ftype_isSet;
     bool m_ftype_isValid;
 
-    QList<QString> m_rt_urls;
-    bool m_rt_urls_isSet;
-    bool m_rt_urls_isValid;
-
-    qint32 m_dj_id;
-    bool m_dj_id_isSet;
-    bool m_dj_id_isValid;
-
     qint32 m_copyright;
     bool m_copyright_isSet;
     bool m_copyright_isValid;
@@ -357,6 +330,10 @@ private:
     bool m_origin_cover_type_isSet;
     bool m_origin_cover_type_isValid;
 
+    MDGetArtistSingle_200_response_songs_inner_originSongSimpleData m_origin_song_simple_data;
+    bool m_origin_song_simple_data_isSet;
+    bool m_origin_song_simple_data_isValid;
+
     bool m_resource_state;
     bool m_resource_state_isSet;
     bool m_resource_state_isValid;
@@ -368,6 +345,10 @@ private:
     qint32 m_single;
     bool m_single_isSet;
     bool m_single_isValid;
+
+    qint32 m_rtype;
+    bool m_rtype_isSet;
+    bool m_rtype_isValid;
 
     qint32 m_mst;
     bool m_mst_isSet;
@@ -381,25 +362,17 @@ private:
     bool m_mv_isSet;
     bool m_mv_isValid;
 
-    qint32 m_rtype;
-    bool m_rtype_isSet;
-    bool m_rtype_isValid;
-
     qint32 m_publish_time;
     bool m_publish_time_isSet;
     bool m_publish_time_isValid;
 
-    MDSearch_200_response_result_songs_inner_privilege m_privilege;
-    bool m_privilege_isSet;
-    bool m_privilege_isValid;
-
-    QList<QString> m_tns;
-    bool m_tns_isSet;
-    bool m_tns_isValid;
+    QString m_award_name;
+    bool m_award_name_isSet;
+    bool m_award_name_isValid;
 };
 
 } // namespace MelodixAPI
 
-Q_DECLARE_METATYPE(MelodixAPI::MDSearch_200_response_result_songs_inner)
+Q_DECLARE_METATYPE(MelodixAPI::MDGetArtistSingle_200_response_songs_inner)
 
-#endif // MDSearch_200_response_result_songs_inner_H
+#endif // MDGetArtistSingle_200_response_songs_inner_H

@@ -109,7 +109,7 @@ API::API(QObject *parent)
     connect(apiInstance,
             &MDClientApi::getArtistSingleSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetArtistSingle_200_response response) {
-                emit artistSongsCompleted(toJsonArray(response.getHotSongs()));
+                emit artistSongsCompleted(toJsonArray(response.getSongs()));
             });
     connect(apiInstance,
             &MDClientApi::getMvUrlSignalFull,

@@ -33,17 +33,14 @@ MDGetArtistSingle_200_response::~MDGetArtistSingle_200_response() {}
 
 void MDGetArtistSingle_200_response::initializeModel() {
 
-    m_artist_isSet = false;
-    m_artist_isValid = false;
-
-    m_hot_songs_isSet = false;
-    m_hot_songs_isValid = false;
+    m_code_isSet = false;
+    m_code_isValid = false;
 
     m_more_isSet = false;
     m_more_isValid = false;
 
-    m_code_isSet = false;
-    m_code_isValid = false;
+    m_songs_isSet = false;
+    m_songs_isValid = false;
 }
 
 void MDGetArtistSingle_200_response::fromJson(QString jsonString) {
@@ -55,17 +52,14 @@ void MDGetArtistSingle_200_response::fromJson(QString jsonString) {
 
 void MDGetArtistSingle_200_response::fromJsonObject(QJsonObject json) {
 
-    m_artist_isValid = ::MelodixAPI::fromJsonValue(m_artist, json[QString("artist")]);
-    m_artist_isSet = !json[QString("artist")].isNull() && m_artist_isValid;
-
-    m_hot_songs_isValid = ::MelodixAPI::fromJsonValue(m_hot_songs, json[QString("hotSongs")]);
-    m_hot_songs_isSet = !json[QString("hotSongs")].isNull() && m_hot_songs_isValid;
+    m_code_isValid = ::MelodixAPI::fromJsonValue(m_code, json[QString("code")]);
+    m_code_isSet = !json[QString("code")].isNull() && m_code_isValid;
 
     m_more_isValid = ::MelodixAPI::fromJsonValue(m_more, json[QString("more")]);
     m_more_isSet = !json[QString("more")].isNull() && m_more_isValid;
 
-    m_code_isValid = ::MelodixAPI::fromJsonValue(m_code, json[QString("code")]);
-    m_code_isSet = !json[QString("code")].isNull() && m_code_isValid;
+    m_songs_isValid = ::MelodixAPI::fromJsonValue(m_songs, json[QString("songs")]);
+    m_songs_isSet = !json[QString("songs")].isNull() && m_songs_isValid;
 }
 
 QString MDGetArtistSingle_200_response::asJson() const {
@@ -77,67 +71,16 @@ QString MDGetArtistSingle_200_response::asJson() const {
 
 QJsonObject MDGetArtistSingle_200_response::asJsonObject() const {
     QJsonObject obj;
-    if (m_artist.isSet()) {
-        obj.insert(QString("artist"), ::MelodixAPI::toJsonValue(m_artist));
-    }
-    if (m_hot_songs.size() > 0) {
-        obj.insert(QString("hotSongs"), ::MelodixAPI::toJsonValue(m_hot_songs));
+    if (m_code_isSet) {
+        obj.insert(QString("code"), ::MelodixAPI::toJsonValue(m_code));
     }
     if (m_more_isSet) {
         obj.insert(QString("more"), ::MelodixAPI::toJsonValue(m_more));
     }
-    if (m_code_isSet) {
-        obj.insert(QString("code"), ::MelodixAPI::toJsonValue(m_code));
+    if (m_songs.size() > 0) {
+        obj.insert(QString("songs"), ::MelodixAPI::toJsonValue(m_songs));
     }
     return obj;
-}
-
-MDGetArtistSingle_200_response_artist MDGetArtistSingle_200_response::getArtist() const {
-    return m_artist;
-}
-void MDGetArtistSingle_200_response::setArtist(const MDGetArtistSingle_200_response_artist &artist) {
-    m_artist = artist;
-    m_artist_isSet = true;
-}
-
-bool MDGetArtistSingle_200_response::is_artist_Set() const{
-    return m_artist_isSet;
-}
-
-bool MDGetArtistSingle_200_response::is_artist_Valid() const{
-    return m_artist_isValid;
-}
-
-QList<MDGetArtistSingle_200_response_hotSongs_inner> MDGetArtistSingle_200_response::getHotSongs() const {
-    return m_hot_songs;
-}
-void MDGetArtistSingle_200_response::setHotSongs(const QList<MDGetArtistSingle_200_response_hotSongs_inner> &hot_songs) {
-    m_hot_songs = hot_songs;
-    m_hot_songs_isSet = true;
-}
-
-bool MDGetArtistSingle_200_response::is_hot_songs_Set() const{
-    return m_hot_songs_isSet;
-}
-
-bool MDGetArtistSingle_200_response::is_hot_songs_Valid() const{
-    return m_hot_songs_isValid;
-}
-
-bool MDGetArtistSingle_200_response::isMore() const {
-    return m_more;
-}
-void MDGetArtistSingle_200_response::setMore(const bool &more) {
-    m_more = more;
-    m_more_isSet = true;
-}
-
-bool MDGetArtistSingle_200_response::is_more_Set() const{
-    return m_more_isSet;
-}
-
-bool MDGetArtistSingle_200_response::is_more_Valid() const{
-    return m_more_isValid;
 }
 
 qint32 MDGetArtistSingle_200_response::getCode() const {
@@ -156,15 +99,42 @@ bool MDGetArtistSingle_200_response::is_code_Valid() const{
     return m_code_isValid;
 }
 
+bool MDGetArtistSingle_200_response::isMore() const {
+    return m_more;
+}
+void MDGetArtistSingle_200_response::setMore(const bool &more) {
+    m_more = more;
+    m_more_isSet = true;
+}
+
+bool MDGetArtistSingle_200_response::is_more_Set() const{
+    return m_more_isSet;
+}
+
+bool MDGetArtistSingle_200_response::is_more_Valid() const{
+    return m_more_isValid;
+}
+
+QList<MDGetArtistSingle_200_response_songs_inner> MDGetArtistSingle_200_response::getSongs() const {
+    return m_songs;
+}
+void MDGetArtistSingle_200_response::setSongs(const QList<MDGetArtistSingle_200_response_songs_inner> &songs) {
+    m_songs = songs;
+    m_songs_isSet = true;
+}
+
+bool MDGetArtistSingle_200_response::is_songs_Set() const{
+    return m_songs_isSet;
+}
+
+bool MDGetArtistSingle_200_response::is_songs_Valid() const{
+    return m_songs_isValid;
+}
+
 bool MDGetArtistSingle_200_response::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (m_artist.isSet()) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_hot_songs.size() > 0) {
+        if (m_code_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -174,7 +144,7 @@ bool MDGetArtistSingle_200_response::isSet() const {
             break;
         }
 
-        if (m_code_isSet) {
+        if (m_songs.size() > 0) {
             isObjectUpdated = true;
             break;
         }
@@ -184,7 +154,7 @@ bool MDGetArtistSingle_200_response::isSet() const {
 
 bool MDGetArtistSingle_200_response::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_artist_isValid && m_hot_songs_isValid && m_more_isValid && m_code_isValid && true;
+    return m_code_isValid && m_more_isValid && m_songs_isValid && true;
 }
 
 } // namespace MelodixAPI

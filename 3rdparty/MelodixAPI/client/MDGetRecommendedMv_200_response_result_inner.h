@@ -20,7 +20,7 @@
 
 #include <QJsonObject>
 
-#include "MDGetRecommendedMv_200_response_result_inner_artists_inner.h"
+#include "MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta.h"
 #include <QList>
 #include <QString>
 
@@ -28,7 +28,7 @@
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDGetRecommendedMv_200_response_result_inner_artists_inner;
+class MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta;
 
 class MDGetRecommendedMv_200_response_result_inner : public MDObject {
 public:
@@ -86,8 +86,8 @@ public:
     bool is_subed_Set() const;
     bool is_subed_Valid() const;
 
-    QList<MDGetRecommendedMv_200_response_result_inner_artists_inner> getArtists() const;
-    void setArtists(const QList<MDGetRecommendedMv_200_response_result_inner_artists_inner> &artists);
+    QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta> getArtists() const;
+    void setArtists(const QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta> &artists);
     bool is_artists_Set() const;
     bool is_artists_Valid() const;
 
@@ -148,7 +148,7 @@ private:
     bool m_subed_isSet;
     bool m_subed_isValid;
 
-    QList<MDGetRecommendedMv_200_response_result_inner_artists_inner> m_artists;
+    QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta> m_artists;
     bool m_artists_isSet;
     bool m_artists_isValid;
 

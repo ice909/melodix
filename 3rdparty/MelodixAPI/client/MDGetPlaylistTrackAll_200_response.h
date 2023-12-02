@@ -20,8 +20,8 @@
 
 #include <QJsonObject>
 
-#include "MDGetArtistSingle_200_response_hotSongs_inner_privilege.h"
 #include "MDGetPlaylistTrackAll_200_response_songs_inner.h"
+#include "MDGetRecommendedNewSongs_200_response_result_inner_song_privilege.h"
 #include <QList>
 
 #include "MDEnum.h"
@@ -29,7 +29,7 @@
 
 namespace MelodixAPI {
 class MDGetPlaylistTrackAll_200_response_songs_inner;
-class MDGetArtistSingle_200_response_hotSongs_inner_privilege;
+class MDGetRecommendedNewSongs_200_response_result_inner_song_privilege;
 
 class MDGetPlaylistTrackAll_200_response : public MDObject {
 public:
@@ -47,8 +47,8 @@ public:
     bool is_songs_Set() const;
     bool is_songs_Valid() const;
 
-    QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege> getPrivileges() const;
-    void setPrivileges(const QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege> &privileges);
+    QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege> getPrivileges() const;
+    void setPrivileges(const QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege> &privileges);
     bool is_privileges_Set() const;
     bool is_privileges_Valid() const;
 
@@ -67,7 +67,7 @@ private:
     bool m_songs_isSet;
     bool m_songs_isValid;
 
-    QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege> m_privileges;
+    QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege> m_privileges;
     bool m_privileges_isSet;
     bool m_privileges_isValid;
 

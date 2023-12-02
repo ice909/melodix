@@ -9,7 +9,7 @@
  * Do not edit the class manually.
  */
 
-#include "MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData.h"
+#include "MDGetArtistSingle_200_response_songs_inner_originSongSimpleData.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -20,18 +20,18 @@
 
 namespace MelodixAPI {
 
-MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData(QString json) {
+MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::MDGetArtistSingle_200_response_songs_inner_originSongSimpleData(QString json) {
     this->initializeModel();
     this->fromJson(json);
 }
 
-MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData() {
+MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::MDGetArtistSingle_200_response_songs_inner_originSongSimpleData() {
     this->initializeModel();
 }
 
-MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::~MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData() {}
+MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::~MDGetArtistSingle_200_response_songs_inner_originSongSimpleData() {}
 
-void MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::initializeModel() {
+void MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::initializeModel() {
 
     m_song_id_isSet = false;
     m_song_id_isValid = false;
@@ -46,14 +46,14 @@ void MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::initia
     m_album_meta_isValid = false;
 }
 
-void MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::fromJson(QString jsonString) {
+void MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::fromJson(QString jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::fromJsonObject(QJsonObject json) {
+void MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::fromJsonObject(QJsonObject json) {
 
     m_song_id_isValid = ::MelodixAPI::fromJsonValue(m_song_id, json[QString("songId")]);
     m_song_id_isSet = !json[QString("songId")].isNull() && m_song_id_isValid;
@@ -68,14 +68,14 @@ void MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::fromJs
     m_album_meta_isSet = !json[QString("albumMeta")].isNull() && m_album_meta_isValid;
 }
 
-QString MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::asJson() const {
+QString MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::asJsonObject() const {
+QJsonObject MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::asJsonObject() const {
     QJsonObject obj;
     if (m_song_id_isSet) {
         obj.insert(QString("songId"), ::MelodixAPI::toJsonValue(m_song_id));
@@ -92,71 +92,71 @@ QJsonObject MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData:
     return obj;
 }
 
-qint32 MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::getSongId() const {
+qint32 MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::getSongId() const {
     return m_song_id;
 }
-void MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::setSongId(const qint32 &song_id) {
+void MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::setSongId(const qint32 &song_id) {
     m_song_id = song_id;
     m_song_id_isSet = true;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::is_song_id_Set() const{
+bool MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::is_song_id_Set() const{
     return m_song_id_isSet;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::is_song_id_Valid() const{
+bool MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::is_song_id_Valid() const{
     return m_song_id_isValid;
 }
 
-QString MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::getName() const {
+QString MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::getName() const {
     return m_name;
 }
-void MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::setName(const QString &name) {
+void MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::setName(const QString &name) {
     m_name = name;
     m_name_isSet = true;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::is_name_Set() const{
+bool MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::is_name_Set() const{
     return m_name_isSet;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::is_name_Valid() const{
+bool MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::is_name_Valid() const{
     return m_name_isValid;
 }
 
-QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta> MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::getArtists() const {
+QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_artists_inner> MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::getArtists() const {
     return m_artists;
 }
-void MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::setArtists(const QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta> &artists) {
+void MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::setArtists(const QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_artists_inner> &artists) {
     m_artists = artists;
     m_artists_isSet = true;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::is_artists_Set() const{
+bool MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::is_artists_Set() const{
     return m_artists_isSet;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::is_artists_Valid() const{
+bool MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::is_artists_Valid() const{
     return m_artists_isValid;
 }
 
-MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::getAlbumMeta() const {
+MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::getAlbumMeta() const {
     return m_album_meta;
 }
-void MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::setAlbumMeta(const MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta &album_meta) {
+void MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::setAlbumMeta(const MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta &album_meta) {
     m_album_meta = album_meta;
     m_album_meta_isSet = true;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::is_album_meta_Set() const{
+bool MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::is_album_meta_Set() const{
     return m_album_meta_isSet;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::is_album_meta_Valid() const{
+bool MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::is_album_meta_Valid() const{
     return m_album_meta_isValid;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::isSet() const {
+bool MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (m_song_id_isSet) {
@@ -182,7 +182,7 @@ bool MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::isSet(
     return isObjectUpdated;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData::isValid() const {
+bool MDGetArtistSingle_200_response_songs_inner_originSongSimpleData::isValid() const {
     // only required properties are required for the object to be considered valid
     return m_song_id_isValid && m_name_isValid && m_artists_isValid && m_album_meta_isValid && true;
 }

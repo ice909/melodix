@@ -563,10 +563,10 @@ bool MDGetSongDetail_200_response_songs_inner::is_cf_Valid() const{
     return m_cf_isValid;
 }
 
-MDGetPlaylistDetail_200_response_playlist_tracks_inner_al MDGetSongDetail_200_response_songs_inner::getAl() const {
+MDGetArtistSingle_200_response_songs_inner_al MDGetSongDetail_200_response_songs_inner::getAl() const {
     return m_al;
 }
-void MDGetSongDetail_200_response_songs_inner::setAl(const MDGetPlaylistDetail_200_response_playlist_tracks_inner_al &al) {
+void MDGetSongDetail_200_response_songs_inner::setAl(const MDGetArtistSingle_200_response_songs_inner_al &al) {
     m_al = al;
     m_al_isSet = true;
 }
@@ -595,10 +595,10 @@ bool MDGetSongDetail_200_response_songs_inner::is_dt_Valid() const{
     return m_dt_isValid;
 }
 
-MDGetArtistSingle_200_response_hotSongs_inner_h MDGetSongDetail_200_response_songs_inner::getH() const {
+MDGetArtistSingle_200_response_songs_inner_h MDGetSongDetail_200_response_songs_inner::getH() const {
     return m_h;
 }
-void MDGetSongDetail_200_response_songs_inner::setH(const MDGetArtistSingle_200_response_hotSongs_inner_h &h) {
+void MDGetSongDetail_200_response_songs_inner::setH(const MDGetArtistSingle_200_response_songs_inner_h &h) {
     m_h = h;
     m_h_isSet = true;
 }
@@ -611,10 +611,10 @@ bool MDGetSongDetail_200_response_songs_inner::is_h_Valid() const{
     return m_h_isValid;
 }
 
-MDGetArtistSingle_200_response_hotSongs_inner_h MDGetSongDetail_200_response_songs_inner::getM() const {
+MDGetArtistSingle_200_response_songs_inner_h MDGetSongDetail_200_response_songs_inner::getM() const {
     return m_m;
 }
-void MDGetSongDetail_200_response_songs_inner::setM(const MDGetArtistSingle_200_response_hotSongs_inner_h &m) {
+void MDGetSongDetail_200_response_songs_inner::setM(const MDGetArtistSingle_200_response_songs_inner_h &m) {
     m_m = m;
     m_m_isSet = true;
 }
@@ -627,10 +627,10 @@ bool MDGetSongDetail_200_response_songs_inner::is_m_Valid() const{
     return m_m_isValid;
 }
 
-MDGetArtistSingle_200_response_hotSongs_inner_h MDGetSongDetail_200_response_songs_inner::getL() const {
+MDGetArtistSingle_200_response_songs_inner_h MDGetSongDetail_200_response_songs_inner::getL() const {
     return m_l;
 }
-void MDGetSongDetail_200_response_songs_inner::setL(const MDGetArtistSingle_200_response_hotSongs_inner_h &l) {
+void MDGetSongDetail_200_response_songs_inner::setL(const MDGetArtistSingle_200_response_songs_inner_h &l) {
     m_l = l;
     m_l_isSet = true;
 }
@@ -643,10 +643,10 @@ bool MDGetSongDetail_200_response_songs_inner::is_l_Valid() const{
     return m_l_isValid;
 }
 
-MDGetArtistSingle_200_response_hotSongs_inner_h MDGetSongDetail_200_response_songs_inner::getSq() const {
+MDGetArtistSingle_200_response_songs_inner_h MDGetSongDetail_200_response_songs_inner::getSq() const {
     return m_sq;
 }
-void MDGetSongDetail_200_response_songs_inner::setSq(const MDGetArtistSingle_200_response_hotSongs_inner_h &sq) {
+void MDGetSongDetail_200_response_songs_inner::setSq(const MDGetArtistSingle_200_response_songs_inner_h &sq) {
     m_sq = sq;
     m_sq_isSet = true;
 }

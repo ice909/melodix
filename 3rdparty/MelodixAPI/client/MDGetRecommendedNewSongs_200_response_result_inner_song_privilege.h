@@ -10,18 +10,18 @@
  */
 
 /*
- * MDSearch_200_response_result_songs_inner_privilege.h
+ * MDGetRecommendedNewSongs_200_response_result_inner_song_privilege.h
  *
  * 
  */
 
-#ifndef MDSearch_200_response_result_songs_inner_privilege_H
-#define MDSearch_200_response_result_songs_inner_privilege_H
+#ifndef MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_H
+#define MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_H
 
 #include <QJsonObject>
 
 #include "MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner.h"
-#include "MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege.h"
+#include "MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege.h"
 #include <QList>
 #include <QString>
 
@@ -29,14 +29,14 @@
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege;
+class MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege;
 class MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner;
 
-class MDSearch_200_response_result_songs_inner_privilege : public MDObject {
+class MDGetRecommendedNewSongs_200_response_result_inner_song_privilege : public MDObject {
 public:
-    MDSearch_200_response_result_songs_inner_privilege();
-    MDSearch_200_response_result_songs_inner_privilege(QString json);
-    ~MDSearch_200_response_result_songs_inner_privilege() override;
+    MDGetRecommendedNewSongs_200_response_result_inner_song_privilege();
+    MDGetRecommendedNewSongs_200_response_result_inner_song_privilege(QString json);
+    ~MDGetRecommendedNewSongs_200_response_result_inner_song_privilege() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -158,15 +158,10 @@ public:
     bool is_fl_level_Set() const;
     bool is_fl_level_Valid() const;
 
-    MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege getFreeTrialPrivilege() const;
-    void setFreeTrialPrivilege(const MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege &free_trial_privilege);
+    MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege getFreeTrialPrivilege() const;
+    void setFreeTrialPrivilege(const MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege &free_trial_privilege);
     bool is_free_trial_privilege_Set() const;
     bool is_free_trial_privilege_Valid() const;
-
-    qint32 getRightSource() const;
-    void setRightSource(const qint32 &right_source);
-    bool is_right_source_Set() const;
-    bool is_right_source_Valid() const;
 
     QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> getChargeInfoList() const;
     void setChargeInfoList(const QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> &charge_info_list);
@@ -271,13 +266,9 @@ private:
     bool m_fl_level_isSet;
     bool m_fl_level_isValid;
 
-    MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege m_free_trial_privilege;
+    MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege m_free_trial_privilege;
     bool m_free_trial_privilege_isSet;
     bool m_free_trial_privilege_isValid;
-
-    qint32 m_right_source;
-    bool m_right_source_isSet;
-    bool m_right_source_isValid;
 
     QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> m_charge_info_list;
     bool m_charge_info_list_isSet;
@@ -286,6 +277,6 @@ private:
 
 } // namespace MelodixAPI
 
-Q_DECLARE_METATYPE(MelodixAPI::MDSearch_200_response_result_songs_inner_privilege)
+Q_DECLARE_METATYPE(MelodixAPI::MDGetRecommendedNewSongs_200_response_result_inner_song_privilege)
 
-#endif // MDSearch_200_response_result_songs_inner_privilege_H
+#endif // MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_H

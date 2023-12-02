@@ -20,10 +20,10 @@
 
 #include <QJsonObject>
 
-#include "MDGetArtistSingle_200_response_hotSongs_inner_privilege.h"
 #include "MDGetRecommendedNewSongs_200_response_result_inner_song_album.h"
 #include "MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner.h"
 #include "MDGetRecommendedNewSongs_200_response_result_inner_song_bMusic.h"
+#include "MDGetRecommendedNewSongs_200_response_result_inner_song_privilege.h"
 #include "MDGetRecommendedNewSongs_200_response_result_inner_song_sqMusic.h"
 #include <QList>
 #include <QString>
@@ -36,7 +36,7 @@ class MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner;
 class MDGetRecommendedNewSongs_200_response_result_inner_song_album;
 class MDGetRecommendedNewSongs_200_response_result_inner_song_sqMusic;
 class MDGetRecommendedNewSongs_200_response_result_inner_song_bMusic;
-class MDGetArtistSingle_200_response_hotSongs_inner_privilege;
+class MDGetRecommendedNewSongs_200_response_result_inner_song_privilege;
 
 class MDGetRecommendedNewSongs_200_response_result_inner_song : public MDObject {
 public:
@@ -239,8 +239,8 @@ public:
     bool is_exclusive_Set() const;
     bool is_exclusive_Valid() const;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_privilege getPrivilege() const;
-    void setPrivilege(const MDGetArtistSingle_200_response_hotSongs_inner_privilege &privilege);
+    MDGetRecommendedNewSongs_200_response_result_inner_song_privilege getPrivilege() const;
+    void setPrivilege(const MDGetRecommendedNewSongs_200_response_result_inner_song_privilege &privilege);
     bool is_privilege_Set() const;
     bool is_privilege_Valid() const;
 
@@ -402,7 +402,7 @@ private:
     bool m_exclusive_isSet;
     bool m_exclusive_isValid;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_privilege m_privilege;
+    MDGetRecommendedNewSongs_200_response_result_inner_song_privilege m_privilege;
     bool m_privilege_isSet;
     bool m_privilege_isValid;
 };

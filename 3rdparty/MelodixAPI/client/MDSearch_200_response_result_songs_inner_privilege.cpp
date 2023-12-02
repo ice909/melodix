@@ -690,10 +690,10 @@ bool MDSearch_200_response_result_songs_inner_privilege::is_right_source_Valid()
     return m_right_source_isValid;
 }
 
-QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner> MDSearch_200_response_result_songs_inner_privilege::getChargeInfoList() const {
+QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> MDSearch_200_response_result_songs_inner_privilege::getChargeInfoList() const {
     return m_charge_info_list;
 }
-void MDSearch_200_response_result_songs_inner_privilege::setChargeInfoList(const QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner> &charge_info_list) {
+void MDSearch_200_response_result_songs_inner_privilege::setChargeInfoList(const QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> &charge_info_list) {
     m_charge_info_list = charge_info_list;
     m_charge_info_list_isSet = true;
 }

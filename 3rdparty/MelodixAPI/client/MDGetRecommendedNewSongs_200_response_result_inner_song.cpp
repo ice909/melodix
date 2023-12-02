@@ -1015,10 +1015,10 @@ bool MDGetRecommendedNewSongs_200_response_result_inner_song::is_exclusive_Valid
     return m_exclusive_isValid;
 }
 
-MDGetArtistSingle_200_response_hotSongs_inner_privilege MDGetRecommendedNewSongs_200_response_result_inner_song::getPrivilege() const {
+MDGetRecommendedNewSongs_200_response_result_inner_song_privilege MDGetRecommendedNewSongs_200_response_result_inner_song::getPrivilege() const {
     return m_privilege;
 }
-void MDGetRecommendedNewSongs_200_response_result_inner_song::setPrivilege(const MDGetArtistSingle_200_response_hotSongs_inner_privilege &privilege) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song::setPrivilege(const MDGetRecommendedNewSongs_200_response_result_inner_song_privilege &privilege) {
     m_privilege = privilege;
     m_privilege_isSet = true;
 }

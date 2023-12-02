@@ -649,10 +649,10 @@ bool MDGetSongDetail_200_response_privileges_inner::is_fl_level_Valid() const{
     return m_fl_level_isValid;
 }
 
-MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivilege MDGetSongDetail_200_response_privileges_inner::getFreeTrialPrivilege() const {
+MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege MDGetSongDetail_200_response_privileges_inner::getFreeTrialPrivilege() const {
     return m_free_trial_privilege;
 }
-void MDGetSongDetail_200_response_privileges_inner::setFreeTrialPrivilege(const MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivilege &free_trial_privilege) {
+void MDGetSongDetail_200_response_privileges_inner::setFreeTrialPrivilege(const MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege &free_trial_privilege) {
     m_free_trial_privilege = free_trial_privilege;
     m_free_trial_privilege_isSet = true;
 }
@@ -665,10 +665,10 @@ bool MDGetSongDetail_200_response_privileges_inner::is_free_trial_privilege_Vali
     return m_free_trial_privilege_isValid;
 }
 
-QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner> MDGetSongDetail_200_response_privileges_inner::getChargeInfoList() const {
+QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> MDGetSongDetail_200_response_privileges_inner::getChargeInfoList() const {
     return m_charge_info_list;
 }
-void MDGetSongDetail_200_response_privileges_inner::setChargeInfoList(const QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner> &charge_info_list) {
+void MDGetSongDetail_200_response_privileges_inner::setChargeInfoList(const QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> &charge_info_list) {
     m_charge_info_list = charge_info_list;
     m_charge_info_list_isSet = true;
 }

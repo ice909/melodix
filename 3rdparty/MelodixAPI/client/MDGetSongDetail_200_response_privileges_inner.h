@@ -20,8 +20,8 @@
 
 #include <QJsonObject>
 
-#include "MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner.h"
-#include "MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivilege.h"
+#include "MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner.h"
+#include "MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege.h"
 #include <QList>
 #include <QString>
 
@@ -29,8 +29,8 @@
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivilege;
-class MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner;
+class MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege;
+class MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner;
 
 class MDGetSongDetail_200_response_privileges_inner : public MDObject {
 public:
@@ -158,13 +158,13 @@ public:
     bool is_fl_level_Set() const;
     bool is_fl_level_Valid() const;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivilege getFreeTrialPrivilege() const;
-    void setFreeTrialPrivilege(const MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivilege &free_trial_privilege);
+    MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege getFreeTrialPrivilege() const;
+    void setFreeTrialPrivilege(const MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege &free_trial_privilege);
     bool is_free_trial_privilege_Set() const;
     bool is_free_trial_privilege_Valid() const;
 
-    QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner> getChargeInfoList() const;
-    void setChargeInfoList(const QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner> &charge_info_list);
+    QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> getChargeInfoList() const;
+    void setChargeInfoList(const QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> &charge_info_list);
     bool is_charge_info_list_Set() const;
     bool is_charge_info_list_Valid() const;
 
@@ -266,11 +266,11 @@ private:
     bool m_fl_level_isSet;
     bool m_fl_level_isValid;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_privilege_freeTrialPrivilege m_free_trial_privilege;
+    MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege m_free_trial_privilege;
     bool m_free_trial_privilege_isSet;
     bool m_free_trial_privilege_isValid;
 
-    QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner> m_charge_info_list;
+    QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> m_charge_info_list;
     bool m_charge_info_list_isSet;
     bool m_charge_info_list_isValid;
 };

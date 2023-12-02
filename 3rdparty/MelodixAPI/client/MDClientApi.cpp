@@ -903,7 +903,7 @@ void MDClientApi::getArtistMvCallback(MDHttpRequestWorker *worker) {
 }
 
 void MDClientApi::getArtistSingle(const QString &id) {
-    QString fullPath = QString(_serverConfigs["getArtistSingle"][_serverIndices.value("getArtistSingle")].URL()+"/artists");
+    QString fullPath = QString(_serverConfigs["getArtistSingle"][_serverIndices.value("getArtistSingle")].URL()+"/artist/top/song");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     

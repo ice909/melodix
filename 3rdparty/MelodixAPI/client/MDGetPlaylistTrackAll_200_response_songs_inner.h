@@ -20,9 +20,9 @@
 
 #include <QJsonObject>
 
-#include "MDGetArtistSingle_200_response_hotSongs_inner_h.h"
-#include "MDGetArtistSingle_200_response_hotSongs_inner_sq.h"
-#include "MDGetPlaylistDetail_200_response_playlist_tracks_inner_ar_inner.h"
+#include "MDGetArtistSingle_200_response_songs_inner_ar_inner.h"
+#include "MDGetArtistSingle_200_response_songs_inner_h.h"
+#include "MDGetArtistSingle_200_response_songs_inner_hr.h"
 #include "MDGetPlaylistTrackAll_200_response_songs_inner_al.h"
 #include "MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData.h"
 #include <QList>
@@ -32,10 +32,10 @@
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDGetPlaylistDetail_200_response_playlist_tracks_inner_ar_inner;
+class MDGetArtistSingle_200_response_songs_inner_ar_inner;
 class MDGetPlaylistTrackAll_200_response_songs_inner_al;
-class MDGetArtistSingle_200_response_hotSongs_inner_sq;
-class MDGetArtistSingle_200_response_hotSongs_inner_h;
+class MDGetArtistSingle_200_response_songs_inner_hr;
+class MDGetArtistSingle_200_response_songs_inner_h;
 class MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData;
 
 class MDGetPlaylistTrackAll_200_response_songs_inner : public MDObject {
@@ -69,8 +69,8 @@ public:
     bool is_t_Set() const;
     bool is_t_Valid() const;
 
-    QList<MDGetPlaylistDetail_200_response_playlist_tracks_inner_ar_inner> getAr() const;
-    void setAr(const QList<MDGetPlaylistDetail_200_response_playlist_tracks_inner_ar_inner> &ar);
+    QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> getAr() const;
+    void setAr(const QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> &ar);
     bool is_ar_Set() const;
     bool is_ar_Valid() const;
 
@@ -119,28 +119,28 @@ public:
     bool is_dt_Set() const;
     bool is_dt_Valid() const;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq getH() const;
-    void setH(const MDGetArtistSingle_200_response_hotSongs_inner_sq &h);
+    MDGetArtistSingle_200_response_songs_inner_hr getH() const;
+    void setH(const MDGetArtistSingle_200_response_songs_inner_hr &h);
     bool is_h_Set() const;
     bool is_h_Valid() const;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq getM() const;
-    void setM(const MDGetArtistSingle_200_response_hotSongs_inner_sq &m);
+    MDGetArtistSingle_200_response_songs_inner_hr getM() const;
+    void setM(const MDGetArtistSingle_200_response_songs_inner_hr &m);
     bool is_m_Set() const;
     bool is_m_Valid() const;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_h getL() const;
-    void setL(const MDGetArtistSingle_200_response_hotSongs_inner_h &l);
+    MDGetArtistSingle_200_response_songs_inner_h getL() const;
+    void setL(const MDGetArtistSingle_200_response_songs_inner_h &l);
     bool is_l_Set() const;
     bool is_l_Valid() const;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq getSq() const;
-    void setSq(const MDGetArtistSingle_200_response_hotSongs_inner_sq &sq);
+    MDGetArtistSingle_200_response_songs_inner_hr getSq() const;
+    void setSq(const MDGetArtistSingle_200_response_songs_inner_hr &sq);
     bool is_sq_Set() const;
     bool is_sq_Valid() const;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq getHr() const;
-    void setHr(const MDGetArtistSingle_200_response_hotSongs_inner_sq &hr);
+    MDGetArtistSingle_200_response_songs_inner_hr getHr() const;
+    void setHr(const MDGetArtistSingle_200_response_songs_inner_hr &hr);
     bool is_hr_Set() const;
     bool is_hr_Valid() const;
 
@@ -261,7 +261,7 @@ private:
     bool m_t_isSet;
     bool m_t_isValid;
 
-    QList<MDGetPlaylistDetail_200_response_playlist_tracks_inner_ar_inner> m_ar;
+    QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> m_ar;
     bool m_ar_isSet;
     bool m_ar_isValid;
 
@@ -301,23 +301,23 @@ private:
     bool m_dt_isSet;
     bool m_dt_isValid;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq m_h;
+    MDGetArtistSingle_200_response_songs_inner_hr m_h;
     bool m_h_isSet;
     bool m_h_isValid;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq m_m;
+    MDGetArtistSingle_200_response_songs_inner_hr m_m;
     bool m_m_isSet;
     bool m_m_isValid;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_h m_l;
+    MDGetArtistSingle_200_response_songs_inner_h m_l;
     bool m_l_isSet;
     bool m_l_isValid;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq m_sq;
+    MDGetArtistSingle_200_response_songs_inner_hr m_sq;
     bool m_sq_isSet;
     bool m_sq_isValid;
 
-    MDGetArtistSingle_200_response_hotSongs_inner_sq m_hr;
+    MDGetArtistSingle_200_response_songs_inner_hr m_hr;
     bool m_hr_isSet;
     bool m_hr_isValid;
 

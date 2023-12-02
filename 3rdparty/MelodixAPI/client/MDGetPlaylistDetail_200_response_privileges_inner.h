@@ -20,8 +20,8 @@
 
 #include <QJsonObject>
 
-#include "MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner.h"
 #include "MDGetPlaylistDetail_200_response_privileges_inner_freeTrialPrivilege.h"
+#include "MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner.h"
 #include <QList>
 #include <QString>
 
@@ -30,7 +30,7 @@
 
 namespace MelodixAPI {
 class MDGetPlaylistDetail_200_response_privileges_inner_freeTrialPrivilege;
-class MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner;
+class MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner;
 
 class MDGetPlaylistDetail_200_response_privileges_inner : public MDObject {
 public:
@@ -178,8 +178,8 @@ public:
     bool is_right_source_Set() const;
     bool is_right_source_Valid() const;
 
-    QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner> getChargeInfoList() const;
-    void setChargeInfoList(const QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner> &charge_info_list);
+    QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> getChargeInfoList() const;
+    void setChargeInfoList(const QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> &charge_info_list);
     bool is_charge_info_list_Set() const;
     bool is_charge_info_list_Valid() const;
 
@@ -297,7 +297,7 @@ private:
     bool m_right_source_isSet;
     bool m_right_source_isValid;
 
-    QList<MDGetArtistSingle_200_response_hotSongs_inner_privilege_chargeInfoList_inner> m_charge_info_list;
+    QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> m_charge_info_list;
     bool m_charge_info_list_isSet;
     bool m_charge_info_list_isValid;
 };

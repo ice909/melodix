@@ -20,8 +20,8 @@
 
 #include <QJsonObject>
 
-#include "MDGetPlaylistDetail_200_response_playlist_tracks_inner_al.h"
-#include "MDGetPlaylistDetail_200_response_playlist_tracks_inner_ar_inner.h"
+#include "MDGetArtistSingle_200_response_songs_inner_al.h"
+#include "MDGetArtistSingle_200_response_songs_inner_ar_inner.h"
 #include "MDGetPlaylistDetail_200_response_playlist_tracks_inner_h.h"
 #include "MDGetPlaylistDetail_200_response_playlist_tracks_inner_l.h"
 #include <QList>
@@ -31,8 +31,8 @@
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDGetPlaylistDetail_200_response_playlist_tracks_inner_ar_inner;
-class MDGetPlaylistDetail_200_response_playlist_tracks_inner_al;
+class MDGetArtistSingle_200_response_songs_inner_ar_inner;
+class MDGetArtistSingle_200_response_songs_inner_al;
 class MDGetPlaylistDetail_200_response_playlist_tracks_inner_h;
 class MDGetPlaylistDetail_200_response_playlist_tracks_inner_l;
 
@@ -67,8 +67,8 @@ public:
     bool is_t_Set() const;
     bool is_t_Valid() const;
 
-    QList<MDGetPlaylistDetail_200_response_playlist_tracks_inner_ar_inner> getAr() const;
-    void setAr(const QList<MDGetPlaylistDetail_200_response_playlist_tracks_inner_ar_inner> &ar);
+    QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> getAr() const;
+    void setAr(const QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> &ar);
     bool is_ar_Set() const;
     bool is_ar_Valid() const;
 
@@ -107,8 +107,8 @@ public:
     bool is_cf_Set() const;
     bool is_cf_Valid() const;
 
-    MDGetPlaylistDetail_200_response_playlist_tracks_inner_al getAl() const;
-    void setAl(const MDGetPlaylistDetail_200_response_playlist_tracks_inner_al &al);
+    MDGetArtistSingle_200_response_songs_inner_al getAl() const;
+    void setAl(const MDGetArtistSingle_200_response_songs_inner_al &al);
     bool is_al_Set() const;
     bool is_al_Valid() const;
 
@@ -254,7 +254,7 @@ private:
     bool m_t_isSet;
     bool m_t_isValid;
 
-    QList<MDGetPlaylistDetail_200_response_playlist_tracks_inner_ar_inner> m_ar;
+    QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> m_ar;
     bool m_ar_isSet;
     bool m_ar_isValid;
 
@@ -286,7 +286,7 @@ private:
     bool m_cf_isSet;
     bool m_cf_isValid;
 
-    MDGetPlaylistDetail_200_response_playlist_tracks_inner_al m_al;
+    MDGetArtistSingle_200_response_songs_inner_al m_al;
     bool m_al_isSet;
     bool m_al_isValid;
 

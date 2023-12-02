@@ -10,17 +10,18 @@
  */
 
 /*
- * MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData.h
+ * MDGetArtistSingle_200_response_songs_inner_originSongSimpleData.h
  *
  * 
  */
 
-#ifndef MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData_H
-#define MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData_H
+#ifndef MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_H
+#define MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_H
 
 #include <QJsonObject>
 
 #include "MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta.h"
+#include "MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_artists_inner.h"
 #include <QList>
 #include <QString>
 
@@ -28,13 +29,14 @@
 #include "MDObject.h"
 
 namespace MelodixAPI {
+class MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_artists_inner;
 class MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta;
 
-class MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData : public MDObject {
+class MDGetArtistSingle_200_response_songs_inner_originSongSimpleData : public MDObject {
 public:
-    MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData();
-    MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData(QString json);
-    ~MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData() override;
+    MDGetArtistSingle_200_response_songs_inner_originSongSimpleData();
+    MDGetArtistSingle_200_response_songs_inner_originSongSimpleData(QString json);
+    ~MDGetArtistSingle_200_response_songs_inner_originSongSimpleData() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -51,8 +53,8 @@ public:
     bool is_name_Set() const;
     bool is_name_Valid() const;
 
-    QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta> getArtists() const;
-    void setArtists(const QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta> &artists);
+    QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_artists_inner> getArtists() const;
+    void setArtists(const QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_artists_inner> &artists);
     bool is_artists_Set() const;
     bool is_artists_Valid() const;
 
@@ -75,7 +77,7 @@ private:
     bool m_name_isSet;
     bool m_name_isValid;
 
-    QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta> m_artists;
+    QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_artists_inner> m_artists;
     bool m_artists_isSet;
     bool m_artists_isValid;
 
@@ -86,6 +88,6 @@ private:
 
 } // namespace MelodixAPI
 
-Q_DECLARE_METATYPE(MelodixAPI::MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData)
+Q_DECLARE_METATYPE(MelodixAPI::MDGetArtistSingle_200_response_songs_inner_originSongSimpleData)
 
-#endif // MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData_H
+#endif // MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_H

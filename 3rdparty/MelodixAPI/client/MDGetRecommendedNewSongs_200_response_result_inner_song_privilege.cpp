@@ -9,7 +9,7 @@
  * Do not edit the class manually.
  */
 
-#include "MDGetPlaylistDetail_200_response_privileges_inner.h"
+#include "MDGetRecommendedNewSongs_200_response_result_inner_song_privilege.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -20,18 +20,18 @@
 
 namespace MelodixAPI {
 
-MDGetPlaylistDetail_200_response_privileges_inner::MDGetPlaylistDetail_200_response_privileges_inner(QString json) {
+MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::MDGetRecommendedNewSongs_200_response_result_inner_song_privilege(QString json) {
     this->initializeModel();
     this->fromJson(json);
 }
 
-MDGetPlaylistDetail_200_response_privileges_inner::MDGetPlaylistDetail_200_response_privileges_inner() {
+MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::MDGetRecommendedNewSongs_200_response_result_inner_song_privilege() {
     this->initializeModel();
 }
 
-MDGetPlaylistDetail_200_response_privileges_inner::~MDGetPlaylistDetail_200_response_privileges_inner() {}
+MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::~MDGetRecommendedNewSongs_200_response_result_inner_song_privilege() {}
 
-void MDGetPlaylistDetail_200_response_privileges_inner::initializeModel() {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::initializeModel() {
 
     m_id_isSet = false;
     m_id_isValid = false;
@@ -41,9 +41,6 @@ void MDGetPlaylistDetail_200_response_privileges_inner::initializeModel() {
 
     m_payed_isSet = false;
     m_payed_isValid = false;
-
-    m_real_payed_isSet = false;
-    m_real_payed_isValid = false;
 
     m_st_isSet = false;
     m_st_isValid = false;
@@ -78,9 +75,6 @@ void MDGetPlaylistDetail_200_response_privileges_inner::initializeModel() {
     m_flag_isSet = false;
     m_flag_isValid = false;
 
-    m_paid_big_bang_isSet = false;
-    m_paid_big_bang_isValid = false;
-
     m_pre_sell_isSet = false;
     m_pre_sell_isValid = false;
 
@@ -111,21 +105,18 @@ void MDGetPlaylistDetail_200_response_privileges_inner::initializeModel() {
     m_free_trial_privilege_isSet = false;
     m_free_trial_privilege_isValid = false;
 
-    m_right_source_isSet = false;
-    m_right_source_isValid = false;
-
     m_charge_info_list_isSet = false;
     m_charge_info_list_isValid = false;
 }
 
-void MDGetPlaylistDetail_200_response_privileges_inner::fromJson(QString jsonString) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::fromJson(QString jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void MDGetPlaylistDetail_200_response_privileges_inner::fromJsonObject(QJsonObject json) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::fromJsonObject(QJsonObject json) {
 
     m_id_isValid = ::MelodixAPI::fromJsonValue(m_id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
@@ -135,9 +126,6 @@ void MDGetPlaylistDetail_200_response_privileges_inner::fromJsonObject(QJsonObje
 
     m_payed_isValid = ::MelodixAPI::fromJsonValue(m_payed, json[QString("payed")]);
     m_payed_isSet = !json[QString("payed")].isNull() && m_payed_isValid;
-
-    m_real_payed_isValid = ::MelodixAPI::fromJsonValue(m_real_payed, json[QString("realPayed")]);
-    m_real_payed_isSet = !json[QString("realPayed")].isNull() && m_real_payed_isValid;
 
     m_st_isValid = ::MelodixAPI::fromJsonValue(m_st, json[QString("st")]);
     m_st_isSet = !json[QString("st")].isNull() && m_st_isValid;
@@ -172,9 +160,6 @@ void MDGetPlaylistDetail_200_response_privileges_inner::fromJsonObject(QJsonObje
     m_flag_isValid = ::MelodixAPI::fromJsonValue(m_flag, json[QString("flag")]);
     m_flag_isSet = !json[QString("flag")].isNull() && m_flag_isValid;
 
-    m_paid_big_bang_isValid = ::MelodixAPI::fromJsonValue(m_paid_big_bang, json[QString("paidBigBang")]);
-    m_paid_big_bang_isSet = !json[QString("paidBigBang")].isNull() && m_paid_big_bang_isValid;
-
     m_pre_sell_isValid = ::MelodixAPI::fromJsonValue(m_pre_sell, json[QString("preSell")]);
     m_pre_sell_isSet = !json[QString("preSell")].isNull() && m_pre_sell_isValid;
 
@@ -205,21 +190,18 @@ void MDGetPlaylistDetail_200_response_privileges_inner::fromJsonObject(QJsonObje
     m_free_trial_privilege_isValid = ::MelodixAPI::fromJsonValue(m_free_trial_privilege, json[QString("freeTrialPrivilege")]);
     m_free_trial_privilege_isSet = !json[QString("freeTrialPrivilege")].isNull() && m_free_trial_privilege_isValid;
 
-    m_right_source_isValid = ::MelodixAPI::fromJsonValue(m_right_source, json[QString("rightSource")]);
-    m_right_source_isSet = !json[QString("rightSource")].isNull() && m_right_source_isValid;
-
     m_charge_info_list_isValid = ::MelodixAPI::fromJsonValue(m_charge_info_list, json[QString("chargeInfoList")]);
     m_charge_info_list_isSet = !json[QString("chargeInfoList")].isNull() && m_charge_info_list_isValid;
 }
 
-QString MDGetPlaylistDetail_200_response_privileges_inner::asJson() const {
+QString MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject MDGetPlaylistDetail_200_response_privileges_inner::asJsonObject() const {
+QJsonObject MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::asJsonObject() const {
     QJsonObject obj;
     if (m_id_isSet) {
         obj.insert(QString("id"), ::MelodixAPI::toJsonValue(m_id));
@@ -229,9 +211,6 @@ QJsonObject MDGetPlaylistDetail_200_response_privileges_inner::asJsonObject() co
     }
     if (m_payed_isSet) {
         obj.insert(QString("payed"), ::MelodixAPI::toJsonValue(m_payed));
-    }
-    if (m_real_payed_isSet) {
-        obj.insert(QString("realPayed"), ::MelodixAPI::toJsonValue(m_real_payed));
     }
     if (m_st_isSet) {
         obj.insert(QString("st"), ::MelodixAPI::toJsonValue(m_st));
@@ -266,9 +245,6 @@ QJsonObject MDGetPlaylistDetail_200_response_privileges_inner::asJsonObject() co
     if (m_flag_isSet) {
         obj.insert(QString("flag"), ::MelodixAPI::toJsonValue(m_flag));
     }
-    if (m_paid_big_bang_isSet) {
-        obj.insert(QString("paidBigBang"), ::MelodixAPI::toJsonValue(m_paid_big_bang));
-    }
     if (m_pre_sell_isSet) {
         obj.insert(QString("preSell"), ::MelodixAPI::toJsonValue(m_pre_sell));
     }
@@ -299,464 +275,413 @@ QJsonObject MDGetPlaylistDetail_200_response_privileges_inner::asJsonObject() co
     if (m_free_trial_privilege.isSet()) {
         obj.insert(QString("freeTrialPrivilege"), ::MelodixAPI::toJsonValue(m_free_trial_privilege));
     }
-    if (m_right_source_isSet) {
-        obj.insert(QString("rightSource"), ::MelodixAPI::toJsonValue(m_right_source));
-    }
     if (m_charge_info_list.size() > 0) {
         obj.insert(QString("chargeInfoList"), ::MelodixAPI::toJsonValue(m_charge_info_list));
     }
     return obj;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getId() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getId() const {
     return m_id;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setId(const qint32 &id) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setId(const qint32 &id) {
     m_id = id;
     m_id_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_id_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_id_Set() const{
     return m_id_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_id_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_id_Valid() const{
     return m_id_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getFee() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getFee() const {
     return m_fee;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setFee(const qint32 &fee) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setFee(const qint32 &fee) {
     m_fee = fee;
     m_fee_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_fee_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_fee_Set() const{
     return m_fee_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_fee_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_fee_Valid() const{
     return m_fee_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getPayed() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getPayed() const {
     return m_payed;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setPayed(const qint32 &payed) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setPayed(const qint32 &payed) {
     m_payed = payed;
     m_payed_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_payed_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_payed_Set() const{
     return m_payed_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_payed_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_payed_Valid() const{
     return m_payed_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getRealPayed() const {
-    return m_real_payed;
-}
-void MDGetPlaylistDetail_200_response_privileges_inner::setRealPayed(const qint32 &real_payed) {
-    m_real_payed = real_payed;
-    m_real_payed_isSet = true;
-}
-
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_real_payed_Set() const{
-    return m_real_payed_isSet;
-}
-
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_real_payed_Valid() const{
-    return m_real_payed_isValid;
-}
-
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getSt() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getSt() const {
     return m_st;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setSt(const qint32 &st) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setSt(const qint32 &st) {
     m_st = st;
     m_st_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_st_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_st_Set() const{
     return m_st_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_st_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_st_Valid() const{
     return m_st_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getPl() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getPl() const {
     return m_pl;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setPl(const qint32 &pl) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setPl(const qint32 &pl) {
     m_pl = pl;
     m_pl_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_pl_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_pl_Set() const{
     return m_pl_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_pl_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_pl_Valid() const{
     return m_pl_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getDl() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getDl() const {
     return m_dl;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setDl(const qint32 &dl) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setDl(const qint32 &dl) {
     m_dl = dl;
     m_dl_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_dl_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_dl_Set() const{
     return m_dl_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_dl_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_dl_Valid() const{
     return m_dl_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getSp() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getSp() const {
     return m_sp;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setSp(const qint32 &sp) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setSp(const qint32 &sp) {
     m_sp = sp;
     m_sp_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_sp_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_sp_Set() const{
     return m_sp_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_sp_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_sp_Valid() const{
     return m_sp_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getCp() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getCp() const {
     return m_cp;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setCp(const qint32 &cp) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setCp(const qint32 &cp) {
     m_cp = cp;
     m_cp_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_cp_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_cp_Set() const{
     return m_cp_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_cp_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_cp_Valid() const{
     return m_cp_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getSubp() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getSubp() const {
     return m_subp;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setSubp(const qint32 &subp) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setSubp(const qint32 &subp) {
     m_subp = subp;
     m_subp_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_subp_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_subp_Set() const{
     return m_subp_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_subp_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_subp_Valid() const{
     return m_subp_isValid;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::isCs() const {
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::isCs() const {
     return m_cs;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setCs(const bool &cs) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setCs(const bool &cs) {
     m_cs = cs;
     m_cs_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_cs_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_cs_Set() const{
     return m_cs_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_cs_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_cs_Valid() const{
     return m_cs_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getMaxbr() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getMaxbr() const {
     return m_maxbr;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setMaxbr(const qint32 &maxbr) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setMaxbr(const qint32 &maxbr) {
     m_maxbr = maxbr;
     m_maxbr_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_maxbr_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_maxbr_Set() const{
     return m_maxbr_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_maxbr_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_maxbr_Valid() const{
     return m_maxbr_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getFl() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getFl() const {
     return m_fl;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setFl(const qint32 &fl) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setFl(const qint32 &fl) {
     m_fl = fl;
     m_fl_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_fl_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_fl_Set() const{
     return m_fl_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_fl_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_fl_Valid() const{
     return m_fl_isValid;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::isToast() const {
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::isToast() const {
     return m_toast;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setToast(const bool &toast) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setToast(const bool &toast) {
     m_toast = toast;
     m_toast_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_toast_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_toast_Set() const{
     return m_toast_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_toast_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_toast_Valid() const{
     return m_toast_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getFlag() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getFlag() const {
     return m_flag;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setFlag(const qint32 &flag) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setFlag(const qint32 &flag) {
     m_flag = flag;
     m_flag_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_flag_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_flag_Set() const{
     return m_flag_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_flag_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_flag_Valid() const{
     return m_flag_isValid;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::isPaidBigBang() const {
-    return m_paid_big_bang;
-}
-void MDGetPlaylistDetail_200_response_privileges_inner::setPaidBigBang(const bool &paid_big_bang) {
-    m_paid_big_bang = paid_big_bang;
-    m_paid_big_bang_isSet = true;
-}
-
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_paid_big_bang_Set() const{
-    return m_paid_big_bang_isSet;
-}
-
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_paid_big_bang_Valid() const{
-    return m_paid_big_bang_isValid;
-}
-
-bool MDGetPlaylistDetail_200_response_privileges_inner::isPreSell() const {
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::isPreSell() const {
     return m_pre_sell;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setPreSell(const bool &pre_sell) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setPreSell(const bool &pre_sell) {
     m_pre_sell = pre_sell;
     m_pre_sell_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_pre_sell_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_pre_sell_Set() const{
     return m_pre_sell_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_pre_sell_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_pre_sell_Valid() const{
     return m_pre_sell_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getPlayMaxbr() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getPlayMaxbr() const {
     return m_play_maxbr;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setPlayMaxbr(const qint32 &play_maxbr) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setPlayMaxbr(const qint32 &play_maxbr) {
     m_play_maxbr = play_maxbr;
     m_play_maxbr_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_play_maxbr_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_play_maxbr_Set() const{
     return m_play_maxbr_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_play_maxbr_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_play_maxbr_Valid() const{
     return m_play_maxbr_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getDownloadMaxbr() const {
+qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getDownloadMaxbr() const {
     return m_download_maxbr;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setDownloadMaxbr(const qint32 &download_maxbr) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setDownloadMaxbr(const qint32 &download_maxbr) {
     m_download_maxbr = download_maxbr;
     m_download_maxbr_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_download_maxbr_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_download_maxbr_Set() const{
     return m_download_maxbr_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_download_maxbr_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_download_maxbr_Valid() const{
     return m_download_maxbr_isValid;
 }
 
-QString MDGetPlaylistDetail_200_response_privileges_inner::getMaxBrLevel() const {
+QString MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getMaxBrLevel() const {
     return m_max_br_level;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setMaxBrLevel(const QString &max_br_level) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setMaxBrLevel(const QString &max_br_level) {
     m_max_br_level = max_br_level;
     m_max_br_level_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_max_br_level_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_max_br_level_Set() const{
     return m_max_br_level_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_max_br_level_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_max_br_level_Valid() const{
     return m_max_br_level_isValid;
 }
 
-QString MDGetPlaylistDetail_200_response_privileges_inner::getPlayMaxBrLevel() const {
+QString MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getPlayMaxBrLevel() const {
     return m_play_max_br_level;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setPlayMaxBrLevel(const QString &play_max_br_level) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setPlayMaxBrLevel(const QString &play_max_br_level) {
     m_play_max_br_level = play_max_br_level;
     m_play_max_br_level_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_play_max_br_level_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_play_max_br_level_Set() const{
     return m_play_max_br_level_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_play_max_br_level_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_play_max_br_level_Valid() const{
     return m_play_max_br_level_isValid;
 }
 
-QString MDGetPlaylistDetail_200_response_privileges_inner::getDownloadMaxBrLevel() const {
+QString MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getDownloadMaxBrLevel() const {
     return m_download_max_br_level;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setDownloadMaxBrLevel(const QString &download_max_br_level) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setDownloadMaxBrLevel(const QString &download_max_br_level) {
     m_download_max_br_level = download_max_br_level;
     m_download_max_br_level_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_download_max_br_level_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_download_max_br_level_Set() const{
     return m_download_max_br_level_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_download_max_br_level_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_download_max_br_level_Valid() const{
     return m_download_max_br_level_isValid;
 }
 
-QString MDGetPlaylistDetail_200_response_privileges_inner::getPlLevel() const {
+QString MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getPlLevel() const {
     return m_pl_level;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setPlLevel(const QString &pl_level) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setPlLevel(const QString &pl_level) {
     m_pl_level = pl_level;
     m_pl_level_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_pl_level_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_pl_level_Set() const{
     return m_pl_level_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_pl_level_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_pl_level_Valid() const{
     return m_pl_level_isValid;
 }
 
-QString MDGetPlaylistDetail_200_response_privileges_inner::getDlLevel() const {
+QString MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getDlLevel() const {
     return m_dl_level;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setDlLevel(const QString &dl_level) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setDlLevel(const QString &dl_level) {
     m_dl_level = dl_level;
     m_dl_level_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_dl_level_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_dl_level_Set() const{
     return m_dl_level_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_dl_level_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_dl_level_Valid() const{
     return m_dl_level_isValid;
 }
 
-QString MDGetPlaylistDetail_200_response_privileges_inner::getFlLevel() const {
+QString MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getFlLevel() const {
     return m_fl_level;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setFlLevel(const QString &fl_level) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setFlLevel(const QString &fl_level) {
     m_fl_level = fl_level;
     m_fl_level_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_fl_level_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_fl_level_Set() const{
     return m_fl_level_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_fl_level_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_fl_level_Valid() const{
     return m_fl_level_isValid;
 }
 
-MDGetPlaylistDetail_200_response_privileges_inner_freeTrialPrivilege MDGetPlaylistDetail_200_response_privileges_inner::getFreeTrialPrivilege() const {
+MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getFreeTrialPrivilege() const {
     return m_free_trial_privilege;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setFreeTrialPrivilege(const MDGetPlaylistDetail_200_response_privileges_inner_freeTrialPrivilege &free_trial_privilege) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setFreeTrialPrivilege(const MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege &free_trial_privilege) {
     m_free_trial_privilege = free_trial_privilege;
     m_free_trial_privilege_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_free_trial_privilege_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_free_trial_privilege_Set() const{
     return m_free_trial_privilege_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_free_trial_privilege_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_free_trial_privilege_Valid() const{
     return m_free_trial_privilege_isValid;
 }
 
-qint32 MDGetPlaylistDetail_200_response_privileges_inner::getRightSource() const {
-    return m_right_source;
-}
-void MDGetPlaylistDetail_200_response_privileges_inner::setRightSource(const qint32 &right_source) {
-    m_right_source = right_source;
-    m_right_source_isSet = true;
-}
-
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_right_source_Set() const{
-    return m_right_source_isSet;
-}
-
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_right_source_Valid() const{
-    return m_right_source_isValid;
-}
-
-QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> MDGetPlaylistDetail_200_response_privileges_inner::getChargeInfoList() const {
+QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::getChargeInfoList() const {
     return m_charge_info_list;
 }
-void MDGetPlaylistDetail_200_response_privileges_inner::setChargeInfoList(const QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> &charge_info_list) {
+void MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::setChargeInfoList(const QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner> &charge_info_list) {
     m_charge_info_list = charge_info_list;
     m_charge_info_list_isSet = true;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_charge_info_list_Set() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_charge_info_list_Set() const{
     return m_charge_info_list_isSet;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::is_charge_info_list_Valid() const{
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::is_charge_info_list_Valid() const{
     return m_charge_info_list_isValid;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::isSet() const {
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (m_id_isSet) {
@@ -770,11 +695,6 @@ bool MDGetPlaylistDetail_200_response_privileges_inner::isSet() const {
         }
 
         if (m_payed_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_real_payed_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -834,11 +754,6 @@ bool MDGetPlaylistDetail_200_response_privileges_inner::isSet() const {
             break;
         }
 
-        if (m_paid_big_bang_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_pre_sell_isSet) {
             isObjectUpdated = true;
             break;
@@ -889,11 +804,6 @@ bool MDGetPlaylistDetail_200_response_privileges_inner::isSet() const {
             break;
         }
 
-        if (m_right_source_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_charge_info_list.size() > 0) {
             isObjectUpdated = true;
             break;
@@ -902,9 +812,9 @@ bool MDGetPlaylistDetail_200_response_privileges_inner::isSet() const {
     return isObjectUpdated;
 }
 
-bool MDGetPlaylistDetail_200_response_privileges_inner::isValid() const {
+bool MDGetRecommendedNewSongs_200_response_result_inner_song_privilege::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_fee_isValid && m_payed_isValid && m_real_payed_isValid && m_st_isValid && m_pl_isValid && m_dl_isValid && m_sp_isValid && m_cp_isValid && m_subp_isValid && m_cs_isValid && m_maxbr_isValid && m_fl_isValid && m_toast_isValid && m_flag_isValid && m_paid_big_bang_isValid && m_pre_sell_isValid && m_play_maxbr_isValid && m_download_maxbr_isValid && m_max_br_level_isValid && m_play_max_br_level_isValid && m_download_max_br_level_isValid && m_pl_level_isValid && m_dl_level_isValid && m_fl_level_isValid && m_free_trial_privilege_isValid && m_right_source_isValid && m_charge_info_list_isValid && true;
+    return m_id_isValid && m_fee_isValid && m_payed_isValid && m_st_isValid && m_pl_isValid && m_dl_isValid && m_sp_isValid && m_cp_isValid && m_subp_isValid && m_cs_isValid && m_maxbr_isValid && m_fl_isValid && m_toast_isValid && m_flag_isValid && m_pre_sell_isValid && m_play_maxbr_isValid && m_download_maxbr_isValid && m_max_br_level_isValid && m_play_max_br_level_isValid && m_download_max_br_level_isValid && m_pl_level_isValid && m_dl_level_isValid && m_fl_level_isValid && m_free_trial_privilege_isValid && m_charge_info_list_isValid && true;
 }
 
 } // namespace MelodixAPI

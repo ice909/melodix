@@ -317,10 +317,10 @@ bool MDGetRecommendedMv_200_response_result_inner::is_subed_Valid() const{
     return m_subed_isValid;
 }
 
-QList<MDGetRecommendedMv_200_response_result_inner_artists_inner> MDGetRecommendedMv_200_response_result_inner::getArtists() const {
+QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta> MDGetRecommendedMv_200_response_result_inner::getArtists() const {
     return m_artists;
 }
-void MDGetRecommendedMv_200_response_result_inner::setArtists(const QList<MDGetRecommendedMv_200_response_result_inner_artists_inner> &artists) {
+void MDGetRecommendedMv_200_response_result_inner::setArtists(const QList<MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta> &artists) {
     m_artists = artists;
     m_artists_isSet = true;
 }
