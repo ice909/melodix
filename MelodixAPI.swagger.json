@@ -5596,6 +5596,182 @@
           "application/json"
         ]
       }
+    },
+    "/recommend/songs": {
+      "get": {
+        "summary": "每日推荐歌曲",
+        "x-apifox-folder": "client",
+        "x-apifox-status": "released",
+        "deprecated": false,
+        "description": "",
+        "operationId": "dailySongRecommend",
+        "tags": [
+          "client"
+        ],
+        "parameters": [
+          {
+            "name": "MUSIC_U",
+            "in": "cookie",
+            "description": "",
+            "required": true,
+            "type": "string",
+            "x-example": "003D81881884B70DE7B073CA0B57EBDFD5140277CD05DAB03996945589440109D800E7570C44430AA88B8B006F5FDDF4117992D1A0768DC451296ACF8806F3B7DC0DC6676994B5371473D4F6D1B37E6EB42B3D660604083C2F29DD4935C60638A1FBFD83F99DA489D6DA449DE943AC965BBA12F5C9BC886A77924A261DE02F254070682B3561A78F00D955DF851D5AF83EC5104FDB7ABDBD69EEDF55ED87AACA945880A72123EEAF40CD60645FB762554B52D3A10A5F090F49E7D045CED14EB509DA2F3962A2A082D553CA2314524DDB4514E73FDDD7FE691C44A3D6B2A03D307081DA22B775A3388E9357BAE451A4A630280F6E5059C79E2EF2C93594D8DA95B60CD05FF60066FE9E3F195CD4345041A4332320464C2463107236048183237AE2A8ED8C39656C49BFE87ED79731A6F174F574C51338F53A0918BB3F03AD3389ACD97CA95780676BCE03221B2CB4DA9C9D"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "dailySongs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "integer"
+                          },
+                          "ar": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "integer"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "tns": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "alias": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "name",
+                                "tns",
+                                "alias"
+                              ],
+                              "x-apifox-orders": [
+                                "id",
+                                "name",
+                                "tns",
+                                "alias"
+                              ],
+                              "x-apifox-ignore-properties": []
+                            }
+                          },
+                          "al": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "picUrl": {
+                                "type": "string"
+                              },
+                              "tns": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "pic_str": {
+                                "type": "string"
+                              },
+                              "pic": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "picUrl",
+                              "tns",
+                              "pic_str",
+                              "pic"
+                            ],
+                            "x-apifox-orders": [
+                              "id",
+                              "name",
+                              "picUrl",
+                              "tns",
+                              "pic_str",
+                              "pic"
+                            ],
+                            "x-apifox-ignore-properties": []
+                          },
+                          "dt": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "id",
+                          "ar",
+                          "al",
+                          "dt"
+                        ],
+                        "x-apifox-orders": [
+                          "name",
+                          "id",
+                          "ar",
+                          "al",
+                          "dt"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      }
+                    }
+                  },
+                  "required": [
+                    "dailySongs"
+                  ],
+                  "x-apifox-orders": [
+                    "dailySongs"
+                  ],
+                  "x-apifox-ignore-properties": []
+                }
+              },
+              "required": [
+                "code",
+                "data"
+              ],
+              "x-apifox-orders": [
+                "code",
+                "data"
+              ],
+              "x-apifox-ignore-properties": []
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/1982576/apis/api-130088371-run",
+        "security": [],
+        "produces": [
+          "application/json"
+        ]
+      }
     }
   },
   "swagger": "2.0",

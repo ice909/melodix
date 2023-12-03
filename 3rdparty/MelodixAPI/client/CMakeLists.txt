@@ -16,6 +16,10 @@ add_library(${PROJECT_NAME}
   MDCellphoneLogin_200_response_profile.h
   MDCellphoneLogin_200_response_profile_avatarDetail.h
   MDCheckMusic_200_response.h
+  MDDailySongRecommend_200_response.h
+  MDDailySongRecommend_200_response_data.h
+  MDDailySongRecommend_200_response_data_dailySongs_inner.h
+  MDDailySongRecommend_200_response_data_dailySongs_inner_ar_inner.h
   MDGetAccountInfo_200_response.h
   MDGetAccountInfo_200_response_profile.h
   MDGetArtistAlbum_200_response.h
@@ -117,6 +121,10 @@ add_library(${PROJECT_NAME}
   MDCellphoneLogin_200_response_profile.cpp
   MDCellphoneLogin_200_response_profile_avatarDetail.cpp
   MDCheckMusic_200_response.cpp
+  MDDailySongRecommend_200_response.cpp
+  MDDailySongRecommend_200_response_data.cpp
+  MDDailySongRecommend_200_response_data_dailySongs_inner.cpp
+  MDDailySongRecommend_200_response_data_dailySongs_inner_ar_inner.cpp
   MDGetAccountInfo_200_response.cpp
   MDGetAccountInfo_200_response_profile.cpp
   MDGetArtistAlbum_200_response.cpp

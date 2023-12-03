@@ -41,6 +41,8 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("cellphoneLogin", 0);
     _serverConfigs.insert("checkMusic", defaultConf);
     _serverIndices.insert("checkMusic", 0);
+    _serverConfigs.insert("dailySongRecommend", defaultConf);
+    _serverIndices.insert("dailySongRecommend", 0);
     _serverConfigs.insert("getAccountInfo", defaultConf);
     _serverIndices.insert("getAccountInfo", 0);
     _serverConfigs.insert("getArtistAlbum", defaultConf);
@@ -539,6 +541,55 @@ void MDClientApi::checkMusicCallback(MDHttpRequestWorker *worker) {
     } else {
         emit checkMusicSignalE(output, error_type, error_str);
         emit checkMusicSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void MDClientApi::dailySongRecommend() {
+    QString fullPath = QString(_serverConfigs["dailySongRecommend"][_serverIndices.value("dailySongRecommend")].URL()+"/recommend/songs");
+    
+    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    MDHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::dailySongRecommendCallback);
+    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void MDClientApi::dailySongRecommendCallback(MDHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    MDDailySongRecommend_200_response output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit dailySongRecommendSignal(output);
+        emit dailySongRecommendSignalFull(worker, output);
+    } else {
+        emit dailySongRecommendSignalE(output, error_type, error_str);
+        emit dailySongRecommendSignalEFull(worker, error_type, error_str);
     }
 }
 

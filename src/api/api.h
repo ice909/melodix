@@ -50,6 +50,7 @@ public slots:
     void phoneLogin(const int phone, const QString password);
     void phoneLogin(const int phone, const QString password, const int captcha);
     void getUserDetail(const QString uid);
+    void getDailyRecommendSongs();
 signals:
     void bannerCompleted(QJsonArray);
     void recommendedPlaylistCompleted(QJsonArray);
@@ -78,6 +79,7 @@ signals:
     void verifyCaptchaCompleted(QJsonObject);
     void cellphoneLoginCompleted(QJsonObject);
     void userDetailCompleted(QJsonObject);
+    void dailyRecommendSongsCompleted(QJsonObject);
 
 private:
     static QPointer<API> INSTANCE;

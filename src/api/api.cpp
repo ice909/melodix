@@ -141,6 +141,11 @@ API::API(QObject *parent)
             [&](MDHttpRequestWorker *worker, MDCellphoneLogin_200_response response) {
                 emit cellphoneLoginCompleted(response.asJsonObject());
             });
+    connect(userApiInstance,
+            &MDClientApi::dailySongRecommendSignalFull,
+            [&](MDHttpRequestWorker *worker, MDDailySongRecommend_200_response response) {
+                emit dailyRecommendSongsCompleted(response.asJsonObject());
+            });
 }
 void API::banner(const int type)
 {
@@ -332,9 +337,15 @@ void API::phoneLogin(const int phone, const QString password, const int captcha)
 {
     apiInstance->cellphoneLogin(phone, password, captcha);
 }
+
 void API::getUserDetail(const QString uid)
 {
     userApiInstance->getUserDetail(uid);
+}
+
+void API::getDailyRecommendSongs()
+{
+    userApiInstance->dailySongRecommend();
 }
 
 API::~API()

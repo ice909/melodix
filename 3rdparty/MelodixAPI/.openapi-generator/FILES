@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 client/CMakeLists.txt
 client/Config.cmake.in
@@ -20,6 +19,14 @@ client/MDCheckMusic_200_response.cpp
 client/MDCheckMusic_200_response.h
 client/MDClientApi.cpp
 client/MDClientApi.h
+client/MDDailySongRecommend_200_response.cpp
+client/MDDailySongRecommend_200_response.h
+client/MDDailySongRecommend_200_response_data.cpp
+client/MDDailySongRecommend_200_response_data.h
+client/MDDailySongRecommend_200_response_data_dailySongs_inner.cpp
+client/MDDailySongRecommend_200_response_data_dailySongs_inner.h
+client/MDDailySongRecommend_200_response_data_dailySongs_inner_ar_inner.cpp
+client/MDDailySongRecommend_200_response_data_dailySongs_inner_ar_inner.h
 client/MDEnum.h
 client/MDGetAccountInfo_200_response.cpp
 client/MDGetAccountInfo_200_response.h

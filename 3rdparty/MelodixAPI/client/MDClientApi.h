@@ -20,6 +20,7 @@
 #include "MDBanner_200_response.h"
 #include "MDCellphoneLogin_200_response.h"
 #include "MDCheckMusic_200_response.h"
+#include "MDDailySongRecommend_200_response.h"
 #include "MDGetAccountInfo_200_response.h"
 #include "MDGetArtistAlbum_200_response.h"
 #include "MDGetArtistDetail_200_response.h"
@@ -104,6 +105,9 @@ public:
     * @param[in]  br double [optional]
     */
     void checkMusic(const QString &id, const ::MelodixAPI::OptionalParam<double> &br = ::MelodixAPI::OptionalParam<double>());
+
+
+    void dailySongRecommend();
 
     /**
     * @param[in]  timestamp double [required]
@@ -284,6 +288,7 @@ private:
     void bannerCallback(MDHttpRequestWorker *worker);
     void cellphoneLoginCallback(MDHttpRequestWorker *worker);
     void checkMusicCallback(MDHttpRequestWorker *worker);
+    void dailySongRecommendCallback(MDHttpRequestWorker *worker);
     void getAccountInfoCallback(MDHttpRequestWorker *worker);
     void getArtistAlbumCallback(MDHttpRequestWorker *worker);
     void getArtistDetailCallback(MDHttpRequestWorker *worker);
@@ -318,6 +323,7 @@ signals:
     void bannerSignal(MDBanner_200_response summary);
     void cellphoneLoginSignal(MDCellphoneLogin_200_response summary);
     void checkMusicSignal(MDCheckMusic_200_response summary);
+    void dailySongRecommendSignal(MDDailySongRecommend_200_response summary);
     void getAccountInfoSignal(MDGetAccountInfo_200_response summary);
     void getArtistAlbumSignal(MDGetArtistAlbum_200_response summary);
     void getArtistDetailSignal(MDGetArtistDetail_200_response summary);
@@ -350,6 +356,7 @@ signals:
     void bannerSignalFull(MDHttpRequestWorker *worker, MDBanner_200_response summary);
     void cellphoneLoginSignalFull(MDHttpRequestWorker *worker, MDCellphoneLogin_200_response summary);
     void checkMusicSignalFull(MDHttpRequestWorker *worker, MDCheckMusic_200_response summary);
+    void dailySongRecommendSignalFull(MDHttpRequestWorker *worker, MDDailySongRecommend_200_response summary);
     void getAccountInfoSignalFull(MDHttpRequestWorker *worker, MDGetAccountInfo_200_response summary);
     void getArtistAlbumSignalFull(MDHttpRequestWorker *worker, MDGetArtistAlbum_200_response summary);
     void getArtistDetailSignalFull(MDHttpRequestWorker *worker, MDGetArtistDetail_200_response summary);
@@ -382,6 +389,7 @@ signals:
     void bannerSignalE(MDBanner_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void cellphoneLoginSignalE(MDCellphoneLogin_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void checkMusicSignalE(MDCheckMusic_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void dailySongRecommendSignalE(MDDailySongRecommend_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getAccountInfoSignalE(MDGetAccountInfo_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getArtistAlbumSignalE(MDGetArtistAlbum_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getArtistDetailSignalE(MDGetArtistDetail_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
@@ -414,6 +422,7 @@ signals:
     void bannerSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void cellphoneLoginSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void checkMusicSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void dailySongRecommendSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getAccountInfoSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getArtistAlbumSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getArtistDetailSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
