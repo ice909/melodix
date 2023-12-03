@@ -38,12 +38,6 @@ Item {
         "component": "qml/search/Search.qml",
         "key": ""
     }
-    // Mv详情页
-    property var routeMv: {
-        "path": "mv",
-        "component": "qml/mv/Mv.qml",
-        "id": ""
-    }
     // 艺人详情页
     property var routeArtist: {
         "path": "artist",
@@ -66,6 +60,11 @@ Item {
     property var routeSetting: {
         "path": "setting",
         "component": "qml/settings/Settings.qml"
+    }
+    // 每日推荐歌曲页
+    property var routeDaily: {
+        "path": "daily",
+        "component": "qml/daily/Daily.qml"
     }
 
     // 路由后退信号
@@ -129,15 +128,6 @@ Item {
         routeHistory.push(r);
     }
 
-    // 显示Mv详情页
-    function showMv(id) {
-        const r = clone(routeMv);
-        r.id = id;
-        routeCurrent = r;
-        routeHistory.push(r);
-        signalNavigate(r, false);
-    }
-
     // 显示艺人详情页
     function showArtist(id) {
         const r = clone(routeArtist);
@@ -173,6 +163,14 @@ Item {
         signalNavigate(r, false);
     }
 
+    // 显示每日推荐歌曲页
+    function showDaily() {
+        const r = clone(routeDaily);
+        routeCurrent = r;
+        routeHistory.push(r);
+        signalNavigate(r, false);
+    }
+
     // 复制对象
     function clone(route) {
         return JSON.parse(JSON.stringify(route));
@@ -193,11 +191,13 @@ Item {
             pageModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-dark.svg");
             pageModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-dark.svg");
             userListViewModel.setProperty(0, "iconName", "qrc:/dsg/icons/favourite-dark.svg");
+            userListViewModel.setProperty(1, "iconName", "qrc:/dsg/icons/daily-dark.svg");
         } else {
             pageModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-light.svg");
             pageModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-light.svg");
             pageModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-light.svg");
             userListViewModel.setProperty(0, "iconName", "qrc:/dsg/icons/favourite-light.svg");
+            userListViewModel.setProperty(1, "iconName", "qrc:/dsg/icons/daily-light.svg");
         }
     }
 
@@ -207,6 +207,7 @@ Item {
             pageModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-dark.svg");
             pageModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-dark.svg");
             userListViewModel.setProperty(0, "iconName", "qrc:/dsg/icons/favourite-dark.svg");
+            userListViewModel.setProperty(1, "iconName", "qrc:/dsg/icons/daily-dark.svg");
         }
         D.DTK.themeTypeChanged.connect(onThemeTypeChanged);
     }
@@ -236,6 +237,11 @@ Item {
         ListElement {
             iconName: "qrc:/dsg/icons/favourite-light.svg"
             _text: "我喜欢的音乐"
+        }
+
+        ListElement {
+            iconName: "qrc:/dsg/icons/daily-light.svg"
+            _text: "每日推荐"
         }
 
     }

@@ -95,7 +95,7 @@ Item {
 
             width: parent.width - 10
             visible: isLogin
-            height: 36
+            height: 36 * 2 + 5
             model: Router.userListViewModel
             spacing: 5
 
@@ -116,6 +116,11 @@ Item {
                         switch (index) {
                         case 0:
                             Router.showFavorite(userFavoritePlaylistId, userFavoriteSongsID.length);
+                            pageSelectedIndex = -1;
+                            userListViewSelectedIndex = index;
+                            break;
+                        case 1:
+                            Router.showDaily();
                             pageSelectedIndex = -1;
                             userListViewSelectedIndex = index;
                             break;
@@ -167,6 +172,10 @@ Item {
             case "favourite":
                 pageSelectedIndex = -1;
                 userListViewSelectedIndex = 0;
+                break;
+            case "daily":
+                pageSelectedIndex = -1;
+                userListViewSelectedIndex = 1;
                 break;
             }
         }

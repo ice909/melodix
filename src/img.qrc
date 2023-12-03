@@ -34,6 +34,8 @@
         <file>dsg/icons/library-dark.svg</file>
         <file>dsg/icons/favourite-light.svg</file>
         <file>dsg/icons/favourite-dark.svg</file>
+        <file>dsg/icons/daily-light.svg</file>
+        <file>dsg/icons/daily-dark.svg</file>
 
         <file>dsg/icons/play.svg</file>
     </qresource>
