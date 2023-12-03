@@ -45,35 +45,17 @@ void MDGetMvDetail_200_response_data::initializeModel() {
     m_artist_name_isSet = false;
     m_artist_name_isValid = false;
 
-    m_brief_desc_isSet = false;
-    m_brief_desc_isValid = false;
-
     m_cover_isSet = false;
     m_cover_isValid = false;
 
-    m_cover_id_str_isSet = false;
-    m_cover_id_str_isValid = false;
-
-    m_cover_id_isSet = false;
-    m_cover_id_isValid = false;
-
     m_play_count_isSet = false;
     m_play_count_isValid = false;
-
-    m_sub_count_isSet = false;
-    m_sub_count_isValid = false;
-
-    m_share_count_isSet = false;
-    m_share_count_isValid = false;
 
     m_comment_count_isSet = false;
     m_comment_count_isValid = false;
 
     m_duration_isSet = false;
     m_duration_isValid = false;
-
-    m_n_type_isSet = false;
-    m_n_type_isValid = false;
 
     m_publish_time_isSet = false;
     m_publish_time_isValid = false;
@@ -83,12 +65,6 @@ void MDGetMvDetail_200_response_data::initializeModel() {
 
     m_artists_isSet = false;
     m_artists_isValid = false;
-
-    m_comment_thread_id_isSet = false;
-    m_comment_thread_id_isValid = false;
-
-    m_video_group_isSet = false;
-    m_video_group_isValid = false;
 }
 
 void MDGetMvDetail_200_response_data::fromJson(QString jsonString) {
@@ -112,35 +88,17 @@ void MDGetMvDetail_200_response_data::fromJsonObject(QJsonObject json) {
     m_artist_name_isValid = ::MelodixAPI::fromJsonValue(m_artist_name, json[QString("artistName")]);
     m_artist_name_isSet = !json[QString("artistName")].isNull() && m_artist_name_isValid;
 
-    m_brief_desc_isValid = ::MelodixAPI::fromJsonValue(m_brief_desc, json[QString("briefDesc")]);
-    m_brief_desc_isSet = !json[QString("briefDesc")].isNull() && m_brief_desc_isValid;
-
     m_cover_isValid = ::MelodixAPI::fromJsonValue(m_cover, json[QString("cover")]);
     m_cover_isSet = !json[QString("cover")].isNull() && m_cover_isValid;
 
-    m_cover_id_str_isValid = ::MelodixAPI::fromJsonValue(m_cover_id_str, json[QString("coverId_str")]);
-    m_cover_id_str_isSet = !json[QString("coverId_str")].isNull() && m_cover_id_str_isValid;
-
-    m_cover_id_isValid = ::MelodixAPI::fromJsonValue(m_cover_id, json[QString("coverId")]);
-    m_cover_id_isSet = !json[QString("coverId")].isNull() && m_cover_id_isValid;
-
     m_play_count_isValid = ::MelodixAPI::fromJsonValue(m_play_count, json[QString("playCount")]);
     m_play_count_isSet = !json[QString("playCount")].isNull() && m_play_count_isValid;
-
-    m_sub_count_isValid = ::MelodixAPI::fromJsonValue(m_sub_count, json[QString("subCount")]);
-    m_sub_count_isSet = !json[QString("subCount")].isNull() && m_sub_count_isValid;
-
-    m_share_count_isValid = ::MelodixAPI::fromJsonValue(m_share_count, json[QString("shareCount")]);
-    m_share_count_isSet = !json[QString("shareCount")].isNull() && m_share_count_isValid;
 
     m_comment_count_isValid = ::MelodixAPI::fromJsonValue(m_comment_count, json[QString("commentCount")]);
     m_comment_count_isSet = !json[QString("commentCount")].isNull() && m_comment_count_isValid;
 
     m_duration_isValid = ::MelodixAPI::fromJsonValue(m_duration, json[QString("duration")]);
     m_duration_isSet = !json[QString("duration")].isNull() && m_duration_isValid;
-
-    m_n_type_isValid = ::MelodixAPI::fromJsonValue(m_n_type, json[QString("nType")]);
-    m_n_type_isSet = !json[QString("nType")].isNull() && m_n_type_isValid;
 
     m_publish_time_isValid = ::MelodixAPI::fromJsonValue(m_publish_time, json[QString("publishTime")]);
     m_publish_time_isSet = !json[QString("publishTime")].isNull() && m_publish_time_isValid;
@@ -150,12 +108,6 @@ void MDGetMvDetail_200_response_data::fromJsonObject(QJsonObject json) {
 
     m_artists_isValid = ::MelodixAPI::fromJsonValue(m_artists, json[QString("artists")]);
     m_artists_isSet = !json[QString("artists")].isNull() && m_artists_isValid;
-
-    m_comment_thread_id_isValid = ::MelodixAPI::fromJsonValue(m_comment_thread_id, json[QString("commentThreadId")]);
-    m_comment_thread_id_isSet = !json[QString("commentThreadId")].isNull() && m_comment_thread_id_isValid;
-
-    m_video_group_isValid = ::MelodixAPI::fromJsonValue(m_video_group, json[QString("videoGroup")]);
-    m_video_group_isSet = !json[QString("videoGroup")].isNull() && m_video_group_isValid;
 }
 
 QString MDGetMvDetail_200_response_data::asJson() const {
@@ -179,35 +131,17 @@ QJsonObject MDGetMvDetail_200_response_data::asJsonObject() const {
     if (m_artist_name_isSet) {
         obj.insert(QString("artistName"), ::MelodixAPI::toJsonValue(m_artist_name));
     }
-    if (m_brief_desc_isSet) {
-        obj.insert(QString("briefDesc"), ::MelodixAPI::toJsonValue(m_brief_desc));
-    }
     if (m_cover_isSet) {
         obj.insert(QString("cover"), ::MelodixAPI::toJsonValue(m_cover));
     }
-    if (m_cover_id_str_isSet) {
-        obj.insert(QString("coverId_str"), ::MelodixAPI::toJsonValue(m_cover_id_str));
-    }
-    if (m_cover_id_isSet) {
-        obj.insert(QString("coverId"), ::MelodixAPI::toJsonValue(m_cover_id));
-    }
     if (m_play_count_isSet) {
         obj.insert(QString("playCount"), ::MelodixAPI::toJsonValue(m_play_count));
-    }
-    if (m_sub_count_isSet) {
-        obj.insert(QString("subCount"), ::MelodixAPI::toJsonValue(m_sub_count));
-    }
-    if (m_share_count_isSet) {
-        obj.insert(QString("shareCount"), ::MelodixAPI::toJsonValue(m_share_count));
     }
     if (m_comment_count_isSet) {
         obj.insert(QString("commentCount"), ::MelodixAPI::toJsonValue(m_comment_count));
     }
     if (m_duration_isSet) {
         obj.insert(QString("duration"), ::MelodixAPI::toJsonValue(m_duration));
-    }
-    if (m_n_type_isSet) {
-        obj.insert(QString("nType"), ::MelodixAPI::toJsonValue(m_n_type));
     }
     if (m_publish_time_isSet) {
         obj.insert(QString("publishTime"), ::MelodixAPI::toJsonValue(m_publish_time));
@@ -217,12 +151,6 @@ QJsonObject MDGetMvDetail_200_response_data::asJsonObject() const {
     }
     if (m_artists.size() > 0) {
         obj.insert(QString("artists"), ::MelodixAPI::toJsonValue(m_artists));
-    }
-    if (m_comment_thread_id_isSet) {
-        obj.insert(QString("commentThreadId"), ::MelodixAPI::toJsonValue(m_comment_thread_id));
-    }
-    if (m_video_group.size() > 0) {
-        obj.insert(QString("videoGroup"), ::MelodixAPI::toJsonValue(m_video_group));
     }
     return obj;
 }
@@ -291,22 +219,6 @@ bool MDGetMvDetail_200_response_data::is_artist_name_Valid() const{
     return m_artist_name_isValid;
 }
 
-QString MDGetMvDetail_200_response_data::getBriefDesc() const {
-    return m_brief_desc;
-}
-void MDGetMvDetail_200_response_data::setBriefDesc(const QString &brief_desc) {
-    m_brief_desc = brief_desc;
-    m_brief_desc_isSet = true;
-}
-
-bool MDGetMvDetail_200_response_data::is_brief_desc_Set() const{
-    return m_brief_desc_isSet;
-}
-
-bool MDGetMvDetail_200_response_data::is_brief_desc_Valid() const{
-    return m_brief_desc_isValid;
-}
-
 QString MDGetMvDetail_200_response_data::getCover() const {
     return m_cover;
 }
@@ -323,38 +235,6 @@ bool MDGetMvDetail_200_response_data::is_cover_Valid() const{
     return m_cover_isValid;
 }
 
-QString MDGetMvDetail_200_response_data::getCoverIdStr() const {
-    return m_cover_id_str;
-}
-void MDGetMvDetail_200_response_data::setCoverIdStr(const QString &cover_id_str) {
-    m_cover_id_str = cover_id_str;
-    m_cover_id_str_isSet = true;
-}
-
-bool MDGetMvDetail_200_response_data::is_cover_id_str_Set() const{
-    return m_cover_id_str_isSet;
-}
-
-bool MDGetMvDetail_200_response_data::is_cover_id_str_Valid() const{
-    return m_cover_id_str_isValid;
-}
-
-qint32 MDGetMvDetail_200_response_data::getCoverId() const {
-    return m_cover_id;
-}
-void MDGetMvDetail_200_response_data::setCoverId(const qint32 &cover_id) {
-    m_cover_id = cover_id;
-    m_cover_id_isSet = true;
-}
-
-bool MDGetMvDetail_200_response_data::is_cover_id_Set() const{
-    return m_cover_id_isSet;
-}
-
-bool MDGetMvDetail_200_response_data::is_cover_id_Valid() const{
-    return m_cover_id_isValid;
-}
-
 qint32 MDGetMvDetail_200_response_data::getPlayCount() const {
     return m_play_count;
 }
@@ -369,38 +249,6 @@ bool MDGetMvDetail_200_response_data::is_play_count_Set() const{
 
 bool MDGetMvDetail_200_response_data::is_play_count_Valid() const{
     return m_play_count_isValid;
-}
-
-qint32 MDGetMvDetail_200_response_data::getSubCount() const {
-    return m_sub_count;
-}
-void MDGetMvDetail_200_response_data::setSubCount(const qint32 &sub_count) {
-    m_sub_count = sub_count;
-    m_sub_count_isSet = true;
-}
-
-bool MDGetMvDetail_200_response_data::is_sub_count_Set() const{
-    return m_sub_count_isSet;
-}
-
-bool MDGetMvDetail_200_response_data::is_sub_count_Valid() const{
-    return m_sub_count_isValid;
-}
-
-qint32 MDGetMvDetail_200_response_data::getShareCount() const {
-    return m_share_count;
-}
-void MDGetMvDetail_200_response_data::setShareCount(const qint32 &share_count) {
-    m_share_count = share_count;
-    m_share_count_isSet = true;
-}
-
-bool MDGetMvDetail_200_response_data::is_share_count_Set() const{
-    return m_share_count_isSet;
-}
-
-bool MDGetMvDetail_200_response_data::is_share_count_Valid() const{
-    return m_share_count_isValid;
 }
 
 qint32 MDGetMvDetail_200_response_data::getCommentCount() const {
@@ -433,22 +281,6 @@ bool MDGetMvDetail_200_response_data::is_duration_Set() const{
 
 bool MDGetMvDetail_200_response_data::is_duration_Valid() const{
     return m_duration_isValid;
-}
-
-qint32 MDGetMvDetail_200_response_data::getNType() const {
-    return m_n_type;
-}
-void MDGetMvDetail_200_response_data::setNType(const qint32 &n_type) {
-    m_n_type = n_type;
-    m_n_type_isSet = true;
-}
-
-bool MDGetMvDetail_200_response_data::is_n_type_Set() const{
-    return m_n_type_isSet;
-}
-
-bool MDGetMvDetail_200_response_data::is_n_type_Valid() const{
-    return m_n_type_isValid;
 }
 
 QString MDGetMvDetail_200_response_data::getPublishTime() const {
@@ -499,38 +331,6 @@ bool MDGetMvDetail_200_response_data::is_artists_Valid() const{
     return m_artists_isValid;
 }
 
-QString MDGetMvDetail_200_response_data::getCommentThreadId() const {
-    return m_comment_thread_id;
-}
-void MDGetMvDetail_200_response_data::setCommentThreadId(const QString &comment_thread_id) {
-    m_comment_thread_id = comment_thread_id;
-    m_comment_thread_id_isSet = true;
-}
-
-bool MDGetMvDetail_200_response_data::is_comment_thread_id_Set() const{
-    return m_comment_thread_id_isSet;
-}
-
-bool MDGetMvDetail_200_response_data::is_comment_thread_id_Valid() const{
-    return m_comment_thread_id_isValid;
-}
-
-QList<MDGetMvDetail_200_response_data_videoGroup_inner> MDGetMvDetail_200_response_data::getVideoGroup() const {
-    return m_video_group;
-}
-void MDGetMvDetail_200_response_data::setVideoGroup(const QList<MDGetMvDetail_200_response_data_videoGroup_inner> &video_group) {
-    m_video_group = video_group;
-    m_video_group_isSet = true;
-}
-
-bool MDGetMvDetail_200_response_data::is_video_group_Set() const{
-    return m_video_group_isSet;
-}
-
-bool MDGetMvDetail_200_response_data::is_video_group_Valid() const{
-    return m_video_group_isValid;
-}
-
 bool MDGetMvDetail_200_response_data::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -554,37 +354,12 @@ bool MDGetMvDetail_200_response_data::isSet() const {
             break;
         }
 
-        if (m_brief_desc_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_cover_isSet) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_cover_id_str_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_cover_id_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_play_count_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_sub_count_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_share_count_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -595,11 +370,6 @@ bool MDGetMvDetail_200_response_data::isSet() const {
         }
 
         if (m_duration_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_n_type_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -618,23 +388,13 @@ bool MDGetMvDetail_200_response_data::isSet() const {
             isObjectUpdated = true;
             break;
         }
-
-        if (m_comment_thread_id_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_video_group.size() > 0) {
-            isObjectUpdated = true;
-            break;
-        }
     } while (false);
     return isObjectUpdated;
 }
 
 bool MDGetMvDetail_200_response_data::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_name_isValid && m_artist_id_isValid && m_artist_name_isValid && m_brief_desc_isValid && m_cover_isValid && m_cover_id_str_isValid && m_cover_id_isValid && m_play_count_isValid && m_sub_count_isValid && m_share_count_isValid && m_comment_count_isValid && m_duration_isValid && m_n_type_isValid && m_publish_time_isValid && m_brs_isValid && m_artists_isValid && m_comment_thread_id_isValid && m_video_group_isValid && true;
+    return m_id_isValid && m_name_isValid && m_artist_id_isValid && m_artist_name_isValid && m_cover_isValid && m_play_count_isValid && m_comment_count_isValid && m_duration_isValid && m_publish_time_isValid && m_brs_isValid && m_artists_isValid && true;
 }
 
 } // namespace MelodixAPI

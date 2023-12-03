@@ -36,9 +36,6 @@ void MDGetSongDetail_200_response::initializeModel() {
     m_songs_isSet = false;
     m_songs_isValid = false;
 
-    m_privileges_isSet = false;
-    m_privileges_isValid = false;
-
     m_code_isSet = false;
     m_code_isValid = false;
 }
@@ -55,9 +52,6 @@ void MDGetSongDetail_200_response::fromJsonObject(QJsonObject json) {
     m_songs_isValid = ::MelodixAPI::fromJsonValue(m_songs, json[QString("songs")]);
     m_songs_isSet = !json[QString("songs")].isNull() && m_songs_isValid;
 
-    m_privileges_isValid = ::MelodixAPI::fromJsonValue(m_privileges, json[QString("privileges")]);
-    m_privileges_isSet = !json[QString("privileges")].isNull() && m_privileges_isValid;
-
     m_code_isValid = ::MelodixAPI::fromJsonValue(m_code, json[QString("code")]);
     m_code_isSet = !json[QString("code")].isNull() && m_code_isValid;
 }
@@ -73,9 +67,6 @@ QJsonObject MDGetSongDetail_200_response::asJsonObject() const {
     QJsonObject obj;
     if (m_songs.size() > 0) {
         obj.insert(QString("songs"), ::MelodixAPI::toJsonValue(m_songs));
-    }
-    if (m_privileges.size() > 0) {
-        obj.insert(QString("privileges"), ::MelodixAPI::toJsonValue(m_privileges));
     }
     if (m_code_isSet) {
         obj.insert(QString("code"), ::MelodixAPI::toJsonValue(m_code));
@@ -97,22 +88,6 @@ bool MDGetSongDetail_200_response::is_songs_Set() const{
 
 bool MDGetSongDetail_200_response::is_songs_Valid() const{
     return m_songs_isValid;
-}
-
-QList<MDGetSongDetail_200_response_privileges_inner> MDGetSongDetail_200_response::getPrivileges() const {
-    return m_privileges;
-}
-void MDGetSongDetail_200_response::setPrivileges(const QList<MDGetSongDetail_200_response_privileges_inner> &privileges) {
-    m_privileges = privileges;
-    m_privileges_isSet = true;
-}
-
-bool MDGetSongDetail_200_response::is_privileges_Set() const{
-    return m_privileges_isSet;
-}
-
-bool MDGetSongDetail_200_response::is_privileges_Valid() const{
-    return m_privileges_isValid;
 }
 
 qint32 MDGetSongDetail_200_response::getCode() const {
@@ -139,11 +114,6 @@ bool MDGetSongDetail_200_response::isSet() const {
             break;
         }
 
-        if (m_privileges.size() > 0) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_code_isSet) {
             isObjectUpdated = true;
             break;
@@ -154,7 +124,7 @@ bool MDGetSongDetail_200_response::isSet() const {
 
 bool MDGetSongDetail_200_response::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_songs_isValid && m_privileges_isValid && m_code_isValid && true;
+    return m_songs_isValid && m_code_isValid && true;
 }
 
 } // namespace MelodixAPI

@@ -41,15 +41,6 @@ void MDGetArtistSingle_200_response_songs_inner_al::initializeModel() {
 
     m_pic_url_isSet = false;
     m_pic_url_isValid = false;
-
-    m_tns_isSet = false;
-    m_tns_isValid = false;
-
-    m_pic_str_isSet = false;
-    m_pic_str_isValid = false;
-
-    m_pic_isSet = false;
-    m_pic_isValid = false;
 }
 
 void MDGetArtistSingle_200_response_songs_inner_al::fromJson(QString jsonString) {
@@ -69,15 +60,6 @@ void MDGetArtistSingle_200_response_songs_inner_al::fromJsonObject(QJsonObject j
 
     m_pic_url_isValid = ::MelodixAPI::fromJsonValue(m_pic_url, json[QString("picUrl")]);
     m_pic_url_isSet = !json[QString("picUrl")].isNull() && m_pic_url_isValid;
-
-    m_tns_isValid = ::MelodixAPI::fromJsonValue(m_tns, json[QString("tns")]);
-    m_tns_isSet = !json[QString("tns")].isNull() && m_tns_isValid;
-
-    m_pic_str_isValid = ::MelodixAPI::fromJsonValue(m_pic_str, json[QString("pic_str")]);
-    m_pic_str_isSet = !json[QString("pic_str")].isNull() && m_pic_str_isValid;
-
-    m_pic_isValid = ::MelodixAPI::fromJsonValue(m_pic, json[QString("pic")]);
-    m_pic_isSet = !json[QString("pic")].isNull() && m_pic_isValid;
 }
 
 QString MDGetArtistSingle_200_response_songs_inner_al::asJson() const {
@@ -97,15 +79,6 @@ QJsonObject MDGetArtistSingle_200_response_songs_inner_al::asJsonObject() const 
     }
     if (m_pic_url_isSet) {
         obj.insert(QString("picUrl"), ::MelodixAPI::toJsonValue(m_pic_url));
-    }
-    if (m_tns.size() > 0) {
-        obj.insert(QString("tns"), ::MelodixAPI::toJsonValue(m_tns));
-    }
-    if (m_pic_str_isSet) {
-        obj.insert(QString("pic_str"), ::MelodixAPI::toJsonValue(m_pic_str));
-    }
-    if (m_pic_isSet) {
-        obj.insert(QString("pic"), ::MelodixAPI::toJsonValue(m_pic));
     }
     return obj;
 }
@@ -158,54 +131,6 @@ bool MDGetArtistSingle_200_response_songs_inner_al::is_pic_url_Valid() const{
     return m_pic_url_isValid;
 }
 
-QList<QString> MDGetArtistSingle_200_response_songs_inner_al::getTns() const {
-    return m_tns;
-}
-void MDGetArtistSingle_200_response_songs_inner_al::setTns(const QList<QString> &tns) {
-    m_tns = tns;
-    m_tns_isSet = true;
-}
-
-bool MDGetArtistSingle_200_response_songs_inner_al::is_tns_Set() const{
-    return m_tns_isSet;
-}
-
-bool MDGetArtistSingle_200_response_songs_inner_al::is_tns_Valid() const{
-    return m_tns_isValid;
-}
-
-QString MDGetArtistSingle_200_response_songs_inner_al::getPicStr() const {
-    return m_pic_str;
-}
-void MDGetArtistSingle_200_response_songs_inner_al::setPicStr(const QString &pic_str) {
-    m_pic_str = pic_str;
-    m_pic_str_isSet = true;
-}
-
-bool MDGetArtistSingle_200_response_songs_inner_al::is_pic_str_Set() const{
-    return m_pic_str_isSet;
-}
-
-bool MDGetArtistSingle_200_response_songs_inner_al::is_pic_str_Valid() const{
-    return m_pic_str_isValid;
-}
-
-qint32 MDGetArtistSingle_200_response_songs_inner_al::getPic() const {
-    return m_pic;
-}
-void MDGetArtistSingle_200_response_songs_inner_al::setPic(const qint32 &pic) {
-    m_pic = pic;
-    m_pic_isSet = true;
-}
-
-bool MDGetArtistSingle_200_response_songs_inner_al::is_pic_Set() const{
-    return m_pic_isSet;
-}
-
-bool MDGetArtistSingle_200_response_songs_inner_al::is_pic_Valid() const{
-    return m_pic_isValid;
-}
-
 bool MDGetArtistSingle_200_response_songs_inner_al::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -223,28 +148,13 @@ bool MDGetArtistSingle_200_response_songs_inner_al::isSet() const {
             isObjectUpdated = true;
             break;
         }
-
-        if (m_tns.size() > 0) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_pic_str_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_pic_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
     } while (false);
     return isObjectUpdated;
 }
 
 bool MDGetArtistSingle_200_response_songs_inner_al::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_name_isValid && m_pic_url_isValid && m_tns_isValid && m_pic_str_isValid && m_pic_isValid && true;
+    return m_id_isValid && m_name_isValid && m_pic_url_isValid && true;
 }
 
 } // namespace MelodixAPI

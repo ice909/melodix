@@ -20,7 +20,7 @@
 
 #include <QJsonObject>
 
-#include "MDGetArtistDetail_200_response_data_user_avatarDetail.h"
+#include "MDCellphoneLogin_200_response_profile_avatarDetail.h"
 #include "MDObject.h"
 #include <QString>
 
@@ -28,7 +28,7 @@
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDGetArtistDetail_200_response_data_user_avatarDetail;
+class MDCellphoneLogin_200_response_profile_avatarDetail;
 
 class MDCellphoneLogin_200_response_profile : public MDObject {
 public:
@@ -186,8 +186,8 @@ public:
     bool is_event_count_Set() const;
     bool is_event_count_Valid() const;
 
-    MDGetArtistDetail_200_response_data_user_avatarDetail getAvatarDetail() const;
-    void setAvatarDetail(const MDGetArtistDetail_200_response_data_user_avatarDetail &avatar_detail);
+    MDCellphoneLogin_200_response_profile_avatarDetail getAvatarDetail() const;
+    void setAvatarDetail(const MDCellphoneLogin_200_response_profile_avatarDetail &avatar_detail);
     bool is_avatar_detail_Set() const;
     bool is_avatar_detail_Valid() const;
 
@@ -323,7 +323,7 @@ private:
     bool m_event_count_isSet;
     bool m_event_count_isValid;
 
-    MDGetArtistDetail_200_response_data_user_avatarDetail m_avatar_detail;
+    MDCellphoneLogin_200_response_profile_avatarDetail m_avatar_detail;
     bool m_avatar_detail_isSet;
     bool m_avatar_detail_isValid;
 

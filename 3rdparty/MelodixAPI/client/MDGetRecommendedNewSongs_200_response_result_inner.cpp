@@ -50,9 +50,6 @@ void MDGetRecommendedNewSongs_200_response_result_inner::initializeModel() {
 
     m_song_isSet = false;
     m_song_isValid = false;
-
-    m_alg_isSet = false;
-    m_alg_isValid = false;
 }
 
 void MDGetRecommendedNewSongs_200_response_result_inner::fromJson(QString jsonString) {
@@ -81,9 +78,6 @@ void MDGetRecommendedNewSongs_200_response_result_inner::fromJsonObject(QJsonObj
 
     m_song_isValid = ::MelodixAPI::fromJsonValue(m_song, json[QString("song")]);
     m_song_isSet = !json[QString("song")].isNull() && m_song_isValid;
-
-    m_alg_isValid = ::MelodixAPI::fromJsonValue(m_alg, json[QString("alg")]);
-    m_alg_isSet = !json[QString("alg")].isNull() && m_alg_isValid;
 }
 
 QString MDGetRecommendedNewSongs_200_response_result_inner::asJson() const {
@@ -112,9 +106,6 @@ QJsonObject MDGetRecommendedNewSongs_200_response_result_inner::asJsonObject() c
     }
     if (m_song.isSet()) {
         obj.insert(QString("song"), ::MelodixAPI::toJsonValue(m_song));
-    }
-    if (m_alg_isSet) {
-        obj.insert(QString("alg"), ::MelodixAPI::toJsonValue(m_alg));
     }
     return obj;
 }
@@ -215,22 +206,6 @@ bool MDGetRecommendedNewSongs_200_response_result_inner::is_song_Valid() const{
     return m_song_isValid;
 }
 
-QString MDGetRecommendedNewSongs_200_response_result_inner::getAlg() const {
-    return m_alg;
-}
-void MDGetRecommendedNewSongs_200_response_result_inner::setAlg(const QString &alg) {
-    m_alg = alg;
-    m_alg_isSet = true;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner::is_alg_Set() const{
-    return m_alg_isSet;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner::is_alg_Valid() const{
-    return m_alg_isValid;
-}
-
 bool MDGetRecommendedNewSongs_200_response_result_inner::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -263,18 +238,13 @@ bool MDGetRecommendedNewSongs_200_response_result_inner::isSet() const {
             isObjectUpdated = true;
             break;
         }
-
-        if (m_alg_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
     } while (false);
     return isObjectUpdated;
 }
 
 bool MDGetRecommendedNewSongs_200_response_result_inner::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_type_isValid && m_name_isValid && m_pic_url_isValid && m_can_dislike_isValid && m_song_isValid && m_alg_isValid && true;
+    return m_id_isValid && m_type_isValid && m_name_isValid && m_pic_url_isValid && m_can_dislike_isValid && m_song_isValid && true;
 }
 
 } // namespace MelodixAPI

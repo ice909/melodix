@@ -20,7 +20,6 @@
 
 #include <QJsonObject>
 
-#include <QList>
 #include <QString>
 
 #include "MDEnum.h"
@@ -54,21 +53,6 @@ public:
     bool is_pic_id_Set() const;
     bool is_pic_id_Valid() const;
 
-    qint32 getImg1v1Id() const;
-    void setImg1v1Id(const qint32 &img1v1_id);
-    bool is_img1v1_id_Set() const;
-    bool is_img1v1_id_Valid() const;
-
-    QString getBriefDesc() const;
-    void setBriefDesc(const QString &brief_desc);
-    bool is_brief_desc_Set() const;
-    bool is_brief_desc_Valid() const;
-
-    QString getPicUrl() const;
-    void setPicUrl(const QString &pic_url);
-    bool is_pic_url_Set() const;
-    bool is_pic_url_Valid() const;
-
     QString getImg1v1Url() const;
     void setImg1v1Url(const QString &img1v1_url);
     bool is_img1v1_url_Set() const;
@@ -78,56 +62,6 @@ public:
     void setAlbumSize(const qint32 &album_size);
     bool is_album_size_Set() const;
     bool is_album_size_Valid() const;
-
-    QList<QString> getAlias() const;
-    void setAlias(const QList<QString> &alias);
-    bool is_alias_Set() const;
-    bool is_alias_Valid() const;
-
-    QString getTrans() const;
-    void setTrans(const QString &trans);
-    bool is_trans_Set() const;
-    bool is_trans_Valid() const;
-
-    qint32 getMusicSize() const;
-    void setMusicSize(const qint32 &music_size);
-    bool is_music_size_Set() const;
-    bool is_music_size_Valid() const;
-
-    qint32 getTopicPerson() const;
-    void setTopicPerson(const qint32 &topic_person);
-    bool is_topic_person_Set() const;
-    bool is_topic_person_Valid() const;
-
-    qint32 getAccountId() const;
-    void setAccountId(const qint32 &account_id);
-    bool is_account_id_Set() const;
-    bool is_account_id_Valid() const;
-
-    QString getPicIdStr() const;
-    void setPicIdStr(const QString &pic_id_str);
-    bool is_pic_id_str_Set() const;
-    bool is_pic_id_str_Valid() const;
-
-    QString getImg1v1IdStr() const;
-    void setImg1v1IdStr(const QString &img1v1_id_str);
-    bool is_img1v1_id_str_Set() const;
-    bool is_img1v1_id_str_Valid() const;
-
-    QList<QString> getTransNames() const;
-    void setTransNames(const QList<QString> &trans_names);
-    bool is_trans_names_Set() const;
-    bool is_trans_names_Valid() const;
-
-    bool isFollowed() const;
-    void setFollowed(const bool &followed);
-    bool is_followed_Set() const;
-    bool is_followed_Valid() const;
-
-    qint32 getFansCount() const;
-    void setFansCount(const qint32 &fans_count);
-    bool is_fans_count_Set() const;
-    bool is_fans_count_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -147,18 +81,6 @@ private:
     bool m_pic_id_isSet;
     bool m_pic_id_isValid;
 
-    qint32 m_img1v1_id;
-    bool m_img1v1_id_isSet;
-    bool m_img1v1_id_isValid;
-
-    QString m_brief_desc;
-    bool m_brief_desc_isSet;
-    bool m_brief_desc_isValid;
-
-    QString m_pic_url;
-    bool m_pic_url_isSet;
-    bool m_pic_url_isValid;
-
     QString m_img1v1_url;
     bool m_img1v1_url_isSet;
     bool m_img1v1_url_isValid;
@@ -166,46 +88,6 @@ private:
     qint32 m_album_size;
     bool m_album_size_isSet;
     bool m_album_size_isValid;
-
-    QList<QString> m_alias;
-    bool m_alias_isSet;
-    bool m_alias_isValid;
-
-    QString m_trans;
-    bool m_trans_isSet;
-    bool m_trans_isValid;
-
-    qint32 m_music_size;
-    bool m_music_size_isSet;
-    bool m_music_size_isValid;
-
-    qint32 m_topic_person;
-    bool m_topic_person_isSet;
-    bool m_topic_person_isValid;
-
-    qint32 m_account_id;
-    bool m_account_id_isSet;
-    bool m_account_id_isValid;
-
-    QString m_pic_id_str;
-    bool m_pic_id_str_isSet;
-    bool m_pic_id_str_isValid;
-
-    QString m_img1v1_id_str;
-    bool m_img1v1_id_str_isSet;
-    bool m_img1v1_id_str_isValid;
-
-    QList<QString> m_trans_names;
-    bool m_trans_names_isSet;
-    bool m_trans_names_isValid;
-
-    bool m_followed;
-    bool m_followed_isSet;
-    bool m_followed_isValid;
-
-    qint32 m_fans_count;
-    bool m_fans_count_isSet;
-    bool m_fans_count_isValid;
 };
 
 } // namespace MelodixAPI

@@ -14,8 +14,8 @@ add_library(${PROJECT_NAME}
   MDCellphoneLogin_200_response_account.h
   MDCellphoneLogin_200_response_bindings_inner.h
   MDCellphoneLogin_200_response_profile.h
+  MDCellphoneLogin_200_response_profile_avatarDetail.h
   MDCheckMusic_200_response.h
-  MDCheckNickname_200_response.h
   MDGetAccountInfo_200_response.h
   MDGetAccountInfo_200_response_profile.h
   MDGetArtistAlbum_200_response.h
@@ -27,34 +27,15 @@ add_library(${PROJECT_NAME}
   MDGetArtistDetail_200_response_data.h
   MDGetArtistDetail_200_response_data_artist.h
   MDGetArtistDetail_200_response_data_identify.h
-  MDGetArtistDetail_200_response_data_secondaryExpertIdentiy_inner.h
   MDGetArtistDetail_200_response_data_user.h
-  MDGetArtistDetail_200_response_data_user_avatarDetail.h
   MDGetArtistDetail_200_response_data_vipRights.h
   MDGetArtistDetail_200_response_data_vipRights_rightsInfoDetailDtoList_inner.h
-  MDGetArtistMv_200_response.h
-  MDGetArtistMv_200_response_mvs_inner.h
-  MDGetArtistMv_200_response_mvs_inner_artist.h
   MDGetArtistSingle_200_response.h
   MDGetArtistSingle_200_response_songs_inner.h
   MDGetArtistSingle_200_response_songs_inner_al.h
   MDGetArtistSingle_200_response_songs_inner_ar_inner.h
-  MDGetArtistSingle_200_response_songs_inner_h.h
-  MDGetArtistSingle_200_response_songs_inner_hr.h
-  MDGetArtistSingle_200_response_songs_inner_originSongSimpleData.h
-  MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta.h
-  MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_artists_inner.h
   MDGetArtistSublist_200_response.h
   MDGetArtistSublist_200_response_data_inner.h
-  MDGetHotComment_200_response.h
-  MDGetHotComment_200_response_hotComments_inner.h
-  MDGetHotComment_200_response_hotComments_inner_beReplied_inner.h
-  MDGetHotComment_200_response_hotComments_inner_beReplied_inner_ipLocation.h
-  MDGetHotComment_200_response_hotComments_inner_beReplied_inner_user.h
-  MDGetHotComment_200_response_hotComments_inner_pendantData.h
-  MDGetHotComment_200_response_hotComments_inner_user.h
-  MDGetHotComment_200_response_hotComments_inner_user_vipRights.h
-  MDGetHotComment_200_response_hotComments_inner_user_vipRights_associator.h
   MDGetLikeSongId_200_response.h
   MDGetLoginStatus_200_response.h
   MDGetLoginStatus_200_response_data.h
@@ -66,60 +47,28 @@ add_library(${PROJECT_NAME}
   MDGetMvDetail_200_response_data.h
   MDGetMvDetail_200_response_data_artists_inner.h
   MDGetMvDetail_200_response_data_brs_inner.h
-  MDGetMvDetail_200_response_data_videoGroup_inner.h
-  MDGetMvDetail_200_response_mp.h
-  MDGetMvSublist_200_response.h
-  MDGetMvSublist_200_response_data_inner.h
-  MDGetMvSublist_200_response_data_inner_creator_inner.h
-  MDGetMvUrl_200_response.h
-  MDGetMvUrl_200_response_data.h
   MDGetPlaylistDetail_200_response.h
   MDGetPlaylistDetail_200_response_playlist.h
   MDGetPlaylistDetail_200_response_playlist_creator.h
-  MDGetPlaylistDetail_200_response_playlist_trackIds_inner.h
-  MDGetPlaylistDetail_200_response_playlist_tracks_inner.h
-  MDGetPlaylistDetail_200_response_playlist_tracks_inner_h.h
-  MDGetPlaylistDetail_200_response_playlist_tracks_inner_l.h
-  MDGetPlaylistDetail_200_response_privileges_inner.h
-  MDGetPlaylistDetail_200_response_privileges_inner_freeTrialPrivilege.h
   MDGetPlaylistTrackAll_200_response.h
   MDGetPlaylistTrackAll_200_response_songs_inner.h
-  MDGetPlaylistTrackAll_200_response_songs_inner_al.h
-  MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData.h
   MDGetPurchasedAlbum_200_response.h
   MDGetPurchasedAlbum_200_response_paidAlbums_inner.h
-  MDGetPurchasedAlbum_200_response_paidAlbums_inner_artist.h
-  MDGetPurchasedAlbum_200_response_paidAlbums_inner_artists_inner.h
   MDGetQrKey_200_response.h
   MDGetQrKey_200_response_data.h
   MDGetRecommendResource_200_response.h
   MDGetRecommendResource_200_response_recommend_inner.h
-  MDGetRecommendResource_200_response_recommend_inner_creator.h
-  MDGetRecommendedMv_200_response.h
-  MDGetRecommendedMv_200_response_result_inner.h
   MDGetRecommendedNewSongs_200_response.h
   MDGetRecommendedNewSongs_200_response_result_inner.h
   MDGetRecommendedNewSongs_200_response_result_inner_song.h
-  MDGetRecommendedNewSongs_200_response_result_inner_song_album.h
   MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner.h
-  MDGetRecommendedNewSongs_200_response_result_inner_song_bMusic.h
-  MDGetRecommendedNewSongs_200_response_result_inner_song_privilege.h
-  MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner.h
-  MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege.h
-  MDGetRecommendedNewSongs_200_response_result_inner_song_sqMusic.h
   MDGetRecommendedPlaylist_200_response.h
   MDGetRecommendedPlaylist_200_response_result_inner.h
-  MDGetSimiMv_200_response.h
-  MDGetSimiMv_200_response_mvs_inner.h
-  MDGetSimiMv_200_response_mvs_inner_artists_inner.h
   MDGetSongDetail_200_response.h
-  MDGetSongDetail_200_response_privileges_inner.h
   MDGetSongDetail_200_response_songs_inner.h
   MDGetSongDetail_200_response_songs_inner_ar_inner.h
   MDGetSongUrl_200_response.h
   MDGetSongUrl_200_response_data_inner.h
-  MDGetSongUrl_200_response_data_inner_freeTimeTrialPrivilege.h
-  MDGetSongUrl_200_response_data_inner_freeTrialPrivilege.h
   MDGetTopArtists_200_response.h
   MDGetTopArtists_200_response_artists_inner.h
   MDGetTopPlaylist_200_response.h
@@ -127,7 +76,6 @@ add_library(${PROJECT_NAME}
   MDGetTopPlaylist_200_response_playlists_inner_creator.h
   MDGetTopPlaylist_200_response_playlists_inner_creator_avatarDetail.h
   MDGetTopPlaylist_200_response_playlists_inner_creator_experts.h
-  MDGetTopPlaylist_200_response_playlists_inner_subscribers_inner.h
   MDGetUserDetail_200_response.h
   MDGetUserDetail_200_response_bindings_inner.h
   MDGetUserDetail_200_response_identify.h
@@ -139,34 +87,9 @@ add_library(${PROJECT_NAME}
   MDGetUserDetail_200_response_profile_mainAuthType.h
   MDGetUserDetail_200_response_profile_privacyItemUnlimit.h
   MDGetUserDetail_200_response_userPoint.h
-  MDGetUserDynamic_200_response.h
-  MDGetUserDynamic_200_response_events_inner.h
-  MDGetUserDynamic_200_response_events_inner_anonymityInfo.h
-  MDGetUserDynamic_200_response_events_inner_bottomActivityInfos_inner.h
-  MDGetUserDynamic_200_response_events_inner_extJsonInfo.h
-  MDGetUserDynamic_200_response_events_inner_extJsonInfo_activityInfos_inner.h
-  MDGetUserDynamic_200_response_events_inner_extJsonInfo_anonymityInfo.h
-  MDGetUserDynamic_200_response_events_inner_info.h
-  MDGetUserDynamic_200_response_events_inner_info_commentThread.h
-  MDGetUserDynamic_200_response_events_inner_info_commentThread_latestLikedUsers_inner.h
-  MDGetUserDynamic_200_response_events_inner_info_commentThread_resourceInfo.h
-  MDGetUserDynamic_200_response_events_inner_ipLocation.h
-  MDGetUserDynamic_200_response_events_inner_pendantData.h
-  MDGetUserDynamic_200_response_events_inner_pics_inner.h
-  MDGetUserDynamic_200_response_events_inner_privacySettingInfo.h
-  MDGetUserDynamic_200_response_events_inner_tailMark.h
-  MDGetUserDynamic_200_response_events_inner_tailMark_circle.h
-  MDGetUserDynamic_200_response_events_inner_user.h
-  MDGetUserDynamic_200_response_events_inner_user_vipRights.h
-  MDGetUserDynamic_200_response_events_inner_user_vipRights_associator.h
-  MDGetUserDynamic_200_response_events_inner_xInfo.h
-  MDGetUserLevel_200_response.h
-  MDGetUserLevel_200_response_data.h
   MDGetUserPlaylist_200_response.h
   MDGetUserPlaylist_200_response_playlist_inner.h
   MDGetUserPlaylist_200_response_playlist_inner_creator.h
-  MDGetUserPlaylist_200_response_playlist_inner_creator_experts.h
-  MDGetUserPlaylist_200_response_playlist_inner_recommendInfo.h
   MDLikeMusic_200_response.h
   MDQrCheck_200_response.h
   MDQrCreate_200_response.h
@@ -174,11 +97,8 @@ add_library(${PROJECT_NAME}
   MDSearch_200_response.h
   MDSearch_200_response_result.h
   MDSearch_200_response_result_songs_inner.h
-  MDSearch_200_response_result_songs_inner_ar_inner.h
-  MDSearch_200_response_result_songs_inner_privilege.h
-  MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege.h
+  MDSearch_200_response_result_songs_inner_al.h
   MDSendCaptcha_200_response.h
-  MDUpdateUserInfo_200_response.h
   MDClientApi.h
   MDHelpers.h
   MDHttpRequest.h
@@ -194,8 +114,8 @@ add_library(${PROJECT_NAME}
   MDCellphoneLogin_200_response_account.cpp
   MDCellphoneLogin_200_response_bindings_inner.cpp
   MDCellphoneLogin_200_response_profile.cpp
+  MDCellphoneLogin_200_response_profile_avatarDetail.cpp
   MDCheckMusic_200_response.cpp
-  MDCheckNickname_200_response.cpp
   MDGetAccountInfo_200_response.cpp
   MDGetAccountInfo_200_response_profile.cpp
   MDGetArtistAlbum_200_response.cpp
@@ -207,34 +127,15 @@ add_library(${PROJECT_NAME}
   MDGetArtistDetail_200_response_data.cpp
   MDGetArtistDetail_200_response_data_artist.cpp
   MDGetArtistDetail_200_response_data_identify.cpp
-  MDGetArtistDetail_200_response_data_secondaryExpertIdentiy_inner.cpp
   MDGetArtistDetail_200_response_data_user.cpp
-  MDGetArtistDetail_200_response_data_user_avatarDetail.cpp
   MDGetArtistDetail_200_response_data_vipRights.cpp
   MDGetArtistDetail_200_response_data_vipRights_rightsInfoDetailDtoList_inner.cpp
-  MDGetArtistMv_200_response.cpp
-  MDGetArtistMv_200_response_mvs_inner.cpp
-  MDGetArtistMv_200_response_mvs_inner_artist.cpp
   MDGetArtistSingle_200_response.cpp
   MDGetArtistSingle_200_response_songs_inner.cpp
   MDGetArtistSingle_200_response_songs_inner_al.cpp
   MDGetArtistSingle_200_response_songs_inner_ar_inner.cpp
-  MDGetArtistSingle_200_response_songs_inner_h.cpp
-  MDGetArtistSingle_200_response_songs_inner_hr.cpp
-  MDGetArtistSingle_200_response_songs_inner_originSongSimpleData.cpp
-  MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_albumMeta.cpp
-  MDGetArtistSingle_200_response_songs_inner_originSongSimpleData_artists_inner.cpp
   MDGetArtistSublist_200_response.cpp
   MDGetArtistSublist_200_response_data_inner.cpp
-  MDGetHotComment_200_response.cpp
-  MDGetHotComment_200_response_hotComments_inner.cpp
-  MDGetHotComment_200_response_hotComments_inner_beReplied_inner.cpp
-  MDGetHotComment_200_response_hotComments_inner_beReplied_inner_ipLocation.cpp
-  MDGetHotComment_200_response_hotComments_inner_beReplied_inner_user.cpp
-  MDGetHotComment_200_response_hotComments_inner_pendantData.cpp
-  MDGetHotComment_200_response_hotComments_inner_user.cpp
-  MDGetHotComment_200_response_hotComments_inner_user_vipRights.cpp
-  MDGetHotComment_200_response_hotComments_inner_user_vipRights_associator.cpp
   MDGetLikeSongId_200_response.cpp
   MDGetLoginStatus_200_response.cpp
   MDGetLoginStatus_200_response_data.cpp
@@ -246,60 +147,28 @@ add_library(${PROJECT_NAME}
   MDGetMvDetail_200_response_data.cpp
   MDGetMvDetail_200_response_data_artists_inner.cpp
   MDGetMvDetail_200_response_data_brs_inner.cpp
-  MDGetMvDetail_200_response_data_videoGroup_inner.cpp
-  MDGetMvDetail_200_response_mp.cpp
-  MDGetMvSublist_200_response.cpp
-  MDGetMvSublist_200_response_data_inner.cpp
-  MDGetMvSublist_200_response_data_inner_creator_inner.cpp
-  MDGetMvUrl_200_response.cpp
-  MDGetMvUrl_200_response_data.cpp
   MDGetPlaylistDetail_200_response.cpp
   MDGetPlaylistDetail_200_response_playlist.cpp
   MDGetPlaylistDetail_200_response_playlist_creator.cpp
-  MDGetPlaylistDetail_200_response_playlist_trackIds_inner.cpp
-  MDGetPlaylistDetail_200_response_playlist_tracks_inner.cpp
-  MDGetPlaylistDetail_200_response_playlist_tracks_inner_h.cpp
-  MDGetPlaylistDetail_200_response_playlist_tracks_inner_l.cpp
-  MDGetPlaylistDetail_200_response_privileges_inner.cpp
-  MDGetPlaylistDetail_200_response_privileges_inner_freeTrialPrivilege.cpp
   MDGetPlaylistTrackAll_200_response.cpp
   MDGetPlaylistTrackAll_200_response_songs_inner.cpp
-  MDGetPlaylistTrackAll_200_response_songs_inner_al.cpp
-  MDGetPlaylistTrackAll_200_response_songs_inner_originSongSimpleData.cpp
   MDGetPurchasedAlbum_200_response.cpp
   MDGetPurchasedAlbum_200_response_paidAlbums_inner.cpp
-  MDGetPurchasedAlbum_200_response_paidAlbums_inner_artist.cpp
-  MDGetPurchasedAlbum_200_response_paidAlbums_inner_artists_inner.cpp
   MDGetQrKey_200_response.cpp
   MDGetQrKey_200_response_data.cpp
   MDGetRecommendResource_200_response.cpp
   MDGetRecommendResource_200_response_recommend_inner.cpp
-  MDGetRecommendResource_200_response_recommend_inner_creator.cpp
-  MDGetRecommendedMv_200_response.cpp
-  MDGetRecommendedMv_200_response_result_inner.cpp
   MDGetRecommendedNewSongs_200_response.cpp
   MDGetRecommendedNewSongs_200_response_result_inner.cpp
   MDGetRecommendedNewSongs_200_response_result_inner_song.cpp
-  MDGetRecommendedNewSongs_200_response_result_inner_song_album.cpp
   MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner.cpp
-  MDGetRecommendedNewSongs_200_response_result_inner_song_bMusic.cpp
-  MDGetRecommendedNewSongs_200_response_result_inner_song_privilege.cpp
-  MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_chargeInfoList_inner.cpp
-  MDGetRecommendedNewSongs_200_response_result_inner_song_privilege_freeTrialPrivilege.cpp
-  MDGetRecommendedNewSongs_200_response_result_inner_song_sqMusic.cpp
   MDGetRecommendedPlaylist_200_response.cpp
   MDGetRecommendedPlaylist_200_response_result_inner.cpp
-  MDGetSimiMv_200_response.cpp
-  MDGetSimiMv_200_response_mvs_inner.cpp
-  MDGetSimiMv_200_response_mvs_inner_artists_inner.cpp
   MDGetSongDetail_200_response.cpp
-  MDGetSongDetail_200_response_privileges_inner.cpp
   MDGetSongDetail_200_response_songs_inner.cpp
   MDGetSongDetail_200_response_songs_inner_ar_inner.cpp
   MDGetSongUrl_200_response.cpp
   MDGetSongUrl_200_response_data_inner.cpp
-  MDGetSongUrl_200_response_data_inner_freeTimeTrialPrivilege.cpp
-  MDGetSongUrl_200_response_data_inner_freeTrialPrivilege.cpp
   MDGetTopArtists_200_response.cpp
   MDGetTopArtists_200_response_artists_inner.cpp
   MDGetTopPlaylist_200_response.cpp
@@ -307,7 +176,6 @@ add_library(${PROJECT_NAME}
   MDGetTopPlaylist_200_response_playlists_inner_creator.cpp
   MDGetTopPlaylist_200_response_playlists_inner_creator_avatarDetail.cpp
   MDGetTopPlaylist_200_response_playlists_inner_creator_experts.cpp
-  MDGetTopPlaylist_200_response_playlists_inner_subscribers_inner.cpp
   MDGetUserDetail_200_response.cpp
   MDGetUserDetail_200_response_bindings_inner.cpp
   MDGetUserDetail_200_response_identify.cpp
@@ -319,34 +187,9 @@ add_library(${PROJECT_NAME}
   MDGetUserDetail_200_response_profile_mainAuthType.cpp
   MDGetUserDetail_200_response_profile_privacyItemUnlimit.cpp
   MDGetUserDetail_200_response_userPoint.cpp
-  MDGetUserDynamic_200_response.cpp
-  MDGetUserDynamic_200_response_events_inner.cpp
-  MDGetUserDynamic_200_response_events_inner_anonymityInfo.cpp
-  MDGetUserDynamic_200_response_events_inner_bottomActivityInfos_inner.cpp
-  MDGetUserDynamic_200_response_events_inner_extJsonInfo.cpp
-  MDGetUserDynamic_200_response_events_inner_extJsonInfo_activityInfos_inner.cpp
-  MDGetUserDynamic_200_response_events_inner_extJsonInfo_anonymityInfo.cpp
-  MDGetUserDynamic_200_response_events_inner_info.cpp
-  MDGetUserDynamic_200_response_events_inner_info_commentThread.cpp
-  MDGetUserDynamic_200_response_events_inner_info_commentThread_latestLikedUsers_inner.cpp
-  MDGetUserDynamic_200_response_events_inner_info_commentThread_resourceInfo.cpp
-  MDGetUserDynamic_200_response_events_inner_ipLocation.cpp
-  MDGetUserDynamic_200_response_events_inner_pendantData.cpp
-  MDGetUserDynamic_200_response_events_inner_pics_inner.cpp
-  MDGetUserDynamic_200_response_events_inner_privacySettingInfo.cpp
-  MDGetUserDynamic_200_response_events_inner_tailMark.cpp
-  MDGetUserDynamic_200_response_events_inner_tailMark_circle.cpp
-  MDGetUserDynamic_200_response_events_inner_user.cpp
-  MDGetUserDynamic_200_response_events_inner_user_vipRights.cpp
-  MDGetUserDynamic_200_response_events_inner_user_vipRights_associator.cpp
-  MDGetUserDynamic_200_response_events_inner_xInfo.cpp
-  MDGetUserLevel_200_response.cpp
-  MDGetUserLevel_200_response_data.cpp
   MDGetUserPlaylist_200_response.cpp
   MDGetUserPlaylist_200_response_playlist_inner.cpp
   MDGetUserPlaylist_200_response_playlist_inner_creator.cpp
-  MDGetUserPlaylist_200_response_playlist_inner_creator_experts.cpp
-  MDGetUserPlaylist_200_response_playlist_inner_recommendInfo.cpp
   MDLikeMusic_200_response.cpp
   MDQrCheck_200_response.cpp
   MDQrCreate_200_response.cpp
@@ -354,11 +197,8 @@ add_library(${PROJECT_NAME}
   MDSearch_200_response.cpp
   MDSearch_200_response_result.cpp
   MDSearch_200_response_result_songs_inner.cpp
-  MDSearch_200_response_result_songs_inner_ar_inner.cpp
-  MDSearch_200_response_result_songs_inner_privilege.cpp
-  MDSearch_200_response_result_songs_inner_privilege_freeTrialPrivilege.cpp
+  MDSearch_200_response_result_songs_inner_al.cpp
   MDSendCaptcha_200_response.cpp
-  MDUpdateUserInfo_200_response.cpp
   MDClientApi.cpp
   MDHelpers.cpp
   MDHttpRequest.cpp

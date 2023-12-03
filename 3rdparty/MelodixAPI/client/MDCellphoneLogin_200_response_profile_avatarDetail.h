@@ -10,13 +10,13 @@
  */
 
 /*
- * MDGetArtistDetail_200_response_data_user_avatarDetail.h
+ * MDCellphoneLogin_200_response_profile_avatarDetail.h
  *
  * 
  */
 
-#ifndef MDGetArtistDetail_200_response_data_user_avatarDetail_H
-#define MDGetArtistDetail_200_response_data_user_avatarDetail_H
+#ifndef MDCellphoneLogin_200_response_profile_avatarDetail_H
+#define MDCellphoneLogin_200_response_profile_avatarDetail_H
 
 #include <QJsonObject>
 
@@ -27,11 +27,11 @@
 
 namespace MelodixAPI {
 
-class MDGetArtistDetail_200_response_data_user_avatarDetail : public MDObject {
+class MDCellphoneLogin_200_response_profile_avatarDetail : public MDObject {
 public:
-    MDGetArtistDetail_200_response_data_user_avatarDetail();
-    MDGetArtistDetail_200_response_data_user_avatarDetail(QString json);
-    ~MDGetArtistDetail_200_response_data_user_avatarDetail() override;
+    MDCellphoneLogin_200_response_profile_avatarDetail();
+    MDCellphoneLogin_200_response_profile_avatarDetail(QString json);
+    ~MDCellphoneLogin_200_response_profile_avatarDetail() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -74,6 +74,6 @@ private:
 
 } // namespace MelodixAPI
 
-Q_DECLARE_METATYPE(MelodixAPI::MDGetArtistDetail_200_response_data_user_avatarDetail)
+Q_DECLARE_METATYPE(MelodixAPI::MDCellphoneLogin_200_response_profile_avatarDetail)
 
-#endif // MDGetArtistDetail_200_response_data_user_avatarDetail_H
+#endif // MDCellphoneLogin_200_response_profile_avatarDetail_H

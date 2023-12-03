@@ -30,24 +30,6 @@ Item {
         API.getArtistSongs(Router.routeCurrent.id);
     }
 
-    function getArtistMv() {
-        function onReply(mvs) {
-            API.onArtistMvCompleted.disconnect(onReply);
-            if (mvs.length > 0) {
-                artist_new_mv_cover.imgSrc = mvs[0].imgurl16v9;
-                artist_new_mv_name.text = mvs[0].name;
-                var time = mvs[0].publishTime.split("-");
-                artist_new_mv_time.text = time[0] + "年" + time[1] + "月" + time[2] + "日";
-            } else {
-                artist_new_mv_title.visible = false;
-            }
-            getArtistSongs();
-        }
-
-        API.onArtistMvCompleted.connect(onReply);
-        API.getArtistMv(Router.routeCurrent.id);
-    }
-
     function getArtistNewAlbum() {
         function onReply(hotAlbums) {
             API.onArtistAlbumCompleted.disconnect(onReply);
@@ -57,7 +39,6 @@ Item {
             artist_new_album_name.text = hotAlbums[0].name;
             artist_new_album_time.text = Util.formatTime(hotAlbums[0].publishTime);
             artist_new_album_count.text = "Single · " + hotAlbums[0].size + "首歌";
-            getArtistMv();
         }
 
         API.onArtistAlbumCompleted.connect(onReply);
@@ -312,42 +293,6 @@ Item {
                                 height: parent.height - 5
                                 width: height * 1.7
                                 anchors.verticalCenter: parent.verticalCenter
-                            }
-
-                            Item {
-                                height: parent.height - 5
-                                width: height * 1.6
-                                anchors.verticalCenter: parent.verticalCenter
-
-                                Column {
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    spacing: 5
-
-                                    Text {
-                                        id: artist_new_mv_name
-
-                                        font.pixelSize: DTK.fontManager.t5.pixelSize
-                                        font.bold: true
-                                        color: Util.textColor
-                                    }
-
-                                    Text {
-                                        id: artist_new_mv_time
-
-                                        font.pixelSize: DTK.fontManager.t6.pixelSize
-                                        color: Util.textColor
-                                    }
-
-                                    Text {
-                                        id: artist_new_mv_title
-
-                                        text: "最新MV"
-                                        font.pixelSize: DTK.fontManager.t6.pixelSize
-                                        color: Util.textColor
-                                    }
-
-                                }
-
                             }
 
                         }

@@ -20,7 +20,6 @@
 
 #include <QJsonObject>
 
-#include "MDGetSongDetail_200_response_privileges_inner.h"
 #include "MDGetSongDetail_200_response_songs_inner.h"
 #include <QList>
 
@@ -29,7 +28,6 @@
 
 namespace MelodixAPI {
 class MDGetSongDetail_200_response_songs_inner;
-class MDGetSongDetail_200_response_privileges_inner;
 
 class MDGetSongDetail_200_response : public MDObject {
 public:
@@ -47,11 +45,6 @@ public:
     bool is_songs_Set() const;
     bool is_songs_Valid() const;
 
-    QList<MDGetSongDetail_200_response_privileges_inner> getPrivileges() const;
-    void setPrivileges(const QList<MDGetSongDetail_200_response_privileges_inner> &privileges);
-    bool is_privileges_Set() const;
-    bool is_privileges_Valid() const;
-
     qint32 getCode() const;
     void setCode(const qint32 &code);
     bool is_code_Set() const;
@@ -66,10 +59,6 @@ private:
     QList<MDGetSongDetail_200_response_songs_inner> m_songs;
     bool m_songs_isSet;
     bool m_songs_isValid;
-
-    QList<MDGetSongDetail_200_response_privileges_inner> m_privileges;
-    bool m_privileges_isSet;
-    bool m_privileges_isValid;
 
     qint32 m_code;
     bool m_code_isSet;

@@ -43,45 +43,10 @@ public:
     bool is_image_url_Set() const;
     bool is_image_url_Valid() const;
 
-    qint32 getTargetId() const;
-    void setTargetId(const qint32 &target_id);
-    bool is_target_id_Set() const;
-    bool is_target_id_Valid() const;
-
-    qint32 getTargetType() const;
-    void setTargetType(const qint32 &target_type);
-    bool is_target_type_Set() const;
-    bool is_target_type_Valid() const;
-
-    QString getTitleColor() const;
-    void setTitleColor(const QString &title_color);
-    bool is_title_color_Set() const;
-    bool is_title_color_Valid() const;
-
-    QString getTypeTitle() const;
-    void setTypeTitle(const QString &type_title);
-    bool is_type_title_Set() const;
-    bool is_type_title_Valid() const;
-
     QString getUrl() const;
     void setUrl(const QString &url);
     bool is_url_Set() const;
     bool is_url_Valid() const;
-
-    bool isExclusive() const;
-    void setExclusive(const bool &exclusive);
-    bool is_exclusive_Set() const;
-    bool is_exclusive_Valid() const;
-
-    QString getEncodeId() const;
-    void setEncodeId(const QString &encode_id);
-    bool is_encode_id_Set() const;
-    bool is_encode_id_Valid() const;
-
-    QString getScm() const;
-    void setScm(const QString &scm);
-    bool is_scm_Set() const;
-    bool is_scm_Valid() const;
 
     QString getBannerBizType() const;
     void setBannerBizType(const QString &banner_biz_type);
@@ -98,37 +63,9 @@ private:
     bool m_image_url_isSet;
     bool m_image_url_isValid;
 
-    qint32 m_target_id;
-    bool m_target_id_isSet;
-    bool m_target_id_isValid;
-
-    qint32 m_target_type;
-    bool m_target_type_isSet;
-    bool m_target_type_isValid;
-
-    QString m_title_color;
-    bool m_title_color_isSet;
-    bool m_title_color_isValid;
-
-    QString m_type_title;
-    bool m_type_title_isSet;
-    bool m_type_title_isValid;
-
     QString m_url;
     bool m_url_isSet;
     bool m_url_isValid;
-
-    bool m_exclusive;
-    bool m_exclusive_isSet;
-    bool m_exclusive_isValid;
-
-    QString m_encode_id;
-    bool m_encode_id_isSet;
-    bool m_encode_id_isValid;
-
-    QString m_scm;
-    bool m_scm_isSet;
-    bool m_scm_isValid;
 
     QString m_banner_biz_type;
     bool m_banner_biz_type_isSet;

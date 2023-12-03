@@ -86,11 +86,6 @@ API::API(QObject *parent)
             [&](MDHttpRequestWorker *worker, MDGetArtistSublist_200_response response) {
                 emit artistSublistCompleted(toJsonArray(response.getData()));
             });
-    connect(userApiInstance,
-            &MDClientApi::getMvSublistSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetMvSublist_200_response response) {
-                emit mvSublistCompleted(toJsonArray(response.getData()));
-            });
     connect(apiInstance,
             &MDClientApi::getArtistDetailSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetArtistDetail_200_response response) {
@@ -102,34 +97,9 @@ API::API(QObject *parent)
                 emit artistAlbumCompleted(toJsonArray(response.getHotAlbums()));
             });
     connect(apiInstance,
-            &MDClientApi::getArtistMvSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetArtistMv_200_response response) {
-                emit artistMvCompleted(toJsonArray(response.getMvs()));
-            });
-    connect(apiInstance,
             &MDClientApi::getArtistSingleSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetArtistSingle_200_response response) {
                 emit artistSongsCompleted(toJsonArray(response.getSongs()));
-            });
-    connect(apiInstance,
-            &MDClientApi::getMvUrlSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetMvUrl_200_response response) {
-                emit mvUrlCompleted(response.getData().asJsonObject());
-            });
-    connect(apiInstance,
-            &MDClientApi::getMvDetailSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetMvDetail_200_response response) {
-                emit mvDetailCompleted(response.getData().asJsonObject());
-            });
-    connect(apiInstance,
-            &MDClientApi::getHotCommentSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetHotComment_200_response response) {
-                emit hotCommentCompleted(toJsonArray(response.getHotComments()));
-            });
-    connect(apiInstance,
-            &MDClientApi::getSimiMvSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetSimiMv_200_response response) {
-                emit simiMvCompleted(toJsonArray(response.getMvs()));
             });
     connect(apiInstance,
             &MDClientApi::searchSignalFull,
@@ -170,21 +140,6 @@ API::API(QObject *parent)
             &MDClientApi::cellphoneLoginSignalFull,
             [&](MDHttpRequestWorker *worker, MDCellphoneLogin_200_response response) {
                 emit cellphoneLoginCompleted(response.asJsonObject());
-            });
-    connect(userApiInstance,
-            &MDClientApi::getUserLevelSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetUserLevel_200_response response) {
-                emit userLevelCompleted(response.getData().asJsonObject());
-            });
-    connect(userApiInstance,
-            &MDClientApi::getUserDetailSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetUserDetail_200_response response) {
-                emit userDetailCompleted(response.asJsonObject());
-            });
-    connect(userApiInstance,
-            &MDClientApi::getUserDynamicSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetUserDynamic_200_response response) {
-                emit userDynamicCompleted(response.asJsonObject());
             });
 }
 void API::banner(const int type)
@@ -252,16 +207,6 @@ void API::getTopArtists()
             });
 }
 
-void API::getRecommendedMv()
-{
-    apiInstance->getRecommendedMv();
-    connect(apiInstance,
-            &MDClientApi::getRecommendedMvSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetRecommendedMv_200_response response) {
-                emit recommendedMvCompleted(toJsonArray(response.getResult()));
-            });
-}
-
 void API::getTopPlaylist(const QString cat, const QString order, const int limit, const int offset)
 {
     apiInstance->getTopPlaylist(cat, order, limit, offset);
@@ -323,11 +268,6 @@ void API::getArtistSublist()
     userApiInstance->getArtistSublist(QDateTime::currentMSecsSinceEpoch());
 }
 
-void API::getMvSublist()
-{
-    userApiInstance->getMvSublist(QDateTime::currentMSecsSinceEpoch());
-}
-
 void API::getArtistDetail(const QString id)
 {
     apiInstance->getArtistDetail(id);
@@ -338,34 +278,9 @@ void API::getArtistAlbum(const QString id)
     apiInstance->getArtistAlbum(id);
 }
 
-void API::getArtistMv(const QString id)
-{
-    apiInstance->getArtistMv(id);
-}
-
 void API::getArtistSongs(const QString id)
 {
     apiInstance->getArtistSingle(id);
-}
-
-void API::getMvUrl(const QString id)
-{
-    apiInstance->getMvUrl(id);
-}
-
-void API::getMvDetail(const QString id)
-{
-    apiInstance->getMvDetail(id);
-}
-
-void API::getMvHotComment(const QString id, const int type)
-{
-    apiInstance->getHotComment(id, type);
-}
-
-void API::getSimiMv(const QString id)
-{
-    apiInstance->getSimiMv(id);
 }
 
 void API::search(const QString keyword)
@@ -417,20 +332,9 @@ void API::phoneLogin(const int phone, const QString password, const int captcha)
 {
     apiInstance->cellphoneLogin(phone, password, captcha);
 }
-
-void API::getUserLevel()
-{
-    userApiInstance->getUserLevel();
-}
-
 void API::getUserDetail(const QString uid)
 {
     userApiInstance->getUserDetail(uid);
-}
-
-void API::getUserDynamic(const QString uid)
-{
-    userApiInstance->getUserDynamic(uid);
 }
 
 API::~API()

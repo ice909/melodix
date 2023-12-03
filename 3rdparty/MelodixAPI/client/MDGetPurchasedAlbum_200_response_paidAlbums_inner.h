@@ -20,17 +20,12 @@
 
 #include <QJsonObject>
 
-#include "MDGetPurchasedAlbum_200_response_paidAlbums_inner_artist.h"
-#include "MDGetPurchasedAlbum_200_response_paidAlbums_inner_artists_inner.h"
-#include <QList>
 #include <QString>
 
 #include "MDEnum.h"
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDGetPurchasedAlbum_200_response_paidAlbums_inner_artist;
-class MDGetPurchasedAlbum_200_response_paidAlbums_inner_artists_inner;
 
 class MDGetPurchasedAlbum_200_response_paidAlbums_inner : public MDObject {
 public:
@@ -63,41 +58,6 @@ public:
     bool is_album_name_Set() const;
     bool is_album_name_Valid() const;
 
-    MDGetPurchasedAlbum_200_response_paidAlbums_inner_artist getArtist() const;
-    void setArtist(const MDGetPurchasedAlbum_200_response_paidAlbums_inner_artist &artist);
-    bool is_artist_Set() const;
-    bool is_artist_Valid() const;
-
-    QList<MDGetPurchasedAlbum_200_response_paidAlbums_inner_artists_inner> getArtists() const;
-    void setArtists(const QList<MDGetPurchasedAlbum_200_response_paidAlbums_inner_artists_inner> &artists);
-    bool is_artists_Set() const;
-    bool is_artists_Valid() const;
-
-    qint32 getValid() const;
-    void setValid(const qint32 &valid);
-    bool is_valid_Set() const;
-    bool is_valid_Valid() const;
-
-    qint32 getBoughtCount() const;
-    void setBoughtCount(const qint32 &bought_count);
-    bool is_bought_count_Set() const;
-    bool is_bought_count_Valid() const;
-
-    bool isSub() const;
-    void setSub(const bool &sub);
-    bool is_sub_Set() const;
-    bool is_sub_Valid() const;
-
-    QString getAliasName() const;
-    void setAliasName(const QString &alias_name);
-    bool is_alias_name_Set() const;
-    bool is_alias_name_Valid() const;
-
-    qint32 getChannel() const;
-    void setChannel(const qint32 &channel);
-    bool is_channel_Set() const;
-    bool is_channel_Valid() const;
-
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -119,34 +79,6 @@ private:
     QString m_album_name;
     bool m_album_name_isSet;
     bool m_album_name_isValid;
-
-    MDGetPurchasedAlbum_200_response_paidAlbums_inner_artist m_artist;
-    bool m_artist_isSet;
-    bool m_artist_isValid;
-
-    QList<MDGetPurchasedAlbum_200_response_paidAlbums_inner_artists_inner> m_artists;
-    bool m_artists_isSet;
-    bool m_artists_isValid;
-
-    qint32 m_valid;
-    bool m_valid_isSet;
-    bool m_valid_isValid;
-
-    qint32 m_bought_count;
-    bool m_bought_count_isSet;
-    bool m_bought_count_isValid;
-
-    bool m_sub;
-    bool m_sub_isSet;
-    bool m_sub_isValid;
-
-    QString m_alias_name;
-    bool m_alias_name_isSet;
-    bool m_alias_name_isValid;
-
-    qint32 m_channel;
-    bool m_channel_isSet;
-    bool m_channel_isValid;
 };
 
 } // namespace MelodixAPI

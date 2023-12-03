@@ -21,15 +21,12 @@
 #include <QJsonObject>
 
 #include "MDGetPlaylistDetail_200_response_playlist.h"
-#include "MDGetPlaylistDetail_200_response_privileges_inner.h"
-#include <QList>
 
 #include "MDEnum.h"
 #include "MDObject.h"
 
 namespace MelodixAPI {
 class MDGetPlaylistDetail_200_response_playlist;
-class MDGetPlaylistDetail_200_response_privileges_inner;
 
 class MDGetPlaylistDetail_200_response : public MDObject {
 public:
@@ -52,21 +49,6 @@ public:
     bool is_playlist_Set() const;
     bool is_playlist_Valid() const;
 
-    QList<MDGetPlaylistDetail_200_response_privileges_inner> getPrivileges() const;
-    void setPrivileges(const QList<MDGetPlaylistDetail_200_response_privileges_inner> &privileges);
-    bool is_privileges_Set() const;
-    bool is_privileges_Valid() const;
-
-    qint32 getFromUserCount() const;
-    void setFromUserCount(const qint32 &from_user_count);
-    bool is_from_user_count_Set() const;
-    bool is_from_user_count_Valid() const;
-
-    qint32 getTrialMode() const;
-    void setTrialMode(const qint32 &trial_mode);
-    bool is_trial_mode_Set() const;
-    bool is_trial_mode_Valid() const;
-
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -80,18 +62,6 @@ private:
     MDGetPlaylistDetail_200_response_playlist m_playlist;
     bool m_playlist_isSet;
     bool m_playlist_isValid;
-
-    QList<MDGetPlaylistDetail_200_response_privileges_inner> m_privileges;
-    bool m_privileges_isSet;
-    bool m_privileges_isValid;
-
-    qint32 m_from_user_count;
-    bool m_from_user_count_isSet;
-    bool m_from_user_count_isValid;
-
-    qint32 m_trial_mode;
-    bool m_trial_mode_isSet;
-    bool m_trial_mode_isValid;
 };
 
 } // namespace MelodixAPI

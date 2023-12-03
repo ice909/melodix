@@ -20,7 +20,6 @@
 
 #include <QJsonObject>
 
-#include <QList>
 #include <QString>
 
 #include "MDEnum.h"
@@ -54,21 +53,6 @@ public:
     bool is_pic_url_Set() const;
     bool is_pic_url_Valid() const;
 
-    QList<QString> getTns() const;
-    void setTns(const QList<QString> &tns);
-    bool is_tns_Set() const;
-    bool is_tns_Valid() const;
-
-    QString getPicStr() const;
-    void setPicStr(const QString &pic_str);
-    bool is_pic_str_Set() const;
-    bool is_pic_str_Valid() const;
-
-    qint32 getPic() const;
-    void setPic(const qint32 &pic);
-    bool is_pic_Set() const;
-    bool is_pic_Valid() const;
-
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -86,18 +70,6 @@ private:
     QString m_pic_url;
     bool m_pic_url_isSet;
     bool m_pic_url_isValid;
-
-    QList<QString> m_tns;
-    bool m_tns_isSet;
-    bool m_tns_isValid;
-
-    QString m_pic_str;
-    bool m_pic_str_isSet;
-    bool m_pic_str_isValid;
-
-    qint32 m_pic;
-    bool m_pic_isSet;
-    bool m_pic_isValid;
 };
 
 } // namespace MelodixAPI

@@ -51,47 +51,8 @@ void MDGetSongUrl_200_response_data_inner::initializeModel() {
     m_code_isSet = false;
     m_code_isValid = false;
 
-    m_expi_isSet = false;
-    m_expi_isValid = false;
-
     m_type_isSet = false;
     m_type_isValid = false;
-
-    m_gain_isSet = false;
-    m_gain_isValid = false;
-
-    m_peak_isSet = false;
-    m_peak_isValid = false;
-
-    m_fee_isSet = false;
-    m_fee_isValid = false;
-
-    m_payed_isSet = false;
-    m_payed_isValid = false;
-
-    m_flag_isSet = false;
-    m_flag_isValid = false;
-
-    m_can_extend_isSet = false;
-    m_can_extend_isValid = false;
-
-    m_level_isSet = false;
-    m_level_isValid = false;
-
-    m_encode_type_isSet = false;
-    m_encode_type_isValid = false;
-
-    m_free_trial_privilege_isSet = false;
-    m_free_trial_privilege_isValid = false;
-
-    m_free_time_trial_privilege_isSet = false;
-    m_free_time_trial_privilege_isValid = false;
-
-    m_url_source_isSet = false;
-    m_url_source_isValid = false;
-
-    m_right_source_isSet = false;
-    m_right_source_isValid = false;
 
     m_time_isSet = false;
     m_time_isValid = false;
@@ -124,47 +85,8 @@ void MDGetSongUrl_200_response_data_inner::fromJsonObject(QJsonObject json) {
     m_code_isValid = ::MelodixAPI::fromJsonValue(m_code, json[QString("code")]);
     m_code_isSet = !json[QString("code")].isNull() && m_code_isValid;
 
-    m_expi_isValid = ::MelodixAPI::fromJsonValue(m_expi, json[QString("expi")]);
-    m_expi_isSet = !json[QString("expi")].isNull() && m_expi_isValid;
-
     m_type_isValid = ::MelodixAPI::fromJsonValue(m_type, json[QString("type")]);
     m_type_isSet = !json[QString("type")].isNull() && m_type_isValid;
-
-    m_gain_isValid = ::MelodixAPI::fromJsonValue(m_gain, json[QString("gain")]);
-    m_gain_isSet = !json[QString("gain")].isNull() && m_gain_isValid;
-
-    m_peak_isValid = ::MelodixAPI::fromJsonValue(m_peak, json[QString("peak")]);
-    m_peak_isSet = !json[QString("peak")].isNull() && m_peak_isValid;
-
-    m_fee_isValid = ::MelodixAPI::fromJsonValue(m_fee, json[QString("fee")]);
-    m_fee_isSet = !json[QString("fee")].isNull() && m_fee_isValid;
-
-    m_payed_isValid = ::MelodixAPI::fromJsonValue(m_payed, json[QString("payed")]);
-    m_payed_isSet = !json[QString("payed")].isNull() && m_payed_isValid;
-
-    m_flag_isValid = ::MelodixAPI::fromJsonValue(m_flag, json[QString("flag")]);
-    m_flag_isSet = !json[QString("flag")].isNull() && m_flag_isValid;
-
-    m_can_extend_isValid = ::MelodixAPI::fromJsonValue(m_can_extend, json[QString("canExtend")]);
-    m_can_extend_isSet = !json[QString("canExtend")].isNull() && m_can_extend_isValid;
-
-    m_level_isValid = ::MelodixAPI::fromJsonValue(m_level, json[QString("level")]);
-    m_level_isSet = !json[QString("level")].isNull() && m_level_isValid;
-
-    m_encode_type_isValid = ::MelodixAPI::fromJsonValue(m_encode_type, json[QString("encodeType")]);
-    m_encode_type_isSet = !json[QString("encodeType")].isNull() && m_encode_type_isValid;
-
-    m_free_trial_privilege_isValid = ::MelodixAPI::fromJsonValue(m_free_trial_privilege, json[QString("freeTrialPrivilege")]);
-    m_free_trial_privilege_isSet = !json[QString("freeTrialPrivilege")].isNull() && m_free_trial_privilege_isValid;
-
-    m_free_time_trial_privilege_isValid = ::MelodixAPI::fromJsonValue(m_free_time_trial_privilege, json[QString("freeTimeTrialPrivilege")]);
-    m_free_time_trial_privilege_isSet = !json[QString("freeTimeTrialPrivilege")].isNull() && m_free_time_trial_privilege_isValid;
-
-    m_url_source_isValid = ::MelodixAPI::fromJsonValue(m_url_source, json[QString("urlSource")]);
-    m_url_source_isSet = !json[QString("urlSource")].isNull() && m_url_source_isValid;
-
-    m_right_source_isValid = ::MelodixAPI::fromJsonValue(m_right_source, json[QString("rightSource")]);
-    m_right_source_isSet = !json[QString("rightSource")].isNull() && m_right_source_isValid;
 
     m_time_isValid = ::MelodixAPI::fromJsonValue(m_time, json[QString("time")]);
     m_time_isSet = !json[QString("time")].isNull() && m_time_isValid;
@@ -197,47 +119,8 @@ QJsonObject MDGetSongUrl_200_response_data_inner::asJsonObject() const {
     if (m_code_isSet) {
         obj.insert(QString("code"), ::MelodixAPI::toJsonValue(m_code));
     }
-    if (m_expi_isSet) {
-        obj.insert(QString("expi"), ::MelodixAPI::toJsonValue(m_expi));
-    }
     if (m_type_isSet) {
         obj.insert(QString("type"), ::MelodixAPI::toJsonValue(m_type));
-    }
-    if (m_gain_isSet) {
-        obj.insert(QString("gain"), ::MelodixAPI::toJsonValue(m_gain));
-    }
-    if (m_peak_isSet) {
-        obj.insert(QString("peak"), ::MelodixAPI::toJsonValue(m_peak));
-    }
-    if (m_fee_isSet) {
-        obj.insert(QString("fee"), ::MelodixAPI::toJsonValue(m_fee));
-    }
-    if (m_payed_isSet) {
-        obj.insert(QString("payed"), ::MelodixAPI::toJsonValue(m_payed));
-    }
-    if (m_flag_isSet) {
-        obj.insert(QString("flag"), ::MelodixAPI::toJsonValue(m_flag));
-    }
-    if (m_can_extend_isSet) {
-        obj.insert(QString("canExtend"), ::MelodixAPI::toJsonValue(m_can_extend));
-    }
-    if (m_level_isSet) {
-        obj.insert(QString("level"), ::MelodixAPI::toJsonValue(m_level));
-    }
-    if (m_encode_type_isSet) {
-        obj.insert(QString("encodeType"), ::MelodixAPI::toJsonValue(m_encode_type));
-    }
-    if (m_free_trial_privilege.isSet()) {
-        obj.insert(QString("freeTrialPrivilege"), ::MelodixAPI::toJsonValue(m_free_trial_privilege));
-    }
-    if (m_free_time_trial_privilege.isSet()) {
-        obj.insert(QString("freeTimeTrialPrivilege"), ::MelodixAPI::toJsonValue(m_free_time_trial_privilege));
-    }
-    if (m_url_source_isSet) {
-        obj.insert(QString("urlSource"), ::MelodixAPI::toJsonValue(m_url_source));
-    }
-    if (m_right_source_isSet) {
-        obj.insert(QString("rightSource"), ::MelodixAPI::toJsonValue(m_right_source));
     }
     if (m_time_isSet) {
         obj.insert(QString("time"), ::MelodixAPI::toJsonValue(m_time));
@@ -341,22 +224,6 @@ bool MDGetSongUrl_200_response_data_inner::is_code_Valid() const{
     return m_code_isValid;
 }
 
-qint32 MDGetSongUrl_200_response_data_inner::getExpi() const {
-    return m_expi;
-}
-void MDGetSongUrl_200_response_data_inner::setExpi(const qint32 &expi) {
-    m_expi = expi;
-    m_expi_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_expi_Set() const{
-    return m_expi_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_expi_Valid() const{
-    return m_expi_isValid;
-}
-
 QString MDGetSongUrl_200_response_data_inner::getType() const {
     return m_type;
 }
@@ -371,198 +238,6 @@ bool MDGetSongUrl_200_response_data_inner::is_type_Set() const{
 
 bool MDGetSongUrl_200_response_data_inner::is_type_Valid() const{
     return m_type_isValid;
-}
-
-double MDGetSongUrl_200_response_data_inner::getGain() const {
-    return m_gain;
-}
-void MDGetSongUrl_200_response_data_inner::setGain(const double &gain) {
-    m_gain = gain;
-    m_gain_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_gain_Set() const{
-    return m_gain_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_gain_Valid() const{
-    return m_gain_isValid;
-}
-
-qint32 MDGetSongUrl_200_response_data_inner::getPeak() const {
-    return m_peak;
-}
-void MDGetSongUrl_200_response_data_inner::setPeak(const qint32 &peak) {
-    m_peak = peak;
-    m_peak_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_peak_Set() const{
-    return m_peak_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_peak_Valid() const{
-    return m_peak_isValid;
-}
-
-qint32 MDGetSongUrl_200_response_data_inner::getFee() const {
-    return m_fee;
-}
-void MDGetSongUrl_200_response_data_inner::setFee(const qint32 &fee) {
-    m_fee = fee;
-    m_fee_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_fee_Set() const{
-    return m_fee_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_fee_Valid() const{
-    return m_fee_isValid;
-}
-
-qint32 MDGetSongUrl_200_response_data_inner::getPayed() const {
-    return m_payed;
-}
-void MDGetSongUrl_200_response_data_inner::setPayed(const qint32 &payed) {
-    m_payed = payed;
-    m_payed_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_payed_Set() const{
-    return m_payed_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_payed_Valid() const{
-    return m_payed_isValid;
-}
-
-qint32 MDGetSongUrl_200_response_data_inner::getFlag() const {
-    return m_flag;
-}
-void MDGetSongUrl_200_response_data_inner::setFlag(const qint32 &flag) {
-    m_flag = flag;
-    m_flag_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_flag_Set() const{
-    return m_flag_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_flag_Valid() const{
-    return m_flag_isValid;
-}
-
-bool MDGetSongUrl_200_response_data_inner::isCanExtend() const {
-    return m_can_extend;
-}
-void MDGetSongUrl_200_response_data_inner::setCanExtend(const bool &can_extend) {
-    m_can_extend = can_extend;
-    m_can_extend_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_can_extend_Set() const{
-    return m_can_extend_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_can_extend_Valid() const{
-    return m_can_extend_isValid;
-}
-
-QString MDGetSongUrl_200_response_data_inner::getLevel() const {
-    return m_level;
-}
-void MDGetSongUrl_200_response_data_inner::setLevel(const QString &level) {
-    m_level = level;
-    m_level_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_level_Set() const{
-    return m_level_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_level_Valid() const{
-    return m_level_isValid;
-}
-
-QString MDGetSongUrl_200_response_data_inner::getEncodeType() const {
-    return m_encode_type;
-}
-void MDGetSongUrl_200_response_data_inner::setEncodeType(const QString &encode_type) {
-    m_encode_type = encode_type;
-    m_encode_type_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_encode_type_Set() const{
-    return m_encode_type_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_encode_type_Valid() const{
-    return m_encode_type_isValid;
-}
-
-MDGetSongUrl_200_response_data_inner_freeTrialPrivilege MDGetSongUrl_200_response_data_inner::getFreeTrialPrivilege() const {
-    return m_free_trial_privilege;
-}
-void MDGetSongUrl_200_response_data_inner::setFreeTrialPrivilege(const MDGetSongUrl_200_response_data_inner_freeTrialPrivilege &free_trial_privilege) {
-    m_free_trial_privilege = free_trial_privilege;
-    m_free_trial_privilege_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_free_trial_privilege_Set() const{
-    return m_free_trial_privilege_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_free_trial_privilege_Valid() const{
-    return m_free_trial_privilege_isValid;
-}
-
-MDGetSongUrl_200_response_data_inner_freeTimeTrialPrivilege MDGetSongUrl_200_response_data_inner::getFreeTimeTrialPrivilege() const {
-    return m_free_time_trial_privilege;
-}
-void MDGetSongUrl_200_response_data_inner::setFreeTimeTrialPrivilege(const MDGetSongUrl_200_response_data_inner_freeTimeTrialPrivilege &free_time_trial_privilege) {
-    m_free_time_trial_privilege = free_time_trial_privilege;
-    m_free_time_trial_privilege_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_free_time_trial_privilege_Set() const{
-    return m_free_time_trial_privilege_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_free_time_trial_privilege_Valid() const{
-    return m_free_time_trial_privilege_isValid;
-}
-
-qint32 MDGetSongUrl_200_response_data_inner::getUrlSource() const {
-    return m_url_source;
-}
-void MDGetSongUrl_200_response_data_inner::setUrlSource(const qint32 &url_source) {
-    m_url_source = url_source;
-    m_url_source_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_url_source_Set() const{
-    return m_url_source_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_url_source_Valid() const{
-    return m_url_source_isValid;
-}
-
-qint32 MDGetSongUrl_200_response_data_inner::getRightSource() const {
-    return m_right_source;
-}
-void MDGetSongUrl_200_response_data_inner::setRightSource(const qint32 &right_source) {
-    m_right_source = right_source;
-    m_right_source_isSet = true;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_right_source_Set() const{
-    return m_right_source_isSet;
-}
-
-bool MDGetSongUrl_200_response_data_inner::is_right_source_Valid() const{
-    return m_right_source_isValid;
 }
 
 qint32 MDGetSongUrl_200_response_data_inner::getTime() const {
@@ -614,72 +289,7 @@ bool MDGetSongUrl_200_response_data_inner::isSet() const {
             break;
         }
 
-        if (m_expi_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_type_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_gain_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_peak_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_fee_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_payed_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_flag_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_can_extend_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_level_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_encode_type_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_free_trial_privilege.isSet()) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_free_time_trial_privilege.isSet()) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_url_source_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_right_source_isSet) {
             isObjectUpdated = true;
             break;
         }

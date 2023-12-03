@@ -53,25 +53,10 @@ public:
     bool is_name_Set() const;
     bool is_name_Valid() const;
 
-    QString getCopywriter() const;
-    void setCopywriter(const QString &copywriter);
-    bool is_copywriter_Set() const;
-    bool is_copywriter_Valid() const;
-
     QString getPicUrl() const;
     void setPicUrl(const QString &pic_url);
     bool is_pic_url_Set() const;
     bool is_pic_url_Valid() const;
-
-    bool isCanDislike() const;
-    void setCanDislike(const bool &can_dislike);
-    bool is_can_dislike_Set() const;
-    bool is_can_dislike_Valid() const;
-
-    qint32 getTrackNumberUpdateTime() const;
-    void setTrackNumberUpdateTime(const qint32 &track_number_update_time);
-    bool is_track_number_update_time_Set() const;
-    bool is_track_number_update_time_Valid() const;
 
     qint32 getPlayCount() const;
     void setPlayCount(const qint32 &play_count);
@@ -82,16 +67,6 @@ public:
     void setTrackCount(const qint32 &track_count);
     bool is_track_count_Set() const;
     bool is_track_count_Valid() const;
-
-    bool isHighQuality() const;
-    void setHighQuality(const bool &high_quality);
-    bool is_high_quality_Set() const;
-    bool is_high_quality_Valid() const;
-
-    QString getAlg() const;
-    void setAlg(const QString &alg);
-    bool is_alg_Set() const;
-    bool is_alg_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -111,21 +86,9 @@ private:
     bool m_name_isSet;
     bool m_name_isValid;
 
-    QString m_copywriter;
-    bool m_copywriter_isSet;
-    bool m_copywriter_isValid;
-
     QString m_pic_url;
     bool m_pic_url_isSet;
     bool m_pic_url_isValid;
-
-    bool m_can_dislike;
-    bool m_can_dislike_isSet;
-    bool m_can_dislike_isValid;
-
-    qint32 m_track_number_update_time;
-    bool m_track_number_update_time_isSet;
-    bool m_track_number_update_time_isValid;
 
     qint32 m_play_count;
     bool m_play_count_isSet;
@@ -134,14 +97,6 @@ private:
     qint32 m_track_count;
     bool m_track_count_isSet;
     bool m_track_count_isValid;
-
-    bool m_high_quality;
-    bool m_high_quality_isSet;
-    bool m_high_quality_isValid;
-
-    QString m_alg;
-    bool m_alg_isSet;
-    bool m_alg_isValid;
 };
 
 } // namespace MelodixAPI

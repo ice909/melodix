@@ -42,29 +42,14 @@ void MDGetRecommendedPlaylist_200_response_result_inner::initializeModel() {
     m_name_isSet = false;
     m_name_isValid = false;
 
-    m_copywriter_isSet = false;
-    m_copywriter_isValid = false;
-
     m_pic_url_isSet = false;
     m_pic_url_isValid = false;
-
-    m_can_dislike_isSet = false;
-    m_can_dislike_isValid = false;
-
-    m_track_number_update_time_isSet = false;
-    m_track_number_update_time_isValid = false;
 
     m_play_count_isSet = false;
     m_play_count_isValid = false;
 
     m_track_count_isSet = false;
     m_track_count_isValid = false;
-
-    m_high_quality_isSet = false;
-    m_high_quality_isValid = false;
-
-    m_alg_isSet = false;
-    m_alg_isValid = false;
 }
 
 void MDGetRecommendedPlaylist_200_response_result_inner::fromJson(QString jsonString) {
@@ -85,29 +70,14 @@ void MDGetRecommendedPlaylist_200_response_result_inner::fromJsonObject(QJsonObj
     m_name_isValid = ::MelodixAPI::fromJsonValue(m_name, json[QString("name")]);
     m_name_isSet = !json[QString("name")].isNull() && m_name_isValid;
 
-    m_copywriter_isValid = ::MelodixAPI::fromJsonValue(m_copywriter, json[QString("copywriter")]);
-    m_copywriter_isSet = !json[QString("copywriter")].isNull() && m_copywriter_isValid;
-
     m_pic_url_isValid = ::MelodixAPI::fromJsonValue(m_pic_url, json[QString("picUrl")]);
     m_pic_url_isSet = !json[QString("picUrl")].isNull() && m_pic_url_isValid;
-
-    m_can_dislike_isValid = ::MelodixAPI::fromJsonValue(m_can_dislike, json[QString("canDislike")]);
-    m_can_dislike_isSet = !json[QString("canDislike")].isNull() && m_can_dislike_isValid;
-
-    m_track_number_update_time_isValid = ::MelodixAPI::fromJsonValue(m_track_number_update_time, json[QString("trackNumberUpdateTime")]);
-    m_track_number_update_time_isSet = !json[QString("trackNumberUpdateTime")].isNull() && m_track_number_update_time_isValid;
 
     m_play_count_isValid = ::MelodixAPI::fromJsonValue(m_play_count, json[QString("playCount")]);
     m_play_count_isSet = !json[QString("playCount")].isNull() && m_play_count_isValid;
 
     m_track_count_isValid = ::MelodixAPI::fromJsonValue(m_track_count, json[QString("trackCount")]);
     m_track_count_isSet = !json[QString("trackCount")].isNull() && m_track_count_isValid;
-
-    m_high_quality_isValid = ::MelodixAPI::fromJsonValue(m_high_quality, json[QString("highQuality")]);
-    m_high_quality_isSet = !json[QString("highQuality")].isNull() && m_high_quality_isValid;
-
-    m_alg_isValid = ::MelodixAPI::fromJsonValue(m_alg, json[QString("alg")]);
-    m_alg_isSet = !json[QString("alg")].isNull() && m_alg_isValid;
 }
 
 QString MDGetRecommendedPlaylist_200_response_result_inner::asJson() const {
@@ -128,29 +98,14 @@ QJsonObject MDGetRecommendedPlaylist_200_response_result_inner::asJsonObject() c
     if (m_name_isSet) {
         obj.insert(QString("name"), ::MelodixAPI::toJsonValue(m_name));
     }
-    if (m_copywriter_isSet) {
-        obj.insert(QString("copywriter"), ::MelodixAPI::toJsonValue(m_copywriter));
-    }
     if (m_pic_url_isSet) {
         obj.insert(QString("picUrl"), ::MelodixAPI::toJsonValue(m_pic_url));
-    }
-    if (m_can_dislike_isSet) {
-        obj.insert(QString("canDislike"), ::MelodixAPI::toJsonValue(m_can_dislike));
-    }
-    if (m_track_number_update_time_isSet) {
-        obj.insert(QString("trackNumberUpdateTime"), ::MelodixAPI::toJsonValue(m_track_number_update_time));
     }
     if (m_play_count_isSet) {
         obj.insert(QString("playCount"), ::MelodixAPI::toJsonValue(m_play_count));
     }
     if (m_track_count_isSet) {
         obj.insert(QString("trackCount"), ::MelodixAPI::toJsonValue(m_track_count));
-    }
-    if (m_high_quality_isSet) {
-        obj.insert(QString("highQuality"), ::MelodixAPI::toJsonValue(m_high_quality));
-    }
-    if (m_alg_isSet) {
-        obj.insert(QString("alg"), ::MelodixAPI::toJsonValue(m_alg));
     }
     return obj;
 }
@@ -203,22 +158,6 @@ bool MDGetRecommendedPlaylist_200_response_result_inner::is_name_Valid() const{
     return m_name_isValid;
 }
 
-QString MDGetRecommendedPlaylist_200_response_result_inner::getCopywriter() const {
-    return m_copywriter;
-}
-void MDGetRecommendedPlaylist_200_response_result_inner::setCopywriter(const QString &copywriter) {
-    m_copywriter = copywriter;
-    m_copywriter_isSet = true;
-}
-
-bool MDGetRecommendedPlaylist_200_response_result_inner::is_copywriter_Set() const{
-    return m_copywriter_isSet;
-}
-
-bool MDGetRecommendedPlaylist_200_response_result_inner::is_copywriter_Valid() const{
-    return m_copywriter_isValid;
-}
-
 QString MDGetRecommendedPlaylist_200_response_result_inner::getPicUrl() const {
     return m_pic_url;
 }
@@ -233,38 +172,6 @@ bool MDGetRecommendedPlaylist_200_response_result_inner::is_pic_url_Set() const{
 
 bool MDGetRecommendedPlaylist_200_response_result_inner::is_pic_url_Valid() const{
     return m_pic_url_isValid;
-}
-
-bool MDGetRecommendedPlaylist_200_response_result_inner::isCanDislike() const {
-    return m_can_dislike;
-}
-void MDGetRecommendedPlaylist_200_response_result_inner::setCanDislike(const bool &can_dislike) {
-    m_can_dislike = can_dislike;
-    m_can_dislike_isSet = true;
-}
-
-bool MDGetRecommendedPlaylist_200_response_result_inner::is_can_dislike_Set() const{
-    return m_can_dislike_isSet;
-}
-
-bool MDGetRecommendedPlaylist_200_response_result_inner::is_can_dislike_Valid() const{
-    return m_can_dislike_isValid;
-}
-
-qint32 MDGetRecommendedPlaylist_200_response_result_inner::getTrackNumberUpdateTime() const {
-    return m_track_number_update_time;
-}
-void MDGetRecommendedPlaylist_200_response_result_inner::setTrackNumberUpdateTime(const qint32 &track_number_update_time) {
-    m_track_number_update_time = track_number_update_time;
-    m_track_number_update_time_isSet = true;
-}
-
-bool MDGetRecommendedPlaylist_200_response_result_inner::is_track_number_update_time_Set() const{
-    return m_track_number_update_time_isSet;
-}
-
-bool MDGetRecommendedPlaylist_200_response_result_inner::is_track_number_update_time_Valid() const{
-    return m_track_number_update_time_isValid;
 }
 
 qint32 MDGetRecommendedPlaylist_200_response_result_inner::getPlayCount() const {
@@ -299,38 +206,6 @@ bool MDGetRecommendedPlaylist_200_response_result_inner::is_track_count_Valid() 
     return m_track_count_isValid;
 }
 
-bool MDGetRecommendedPlaylist_200_response_result_inner::isHighQuality() const {
-    return m_high_quality;
-}
-void MDGetRecommendedPlaylist_200_response_result_inner::setHighQuality(const bool &high_quality) {
-    m_high_quality = high_quality;
-    m_high_quality_isSet = true;
-}
-
-bool MDGetRecommendedPlaylist_200_response_result_inner::is_high_quality_Set() const{
-    return m_high_quality_isSet;
-}
-
-bool MDGetRecommendedPlaylist_200_response_result_inner::is_high_quality_Valid() const{
-    return m_high_quality_isValid;
-}
-
-QString MDGetRecommendedPlaylist_200_response_result_inner::getAlg() const {
-    return m_alg;
-}
-void MDGetRecommendedPlaylist_200_response_result_inner::setAlg(const QString &alg) {
-    m_alg = alg;
-    m_alg_isSet = true;
-}
-
-bool MDGetRecommendedPlaylist_200_response_result_inner::is_alg_Set() const{
-    return m_alg_isSet;
-}
-
-bool MDGetRecommendedPlaylist_200_response_result_inner::is_alg_Valid() const{
-    return m_alg_isValid;
-}
-
 bool MDGetRecommendedPlaylist_200_response_result_inner::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -349,22 +224,7 @@ bool MDGetRecommendedPlaylist_200_response_result_inner::isSet() const {
             break;
         }
 
-        if (m_copywriter_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_pic_url_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_can_dislike_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_track_number_update_time_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -378,23 +238,13 @@ bool MDGetRecommendedPlaylist_200_response_result_inner::isSet() const {
             isObjectUpdated = true;
             break;
         }
-
-        if (m_high_quality_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_alg_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
     } while (false);
     return isObjectUpdated;
 }
 
 bool MDGetRecommendedPlaylist_200_response_result_inner::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_type_isValid && m_name_isValid && m_copywriter_isValid && m_pic_url_isValid && m_can_dislike_isValid && m_track_number_update_time_isValid && m_play_count_isValid && m_track_count_isValid && m_high_quality_isValid && m_alg_isValid && true;
+    return m_id_isValid && m_type_isValid && m_name_isValid && m_pic_url_isValid && m_play_count_isValid && m_track_count_isValid && true;
 }
 
 } // namespace MelodixAPI

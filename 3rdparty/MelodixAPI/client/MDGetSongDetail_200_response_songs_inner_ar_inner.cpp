@@ -38,12 +38,6 @@ void MDGetSongDetail_200_response_songs_inner_ar_inner::initializeModel() {
 
     m_name_isSet = false;
     m_name_isValid = false;
-
-    m_tns_isSet = false;
-    m_tns_isValid = false;
-
-    m_alias_isSet = false;
-    m_alias_isValid = false;
 }
 
 void MDGetSongDetail_200_response_songs_inner_ar_inner::fromJson(QString jsonString) {
@@ -60,12 +54,6 @@ void MDGetSongDetail_200_response_songs_inner_ar_inner::fromJsonObject(QJsonObje
 
     m_name_isValid = ::MelodixAPI::fromJsonValue(m_name, json[QString("name")]);
     m_name_isSet = !json[QString("name")].isNull() && m_name_isValid;
-
-    m_tns_isValid = ::MelodixAPI::fromJsonValue(m_tns, json[QString("tns")]);
-    m_tns_isSet = !json[QString("tns")].isNull() && m_tns_isValid;
-
-    m_alias_isValid = ::MelodixAPI::fromJsonValue(m_alias, json[QString("alias")]);
-    m_alias_isSet = !json[QString("alias")].isNull() && m_alias_isValid;
 }
 
 QString MDGetSongDetail_200_response_songs_inner_ar_inner::asJson() const {
@@ -82,12 +70,6 @@ QJsonObject MDGetSongDetail_200_response_songs_inner_ar_inner::asJsonObject() co
     }
     if (m_name_isSet) {
         obj.insert(QString("name"), ::MelodixAPI::toJsonValue(m_name));
-    }
-    if (m_tns.size() > 0) {
-        obj.insert(QString("tns"), ::MelodixAPI::toJsonValue(m_tns));
-    }
-    if (m_alias.size() > 0) {
-        obj.insert(QString("alias"), ::MelodixAPI::toJsonValue(m_alias));
     }
     return obj;
 }
@@ -124,38 +106,6 @@ bool MDGetSongDetail_200_response_songs_inner_ar_inner::is_name_Valid() const{
     return m_name_isValid;
 }
 
-QList<QString> MDGetSongDetail_200_response_songs_inner_ar_inner::getTns() const {
-    return m_tns;
-}
-void MDGetSongDetail_200_response_songs_inner_ar_inner::setTns(const QList<QString> &tns) {
-    m_tns = tns;
-    m_tns_isSet = true;
-}
-
-bool MDGetSongDetail_200_response_songs_inner_ar_inner::is_tns_Set() const{
-    return m_tns_isSet;
-}
-
-bool MDGetSongDetail_200_response_songs_inner_ar_inner::is_tns_Valid() const{
-    return m_tns_isValid;
-}
-
-QList<QString> MDGetSongDetail_200_response_songs_inner_ar_inner::getAlias() const {
-    return m_alias;
-}
-void MDGetSongDetail_200_response_songs_inner_ar_inner::setAlias(const QList<QString> &alias) {
-    m_alias = alias;
-    m_alias_isSet = true;
-}
-
-bool MDGetSongDetail_200_response_songs_inner_ar_inner::is_alias_Set() const{
-    return m_alias_isSet;
-}
-
-bool MDGetSongDetail_200_response_songs_inner_ar_inner::is_alias_Valid() const{
-    return m_alias_isValid;
-}
-
 bool MDGetSongDetail_200_response_songs_inner_ar_inner::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -165,16 +115,6 @@ bool MDGetSongDetail_200_response_songs_inner_ar_inner::isSet() const {
         }
 
         if (m_name_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_tns.size() > 0) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_alias.size() > 0) {
             isObjectUpdated = true;
             break;
         }

@@ -110,20 +110,6 @@ Item {
         API.getArtistSublist();
     }
 
-    function getCollectMvs() {
-        function onReply(reply) {
-            API.onMvSublistCompleted.disconnect(onReply);
-            console.log("收藏MV数量：" + reply.length);
-            playlistRows = Math.ceil(reply.length / 5);
-            console.log("计算出的收藏MV行数：" + playlistRows);
-            bottomLoader.item.lists = reply;
-            switching = false;
-        }
-
-        API.onMvSublistCompleted.connect(onReply);
-        API.getMvSublist();
-    }
-
     Component.onCompleted: {
         API.getUserPlaylist(userID);
     }
@@ -338,18 +324,6 @@ Item {
                         }
                     }
 
-                    ToolButton {
-                        checkable: true
-                        text: "MV"
-                        font.pixelSize: 15
-                        onClicked: {
-                            switching = true;
-                            currentChecked = text;
-                            bottomLoader.setSource("./CollectMVs.qml");
-                            getCollectMvs();
-                        }
-                    }
-
                     background: Rectangle {
                         color: Util.libraryButtonBoxBackground
                         radius: 5
@@ -363,7 +337,7 @@ Item {
                 id: bottomLoader
 
                 width: scrollWidth
-                height: currentChecked == "MV" ? ((playlistRows * ((scrollWidth - 30 * 3) * 0.25 - 60)) + (playlistRows - 1) * 10) : playlistRows * ((scrollWidth - 30 * 4) * 0.2 + 25) + (playlistRows - 1) * 30
+                height: playlistRows * ((scrollWidth - 30 * 4) * 0.2 + 25) + (playlistRows - 1) * 30
                 source: "../widgets/GridPlaylists.qml"
             }
 

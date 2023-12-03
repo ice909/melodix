@@ -20,7 +20,6 @@
 
 #include <QJsonObject>
 
-#include <QList>
 #include <QString>
 
 #include "MDEnum.h"
@@ -49,16 +48,6 @@ public:
     bool is_name_Set() const;
     bool is_name_Valid() const;
 
-    QList<QString> getTns() const;
-    void setTns(const QList<QString> &tns);
-    bool is_tns_Set() const;
-    bool is_tns_Valid() const;
-
-    QList<QString> getAlias() const;
-    void setAlias(const QList<QString> &alias);
-    bool is_alias_Set() const;
-    bool is_alias_Valid() const;
-
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -72,14 +61,6 @@ private:
     QString m_name;
     bool m_name_isSet;
     bool m_name_isValid;
-
-    QList<QString> m_tns;
-    bool m_tns_isSet;
-    bool m_tns_isValid;
-
-    QList<QString> m_alias;
-    bool m_alias_isSet;
-    bool m_alias_isValid;
 };
 
 } // namespace MelodixAPI

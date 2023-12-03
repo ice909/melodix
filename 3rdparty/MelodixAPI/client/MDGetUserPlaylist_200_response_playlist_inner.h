@@ -21,7 +21,6 @@
 #include <QJsonObject>
 
 #include "MDGetUserPlaylist_200_response_playlist_inner_creator.h"
-#include "MDGetUserPlaylist_200_response_playlist_inner_recommendInfo.h"
 #include <QList>
 #include <QString>
 
@@ -30,7 +29,6 @@
 
 namespace MelodixAPI {
 class MDGetUserPlaylist_200_response_playlist_inner_creator;
-class MDGetUserPlaylist_200_response_playlist_inner_recommendInfo;
 
 class MDGetUserPlaylist_200_response_playlist_inner : public MDObject {
 public:
@@ -43,40 +41,15 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    QList<QString> getSubscribers() const;
-    void setSubscribers(const QList<QString> &subscribers);
-    bool is_subscribers_Set() const;
-    bool is_subscribers_Valid() const;
-
-    bool isSubscribed() const;
-    void setSubscribed(const bool &subscribed);
-    bool is_subscribed_Set() const;
-    bool is_subscribed_Valid() const;
-
     MDGetUserPlaylist_200_response_playlist_inner_creator getCreator() const;
     void setCreator(const MDGetUserPlaylist_200_response_playlist_inner_creator &creator);
     bool is_creator_Set() const;
     bool is_creator_Valid() const;
 
-    QString getUpdateFrequency() const;
-    void setUpdateFrequency(const QString &update_frequency);
-    bool is_update_frequency_Set() const;
-    bool is_update_frequency_Valid() const;
-
-    qint32 getBackgroundCoverId() const;
-    void setBackgroundCoverId(const qint32 &background_cover_id);
-    bool is_background_cover_id_Set() const;
-    bool is_background_cover_id_Valid() const;
-
     QString getBackgroundCoverUrl() const;
     void setBackgroundCoverUrl(const QString &background_cover_url);
     bool is_background_cover_url_Set() const;
     bool is_background_cover_url_Valid() const;
-
-    qint32 getTitleImage() const;
-    void setTitleImage(const qint32 &title_image);
-    bool is_title_image_Set() const;
-    bool is_title_image_Valid() const;
 
     QString getTitleImageUrl() const;
     void setTitleImageUrl(const QString &title_image_url);
@@ -87,21 +60,6 @@ public:
     void setEnglishTitle(const QString &english_title);
     bool is_english_title_Set() const;
     bool is_english_title_Valid() const;
-
-    bool isOpRecommend() const;
-    void setOpRecommend(const bool &op_recommend);
-    bool is_op_recommend_Set() const;
-    bool is_op_recommend_Valid() const;
-
-    MDGetUserPlaylist_200_response_playlist_inner_recommendInfo getRecommendInfo() const;
-    void setRecommendInfo(const MDGetUserPlaylist_200_response_playlist_inner_recommendInfo &recommend_info);
-    bool is_recommend_info_Set() const;
-    bool is_recommend_info_Valid() const;
-
-    qint32 getSubscribedCount() const;
-    void setSubscribedCount(const qint32 &subscribed_count);
-    bool is_subscribed_count_Set() const;
-    bool is_subscribed_count_Valid() const;
 
     qint32 getCloudTrackCount() const;
     void setCloudTrackCount(const qint32 &cloud_track_count);
@@ -117,11 +75,6 @@ public:
     void setTotalDuration(const qint32 &total_duration);
     bool is_total_duration_Set() const;
     bool is_total_duration_Valid() const;
-
-    qint32 getCoverImgId() const;
-    void setCoverImgId(const qint32 &cover_img_id);
-    bool is_cover_img_id_Set() const;
-    bool is_cover_img_id_Valid() const;
 
     qint32 getPrivacy() const;
     void setPrivacy(const qint32 &privacy);
@@ -143,40 +96,15 @@ public:
     bool is_update_time_Set() const;
     bool is_update_time_Valid() const;
 
-    QString getCommentThreadId() const;
-    void setCommentThreadId(const QString &comment_thread_id);
-    bool is_comment_thread_id_Set() const;
-    bool is_comment_thread_id_Valid() const;
-
     QString getCoverImgUrl() const;
     void setCoverImgUrl(const QString &cover_img_url);
     bool is_cover_img_url_Set() const;
     bool is_cover_img_url_Valid() const;
 
-    qint32 getSpecialType() const;
-    void setSpecialType(const qint32 &special_type);
-    bool is_special_type_Set() const;
-    bool is_special_type_Valid() const;
-
-    bool isAnonimous() const;
-    void setAnonimous(const bool &anonimous);
-    bool is_anonimous_Set() const;
-    bool is_anonimous_Valid() const;
-
     qint32 getCreateTime() const;
     void setCreateTime(const qint32 &create_time);
     bool is_create_time_Set() const;
     bool is_create_time_Valid() const;
-
-    bool isHighQuality() const;
-    void setHighQuality(const bool &high_quality);
-    bool is_high_quality_Set() const;
-    bool is_high_quality_Valid() const;
-
-    bool isNewImported() const;
-    void setNewImported(const bool &new_imported);
-    bool is_new_imported_Set() const;
-    bool is_new_imported_Valid() const;
 
     qint32 getTrackNumberUpdateTime() const;
     void setTrackNumberUpdateTime(const qint32 &track_number_update_time);
@@ -188,11 +116,6 @@ public:
     bool is_play_count_Set() const;
     bool is_play_count_Valid() const;
 
-    qint32 getAdType() const;
-    void setAdType(const qint32 &ad_type);
-    bool is_ad_type_Set() const;
-    bool is_ad_type_Valid() const;
-
     QString getDescription() const;
     void setDescription(const QString &description);
     bool is_description_Set() const;
@@ -202,11 +125,6 @@ public:
     void setTags(const QList<QString> &tags);
     bool is_tags_Set() const;
     bool is_tags_Valid() const;
-
-    bool isOrdered() const;
-    void setOrdered(const bool &ordered);
-    bool is_ordered_Set() const;
-    bool is_ordered_Valid() const;
 
     qint32 getStatus() const;
     void setStatus(const qint32 &status);
@@ -223,49 +141,19 @@ public:
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
-    QString getCoverImgIdStr() const;
-    void setCoverImgIdStr(const QString &cover_img_id_str);
-    bool is_cover_img_id_str_Set() const;
-    bool is_cover_img_id_str_Valid() const;
-
-    bool isCopied() const;
-    void setCopied(const bool &copied);
-    bool is_copied_Set() const;
-    bool is_copied_Valid() const;
-
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
 private:
     void initializeModel();
 
-    QList<QString> m_subscribers;
-    bool m_subscribers_isSet;
-    bool m_subscribers_isValid;
-
-    bool m_subscribed;
-    bool m_subscribed_isSet;
-    bool m_subscribed_isValid;
-
     MDGetUserPlaylist_200_response_playlist_inner_creator m_creator;
     bool m_creator_isSet;
     bool m_creator_isValid;
 
-    QString m_update_frequency;
-    bool m_update_frequency_isSet;
-    bool m_update_frequency_isValid;
-
-    qint32 m_background_cover_id;
-    bool m_background_cover_id_isSet;
-    bool m_background_cover_id_isValid;
-
     QString m_background_cover_url;
     bool m_background_cover_url_isSet;
     bool m_background_cover_url_isValid;
-
-    qint32 m_title_image;
-    bool m_title_image_isSet;
-    bool m_title_image_isValid;
 
     QString m_title_image_url;
     bool m_title_image_url_isSet;
@@ -274,18 +162,6 @@ private:
     QString m_english_title;
     bool m_english_title_isSet;
     bool m_english_title_isValid;
-
-    bool m_op_recommend;
-    bool m_op_recommend_isSet;
-    bool m_op_recommend_isValid;
-
-    MDGetUserPlaylist_200_response_playlist_inner_recommendInfo m_recommend_info;
-    bool m_recommend_info_isSet;
-    bool m_recommend_info_isValid;
-
-    qint32 m_subscribed_count;
-    bool m_subscribed_count_isSet;
-    bool m_subscribed_count_isValid;
 
     qint32 m_cloud_track_count;
     bool m_cloud_track_count_isSet;
@@ -298,10 +174,6 @@ private:
     qint32 m_total_duration;
     bool m_total_duration_isSet;
     bool m_total_duration_isValid;
-
-    qint32 m_cover_img_id;
-    bool m_cover_img_id_isSet;
-    bool m_cover_img_id_isValid;
 
     qint32 m_privacy;
     bool m_privacy_isSet;
@@ -319,33 +191,13 @@ private:
     bool m_update_time_isSet;
     bool m_update_time_isValid;
 
-    QString m_comment_thread_id;
-    bool m_comment_thread_id_isSet;
-    bool m_comment_thread_id_isValid;
-
     QString m_cover_img_url;
     bool m_cover_img_url_isSet;
     bool m_cover_img_url_isValid;
 
-    qint32 m_special_type;
-    bool m_special_type_isSet;
-    bool m_special_type_isValid;
-
-    bool m_anonimous;
-    bool m_anonimous_isSet;
-    bool m_anonimous_isValid;
-
     qint32 m_create_time;
     bool m_create_time_isSet;
     bool m_create_time_isValid;
-
-    bool m_high_quality;
-    bool m_high_quality_isSet;
-    bool m_high_quality_isValid;
-
-    bool m_new_imported;
-    bool m_new_imported_isSet;
-    bool m_new_imported_isValid;
 
     qint32 m_track_number_update_time;
     bool m_track_number_update_time_isSet;
@@ -355,10 +207,6 @@ private:
     bool m_play_count_isSet;
     bool m_play_count_isValid;
 
-    qint32 m_ad_type;
-    bool m_ad_type_isSet;
-    bool m_ad_type_isValid;
-
     QString m_description;
     bool m_description_isSet;
     bool m_description_isValid;
@@ -366,10 +214,6 @@ private:
     QList<QString> m_tags;
     bool m_tags_isSet;
     bool m_tags_isValid;
-
-    bool m_ordered;
-    bool m_ordered_isSet;
-    bool m_ordered_isValid;
 
     qint32 m_status;
     bool m_status_isSet;
@@ -382,14 +226,6 @@ private:
     double m_id;
     bool m_id_isSet;
     bool m_id_isValid;
-
-    QString m_cover_img_id_str;
-    bool m_cover_img_id_str_isSet;
-    bool m_cover_img_id_str_isValid;
-
-    bool m_copied;
-    bool m_copied_isSet;
-    bool m_copied_isValid;
 };
 
 } // namespace MelodixAPI

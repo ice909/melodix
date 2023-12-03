@@ -24,7 +24,6 @@ public slots:
     void getRecommendResource();
     void getRecommendedNewSongs(const int limit);
     void getTopArtists();
-    void getRecommendedMv();
     void getTopPlaylist(const QString cat, const QString order, const int limit, const int offset);
     void getLoginStatus();
     void getAccountInfo();
@@ -37,15 +36,9 @@ public slots:
     void getLyric(const QString id);
     void getUserBuyAlbum();
     void getArtistSublist();
-    void getMvSublist();
     void getArtistDetail(const QString id);
     void getArtistAlbum(const QString id);
-    void getArtistMv(const QString id);
     void getArtistSongs(const QString id);
-    void getMvUrl(const QString id);
-    void getMvDetail(const QString id);
-    void getMvHotComment(const QString id, const int type);
-    void getSimiMv(const QString id);
     void search(const QString keyword);
     void search(const QString keyword, const int limit, const int offset);
     void likeMusic(const QString id, const QString like);
@@ -56,15 +49,12 @@ public slots:
     void verifyCaptcha(const int phone, const int captcha);
     void phoneLogin(const int phone, const QString password);
     void phoneLogin(const int phone, const QString password, const int captcha);
-    void getUserLevel();
     void getUserDetail(const QString uid);
-    void getUserDynamic(const QString uid);
 signals:
     void bannerCompleted(QJsonArray);
     void recommendedPlaylistCompleted(QJsonArray);
     void recommendedNewSongsCompleted(QJsonArray);
     void topArtistsCompleted(QJsonArray);
-    void recommendedMvCompleted(QJsonArray);
     void topPlaylistCompleted(QJsonObject);
     void loginStatusCompleted(QJsonObject);
     void accountInfoCompleted(QJsonObject);
@@ -76,15 +66,9 @@ signals:
     void lyricCompleted(QString);
     void userBuyAlbumCompleted(QJsonArray);
     void artistSublistCompleted(QJsonArray);
-    void mvSublistCompleted(QJsonArray);
     void artistDetailCompleted(QJsonObject);
     void artistAlbumCompleted(QJsonArray);
-    void artistMvCompleted(QJsonArray);
     void artistSongsCompleted(QJsonArray);
-    void mvUrlCompleted(QJsonObject);
-    void mvDetailCompleted(QJsonObject);
-    void hotCommentCompleted(QJsonArray);
-    void simiMvCompleted(QJsonArray);
     void searchCompleted(QJsonObject);
     void likeMusicCompleted(QJsonObject);
     void getQrKeyCompleted(QJsonObject);
@@ -93,9 +77,7 @@ signals:
     void sendCaptchaCompleted();
     void verifyCaptchaCompleted(QJsonObject);
     void cellphoneLoginCompleted(QJsonObject);
-    void userLevelCompleted(QJsonObject);
     void userDetailCompleted(QJsonObject);
-    void userDynamicCompleted(QJsonObject);
 
 private:
     static QPointer<API> INSTANCE;

@@ -33,24 +33,6 @@ MDGetMvDetail_200_response::~MDGetMvDetail_200_response() {}
 
 void MDGetMvDetail_200_response::initializeModel() {
 
-    m_loading_pic_isSet = false;
-    m_loading_pic_isValid = false;
-
-    m_buffer_pic_isSet = false;
-    m_buffer_pic_isValid = false;
-
-    m_loading_pic_fs_isSet = false;
-    m_loading_pic_fs_isValid = false;
-
-    m_buffer_pic_fs_isSet = false;
-    m_buffer_pic_fs_isValid = false;
-
-    m_subed_isSet = false;
-    m_subed_isValid = false;
-
-    m_mp_isSet = false;
-    m_mp_isValid = false;
-
     m_data_isSet = false;
     m_data_isValid = false;
 
@@ -66,24 +48,6 @@ void MDGetMvDetail_200_response::fromJson(QString jsonString) {
 }
 
 void MDGetMvDetail_200_response::fromJsonObject(QJsonObject json) {
-
-    m_loading_pic_isValid = ::MelodixAPI::fromJsonValue(m_loading_pic, json[QString("loadingPic")]);
-    m_loading_pic_isSet = !json[QString("loadingPic")].isNull() && m_loading_pic_isValid;
-
-    m_buffer_pic_isValid = ::MelodixAPI::fromJsonValue(m_buffer_pic, json[QString("bufferPic")]);
-    m_buffer_pic_isSet = !json[QString("bufferPic")].isNull() && m_buffer_pic_isValid;
-
-    m_loading_pic_fs_isValid = ::MelodixAPI::fromJsonValue(m_loading_pic_fs, json[QString("loadingPicFS")]);
-    m_loading_pic_fs_isSet = !json[QString("loadingPicFS")].isNull() && m_loading_pic_fs_isValid;
-
-    m_buffer_pic_fs_isValid = ::MelodixAPI::fromJsonValue(m_buffer_pic_fs, json[QString("bufferPicFS")]);
-    m_buffer_pic_fs_isSet = !json[QString("bufferPicFS")].isNull() && m_buffer_pic_fs_isValid;
-
-    m_subed_isValid = ::MelodixAPI::fromJsonValue(m_subed, json[QString("subed")]);
-    m_subed_isSet = !json[QString("subed")].isNull() && m_subed_isValid;
-
-    m_mp_isValid = ::MelodixAPI::fromJsonValue(m_mp, json[QString("mp")]);
-    m_mp_isSet = !json[QString("mp")].isNull() && m_mp_isValid;
 
     m_data_isValid = ::MelodixAPI::fromJsonValue(m_data, json[QString("data")]);
     m_data_isSet = !json[QString("data")].isNull() && m_data_isValid;
@@ -101,24 +65,6 @@ QString MDGetMvDetail_200_response::asJson() const {
 
 QJsonObject MDGetMvDetail_200_response::asJsonObject() const {
     QJsonObject obj;
-    if (m_loading_pic_isSet) {
-        obj.insert(QString("loadingPic"), ::MelodixAPI::toJsonValue(m_loading_pic));
-    }
-    if (m_buffer_pic_isSet) {
-        obj.insert(QString("bufferPic"), ::MelodixAPI::toJsonValue(m_buffer_pic));
-    }
-    if (m_loading_pic_fs_isSet) {
-        obj.insert(QString("loadingPicFS"), ::MelodixAPI::toJsonValue(m_loading_pic_fs));
-    }
-    if (m_buffer_pic_fs_isSet) {
-        obj.insert(QString("bufferPicFS"), ::MelodixAPI::toJsonValue(m_buffer_pic_fs));
-    }
-    if (m_subed_isSet) {
-        obj.insert(QString("subed"), ::MelodixAPI::toJsonValue(m_subed));
-    }
-    if (m_mp.isSet()) {
-        obj.insert(QString("mp"), ::MelodixAPI::toJsonValue(m_mp));
-    }
     if (m_data.isSet()) {
         obj.insert(QString("data"), ::MelodixAPI::toJsonValue(m_data));
     }
@@ -126,102 +72,6 @@ QJsonObject MDGetMvDetail_200_response::asJsonObject() const {
         obj.insert(QString("code"), ::MelodixAPI::toJsonValue(m_code));
     }
     return obj;
-}
-
-QString MDGetMvDetail_200_response::getLoadingPic() const {
-    return m_loading_pic;
-}
-void MDGetMvDetail_200_response::setLoadingPic(const QString &loading_pic) {
-    m_loading_pic = loading_pic;
-    m_loading_pic_isSet = true;
-}
-
-bool MDGetMvDetail_200_response::is_loading_pic_Set() const{
-    return m_loading_pic_isSet;
-}
-
-bool MDGetMvDetail_200_response::is_loading_pic_Valid() const{
-    return m_loading_pic_isValid;
-}
-
-QString MDGetMvDetail_200_response::getBufferPic() const {
-    return m_buffer_pic;
-}
-void MDGetMvDetail_200_response::setBufferPic(const QString &buffer_pic) {
-    m_buffer_pic = buffer_pic;
-    m_buffer_pic_isSet = true;
-}
-
-bool MDGetMvDetail_200_response::is_buffer_pic_Set() const{
-    return m_buffer_pic_isSet;
-}
-
-bool MDGetMvDetail_200_response::is_buffer_pic_Valid() const{
-    return m_buffer_pic_isValid;
-}
-
-QString MDGetMvDetail_200_response::getLoadingPicFs() const {
-    return m_loading_pic_fs;
-}
-void MDGetMvDetail_200_response::setLoadingPicFs(const QString &loading_pic_fs) {
-    m_loading_pic_fs = loading_pic_fs;
-    m_loading_pic_fs_isSet = true;
-}
-
-bool MDGetMvDetail_200_response::is_loading_pic_fs_Set() const{
-    return m_loading_pic_fs_isSet;
-}
-
-bool MDGetMvDetail_200_response::is_loading_pic_fs_Valid() const{
-    return m_loading_pic_fs_isValid;
-}
-
-QString MDGetMvDetail_200_response::getBufferPicFs() const {
-    return m_buffer_pic_fs;
-}
-void MDGetMvDetail_200_response::setBufferPicFs(const QString &buffer_pic_fs) {
-    m_buffer_pic_fs = buffer_pic_fs;
-    m_buffer_pic_fs_isSet = true;
-}
-
-bool MDGetMvDetail_200_response::is_buffer_pic_fs_Set() const{
-    return m_buffer_pic_fs_isSet;
-}
-
-bool MDGetMvDetail_200_response::is_buffer_pic_fs_Valid() const{
-    return m_buffer_pic_fs_isValid;
-}
-
-bool MDGetMvDetail_200_response::isSubed() const {
-    return m_subed;
-}
-void MDGetMvDetail_200_response::setSubed(const bool &subed) {
-    m_subed = subed;
-    m_subed_isSet = true;
-}
-
-bool MDGetMvDetail_200_response::is_subed_Set() const{
-    return m_subed_isSet;
-}
-
-bool MDGetMvDetail_200_response::is_subed_Valid() const{
-    return m_subed_isValid;
-}
-
-MDGetMvDetail_200_response_mp MDGetMvDetail_200_response::getMp() const {
-    return m_mp;
-}
-void MDGetMvDetail_200_response::setMp(const MDGetMvDetail_200_response_mp &mp) {
-    m_mp = mp;
-    m_mp_isSet = true;
-}
-
-bool MDGetMvDetail_200_response::is_mp_Set() const{
-    return m_mp_isSet;
-}
-
-bool MDGetMvDetail_200_response::is_mp_Valid() const{
-    return m_mp_isValid;
 }
 
 MDGetMvDetail_200_response_data MDGetMvDetail_200_response::getData() const {
@@ -259,36 +109,6 @@ bool MDGetMvDetail_200_response::is_code_Valid() const{
 bool MDGetMvDetail_200_response::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (m_loading_pic_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_buffer_pic_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_loading_pic_fs_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_buffer_pic_fs_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_subed_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_mp.isSet()) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_data.isSet()) {
             isObjectUpdated = true;
             break;
@@ -304,7 +124,7 @@ bool MDGetMvDetail_200_response::isSet() const {
 
 bool MDGetMvDetail_200_response::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_loading_pic_isValid && m_buffer_pic_isValid && m_loading_pic_fs_isValid && m_buffer_pic_fs_isValid && m_subed_isValid && m_mp_isValid && m_data_isValid && m_code_isValid && true;
+    return m_data_isValid && m_code_isValid && true;
 }
 
 } // namespace MelodixAPI

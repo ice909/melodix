@@ -4,20 +4,15 @@
         
         <file>qml/index/Index.qml</file>
         <file>qml/index/RecommendNewSongs.qml</file>
-        <file>qml/index/RecommendMV.qml</file>
 
         <file>qml/discover/Discover.qml</file>
 
         <file>qml/library/Library.qml</file>
         <file>qml/library/MyFavorite.qml</file>
         <file>qml/library/BuyAlbums.qml</file>
-        <file>qml/library/CollectMVs.qml</file>
 
         <file>qml/playlistdetail/PlaylistDetail.qml</file>
         <file>qml/playlistdetail/PlaylistDetailHead.qml</file>
-
-        <file>qml/mv/Mv.qml</file>
-        <file>qml/mv/MvComment.qml</file>
 
         <file>qml/lyric/Lyric.qml</file>
         <file>qml/lyric/LyricRect.qml</file>

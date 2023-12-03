@@ -21,14 +21,11 @@
 #include <QJsonObject>
 
 #include "MDGetMvDetail_200_response_data.h"
-#include "MDGetMvDetail_200_response_mp.h"
-#include <QString>
 
 #include "MDEnum.h"
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDGetMvDetail_200_response_mp;
 class MDGetMvDetail_200_response_data;
 
 class MDGetMvDetail_200_response : public MDObject {
@@ -41,36 +38,6 @@ public:
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
-
-    QString getLoadingPic() const;
-    void setLoadingPic(const QString &loading_pic);
-    bool is_loading_pic_Set() const;
-    bool is_loading_pic_Valid() const;
-
-    QString getBufferPic() const;
-    void setBufferPic(const QString &buffer_pic);
-    bool is_buffer_pic_Set() const;
-    bool is_buffer_pic_Valid() const;
-
-    QString getLoadingPicFs() const;
-    void setLoadingPicFs(const QString &loading_pic_fs);
-    bool is_loading_pic_fs_Set() const;
-    bool is_loading_pic_fs_Valid() const;
-
-    QString getBufferPicFs() const;
-    void setBufferPicFs(const QString &buffer_pic_fs);
-    bool is_buffer_pic_fs_Set() const;
-    bool is_buffer_pic_fs_Valid() const;
-
-    bool isSubed() const;
-    void setSubed(const bool &subed);
-    bool is_subed_Set() const;
-    bool is_subed_Valid() const;
-
-    MDGetMvDetail_200_response_mp getMp() const;
-    void setMp(const MDGetMvDetail_200_response_mp &mp);
-    bool is_mp_Set() const;
-    bool is_mp_Valid() const;
 
     MDGetMvDetail_200_response_data getData() const;
     void setData(const MDGetMvDetail_200_response_data &data);
@@ -87,30 +54,6 @@ public:
 
 private:
     void initializeModel();
-
-    QString m_loading_pic;
-    bool m_loading_pic_isSet;
-    bool m_loading_pic_isValid;
-
-    QString m_buffer_pic;
-    bool m_buffer_pic_isSet;
-    bool m_buffer_pic_isValid;
-
-    QString m_loading_pic_fs;
-    bool m_loading_pic_fs_isSet;
-    bool m_loading_pic_fs_isValid;
-
-    QString m_buffer_pic_fs;
-    bool m_buffer_pic_fs_isSet;
-    bool m_buffer_pic_fs_isValid;
-
-    bool m_subed;
-    bool m_subed_isSet;
-    bool m_subed_isValid;
-
-    MDGetMvDetail_200_response_mp m_mp;
-    bool m_mp_isSet;
-    bool m_mp_isValid;
 
     MDGetMvDetail_200_response_data m_data;
     bool m_data_isSet;

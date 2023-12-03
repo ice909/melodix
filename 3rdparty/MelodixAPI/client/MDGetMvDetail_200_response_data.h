@@ -22,7 +22,6 @@
 
 #include "MDGetMvDetail_200_response_data_artists_inner.h"
 #include "MDGetMvDetail_200_response_data_brs_inner.h"
-#include "MDGetMvDetail_200_response_data_videoGroup_inner.h"
 #include <QList>
 #include <QString>
 
@@ -32,7 +31,6 @@
 namespace MelodixAPI {
 class MDGetMvDetail_200_response_data_brs_inner;
 class MDGetMvDetail_200_response_data_artists_inner;
-class MDGetMvDetail_200_response_data_videoGroup_inner;
 
 class MDGetMvDetail_200_response_data : public MDObject {
 public:
@@ -65,40 +63,15 @@ public:
     bool is_artist_name_Set() const;
     bool is_artist_name_Valid() const;
 
-    QString getBriefDesc() const;
-    void setBriefDesc(const QString &brief_desc);
-    bool is_brief_desc_Set() const;
-    bool is_brief_desc_Valid() const;
-
     QString getCover() const;
     void setCover(const QString &cover);
     bool is_cover_Set() const;
     bool is_cover_Valid() const;
 
-    QString getCoverIdStr() const;
-    void setCoverIdStr(const QString &cover_id_str);
-    bool is_cover_id_str_Set() const;
-    bool is_cover_id_str_Valid() const;
-
-    qint32 getCoverId() const;
-    void setCoverId(const qint32 &cover_id);
-    bool is_cover_id_Set() const;
-    bool is_cover_id_Valid() const;
-
     qint32 getPlayCount() const;
     void setPlayCount(const qint32 &play_count);
     bool is_play_count_Set() const;
     bool is_play_count_Valid() const;
-
-    qint32 getSubCount() const;
-    void setSubCount(const qint32 &sub_count);
-    bool is_sub_count_Set() const;
-    bool is_sub_count_Valid() const;
-
-    qint32 getShareCount() const;
-    void setShareCount(const qint32 &share_count);
-    bool is_share_count_Set() const;
-    bool is_share_count_Valid() const;
 
     qint32 getCommentCount() const;
     void setCommentCount(const qint32 &comment_count);
@@ -109,11 +82,6 @@ public:
     void setDuration(const qint32 &duration);
     bool is_duration_Set() const;
     bool is_duration_Valid() const;
-
-    qint32 getNType() const;
-    void setNType(const qint32 &n_type);
-    bool is_n_type_Set() const;
-    bool is_n_type_Valid() const;
 
     QString getPublishTime() const;
     void setPublishTime(const QString &publish_time);
@@ -129,16 +97,6 @@ public:
     void setArtists(const QList<MDGetMvDetail_200_response_data_artists_inner> &artists);
     bool is_artists_Set() const;
     bool is_artists_Valid() const;
-
-    QString getCommentThreadId() const;
-    void setCommentThreadId(const QString &comment_thread_id);
-    bool is_comment_thread_id_Set() const;
-    bool is_comment_thread_id_Valid() const;
-
-    QList<MDGetMvDetail_200_response_data_videoGroup_inner> getVideoGroup() const;
-    void setVideoGroup(const QList<MDGetMvDetail_200_response_data_videoGroup_inner> &video_group);
-    bool is_video_group_Set() const;
-    bool is_video_group_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -162,33 +120,13 @@ private:
     bool m_artist_name_isSet;
     bool m_artist_name_isValid;
 
-    QString m_brief_desc;
-    bool m_brief_desc_isSet;
-    bool m_brief_desc_isValid;
-
     QString m_cover;
     bool m_cover_isSet;
     bool m_cover_isValid;
 
-    QString m_cover_id_str;
-    bool m_cover_id_str_isSet;
-    bool m_cover_id_str_isValid;
-
-    qint32 m_cover_id;
-    bool m_cover_id_isSet;
-    bool m_cover_id_isValid;
-
     qint32 m_play_count;
     bool m_play_count_isSet;
     bool m_play_count_isValid;
-
-    qint32 m_sub_count;
-    bool m_sub_count_isSet;
-    bool m_sub_count_isValid;
-
-    qint32 m_share_count;
-    bool m_share_count_isSet;
-    bool m_share_count_isValid;
 
     qint32 m_comment_count;
     bool m_comment_count_isSet;
@@ -197,10 +135,6 @@ private:
     qint32 m_duration;
     bool m_duration_isSet;
     bool m_duration_isValid;
-
-    qint32 m_n_type;
-    bool m_n_type_isSet;
-    bool m_n_type_isValid;
 
     QString m_publish_time;
     bool m_publish_time_isSet;
@@ -213,14 +147,6 @@ private:
     QList<MDGetMvDetail_200_response_data_artists_inner> m_artists;
     bool m_artists_isSet;
     bool m_artists_isValid;
-
-    QString m_comment_thread_id;
-    bool m_comment_thread_id_isSet;
-    bool m_comment_thread_id_isValid;
-
-    QList<MDGetMvDetail_200_response_data_videoGroup_inner> m_video_group;
-    bool m_video_group_isSet;
-    bool m_video_group_isValid;
 };
 
 } // namespace MelodixAPI

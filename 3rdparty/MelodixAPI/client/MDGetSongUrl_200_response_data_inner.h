@@ -20,16 +20,12 @@
 
 #include <QJsonObject>
 
-#include "MDGetSongUrl_200_response_data_inner_freeTimeTrialPrivilege.h"
-#include "MDGetSongUrl_200_response_data_inner_freeTrialPrivilege.h"
 #include <QString>
 
 #include "MDEnum.h"
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDGetSongUrl_200_response_data_inner_freeTrialPrivilege;
-class MDGetSongUrl_200_response_data_inner_freeTimeTrialPrivilege;
 
 class MDGetSongUrl_200_response_data_inner : public MDObject {
 public:
@@ -72,75 +68,10 @@ public:
     bool is_code_Set() const;
     bool is_code_Valid() const;
 
-    qint32 getExpi() const;
-    void setExpi(const qint32 &expi);
-    bool is_expi_Set() const;
-    bool is_expi_Valid() const;
-
     QString getType() const;
     void setType(const QString &type);
     bool is_type_Set() const;
     bool is_type_Valid() const;
-
-    double getGain() const;
-    void setGain(const double &gain);
-    bool is_gain_Set() const;
-    bool is_gain_Valid() const;
-
-    qint32 getPeak() const;
-    void setPeak(const qint32 &peak);
-    bool is_peak_Set() const;
-    bool is_peak_Valid() const;
-
-    qint32 getFee() const;
-    void setFee(const qint32 &fee);
-    bool is_fee_Set() const;
-    bool is_fee_Valid() const;
-
-    qint32 getPayed() const;
-    void setPayed(const qint32 &payed);
-    bool is_payed_Set() const;
-    bool is_payed_Valid() const;
-
-    qint32 getFlag() const;
-    void setFlag(const qint32 &flag);
-    bool is_flag_Set() const;
-    bool is_flag_Valid() const;
-
-    bool isCanExtend() const;
-    void setCanExtend(const bool &can_extend);
-    bool is_can_extend_Set() const;
-    bool is_can_extend_Valid() const;
-
-    QString getLevel() const;
-    void setLevel(const QString &level);
-    bool is_level_Set() const;
-    bool is_level_Valid() const;
-
-    QString getEncodeType() const;
-    void setEncodeType(const QString &encode_type);
-    bool is_encode_type_Set() const;
-    bool is_encode_type_Valid() const;
-
-    MDGetSongUrl_200_response_data_inner_freeTrialPrivilege getFreeTrialPrivilege() const;
-    void setFreeTrialPrivilege(const MDGetSongUrl_200_response_data_inner_freeTrialPrivilege &free_trial_privilege);
-    bool is_free_trial_privilege_Set() const;
-    bool is_free_trial_privilege_Valid() const;
-
-    MDGetSongUrl_200_response_data_inner_freeTimeTrialPrivilege getFreeTimeTrialPrivilege() const;
-    void setFreeTimeTrialPrivilege(const MDGetSongUrl_200_response_data_inner_freeTimeTrialPrivilege &free_time_trial_privilege);
-    bool is_free_time_trial_privilege_Set() const;
-    bool is_free_time_trial_privilege_Valid() const;
-
-    qint32 getUrlSource() const;
-    void setUrlSource(const qint32 &url_source);
-    bool is_url_source_Set() const;
-    bool is_url_source_Valid() const;
-
-    qint32 getRightSource() const;
-    void setRightSource(const qint32 &right_source);
-    bool is_right_source_Set() const;
-    bool is_right_source_Valid() const;
 
     qint32 getTime() const;
     void setTime(const qint32 &time);
@@ -177,61 +108,9 @@ private:
     bool m_code_isSet;
     bool m_code_isValid;
 
-    qint32 m_expi;
-    bool m_expi_isSet;
-    bool m_expi_isValid;
-
     QString m_type;
     bool m_type_isSet;
     bool m_type_isValid;
-
-    double m_gain;
-    bool m_gain_isSet;
-    bool m_gain_isValid;
-
-    qint32 m_peak;
-    bool m_peak_isSet;
-    bool m_peak_isValid;
-
-    qint32 m_fee;
-    bool m_fee_isSet;
-    bool m_fee_isValid;
-
-    qint32 m_payed;
-    bool m_payed_isSet;
-    bool m_payed_isValid;
-
-    qint32 m_flag;
-    bool m_flag_isSet;
-    bool m_flag_isValid;
-
-    bool m_can_extend;
-    bool m_can_extend_isSet;
-    bool m_can_extend_isValid;
-
-    QString m_level;
-    bool m_level_isSet;
-    bool m_level_isValid;
-
-    QString m_encode_type;
-    bool m_encode_type_isSet;
-    bool m_encode_type_isValid;
-
-    MDGetSongUrl_200_response_data_inner_freeTrialPrivilege m_free_trial_privilege;
-    bool m_free_trial_privilege_isSet;
-    bool m_free_trial_privilege_isValid;
-
-    MDGetSongUrl_200_response_data_inner_freeTimeTrialPrivilege m_free_time_trial_privilege;
-    bool m_free_time_trial_privilege_isSet;
-    bool m_free_time_trial_privilege_isValid;
-
-    qint32 m_url_source;
-    bool m_url_source_isSet;
-    bool m_url_source_isValid;
-
-    qint32 m_right_source;
-    bool m_right_source_isSet;
-    bool m_right_source_isValid;
 
     qint32 m_time;
     bool m_time_isSet;

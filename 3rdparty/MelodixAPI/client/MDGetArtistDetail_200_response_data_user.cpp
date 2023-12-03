@@ -45,53 +45,17 @@ void MDGetArtistDetail_200_response_data_user::initializeModel() {
     m_authenticated_isSet = false;
     m_authenticated_isValid = false;
 
-    m_gender_isSet = false;
-    m_gender_isValid = false;
-
-    m_city_isSet = false;
-    m_city_isValid = false;
-
-    m_signature_isSet = false;
-    m_signature_isValid = false;
-
     m_description_isSet = false;
     m_description_isValid = false;
 
-    m_short_user_name_isSet = false;
-    m_short_user_name_isValid = false;
-
-    m_account_status_isSet = false;
-    m_account_status_isValid = false;
-
-    m_location_status_isSet = false;
-    m_location_status_isValid = false;
-
-    m_avatar_img_id_isSet = false;
-    m_avatar_img_id_isValid = false;
-
-    m_default_avatar_isSet = false;
-    m_default_avatar_isValid = false;
-
-    m_province_isSet = false;
-    m_province_isValid = false;
-
     m_nickname_isSet = false;
     m_nickname_isValid = false;
-
-    m_dj_status_isSet = false;
-    m_dj_status_isValid = false;
 
     m_avatar_url_isSet = false;
     m_avatar_url_isValid = false;
 
     m_account_type_isSet = false;
     m_account_type_isValid = false;
-
-    m_auth_status_isSet = false;
-    m_auth_status_isValid = false;
-
-    m_vip_type_isSet = false;
-    m_vip_type_isValid = false;
 
     m_user_name_isSet = false;
     m_user_name_isValid = false;
@@ -102,35 +66,17 @@ void MDGetArtistDetail_200_response_data_user::initializeModel() {
     m_user_id_isSet = false;
     m_user_id_isValid = false;
 
-    m_last_login_ip_isSet = false;
-    m_last_login_ip_isValid = false;
-
-    m_last_login_time_isSet = false;
-    m_last_login_time_isValid = false;
-
-    m_authentication_types_isSet = false;
-    m_authentication_types_isValid = false;
-
-    m_mutual_isSet = false;
-    m_mutual_isValid = false;
-
     m_create_time_isSet = false;
     m_create_time_isValid = false;
 
     m_anchor_isSet = false;
     m_anchor_isValid = false;
 
-    m_authority_isSet = false;
-    m_authority_isValid = false;
-
     m_background_img_id_isSet = false;
     m_background_img_id_isValid = false;
 
     m_user_type_isSet = false;
     m_user_type_isValid = false;
-
-    m_avatar_detail_isSet = false;
-    m_avatar_detail_isValid = false;
 }
 
 void MDGetArtistDetail_200_response_data_user::fromJson(QString jsonString) {
@@ -154,53 +100,17 @@ void MDGetArtistDetail_200_response_data_user::fromJsonObject(QJsonObject json) 
     m_authenticated_isValid = ::MelodixAPI::fromJsonValue(m_authenticated, json[QString("authenticated")]);
     m_authenticated_isSet = !json[QString("authenticated")].isNull() && m_authenticated_isValid;
 
-    m_gender_isValid = ::MelodixAPI::fromJsonValue(m_gender, json[QString("gender")]);
-    m_gender_isSet = !json[QString("gender")].isNull() && m_gender_isValid;
-
-    m_city_isValid = ::MelodixAPI::fromJsonValue(m_city, json[QString("city")]);
-    m_city_isSet = !json[QString("city")].isNull() && m_city_isValid;
-
-    m_signature_isValid = ::MelodixAPI::fromJsonValue(m_signature, json[QString("signature")]);
-    m_signature_isSet = !json[QString("signature")].isNull() && m_signature_isValid;
-
     m_description_isValid = ::MelodixAPI::fromJsonValue(m_description, json[QString("description")]);
     m_description_isSet = !json[QString("description")].isNull() && m_description_isValid;
 
-    m_short_user_name_isValid = ::MelodixAPI::fromJsonValue(m_short_user_name, json[QString("shortUserName")]);
-    m_short_user_name_isSet = !json[QString("shortUserName")].isNull() && m_short_user_name_isValid;
-
-    m_account_status_isValid = ::MelodixAPI::fromJsonValue(m_account_status, json[QString("accountStatus")]);
-    m_account_status_isSet = !json[QString("accountStatus")].isNull() && m_account_status_isValid;
-
-    m_location_status_isValid = ::MelodixAPI::fromJsonValue(m_location_status, json[QString("locationStatus")]);
-    m_location_status_isSet = !json[QString("locationStatus")].isNull() && m_location_status_isValid;
-
-    m_avatar_img_id_isValid = ::MelodixAPI::fromJsonValue(m_avatar_img_id, json[QString("avatarImgId")]);
-    m_avatar_img_id_isSet = !json[QString("avatarImgId")].isNull() && m_avatar_img_id_isValid;
-
-    m_default_avatar_isValid = ::MelodixAPI::fromJsonValue(m_default_avatar, json[QString("defaultAvatar")]);
-    m_default_avatar_isSet = !json[QString("defaultAvatar")].isNull() && m_default_avatar_isValid;
-
-    m_province_isValid = ::MelodixAPI::fromJsonValue(m_province, json[QString("province")]);
-    m_province_isSet = !json[QString("province")].isNull() && m_province_isValid;
-
     m_nickname_isValid = ::MelodixAPI::fromJsonValue(m_nickname, json[QString("nickname")]);
     m_nickname_isSet = !json[QString("nickname")].isNull() && m_nickname_isValid;
-
-    m_dj_status_isValid = ::MelodixAPI::fromJsonValue(m_dj_status, json[QString("djStatus")]);
-    m_dj_status_isSet = !json[QString("djStatus")].isNull() && m_dj_status_isValid;
 
     m_avatar_url_isValid = ::MelodixAPI::fromJsonValue(m_avatar_url, json[QString("avatarUrl")]);
     m_avatar_url_isSet = !json[QString("avatarUrl")].isNull() && m_avatar_url_isValid;
 
     m_account_type_isValid = ::MelodixAPI::fromJsonValue(m_account_type, json[QString("accountType")]);
     m_account_type_isSet = !json[QString("accountType")].isNull() && m_account_type_isValid;
-
-    m_auth_status_isValid = ::MelodixAPI::fromJsonValue(m_auth_status, json[QString("authStatus")]);
-    m_auth_status_isSet = !json[QString("authStatus")].isNull() && m_auth_status_isValid;
-
-    m_vip_type_isValid = ::MelodixAPI::fromJsonValue(m_vip_type, json[QString("vipType")]);
-    m_vip_type_isSet = !json[QString("vipType")].isNull() && m_vip_type_isValid;
 
     m_user_name_isValid = ::MelodixAPI::fromJsonValue(m_user_name, json[QString("userName")]);
     m_user_name_isSet = !json[QString("userName")].isNull() && m_user_name_isValid;
@@ -211,35 +121,17 @@ void MDGetArtistDetail_200_response_data_user::fromJsonObject(QJsonObject json) 
     m_user_id_isValid = ::MelodixAPI::fromJsonValue(m_user_id, json[QString("userId")]);
     m_user_id_isSet = !json[QString("userId")].isNull() && m_user_id_isValid;
 
-    m_last_login_ip_isValid = ::MelodixAPI::fromJsonValue(m_last_login_ip, json[QString("lastLoginIP")]);
-    m_last_login_ip_isSet = !json[QString("lastLoginIP")].isNull() && m_last_login_ip_isValid;
-
-    m_last_login_time_isValid = ::MelodixAPI::fromJsonValue(m_last_login_time, json[QString("lastLoginTime")]);
-    m_last_login_time_isSet = !json[QString("lastLoginTime")].isNull() && m_last_login_time_isValid;
-
-    m_authentication_types_isValid = ::MelodixAPI::fromJsonValue(m_authentication_types, json[QString("authenticationTypes")]);
-    m_authentication_types_isSet = !json[QString("authenticationTypes")].isNull() && m_authentication_types_isValid;
-
-    m_mutual_isValid = ::MelodixAPI::fromJsonValue(m_mutual, json[QString("mutual")]);
-    m_mutual_isSet = !json[QString("mutual")].isNull() && m_mutual_isValid;
-
     m_create_time_isValid = ::MelodixAPI::fromJsonValue(m_create_time, json[QString("createTime")]);
     m_create_time_isSet = !json[QString("createTime")].isNull() && m_create_time_isValid;
 
     m_anchor_isValid = ::MelodixAPI::fromJsonValue(m_anchor, json[QString("anchor")]);
     m_anchor_isSet = !json[QString("anchor")].isNull() && m_anchor_isValid;
 
-    m_authority_isValid = ::MelodixAPI::fromJsonValue(m_authority, json[QString("authority")]);
-    m_authority_isSet = !json[QString("authority")].isNull() && m_authority_isValid;
-
     m_background_img_id_isValid = ::MelodixAPI::fromJsonValue(m_background_img_id, json[QString("backgroundImgId")]);
     m_background_img_id_isSet = !json[QString("backgroundImgId")].isNull() && m_background_img_id_isValid;
 
     m_user_type_isValid = ::MelodixAPI::fromJsonValue(m_user_type, json[QString("userType")]);
     m_user_type_isSet = !json[QString("userType")].isNull() && m_user_type_isValid;
-
-    m_avatar_detail_isValid = ::MelodixAPI::fromJsonValue(m_avatar_detail, json[QString("avatarDetail")]);
-    m_avatar_detail_isSet = !json[QString("avatarDetail")].isNull() && m_avatar_detail_isValid;
 }
 
 QString MDGetArtistDetail_200_response_data_user::asJson() const {
@@ -263,53 +155,17 @@ QJsonObject MDGetArtistDetail_200_response_data_user::asJsonObject() const {
     if (m_authenticated_isSet) {
         obj.insert(QString("authenticated"), ::MelodixAPI::toJsonValue(m_authenticated));
     }
-    if (m_gender_isSet) {
-        obj.insert(QString("gender"), ::MelodixAPI::toJsonValue(m_gender));
-    }
-    if (m_city_isSet) {
-        obj.insert(QString("city"), ::MelodixAPI::toJsonValue(m_city));
-    }
-    if (m_signature_isSet) {
-        obj.insert(QString("signature"), ::MelodixAPI::toJsonValue(m_signature));
-    }
     if (m_description_isSet) {
         obj.insert(QString("description"), ::MelodixAPI::toJsonValue(m_description));
     }
-    if (m_short_user_name_isSet) {
-        obj.insert(QString("shortUserName"), ::MelodixAPI::toJsonValue(m_short_user_name));
-    }
-    if (m_account_status_isSet) {
-        obj.insert(QString("accountStatus"), ::MelodixAPI::toJsonValue(m_account_status));
-    }
-    if (m_location_status_isSet) {
-        obj.insert(QString("locationStatus"), ::MelodixAPI::toJsonValue(m_location_status));
-    }
-    if (m_avatar_img_id_isSet) {
-        obj.insert(QString("avatarImgId"), ::MelodixAPI::toJsonValue(m_avatar_img_id));
-    }
-    if (m_default_avatar_isSet) {
-        obj.insert(QString("defaultAvatar"), ::MelodixAPI::toJsonValue(m_default_avatar));
-    }
-    if (m_province_isSet) {
-        obj.insert(QString("province"), ::MelodixAPI::toJsonValue(m_province));
-    }
     if (m_nickname_isSet) {
         obj.insert(QString("nickname"), ::MelodixAPI::toJsonValue(m_nickname));
-    }
-    if (m_dj_status_isSet) {
-        obj.insert(QString("djStatus"), ::MelodixAPI::toJsonValue(m_dj_status));
     }
     if (m_avatar_url_isSet) {
         obj.insert(QString("avatarUrl"), ::MelodixAPI::toJsonValue(m_avatar_url));
     }
     if (m_account_type_isSet) {
         obj.insert(QString("accountType"), ::MelodixAPI::toJsonValue(m_account_type));
-    }
-    if (m_auth_status_isSet) {
-        obj.insert(QString("authStatus"), ::MelodixAPI::toJsonValue(m_auth_status));
-    }
-    if (m_vip_type_isSet) {
-        obj.insert(QString("vipType"), ::MelodixAPI::toJsonValue(m_vip_type));
     }
     if (m_user_name_isSet) {
         obj.insert(QString("userName"), ::MelodixAPI::toJsonValue(m_user_name));
@@ -320,35 +176,17 @@ QJsonObject MDGetArtistDetail_200_response_data_user::asJsonObject() const {
     if (m_user_id_isSet) {
         obj.insert(QString("userId"), ::MelodixAPI::toJsonValue(m_user_id));
     }
-    if (m_last_login_ip_isSet) {
-        obj.insert(QString("lastLoginIP"), ::MelodixAPI::toJsonValue(m_last_login_ip));
-    }
-    if (m_last_login_time_isSet) {
-        obj.insert(QString("lastLoginTime"), ::MelodixAPI::toJsonValue(m_last_login_time));
-    }
-    if (m_authentication_types_isSet) {
-        obj.insert(QString("authenticationTypes"), ::MelodixAPI::toJsonValue(m_authentication_types));
-    }
-    if (m_mutual_isSet) {
-        obj.insert(QString("mutual"), ::MelodixAPI::toJsonValue(m_mutual));
-    }
     if (m_create_time_isSet) {
         obj.insert(QString("createTime"), ::MelodixAPI::toJsonValue(m_create_time));
     }
     if (m_anchor_isSet) {
         obj.insert(QString("anchor"), ::MelodixAPI::toJsonValue(m_anchor));
     }
-    if (m_authority_isSet) {
-        obj.insert(QString("authority"), ::MelodixAPI::toJsonValue(m_authority));
-    }
     if (m_background_img_id_isSet) {
         obj.insert(QString("backgroundImgId"), ::MelodixAPI::toJsonValue(m_background_img_id));
     }
     if (m_user_type_isSet) {
         obj.insert(QString("userType"), ::MelodixAPI::toJsonValue(m_user_type));
-    }
-    if (m_avatar_detail.isSet()) {
-        obj.insert(QString("avatarDetail"), ::MelodixAPI::toJsonValue(m_avatar_detail));
     }
     return obj;
 }
@@ -417,54 +255,6 @@ bool MDGetArtistDetail_200_response_data_user::is_authenticated_Valid() const{
     return m_authenticated_isValid;
 }
 
-qint32 MDGetArtistDetail_200_response_data_user::getGender() const {
-    return m_gender;
-}
-void MDGetArtistDetail_200_response_data_user::setGender(const qint32 &gender) {
-    m_gender = gender;
-    m_gender_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_gender_Set() const{
-    return m_gender_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_gender_Valid() const{
-    return m_gender_isValid;
-}
-
-qint32 MDGetArtistDetail_200_response_data_user::getCity() const {
-    return m_city;
-}
-void MDGetArtistDetail_200_response_data_user::setCity(const qint32 &city) {
-    m_city = city;
-    m_city_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_city_Set() const{
-    return m_city_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_city_Valid() const{
-    return m_city_isValid;
-}
-
-QString MDGetArtistDetail_200_response_data_user::getSignature() const {
-    return m_signature;
-}
-void MDGetArtistDetail_200_response_data_user::setSignature(const QString &signature) {
-    m_signature = signature;
-    m_signature_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_signature_Set() const{
-    return m_signature_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_signature_Valid() const{
-    return m_signature_isValid;
-}
-
 QString MDGetArtistDetail_200_response_data_user::getDescription() const {
     return m_description;
 }
@@ -481,102 +271,6 @@ bool MDGetArtistDetail_200_response_data_user::is_description_Valid() const{
     return m_description_isValid;
 }
 
-QString MDGetArtistDetail_200_response_data_user::getShortUserName() const {
-    return m_short_user_name;
-}
-void MDGetArtistDetail_200_response_data_user::setShortUserName(const QString &short_user_name) {
-    m_short_user_name = short_user_name;
-    m_short_user_name_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_short_user_name_Set() const{
-    return m_short_user_name_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_short_user_name_Valid() const{
-    return m_short_user_name_isValid;
-}
-
-qint32 MDGetArtistDetail_200_response_data_user::getAccountStatus() const {
-    return m_account_status;
-}
-void MDGetArtistDetail_200_response_data_user::setAccountStatus(const qint32 &account_status) {
-    m_account_status = account_status;
-    m_account_status_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_account_status_Set() const{
-    return m_account_status_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_account_status_Valid() const{
-    return m_account_status_isValid;
-}
-
-qint32 MDGetArtistDetail_200_response_data_user::getLocationStatus() const {
-    return m_location_status;
-}
-void MDGetArtistDetail_200_response_data_user::setLocationStatus(const qint32 &location_status) {
-    m_location_status = location_status;
-    m_location_status_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_location_status_Set() const{
-    return m_location_status_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_location_status_Valid() const{
-    return m_location_status_isValid;
-}
-
-qint32 MDGetArtistDetail_200_response_data_user::getAvatarImgId() const {
-    return m_avatar_img_id;
-}
-void MDGetArtistDetail_200_response_data_user::setAvatarImgId(const qint32 &avatar_img_id) {
-    m_avatar_img_id = avatar_img_id;
-    m_avatar_img_id_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_avatar_img_id_Set() const{
-    return m_avatar_img_id_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_avatar_img_id_Valid() const{
-    return m_avatar_img_id_isValid;
-}
-
-bool MDGetArtistDetail_200_response_data_user::isDefaultAvatar() const {
-    return m_default_avatar;
-}
-void MDGetArtistDetail_200_response_data_user::setDefaultAvatar(const bool &default_avatar) {
-    m_default_avatar = default_avatar;
-    m_default_avatar_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_default_avatar_Set() const{
-    return m_default_avatar_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_default_avatar_Valid() const{
-    return m_default_avatar_isValid;
-}
-
-qint32 MDGetArtistDetail_200_response_data_user::getProvince() const {
-    return m_province;
-}
-void MDGetArtistDetail_200_response_data_user::setProvince(const qint32 &province) {
-    m_province = province;
-    m_province_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_province_Set() const{
-    return m_province_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_province_Valid() const{
-    return m_province_isValid;
-}
-
 QString MDGetArtistDetail_200_response_data_user::getNickname() const {
     return m_nickname;
 }
@@ -591,22 +285,6 @@ bool MDGetArtistDetail_200_response_data_user::is_nickname_Set() const{
 
 bool MDGetArtistDetail_200_response_data_user::is_nickname_Valid() const{
     return m_nickname_isValid;
-}
-
-qint32 MDGetArtistDetail_200_response_data_user::getDjStatus() const {
-    return m_dj_status;
-}
-void MDGetArtistDetail_200_response_data_user::setDjStatus(const qint32 &dj_status) {
-    m_dj_status = dj_status;
-    m_dj_status_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_dj_status_Set() const{
-    return m_dj_status_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_dj_status_Valid() const{
-    return m_dj_status_isValid;
 }
 
 QString MDGetArtistDetail_200_response_data_user::getAvatarUrl() const {
@@ -639,38 +317,6 @@ bool MDGetArtistDetail_200_response_data_user::is_account_type_Set() const{
 
 bool MDGetArtistDetail_200_response_data_user::is_account_type_Valid() const{
     return m_account_type_isValid;
-}
-
-qint32 MDGetArtistDetail_200_response_data_user::getAuthStatus() const {
-    return m_auth_status;
-}
-void MDGetArtistDetail_200_response_data_user::setAuthStatus(const qint32 &auth_status) {
-    m_auth_status = auth_status;
-    m_auth_status_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_auth_status_Set() const{
-    return m_auth_status_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_auth_status_Valid() const{
-    return m_auth_status_isValid;
-}
-
-qint32 MDGetArtistDetail_200_response_data_user::getVipType() const {
-    return m_vip_type;
-}
-void MDGetArtistDetail_200_response_data_user::setVipType(const qint32 &vip_type) {
-    m_vip_type = vip_type;
-    m_vip_type_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_vip_type_Set() const{
-    return m_vip_type_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_vip_type_Valid() const{
-    return m_vip_type_isValid;
 }
 
 QString MDGetArtistDetail_200_response_data_user::getUserName() const {
@@ -721,70 +367,6 @@ bool MDGetArtistDetail_200_response_data_user::is_user_id_Valid() const{
     return m_user_id_isValid;
 }
 
-QString MDGetArtistDetail_200_response_data_user::getLastLoginIp() const {
-    return m_last_login_ip;
-}
-void MDGetArtistDetail_200_response_data_user::setLastLoginIp(const QString &last_login_ip) {
-    m_last_login_ip = last_login_ip;
-    m_last_login_ip_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_last_login_ip_Set() const{
-    return m_last_login_ip_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_last_login_ip_Valid() const{
-    return m_last_login_ip_isValid;
-}
-
-qint32 MDGetArtistDetail_200_response_data_user::getLastLoginTime() const {
-    return m_last_login_time;
-}
-void MDGetArtistDetail_200_response_data_user::setLastLoginTime(const qint32 &last_login_time) {
-    m_last_login_time = last_login_time;
-    m_last_login_time_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_last_login_time_Set() const{
-    return m_last_login_time_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_last_login_time_Valid() const{
-    return m_last_login_time_isValid;
-}
-
-qint32 MDGetArtistDetail_200_response_data_user::getAuthenticationTypes() const {
-    return m_authentication_types;
-}
-void MDGetArtistDetail_200_response_data_user::setAuthenticationTypes(const qint32 &authentication_types) {
-    m_authentication_types = authentication_types;
-    m_authentication_types_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_authentication_types_Set() const{
-    return m_authentication_types_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_authentication_types_Valid() const{
-    return m_authentication_types_isValid;
-}
-
-bool MDGetArtistDetail_200_response_data_user::isMutual() const {
-    return m_mutual;
-}
-void MDGetArtistDetail_200_response_data_user::setMutual(const bool &mutual) {
-    m_mutual = mutual;
-    m_mutual_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_mutual_Set() const{
-    return m_mutual_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_mutual_Valid() const{
-    return m_mutual_isValid;
-}
-
 qint32 MDGetArtistDetail_200_response_data_user::getCreateTime() const {
     return m_create_time;
 }
@@ -815,22 +397,6 @@ bool MDGetArtistDetail_200_response_data_user::is_anchor_Set() const{
 
 bool MDGetArtistDetail_200_response_data_user::is_anchor_Valid() const{
     return m_anchor_isValid;
-}
-
-qint32 MDGetArtistDetail_200_response_data_user::getAuthority() const {
-    return m_authority;
-}
-void MDGetArtistDetail_200_response_data_user::setAuthority(const qint32 &authority) {
-    m_authority = authority;
-    m_authority_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_authority_Set() const{
-    return m_authority_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_authority_Valid() const{
-    return m_authority_isValid;
 }
 
 qint32 MDGetArtistDetail_200_response_data_user::getBackgroundImgId() const {
@@ -865,22 +431,6 @@ bool MDGetArtistDetail_200_response_data_user::is_user_type_Valid() const{
     return m_user_type_isValid;
 }
 
-MDGetArtistDetail_200_response_data_user_avatarDetail MDGetArtistDetail_200_response_data_user::getAvatarDetail() const {
-    return m_avatar_detail;
-}
-void MDGetArtistDetail_200_response_data_user::setAvatarDetail(const MDGetArtistDetail_200_response_data_user_avatarDetail &avatar_detail) {
-    m_avatar_detail = avatar_detail;
-    m_avatar_detail_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_avatar_detail_Set() const{
-    return m_avatar_detail_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data_user::is_avatar_detail_Valid() const{
-    return m_avatar_detail_isValid;
-}
-
 bool MDGetArtistDetail_200_response_data_user::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -904,62 +454,12 @@ bool MDGetArtistDetail_200_response_data_user::isSet() const {
             break;
         }
 
-        if (m_gender_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_city_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_signature_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_description_isSet) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_short_user_name_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_account_status_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_location_status_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_avatar_img_id_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_default_avatar_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_province_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_nickname_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_dj_status_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -970,16 +470,6 @@ bool MDGetArtistDetail_200_response_data_user::isSet() const {
         }
 
         if (m_account_type_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_auth_status_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_vip_type_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -999,37 +489,12 @@ bool MDGetArtistDetail_200_response_data_user::isSet() const {
             break;
         }
 
-        if (m_last_login_ip_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_last_login_time_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_authentication_types_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_mutual_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_create_time_isSet) {
             isObjectUpdated = true;
             break;
         }
 
         if (m_anchor_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_authority_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -1043,18 +508,13 @@ bool MDGetArtistDetail_200_response_data_user::isSet() const {
             isObjectUpdated = true;
             break;
         }
-
-        if (m_avatar_detail.isSet()) {
-            isObjectUpdated = true;
-            break;
-        }
     } while (false);
     return isObjectUpdated;
 }
 
 bool MDGetArtistDetail_200_response_data_user::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_background_url_isValid && m_birthday_isValid && m_detail_description_isValid && m_authenticated_isValid && m_gender_isValid && m_city_isValid && m_signature_isValid && m_description_isValid && m_short_user_name_isValid && m_account_status_isValid && m_location_status_isValid && m_avatar_img_id_isValid && m_default_avatar_isValid && m_province_isValid && m_nickname_isValid && m_dj_status_isValid && m_avatar_url_isValid && m_account_type_isValid && m_auth_status_isValid && m_vip_type_isValid && m_user_name_isValid && m_followed_isValid && m_user_id_isValid && m_last_login_ip_isValid && m_last_login_time_isValid && m_authentication_types_isValid && m_mutual_isValid && m_create_time_isValid && m_anchor_isValid && m_authority_isValid && m_background_img_id_isValid && m_user_type_isValid && m_avatar_detail_isValid && true;
+    return m_background_url_isValid && m_birthday_isValid && m_detail_description_isValid && m_authenticated_isValid && m_description_isValid && m_nickname_isValid && m_avatar_url_isValid && m_account_type_isValid && m_user_name_isValid && m_followed_isValid && m_user_id_isValid && m_create_time_isValid && m_anchor_isValid && m_background_img_id_isValid && m_user_type_isValid && true;
 }
 
 } // namespace MelodixAPI

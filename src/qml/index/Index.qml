@@ -25,7 +25,7 @@ Item {
                 "playlist": playlist
             })
             count++;
-            if (count === 5)
+            if (count === 4)
                 loading = false;
 
         }
@@ -43,7 +43,6 @@ Item {
             getRecommendedPlaylist(res);
             API.getRecommendedNewSongs(9);
             API.getTopArtists();
-            API.getRecommendedMv();
         }
 
         function onBannerCompleted(res) {
@@ -62,7 +61,7 @@ Item {
                 });
             }
             count++;
-            if (count === 5)
+            if (count === 4)
                 loading = false;
 
         }
@@ -70,7 +69,7 @@ Item {
         function onRecommendedNewSongsCompleted(res) {
             recommendNewSongs.lists = res;
             count++;
-            if (count === 5)
+            if (count === 4)
                 loading = false;
 
         }
@@ -78,15 +77,7 @@ Item {
         function onTopArtistsCompleted(res) {
             hotSigner.lists = res;
             count++;
-            if (count === 5)
-                loading = false;
-
-        }
-
-        function onRecommendedMvCompleted(res) {
-            recommendedMV.lists = res;
-            count++;
-            if (count === 5)
+            if (count === 4)
                 loading = false;
 
         }
@@ -98,7 +89,7 @@ Item {
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: left_banner.height + recommendedPlaylist.height + recommendNewSongs.height + hotSigner.height + recommendedMV.height + 40 * 4 + 10 * 8 + 5
+        contentHeight: left_banner.height + recommendedPlaylist.height + recommendNewSongs.height + hotSigner.height + 40 * 3 + 10 * 6 + 5
 
         Column {
             id: body
@@ -232,36 +223,6 @@ Item {
 
                 GridSigner {
                     id: hotSigner
-
-                    anchors.fill: parent
-                }
-
-            }
-
-            Item {
-                width: scrollWidth
-                height: 40
-
-                Text {
-                    text: "推荐MV"
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: Util.textColor
-
-                    font {
-                        pixelSize: DTK.fontManager.t4.pixelSize
-                        bold: true
-                    }
-
-                }
-
-            }
-
-            Item {
-                width: scrollWidth
-                height: (scrollWidth - 20) * 0.5 / 2.9
-
-                RecommendMV {
-                    id: recommendedMV
 
                     anchors.fill: parent
                 }

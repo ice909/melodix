@@ -22,10 +22,8 @@
 
 #include "MDGetArtistDetail_200_response_data_artist.h"
 #include "MDGetArtistDetail_200_response_data_identify.h"
-#include "MDGetArtistDetail_200_response_data_secondaryExpertIdentiy_inner.h"
 #include "MDGetArtistDetail_200_response_data_user.h"
 #include "MDGetArtistDetail_200_response_data_vipRights.h"
-#include <QList>
 
 #include "MDEnum.h"
 #include "MDObject.h"
@@ -34,7 +32,6 @@ namespace MelodixAPI {
 class MDGetArtistDetail_200_response_data_vipRights;
 class MDGetArtistDetail_200_response_data_identify;
 class MDGetArtistDetail_200_response_data_artist;
-class MDGetArtistDetail_200_response_data_secondaryExpertIdentiy_inner;
 class MDGetArtistDetail_200_response_data_user;
 
 class MDGetArtistDetail_200_response_data : public MDObject {
@@ -73,21 +70,6 @@ public:
     bool is_blacklist_Set() const;
     bool is_blacklist_Valid() const;
 
-    qint32 getPreferShow() const;
-    void setPreferShow(const qint32 &prefer_show);
-    bool is_prefer_show_Set() const;
-    bool is_prefer_show_Valid() const;
-
-    bool isShowPriMsg() const;
-    void setShowPriMsg(const bool &show_pri_msg);
-    bool is_show_pri_msg_Set() const;
-    bool is_show_pri_msg_Valid() const;
-
-    QList<MDGetArtistDetail_200_response_data_secondaryExpertIdentiy_inner> getSecondaryExpertIdentiy() const;
-    void setSecondaryExpertIdentiy(const QList<MDGetArtistDetail_200_response_data_secondaryExpertIdentiy_inner> &secondary_expert_identiy);
-    bool is_secondary_expert_identiy_Set() const;
-    bool is_secondary_expert_identiy_Valid() const;
-
     qint32 getEventCount() const;
     void setEventCount(const qint32 &event_count);
     bool is_event_count_Set() const;
@@ -123,18 +105,6 @@ private:
     bool m_blacklist;
     bool m_blacklist_isSet;
     bool m_blacklist_isValid;
-
-    qint32 m_prefer_show;
-    bool m_prefer_show_isSet;
-    bool m_prefer_show_isValid;
-
-    bool m_show_pri_msg;
-    bool m_show_pri_msg_isSet;
-    bool m_show_pri_msg_isValid;
-
-    QList<MDGetArtistDetail_200_response_data_secondaryExpertIdentiy_inner> m_secondary_expert_identiy;
-    bool m_secondary_expert_identiy_isSet;
-    bool m_secondary_expert_identiy_isValid;
 
     qint32 m_event_count;
     bool m_event_count_isSet;

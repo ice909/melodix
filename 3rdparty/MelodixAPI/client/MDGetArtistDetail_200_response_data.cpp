@@ -48,15 +48,6 @@ void MDGetArtistDetail_200_response_data::initializeModel() {
     m_blacklist_isSet = false;
     m_blacklist_isValid = false;
 
-    m_prefer_show_isSet = false;
-    m_prefer_show_isValid = false;
-
-    m_show_pri_msg_isSet = false;
-    m_show_pri_msg_isValid = false;
-
-    m_secondary_expert_identiy_isSet = false;
-    m_secondary_expert_identiy_isValid = false;
-
     m_event_count_isSet = false;
     m_event_count_isValid = false;
 
@@ -88,15 +79,6 @@ void MDGetArtistDetail_200_response_data::fromJsonObject(QJsonObject json) {
     m_blacklist_isValid = ::MelodixAPI::fromJsonValue(m_blacklist, json[QString("blacklist")]);
     m_blacklist_isSet = !json[QString("blacklist")].isNull() && m_blacklist_isValid;
 
-    m_prefer_show_isValid = ::MelodixAPI::fromJsonValue(m_prefer_show, json[QString("preferShow")]);
-    m_prefer_show_isSet = !json[QString("preferShow")].isNull() && m_prefer_show_isValid;
-
-    m_show_pri_msg_isValid = ::MelodixAPI::fromJsonValue(m_show_pri_msg, json[QString("showPriMsg")]);
-    m_show_pri_msg_isSet = !json[QString("showPriMsg")].isNull() && m_show_pri_msg_isValid;
-
-    m_secondary_expert_identiy_isValid = ::MelodixAPI::fromJsonValue(m_secondary_expert_identiy, json[QString("secondaryExpertIdentiy")]);
-    m_secondary_expert_identiy_isSet = !json[QString("secondaryExpertIdentiy")].isNull() && m_secondary_expert_identiy_isValid;
-
     m_event_count_isValid = ::MelodixAPI::fromJsonValue(m_event_count, json[QString("eventCount")]);
     m_event_count_isSet = !json[QString("eventCount")].isNull() && m_event_count_isValid;
 
@@ -127,15 +109,6 @@ QJsonObject MDGetArtistDetail_200_response_data::asJsonObject() const {
     }
     if (m_blacklist_isSet) {
         obj.insert(QString("blacklist"), ::MelodixAPI::toJsonValue(m_blacklist));
-    }
-    if (m_prefer_show_isSet) {
-        obj.insert(QString("preferShow"), ::MelodixAPI::toJsonValue(m_prefer_show));
-    }
-    if (m_show_pri_msg_isSet) {
-        obj.insert(QString("showPriMsg"), ::MelodixAPI::toJsonValue(m_show_pri_msg));
-    }
-    if (m_secondary_expert_identiy.size() > 0) {
-        obj.insert(QString("secondaryExpertIdentiy"), ::MelodixAPI::toJsonValue(m_secondary_expert_identiy));
     }
     if (m_event_count_isSet) {
         obj.insert(QString("eventCount"), ::MelodixAPI::toJsonValue(m_event_count));
@@ -226,54 +199,6 @@ bool MDGetArtistDetail_200_response_data::is_blacklist_Valid() const{
     return m_blacklist_isValid;
 }
 
-qint32 MDGetArtistDetail_200_response_data::getPreferShow() const {
-    return m_prefer_show;
-}
-void MDGetArtistDetail_200_response_data::setPreferShow(const qint32 &prefer_show) {
-    m_prefer_show = prefer_show;
-    m_prefer_show_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data::is_prefer_show_Set() const{
-    return m_prefer_show_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data::is_prefer_show_Valid() const{
-    return m_prefer_show_isValid;
-}
-
-bool MDGetArtistDetail_200_response_data::isShowPriMsg() const {
-    return m_show_pri_msg;
-}
-void MDGetArtistDetail_200_response_data::setShowPriMsg(const bool &show_pri_msg) {
-    m_show_pri_msg = show_pri_msg;
-    m_show_pri_msg_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data::is_show_pri_msg_Set() const{
-    return m_show_pri_msg_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data::is_show_pri_msg_Valid() const{
-    return m_show_pri_msg_isValid;
-}
-
-QList<MDGetArtistDetail_200_response_data_secondaryExpertIdentiy_inner> MDGetArtistDetail_200_response_data::getSecondaryExpertIdentiy() const {
-    return m_secondary_expert_identiy;
-}
-void MDGetArtistDetail_200_response_data::setSecondaryExpertIdentiy(const QList<MDGetArtistDetail_200_response_data_secondaryExpertIdentiy_inner> &secondary_expert_identiy) {
-    m_secondary_expert_identiy = secondary_expert_identiy;
-    m_secondary_expert_identiy_isSet = true;
-}
-
-bool MDGetArtistDetail_200_response_data::is_secondary_expert_identiy_Set() const{
-    return m_secondary_expert_identiy_isSet;
-}
-
-bool MDGetArtistDetail_200_response_data::is_secondary_expert_identiy_Valid() const{
-    return m_secondary_expert_identiy_isValid;
-}
-
 qint32 MDGetArtistDetail_200_response_data::getEventCount() const {
     return m_event_count;
 }
@@ -334,21 +259,6 @@ bool MDGetArtistDetail_200_response_data::isSet() const {
             break;
         }
 
-        if (m_prefer_show_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_show_pri_msg_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_secondary_expert_identiy.size() > 0) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_event_count_isSet) {
             isObjectUpdated = true;
             break;
@@ -364,7 +274,7 @@ bool MDGetArtistDetail_200_response_data::isSet() const {
 
 bool MDGetArtistDetail_200_response_data::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_video_count_isValid && m_vip_rights_isValid && m_identify_isValid && m_artist_isValid && m_blacklist_isValid && m_prefer_show_isValid && m_show_pri_msg_isValid && m_secondary_expert_identiy_isValid && m_event_count_isValid && m_user_isValid && true;
+    return m_video_count_isValid && m_vip_rights_isValid && m_identify_isValid && m_artist_isValid && m_blacklist_isValid && m_event_count_isValid && m_user_isValid && true;
 }
 
 } // namespace MelodixAPI

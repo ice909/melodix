@@ -70,11 +70,6 @@ public:
     bool is_song_Set() const;
     bool is_song_Valid() const;
 
-    QString getAlg() const;
-    void setAlg(const QString &alg);
-    bool is_alg_Set() const;
-    bool is_alg_Valid() const;
-
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -104,10 +99,6 @@ private:
     MDGetRecommendedNewSongs_200_response_result_inner_song m_song;
     bool m_song_isSet;
     bool m_song_isValid;
-
-    QString m_alg;
-    bool m_alg_isSet;
-    bool m_alg_isValid;
 };
 
 } // namespace MelodixAPI

@@ -20,7 +20,6 @@
 
 #include <QJsonObject>
 
-#include <QList>
 #include <QString>
 
 #include "MDEnum.h"
@@ -54,11 +53,6 @@ public:
     bool is_name_Set() const;
     bool is_name_Valid() const;
 
-    QList<QString> getAlias() const;
-    void setAlias(const QList<QString> &alias);
-    bool is_alias_Set() const;
-    bool is_alias_Valid() const;
-
     qint32 getAlbumSize() const;
     void setAlbumSize(const qint32 &album_size);
     bool is_album_size_Set() const;
@@ -68,11 +62,6 @@ public:
     void setMvSize(const qint32 &mv_size);
     bool is_mv_size_Set() const;
     bool is_mv_size_Valid() const;
-
-    qint32 getPicId() const;
-    void setPicId(const qint32 &pic_id);
-    bool is_pic_id_Set() const;
-    bool is_pic_id_Valid() const;
 
     QString getPicUrl() const;
     void setPicUrl(const QString &pic_url);
@@ -102,10 +91,6 @@ private:
     bool m_name_isSet;
     bool m_name_isValid;
 
-    QList<QString> m_alias;
-    bool m_alias_isSet;
-    bool m_alias_isValid;
-
     qint32 m_album_size;
     bool m_album_size_isSet;
     bool m_album_size_isValid;
@@ -113,10 +98,6 @@ private:
     qint32 m_mv_size;
     bool m_mv_size_isSet;
     bool m_mv_size_isValid;
-
-    qint32 m_pic_id;
-    bool m_pic_id_isSet;
-    bool m_pic_id_isValid;
 
     QString m_pic_url;
     bool m_pic_url_isSet;

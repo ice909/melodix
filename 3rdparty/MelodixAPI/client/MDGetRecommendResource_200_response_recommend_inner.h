@@ -20,14 +20,12 @@
 
 #include <QJsonObject>
 
-#include "MDGetRecommendResource_200_response_recommend_inner_creator.h"
 #include <QString>
 
 #include "MDEnum.h"
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDGetRecommendResource_200_response_recommend_inner_creator;
 
 class MDGetRecommendResource_200_response_recommend_inner : public MDObject {
 public:
@@ -55,11 +53,6 @@ public:
     bool is_name_Set() const;
     bool is_name_Valid() const;
 
-    QString getCopywriter() const;
-    void setCopywriter(const QString &copywriter);
-    bool is_copywriter_Set() const;
-    bool is_copywriter_Valid() const;
-
     QString getPicUrl() const;
     void setPicUrl(const QString &pic_url);
     bool is_pic_url_Set() const;
@@ -70,16 +63,6 @@ public:
     bool is_playcount_Set() const;
     bool is_playcount_Valid() const;
 
-    qint32 getCreateTime() const;
-    void setCreateTime(const qint32 &create_time);
-    bool is_create_time_Set() const;
-    bool is_create_time_Valid() const;
-
-    MDGetRecommendResource_200_response_recommend_inner_creator getCreator() const;
-    void setCreator(const MDGetRecommendResource_200_response_recommend_inner_creator &creator);
-    bool is_creator_Set() const;
-    bool is_creator_Valid() const;
-
     qint32 getTrackCount() const;
     void setTrackCount(const qint32 &track_count);
     bool is_track_count_Set() const;
@@ -89,11 +72,6 @@ public:
     void setUserId(const qint32 &user_id);
     bool is_user_id_Set() const;
     bool is_user_id_Valid() const;
-
-    QString getAlg() const;
-    void setAlg(const QString &alg);
-    bool is_alg_Set() const;
-    bool is_alg_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -113,10 +91,6 @@ private:
     bool m_name_isSet;
     bool m_name_isValid;
 
-    QString m_copywriter;
-    bool m_copywriter_isSet;
-    bool m_copywriter_isValid;
-
     QString m_pic_url;
     bool m_pic_url_isSet;
     bool m_pic_url_isValid;
@@ -125,14 +99,6 @@ private:
     bool m_playcount_isSet;
     bool m_playcount_isValid;
 
-    qint32 m_create_time;
-    bool m_create_time_isSet;
-    bool m_create_time_isValid;
-
-    MDGetRecommendResource_200_response_recommend_inner_creator m_creator;
-    bool m_creator_isSet;
-    bool m_creator_isValid;
-
     qint32 m_track_count;
     bool m_track_count_isSet;
     bool m_track_count_isValid;
@@ -140,10 +106,6 @@ private:
     qint32 m_user_id;
     bool m_user_id_isSet;
     bool m_user_id_isValid;
-
-    QString m_alg;
-    bool m_alg_isSet;
-    bool m_alg_isValid;
 };
 
 } // namespace MelodixAPI

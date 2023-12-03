@@ -20,43 +20,33 @@
 #include "MDBanner_200_response.h"
 #include "MDCellphoneLogin_200_response.h"
 #include "MDCheckMusic_200_response.h"
-#include "MDCheckNickname_200_response.h"
 #include "MDGetAccountInfo_200_response.h"
 #include "MDGetArtistAlbum_200_response.h"
 #include "MDGetArtistDetail_200_response.h"
-#include "MDGetArtistMv_200_response.h"
 #include "MDGetArtistSingle_200_response.h"
 #include "MDGetArtistSublist_200_response.h"
-#include "MDGetHotComment_200_response.h"
 #include "MDGetLikeSongId_200_response.h"
 #include "MDGetLoginStatus_200_response.h"
 #include "MDGetLyric_200_response.h"
 #include "MDGetMvDetail_200_response.h"
-#include "MDGetMvSublist_200_response.h"
-#include "MDGetMvUrl_200_response.h"
 #include "MDGetPlaylistDetail_200_response.h"
 #include "MDGetPlaylistTrackAll_200_response.h"
 #include "MDGetPurchasedAlbum_200_response.h"
 #include "MDGetQrKey_200_response.h"
 #include "MDGetRecommendResource_200_response.h"
-#include "MDGetRecommendedMv_200_response.h"
 #include "MDGetRecommendedNewSongs_200_response.h"
 #include "MDGetRecommendedPlaylist_200_response.h"
-#include "MDGetSimiMv_200_response.h"
 #include "MDGetSongDetail_200_response.h"
 #include "MDGetSongUrl_200_response.h"
 #include "MDGetTopArtists_200_response.h"
 #include "MDGetTopPlaylist_200_response.h"
 #include "MDGetUserDetail_200_response.h"
-#include "MDGetUserDynamic_200_response.h"
-#include "MDGetUserLevel_200_response.h"
 #include "MDGetUserPlaylist_200_response.h"
 #include "MDLikeMusic_200_response.h"
 #include "MDQrCheck_200_response.h"
 #include "MDQrCreate_200_response.h"
 #include "MDSearch_200_response.h"
 #include "MDSendCaptcha_200_response.h"
-#include "MDUpdateUserInfo_200_response.h"
 #include <QString>
 
 #include <QObject>
@@ -116,11 +106,6 @@ public:
     void checkMusic(const QString &id, const ::MelodixAPI::OptionalParam<double> &br = ::MelodixAPI::OptionalParam<double>());
 
     /**
-    * @param[in]  nickname QString [required]
-    */
-    void checkNickname(const QString &nickname);
-
-    /**
     * @param[in]  timestamp double [required]
     */
     void getAccountInfo(const double &timestamp);
@@ -139,23 +124,12 @@ public:
     /**
     * @param[in]  id QString [required]
     */
-    void getArtistMv(const QString &id);
-
-    /**
-    * @param[in]  id QString [required]
-    */
     void getArtistSingle(const QString &id);
 
     /**
     * @param[in]  timestamp double [required]
     */
     void getArtistSublist(const double &timestamp);
-
-    /**
-    * @param[in]  id QString [required]
-    * @param[in]  type double [required]
-    */
-    void getHotComment(const QString &id, const double &type);
 
     /**
     * @param[in]  uid QString [required]
@@ -176,17 +150,6 @@ public:
     * @param[in]  mvid QString [required]
     */
     void getMvDetail(const QString &mvid);
-
-    /**
-    * @param[in]  timestamp double [required]
-    */
-    void getMvSublist(const double &timestamp);
-
-    /**
-    * @param[in]  id QString [required]
-    * @param[in]  r QString [optional]
-    */
-    void getMvUrl(const QString &id, const ::MelodixAPI::OptionalParam<QString> &r = ::MelodixAPI::OptionalParam<QString>());
 
     /**
     * @param[in]  id QString [required]
@@ -213,9 +176,6 @@ public:
 
     void getRecommendResource();
 
-
-    void getRecommendedMv();
-
     /**
     * @param[in]  limit double [optional]
     */
@@ -226,11 +186,6 @@ public:
     * @param[in]  offset double [optional]
     */
     void getRecommendedPlaylist(const ::MelodixAPI::OptionalParam<double> &limit = ::MelodixAPI::OptionalParam<double>(), const ::MelodixAPI::OptionalParam<double> &offset = ::MelodixAPI::OptionalParam<double>());
-
-    /**
-    * @param[in]  mvid QString [required]
-    */
-    void getSimiMv(const QString &mvid);
 
     /**
     * @param[in]  ids QString [required]
@@ -257,16 +212,6 @@ public:
     * @param[in]  uid QString [required]
     */
     void getUserDetail(const QString &uid);
-
-    /**
-    * @param[in]  uid QString [required]
-    * @param[in]  limit QString [optional]
-    * @param[in]  lasttime QString [optional]
-    */
-    void getUserDynamic(const QString &uid, const ::MelodixAPI::OptionalParam<QString> &limit = ::MelodixAPI::OptionalParam<QString>(), const ::MelodixAPI::OptionalParam<QString> &lasttime = ::MelodixAPI::OptionalParam<QString>());
-
-
-    void getUserLevel();
 
     /**
     * @param[in]  uid QString [required]
@@ -308,17 +253,6 @@ public:
     void sendCaptcha(const double &phone, const ::MelodixAPI::OptionalParam<double> &ctcode = ::MelodixAPI::OptionalParam<double>());
 
     /**
-    * @param[in]  gender QString [required]
-    * @param[in]  signature QString [required]
-    * @param[in]  city QString [required]
-    * @param[in]  nickname QString [required]
-    * @param[in]  birthday QString [required]
-    * @param[in]  province QString [required]
-    * @param[in]  timestamp QString [required]
-    */
-    void updateUserInfo(const QString &gender, const QString &signature, const QString &city, const QString &nickname, const QString &birthday, const QString &province, const QString &timestamp);
-
-    /**
     * @param[in]  phone double [required]
     * @param[in]  captcha double [required]
     */
@@ -350,43 +284,33 @@ private:
     void bannerCallback(MDHttpRequestWorker *worker);
     void cellphoneLoginCallback(MDHttpRequestWorker *worker);
     void checkMusicCallback(MDHttpRequestWorker *worker);
-    void checkNicknameCallback(MDHttpRequestWorker *worker);
     void getAccountInfoCallback(MDHttpRequestWorker *worker);
     void getArtistAlbumCallback(MDHttpRequestWorker *worker);
     void getArtistDetailCallback(MDHttpRequestWorker *worker);
-    void getArtistMvCallback(MDHttpRequestWorker *worker);
     void getArtistSingleCallback(MDHttpRequestWorker *worker);
     void getArtistSublistCallback(MDHttpRequestWorker *worker);
-    void getHotCommentCallback(MDHttpRequestWorker *worker);
     void getLikeSongIdCallback(MDHttpRequestWorker *worker);
     void getLoginStatusCallback(MDHttpRequestWorker *worker);
     void getLyricCallback(MDHttpRequestWorker *worker);
     void getMvDetailCallback(MDHttpRequestWorker *worker);
-    void getMvSublistCallback(MDHttpRequestWorker *worker);
-    void getMvUrlCallback(MDHttpRequestWorker *worker);
     void getPlaylistDetailCallback(MDHttpRequestWorker *worker);
     void getPlaylistTrackAllCallback(MDHttpRequestWorker *worker);
     void getPurchasedAlbumCallback(MDHttpRequestWorker *worker);
     void getQrKeyCallback(MDHttpRequestWorker *worker);
     void getRecommendResourceCallback(MDHttpRequestWorker *worker);
-    void getRecommendedMvCallback(MDHttpRequestWorker *worker);
     void getRecommendedNewSongsCallback(MDHttpRequestWorker *worker);
     void getRecommendedPlaylistCallback(MDHttpRequestWorker *worker);
-    void getSimiMvCallback(MDHttpRequestWorker *worker);
     void getSongDetailCallback(MDHttpRequestWorker *worker);
     void getSongUrlCallback(MDHttpRequestWorker *worker);
     void getTopArtistsCallback(MDHttpRequestWorker *worker);
     void getTopPlaylistCallback(MDHttpRequestWorker *worker);
     void getUserDetailCallback(MDHttpRequestWorker *worker);
-    void getUserDynamicCallback(MDHttpRequestWorker *worker);
-    void getUserLevelCallback(MDHttpRequestWorker *worker);
     void getUserPlaylistCallback(MDHttpRequestWorker *worker);
     void likeMusicCallback(MDHttpRequestWorker *worker);
     void qrCheckCallback(MDHttpRequestWorker *worker);
     void qrCreateCallback(MDHttpRequestWorker *worker);
     void searchCallback(MDHttpRequestWorker *worker);
     void sendCaptchaCallback(MDHttpRequestWorker *worker);
-    void updateUserInfoCallback(MDHttpRequestWorker *worker);
     void verifyCaptchaCallback(MDHttpRequestWorker *worker);
 
 signals:
@@ -394,169 +318,129 @@ signals:
     void bannerSignal(MDBanner_200_response summary);
     void cellphoneLoginSignal(MDCellphoneLogin_200_response summary);
     void checkMusicSignal(MDCheckMusic_200_response summary);
-    void checkNicknameSignal(MDCheckNickname_200_response summary);
     void getAccountInfoSignal(MDGetAccountInfo_200_response summary);
     void getArtistAlbumSignal(MDGetArtistAlbum_200_response summary);
     void getArtistDetailSignal(MDGetArtistDetail_200_response summary);
-    void getArtistMvSignal(MDGetArtistMv_200_response summary);
     void getArtistSingleSignal(MDGetArtistSingle_200_response summary);
     void getArtistSublistSignal(MDGetArtistSublist_200_response summary);
-    void getHotCommentSignal(MDGetHotComment_200_response summary);
     void getLikeSongIdSignal(MDGetLikeSongId_200_response summary);
     void getLoginStatusSignal(MDGetLoginStatus_200_response summary);
     void getLyricSignal(MDGetLyric_200_response summary);
     void getMvDetailSignal(MDGetMvDetail_200_response summary);
-    void getMvSublistSignal(MDGetMvSublist_200_response summary);
-    void getMvUrlSignal(MDGetMvUrl_200_response summary);
     void getPlaylistDetailSignal(MDGetPlaylistDetail_200_response summary);
     void getPlaylistTrackAllSignal(MDGetPlaylistTrackAll_200_response summary);
     void getPurchasedAlbumSignal(MDGetPurchasedAlbum_200_response summary);
     void getQrKeySignal(MDGetQrKey_200_response summary);
     void getRecommendResourceSignal(MDGetRecommendResource_200_response summary);
-    void getRecommendedMvSignal(MDGetRecommendedMv_200_response summary);
     void getRecommendedNewSongsSignal(MDGetRecommendedNewSongs_200_response summary);
     void getRecommendedPlaylistSignal(MDGetRecommendedPlaylist_200_response summary);
-    void getSimiMvSignal(MDGetSimiMv_200_response summary);
     void getSongDetailSignal(MDGetSongDetail_200_response summary);
     void getSongUrlSignal(MDGetSongUrl_200_response summary);
     void getTopArtistsSignal(MDGetTopArtists_200_response summary);
     void getTopPlaylistSignal(MDGetTopPlaylist_200_response summary);
     void getUserDetailSignal(MDGetUserDetail_200_response summary);
-    void getUserDynamicSignal(MDGetUserDynamic_200_response summary);
-    void getUserLevelSignal(MDGetUserLevel_200_response summary);
     void getUserPlaylistSignal(MDGetUserPlaylist_200_response summary);
     void likeMusicSignal(MDLikeMusic_200_response summary);
     void qrCheckSignal(MDQrCheck_200_response summary);
     void qrCreateSignal(MDQrCreate_200_response summary);
     void searchSignal(MDSearch_200_response summary);
     void sendCaptchaSignal(MDSendCaptcha_200_response summary);
-    void updateUserInfoSignal(MDUpdateUserInfo_200_response summary);
     void verifyCaptchaSignal(MDSendCaptcha_200_response summary);
 
     void bannerSignalFull(MDHttpRequestWorker *worker, MDBanner_200_response summary);
     void cellphoneLoginSignalFull(MDHttpRequestWorker *worker, MDCellphoneLogin_200_response summary);
     void checkMusicSignalFull(MDHttpRequestWorker *worker, MDCheckMusic_200_response summary);
-    void checkNicknameSignalFull(MDHttpRequestWorker *worker, MDCheckNickname_200_response summary);
     void getAccountInfoSignalFull(MDHttpRequestWorker *worker, MDGetAccountInfo_200_response summary);
     void getArtistAlbumSignalFull(MDHttpRequestWorker *worker, MDGetArtistAlbum_200_response summary);
     void getArtistDetailSignalFull(MDHttpRequestWorker *worker, MDGetArtistDetail_200_response summary);
-    void getArtistMvSignalFull(MDHttpRequestWorker *worker, MDGetArtistMv_200_response summary);
     void getArtistSingleSignalFull(MDHttpRequestWorker *worker, MDGetArtistSingle_200_response summary);
     void getArtistSublistSignalFull(MDHttpRequestWorker *worker, MDGetArtistSublist_200_response summary);
-    void getHotCommentSignalFull(MDHttpRequestWorker *worker, MDGetHotComment_200_response summary);
     void getLikeSongIdSignalFull(MDHttpRequestWorker *worker, MDGetLikeSongId_200_response summary);
     void getLoginStatusSignalFull(MDHttpRequestWorker *worker, MDGetLoginStatus_200_response summary);
     void getLyricSignalFull(MDHttpRequestWorker *worker, MDGetLyric_200_response summary);
     void getMvDetailSignalFull(MDHttpRequestWorker *worker, MDGetMvDetail_200_response summary);
-    void getMvSublistSignalFull(MDHttpRequestWorker *worker, MDGetMvSublist_200_response summary);
-    void getMvUrlSignalFull(MDHttpRequestWorker *worker, MDGetMvUrl_200_response summary);
     void getPlaylistDetailSignalFull(MDHttpRequestWorker *worker, MDGetPlaylistDetail_200_response summary);
     void getPlaylistTrackAllSignalFull(MDHttpRequestWorker *worker, MDGetPlaylistTrackAll_200_response summary);
     void getPurchasedAlbumSignalFull(MDHttpRequestWorker *worker, MDGetPurchasedAlbum_200_response summary);
     void getQrKeySignalFull(MDHttpRequestWorker *worker, MDGetQrKey_200_response summary);
     void getRecommendResourceSignalFull(MDHttpRequestWorker *worker, MDGetRecommendResource_200_response summary);
-    void getRecommendedMvSignalFull(MDHttpRequestWorker *worker, MDGetRecommendedMv_200_response summary);
     void getRecommendedNewSongsSignalFull(MDHttpRequestWorker *worker, MDGetRecommendedNewSongs_200_response summary);
     void getRecommendedPlaylistSignalFull(MDHttpRequestWorker *worker, MDGetRecommendedPlaylist_200_response summary);
-    void getSimiMvSignalFull(MDHttpRequestWorker *worker, MDGetSimiMv_200_response summary);
     void getSongDetailSignalFull(MDHttpRequestWorker *worker, MDGetSongDetail_200_response summary);
     void getSongUrlSignalFull(MDHttpRequestWorker *worker, MDGetSongUrl_200_response summary);
     void getTopArtistsSignalFull(MDHttpRequestWorker *worker, MDGetTopArtists_200_response summary);
     void getTopPlaylistSignalFull(MDHttpRequestWorker *worker, MDGetTopPlaylist_200_response summary);
     void getUserDetailSignalFull(MDHttpRequestWorker *worker, MDGetUserDetail_200_response summary);
-    void getUserDynamicSignalFull(MDHttpRequestWorker *worker, MDGetUserDynamic_200_response summary);
-    void getUserLevelSignalFull(MDHttpRequestWorker *worker, MDGetUserLevel_200_response summary);
     void getUserPlaylistSignalFull(MDHttpRequestWorker *worker, MDGetUserPlaylist_200_response summary);
     void likeMusicSignalFull(MDHttpRequestWorker *worker, MDLikeMusic_200_response summary);
     void qrCheckSignalFull(MDHttpRequestWorker *worker, MDQrCheck_200_response summary);
     void qrCreateSignalFull(MDHttpRequestWorker *worker, MDQrCreate_200_response summary);
     void searchSignalFull(MDHttpRequestWorker *worker, MDSearch_200_response summary);
     void sendCaptchaSignalFull(MDHttpRequestWorker *worker, MDSendCaptcha_200_response summary);
-    void updateUserInfoSignalFull(MDHttpRequestWorker *worker, MDUpdateUserInfo_200_response summary);
     void verifyCaptchaSignalFull(MDHttpRequestWorker *worker, MDSendCaptcha_200_response summary);
 
     void bannerSignalE(MDBanner_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void cellphoneLoginSignalE(MDCellphoneLogin_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void checkMusicSignalE(MDCheckMusic_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void checkNicknameSignalE(MDCheckNickname_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getAccountInfoSignalE(MDGetAccountInfo_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getArtistAlbumSignalE(MDGetArtistAlbum_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getArtistDetailSignalE(MDGetArtistDetail_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void getArtistMvSignalE(MDGetArtistMv_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getArtistSingleSignalE(MDGetArtistSingle_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getArtistSublistSignalE(MDGetArtistSublist_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void getHotCommentSignalE(MDGetHotComment_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getLikeSongIdSignalE(MDGetLikeSongId_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getLoginStatusSignalE(MDGetLoginStatus_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getLyricSignalE(MDGetLyric_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getMvDetailSignalE(MDGetMvDetail_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void getMvSublistSignalE(MDGetMvSublist_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void getMvUrlSignalE(MDGetMvUrl_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getPlaylistDetailSignalE(MDGetPlaylistDetail_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getPlaylistTrackAllSignalE(MDGetPlaylistTrackAll_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getPurchasedAlbumSignalE(MDGetPurchasedAlbum_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getQrKeySignalE(MDGetQrKey_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getRecommendResourceSignalE(MDGetRecommendResource_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void getRecommendedMvSignalE(MDGetRecommendedMv_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getRecommendedNewSongsSignalE(MDGetRecommendedNewSongs_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getRecommendedPlaylistSignalE(MDGetRecommendedPlaylist_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void getSimiMvSignalE(MDGetSimiMv_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getSongDetailSignalE(MDGetSongDetail_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getSongUrlSignalE(MDGetSongUrl_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getTopArtistsSignalE(MDGetTopArtists_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getTopPlaylistSignalE(MDGetTopPlaylist_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserDetailSignalE(MDGetUserDetail_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void getUserDynamicSignalE(MDGetUserDynamic_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void getUserLevelSignalE(MDGetUserLevel_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserPlaylistSignalE(MDGetUserPlaylist_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void likeMusicSignalE(MDLikeMusic_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void qrCheckSignalE(MDQrCheck_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void qrCreateSignalE(MDQrCreate_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void searchSignalE(MDSearch_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void sendCaptchaSignalE(MDSendCaptcha_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void updateUserInfoSignalE(MDUpdateUserInfo_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void verifyCaptchaSignalE(MDSendCaptcha_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void bannerSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void cellphoneLoginSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void checkMusicSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void checkNicknameSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getAccountInfoSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getArtistAlbumSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getArtistDetailSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void getArtistMvSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getArtistSingleSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getArtistSublistSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void getHotCommentSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getLikeSongIdSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getLoginStatusSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getLyricSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getMvDetailSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void getMvSublistSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void getMvUrlSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getPlaylistDetailSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getPlaylistTrackAllSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getPurchasedAlbumSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getQrKeySignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getRecommendResourceSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void getRecommendedMvSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getRecommendedNewSongsSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getRecommendedPlaylistSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void getSimiMvSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getSongDetailSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getSongUrlSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getTopArtistsSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getTopPlaylistSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserDetailSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void getUserDynamicSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void getUserLevelSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserPlaylistSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void likeMusicSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void qrCheckSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void qrCreateSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void searchSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void sendCaptchaSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void updateUserInfoSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void verifyCaptchaSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();

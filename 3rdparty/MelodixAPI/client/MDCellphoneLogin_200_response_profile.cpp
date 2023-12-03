@@ -808,10 +808,10 @@ bool MDCellphoneLogin_200_response_profile::is_event_count_Valid() const{
     return m_event_count_isValid;
 }
 
-MDGetArtistDetail_200_response_data_user_avatarDetail MDCellphoneLogin_200_response_profile::getAvatarDetail() const {
+MDCellphoneLogin_200_response_profile_avatarDetail MDCellphoneLogin_200_response_profile::getAvatarDetail() const {
     return m_avatar_detail;
 }
-void MDCellphoneLogin_200_response_profile::setAvatarDetail(const MDGetArtistDetail_200_response_data_user_avatarDetail &avatar_detail) {
+void MDCellphoneLogin_200_response_profile::setAvatarDetail(const MDCellphoneLogin_200_response_profile_avatarDetail &avatar_detail) {
     m_avatar_detail = avatar_detail;
     m_avatar_detail_isSet = true;
 }

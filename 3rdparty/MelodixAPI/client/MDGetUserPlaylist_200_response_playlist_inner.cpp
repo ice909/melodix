@@ -33,41 +33,17 @@ MDGetUserPlaylist_200_response_playlist_inner::~MDGetUserPlaylist_200_response_p
 
 void MDGetUserPlaylist_200_response_playlist_inner::initializeModel() {
 
-    m_subscribers_isSet = false;
-    m_subscribers_isValid = false;
-
-    m_subscribed_isSet = false;
-    m_subscribed_isValid = false;
-
     m_creator_isSet = false;
     m_creator_isValid = false;
 
-    m_update_frequency_isSet = false;
-    m_update_frequency_isValid = false;
-
-    m_background_cover_id_isSet = false;
-    m_background_cover_id_isValid = false;
-
     m_background_cover_url_isSet = false;
     m_background_cover_url_isValid = false;
-
-    m_title_image_isSet = false;
-    m_title_image_isValid = false;
 
     m_title_image_url_isSet = false;
     m_title_image_url_isValid = false;
 
     m_english_title_isSet = false;
     m_english_title_isValid = false;
-
-    m_op_recommend_isSet = false;
-    m_op_recommend_isValid = false;
-
-    m_recommend_info_isSet = false;
-    m_recommend_info_isValid = false;
-
-    m_subscribed_count_isSet = false;
-    m_subscribed_count_isValid = false;
 
     m_cloud_track_count_isSet = false;
     m_cloud_track_count_isValid = false;
@@ -77,9 +53,6 @@ void MDGetUserPlaylist_200_response_playlist_inner::initializeModel() {
 
     m_total_duration_isSet = false;
     m_total_duration_isValid = false;
-
-    m_cover_img_id_isSet = false;
-    m_cover_img_id_isValid = false;
 
     m_privacy_isSet = false;
     m_privacy_isValid = false;
@@ -93,26 +66,11 @@ void MDGetUserPlaylist_200_response_playlist_inner::initializeModel() {
     m_update_time_isSet = false;
     m_update_time_isValid = false;
 
-    m_comment_thread_id_isSet = false;
-    m_comment_thread_id_isValid = false;
-
     m_cover_img_url_isSet = false;
     m_cover_img_url_isValid = false;
 
-    m_special_type_isSet = false;
-    m_special_type_isValid = false;
-
-    m_anonimous_isSet = false;
-    m_anonimous_isValid = false;
-
     m_create_time_isSet = false;
     m_create_time_isValid = false;
-
-    m_high_quality_isSet = false;
-    m_high_quality_isValid = false;
-
-    m_new_imported_isSet = false;
-    m_new_imported_isValid = false;
 
     m_track_number_update_time_isSet = false;
     m_track_number_update_time_isValid = false;
@@ -120,17 +78,11 @@ void MDGetUserPlaylist_200_response_playlist_inner::initializeModel() {
     m_play_count_isSet = false;
     m_play_count_isValid = false;
 
-    m_ad_type_isSet = false;
-    m_ad_type_isValid = false;
-
     m_description_isSet = false;
     m_description_isValid = false;
 
     m_tags_isSet = false;
     m_tags_isValid = false;
-
-    m_ordered_isSet = false;
-    m_ordered_isValid = false;
 
     m_status_isSet = false;
     m_status_isValid = false;
@@ -140,12 +92,6 @@ void MDGetUserPlaylist_200_response_playlist_inner::initializeModel() {
 
     m_id_isSet = false;
     m_id_isValid = false;
-
-    m_cover_img_id_str_isSet = false;
-    m_cover_img_id_str_isValid = false;
-
-    m_copied_isSet = false;
-    m_copied_isValid = false;
 }
 
 void MDGetUserPlaylist_200_response_playlist_inner::fromJson(QString jsonString) {
@@ -157,41 +103,17 @@ void MDGetUserPlaylist_200_response_playlist_inner::fromJson(QString jsonString)
 
 void MDGetUserPlaylist_200_response_playlist_inner::fromJsonObject(QJsonObject json) {
 
-    m_subscribers_isValid = ::MelodixAPI::fromJsonValue(m_subscribers, json[QString("subscribers")]);
-    m_subscribers_isSet = !json[QString("subscribers")].isNull() && m_subscribers_isValid;
-
-    m_subscribed_isValid = ::MelodixAPI::fromJsonValue(m_subscribed, json[QString("subscribed")]);
-    m_subscribed_isSet = !json[QString("subscribed")].isNull() && m_subscribed_isValid;
-
     m_creator_isValid = ::MelodixAPI::fromJsonValue(m_creator, json[QString("creator")]);
     m_creator_isSet = !json[QString("creator")].isNull() && m_creator_isValid;
 
-    m_update_frequency_isValid = ::MelodixAPI::fromJsonValue(m_update_frequency, json[QString("updateFrequency")]);
-    m_update_frequency_isSet = !json[QString("updateFrequency")].isNull() && m_update_frequency_isValid;
-
-    m_background_cover_id_isValid = ::MelodixAPI::fromJsonValue(m_background_cover_id, json[QString("backgroundCoverId")]);
-    m_background_cover_id_isSet = !json[QString("backgroundCoverId")].isNull() && m_background_cover_id_isValid;
-
     m_background_cover_url_isValid = ::MelodixAPI::fromJsonValue(m_background_cover_url, json[QString("backgroundCoverUrl")]);
     m_background_cover_url_isSet = !json[QString("backgroundCoverUrl")].isNull() && m_background_cover_url_isValid;
-
-    m_title_image_isValid = ::MelodixAPI::fromJsonValue(m_title_image, json[QString("titleImage")]);
-    m_title_image_isSet = !json[QString("titleImage")].isNull() && m_title_image_isValid;
 
     m_title_image_url_isValid = ::MelodixAPI::fromJsonValue(m_title_image_url, json[QString("titleImageUrl")]);
     m_title_image_url_isSet = !json[QString("titleImageUrl")].isNull() && m_title_image_url_isValid;
 
     m_english_title_isValid = ::MelodixAPI::fromJsonValue(m_english_title, json[QString("englishTitle")]);
     m_english_title_isSet = !json[QString("englishTitle")].isNull() && m_english_title_isValid;
-
-    m_op_recommend_isValid = ::MelodixAPI::fromJsonValue(m_op_recommend, json[QString("opRecommend")]);
-    m_op_recommend_isSet = !json[QString("opRecommend")].isNull() && m_op_recommend_isValid;
-
-    m_recommend_info_isValid = ::MelodixAPI::fromJsonValue(m_recommend_info, json[QString("recommendInfo")]);
-    m_recommend_info_isSet = !json[QString("recommendInfo")].isNull() && m_recommend_info_isValid;
-
-    m_subscribed_count_isValid = ::MelodixAPI::fromJsonValue(m_subscribed_count, json[QString("subscribedCount")]);
-    m_subscribed_count_isSet = !json[QString("subscribedCount")].isNull() && m_subscribed_count_isValid;
 
     m_cloud_track_count_isValid = ::MelodixAPI::fromJsonValue(m_cloud_track_count, json[QString("cloudTrackCount")]);
     m_cloud_track_count_isSet = !json[QString("cloudTrackCount")].isNull() && m_cloud_track_count_isValid;
@@ -201,9 +123,6 @@ void MDGetUserPlaylist_200_response_playlist_inner::fromJsonObject(QJsonObject j
 
     m_total_duration_isValid = ::MelodixAPI::fromJsonValue(m_total_duration, json[QString("totalDuration")]);
     m_total_duration_isSet = !json[QString("totalDuration")].isNull() && m_total_duration_isValid;
-
-    m_cover_img_id_isValid = ::MelodixAPI::fromJsonValue(m_cover_img_id, json[QString("coverImgId")]);
-    m_cover_img_id_isSet = !json[QString("coverImgId")].isNull() && m_cover_img_id_isValid;
 
     m_privacy_isValid = ::MelodixAPI::fromJsonValue(m_privacy, json[QString("privacy")]);
     m_privacy_isSet = !json[QString("privacy")].isNull() && m_privacy_isValid;
@@ -217,26 +136,11 @@ void MDGetUserPlaylist_200_response_playlist_inner::fromJsonObject(QJsonObject j
     m_update_time_isValid = ::MelodixAPI::fromJsonValue(m_update_time, json[QString("updateTime")]);
     m_update_time_isSet = !json[QString("updateTime")].isNull() && m_update_time_isValid;
 
-    m_comment_thread_id_isValid = ::MelodixAPI::fromJsonValue(m_comment_thread_id, json[QString("commentThreadId")]);
-    m_comment_thread_id_isSet = !json[QString("commentThreadId")].isNull() && m_comment_thread_id_isValid;
-
     m_cover_img_url_isValid = ::MelodixAPI::fromJsonValue(m_cover_img_url, json[QString("coverImgUrl")]);
     m_cover_img_url_isSet = !json[QString("coverImgUrl")].isNull() && m_cover_img_url_isValid;
 
-    m_special_type_isValid = ::MelodixAPI::fromJsonValue(m_special_type, json[QString("specialType")]);
-    m_special_type_isSet = !json[QString("specialType")].isNull() && m_special_type_isValid;
-
-    m_anonimous_isValid = ::MelodixAPI::fromJsonValue(m_anonimous, json[QString("anonimous")]);
-    m_anonimous_isSet = !json[QString("anonimous")].isNull() && m_anonimous_isValid;
-
     m_create_time_isValid = ::MelodixAPI::fromJsonValue(m_create_time, json[QString("createTime")]);
     m_create_time_isSet = !json[QString("createTime")].isNull() && m_create_time_isValid;
-
-    m_high_quality_isValid = ::MelodixAPI::fromJsonValue(m_high_quality, json[QString("highQuality")]);
-    m_high_quality_isSet = !json[QString("highQuality")].isNull() && m_high_quality_isValid;
-
-    m_new_imported_isValid = ::MelodixAPI::fromJsonValue(m_new_imported, json[QString("newImported")]);
-    m_new_imported_isSet = !json[QString("newImported")].isNull() && m_new_imported_isValid;
 
     m_track_number_update_time_isValid = ::MelodixAPI::fromJsonValue(m_track_number_update_time, json[QString("trackNumberUpdateTime")]);
     m_track_number_update_time_isSet = !json[QString("trackNumberUpdateTime")].isNull() && m_track_number_update_time_isValid;
@@ -244,17 +148,11 @@ void MDGetUserPlaylist_200_response_playlist_inner::fromJsonObject(QJsonObject j
     m_play_count_isValid = ::MelodixAPI::fromJsonValue(m_play_count, json[QString("playCount")]);
     m_play_count_isSet = !json[QString("playCount")].isNull() && m_play_count_isValid;
 
-    m_ad_type_isValid = ::MelodixAPI::fromJsonValue(m_ad_type, json[QString("adType")]);
-    m_ad_type_isSet = !json[QString("adType")].isNull() && m_ad_type_isValid;
-
     m_description_isValid = ::MelodixAPI::fromJsonValue(m_description, json[QString("description")]);
     m_description_isSet = !json[QString("description")].isNull() && m_description_isValid;
 
     m_tags_isValid = ::MelodixAPI::fromJsonValue(m_tags, json[QString("tags")]);
     m_tags_isSet = !json[QString("tags")].isNull() && m_tags_isValid;
-
-    m_ordered_isValid = ::MelodixAPI::fromJsonValue(m_ordered, json[QString("ordered")]);
-    m_ordered_isSet = !json[QString("ordered")].isNull() && m_ordered_isValid;
 
     m_status_isValid = ::MelodixAPI::fromJsonValue(m_status, json[QString("status")]);
     m_status_isSet = !json[QString("status")].isNull() && m_status_isValid;
@@ -264,12 +162,6 @@ void MDGetUserPlaylist_200_response_playlist_inner::fromJsonObject(QJsonObject j
 
     m_id_isValid = ::MelodixAPI::fromJsonValue(m_id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
-
-    m_cover_img_id_str_isValid = ::MelodixAPI::fromJsonValue(m_cover_img_id_str, json[QString("coverImgId_str")]);
-    m_cover_img_id_str_isSet = !json[QString("coverImgId_str")].isNull() && m_cover_img_id_str_isValid;
-
-    m_copied_isValid = ::MelodixAPI::fromJsonValue(m_copied, json[QString("copied")]);
-    m_copied_isSet = !json[QString("copied")].isNull() && m_copied_isValid;
 }
 
 QString MDGetUserPlaylist_200_response_playlist_inner::asJson() const {
@@ -281,41 +173,17 @@ QString MDGetUserPlaylist_200_response_playlist_inner::asJson() const {
 
 QJsonObject MDGetUserPlaylist_200_response_playlist_inner::asJsonObject() const {
     QJsonObject obj;
-    if (m_subscribers.size() > 0) {
-        obj.insert(QString("subscribers"), ::MelodixAPI::toJsonValue(m_subscribers));
-    }
-    if (m_subscribed_isSet) {
-        obj.insert(QString("subscribed"), ::MelodixAPI::toJsonValue(m_subscribed));
-    }
     if (m_creator.isSet()) {
         obj.insert(QString("creator"), ::MelodixAPI::toJsonValue(m_creator));
     }
-    if (m_update_frequency_isSet) {
-        obj.insert(QString("updateFrequency"), ::MelodixAPI::toJsonValue(m_update_frequency));
-    }
-    if (m_background_cover_id_isSet) {
-        obj.insert(QString("backgroundCoverId"), ::MelodixAPI::toJsonValue(m_background_cover_id));
-    }
     if (m_background_cover_url_isSet) {
         obj.insert(QString("backgroundCoverUrl"), ::MelodixAPI::toJsonValue(m_background_cover_url));
-    }
-    if (m_title_image_isSet) {
-        obj.insert(QString("titleImage"), ::MelodixAPI::toJsonValue(m_title_image));
     }
     if (m_title_image_url_isSet) {
         obj.insert(QString("titleImageUrl"), ::MelodixAPI::toJsonValue(m_title_image_url));
     }
     if (m_english_title_isSet) {
         obj.insert(QString("englishTitle"), ::MelodixAPI::toJsonValue(m_english_title));
-    }
-    if (m_op_recommend_isSet) {
-        obj.insert(QString("opRecommend"), ::MelodixAPI::toJsonValue(m_op_recommend));
-    }
-    if (m_recommend_info.isSet()) {
-        obj.insert(QString("recommendInfo"), ::MelodixAPI::toJsonValue(m_recommend_info));
-    }
-    if (m_subscribed_count_isSet) {
-        obj.insert(QString("subscribedCount"), ::MelodixAPI::toJsonValue(m_subscribed_count));
     }
     if (m_cloud_track_count_isSet) {
         obj.insert(QString("cloudTrackCount"), ::MelodixAPI::toJsonValue(m_cloud_track_count));
@@ -325,9 +193,6 @@ QJsonObject MDGetUserPlaylist_200_response_playlist_inner::asJsonObject() const 
     }
     if (m_total_duration_isSet) {
         obj.insert(QString("totalDuration"), ::MelodixAPI::toJsonValue(m_total_duration));
-    }
-    if (m_cover_img_id_isSet) {
-        obj.insert(QString("coverImgId"), ::MelodixAPI::toJsonValue(m_cover_img_id));
     }
     if (m_privacy_isSet) {
         obj.insert(QString("privacy"), ::MelodixAPI::toJsonValue(m_privacy));
@@ -341,26 +206,11 @@ QJsonObject MDGetUserPlaylist_200_response_playlist_inner::asJsonObject() const 
     if (m_update_time_isSet) {
         obj.insert(QString("updateTime"), ::MelodixAPI::toJsonValue(m_update_time));
     }
-    if (m_comment_thread_id_isSet) {
-        obj.insert(QString("commentThreadId"), ::MelodixAPI::toJsonValue(m_comment_thread_id));
-    }
     if (m_cover_img_url_isSet) {
         obj.insert(QString("coverImgUrl"), ::MelodixAPI::toJsonValue(m_cover_img_url));
     }
-    if (m_special_type_isSet) {
-        obj.insert(QString("specialType"), ::MelodixAPI::toJsonValue(m_special_type));
-    }
-    if (m_anonimous_isSet) {
-        obj.insert(QString("anonimous"), ::MelodixAPI::toJsonValue(m_anonimous));
-    }
     if (m_create_time_isSet) {
         obj.insert(QString("createTime"), ::MelodixAPI::toJsonValue(m_create_time));
-    }
-    if (m_high_quality_isSet) {
-        obj.insert(QString("highQuality"), ::MelodixAPI::toJsonValue(m_high_quality));
-    }
-    if (m_new_imported_isSet) {
-        obj.insert(QString("newImported"), ::MelodixAPI::toJsonValue(m_new_imported));
     }
     if (m_track_number_update_time_isSet) {
         obj.insert(QString("trackNumberUpdateTime"), ::MelodixAPI::toJsonValue(m_track_number_update_time));
@@ -368,17 +218,11 @@ QJsonObject MDGetUserPlaylist_200_response_playlist_inner::asJsonObject() const 
     if (m_play_count_isSet) {
         obj.insert(QString("playCount"), ::MelodixAPI::toJsonValue(m_play_count));
     }
-    if (m_ad_type_isSet) {
-        obj.insert(QString("adType"), ::MelodixAPI::toJsonValue(m_ad_type));
-    }
     if (m_description_isSet) {
         obj.insert(QString("description"), ::MelodixAPI::toJsonValue(m_description));
     }
     if (m_tags.size() > 0) {
         obj.insert(QString("tags"), ::MelodixAPI::toJsonValue(m_tags));
-    }
-    if (m_ordered_isSet) {
-        obj.insert(QString("ordered"), ::MelodixAPI::toJsonValue(m_ordered));
     }
     if (m_status_isSet) {
         obj.insert(QString("status"), ::MelodixAPI::toJsonValue(m_status));
@@ -389,45 +233,7 @@ QJsonObject MDGetUserPlaylist_200_response_playlist_inner::asJsonObject() const 
     if (m_id_isSet) {
         obj.insert(QString("id"), ::MelodixAPI::toJsonValue(m_id));
     }
-    if (m_cover_img_id_str_isSet) {
-        obj.insert(QString("coverImgId_str"), ::MelodixAPI::toJsonValue(m_cover_img_id_str));
-    }
-    if (m_copied_isSet) {
-        obj.insert(QString("copied"), ::MelodixAPI::toJsonValue(m_copied));
-    }
     return obj;
-}
-
-QList<QString> MDGetUserPlaylist_200_response_playlist_inner::getSubscribers() const {
-    return m_subscribers;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setSubscribers(const QList<QString> &subscribers) {
-    m_subscribers = subscribers;
-    m_subscribers_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_subscribers_Set() const{
-    return m_subscribers_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_subscribers_Valid() const{
-    return m_subscribers_isValid;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::isSubscribed() const {
-    return m_subscribed;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setSubscribed(const bool &subscribed) {
-    m_subscribed = subscribed;
-    m_subscribed_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_subscribed_Set() const{
-    return m_subscribed_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_subscribed_Valid() const{
-    return m_subscribed_isValid;
 }
 
 MDGetUserPlaylist_200_response_playlist_inner_creator MDGetUserPlaylist_200_response_playlist_inner::getCreator() const {
@@ -446,38 +252,6 @@ bool MDGetUserPlaylist_200_response_playlist_inner::is_creator_Valid() const{
     return m_creator_isValid;
 }
 
-QString MDGetUserPlaylist_200_response_playlist_inner::getUpdateFrequency() const {
-    return m_update_frequency;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setUpdateFrequency(const QString &update_frequency) {
-    m_update_frequency = update_frequency;
-    m_update_frequency_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_update_frequency_Set() const{
-    return m_update_frequency_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_update_frequency_Valid() const{
-    return m_update_frequency_isValid;
-}
-
-qint32 MDGetUserPlaylist_200_response_playlist_inner::getBackgroundCoverId() const {
-    return m_background_cover_id;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setBackgroundCoverId(const qint32 &background_cover_id) {
-    m_background_cover_id = background_cover_id;
-    m_background_cover_id_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_background_cover_id_Set() const{
-    return m_background_cover_id_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_background_cover_id_Valid() const{
-    return m_background_cover_id_isValid;
-}
-
 QString MDGetUserPlaylist_200_response_playlist_inner::getBackgroundCoverUrl() const {
     return m_background_cover_url;
 }
@@ -492,22 +266,6 @@ bool MDGetUserPlaylist_200_response_playlist_inner::is_background_cover_url_Set(
 
 bool MDGetUserPlaylist_200_response_playlist_inner::is_background_cover_url_Valid() const{
     return m_background_cover_url_isValid;
-}
-
-qint32 MDGetUserPlaylist_200_response_playlist_inner::getTitleImage() const {
-    return m_title_image;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setTitleImage(const qint32 &title_image) {
-    m_title_image = title_image;
-    m_title_image_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_title_image_Set() const{
-    return m_title_image_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_title_image_Valid() const{
-    return m_title_image_isValid;
 }
 
 QString MDGetUserPlaylist_200_response_playlist_inner::getTitleImageUrl() const {
@@ -540,54 +298,6 @@ bool MDGetUserPlaylist_200_response_playlist_inner::is_english_title_Set() const
 
 bool MDGetUserPlaylist_200_response_playlist_inner::is_english_title_Valid() const{
     return m_english_title_isValid;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::isOpRecommend() const {
-    return m_op_recommend;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setOpRecommend(const bool &op_recommend) {
-    m_op_recommend = op_recommend;
-    m_op_recommend_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_op_recommend_Set() const{
-    return m_op_recommend_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_op_recommend_Valid() const{
-    return m_op_recommend_isValid;
-}
-
-MDGetUserPlaylist_200_response_playlist_inner_recommendInfo MDGetUserPlaylist_200_response_playlist_inner::getRecommendInfo() const {
-    return m_recommend_info;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setRecommendInfo(const MDGetUserPlaylist_200_response_playlist_inner_recommendInfo &recommend_info) {
-    m_recommend_info = recommend_info;
-    m_recommend_info_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_recommend_info_Set() const{
-    return m_recommend_info_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_recommend_info_Valid() const{
-    return m_recommend_info_isValid;
-}
-
-qint32 MDGetUserPlaylist_200_response_playlist_inner::getSubscribedCount() const {
-    return m_subscribed_count;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setSubscribedCount(const qint32 &subscribed_count) {
-    m_subscribed_count = subscribed_count;
-    m_subscribed_count_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_subscribed_count_Set() const{
-    return m_subscribed_count_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_subscribed_count_Valid() const{
-    return m_subscribed_count_isValid;
 }
 
 qint32 MDGetUserPlaylist_200_response_playlist_inner::getCloudTrackCount() const {
@@ -636,22 +346,6 @@ bool MDGetUserPlaylist_200_response_playlist_inner::is_total_duration_Set() cons
 
 bool MDGetUserPlaylist_200_response_playlist_inner::is_total_duration_Valid() const{
     return m_total_duration_isValid;
-}
-
-qint32 MDGetUserPlaylist_200_response_playlist_inner::getCoverImgId() const {
-    return m_cover_img_id;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setCoverImgId(const qint32 &cover_img_id) {
-    m_cover_img_id = cover_img_id;
-    m_cover_img_id_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_cover_img_id_Set() const{
-    return m_cover_img_id_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_cover_img_id_Valid() const{
-    return m_cover_img_id_isValid;
 }
 
 qint32 MDGetUserPlaylist_200_response_playlist_inner::getPrivacy() const {
@@ -718,22 +412,6 @@ bool MDGetUserPlaylist_200_response_playlist_inner::is_update_time_Valid() const
     return m_update_time_isValid;
 }
 
-QString MDGetUserPlaylist_200_response_playlist_inner::getCommentThreadId() const {
-    return m_comment_thread_id;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setCommentThreadId(const QString &comment_thread_id) {
-    m_comment_thread_id = comment_thread_id;
-    m_comment_thread_id_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_comment_thread_id_Set() const{
-    return m_comment_thread_id_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_comment_thread_id_Valid() const{
-    return m_comment_thread_id_isValid;
-}
-
 QString MDGetUserPlaylist_200_response_playlist_inner::getCoverImgUrl() const {
     return m_cover_img_url;
 }
@@ -750,38 +428,6 @@ bool MDGetUserPlaylist_200_response_playlist_inner::is_cover_img_url_Valid() con
     return m_cover_img_url_isValid;
 }
 
-qint32 MDGetUserPlaylist_200_response_playlist_inner::getSpecialType() const {
-    return m_special_type;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setSpecialType(const qint32 &special_type) {
-    m_special_type = special_type;
-    m_special_type_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_special_type_Set() const{
-    return m_special_type_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_special_type_Valid() const{
-    return m_special_type_isValid;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::isAnonimous() const {
-    return m_anonimous;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setAnonimous(const bool &anonimous) {
-    m_anonimous = anonimous;
-    m_anonimous_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_anonimous_Set() const{
-    return m_anonimous_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_anonimous_Valid() const{
-    return m_anonimous_isValid;
-}
-
 qint32 MDGetUserPlaylist_200_response_playlist_inner::getCreateTime() const {
     return m_create_time;
 }
@@ -796,38 +442,6 @@ bool MDGetUserPlaylist_200_response_playlist_inner::is_create_time_Set() const{
 
 bool MDGetUserPlaylist_200_response_playlist_inner::is_create_time_Valid() const{
     return m_create_time_isValid;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::isHighQuality() const {
-    return m_high_quality;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setHighQuality(const bool &high_quality) {
-    m_high_quality = high_quality;
-    m_high_quality_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_high_quality_Set() const{
-    return m_high_quality_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_high_quality_Valid() const{
-    return m_high_quality_isValid;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::isNewImported() const {
-    return m_new_imported;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setNewImported(const bool &new_imported) {
-    m_new_imported = new_imported;
-    m_new_imported_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_new_imported_Set() const{
-    return m_new_imported_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_new_imported_Valid() const{
-    return m_new_imported_isValid;
 }
 
 qint32 MDGetUserPlaylist_200_response_playlist_inner::getTrackNumberUpdateTime() const {
@@ -862,22 +476,6 @@ bool MDGetUserPlaylist_200_response_playlist_inner::is_play_count_Valid() const{
     return m_play_count_isValid;
 }
 
-qint32 MDGetUserPlaylist_200_response_playlist_inner::getAdType() const {
-    return m_ad_type;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setAdType(const qint32 &ad_type) {
-    m_ad_type = ad_type;
-    m_ad_type_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_ad_type_Set() const{
-    return m_ad_type_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_ad_type_Valid() const{
-    return m_ad_type_isValid;
-}
-
 QString MDGetUserPlaylist_200_response_playlist_inner::getDescription() const {
     return m_description;
 }
@@ -908,22 +506,6 @@ bool MDGetUserPlaylist_200_response_playlist_inner::is_tags_Set() const{
 
 bool MDGetUserPlaylist_200_response_playlist_inner::is_tags_Valid() const{
     return m_tags_isValid;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::isOrdered() const {
-    return m_ordered;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setOrdered(const bool &ordered) {
-    m_ordered = ordered;
-    m_ordered_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_ordered_Set() const{
-    return m_ordered_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_ordered_Valid() const{
-    return m_ordered_isValid;
 }
 
 qint32 MDGetUserPlaylist_200_response_playlist_inner::getStatus() const {
@@ -974,72 +556,15 @@ bool MDGetUserPlaylist_200_response_playlist_inner::is_id_Valid() const{
     return m_id_isValid;
 }
 
-QString MDGetUserPlaylist_200_response_playlist_inner::getCoverImgIdStr() const {
-    return m_cover_img_id_str;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setCoverImgIdStr(const QString &cover_img_id_str) {
-    m_cover_img_id_str = cover_img_id_str;
-    m_cover_img_id_str_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_cover_img_id_str_Set() const{
-    return m_cover_img_id_str_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_cover_img_id_str_Valid() const{
-    return m_cover_img_id_str_isValid;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::isCopied() const {
-    return m_copied;
-}
-void MDGetUserPlaylist_200_response_playlist_inner::setCopied(const bool &copied) {
-    m_copied = copied;
-    m_copied_isSet = true;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_copied_Set() const{
-    return m_copied_isSet;
-}
-
-bool MDGetUserPlaylist_200_response_playlist_inner::is_copied_Valid() const{
-    return m_copied_isValid;
-}
-
 bool MDGetUserPlaylist_200_response_playlist_inner::isSet() const {
     bool isObjectUpdated = false;
     do {
-        if (m_subscribers.size() > 0) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_subscribed_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_creator.isSet()) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_update_frequency_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_background_cover_id_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_background_cover_url_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_title_image_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -1050,21 +575,6 @@ bool MDGetUserPlaylist_200_response_playlist_inner::isSet() const {
         }
 
         if (m_english_title_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_op_recommend_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_recommend_info.isSet()) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_subscribed_count_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -1080,11 +590,6 @@ bool MDGetUserPlaylist_200_response_playlist_inner::isSet() const {
         }
 
         if (m_total_duration_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_cover_img_id_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -1109,37 +614,12 @@ bool MDGetUserPlaylist_200_response_playlist_inner::isSet() const {
             break;
         }
 
-        if (m_comment_thread_id_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_cover_img_url_isSet) {
             isObjectUpdated = true;
             break;
         }
 
-        if (m_special_type_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_anonimous_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_create_time_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_high_quality_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_new_imported_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -1154,22 +634,12 @@ bool MDGetUserPlaylist_200_response_playlist_inner::isSet() const {
             break;
         }
 
-        if (m_ad_type_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_description_isSet) {
             isObjectUpdated = true;
             break;
         }
 
         if (m_tags.size() > 0) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_ordered_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -1188,23 +658,13 @@ bool MDGetUserPlaylist_200_response_playlist_inner::isSet() const {
             isObjectUpdated = true;
             break;
         }
-
-        if (m_cover_img_id_str_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_copied_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
     } while (false);
     return isObjectUpdated;
 }
 
 bool MDGetUserPlaylist_200_response_playlist_inner::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_subscribers_isValid && m_subscribed_isValid && m_creator_isValid && m_update_frequency_isValid && m_background_cover_id_isValid && m_background_cover_url_isValid && m_title_image_isValid && m_title_image_url_isValid && m_english_title_isValid && m_op_recommend_isValid && m_recommend_info_isValid && m_subscribed_count_isValid && m_cloud_track_count_isValid && m_user_id_isValid && m_total_duration_isValid && m_cover_img_id_isValid && m_privacy_isValid && m_track_update_time_isValid && m_track_count_isValid && m_update_time_isValid && m_comment_thread_id_isValid && m_cover_img_url_isValid && m_special_type_isValid && m_anonimous_isValid && m_create_time_isValid && m_high_quality_isValid && m_new_imported_isValid && m_track_number_update_time_isValid && m_play_count_isValid && m_ad_type_isValid && m_description_isValid && m_tags_isValid && m_ordered_isValid && m_status_isValid && m_name_isValid && m_id_isValid && m_cover_img_id_str_isValid && m_copied_isValid && true;
+    return m_creator_isValid && m_background_cover_url_isValid && m_title_image_url_isValid && m_english_title_isValid && m_cloud_track_count_isValid && m_user_id_isValid && m_total_duration_isValid && m_privacy_isValid && m_track_update_time_isValid && m_track_count_isValid && m_update_time_isValid && m_cover_img_url_isValid && m_create_time_isValid && m_track_number_update_time_isValid && m_play_count_isValid && m_description_isValid && m_tags_isValid && m_status_isValid && m_name_isValid && m_id_isValid && true;
 }
 
 } // namespace MelodixAPI

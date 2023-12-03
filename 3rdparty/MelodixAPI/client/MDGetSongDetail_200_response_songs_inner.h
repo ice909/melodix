@@ -21,7 +21,6 @@
 #include <QJsonObject>
 
 #include "MDGetArtistSingle_200_response_songs_inner_al.h"
-#include "MDGetArtistSingle_200_response_songs_inner_h.h"
 #include "MDGetSongDetail_200_response_songs_inner_ar_inner.h"
 #include <QList>
 #include <QString>
@@ -32,7 +31,6 @@
 namespace MelodixAPI {
 class MDGetSongDetail_200_response_songs_inner_ar_inner;
 class MDGetArtistSingle_200_response_songs_inner_al;
-class MDGetArtistSingle_200_response_songs_inner_h;
 
 class MDGetSongDetail_200_response_songs_inner : public MDObject {
 public:
@@ -55,55 +53,10 @@ public:
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
-    qint32 getPst() const;
-    void setPst(const qint32 &pst);
-    bool is_pst_Set() const;
-    bool is_pst_Valid() const;
-
-    qint32 getT() const;
-    void setT(const qint32 &t);
-    bool is_t_Set() const;
-    bool is_t_Valid() const;
-
     QList<MDGetSongDetail_200_response_songs_inner_ar_inner> getAr() const;
     void setAr(const QList<MDGetSongDetail_200_response_songs_inner_ar_inner> &ar);
     bool is_ar_Set() const;
     bool is_ar_Valid() const;
-
-    QList<QString> getAlia() const;
-    void setAlia(const QList<QString> &alia);
-    bool is_alia_Set() const;
-    bool is_alia_Valid() const;
-
-    qint32 getPop() const;
-    void setPop(const qint32 &pop);
-    bool is_pop_Set() const;
-    bool is_pop_Valid() const;
-
-    qint32 getSt() const;
-    void setSt(const qint32 &st);
-    bool is_st_Set() const;
-    bool is_st_Valid() const;
-
-    QString getRt() const;
-    void setRt(const QString &rt);
-    bool is_rt_Set() const;
-    bool is_rt_Valid() const;
-
-    qint32 getFee() const;
-    void setFee(const qint32 &fee);
-    bool is_fee_Set() const;
-    bool is_fee_Valid() const;
-
-    qint32 getV() const;
-    void setV(const qint32 &v);
-    bool is_v_Set() const;
-    bool is_v_Valid() const;
-
-    QString getCf() const;
-    void setCf(const QString &cf);
-    bool is_cf_Set() const;
-    bool is_cf_Valid() const;
 
     MDGetArtistSingle_200_response_songs_inner_al getAl() const;
     void setAl(const MDGetArtistSingle_200_response_songs_inner_al &al);
@@ -114,106 +67,6 @@ public:
     void setDt(const qint32 &dt);
     bool is_dt_Set() const;
     bool is_dt_Valid() const;
-
-    MDGetArtistSingle_200_response_songs_inner_h getH() const;
-    void setH(const MDGetArtistSingle_200_response_songs_inner_h &h);
-    bool is_h_Set() const;
-    bool is_h_Valid() const;
-
-    MDGetArtistSingle_200_response_songs_inner_h getM() const;
-    void setM(const MDGetArtistSingle_200_response_songs_inner_h &m);
-    bool is_m_Set() const;
-    bool is_m_Valid() const;
-
-    MDGetArtistSingle_200_response_songs_inner_h getL() const;
-    void setL(const MDGetArtistSingle_200_response_songs_inner_h &l);
-    bool is_l_Set() const;
-    bool is_l_Valid() const;
-
-    MDGetArtistSingle_200_response_songs_inner_h getSq() const;
-    void setSq(const MDGetArtistSingle_200_response_songs_inner_h &sq);
-    bool is_sq_Set() const;
-    bool is_sq_Valid() const;
-
-    QString getCd() const;
-    void setCd(const QString &cd);
-    bool is_cd_Set() const;
-    bool is_cd_Valid() const;
-
-    qint32 getNo() const;
-    void setNo(const qint32 &no);
-    bool is_no_Set() const;
-    bool is_no_Valid() const;
-
-    qint32 getFtype() const;
-    void setFtype(const qint32 &ftype);
-    bool is_ftype_Set() const;
-    bool is_ftype_Valid() const;
-
-    QList<QString> getRtUrls() const;
-    void setRtUrls(const QList<QString> &rt_urls);
-    bool is_rt_urls_Set() const;
-    bool is_rt_urls_Valid() const;
-
-    qint32 getDjId() const;
-    void setDjId(const qint32 &dj_id);
-    bool is_dj_id_Set() const;
-    bool is_dj_id_Valid() const;
-
-    qint32 getCopyright() const;
-    void setCopyright(const qint32 &copyright);
-    bool is_copyright_Set() const;
-    bool is_copyright_Valid() const;
-
-    qint32 getSId() const;
-    void setSId(const qint32 &s_id);
-    bool is_s_id_Set() const;
-    bool is_s_id_Valid() const;
-
-    qint32 getMark() const;
-    void setMark(const qint32 &mark);
-    bool is_mark_Set() const;
-    bool is_mark_Valid() const;
-
-    qint32 getOriginCoverType() const;
-    void setOriginCoverType(const qint32 &origin_cover_type);
-    bool is_origin_cover_type_Set() const;
-    bool is_origin_cover_type_Valid() const;
-
-    bool isResourceState() const;
-    void setResourceState(const bool &resource_state);
-    bool is_resource_state_Set() const;
-    bool is_resource_state_Valid() const;
-
-    qint32 getVersion() const;
-    void setVersion(const qint32 &version);
-    bool is_version_Set() const;
-    bool is_version_Valid() const;
-
-    qint32 getSingle() const;
-    void setSingle(const qint32 &single);
-    bool is_single_Set() const;
-    bool is_single_Valid() const;
-
-    qint32 getMv() const;
-    void setMv(const qint32 &mv);
-    bool is_mv_Set() const;
-    bool is_mv_Valid() const;
-
-    qint32 getRtype() const;
-    void setRtype(const qint32 &rtype);
-    bool is_rtype_Set() const;
-    bool is_rtype_Valid() const;
-
-    qint32 getMst() const;
-    void setMst(const qint32 &mst);
-    bool is_mst_Set() const;
-    bool is_mst_Valid() const;
-
-    qint32 getCp() const;
-    void setCp(const qint32 &cp);
-    bool is_cp_Set() const;
-    bool is_cp_Valid() const;
 
     qint32 getPublishTime() const;
     void setPublishTime(const qint32 &publish_time);
@@ -234,45 +87,9 @@ private:
     bool m_id_isSet;
     bool m_id_isValid;
 
-    qint32 m_pst;
-    bool m_pst_isSet;
-    bool m_pst_isValid;
-
-    qint32 m_t;
-    bool m_t_isSet;
-    bool m_t_isValid;
-
     QList<MDGetSongDetail_200_response_songs_inner_ar_inner> m_ar;
     bool m_ar_isSet;
     bool m_ar_isValid;
-
-    QList<QString> m_alia;
-    bool m_alia_isSet;
-    bool m_alia_isValid;
-
-    qint32 m_pop;
-    bool m_pop_isSet;
-    bool m_pop_isValid;
-
-    qint32 m_st;
-    bool m_st_isSet;
-    bool m_st_isValid;
-
-    QString m_rt;
-    bool m_rt_isSet;
-    bool m_rt_isValid;
-
-    qint32 m_fee;
-    bool m_fee_isSet;
-    bool m_fee_isValid;
-
-    qint32 m_v;
-    bool m_v_isSet;
-    bool m_v_isValid;
-
-    QString m_cf;
-    bool m_cf_isSet;
-    bool m_cf_isValid;
 
     MDGetArtistSingle_200_response_songs_inner_al m_al;
     bool m_al_isSet;
@@ -281,86 +98,6 @@ private:
     qint32 m_dt;
     bool m_dt_isSet;
     bool m_dt_isValid;
-
-    MDGetArtistSingle_200_response_songs_inner_h m_h;
-    bool m_h_isSet;
-    bool m_h_isValid;
-
-    MDGetArtistSingle_200_response_songs_inner_h m_m;
-    bool m_m_isSet;
-    bool m_m_isValid;
-
-    MDGetArtistSingle_200_response_songs_inner_h m_l;
-    bool m_l_isSet;
-    bool m_l_isValid;
-
-    MDGetArtistSingle_200_response_songs_inner_h m_sq;
-    bool m_sq_isSet;
-    bool m_sq_isValid;
-
-    QString m_cd;
-    bool m_cd_isSet;
-    bool m_cd_isValid;
-
-    qint32 m_no;
-    bool m_no_isSet;
-    bool m_no_isValid;
-
-    qint32 m_ftype;
-    bool m_ftype_isSet;
-    bool m_ftype_isValid;
-
-    QList<QString> m_rt_urls;
-    bool m_rt_urls_isSet;
-    bool m_rt_urls_isValid;
-
-    qint32 m_dj_id;
-    bool m_dj_id_isSet;
-    bool m_dj_id_isValid;
-
-    qint32 m_copyright;
-    bool m_copyright_isSet;
-    bool m_copyright_isValid;
-
-    qint32 m_s_id;
-    bool m_s_id_isSet;
-    bool m_s_id_isValid;
-
-    qint32 m_mark;
-    bool m_mark_isSet;
-    bool m_mark_isValid;
-
-    qint32 m_origin_cover_type;
-    bool m_origin_cover_type_isSet;
-    bool m_origin_cover_type_isValid;
-
-    bool m_resource_state;
-    bool m_resource_state_isSet;
-    bool m_resource_state_isValid;
-
-    qint32 m_version;
-    bool m_version_isSet;
-    bool m_version_isValid;
-
-    qint32 m_single;
-    bool m_single_isSet;
-    bool m_single_isValid;
-
-    qint32 m_mv;
-    bool m_mv_isSet;
-    bool m_mv_isValid;
-
-    qint32 m_rtype;
-    bool m_rtype_isSet;
-    bool m_rtype_isValid;
-
-    qint32 m_mst;
-    bool m_mst_isSet;
-    bool m_mst_isValid;
-
-    qint32 m_cp;
-    bool m_cp_isSet;
-    bool m_cp_isValid;
 
     qint32 m_publish_time;
     bool m_publish_time_isSet;

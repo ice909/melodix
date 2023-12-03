@@ -41,22 +41,16 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("cellphoneLogin", 0);
     _serverConfigs.insert("checkMusic", defaultConf);
     _serverIndices.insert("checkMusic", 0);
-    _serverConfigs.insert("checkNickname", defaultConf);
-    _serverIndices.insert("checkNickname", 0);
     _serverConfigs.insert("getAccountInfo", defaultConf);
     _serverIndices.insert("getAccountInfo", 0);
     _serverConfigs.insert("getArtistAlbum", defaultConf);
     _serverIndices.insert("getArtistAlbum", 0);
     _serverConfigs.insert("getArtistDetail", defaultConf);
     _serverIndices.insert("getArtistDetail", 0);
-    _serverConfigs.insert("getArtistMv", defaultConf);
-    _serverIndices.insert("getArtistMv", 0);
     _serverConfigs.insert("getArtistSingle", defaultConf);
     _serverIndices.insert("getArtistSingle", 0);
     _serverConfigs.insert("getArtistSublist", defaultConf);
     _serverIndices.insert("getArtistSublist", 0);
-    _serverConfigs.insert("getHotComment", defaultConf);
-    _serverIndices.insert("getHotComment", 0);
     _serverConfigs.insert("getLikeSongId", defaultConf);
     _serverIndices.insert("getLikeSongId", 0);
     _serverConfigs.insert("getLoginStatus", defaultConf);
@@ -65,10 +59,6 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("getLyric", 0);
     _serverConfigs.insert("getMvDetail", defaultConf);
     _serverIndices.insert("getMvDetail", 0);
-    _serverConfigs.insert("getMvSublist", defaultConf);
-    _serverIndices.insert("getMvSublist", 0);
-    _serverConfigs.insert("getMvUrl", defaultConf);
-    _serverIndices.insert("getMvUrl", 0);
     _serverConfigs.insert("getPlaylistDetail", defaultConf);
     _serverIndices.insert("getPlaylistDetail", 0);
     _serverConfigs.insert("getPlaylistTrackAll", defaultConf);
@@ -79,14 +69,10 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("getQrKey", 0);
     _serverConfigs.insert("getRecommendResource", defaultConf);
     _serverIndices.insert("getRecommendResource", 0);
-    _serverConfigs.insert("getRecommendedMv", defaultConf);
-    _serverIndices.insert("getRecommendedMv", 0);
     _serverConfigs.insert("getRecommendedNewSongs", defaultConf);
     _serverIndices.insert("getRecommendedNewSongs", 0);
     _serverConfigs.insert("getRecommendedPlaylist", defaultConf);
     _serverIndices.insert("getRecommendedPlaylist", 0);
-    _serverConfigs.insert("getSimiMv", defaultConf);
-    _serverIndices.insert("getSimiMv", 0);
     _serverConfigs.insert("getSongDetail", defaultConf);
     _serverIndices.insert("getSongDetail", 0);
     _serverConfigs.insert("getSongUrl", defaultConf);
@@ -97,10 +83,6 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("getTopPlaylist", 0);
     _serverConfigs.insert("getUserDetail", defaultConf);
     _serverIndices.insert("getUserDetail", 0);
-    _serverConfigs.insert("getUserDynamic", defaultConf);
-    _serverIndices.insert("getUserDynamic", 0);
-    _serverConfigs.insert("getUserLevel", defaultConf);
-    _serverIndices.insert("getUserLevel", 0);
     _serverConfigs.insert("getUserPlaylist", defaultConf);
     _serverIndices.insert("getUserPlaylist", 0);
     _serverConfigs.insert("likeMusic", defaultConf);
@@ -113,8 +95,6 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("search", 0);
     _serverConfigs.insert("sendCaptcha", defaultConf);
     _serverIndices.insert("sendCaptcha", 0);
-    _serverConfigs.insert("updateUserInfo", defaultConf);
-    _serverIndices.insert("updateUserInfo", 0);
     _serverConfigs.insert("verifyCaptcha", defaultConf);
     _serverIndices.insert("verifyCaptcha", 0);
 }
@@ -562,71 +542,6 @@ void MDClientApi::checkMusicCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::checkNickname(const QString &nickname) {
-    QString fullPath = QString(_serverConfigs["checkNickname"][_serverIndices.value("checkNickname")].URL()+"/nickname/check");
-    
-    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "nickname", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("nickname")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(nickname)));
-    }
-    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    MDHttpRequestInput input(fullPath, "GET");
-
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
-        input.headers.insert(keyValueIt->first, keyValueIt->second);
-    }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
-
-    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::checkNicknameCallback);
-    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
-        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void MDClientApi::checkNicknameCallback(MDHttpRequestWorker *worker) {
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type != QNetworkReply::NoError) {
-        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
-    }
-    MDCheckNickname_200_response output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit checkNicknameSignal(output);
-        emit checkNicknameSignalFull(worker, output);
-    } else {
-        emit checkNicknameSignalE(output, error_type, error_str);
-        emit checkNicknameSignalEFull(worker, error_type, error_str);
-    }
-}
-
 void MDClientApi::getAccountInfo(const double &timestamp) {
     QString fullPath = QString(_serverConfigs["getAccountInfo"][_serverIndices.value("getAccountInfo")].URL()+"/user/account");
     
@@ -837,71 +752,6 @@ void MDClientApi::getArtistDetailCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getArtistMv(const QString &id) {
-    QString fullPath = QString(_serverConfigs["getArtistMv"][_serverIndices.value("getArtistMv")].URL()+"/artist/mv");
-    
-    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "id", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(id)));
-    }
-    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    MDHttpRequestInput input(fullPath, "GET");
-
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
-        input.headers.insert(keyValueIt->first, keyValueIt->second);
-    }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
-
-    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getArtistMvCallback);
-    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
-        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void MDClientApi::getArtistMvCallback(MDHttpRequestWorker *worker) {
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type != QNetworkReply::NoError) {
-        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
-    }
-    MDGetArtistMv_200_response output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit getArtistMvSignal(output);
-        emit getArtistMvSignalFull(worker, output);
-    } else {
-        emit getArtistMvSignalE(output, error_type, error_str);
-        emit getArtistMvSignalEFull(worker, error_type, error_str);
-    }
-}
-
 void MDClientApi::getArtistSingle(const QString &id) {
     QString fullPath = QString(_serverConfigs["getArtistSingle"][_serverIndices.value("getArtistSingle")].URL()+"/artist/top/song");
     
@@ -1029,86 +879,6 @@ void MDClientApi::getArtistSublistCallback(MDHttpRequestWorker *worker) {
     } else {
         emit getArtistSublistSignalE(output, error_type, error_str);
         emit getArtistSublistSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void MDClientApi::getHotComment(const QString &id, const double &type) {
-    QString fullPath = QString(_serverConfigs["getHotComment"][_serverIndices.value("getHotComment")].URL()+"/comment/hot");
-    
-    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "id", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(id)));
-    }
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "type", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("type")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(type)));
-    }
-    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    MDHttpRequestInput input(fullPath, "GET");
-
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
-        input.headers.insert(keyValueIt->first, keyValueIt->second);
-    }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
-
-    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getHotCommentCallback);
-    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
-        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void MDClientApi::getHotCommentCallback(MDHttpRequestWorker *worker) {
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type != QNetworkReply::NoError) {
-        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
-    }
-    MDGetHotComment_200_response output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit getHotCommentSignal(output);
-        emit getHotCommentSignalFull(worker, output);
-    } else {
-        emit getHotCommentSignalE(output, error_type, error_str);
-        emit getHotCommentSignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -1369,151 +1139,6 @@ void MDClientApi::getMvDetailCallback(MDHttpRequestWorker *worker) {
     } else {
         emit getMvDetailSignalE(output, error_type, error_str);
         emit getMvDetailSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void MDClientApi::getMvSublist(const double &timestamp) {
-    QString fullPath = QString(_serverConfigs["getMvSublist"][_serverIndices.value("getMvSublist")].URL()+"/mv/sublist");
-    
-    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "timestamp", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("timestamp")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(timestamp)));
-    }
-    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    MDHttpRequestInput input(fullPath, "GET");
-
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
-        input.headers.insert(keyValueIt->first, keyValueIt->second);
-    }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
-
-    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getMvSublistCallback);
-    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
-        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void MDClientApi::getMvSublistCallback(MDHttpRequestWorker *worker) {
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type != QNetworkReply::NoError) {
-        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
-    }
-    MDGetMvSublist_200_response output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit getMvSublistSignal(output);
-        emit getMvSublistSignalFull(worker, output);
-    } else {
-        emit getMvSublistSignalE(output, error_type, error_str);
-        emit getMvSublistSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void MDClientApi::getMvUrl(const QString &id, const ::MelodixAPI::OptionalParam<QString> &r) {
-    QString fullPath = QString(_serverConfigs["getMvUrl"][_serverIndices.value("getMvUrl")].URL()+"/mv/url");
-    
-    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "id", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(id)));
-    }
-    if (r.hasValue())
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "r", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("r")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(r.value())));
-    }
-    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    MDHttpRequestInput input(fullPath, "GET");
-
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
-        input.headers.insert(keyValueIt->first, keyValueIt->second);
-    }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
-
-    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getMvUrlCallback);
-    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
-        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void MDClientApi::getMvUrlCallback(MDHttpRequestWorker *worker) {
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type != QNetworkReply::NoError) {
-        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
-    }
-    MDGetMvUrl_200_response output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit getMvUrlSignal(output);
-        emit getMvUrlSignalFull(worker, output);
-    } else {
-        emit getMvUrlSignalE(output, error_type, error_str);
-        emit getMvUrlSignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -1856,55 +1481,6 @@ void MDClientApi::getRecommendResourceCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getRecommendedMv() {
-    QString fullPath = QString(_serverConfigs["getRecommendedMv"][_serverIndices.value("getRecommendedMv")].URL()+"/personalized/mv");
-    
-    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    MDHttpRequestInput input(fullPath, "GET");
-
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
-        input.headers.insert(keyValueIt->first, keyValueIt->second);
-    }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
-
-    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getRecommendedMvCallback);
-    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
-        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void MDClientApi::getRecommendedMvCallback(MDHttpRequestWorker *worker) {
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type != QNetworkReply::NoError) {
-        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
-    }
-    MDGetRecommendedMv_200_response output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit getRecommendedMvSignal(output);
-        emit getRecommendedMvSignalFull(worker, output);
-    } else {
-        emit getRecommendedMvSignalE(output, error_type, error_str);
-        emit getRecommendedMvSignalEFull(worker, error_type, error_str);
-    }
-}
-
 void MDClientApi::getRecommendedNewSongs(const ::MelodixAPI::OptionalParam<double> &limit) {
     QString fullPath = QString(_serverConfigs["getRecommendedNewSongs"][_serverIndices.value("getRecommendedNewSongs")].URL()+"/personalized/newsong");
     
@@ -2047,71 +1623,6 @@ void MDClientApi::getRecommendedPlaylistCallback(MDHttpRequestWorker *worker) {
     } else {
         emit getRecommendedPlaylistSignalE(output, error_type, error_str);
         emit getRecommendedPlaylistSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void MDClientApi::getSimiMv(const QString &mvid) {
-    QString fullPath = QString(_serverConfigs["getSimiMv"][_serverIndices.value("getSimiMv")].URL()+"/simi/mv");
-    
-    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "mvid", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("mvid")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(mvid)));
-    }
-    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    MDHttpRequestInput input(fullPath, "GET");
-
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
-        input.headers.insert(keyValueIt->first, keyValueIt->second);
-    }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
-
-    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getSimiMvCallback);
-    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
-        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void MDClientApi::getSimiMvCallback(MDHttpRequestWorker *worker) {
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type != QNetworkReply::NoError) {
-        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
-    }
-    MDGetSimiMv_200_response output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit getSimiMvSignal(output);
-        emit getSimiMvSignalFull(worker, output);
-    } else {
-        emit getSimiMvSignalE(output, error_type, error_str);
-        emit getSimiMvSignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -2466,150 +1977,6 @@ void MDClientApi::getUserDetailCallback(MDHttpRequestWorker *worker) {
     } else {
         emit getUserDetailSignalE(output, error_type, error_str);
         emit getUserDetailSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void MDClientApi::getUserDynamic(const QString &uid, const ::MelodixAPI::OptionalParam<QString> &limit, const ::MelodixAPI::OptionalParam<QString> &lasttime) {
-    QString fullPath = QString(_serverConfigs["getUserDynamic"][_serverIndices.value("getUserDynamic")].URL()+"/user/event");
-    
-    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "uid", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("uid")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(uid)));
-    }
-    if (limit.hasValue())
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "limit", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("limit")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(limit.value())));
-    }
-    if (lasttime.hasValue())
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "lasttime", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("lasttime")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(lasttime.value())));
-    }
-    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    MDHttpRequestInput input(fullPath, "GET");
-
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
-        input.headers.insert(keyValueIt->first, keyValueIt->second);
-    }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
-
-    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getUserDynamicCallback);
-    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
-        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void MDClientApi::getUserDynamicCallback(MDHttpRequestWorker *worker) {
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type != QNetworkReply::NoError) {
-        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
-    }
-    MDGetUserDynamic_200_response output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit getUserDynamicSignal(output);
-        emit getUserDynamicSignalFull(worker, output);
-    } else {
-        emit getUserDynamicSignalE(output, error_type, error_str);
-        emit getUserDynamicSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void MDClientApi::getUserLevel() {
-    QString fullPath = QString(_serverConfigs["getUserLevel"][_serverIndices.value("getUserLevel")].URL()+"/user/level");
-    
-    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    MDHttpRequestInput input(fullPath, "GET");
-
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
-        input.headers.insert(keyValueIt->first, keyValueIt->second);
-    }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
-
-    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::getUserLevelCallback);
-    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
-        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void MDClientApi::getUserLevelCallback(MDHttpRequestWorker *worker) {
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type != QNetworkReply::NoError) {
-        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
-    }
-    MDGetUserLevel_200_response output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit getUserLevelSignal(output);
-        emit getUserLevelSignalFull(worker, output);
-    } else {
-        emit getUserLevelSignalE(output, error_type, error_str);
-        emit getUserLevelSignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -3135,161 +2502,6 @@ void MDClientApi::sendCaptchaCallback(MDHttpRequestWorker *worker) {
     } else {
         emit sendCaptchaSignalE(output, error_type, error_str);
         emit sendCaptchaSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void MDClientApi::updateUserInfo(const QString &gender, const QString &signature, const QString &city, const QString &nickname, const QString &birthday, const QString &province, const QString &timestamp) {
-    QString fullPath = QString(_serverConfigs["updateUserInfo"][_serverIndices.value("updateUserInfo")].URL()+"/user/update");
-    
-    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "gender", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("gender")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(gender)));
-    }
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "signature", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("signature")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(signature)));
-    }
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "city", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("city")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(city)));
-    }
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "nickname", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("nickname")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(nickname)));
-    }
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "birthday", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("birthday")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(birthday)));
-    }
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "province", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("province")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(province)));
-    }
-    
-    {
-        queryStyle = "";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "timestamp", false);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("timestamp")).append(querySuffix).append(QUrl::toPercentEncoding(::MelodixAPI::toStringValue(timestamp)));
-    }
-    MDHttpRequestWorker *worker = new MDHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    MDHttpRequestInput input(fullPath, "GET");
-
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
-        input.headers.insert(keyValueIt->first, keyValueIt->second);
-    }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
-
-    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::updateUserInfoCallback);
-    connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
-        if (findChildren<MDHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void MDClientApi::updateUserInfoCallback(MDHttpRequestWorker *worker) {
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type != QNetworkReply::NoError) {
-        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
-    }
-    MDUpdateUserInfo_200_response output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit updateUserInfoSignal(output);
-        emit updateUserInfoSignalFull(worker, output);
-    } else {
-        emit updateUserInfoSignalE(output, error_type, error_str);
-        emit updateUserInfoSignalEFull(worker, error_type, error_str);
     }
 }
 

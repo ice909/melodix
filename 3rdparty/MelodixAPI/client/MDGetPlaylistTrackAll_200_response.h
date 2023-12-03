@@ -21,7 +21,6 @@
 #include <QJsonObject>
 
 #include "MDGetPlaylistTrackAll_200_response_songs_inner.h"
-#include "MDGetRecommendedNewSongs_200_response_result_inner_song_privilege.h"
 #include <QList>
 
 #include "MDEnum.h"
@@ -29,7 +28,6 @@
 
 namespace MelodixAPI {
 class MDGetPlaylistTrackAll_200_response_songs_inner;
-class MDGetRecommendedNewSongs_200_response_result_inner_song_privilege;
 
 class MDGetPlaylistTrackAll_200_response : public MDObject {
 public:
@@ -47,11 +45,6 @@ public:
     bool is_songs_Set() const;
     bool is_songs_Valid() const;
 
-    QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege> getPrivileges() const;
-    void setPrivileges(const QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege> &privileges);
-    bool is_privileges_Set() const;
-    bool is_privileges_Valid() const;
-
     qint32 getCode() const;
     void setCode(const qint32 &code);
     bool is_code_Set() const;
@@ -66,10 +59,6 @@ private:
     QList<MDGetPlaylistTrackAll_200_response_songs_inner> m_songs;
     bool m_songs_isSet;
     bool m_songs_isValid;
-
-    QList<MDGetRecommendedNewSongs_200_response_result_inner_song_privilege> m_privileges;
-    bool m_privileges_isSet;
-    bool m_privileges_isValid;
 
     qint32 m_code;
     bool m_code_isSet;

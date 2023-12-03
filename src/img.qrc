@@ -18,7 +18,6 @@
         <file>dsg/icons/toolbar_like.dci</file>
         <file>dsg/icons/toolbar_music_repeat.dci</file>
         <file>dsg/icons/toolbar_music_repeatcycle.dci</file>
-        <file>dsg/icons/toolbar_music_sequence.dci</file>
         <file>dsg/icons/toolbar_music_shuffle.dci</file>
         <file>dsg/icons/toolbar_lrc.dci</file>
         <file>dsg/icons/toolbar_playlist.dci</file>
@@ -35,13 +34,6 @@
         <file>dsg/icons/library-dark.svg</file>
         <file>dsg/icons/favourite-light.svg</file>
         <file>dsg/icons/favourite-dark.svg</file>
-
-        <file>dsg/icons/praise-light.svg</file>
-        <file>dsg/icons/praise-dark.svg</file>
-        <file>dsg/icons/comment-light.svg</file>
-        <file>dsg/icons/comment-dark.svg</file>
-        <file>dsg/icons/share-light.svg</file>
-        <file>dsg/icons/share-dark.svg</file>
 
         <file>dsg/icons/play.svg</file>
     </qresource>
