@@ -61,6 +61,7 @@ add_library(${PROJECT_NAME}
   MDGetRecommendedNewSongs_200_response.h
   MDGetRecommendedNewSongs_200_response_result_inner.h
   MDGetRecommendedNewSongs_200_response_result_inner_song.h
+  MDGetRecommendedNewSongs_200_response_result_inner_song_album.h
   MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner.h
   MDGetRecommendedPlaylist_200_response.h
   MDGetRecommendedPlaylist_200_response_result_inner.h
@@ -161,6 +162,7 @@ add_library(${PROJECT_NAME}
   MDGetRecommendedNewSongs_200_response.cpp
   MDGetRecommendedNewSongs_200_response_result_inner.cpp
   MDGetRecommendedNewSongs_200_response_result_inner_song.cpp
+  MDGetRecommendedNewSongs_200_response_result_inner_song_album.cpp
   MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner.cpp
   MDGetRecommendedPlaylist_200_response.cpp
   MDGetRecommendedPlaylist_200_response_result_inner.cpp

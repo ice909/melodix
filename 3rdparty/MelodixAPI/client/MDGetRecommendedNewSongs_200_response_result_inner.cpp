@@ -36,17 +36,11 @@ void MDGetRecommendedNewSongs_200_response_result_inner::initializeModel() {
     m_id_isSet = false;
     m_id_isValid = false;
 
-    m_type_isSet = false;
-    m_type_isValid = false;
-
     m_name_isSet = false;
     m_name_isValid = false;
 
     m_pic_url_isSet = false;
     m_pic_url_isValid = false;
-
-    m_can_dislike_isSet = false;
-    m_can_dislike_isValid = false;
 
     m_song_isSet = false;
     m_song_isValid = false;
@@ -64,17 +58,11 @@ void MDGetRecommendedNewSongs_200_response_result_inner::fromJsonObject(QJsonObj
     m_id_isValid = ::MelodixAPI::fromJsonValue(m_id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
 
-    m_type_isValid = ::MelodixAPI::fromJsonValue(m_type, json[QString("type")]);
-    m_type_isSet = !json[QString("type")].isNull() && m_type_isValid;
-
     m_name_isValid = ::MelodixAPI::fromJsonValue(m_name, json[QString("name")]);
     m_name_isSet = !json[QString("name")].isNull() && m_name_isValid;
 
     m_pic_url_isValid = ::MelodixAPI::fromJsonValue(m_pic_url, json[QString("picUrl")]);
     m_pic_url_isSet = !json[QString("picUrl")].isNull() && m_pic_url_isValid;
-
-    m_can_dislike_isValid = ::MelodixAPI::fromJsonValue(m_can_dislike, json[QString("canDislike")]);
-    m_can_dislike_isSet = !json[QString("canDislike")].isNull() && m_can_dislike_isValid;
 
     m_song_isValid = ::MelodixAPI::fromJsonValue(m_song, json[QString("song")]);
     m_song_isSet = !json[QString("song")].isNull() && m_song_isValid;
@@ -92,17 +80,11 @@ QJsonObject MDGetRecommendedNewSongs_200_response_result_inner::asJsonObject() c
     if (m_id_isSet) {
         obj.insert(QString("id"), ::MelodixAPI::toJsonValue(m_id));
     }
-    if (m_type_isSet) {
-        obj.insert(QString("type"), ::MelodixAPI::toJsonValue(m_type));
-    }
     if (m_name_isSet) {
         obj.insert(QString("name"), ::MelodixAPI::toJsonValue(m_name));
     }
     if (m_pic_url_isSet) {
         obj.insert(QString("picUrl"), ::MelodixAPI::toJsonValue(m_pic_url));
-    }
-    if (m_can_dislike_isSet) {
-        obj.insert(QString("canDislike"), ::MelodixAPI::toJsonValue(m_can_dislike));
     }
     if (m_song.isSet()) {
         obj.insert(QString("song"), ::MelodixAPI::toJsonValue(m_song));
@@ -124,22 +106,6 @@ bool MDGetRecommendedNewSongs_200_response_result_inner::is_id_Set() const{
 
 bool MDGetRecommendedNewSongs_200_response_result_inner::is_id_Valid() const{
     return m_id_isValid;
-}
-
-qint32 MDGetRecommendedNewSongs_200_response_result_inner::getType() const {
-    return m_type;
-}
-void MDGetRecommendedNewSongs_200_response_result_inner::setType(const qint32 &type) {
-    m_type = type;
-    m_type_isSet = true;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner::is_type_Set() const{
-    return m_type_isSet;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner::is_type_Valid() const{
-    return m_type_isValid;
 }
 
 QString MDGetRecommendedNewSongs_200_response_result_inner::getName() const {
@@ -174,22 +140,6 @@ bool MDGetRecommendedNewSongs_200_response_result_inner::is_pic_url_Valid() cons
     return m_pic_url_isValid;
 }
 
-bool MDGetRecommendedNewSongs_200_response_result_inner::isCanDislike() const {
-    return m_can_dislike;
-}
-void MDGetRecommendedNewSongs_200_response_result_inner::setCanDislike(const bool &can_dislike) {
-    m_can_dislike = can_dislike;
-    m_can_dislike_isSet = true;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner::is_can_dislike_Set() const{
-    return m_can_dislike_isSet;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner::is_can_dislike_Valid() const{
-    return m_can_dislike_isValid;
-}
-
 MDGetRecommendedNewSongs_200_response_result_inner_song MDGetRecommendedNewSongs_200_response_result_inner::getSong() const {
     return m_song;
 }
@@ -214,22 +164,12 @@ bool MDGetRecommendedNewSongs_200_response_result_inner::isSet() const {
             break;
         }
 
-        if (m_type_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_name_isSet) {
             isObjectUpdated = true;
             break;
         }
 
         if (m_pic_url_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_can_dislike_isSet) {
             isObjectUpdated = true;
             break;
         }
@@ -244,7 +184,7 @@ bool MDGetRecommendedNewSongs_200_response_result_inner::isSet() const {
 
 bool MDGetRecommendedNewSongs_200_response_result_inner::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_type_isValid && m_name_isValid && m_pic_url_isValid && m_can_dislike_isValid && m_song_isValid && true;
+    return m_id_isValid && m_name_isValid && m_pic_url_isValid && m_song_isValid && true;
 }
 
 } // namespace MelodixAPI

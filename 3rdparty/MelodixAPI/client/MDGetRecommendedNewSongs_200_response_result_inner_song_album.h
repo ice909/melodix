@@ -10,13 +10,13 @@
  */
 
 /*
- * MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner.h
+ * MDGetRecommendedNewSongs_200_response_result_inner_song_album.h
  *
  * 
  */
 
-#ifndef MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner_H
-#define MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner_H
+#ifndef MDGetRecommendedNewSongs_200_response_result_inner_song_album_H
+#define MDGetRecommendedNewSongs_200_response_result_inner_song_album_H
 
 #include <QJsonObject>
 
@@ -27,11 +27,11 @@
 
 namespace MelodixAPI {
 
-class MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner : public MDObject {
+class MDGetRecommendedNewSongs_200_response_result_inner_song_album : public MDObject {
 public:
-    MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner();
-    MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner(QString json);
-    ~MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner() override;
+    MDGetRecommendedNewSongs_200_response_result_inner_song_album();
+    MDGetRecommendedNewSongs_200_response_result_inner_song_album(QString json);
+    ~MDGetRecommendedNewSongs_200_response_result_inner_song_album() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -53,10 +53,10 @@ public:
     bool is_pic_url_Set() const;
     bool is_pic_url_Valid() const;
 
-    QString getImg1v1Url() const;
-    void setImg1v1Url(const QString &img1v1_url);
-    bool is_img1v1_url_Set() const;
-    bool is_img1v1_url_Valid() const;
+    QString getDescription() const;
+    void setDescription(const QString &description);
+    bool is_description_Set() const;
+    bool is_description_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
@@ -76,13 +76,13 @@ private:
     bool m_pic_url_isSet;
     bool m_pic_url_isValid;
 
-    QString m_img1v1_url;
-    bool m_img1v1_url_isSet;
-    bool m_img1v1_url_isValid;
+    QString m_description;
+    bool m_description_isSet;
+    bool m_description_isValid;
 };
 
 } // namespace MelodixAPI
 
-Q_DECLARE_METATYPE(MelodixAPI::MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner)
+Q_DECLARE_METATYPE(MelodixAPI::MDGetRecommendedNewSongs_200_response_result_inner_song_album)
 
-#endif // MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner_H
+#endif // MDGetRecommendedNewSongs_200_response_result_inner_song_album_H

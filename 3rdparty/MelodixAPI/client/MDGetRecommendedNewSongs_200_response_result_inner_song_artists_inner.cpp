@@ -39,35 +39,11 @@ void MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::init
     m_id_isSet = false;
     m_id_isValid = false;
 
-    m_pic_id_isSet = false;
-    m_pic_id_isValid = false;
-
-    m_img1v1_id_isSet = false;
-    m_img1v1_id_isValid = false;
-
-    m_brief_desc_isSet = false;
-    m_brief_desc_isValid = false;
-
     m_pic_url_isSet = false;
     m_pic_url_isValid = false;
 
     m_img1v1_url_isSet = false;
     m_img1v1_url_isValid = false;
-
-    m_album_size_isSet = false;
-    m_album_size_isValid = false;
-
-    m_alias_isSet = false;
-    m_alias_isValid = false;
-
-    m_trans_isSet = false;
-    m_trans_isValid = false;
-
-    m_music_size_isSet = false;
-    m_music_size_isValid = false;
-
-    m_topic_person_isSet = false;
-    m_topic_person_isValid = false;
 }
 
 void MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::fromJson(QString jsonString) {
@@ -85,35 +61,11 @@ void MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::from
     m_id_isValid = ::MelodixAPI::fromJsonValue(m_id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
 
-    m_pic_id_isValid = ::MelodixAPI::fromJsonValue(m_pic_id, json[QString("picId")]);
-    m_pic_id_isSet = !json[QString("picId")].isNull() && m_pic_id_isValid;
-
-    m_img1v1_id_isValid = ::MelodixAPI::fromJsonValue(m_img1v1_id, json[QString("img1v1Id")]);
-    m_img1v1_id_isSet = !json[QString("img1v1Id")].isNull() && m_img1v1_id_isValid;
-
-    m_brief_desc_isValid = ::MelodixAPI::fromJsonValue(m_brief_desc, json[QString("briefDesc")]);
-    m_brief_desc_isSet = !json[QString("briefDesc")].isNull() && m_brief_desc_isValid;
-
     m_pic_url_isValid = ::MelodixAPI::fromJsonValue(m_pic_url, json[QString("picUrl")]);
     m_pic_url_isSet = !json[QString("picUrl")].isNull() && m_pic_url_isValid;
 
     m_img1v1_url_isValid = ::MelodixAPI::fromJsonValue(m_img1v1_url, json[QString("img1v1Url")]);
     m_img1v1_url_isSet = !json[QString("img1v1Url")].isNull() && m_img1v1_url_isValid;
-
-    m_album_size_isValid = ::MelodixAPI::fromJsonValue(m_album_size, json[QString("albumSize")]);
-    m_album_size_isSet = !json[QString("albumSize")].isNull() && m_album_size_isValid;
-
-    m_alias_isValid = ::MelodixAPI::fromJsonValue(m_alias, json[QString("alias")]);
-    m_alias_isSet = !json[QString("alias")].isNull() && m_alias_isValid;
-
-    m_trans_isValid = ::MelodixAPI::fromJsonValue(m_trans, json[QString("trans")]);
-    m_trans_isSet = !json[QString("trans")].isNull() && m_trans_isValid;
-
-    m_music_size_isValid = ::MelodixAPI::fromJsonValue(m_music_size, json[QString("musicSize")]);
-    m_music_size_isSet = !json[QString("musicSize")].isNull() && m_music_size_isValid;
-
-    m_topic_person_isValid = ::MelodixAPI::fromJsonValue(m_topic_person, json[QString("topicPerson")]);
-    m_topic_person_isSet = !json[QString("topicPerson")].isNull() && m_topic_person_isValid;
 }
 
 QString MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::asJson() const {
@@ -131,35 +83,11 @@ QJsonObject MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inne
     if (m_id_isSet) {
         obj.insert(QString("id"), ::MelodixAPI::toJsonValue(m_id));
     }
-    if (m_pic_id_isSet) {
-        obj.insert(QString("picId"), ::MelodixAPI::toJsonValue(m_pic_id));
-    }
-    if (m_img1v1_id_isSet) {
-        obj.insert(QString("img1v1Id"), ::MelodixAPI::toJsonValue(m_img1v1_id));
-    }
-    if (m_brief_desc_isSet) {
-        obj.insert(QString("briefDesc"), ::MelodixAPI::toJsonValue(m_brief_desc));
-    }
     if (m_pic_url_isSet) {
         obj.insert(QString("picUrl"), ::MelodixAPI::toJsonValue(m_pic_url));
     }
     if (m_img1v1_url_isSet) {
         obj.insert(QString("img1v1Url"), ::MelodixAPI::toJsonValue(m_img1v1_url));
-    }
-    if (m_album_size_isSet) {
-        obj.insert(QString("albumSize"), ::MelodixAPI::toJsonValue(m_album_size));
-    }
-    if (m_alias.size() > 0) {
-        obj.insert(QString("alias"), ::MelodixAPI::toJsonValue(m_alias));
-    }
-    if (m_trans_isSet) {
-        obj.insert(QString("trans"), ::MelodixAPI::toJsonValue(m_trans));
-    }
-    if (m_music_size_isSet) {
-        obj.insert(QString("musicSize"), ::MelodixAPI::toJsonValue(m_music_size));
-    }
-    if (m_topic_person_isSet) {
-        obj.insert(QString("topicPerson"), ::MelodixAPI::toJsonValue(m_topic_person));
     }
     return obj;
 }
@@ -196,54 +124,6 @@ bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_i
     return m_id_isValid;
 }
 
-qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::getPicId() const {
-    return m_pic_id;
-}
-void MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::setPicId(const qint32 &pic_id) {
-    m_pic_id = pic_id;
-    m_pic_id_isSet = true;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_pic_id_Set() const{
-    return m_pic_id_isSet;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_pic_id_Valid() const{
-    return m_pic_id_isValid;
-}
-
-qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::getImg1v1Id() const {
-    return m_img1v1_id;
-}
-void MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::setImg1v1Id(const qint32 &img1v1_id) {
-    m_img1v1_id = img1v1_id;
-    m_img1v1_id_isSet = true;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_img1v1_id_Set() const{
-    return m_img1v1_id_isSet;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_img1v1_id_Valid() const{
-    return m_img1v1_id_isValid;
-}
-
-QString MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::getBriefDesc() const {
-    return m_brief_desc;
-}
-void MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::setBriefDesc(const QString &brief_desc) {
-    m_brief_desc = brief_desc;
-    m_brief_desc_isSet = true;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_brief_desc_Set() const{
-    return m_brief_desc_isSet;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_brief_desc_Valid() const{
-    return m_brief_desc_isValid;
-}
-
 QString MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::getPicUrl() const {
     return m_pic_url;
 }
@@ -276,86 +156,6 @@ bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_i
     return m_img1v1_url_isValid;
 }
 
-qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::getAlbumSize() const {
-    return m_album_size;
-}
-void MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::setAlbumSize(const qint32 &album_size) {
-    m_album_size = album_size;
-    m_album_size_isSet = true;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_album_size_Set() const{
-    return m_album_size_isSet;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_album_size_Valid() const{
-    return m_album_size_isValid;
-}
-
-QList<QString> MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::getAlias() const {
-    return m_alias;
-}
-void MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::setAlias(const QList<QString> &alias) {
-    m_alias = alias;
-    m_alias_isSet = true;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_alias_Set() const{
-    return m_alias_isSet;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_alias_Valid() const{
-    return m_alias_isValid;
-}
-
-QString MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::getTrans() const {
-    return m_trans;
-}
-void MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::setTrans(const QString &trans) {
-    m_trans = trans;
-    m_trans_isSet = true;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_trans_Set() const{
-    return m_trans_isSet;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_trans_Valid() const{
-    return m_trans_isValid;
-}
-
-qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::getMusicSize() const {
-    return m_music_size;
-}
-void MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::setMusicSize(const qint32 &music_size) {
-    m_music_size = music_size;
-    m_music_size_isSet = true;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_music_size_Set() const{
-    return m_music_size_isSet;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_music_size_Valid() const{
-    return m_music_size_isValid;
-}
-
-qint32 MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::getTopicPerson() const {
-    return m_topic_person;
-}
-void MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::setTopicPerson(const qint32 &topic_person) {
-    m_topic_person = topic_person;
-    m_topic_person_isSet = true;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_topic_person_Set() const{
-    return m_topic_person_isSet;
-}
-
-bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::is_topic_person_Valid() const{
-    return m_topic_person_isValid;
-}
-
 bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -369,21 +169,6 @@ bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::isSe
             break;
         }
 
-        if (m_pic_id_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_img1v1_id_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_brief_desc_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (m_pic_url_isSet) {
             isObjectUpdated = true;
             break;
@@ -393,38 +178,13 @@ bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::isSe
             isObjectUpdated = true;
             break;
         }
-
-        if (m_album_size_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_alias.size() > 0) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_trans_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_music_size_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (m_topic_person_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
     } while (false);
     return isObjectUpdated;
 }
 
 bool MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_name_isValid && m_id_isValid && m_pic_id_isValid && m_img1v1_id_isValid && m_brief_desc_isValid && m_pic_url_isValid && m_img1v1_url_isValid && m_album_size_isValid && m_alias_isValid && m_trans_isValid && m_music_size_isValid && m_topic_person_isValid && true;
+    return m_name_isValid && m_id_isValid && m_pic_url_isValid && m_img1v1_url_isValid && true;
 }
 
 } // namespace MelodixAPI

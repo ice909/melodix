@@ -1230,20 +1230,11 @@
                       "id": {
                         "type": "integer"
                       },
-                      "type": {
-                        "type": "integer"
-                      },
                       "name": {
                         "type": "string"
                       },
                       "picUrl": {
                         "type": "string"
-                      },
-                      "canDislike": {
-                        "type": "boolean"
-                      },
-                      "trackNumberUpdateTime": {
-                        "type": "null"
                       },
                       "song": {
                         "type": "object",
@@ -1265,101 +1256,84 @@
                                 "id": {
                                   "type": "integer"
                                 },
-                                "picId": {
-                                  "type": "integer"
-                                },
-                                "img1v1Id": {
-                                  "type": "integer"
-                                },
-                                "briefDesc": {
-                                  "type": "string"
-                                },
                                 "picUrl": {
                                   "type": "string"
                                 },
                                 "img1v1Url": {
                                   "type": "string"
-                                },
-                                "albumSize": {
-                                  "type": "integer"
-                                },
-                                "alias": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "string"
-                                  }
-                                },
-                                "trans": {
-                                  "type": "string"
-                                },
-                                "musicSize": {
-                                  "type": "integer"
-                                },
-                                "topicPerson": {
-                                  "type": "integer"
                                 }
                               },
                               "required": [
                                 "name",
                                 "id",
-                                "picId",
-                                "img1v1Id",
-                                "briefDesc",
                                 "picUrl",
-                                "img1v1Url",
-                                "albumSize",
-                                "alias",
-                                "trans",
-                                "musicSize",
-                                "topicPerson"
+                                "img1v1Url"
                               ],
                               "x-apifox-orders": [
                                 "name",
                                 "id",
-                                "picId",
-                                "img1v1Id",
-                                "briefDesc",
                                 "picUrl",
-                                "img1v1Url",
-                                "albumSize",
-                                "alias",
-                                "trans",
-                                "musicSize",
-                                "topicPerson"
+                                "img1v1Url"
                               ],
                               "x-apifox-ignore-properties": []
                             }
+                          },
+                          "album": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "integer"
+                              },
+                              "picUrl": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "id",
+                              "picUrl",
+                              "description"
+                            ],
+                            "x-apifox-orders": [
+                              "name",
+                              "id",
+                              "picUrl",
+                              "description"
+                            ],
+                            "x-apifox-ignore-properties": []
                           }
                         },
                         "required": [
                           "name",
                           "id",
-                          "artists"
+                          "artists",
+                          "album"
                         ],
                         "x-apifox-orders": [
                           "name",
                           "id",
-                          "artists"
+                          "artists",
+                          "album"
                         ],
                         "x-apifox-ignore-properties": []
                       }
                     },
                     "required": [
                       "id",
-                      "type",
                       "name",
                       "picUrl",
-                      "canDislike",
-                      "trackNumberUpdateTime",
                       "song"
                     ],
                     "x-apifox-orders": [
                       "id",
-                      "type",
                       "name",
                       "picUrl",
-                      "canDislike",
-                      "trackNumberUpdateTime",
                       "song"
                     ],
                     "x-apifox-ignore-properties": []

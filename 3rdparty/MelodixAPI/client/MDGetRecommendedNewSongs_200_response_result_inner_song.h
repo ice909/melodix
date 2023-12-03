@@ -20,6 +20,7 @@
 
 #include <QJsonObject>
 
+#include "MDGetRecommendedNewSongs_200_response_result_inner_song_album.h"
 #include "MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner.h"
 #include <QList>
 #include <QString>
@@ -29,6 +30,7 @@
 
 namespace MelodixAPI {
 class MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner;
+class MDGetRecommendedNewSongs_200_response_result_inner_song_album;
 
 class MDGetRecommendedNewSongs_200_response_result_inner_song : public MDObject {
 public:
@@ -56,6 +58,11 @@ public:
     bool is_artists_Set() const;
     bool is_artists_Valid() const;
 
+    MDGetRecommendedNewSongs_200_response_result_inner_song_album getAlbum() const;
+    void setAlbum(const MDGetRecommendedNewSongs_200_response_result_inner_song_album &album);
+    bool is_album_Set() const;
+    bool is_album_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -73,6 +80,10 @@ private:
     QList<MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner> m_artists;
     bool m_artists_isSet;
     bool m_artists_isValid;
+
+    MDGetRecommendedNewSongs_200_response_result_inner_song_album m_album;
+    bool m_album_isSet;
+    bool m_album_isValid;
 };
 
 } // namespace MelodixAPI

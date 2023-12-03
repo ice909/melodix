@@ -45,11 +45,6 @@ public:
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
-    qint32 getType() const;
-    void setType(const qint32 &type);
-    bool is_type_Set() const;
-    bool is_type_Valid() const;
-
     QString getName() const;
     void setName(const QString &name);
     bool is_name_Set() const;
@@ -59,11 +54,6 @@ public:
     void setPicUrl(const QString &pic_url);
     bool is_pic_url_Set() const;
     bool is_pic_url_Valid() const;
-
-    bool isCanDislike() const;
-    void setCanDislike(const bool &can_dislike);
-    bool is_can_dislike_Set() const;
-    bool is_can_dislike_Valid() const;
 
     MDGetRecommendedNewSongs_200_response_result_inner_song getSong() const;
     void setSong(const MDGetRecommendedNewSongs_200_response_result_inner_song &song);
@@ -80,10 +70,6 @@ private:
     bool m_id_isSet;
     bool m_id_isValid;
 
-    qint32 m_type;
-    bool m_type_isSet;
-    bool m_type_isValid;
-
     QString m_name;
     bool m_name_isSet;
     bool m_name_isValid;
@@ -91,10 +77,6 @@ private:
     QString m_pic_url;
     bool m_pic_url_isSet;
     bool m_pic_url_isValid;
-
-    bool m_can_dislike;
-    bool m_can_dislike_isSet;
-    bool m_can_dislike_isValid;
 
     MDGetRecommendedNewSongs_200_response_result_inner_song m_song;
     bool m_song_isSet;
