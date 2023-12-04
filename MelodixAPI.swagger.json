@@ -730,6 +730,9 @@
                       },
                       "size": {
                         "type": "integer"
+                      },
+                      "blurPicUrl": {
+                        "type": "string"
                       }
                     },
                     "required": [
@@ -741,7 +744,8 @@
                       "description",
                       "name",
                       "id",
-                      "size"
+                      "size",
+                      "blurPicUrl"
                     ],
                     "x-apifox-orders": [
                       "songs",
@@ -752,7 +756,8 @@
                       "description",
                       "name",
                       "id",
-                      "size"
+                      "size",
+                      "blurPicUrl"
                     ],
                     "x-apifox-ignore-properties": []
                   }

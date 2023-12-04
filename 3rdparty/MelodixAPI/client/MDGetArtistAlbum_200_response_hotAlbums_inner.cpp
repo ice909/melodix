@@ -59,6 +59,9 @@ void MDGetArtistAlbum_200_response_hotAlbums_inner::initializeModel() {
 
     m_size_isSet = false;
     m_size_isValid = false;
+
+    m_blur_pic_url_isSet = false;
+    m_blur_pic_url_isValid = false;
 }
 
 void MDGetArtistAlbum_200_response_hotAlbums_inner::fromJson(QString jsonString) {
@@ -96,6 +99,9 @@ void MDGetArtistAlbum_200_response_hotAlbums_inner::fromJsonObject(QJsonObject j
 
     m_size_isValid = ::MelodixAPI::fromJsonValue(m_size, json[QString("size")]);
     m_size_isSet = !json[QString("size")].isNull() && m_size_isValid;
+
+    m_blur_pic_url_isValid = ::MelodixAPI::fromJsonValue(m_blur_pic_url, json[QString("blurPicUrl")]);
+    m_blur_pic_url_isSet = !json[QString("blurPicUrl")].isNull() && m_blur_pic_url_isValid;
 }
 
 QString MDGetArtistAlbum_200_response_hotAlbums_inner::asJson() const {
@@ -133,6 +139,9 @@ QJsonObject MDGetArtistAlbum_200_response_hotAlbums_inner::asJsonObject() const 
     }
     if (m_size_isSet) {
         obj.insert(QString("size"), ::MelodixAPI::toJsonValue(m_size));
+    }
+    if (m_blur_pic_url_isSet) {
+        obj.insert(QString("blurPicUrl"), ::MelodixAPI::toJsonValue(m_blur_pic_url));
     }
     return obj;
 }
@@ -281,6 +290,22 @@ bool MDGetArtistAlbum_200_response_hotAlbums_inner::is_size_Valid() const{
     return m_size_isValid;
 }
 
+QString MDGetArtistAlbum_200_response_hotAlbums_inner::getBlurPicUrl() const {
+    return m_blur_pic_url;
+}
+void MDGetArtistAlbum_200_response_hotAlbums_inner::setBlurPicUrl(const QString &blur_pic_url) {
+    m_blur_pic_url = blur_pic_url;
+    m_blur_pic_url_isSet = true;
+}
+
+bool MDGetArtistAlbum_200_response_hotAlbums_inner::is_blur_pic_url_Set() const{
+    return m_blur_pic_url_isSet;
+}
+
+bool MDGetArtistAlbum_200_response_hotAlbums_inner::is_blur_pic_url_Valid() const{
+    return m_blur_pic_url_isValid;
+}
+
 bool MDGetArtistAlbum_200_response_hotAlbums_inner::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -328,13 +353,18 @@ bool MDGetArtistAlbum_200_response_hotAlbums_inner::isSet() const {
             isObjectUpdated = true;
             break;
         }
+
+        if (m_blur_pic_url_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
     } while (false);
     return isObjectUpdated;
 }
 
 bool MDGetArtistAlbum_200_response_hotAlbums_inner::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_songs_isValid && m_artists_isValid && m_artist_isValid && m_publish_time_isValid && m_pic_url_isValid && m_description_isValid && m_name_isValid && m_id_isValid && m_size_isValid && true;
+    return m_songs_isValid && m_artists_isValid && m_artist_isValid && m_publish_time_isValid && m_pic_url_isValid && m_description_isValid && m_name_isValid && m_id_isValid && m_size_isValid && m_blur_pic_url_isValid && true;
 }
 
 } // namespace MelodixAPI

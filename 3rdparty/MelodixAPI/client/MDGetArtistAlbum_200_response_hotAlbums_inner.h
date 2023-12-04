@@ -88,6 +88,11 @@ public:
     bool is_size_Set() const;
     bool is_size_Valid() const;
 
+    QString getBlurPicUrl() const;
+    void setBlurPicUrl(const QString &blur_pic_url);
+    bool is_blur_pic_url_Set() const;
+    bool is_blur_pic_url_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -129,6 +134,10 @@ private:
     qint32 m_size;
     bool m_size_isSet;
     bool m_size_isValid;
+
+    QString m_blur_pic_url;
+    bool m_blur_pic_url_isSet;
+    bool m_blur_pic_url_isValid;
 };
 
 } // namespace MelodixAPI

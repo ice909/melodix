@@ -39,6 +39,7 @@ Item {
             artist_new_album_name.text = hotAlbums[0].name;
             artist_new_album_time.text = Util.formatTime(hotAlbums[0].publishTime);
             artist_new_album_count.text = "Single · " + hotAlbums[0].size + "首歌";
+            getArtistSongs();
         }
 
         API.onArtistAlbumCompleted.connect(onReply);
@@ -69,7 +70,6 @@ Item {
     ScrollView {
         anchors.fill: parent
         clip: true
-        contentHeight: 10 + 20 * 4 + headRect.height + newReleaseRect.height + artist_hot_songs.height + 30 * 2
 
         Column {
             id: body
@@ -153,11 +153,11 @@ Item {
                                 width: parent.width
                                 height: (parent.height - 60) / 4
 
-                                Label {
+                                Text {
                                     id: artistDescription
 
                                     width: parent.width
-                                    height: parent.height - 10
+                                    height: parent.height
                                     anchors.verticalCenter: parent.verticalCenter
                                     wrapMode: Text.Wrap
                                     elide: Text.ElideRight
@@ -279,26 +279,6 @@ Item {
 
                     }
 
-                    Item {
-                        width: (parent.width - 20) / 2
-                        height: parent.height
-
-                        Row {
-                            anchors.fill: parent
-                            spacing: 20
-
-                            RoundedImage {
-                                id: artist_new_mv_cover
-
-                                height: parent.height - 5
-                                width: height * 1.7
-                                anchors.verticalCenter: parent.verticalCenter
-                            }
-
-                        }
-
-                    }
-
                 }
 
             }
@@ -322,6 +302,11 @@ Item {
 
                 width: scrollWidth
                 height: (scrollWidth - 30 * 3) / 16 * hotSongsCount + 10 * 2
+            }
+
+            Item {
+                width: scrollWidth
+                height: 10
             }
 
         }

@@ -1,9 +1,8 @@
 import "../../util"
 import "../widgets"
 import Melodix.Player 1.0
-import QtQuick 2.0
-import QtQuick.Layouts 1.11
-import QtQuick.Window 2.11
+import QtQuick 2.11
+import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
 
 Item {
@@ -74,21 +73,29 @@ Item {
 
                 }
 
+                BoxShadow {
+                    id: imgShadow
+
+                    visible: false
+                    anchors.fill: parent
+                    shadowBlur: 8
+                    shadowColor: palette.highlight
+                    spread: 1.5
+                    shadowOffsetX: 0
+                    shadowOffsetY: 0
+                    cornerRadius: 5
+                    hollow: true
+                }
+
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
                     onEntered: {
-                        color = Qt.rgba(0, 0, 0, 0.1);
+                        imgShadow.visible = true;
                     }
                     onExited: {
-                        color = "transparent";
-                    }
-                    onPressed: {
-                        color = Qt.rgba(0, 0, 0, 0.2);
-                    }
-                    onReleased: {
-                        color = Qt.rgba(0, 0, 0, 0.1);
+                        imgShadow.visible = false;
                     }
                     onClicked: {
                         Player.addSingleToPlaylist(modelData.id, modelData.name, modelData.ar[0].name, modelData.al.picUrl, Util.formatDuration(modelData.dt), modelData.al.name, Util.isVip(modelData.fee));
