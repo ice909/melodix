@@ -1,85 +1,84 @@
 name: build deb
 run-name: Github Action is building Debian Packages
 on: [push, pull_request]
-jobs: 
-    build: 
-        runs-on: ubuntu-22.04
-        steps:
-            - uses: actions/checkout@v3
-              with: 
-                    token: ${{ secrets.PRIVATE_TOKEN }}
-                    path: "melodix"
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PRIVATE_TOKEN }}
+          path: 'melodix'
 
-            - name: Replacement source
-              run: |
-                  echo -e "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse\n" | sudo tee /etc/apt/sources.list
-                  echo -e "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse\n" | sudo tee -a /etc/apt/sources.list
-                  echo -e "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse\n" | sudo tee -a /etc/apt/sources.list
-                  echo -e "deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse\n" | sudo tee -a /etc/apt/sources.list
-                  sudo apt update
-                
-            - name: Install dependency
-              run: sudo apt install libdtkwidget-dev doxygen qtmultimedia5-dev
-              
-            - name: Build and Install dtkcommon
-              run: |
-                  git clone -b 5.6.12 https://github.com/linuxdeepin/dtkcommon.git
-                  cd dtkcommon
-                  sudo apt build-dep .
-                  cmake -B build
-                  cmake --build build -j $(nproc)
-                  sudo dpkg-buildpackage -us -uc -b
-                  cd ../
-                  sudo apt install ./*.deb
-                  
-            - name: Build and Install dtkcore
-              run: |
-                  git clone -b 5.6.13 https://github.com/linuxdeepin/dtkcore.git
-                  cd dtkcore
-                  sudo apt build-dep .
-                  cmake -B build
-                  cmake --build build -j $(nproc)
-                  sudo dpkg-buildpackage -us -uc -b
-                  cd ../
-                  sudo apt install ./*.deb
+      - name: Replacement source
+        run: |
+          echo -e "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse\n" | sudo tee /etc/apt/sources.list
+          echo -e "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse\n" | sudo tee -a /etc/apt/sources.list
+          echo -e "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse\n" | sudo tee -a /etc/apt/sources.list
+          echo -e "deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse\n" | sudo tee -a /etc/apt/sources.list
+          sudo apt update
 
-            - name: Build and Install dtkgui
-              run: |
-                  git clone -b 5.6.12 https://github.com/linuxdeepin/dtkgui.git
-                  cd dtkgui
-                  sudo apt build-dep .
-                  cmake -B build
-                  cmake --build build -j $(nproc)
-                  sudo dpkg-buildpackage -us -uc -b
-                  cd ../
-                  sudo apt install ./*.deb
-                  
-            # - name: Build and Install dtkwidget
-            #   run: |
-            #       git clone -b 5.6.13 https://github.com/linuxdeepin/dtkwidget.git
-            #       cd dtkwidget
-            #       sudo apt build-dep .
-            #       cmake -B build
-            #       cmake --build build -j $(nproc)
-            #       sudo dpkg-buildpackage -us -uc -b
-            #       cd ../
-            #       sudo apt install ./*.deb
+      - name: Install dependency
+        run: sudo apt install libdtkwidget-dev doxygen qtmultimedia5-dev libmpris-qt5-dev
 
-            - name: Build and Install dtkdeclarative
-              run: |
-                  git clone -b 5.6.10 https://github.com/linuxdeepin/dtkdeclarative.git
-                  cd dtkdeclarative
-                  sudo apt build-dep .
-                  cmake -B build
-                  cmake --build build -j $(nproc)
-                  sudo dpkg-buildpackage -us -uc -b
-                  cd ../
-                  sudo apt install ./*.deb
+      - name: Build and Install dtkcommon
+        run: |
+          git clone -b 5.6.12 https://github.com/linuxdeepin/dtkcommon.git
+          cd dtkcommon
+          sudo apt build-dep .
+          cmake -B build
+          cmake --build build -j $(nproc)
+          sudo dpkg-buildpackage -us -uc -b
+          cd ../
+          sudo apt install ./*.deb
 
-            - name: build and pack melodix
-              run: |
-                    cd melodix
-                    cmake -B build
-                    cmake --build build -j $(nproc)
-                    sudo dpkg-buildpackage -us -uc -b
+      - name: Build and Install dtkcore
+        run: |
+          git clone -b 5.6.13 https://github.com/linuxdeepin/dtkcore.git
+          cd dtkcore
+          sudo apt build-dep .
+          cmake -B build
+          cmake --build build -j $(nproc)
+          sudo dpkg-buildpackage -us -uc -b
+          cd ../
+          sudo apt install ./*.deb
 
+      - name: Build and Install dtkgui
+        run: |
+          git clone -b 5.6.12 https://github.com/linuxdeepin/dtkgui.git
+          cd dtkgui
+          sudo apt build-dep .
+          cmake -B build
+          cmake --build build -j $(nproc)
+          sudo dpkg-buildpackage -us -uc -b
+          cd ../
+          sudo apt install ./*.deb
+
+      # - name: Build and Install dtkwidget
+      #   run: |
+      #       git clone -b 5.6.13 https://github.com/linuxdeepin/dtkwidget.git
+      #       cd dtkwidget
+      #       sudo apt build-dep .
+      #       cmake -B build
+      #       cmake --build build -j $(nproc)
+      #       sudo dpkg-buildpackage -us -uc -b
+      #       cd ../
+      #       sudo apt install ./*.deb
+
+      - name: Build and Install dtkdeclarative
+        run: |
+          git clone -b 5.6.10 https://github.com/linuxdeepin/dtkdeclarative.git
+          cd dtkdeclarative
+          sudo apt build-dep .
+          cmake -B build
+          cmake --build build -j $(nproc)
+          sudo dpkg-buildpackage -us -uc -b
+          cd ../
+          sudo apt install ./*.deb
+
+      - name: build and pack melodix
+        run: |
+          cd melodix
+          cmake -B build
+          cmake --build build -j $(nproc)
+          sudo dpkg-buildpackage -us -uc -b
