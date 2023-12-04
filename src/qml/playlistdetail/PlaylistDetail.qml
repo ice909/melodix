@@ -103,7 +103,6 @@ Item {
     Component.onCompleted: {
         console.log("跳转歌单id为： " + Router.routeCurrent.id);
         currentPlaylistId = Router.routeCurrent.id;
-        //getPlaylistDetail();
         API.getPlaylistDetail(currentPlaylistId);
         Player.playlistCurrentIndexChanged.connect(onPlaylistCurrentIndexChanged);
         Player.playlistCleared.connect(onPlaylistCleared);

@@ -80,21 +80,29 @@ Item {
 
                 }
 
+                BoxShadow {
+                    id: imgShadow
+
+                    visible: false
+                    anchors.fill: parent
+                    shadowBlur: 8
+                    shadowColor: palette.highlight
+                    spread: 1.5
+                    shadowOffsetX: 0
+                    shadowOffsetY: 0
+                    cornerRadius: 5
+                    hollow: true
+                }
+
                 MouseArea {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
                     hoverEnabled: true
                     onEntered: {
-                        color = Util.mouseHoverColor;
+                        imgShadow.visible = true;
                     }
                     onExited: {
-                        color = "transparent";
-                    }
-                    onPressed: {
-                        color = Util.mousePressedColor;
-                    }
-                    onReleased: {
-                        color = Util.mouseReleasedColor;
+                        imgShadow.visible = false;
                     }
                     onClicked: {
                         Player.addSingleToPlaylist(modelData.id, modelData.song.name, Util.spliceSinger(modelData.song.artists), modelData.picUrl, Util.formatDuration(modelData.song.duration), modelData.song.album.name, Util.isVip(modelData.song.fee));

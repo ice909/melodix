@@ -64,11 +64,11 @@ Item {
 
                         visible: false
                         anchors.fill: parent
-                        shadowBlur: 5
+                        shadowBlur: 10
                         shadowColor: palette.highlight
-                        spread: 1
+                        spread: 2
                         shadowOffsetX: 0
-                        shadowOffsetY: 0
+                        shadowOffsetY: 1
                         cornerRadius: 5
                         hollow: true
                     }
@@ -96,11 +96,9 @@ Item {
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
                             onEntered: {
-                                hotPlaylistTitle.font.underline = true;
                                 tooltip.visible = true;
                             }
                             onExited: {
-                                hotPlaylistTitle.font.underline = false;
                                 tooltip.visible = false;
                             }
                             onClicked: {

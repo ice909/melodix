@@ -64,6 +64,7 @@ Item {
                     "song": song
                 });
             }
+            initing = false;
         }
 
         target: API
@@ -109,6 +110,19 @@ Item {
 
             }
 
+        }
+
+    }
+
+    Rectangle {
+        id: loadAnimation
+
+        visible: initing
+        anchors.fill: root
+        color: Util.pageBackgroundColor
+
+        Loading {
+            anchors.centerIn: parent
         }
 
     }

@@ -87,27 +87,29 @@ Item {
 
     // 首页界面
     ScrollView {
-        anchors.fill: parent
+        id: indexScroll
+
+        width: root.width
+        height: root.height
         clip: true
-        contentHeight: left_banner.height + recommendedPlaylist.height + recommendNewSongs.height + hotSigner.height + 40 * 3 + 10 * 6 + 5
 
         Column {
-            id: body
+            id: indexColumn
 
-            spacing: 10
             x: Util.pageLeftPadding
             y: 5
+            spacing: 10
 
             Row {
                 width: scrollWidth
-                height: scrollWidth / 5.5
-                spacing: 10
+                height: width / 5.5
+                spacing: 20
 
                 Banner {
                     id: left_banner
 
-                    width: scrollWidth / 2 - 10
-                    height: scrollWidth / 5.5
+                    width: (parent.width - 20) / 2
+                    height: parent.height
 
                     model: ListModel {
                     }
@@ -117,8 +119,8 @@ Item {
                 Banner {
                     id: right_banner
 
-                    width: scrollWidth / 2 - 10
-                    height: scrollWidth / 5.5
+                    width: (parent.width - 20) / 2
+                    height: parent.height
 
                     model: ListModel {
                     }
@@ -159,7 +161,7 @@ Item {
 
             Item {
                 width: scrollWidth
-                height: ((scrollWidth - 30 * 4) * 0.2 + 22) * 2 + 30
+                height: ((scrollWidth - 30 * 4) * 0.2 + 30) * 2 + 30
 
                 GridPlaylists {
                     id: recommendedPlaylist
@@ -227,6 +229,11 @@ Item {
                     anchors.fill: parent
                 }
 
+            }
+
+            Item {
+                width: scrollWidth
+                height: 10
             }
 
         }
