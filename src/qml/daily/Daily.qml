@@ -19,13 +19,14 @@ Item {
     // 当前选中的歌曲索引
     property int currentSelectIndex: -1
     property bool isAddToPlaylist: false
+    property string currentPlaylistId: "每日推荐"
 
     function playPlaylistAllMusic(index = -1) {
         // 切换播放列表
         Player.switchToPlaylistMode();
         if (Player.getCurrentPlaylistId() != "" && Player.getCurrentPlaylistId() != currentPlaylistId) {
-            console.log("当前歌单和播放列表中以添加的歌曲不是来自同一个歌单，先清空播放列表，再添加歌曲");
             Player.clearPlaylist();
+            Player.setCurrentPlaylistId(currentPlaylistId);
         }
         for (var i = 0; i < songs.length; i++) {
             Player.addPlaylistToPlaylist(songs[i].id, songs[i].name, Util.spliceSinger(songs[i].ar), songs[i].al.picUrl, Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));

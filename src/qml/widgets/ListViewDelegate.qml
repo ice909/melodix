@@ -8,11 +8,14 @@ import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
 
 ItemDelegate {
+    id: rootDelegate
+
     property Menu rightClickMenu
 
     width: listView.width - 40
     height: 55
-    backgroundVisible: false
+    hoverEnabled: true
+    backgroundVisible: index % 2 === 0
     checked: index == currentSelectIndex
 
     MouseArea {
@@ -38,56 +41,62 @@ ItemDelegate {
         }
     }
 
-    RowLayout {
+    Rectangle {
         anchors.fill: parent
+        color: rootDelegate.hovered ? Qt.rgba(0, 0, 0, 0.08) : Qt.rgba(0, 0, 0, 0)
 
-        RoundedImage {
-            Layout.leftMargin: 10
-            imgSrc: modelData.al.picUrl
-            height: 45
-            width: 45
-        }
+        RowLayout {
+            anchors.fill: parent
 
-        Item {
-            Layout.preferredWidth: 300
-            Layout.alignment: Qt.AlignVCenter
-            Layout.leftMargin: 5
-            height: 45
+            RoundedImage {
+                Layout.leftMargin: 10
+                imgSrc: modelData.al.picUrl
+                height: 45
+                width: 45
+            }
+
+            Item {
+                Layout.preferredWidth: 300
+                Layout.alignment: Qt.AlignVCenter
+                Layout.leftMargin: 5
+                height: 45
+
+                Label {
+                    id: title
+
+                    width: 280
+                    text: modelData.name
+                    anchors.left: parent.left
+                    anchors.top: parent.top
+                    anchors.topMargin: 2.5
+                    font.bold: true
+                    elide: Qt.ElideRight
+                }
+
+                Label {
+                    width: 280
+                    text: Util.spliceSinger(modelData.ar)
+                    anchors.left: parent.left
+                    anchors.top: title.bottom
+                    elide: Qt.ElideRight
+                }
+
+            }
 
             Label {
-                id: title
+                text: modelData.al.name
+            }
 
-                width: 280
-                text: modelData.name
-                anchors.left: parent.left
-                anchors.top: parent.top
-                anchors.topMargin: 2.5
+            Item {
+                Layout.fillWidth: true
+            }
+
+            Label {
+                Layout.rightMargin: 10
                 font.bold: true
-                elide: Qt.ElideRight
+                text: Util.formatDuration(modelData.dt)
             }
 
-            Label {
-                width: 280
-                text: Util.spliceSinger(modelData.ar)
-                anchors.left: parent.left
-                anchors.top: title.bottom
-                elide: Qt.ElideRight
-            }
-
-        }
-
-        Label {
-            text: modelData.al.name
-        }
-
-        Item {
-            Layout.fillWidth: true
-        }
-
-        Label {
-            Layout.rightMargin: 10
-            font.bold: true
-            text: Util.formatDuration(modelData.dt)
         }
 
     }
