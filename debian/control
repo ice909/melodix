@@ -12,6 +12,7 @@ Build-Depends: debhelper-compat (= 12),
   libdtkgui-dev,
   libdtkdeclarative-dev,
   qttools5-dev-tools,
+  libmpris-qt5-dev,
 Standards-Version: 4.6.0
 Rules-Requires-Root: no
 

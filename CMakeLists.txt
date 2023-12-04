@@ -27,6 +27,7 @@ include_directories(${PROJECT_SOURCE_DIR})
 find_package(QT NAMES Qt5 REQUIRED COMPONENTS Core Quick)
 
 add_definitions(-DAPP_VERSION="${APP_VERSION}")
+add_definitions(-DAPP_NAME="${PROJECT_NAME}")
 add_subdirectory(src)
 add_subdirectory(3rdparty/MelodixAPI/client)
 

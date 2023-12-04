@@ -17,6 +17,7 @@ find_package(DtkDeclarative REQUIRED)
 pkg_check_modules(Dtk REQUIRED IMPORTED_TARGET dtkwidget)
 pkg_check_modules(Dtk REQUIRED IMPORTED_TARGET dtkcore)
 pkg_check_modules(Dtk REQUIRED IMPORTED_TARGET dtkgui)
+pkg_check_modules(MPRIS REQUIRED IMPORTED_TARGET mpris-qt5)
 
 qtquick_compiler_add_resources(RCC_SOURCES ${RESOURCES})
 
@@ -40,6 +41,7 @@ set(TARGET_LIBS
     PkgConfig::Dtk
     ${DtkDeclarative_LIBRARIES}
     API
+    PkgConfig::MPRIS
 )
 
 target_link_libraries(${BIN_NAME} ${TARGET_LIBS})

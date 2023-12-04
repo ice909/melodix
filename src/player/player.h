@@ -10,6 +10,7 @@
 
 class API;
 class PlaylistModel;
+class MprisPlayer;
 class Player : public QObject
 {
     Q_OBJECT
@@ -123,6 +124,10 @@ public slots:
     void onMediaStatusChanged(QMediaPlayer::MediaStatus status);
 
 private:
+    void initDBus();
+    QVariantMap getMetadata();
+
+private:
     // 当前播放歌曲的下标
     int m_currentIndex = 0;
 
@@ -152,6 +157,8 @@ private:
 
     // 当前播放歌单的id
     QString m_currentPlaylistId = "";
+
+    MprisPlayer *m_mprisPlayer = nullptr;
 };
 
 #endif // PLAYER_H

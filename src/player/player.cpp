@@ -3,6 +3,7 @@
 #include "playlistmodel.h"
 #include "worker.h"
 
+#include <MprisPlayer>
 #include <QDir>
 #include <QJsonObject>
 #include <QTime>
@@ -26,6 +27,9 @@ Player::Player(QObject *parent)
           new QSettings(QDir::homePath() + "/.config/ice/player.ini", QSettings::IniFormat, this))
     , m_api(new API(this))
 {
+    // 注册DBus
+    initDBus();
+
     // 读取音量配置
     m_volume = m_settings->value("Volume/DefaultVolume", 50).toInt();
     // 读取静音配置
@@ -272,6 +276,8 @@ void Player::onCurrentIndexChanged(int index)
     const int id = m_currentPlaylist->getCurrentId();
 
     getSongUrlById(id);
+
+    m_mprisPlayer->setMetadata(getMetadata());
 
     emit playlistCurrentIndexChanged();
 }
@@ -606,4 +612,54 @@ Player::~Player()
         delete m_api;
         m_api = nullptr;
     }
+}
+
+void Player::initDBus()
+{
+    m_mprisPlayer = new MprisPlayer(this);
+    m_mprisPlayer->setServiceName(APP_NAME);
+    m_mprisPlayer->setSupportedMimeTypes(QStringList() << "audio/");
+    m_mprisPlayer->setSupportedUriSchemes(QStringList() << "file"
+                                                        << "http"
+                                                        << "https");
+    m_mprisPlayer->setCanQuit(true);
+    m_mprisPlayer->setCanRaise(true);
+    m_mprisPlayer->setCanSetFullscreen(false);
+    m_mprisPlayer->setHasTrackList(true);
+    m_mprisPlayer->setDesktopEntry(APP_NAME);
+    m_mprisPlayer->setIdentity("Melodix Player");
+    m_mprisPlayer->setCanControl(true);
+    m_mprisPlayer->setCanPlay(true);
+    m_mprisPlayer->setCanGoNext(true);
+    m_mprisPlayer->setCanGoPrevious(true);
+    m_mprisPlayer->setCanPause(true);
+    m_mprisPlayer->setCanSeek(true);
+
+    connect(this, &Player::playStateChanged, this, [=]() {
+        m_mprisPlayer->setPlaybackStatus(m_playState ? Mpris::Playing : Mpris::Paused);
+    });
+
+    connect(m_mprisPlayer, &MprisPlayer::pauseRequested, this, [=]() { pause(); });
+    connect(m_mprisPlayer, &MprisPlayer::playRequested, this, [=]() {
+        if (m_currentPlaylist->getSongCount() == 0) {
+            return;
+        }
+        play();
+    });
+    connect(m_mprisPlayer, &MprisPlayer::nextRequested, this, [=]() {
+        if (m_currentPlaylist->getSongCount() == 0) {
+            return;
+        }
+        next();
+    });
+}
+
+QVariantMap Player::getMetadata()
+{
+    QVariantMap map;
+    map.insert("xesam:title", getName());
+    map.insert("mpris:artUrl", getPic());
+    map.insert("xesam:album", getAlbum());
+    map.insert("xesam:artist", QStringList() << getArtist());
+    return map;
 }
