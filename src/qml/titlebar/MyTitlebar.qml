@@ -30,17 +30,6 @@ TitleBar {
         }
     }
 
-    aboutDialog: AboutDialog {
-        width: 400
-        modality: Qt.NonModal
-        version: Qt.application.version
-        productName: "Melodix"
-        productIcon: "melodix"
-        description: "Melodix是一款界面美观的在线音乐播放器"
-        websiteName: "ice"
-        websiteLink: "https://github.com/student-ice"
-    }
-
     content: ColumnLayout {
         Item {
             Layout.fillWidth: true
@@ -80,11 +69,6 @@ TitleBar {
             onTriggered: {
                 Router.showSettings();
             }
-        }
-
-        AboutAction {
-            text: "关于"
-            aboutDialog: root.aboutDialog
         }
 
         QuitAction {
