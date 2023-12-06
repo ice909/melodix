@@ -2,12 +2,8 @@
 #define WORKER_H
 
 #include <QObject>
-#include <QDesktopServices>
-#include <QUrl>
-#include <QDebug>
-#include <QDir>
-#include <QSettings>
 #include <QPointer>
+#include <QSettings>
 
 class Worker : public QObject
 {
@@ -17,18 +13,20 @@ public:
     explicit Worker(QObject *parent = nullptr);
     ~Worker();
 
-    Q_INVOKABLE QString getCloseAction();
-    Q_INVOKABLE QString getIsAsk();
-    Q_INVOKABLE void setCloseAction(QString action);
-    Q_INVOKABLE void setIsAsk(QString action);
-    // 其他对象调用，获取cookie
-    Q_INVOKABLE QString getCookie();
+public slots:
+
+    QString getCloseAction();
+    QString getIsAsk();
+    void setCloseAction(QString action);
+    void setIsAsk(QString action);
+    // 获取cookie
+    QString getCookie();
     // 设置cookie,保存到配置文件
-    Q_INVOKABLE void setCookie(QString cookie);
+    void setCookie(QString cookie);
     // 登录成功之后，保存cookie
-    Q_INVOKABLE void saveCookie(QString cookie);
+    void saveCookie(QString cookie);
     // 打开网站
-    Q_INVOKABLE void openUrl(QString url);
+    void openUrl(QString url);
 
 private:
     static QPointer<Worker> INSTANCE;

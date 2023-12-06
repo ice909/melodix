@@ -74,7 +74,7 @@ Item {
         // 点击的歌曲不在播放列表中
         // 将不在播放列表中的歌曲添加到播放列表
         for (var i = playlistSongCount; i < songs.length; i++) {
-            Player.addPlaylistToPlaylist(songs[i].id, songs[i].name, Util.spliceSinger(songs[i].ar), songs[i].al.picUrl, Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));
+            Player.addPlaylistToPlaylist(songs[i].id, songs[i].name, Util.spliceSinger(songs[i].ar), songs[i].al.picUrl, Util.formatDuration(songs[i].dt), songs[i].al.name);
         }
         playlistSongCount = songs.length;
         // 如果没有传入index参数

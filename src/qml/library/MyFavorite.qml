@@ -92,7 +92,7 @@ Item {
                         color = Qt.rgba(0, 0, 0, 0.1);
                     }
                     onClicked: {
-                        Player.addSingleToPlaylist(modelData.id, modelData.name, Util.spliceSinger(modelData.ar), modelData.al.picUrl, Util.formatDuration(modelData.dt), modelData.al.name, Util.isVip(modelData.fee));
+                        Player.addSingleToPlaylist(modelData.id, modelData.name, Util.spliceSinger(modelData.ar), modelData.al.picUrl, Util.formatDuration(modelData.dt), modelData.al.name);
                     }
                 }
 

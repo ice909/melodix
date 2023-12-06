@@ -105,7 +105,7 @@ Item {
                         imgShadow.visible = false;
                     }
                     onClicked: {
-                        Player.addSingleToPlaylist(modelData.id, modelData.song.name, Util.spliceSinger(modelData.song.artists), modelData.picUrl, Util.formatDuration(modelData.song.duration), modelData.song.album.name, Util.isVip(modelData.song.fee));
+                        Player.addSingleToPlaylist(modelData.id, modelData.song.name, Util.spliceSinger(modelData.song.artists), modelData.picUrl, Util.formatDuration(modelData.song.duration), modelData.song.album.name);
                     }
                 }
 

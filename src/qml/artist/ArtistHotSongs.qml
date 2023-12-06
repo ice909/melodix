@@ -98,7 +98,7 @@ Item {
                         imgShadow.visible = false;
                     }
                     onClicked: {
-                        Player.addSingleToPlaylist(modelData.id, modelData.name, modelData.ar[0].name, modelData.al.picUrl, Util.formatDuration(modelData.dt), modelData.al.name, Util.isVip(modelData.fee));
+                        Player.addSingleToPlaylist(modelData.id, modelData.name, modelData.ar[0].name, modelData.al.picUrl, Util.formatDuration(modelData.dt), modelData.al.name);
                     }
                 }
 

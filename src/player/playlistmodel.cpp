@@ -34,8 +34,6 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const
         return song.duration;
     case AlbumRole:
         return song.album;
-    case IsVipRole:
-        return song.isVip;
     default:
         return QVariant();
     }
@@ -57,8 +55,7 @@ void PlaylistModel::addSong(const int &id,
                             const QString &author,
                             const QString &imageUrl,
                             const QString &duration,
-                            const QString &album,
-                            const bool &isVip)
+                            const QString &album)
 {
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
 
@@ -69,7 +66,6 @@ void PlaylistModel::addSong(const int &id,
     song.imageUrl = imageUrl;
     song.duration = duration;
     song.album = album;
-    song.isVip = isVip;
     m_songs.append(song);
 
     endInsertRows();
@@ -122,14 +118,6 @@ QString PlaylistModel::getAlbum(int index) const
         return QString();
     }
     return m_songs[index].album;
-}
-
-bool PlaylistModel::getIsVip(int index) const
-{
-    if (index < 0 || index >= m_songs.size()) {
-        return false;
-    }
-    return m_songs[index].isVip;
 }
 
 QString PlaylistModel::getAllId()

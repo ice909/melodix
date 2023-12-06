@@ -29,7 +29,7 @@ Item {
             Player.setCurrentPlaylistId(currentPlaylistId);
         }
         for (var i = 0; i < songs.length; i++) {
-            Player.addPlaylistToPlaylist(songs[i].id, songs[i].name, Util.spliceSinger(songs[i].ar), songs[i].al.picUrl, Util.formatDuration(songs[i].dt), songs[i].al.name, Util.isVip(songs[i].fee));
+            Player.addPlaylistToPlaylist(songs[i].id, songs[i].name, Util.spliceSinger(songs[i].ar), songs[i].al.picUrl, Util.formatDuration(songs[i].dt), songs[i].al.name);
         }
         if (index != -1)
             Player.play(index);

@@ -40,27 +40,6 @@ Item {
         return singerArr.join(",");
     }
 
-    function isVip(fee) {
-        return fee === 1;
-    }
-
-    function getProvince(code) {
-        //TODO: 待添加其他省份
-        switch (code) {
-        case 140000:
-            return "山西省";
-        }
-    }
-
-    function getCity(code) {
-        switch (code) {
-        case 140100:
-            return "太原市";
-        case 140900:
-            return "忻州市";
-        }
-    }
-
     function formatDynamicTime(time) {
         var date = new Date(time);
         var year = date.getFullYear(); // 年份

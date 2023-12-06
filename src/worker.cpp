@@ -1,5 +1,10 @@
 #include "worker.h"
 
+#include <QDebug>
+#include <QDesktopServices>
+#include <QDir>
+#include <QUrl>
+
 QPointer<Worker> Worker::INSTANCE = nullptr;
 
 Worker *Worker::instance()

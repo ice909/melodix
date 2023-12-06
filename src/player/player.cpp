@@ -77,8 +77,7 @@ void Player::addSingleToPlaylist(const int &id,
                                  const QString &artist,
                                  const QString &pic,
                                  const QString &duration,
-                                 const QString &album,
-                                 const bool &isVip)
+                                 const QString &album)
 {
     // 判断要添加的歌曲是否已经在播放列表中
     int index = m_singleTrackPlaylist->isSongExist(id);
@@ -87,7 +86,7 @@ void Player::addSingleToPlaylist(const int &id,
         // 将歌曲移动到播放列表的最后
         m_singleTrackPlaylist->moveToLast(index);
     } else {
-        m_singleTrackPlaylist->addSong(id, name, artist, pic, duration, album, isVip);
+        m_singleTrackPlaylist->addSong(id, name, artist, pic, duration, album);
     }
     if (m_currentPlaylist != m_singleTrackPlaylist) {
         switchToSingleTrackMode();
@@ -112,10 +111,9 @@ void Player::addPlaylistToPlaylist(const int &id,
                                    const QString &artist,
                                    const QString &pic,
                                    const QString &duration,
-                                   const QString &album,
-                                   const bool &isVip)
+                                   const QString &album)
 {
-    m_playlist->addSong(id, name, artist, pic, duration, album, isVip);
+    m_playlist->addSong(id, name, artist, pic, duration, album);
     if (m_currentPlaylist != m_playlist) {
         switchToPlaylistMode();
     }
@@ -459,14 +457,6 @@ QString Player::getAlbum()
     if (m_currentPlaylist->getSongCount() != 0)
         return m_currentPlaylist->getCurrentAlbum();
     return QString();
-}
-
-bool Player::getIsVip()
-{
-    if (m_currentPlaylist->getSongCount() != 0)
-        return m_currentPlaylist->getCurrentIsVip();
-
-    return false;
 }
 
 /**

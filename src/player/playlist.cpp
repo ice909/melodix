@@ -6,7 +6,7 @@
 
 Playlist::Playlist(QObject *parent)
     : QObject(parent)
-    , m_playlist(new PlaylistModel(this))
+    , m_playlistModel(new PlaylistModel(this))
 {}
 
 void Playlist::addSong(const int &id,
@@ -14,10 +14,9 @@ void Playlist::addSong(const int &id,
                        const QString &artist,
                        const QString &pic,
                        const QString &duration,
-                       const QString &album,
-                       const bool &isVip)
+                       const QString &album)
 {
-    m_playlist->addSong(id, name, artist, pic, duration, album, isVip);
+    m_playlistModel->addSong(id, name, artist, pic, duration, album);
     m_songCount++;
     emit songCountChanged(m_songCount);
 }
@@ -82,7 +81,7 @@ void Playlist::setPlayMode(const PlayMode &playMode)
 
 void Playlist::clear()
 {
-    m_playlist->clear();
+    m_playlistModel->clear();
     m_currentIndex = 0;
     m_songCount = 0;
     emit songCountChanged(m_songCount);
@@ -109,45 +108,40 @@ int Playlist::getCurrentIndex()
 
 int Playlist::getCurrentId()
 {
-    return m_playlist->getId(m_currentIndex);
+    return m_playlistModel->getId(m_currentIndex);
 }
 
 QString Playlist::getCurrentName()
 {
-    return m_playlist->getTitle(m_currentIndex);
+    return m_playlistModel->getTitle(m_currentIndex);
 }
 
 QString Playlist::getCurrentArtist()
 {
-    return m_playlist->getAuthor(m_currentIndex);
+    return m_playlistModel->getAuthor(m_currentIndex);
 }
 
 QString Playlist::getCurrentPic()
 {
-    return m_playlist->getImageUrl(m_currentIndex);
+    return m_playlistModel->getImageUrl(m_currentIndex);
 }
 
 QString Playlist::getCurrentAlbum()
 {
-    return m_playlist->getAlbum(m_currentIndex);
-}
-
-bool Playlist::getCurrentIsVip()
-{
-    return m_playlist->getIsVip(m_currentIndex);
+    return m_playlistModel->getAlbum(m_currentIndex);
 }
 
 PlaylistModel *Playlist::getPlaylistModel()
 {
-    return m_playlist;
+    return m_playlistModel;
 }
 
 int Playlist::isSongExist(const int &id)
 {
-    return m_playlist->indexOfId(id);
+    return m_playlistModel->indexOfId(id);
 }
 
 void Playlist::moveToLast(const int &index)
 {
-    m_playlist->interchangeSong(index, m_songCount - 1);
+    m_playlistModel->interchangeSong(index, m_songCount - 1);
 }

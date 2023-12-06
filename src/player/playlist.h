@@ -26,8 +26,7 @@ public:
                  const QString &artist,
                  const QString &pic,
                  const QString &duration,
-                 const QString &album,
-                 const bool &isVip);
+                 const QString &album);
     // 切换下一首歌曲
     void next();
     // 切换上一首歌曲
@@ -54,8 +53,6 @@ public:
     QString getCurrentPic();
     // 获取当前播放歌曲所属专辑
     QString getCurrentAlbum();
-    // 获取当前歌曲是否为VIP
-    bool getCurrentIsVip();
     // 判断歌曲是否存在于播放列表
     int isSongExist(const int &id);
     // 将指定歌曲移动到最后
@@ -69,7 +66,7 @@ signals:
     void songCountChanged(int count);
 
 private:
-    PlaylistModel *m_playlist = nullptr;
+    PlaylistModel *m_playlistModel = nullptr;
     // 当前播放的歌曲在播放列表中的下标
     int m_currentIndex = 0;
     // 播放列表歌曲数量
