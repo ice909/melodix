@@ -15,6 +15,7 @@ class Player : public QObject
 {
     Q_OBJECT
 public:
+    enum PlayState { Playing = 0, Paused, Stopped };
     static Player *instance();
     explicit Player(QObject *parent = nullptr);
     ~Player();
@@ -84,7 +85,7 @@ public slots:
     // 获取当前播放列表第一首歌曲的id
     QString getCurrentPlaylistId();
     // 设置当前音乐播放进度
-    void setPosition(qint64 newPosition);
+    void setPosition(qint64 position);
     // 设置音量
     void setVolume(int volume);
     // 设置是否静音
@@ -105,13 +106,13 @@ signals:
     void playStateChanged();
     void durationChanged();
     void positionChanged();
-    void mediaCountChanged(int newMediaCount);
+    void mediaCountChanged(int count);
     void playlistCurrentIndexChanged();
     // 播放列表已被清空
     void playlistCleared();
 
 public slots:
-    void onPositionChanged(qint64 new_position);
+    void onPositionChanged(qint64 position);
     void onDurationChanged(qint64 duration);
     void onCurrentIndexChanged(int index);
     void onMediaCountChanged(int count);
@@ -133,7 +134,7 @@ private:
     QSettings *m_settings = nullptr;
     QMediaPlayer *m_player = nullptr;
     // 播放状态
-    bool m_playState = false;
+    PlayState m_playState = Stopped;
     // 播放进度
     qint64 m_position;
     // 总时长

@@ -165,7 +165,7 @@ void Player::play()
         return;
     }
     m_player->play();
-    m_playState = true;
+    m_playState = PlayState::Playing;
     emit playStateChanged();
 }
 
@@ -181,7 +181,7 @@ void Player::play(int index)
 {
     m_currentPlaylist->setCurrentIndex(index);
     play();
-    m_playState = true;
+    m_playState = PlayState::Playing;
     emit playStateChanged();
 }
 
@@ -191,7 +191,7 @@ void Player::play(int index)
 void Player::pause()
 {
     m_player->pause();
-    m_playState = false;
+    m_playState = PlayState::Paused;
     emit playStateChanged();
 }
 
@@ -201,7 +201,7 @@ void Player::pause()
 void Player::stop()
 {
     m_player->stop();
-    m_playState = false;
+    m_playState = PlayState::Stopped;
     emit playStateChanged();
 }
 
@@ -210,7 +210,10 @@ void Player::stop()
  */
 void Player::playOrPause()
 {
-    if (m_playState) {
+    if (m_currentPlaylist->getSongCount() == 0) {
+        return;
+    }
+    if (m_playState == PlayState::Playing) {
         pause();
     } else {
         play();
@@ -360,11 +363,11 @@ void Player::setCurrentPlaylistId(const QString &id)
 /**
  * 设置播放器的位置
  *
- * @param newPosition the new position to set
+ * @param position the new position to set
  */
-void Player::setPosition(qint64 newPosition)
+void Player::setPosition(qint64 position)
 {
-    m_player->setPosition(newPosition);
+    m_player->setPosition(position);
 }
 
 /**************** Get ********************/
@@ -626,16 +629,36 @@ void Player::initDBus()
     m_mprisPlayer->setCanSeek(true);
 
     connect(this, &Player::playStateChanged, this, [=]() {
-        m_mprisPlayer->setPlaybackStatus(m_playState ? Mpris::Playing : Mpris::Paused);
+        switch (m_playState) {
+        case PlayState::Playing:
+            m_mprisPlayer->setPlaybackStatus(Mpris::Playing);
+            break;
+        case PlayState::Paused:
+            m_mprisPlayer->setPlaybackStatus(Mpris::Paused);
+            break;
+        case PlayState::Stopped:
+            m_mprisPlayer->setPlaybackStatus(Mpris::Stopped);
+            break;
+
+        default:
+            m_mprisPlayer->setPlaybackStatus(Mpris::Stopped);
+            break;
+        }
     });
 
+    connect(m_mprisPlayer, &MprisPlayer::playRequested, this, [=]() { play(); });
+
     connect(m_mprisPlayer, &MprisPlayer::pauseRequested, this, [=]() { pause(); });
-    connect(m_mprisPlayer, &MprisPlayer::playRequested, this, [=]() {
+
+    connect(m_mprisPlayer, &MprisPlayer::stopRequested, this, [=]() { stop(); });
+
+    connect(m_mprisPlayer, &MprisPlayer::previousRequested, this, [=]() {
         if (m_currentPlaylist->getSongCount() == 0) {
             return;
         }
-        play();
+        previous();
     });
+
     connect(m_mprisPlayer, &MprisPlayer::nextRequested, this, [=]() {
         if (m_currentPlaylist->getSongCount() == 0) {
             return;

@@ -30,7 +30,7 @@ FloatingPanel {
     // 是否静音
     property bool iMute: false
     // 播放状态：暂停/播放
-    property bool playStatus: false
+    property int playStatus: 2
     // 播放模式
     // 0~2 单曲循环 循环播放 随机播放
     property int playMode: 1
@@ -353,23 +353,17 @@ FloatingPanel {
                     width: 36
                     height: 36
                     anchors.verticalCenter: parent.verticalCenter
-                    icon.name: playStatus ? "toolbar_pause" : "toolbar_play"
+                    icon.name: playStatus === 0 ? "toolbar_pause" : "toolbar_play"
                     icon.width: 36
                     icon.height: 36
                     checkable: true
                     onClicked: {
-                        if (!Player.getMediaCount())
-                            return ;
-
-                        if (Player.getPlayState())
-                            Player.pause();
-                        else
-                            Player.play();
+                        Player.playOrPause();
                     }
 
                     ToolTip {
                         visible: playPauseBtn.hovered
-                        text: playStatus ? "暂停" : "播放"
+                        text: playStatus === 0 ? "暂停" : "播放"
                     }
 
                 }
