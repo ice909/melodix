@@ -11,6 +11,13 @@ class API : public QObject
 {
     Q_OBJECT
 public:
+    enum DataType {
+        ArtistSingle = 1,
+        PlaylistSongs = 2,
+        RecommendNewSongs = 3,
+        DailyRecommendSongs = 4,
+        Search = 5,
+    };
     static API *instance();
     explicit API(QObject *parent = nullptr);
     ~API();
@@ -79,7 +86,15 @@ signals:
     void verifyCaptchaCompleted(QJsonObject);
     void cellphoneLoginCompleted(QJsonObject);
     void userDetailCompleted(QJsonObject);
-    void dailyRecommendSongsCompleted(QJsonObject);
+    void dailyRecommendSongsCompleted(QJsonArray);
+
+private:
+    QJsonArray reformatData(API::DataType type, QJsonArray &data);
+    QJsonObject reformatData(API::DataType type, QJsonObject &data);
+    QJsonArray reformatArtistSingle(QJsonArray &data);
+    QJsonArray reformatRecommendNewSongs(QJsonArray &data);
+    QJsonArray reformatDialayRecommendSongs(QJsonArray &data);
+    QJsonObject reformatSearch(QJsonObject &data);
 
 private:
     static QPointer<API> INSTANCE;

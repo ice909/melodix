@@ -13,7 +13,7 @@ Item {
 
     // 歌单所有歌曲是否以经全部添加到了播放列表
     property bool isAddToPlaylist: false
-    property string myFavoriteId: ""
+    property string myFavoriteId: "我喜欢的歌曲"
     // 歌单歌曲总数
     property int playlistSongAllCount: 0
     // 当前播放的歌曲在歌单中的索引
@@ -34,10 +34,10 @@ Item {
 
     function playPlaylistAllMusic(index = -1) {
         Player.switchToPlaylistMode();
-        if (Player.getCurrentPlaylistId() != "" && Player.getCurrentPlaylistId() != myFavoriteId) {
-            console.log("当前歌单和播放列表中以添加的歌曲不是来自同一个歌单，先清空播放列表，再添加歌曲");
+        let currentPlaylistId = Player.getCurrentPlaylistId();
+        if (currentPlaylistId !== "" && currentPlaylistId !== myFavoriteId)
             Player.clearPlaylist();
-        }
+
         // 判断点击的歌曲是否已经添加到播放列表
         // 如果添加了直接播放
         if (index != -1 && index < playlistSongCount) {
@@ -47,7 +47,7 @@ Item {
         // 点击的歌曲不在播放列表中
         // 将不在播放列表中的歌曲添加到播放列表
         for (var i = playlistSongCount; i < songs.length; i++) {
-            Player.addPlaylistToPlaylist(songs[i].id, songs[i].name, Util.spliceSinger(songs[i].ar), songs[i].al.picUrl, Util.formatDuration(songs[i].dt), songs[i].al.name);
+            Player.addPlaylistToPlaylist(songs[i].id, songs[i].name, Util.spliceSinger(songs[i].ar), songs[i].pic, Util.formatDuration(songs[i].duration), songs[i].al);
         }
         playlistSongCount = songs.length;
         // 如果没有传入index参数

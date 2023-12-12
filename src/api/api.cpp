@@ -25,6 +25,140 @@ QJsonArray toJsonArray(QList<T> list)
     return arr;
 }
 
+QJsonArray API::reformatData(API::DataType type, QJsonArray &data)
+{
+    QJsonArray arr;
+    switch (type) {
+    case ArtistSingle:
+        arr = reformatArtistSingle(data);
+        break;
+    case PlaylistSongs:
+        arr = reformatArtistSingle(data);
+        break;
+    case RecommendNewSongs:
+        arr = reformatRecommendNewSongs(data);
+        break;
+    case DailyRecommendSongs:
+        arr = reformatDialayRecommendSongs(data);
+        break;
+    default:
+        break;
+    }
+    return arr;
+}
+
+QJsonObject API::reformatData(API::DataType type, QJsonObject &data)
+{
+    QJsonObject obj;
+    switch (type) {
+    case Search:
+        obj = reformatSearch(data);
+        break;
+    default:
+        break;
+    }
+    return obj;
+}
+
+QJsonArray API::reformatArtistSingle(QJsonArray &data)
+{
+    QJsonArray arr;
+    for (auto item : data) {
+        QJsonObject obj = item.toObject();
+        int id = obj["id"].toInt();
+        QString name = obj["name"].toString();
+        QJsonArray artists = obj["ar"].toArray();
+        QString pic = obj["al"].toObject()["picUrl"].toString();
+        QString album = obj["al"].toObject()["name"].toString();
+        int duration = obj["dt"].toInt();
+        QJsonObject song;
+        song.insert("id", id);
+        song.insert("name", name);
+        song.insert("ar", artists);
+        song.insert("pic", pic);
+        song.insert("al", album);
+        song.insert("duration", duration);
+        arr.append(song);
+    }
+    return arr;
+}
+
+QJsonArray API::reformatRecommendNewSongs(QJsonArray &data)
+{
+    QJsonArray arr;
+    for (auto item : data) {
+        QJsonObject obj = item.toObject();
+        int id = obj["id"].toInt();
+        QString name = obj["name"].toString();
+        QJsonArray artists = obj["song"].toObject()["artists"].toArray();
+        QString pic = obj["picUrl"].toString();
+        QString album = obj["song"].toObject()["album"].toObject()["name"].toString();
+        int duration = obj["song"].toObject()["duration"].toInt();
+        QJsonObject song;
+        song.insert("id", id);
+        song.insert("name", name);
+        song.insert("ar", artists);
+        song.insert("pic", pic);
+        song.insert("al", album);
+        song.insert("duration", duration);
+        arr.append(song);
+    }
+    return arr;
+}
+
+QJsonArray API::reformatDialayRecommendSongs(QJsonArray &data)
+{
+    QJsonArray arr;
+    for (auto item : data) {
+        QJsonObject obj = item.toObject();
+        int id = obj["id"].toInt();
+        QString name = obj["name"].toString();
+        QJsonArray artists = obj["ar"].toArray();
+        QJsonObject al = obj["al"].toObject();
+        QString pic = al["picUrl"].toString();
+        QString album = al["name"].toString();
+        int duration = obj["dt"].toInt();
+        QJsonObject song;
+        song.insert("id", id);
+        song.insert("name", name);
+        song.insert("ar", artists);
+        song.insert("pic", pic);
+        song.insert("al", album);
+        song.insert("duration", duration);
+        arr.append(song);
+    }
+    return arr;
+}
+
+QJsonObject API::reformatSearch(QJsonObject &data)
+{
+    QJsonObject obj;
+    QJsonArray newSongs;
+    int songCount = data["songCount"].toInt();
+    QJsonArray songs = data["songs"].toArray();
+    for (auto item : songs) {
+        QJsonObject obj = item.toObject();
+        int id = obj["id"].toInt();
+        QString name = obj["name"].toString();
+        QJsonArray artists = obj["ar"].toArray();
+        QJsonObject al = obj["al"].toObject();
+        QString pic = al["picUrl"].toString();
+        QString album = al["name"].toString();
+        int duration = obj["dt"].toInt();
+        QJsonObject song;
+        song.insert("id", id);
+        song.insert("name", name);
+        song.insert("ar", artists);
+        song.insert("pic", pic);
+        song.insert("al", album);
+        song.insert("duration", duration);
+        newSongs.append(song);
+    }
+    obj.insert("songs", newSongs);
+    obj.insert("songCount", songCount);
+    return obj;
+}
+
 API::API(QObject *parent)
     : QObject(parent)
     , apiInstance(new MDClientApi)
@@ -64,7 +198,9 @@ API::API(QObject *parent)
     connect(apiInstance,
             &MDClientApi::getPlaylistTrackAllSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetPlaylistTrackAll_200_response response) {
-                emit playlistSongsCompleted(toJsonArray(response.getSongs()));
+                QJsonArray data = toJsonArray(response.getSongs());
+                QJsonArray arr = reformatData(PlaylistSongs, data);
+                emit playlistSongsCompleted(arr);
             });
     connect(userApiInstance,
             &MDClientApi::getUserPlaylistSignalFull,
@@ -99,12 +235,16 @@ API::API(QObject *parent)
     connect(apiInstance,
             &MDClientApi::getArtistSingleSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetArtistSingle_200_response response) {
-                emit artistSongsCompleted(toJsonArray(response.getSongs()));
+                QJsonArray data = toJsonArray(response.getSongs());
+                QJsonArray arr = reformatData(ArtistSingle, data);
+                emit artistSongsCompleted(arr);
             });
     connect(apiInstance,
             &MDClientApi::searchSignalFull,
             [&](MDHttpRequestWorker *worker, MDSearch_200_response response) {
-                emit searchCompleted(response.getResult().asJsonObject());
+                QJsonObject result = response.getResult().asJsonObject();
+                QJsonObject obj = reformatData(Search, result);
+                emit searchCompleted(obj);
             });
     connect(userApiInstance,
             &MDClientApi::likeMusicSignalFull,
@@ -144,7 +284,9 @@ API::API(QObject *parent)
     connect(userApiInstance,
             &MDClientApi::dailySongRecommendSignalFull,
             [&](MDHttpRequestWorker *worker, MDDailySongRecommend_200_response response) {
-                emit dailyRecommendSongsCompleted(response.asJsonObject());
+                QJsonArray data = toJsonArray(response.getData().getDailySongs());
+                QJsonArray arr = reformatData(DailyRecommendSongs, data);
+                emit dailyRecommendSongsCompleted(arr);
             });
 }
 void API::banner(const int type)
@@ -193,7 +335,9 @@ void API::getRecommendedNewSongs(const int limit)
     connect(apiInstance,
             &MDClientApi::getRecommendedNewSongsSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetRecommendedNewSongs_200_response response) {
-                emit recommendedNewSongsCompleted(toJsonArray(response.getResult()));
+                QJsonArray data = toJsonArray(response.getResult());
+                QJsonArray arr = reformatData(RecommendNewSongs, data);
+                emit recommendedNewSongsCompleted(arr);
             });
 }
 

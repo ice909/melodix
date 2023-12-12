@@ -193,7 +193,7 @@ Item {
                 width: scrollWidth
                 height: (scrollWidth - 100) * 0.33333 * 0.15 * 3 + 20 * 2 + 30
 
-                RecommendNewSongs {
+                GridSong {
                     id: recommendNewSongs
 
                     anchors.fill: parent

@@ -1,5 +1,4 @@
 import "../../util"
-import "../widgets"
 import Melodix.Player 1.0
 import QtQuick 2.11
 import QtQuick.Controls 2.4
@@ -7,21 +6,24 @@ import org.deepin.dtk 1.0
 
 Item {
     property alias lists: repeater.model
+    // 列数
+    property int columnCount: 3
+    property int rowCount: 3
 
     Grid {
         id: gridLayout
 
         anchors.fill: parent
-        columns: 3
+        columns: columnCount
         columnSpacing: 50
-        rowSpacing: 20
+        rowSpacing: 10
 
         Repeater {
             id: repeater
 
             Rectangle {
-                width: (parent.width - 100) * 0.33333
-                height: (width * 0.15 * 3 + 20 * 2 - (20 * 2)) / 3 + 10
+                width: (parent.width - 50 * (columnCount - 1)) * (1 / columnCount)
+                height: (parent.height - (rowCount - 1) * 10) * 1 / rowCount
                 color: "transparent"
                 radius: 5
 
@@ -41,7 +43,7 @@ Item {
                             height: parent.height - 3
                             anchors.left: parent.left
                             anchors.leftMargin: 2
-                            imgSrc: modelData.picUrl
+                            imgSrc: modelData.pic
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
@@ -60,7 +62,7 @@ Item {
 
                             Text {
                                 width: infoRect.width
-                                text: modelData.song.name
+                                text: modelData.name
                                 elide: Qt.ElideRight
                                 font.pixelSize: DTK.fontManager.t6.pixelSize
                                 color: Util.textColor
@@ -68,7 +70,7 @@ Item {
 
                             Text {
                                 width: infoRect.width
-                                text: Util.spliceSinger(modelData.song.artists)
+                                text: Util.spliceSinger(modelData.ar)
                                 font.pixelSize: DTK.fontManager.t7.pixelSize
                                 elide: Qt.ElideRight
                                 color: Util.textColor
@@ -105,7 +107,7 @@ Item {
                         imgShadow.visible = false;
                     }
                     onClicked: {
-                        Player.addSingleToPlaylist(modelData.id, modelData.song.name, Util.spliceSinger(modelData.song.artists), modelData.picUrl, Util.formatDuration(modelData.song.duration), modelData.song.album.name);
+                        Player.addSingleToPlaylist(modelData.id, modelData.name, Util.spliceSinger(modelData.ar), modelData.pic, Util.formatDuration(modelData.duration), modelData.al);
                     }
                 }
 

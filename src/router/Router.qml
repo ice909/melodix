@@ -8,8 +8,6 @@ Item {
     property var routeCurrent: routeIndex
     // 路由历史记录
     property var routeHistory: [routeIndex]
-    property ListModel pageModel
-    property ListModel userListViewModel
     // 首页
     property var routeIndex: {
         "path": "index",
@@ -183,67 +181,6 @@ Item {
         console.log("route back", JSON.stringify(r));
         routeCurrent = r;
         signalBack();
-    }
-
-    function onThemeTypeChanged() {
-        if (D.DTK.themeType == 2) {
-            pageModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-dark.svg");
-            pageModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-dark.svg");
-            pageModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-dark.svg");
-            userListViewModel.setProperty(0, "iconName", "qrc:/dsg/icons/favourite-dark.svg");
-            userListViewModel.setProperty(1, "iconName", "qrc:/dsg/icons/daily-dark.svg");
-        } else {
-            pageModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-light.svg");
-            pageModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-light.svg");
-            pageModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-light.svg");
-            userListViewModel.setProperty(0, "iconName", "qrc:/dsg/icons/favourite-light.svg");
-            userListViewModel.setProperty(1, "iconName", "qrc:/dsg/icons/daily-light.svg");
-        }
-    }
-
-    Component.onCompleted: {
-        if (D.DTK.themeType === 2) {
-            pageModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-dark.svg");
-            pageModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-dark.svg");
-            pageModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-dark.svg");
-            userListViewModel.setProperty(0, "iconName", "qrc:/dsg/icons/favourite-dark.svg");
-            userListViewModel.setProperty(1, "iconName", "qrc:/dsg/icons/daily-dark.svg");
-        }
-        D.DTK.themeTypeChanged.connect(onThemeTypeChanged);
-    }
-    Component.onDestruction: {
-        D.DTK.themeTypeChanged.disconnect(onThemeTypeChanged);
-    }
-
-    pageModel: ListModel {
-        ListElement {
-            iconName: "qrc:/dsg/icons/index-light.svg"
-            _text: "首页"
-        }
-
-        ListElement {
-            iconName: "qrc:/dsg/icons/discover-light.svg"
-            _text: "发现"
-        }
-
-        ListElement {
-            iconName: "qrc:/dsg/icons/library-light.svg"
-            _text: "音乐库"
-        }
-
-    }
-
-    userListViewModel: ListModel {
-        ListElement {
-            iconName: "qrc:/dsg/icons/favourite-light.svg"
-            _text: "我喜欢的音乐"
-        }
-
-        ListElement {
-            iconName: "qrc:/dsg/icons/daily-light.svg"
-            _text: "每日推荐"
-        }
-
     }
 
 }

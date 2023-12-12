@@ -7,9 +7,40 @@ import org.deepin.dtk 1.0
 Item {
     property int pageSelectedIndex: 0
     property int userListViewSelectedIndex: -1
+    property ListModel pageModel
+    property ListModel userListViewModel
+
+    function onThemeTypeChanged() {
+        if (DTK.themeType == 2) {
+            pageModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-dark.svg");
+            pageModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-dark.svg");
+            pageModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-dark.svg");
+            userListViewModel.setProperty(0, "iconName", "qrc:/dsg/icons/favourite-dark.svg");
+            userListViewModel.setProperty(1, "iconName", "qrc:/dsg/icons/daily-dark.svg");
+        } else {
+            pageModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-light.svg");
+            pageModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-light.svg");
+            pageModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-light.svg");
+            userListViewModel.setProperty(0, "iconName", "qrc:/dsg/icons/favourite-light.svg");
+            userListViewModel.setProperty(1, "iconName", "qrc:/dsg/icons/daily-light.svg");
+        }
+    }
 
     width: 150
     height: parent.height
+    Component.onCompleted: {
+        if (DTK.themeType === 2) {
+            pageModel.setProperty(0, "iconName", "qrc:/dsg/icons/index-dark.svg");
+            pageModel.setProperty(1, "iconName", "qrc:/dsg/icons/discover-dark.svg");
+            pageModel.setProperty(2, "iconName", "qrc:/dsg/icons/library-dark.svg");
+            userListViewModel.setProperty(0, "iconName", "qrc:/dsg/icons/favourite-dark.svg");
+            userListViewModel.setProperty(1, "iconName", "qrc:/dsg/icons/daily-dark.svg");
+        }
+        DTK.themeTypeChanged.connect(onThemeTypeChanged);
+    }
+    Component.onDestruction: {
+        DTK.themeTypeChanged.disconnect(onThemeTypeChanged);
+    }
 
     Column {
         anchors.fill: parent
@@ -21,7 +52,7 @@ Item {
 
             width: parent.width - 10
             height: 36 * 3 + 5 * 2
-            model: Router.pageModel
+            model: pageModel
             spacing: 5
 
             delegate: ItemDelegate {
@@ -96,7 +127,7 @@ Item {
             width: parent.width - 10
             visible: isLogin
             height: 36 * 2 + 5
-            model: Router.userListViewModel
+            model: userListViewModel
             spacing: 5
 
             delegate: ItemDelegate {
@@ -181,6 +212,37 @@ Item {
         }
 
         target: Router
+    }
+
+    pageModel: ListModel {
+        ListElement {
+            iconName: "qrc:/dsg/icons/index-light.svg"
+            _text: "首页"
+        }
+
+        ListElement {
+            iconName: "qrc:/dsg/icons/discover-light.svg"
+            _text: "发现"
+        }
+
+        ListElement {
+            iconName: "qrc:/dsg/icons/library-light.svg"
+            _text: "音乐库"
+        }
+
+    }
+
+    userListViewModel: ListModel {
+        ListElement {
+            iconName: "qrc:/dsg/icons/favourite-light.svg"
+            _text: "我喜欢的音乐"
+        }
+
+        ListElement {
+            iconName: "qrc:/dsg/icons/daily-light.svg"
+            _text: "每日推荐"
+        }
+
     }
 
 }

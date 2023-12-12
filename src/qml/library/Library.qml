@@ -45,6 +45,9 @@ Item {
 
                 }
             }
+            if (lyrics.length < 3)
+                return ;
+
             var randomNumber = Math.floor(Math.random() * (lyrics.length - 4) + 4);
             if ((randomNumber + 2) < lyrics.length) {
                 randomLyric1.text = lyrics[randomNumber];
@@ -66,6 +69,7 @@ Item {
         function onReply(reply) {
             API.onPlaylistSongsCompleted.disconnect(onReply);
             var randomNumber = Math.floor(Math.random() * 12);
+            console.log(reply[0].id);
             getLyric(reply[randomNumber].id);
             musicCountTitle.text = reply.length + "首歌";
             myFavoriteSongs.lists = reply.slice(0, 12);
@@ -265,10 +269,11 @@ Item {
                         width: parent.width * 0.65 - 60
                         height: parent.height
 
-                        MyFavorite {
+                        GridSong {
                             id: myFavoriteSongs
 
                             anchors.fill: parent
+                            rowCount: 4
                         }
 
                     }
@@ -307,7 +312,7 @@ Item {
                             switching = true;
                             currentChecked = text;
                             bottomLoader.setSource("");
-                            bottomLoader.setSource("./BuyAlbums.qml");
+                            bottomLoader.setSource("../widgets/BuyAlbums.qml");
                             getUserAlbum();
                         }
                     }

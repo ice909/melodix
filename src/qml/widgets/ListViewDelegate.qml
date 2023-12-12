@@ -50,7 +50,7 @@ ItemDelegate {
 
             RoundedImage {
                 Layout.leftMargin: 10
-                imgSrc: modelData.al.picUrl
+                imgSrc: modelData.pic
                 height: 45
                 width: 45
             }
@@ -84,7 +84,7 @@ ItemDelegate {
             }
 
             Label {
-                text: modelData.al.name
+                text: modelData.al
             }
 
             Item {
@@ -94,7 +94,7 @@ ItemDelegate {
             Label {
                 Layout.rightMargin: 10
                 font.bold: true
-                text: Util.formatDuration(modelData.dt)
+                text: Util.formatDuration(modelData.duration)
             }
 
         }

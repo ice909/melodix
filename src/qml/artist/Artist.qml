@@ -297,11 +297,13 @@ Item {
 
             }
 
-            ArtistHotSongs {
+            GridSong {
                 id: artist_hot_songs
 
                 width: scrollWidth
                 height: (scrollWidth - 30 * 3) / 16 * hotSongsCount + 10 * 2
+                columnCount: 4
+                rowCount: 3
             }
 
             Item {

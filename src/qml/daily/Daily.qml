@@ -24,13 +24,13 @@ Item {
     function playPlaylistAllMusic(index = -1) {
         // 切换播放列表
         Player.switchToPlaylistMode();
-        if (Player.getCurrentPlaylistId() != "" && Player.getCurrentPlaylistId() != currentPlaylistId) {
+        if (Player.getCurrentPlaylistId() != "" && Player.getCurrentPlaylistId() != currentPlaylistId)
             Player.clearPlaylist();
-            Player.setCurrentPlaylistId(currentPlaylistId);
-        }
+
         for (var i = 0; i < songs.length; i++) {
-            Player.addPlaylistToPlaylist(songs[i].id, songs[i].name, Util.spliceSinger(songs[i].ar), songs[i].al.picUrl, Util.formatDuration(songs[i].dt), songs[i].al.name);
+            Player.addPlaylistToPlaylist(songs[i].id, songs[i].name, Util.spliceSinger(songs[i].ar), songs[i].pic, Util.formatDuration(songs[i].duration), songs[i].al);
         }
+        Player.setCurrentPlaylistId(currentPlaylistId);
         if (index != -1)
             Player.play(index);
         else
@@ -58,7 +58,7 @@ Item {
 
     Connections {
         function onDailyRecommendSongsCompleted(res) {
-            songs = res.data.dailySongs;
+            songs = res;
             count = songs.length;
             for (const song of songs) {
                 songListModel.append({

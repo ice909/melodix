@@ -24,11 +24,11 @@ qtquick_compiler_add_resources(RCC_SOURCES ${RESOURCES})
 # 保证src目录下的头文件全局可见
 include_directories(.)
 include_directories(./player)
+include_directories(./api)
 
 aux_source_directory(./ ALLSOURCE)
+aux_source_directory(./api ALLSOURCE)
 aux_source_directory(./player ALLSOURCE)
-
-add_subdirectory(api)
 
 add_executable(${BIN_NAME} ${ALLSOURCE} ${RESOURCES})
 
@@ -40,11 +40,10 @@ set(TARGET_LIBS
     Qt5::Quick
     PkgConfig::Dtk
     ${DtkDeclarative_LIBRARIES}
-    API
+    QtMelodixAPI
     PkgConfig::MPRIS
 )
 
 target_link_libraries(${BIN_NAME} ${TARGET_LIBS})
 
-# 安装 digimusic
 install(TARGETS ${BIN_NAME} DESTINATION ${APP_BIN_INSTALL_DIR})
