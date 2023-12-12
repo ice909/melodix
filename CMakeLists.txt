@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.13)
 
 if(NOT DEFINED VERSION)
-    set(VERSION 1.2.2)
+    set(VERSION 1.2.3)
 endif()
 
 set(PROJECT_NAME melodix)
 
 project(${PROJECT_NAME}
     VERSION ${VERSION}
-    DESCRIPTION "MusicPlayer"
+    DESCRIPTION "Music Player"
     HOMEPAGE_URL "https://github.com/student-ice/melodix"
     LANGUAGES CXX
 )
