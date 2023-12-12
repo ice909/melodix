@@ -63,6 +63,11 @@ public:
     bool is_album_Set() const;
     bool is_album_Valid() const;
 
+    qint32 getDuration() const;
+    void setDuration(const qint32 &duration);
+    bool is_duration_Set() const;
+    bool is_duration_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -84,6 +89,10 @@ private:
     MDGetRecommendedNewSongs_200_response_result_inner_song_album m_album;
     bool m_album_isSet;
     bool m_album_isValid;
+
+    qint32 m_duration;
+    bool m_duration_isSet;
+    bool m_duration_isValid;
 };
 
 } // namespace MelodixAPI

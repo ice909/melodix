@@ -1312,19 +1312,24 @@
                               "description"
                             ],
                             "x-apifox-ignore-properties": []
+                          },
+                          "duration": {
+                            "type": "integer"
                           }
                         },
                         "required": [
                           "name",
                           "id",
                           "artists",
-                          "album"
+                          "album",
+                          "duration"
                         ],
                         "x-apifox-orders": [
                           "name",
                           "id",
                           "artists",
-                          "album"
+                          "album",
+                          "duration"
                         ],
                         "x-apifox-ignore-properties": []
                       }
