@@ -10,8 +10,6 @@
         <file>qml/pages/Search.qml</file>
         <file>qml/pages/Artist.qml</file>
         <file>qml/pages/Favorite.qml</file>
-        <file>qml/pages/Index.qml</file>
-        <file>qml/pages/Index.qml</file>
 
         <file>qml/lyric/Lyric.qml</file>
         <file>qml/lyric/LyricRect.qml</file>
