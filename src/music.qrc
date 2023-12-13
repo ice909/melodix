@@ -1,17 +1,17 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        
-        <file>qml/index/Index.qml</file>
 
-        <file>qml/discover/Discover.qml</file>
-
-        <file>qml/daily/Daily.qml</file>
-
-        <file>qml/library/Library.qml</file>
-
-        <file>qml/playlistdetail/PlaylistDetail.qml</file>
-        <file>qml/playlistdetail/PlaylistDetailHead.qml</file>
+        <file>qml/pages/Index.qml</file>
+        <file>qml/pages/Discover.qml</file>
+        <file>qml/pages/Daily.qml</file>
+        <file>qml/pages/Library.qml</file>
+        <file>qml/pages/PlaylistDetail.qml</file>
+        <file>qml/pages/Search.qml</file>
+        <file>qml/pages/Artist.qml</file>
+        <file>qml/pages/Favorite.qml</file>
+        <file>qml/pages/Index.qml</file>
+        <file>qml/pages/Index.qml</file>
 
         <file>qml/lyric/Lyric.qml</file>
         <file>qml/lyric/LyricRect.qml</file>
@@ -40,18 +40,13 @@
         <file>qml/widgets/PlayTime.qml</file>
         <file>qml/widgets/Duration.qml</file>
         <file>qml/widgets/BuyAlbums.qml</file>
+        <file>qml/widgets/PlaylistDetailHead.qml</file>
 
         <file>qml/toolbar/Toolbar.qml</file>
         <file>qml/toolbar/VolumeSlider.qml</file>
 
         <file>qml/playlist/Playlist.qml</file>
         <file>qml/playlist/PlaylistDelegate.qml</file>
-
-        <file>qml/search/Search.qml</file>
-
-        <file>qml/artist/Artist.qml</file>
-
-        <file>qml/favorite/Favorite.qml</file>
 
         <file>qml/dialogs/CloseDialog.qml</file>
         

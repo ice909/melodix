@@ -179,7 +179,7 @@ ApplicationWindow {
 
         model: ListModel {
             ListElement {
-                source: "qml/index/Index.qml"
+                source: "qml/pages/Index.qml"
             }
 
         }

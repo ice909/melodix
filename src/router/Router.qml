@@ -11,41 +11,41 @@ Item {
     // 首页
     property var routeIndex: {
         "path": "index",
-        "component": "qml/index/Index.qml"
+        "component": "qml/pages/Index.qml"
     }
     // 发现
     property var routeDiscover: {
         "path": "discover",
-        "component": "qml/discover/Discover.qml",
+        "component": "qml/pages/Discover.qml",
         "showRecommend": false
     }
     // 音乐库
     property var routeLibrary: {
         "path": "library",
-        "component": "qml/library/Library.qml"
+        "component": "qml/pages/Library.qml"
     }
     // 歌单详情页
     property var routePlaylistDetail: {
         "path": "playlist",
-        "component": "qml/playlistdetail/PlaylistDetail.qml",
+        "component": "qml/pages/PlaylistDetail.qml",
         "id": 0
     }
     // 搜索结果页
     property var routeSearch: {
         "path": "search",
-        "component": "qml/search/Search.qml",
+        "component": "qml/pages/Search.qml",
         "key": ""
     }
     // 艺人详情页
     property var routeArtist: {
         "path": "artist",
-        "component": "qml/artist/Artist.qml",
+        "component": "qml/pages/Artist.qml",
         "id": ""
     }
     // 喜欢的歌曲页
     property var routeFavorite: {
         "path": "favourite",
-        "component": "qml/favorite/Favorite.qml",
+        "component": "qml/pages/Favorite.qml",
         "id": "",
         "count": ""
     }
@@ -62,7 +62,7 @@ Item {
     // 每日推荐歌曲页
     property var routeDaily: {
         "path": "daily",
-        "component": "qml/daily/Daily.qml"
+        "component": "qml/pages/Daily.qml"
     }
 
     // 路由后退信号
