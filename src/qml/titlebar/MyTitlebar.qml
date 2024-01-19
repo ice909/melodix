@@ -67,6 +67,9 @@ TitleBar {
 
             text: "设置"
             onTriggered: {
+                if (isLyricShow)
+                    lrcHideBtnClicked();
+
                 Router.showSettings();
             }
         }
