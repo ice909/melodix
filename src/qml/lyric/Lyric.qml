@@ -29,27 +29,27 @@ Item {
             API.onLyricCompleted.disconnect(onReply);
             if (lrc === "") {
                 hasLyric = false;
-                return ;
-            }
-            hasLyric = true;
-            var lines = lrc.split("\n");
-            for (var i = 0; i < lines.length; i++) {
-                var line = lines[i].trim();
-                if (line !== "") {
-                    var timestampStart = line.indexOf("[");
-                    var timestampEnd = line.indexOf("]");
-                    var timestamp = line.substring(timestampStart + 1, timestampEnd);
-                    var lyric = line.substring(timestampEnd + 1).trim();
-                    var timeParts = timestamp.split(":");
-                    var minutes = parseInt(timeParts[0]);
-                    var seconds = parseFloat(timeParts[1]);
-                    var milliseconds = Math.round((minutes * 60 + seconds) * 1000);
-                    if (lyric != "")
-                        lrcModel.append({
-                        "time": milliseconds,
-                        "lyric": lyric
-                    });
+            } else {
+                hasLyric = true;
+                var lines = lrc.split("\n");
+                for (var i = 0; i < lines.length; i++) {
+                    var line = lines[i].trim();
+                    if (line !== "") {
+                        var timestampStart = line.indexOf("[");
+                        var timestampEnd = line.indexOf("]");
+                        var timestamp = line.substring(timestampStart + 1, timestampEnd);
+                        var lyric = line.substring(timestampEnd + 1).trim();
+                        var timeParts = timestamp.split(":");
+                        var minutes = parseInt(timeParts[0]);
+                        var seconds = parseFloat(timeParts[1]);
+                        var milliseconds = Math.round((minutes * 60 + seconds) * 1000);
+                        if (lyric != "")
+                            lrcModel.append({
+                            "time": milliseconds,
+                            "lyric": lyric
+                        });
 
+                    }
                 }
             }
             initing = false;
