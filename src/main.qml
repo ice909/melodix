@@ -371,15 +371,9 @@ ApplicationWindow {
                 anchors.top: parent.top
                 color: Util.sidebarBackgroundColor
 
-                BoxShadow {
-                    anchors.fill: leftBgArea
-                    shadowOffsetX: 0
-                    shadowOffsetY: 4
-                    shadowColor: Qt.rgba(0, 0, 0, 0.05)
-                    shadowBlur: 10
-                    cornerRadius: leftBgArea.radius
-                    spread: 0
-                    hollow: true
+                StyledBehindWindowBlur {
+                    control: rootWindow
+                    anchors.fill: parent
                 }
 
                 Rectangle {

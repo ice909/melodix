@@ -10,7 +10,7 @@ Item {
     property string mouseHoverColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? Qt.rgba(255, 255, 255, 1) : Qt.rgba(255, 255, 255, 0.3)
     property string mousePressedColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? Qt.rgba(0, 0, 0, 0.3) : Qt.rgba(255, 255, 255, 0.4)
     property string mouseReleasedColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? Qt.rgba(0, 0, 0, 0.2) : Qt.rgba(255, 255, 255, 0.3)
-    property string sidebarBackgroundColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? "#e9e9e9" : "#252525"
+    property string sidebarBackgroundColor: "transparent"
     property string sidebarRightBorderColor: D.DTK.themeType === DI.ApplicationHelper.LightType ? "#eee7e7e7" : "#ee252525"
     property int pageLeftPadding: 20
 
