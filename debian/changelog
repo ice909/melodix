@@ -1,3 +1,14 @@
+melodix (1.2.4) UNRELEASED; urgency=medium
+
+  * feat: sidebar add transparent effect
+  * fix: fix dependent loss
+  * fix: loading animation doesn't stop when there are no lyrics
+  * fix: lyric page does not hide when the Settings page is opened
+  * feat: Extract the formatdata code
+  * chore: Adjust directory structure
+
+ -- ice <tonimayloneya@gmail.com>  Sat, 9 Mar 2024 15:09:11 +0800
+
 melodix (1.2.3) UNRELEASED; urgency=medium
 
   * feat: network request returned data reorganization
