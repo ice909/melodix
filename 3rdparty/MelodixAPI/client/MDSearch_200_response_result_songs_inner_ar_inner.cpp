@@ -9,7 +9,7 @@
  * Do not edit the class manually.
  */
 
-#include "MDGetArtistSingle_200_response_songs_inner_ar_inner.h"
+#include "MDSearch_200_response_result_songs_inner_ar_inner.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -20,18 +20,18 @@
 
 namespace MelodixAPI {
 
-MDGetArtistSingle_200_response_songs_inner_ar_inner::MDGetArtistSingle_200_response_songs_inner_ar_inner(QString json) {
+MDSearch_200_response_result_songs_inner_ar_inner::MDSearch_200_response_result_songs_inner_ar_inner(QString json) {
     this->initializeModel();
     this->fromJson(json);
 }
 
-MDGetArtistSingle_200_response_songs_inner_ar_inner::MDGetArtistSingle_200_response_songs_inner_ar_inner() {
+MDSearch_200_response_result_songs_inner_ar_inner::MDSearch_200_response_result_songs_inner_ar_inner() {
     this->initializeModel();
 }
 
-MDGetArtistSingle_200_response_songs_inner_ar_inner::~MDGetArtistSingle_200_response_songs_inner_ar_inner() {}
+MDSearch_200_response_result_songs_inner_ar_inner::~MDSearch_200_response_result_songs_inner_ar_inner() {}
 
-void MDGetArtistSingle_200_response_songs_inner_ar_inner::initializeModel() {
+void MDSearch_200_response_result_songs_inner_ar_inner::initializeModel() {
 
     m_id_isSet = false;
     m_id_isValid = false;
@@ -40,14 +40,14 @@ void MDGetArtistSingle_200_response_songs_inner_ar_inner::initializeModel() {
     m_name_isValid = false;
 }
 
-void MDGetArtistSingle_200_response_songs_inner_ar_inner::fromJson(QString jsonString) {
+void MDSearch_200_response_result_songs_inner_ar_inner::fromJson(QString jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void MDGetArtistSingle_200_response_songs_inner_ar_inner::fromJsonObject(QJsonObject json) {
+void MDSearch_200_response_result_songs_inner_ar_inner::fromJsonObject(QJsonObject json) {
 
     m_id_isValid = ::MelodixAPI::fromJsonValue(m_id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
@@ -56,14 +56,14 @@ void MDGetArtistSingle_200_response_songs_inner_ar_inner::fromJsonObject(QJsonOb
     m_name_isSet = !json[QString("name")].isNull() && m_name_isValid;
 }
 
-QString MDGetArtistSingle_200_response_songs_inner_ar_inner::asJson() const {
+QString MDSearch_200_response_result_songs_inner_ar_inner::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject MDGetArtistSingle_200_response_songs_inner_ar_inner::asJsonObject() const {
+QJsonObject MDSearch_200_response_result_songs_inner_ar_inner::asJsonObject() const {
     QJsonObject obj;
     if (m_id_isSet) {
         obj.insert(QString("id"), ::MelodixAPI::toJsonValue(m_id));
@@ -74,39 +74,39 @@ QJsonObject MDGetArtistSingle_200_response_songs_inner_ar_inner::asJsonObject() 
     return obj;
 }
 
-qint32 MDGetArtistSingle_200_response_songs_inner_ar_inner::getId() const {
+qint32 MDSearch_200_response_result_songs_inner_ar_inner::getId() const {
     return m_id;
 }
-void MDGetArtistSingle_200_response_songs_inner_ar_inner::setId(const qint32 &id) {
+void MDSearch_200_response_result_songs_inner_ar_inner::setId(const qint32 &id) {
     m_id = id;
     m_id_isSet = true;
 }
 
-bool MDGetArtistSingle_200_response_songs_inner_ar_inner::is_id_Set() const{
+bool MDSearch_200_response_result_songs_inner_ar_inner::is_id_Set() const{
     return m_id_isSet;
 }
 
-bool MDGetArtistSingle_200_response_songs_inner_ar_inner::is_id_Valid() const{
+bool MDSearch_200_response_result_songs_inner_ar_inner::is_id_Valid() const{
     return m_id_isValid;
 }
 
-QString MDGetArtistSingle_200_response_songs_inner_ar_inner::getName() const {
+QString MDSearch_200_response_result_songs_inner_ar_inner::getName() const {
     return m_name;
 }
-void MDGetArtistSingle_200_response_songs_inner_ar_inner::setName(const QString &name) {
+void MDSearch_200_response_result_songs_inner_ar_inner::setName(const QString &name) {
     m_name = name;
     m_name_isSet = true;
 }
 
-bool MDGetArtistSingle_200_response_songs_inner_ar_inner::is_name_Set() const{
+bool MDSearch_200_response_result_songs_inner_ar_inner::is_name_Set() const{
     return m_name_isSet;
 }
 
-bool MDGetArtistSingle_200_response_songs_inner_ar_inner::is_name_Valid() const{
+bool MDSearch_200_response_result_songs_inner_ar_inner::is_name_Valid() const{
     return m_name_isValid;
 }
 
-bool MDGetArtistSingle_200_response_songs_inner_ar_inner::isSet() const {
+bool MDSearch_200_response_result_songs_inner_ar_inner::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (m_id_isSet) {
@@ -122,7 +122,7 @@ bool MDGetArtistSingle_200_response_songs_inner_ar_inner::isSet() const {
     return isObjectUpdated;
 }
 
-bool MDGetArtistSingle_200_response_songs_inner_ar_inner::isValid() const {
+bool MDSearch_200_response_result_songs_inner_ar_inner::isValid() const {
     // only required properties are required for the object to be considered valid
     return m_id_isValid && m_name_isValid && true;
 }

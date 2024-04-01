@@ -95,8 +95,8 @@ void MDClientApi::initializeServerConfigs() {
     _serverIndices.insert("qrCreate", 0);
     _serverConfigs.insert("search", defaultConf);
     _serverIndices.insert("search", 0);
-    _serverConfigs.insert("sendCaptcha", defaultConf);
-    _serverIndices.insert("sendCaptcha", 0);
+    _serverConfigs.insert("sentCaptcha", defaultConf);
+    _serverIndices.insert("sentCaptcha", 0);
     _serverConfigs.insert("verifyCaptcha", defaultConf);
     _serverIndices.insert("verifyCaptcha", 0);
 }
@@ -593,7 +593,7 @@ void MDClientApi::dailySongRecommendCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getAccountInfo(const double &timestamp) {
+void MDClientApi::getAccountInfo(const qint32 &timestamp) {
     QString fullPath = QString(_serverConfigs["getAccountInfo"][_serverIndices.value("getAccountInfo")].URL()+"/user/account");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -868,7 +868,7 @@ void MDClientApi::getArtistSingleCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getArtistSublist(const double &timestamp) {
+void MDClientApi::getArtistSublist(const qint32 &timestamp) {
     QString fullPath = QString(_serverConfigs["getArtistSublist"][_serverIndices.value("getArtistSublist")].URL()+"/artist/sublist");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -998,7 +998,7 @@ void MDClientApi::getLikeSongIdCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getLoginStatus(const double &timestamp) {
+void MDClientApi::getLoginStatus(const qint32 &timestamp) {
     QString fullPath = QString(_serverConfigs["getLoginStatus"][_serverIndices.value("getLoginStatus")].URL()+"/login/status");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -1418,7 +1418,7 @@ void MDClientApi::getPurchasedAlbumCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::getQrKey(const double &timestamp) {
+void MDClientApi::getQrKey(const qint32 &timestamp) {
     QString fullPath = QString(_serverConfigs["getQrKey"][_serverIndices.value("getQrKey")].URL()+"/login/qr/key");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2096,7 +2096,7 @@ void MDClientApi::getUserPlaylistCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::likeMusic(const QString &id, const QString &like, const double &timestamp) {
+void MDClientApi::likeMusic(const QString &id, const QString &like, const qint32 &timestamp) {
     QString fullPath = QString(_serverConfigs["likeMusic"][_serverIndices.value("likeMusic")].URL()+"/like");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2191,7 +2191,7 @@ void MDClientApi::likeMusicCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::qrCheck(const QString &key, const double &timestamp) {
+void MDClientApi::qrCheck(const QString &key, const qint32 &timestamp) {
     QString fullPath = QString(_serverConfigs["qrCheck"][_serverIndices.value("qrCheck")].URL()+"/login/qr/check");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2271,7 +2271,7 @@ void MDClientApi::qrCheckCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::qrCreate(const QString &key, const double &timestamp, const ::MelodixAPI::OptionalParam<double> &qrimg) {
+void MDClientApi::qrCreate(const QString &key, const qint32 &timestamp, const ::MelodixAPI::OptionalParam<double> &qrimg) {
     QString fullPath = QString(_serverConfigs["qrCreate"][_serverIndices.value("qrCreate")].URL()+"/login/qr/create");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
@@ -2476,8 +2476,8 @@ void MDClientApi::searchCallback(MDHttpRequestWorker *worker) {
     }
 }
 
-void MDClientApi::sendCaptcha(const double &phone, const ::MelodixAPI::OptionalParam<double> &ctcode) {
-    QString fullPath = QString(_serverConfigs["sendCaptcha"][_serverIndices.value("sendCaptcha")].URL()+"/captcha/sent");
+void MDClientApi::sentCaptcha(const double &phone, const ::MelodixAPI::OptionalParam<double> &ctcode) {
+    QString fullPath = QString(_serverConfigs["sentCaptcha"][_serverIndices.value("sentCaptcha")].URL()+"/captcha/sent");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     
@@ -2526,7 +2526,7 @@ void MDClientApi::sendCaptcha(const double &phone, const ::MelodixAPI::OptionalP
     }
 #endif
 
-    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::sendCaptchaCallback);
+    connect(worker, &MDHttpRequestWorker::on_execution_finished, this, &MDClientApi::sentCaptchaCallback);
     connect(this, &MDClientApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<MDHttpRequestWorker*>().count() == 0) {
@@ -2537,22 +2537,22 @@ void MDClientApi::sendCaptcha(const double &phone, const ::MelodixAPI::OptionalP
     worker->execute(&input);
 }
 
-void MDClientApi::sendCaptchaCallback(MDHttpRequestWorker *worker) {
+void MDClientApi::sentCaptchaCallback(MDHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    MDSendCaptcha_200_response output(QString(worker->response));
+    MDVerifyCaptcha_200_response output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit sendCaptchaSignal(output);
-        emit sendCaptchaSignalFull(worker, output);
+        emit sentCaptchaSignal(output);
+        emit sentCaptchaSignalFull(worker, output);
     } else {
-        emit sendCaptchaSignalE(output, error_type, error_str);
-        emit sendCaptchaSignalEFull(worker, error_type, error_str);
+        emit sentCaptchaSignalE(output, error_type, error_str);
+        emit sentCaptchaSignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -2624,7 +2624,7 @@ void MDClientApi::verifyCaptchaCallback(MDHttpRequestWorker *worker) {
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    MDSendCaptcha_200_response output(QString(worker->response));
+    MDVerifyCaptcha_200_response output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {

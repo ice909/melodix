@@ -187,10 +187,10 @@ bool MDSearch_200_response_result_songs_inner::is_id_Valid() const{
     return m_id_isValid;
 }
 
-QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> MDSearch_200_response_result_songs_inner::getAr() const {
+QList<MDSearch_200_response_result_songs_inner_ar_inner> MDSearch_200_response_result_songs_inner::getAr() const {
     return m_ar;
 }
-void MDSearch_200_response_result_songs_inner::setAr(const QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> &ar) {
+void MDSearch_200_response_result_songs_inner::setAr(const QList<MDSearch_200_response_result_songs_inner_ar_inner> &ar) {
     m_ar = ar;
     m_ar_isSet = true;
 }

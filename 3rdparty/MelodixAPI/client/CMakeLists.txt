@@ -36,8 +36,6 @@ add_library(${PROJECT_NAME}
   MDGetArtistDetail_200_response_data_vipRights_rightsInfoDetailDtoList_inner.h
   MDGetArtistSingle_200_response.h
   MDGetArtistSingle_200_response_songs_inner.h
-  MDGetArtistSingle_200_response_songs_inner_al.h
-  MDGetArtistSingle_200_response_songs_inner_ar_inner.h
   MDGetArtistSublist_200_response.h
   MDGetArtistSublist_200_response_data_inner.h
   MDGetLikeSongId_200_response.h
@@ -56,6 +54,7 @@ add_library(${PROJECT_NAME}
   MDGetPlaylistDetail_200_response_playlist_creator.h
   MDGetPlaylistTrackAll_200_response.h
   MDGetPlaylistTrackAll_200_response_songs_inner.h
+  MDGetPlaylistTrackAll_200_response_songs_inner_al.h
   MDGetPurchasedAlbum_200_response.h
   MDGetPurchasedAlbum_200_response_paidAlbums_inner.h
   MDGetQrKey_200_response.h
@@ -103,7 +102,8 @@ add_library(${PROJECT_NAME}
   MDSearch_200_response_result.h
   MDSearch_200_response_result_songs_inner.h
   MDSearch_200_response_result_songs_inner_al.h
-  MDSendCaptcha_200_response.h
+  MDSearch_200_response_result_songs_inner_ar_inner.h
+  MDVerifyCaptcha_200_response.h
   MDClientApi.h
   MDHelpers.h
   MDHttpRequest.h
@@ -141,8 +141,6 @@ add_library(${PROJECT_NAME}
   MDGetArtistDetail_200_response_data_vipRights_rightsInfoDetailDtoList_inner.cpp
   MDGetArtistSingle_200_response.cpp
   MDGetArtistSingle_200_response_songs_inner.cpp
-  MDGetArtistSingle_200_response_songs_inner_al.cpp
-  MDGetArtistSingle_200_response_songs_inner_ar_inner.cpp
   MDGetArtistSublist_200_response.cpp
   MDGetArtistSublist_200_response_data_inner.cpp
   MDGetLikeSongId_200_response.cpp
@@ -161,6 +159,7 @@ add_library(${PROJECT_NAME}
   MDGetPlaylistDetail_200_response_playlist_creator.cpp
   MDGetPlaylistTrackAll_200_response.cpp
   MDGetPlaylistTrackAll_200_response_songs_inner.cpp
+  MDGetPlaylistTrackAll_200_response_songs_inner_al.cpp
   MDGetPurchasedAlbum_200_response.cpp
   MDGetPurchasedAlbum_200_response_paidAlbums_inner.cpp
   MDGetQrKey_200_response.cpp
@@ -208,7 +207,8 @@ add_library(${PROJECT_NAME}
   MDSearch_200_response_result.cpp
   MDSearch_200_response_result_songs_inner.cpp
   MDSearch_200_response_result_songs_inner_al.cpp
-  MDSendCaptcha_200_response.cpp
+  MDSearch_200_response_result_songs_inner_ar_inner.cpp
+  MDVerifyCaptcha_200_response.cpp
   MDClientApi.cpp
   MDHelpers.cpp
   MDHttpRequest.cpp

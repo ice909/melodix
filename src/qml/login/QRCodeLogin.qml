@@ -36,19 +36,6 @@ Item {
 
     // 二维码检测扫码状态
     function checkQRCodeStatus() {
-        function onReply(status) {
-            API.onQrCheckCompleted.disconnect(onReply);
-            if (status.code == 800)
-                handleQRCodeExpired();
-            else if (status.code == 801)
-                console.log("二维码未被扫描，等待扫码");
-            else if (status.code == 802)
-                console.log("扫描成功，请在手机上确认登录");
-            else if (status.code == 803)
-                handleQRCodeScanned(status.cookie); // 登录成功
-        }
-
-        API.onQrCheckCompleted.connect(onReply);
         API.qrCheck(unikey);
     }
 
@@ -59,6 +46,7 @@ Item {
         Worker.saveCookie(cookie);
         API.addCookie();
         API.getAccountInfo();
+        Router.back();
         isLogin = true;
         timer.stop();
         root.close();
@@ -69,6 +57,22 @@ Item {
         // 执行相应的操作，如提示二维码失效等
         console.log("二维码已过期,请重新获取");
         timer.stop();
+    }
+
+    Connections {
+        target: API
+
+        function onQrCheckCompleted(reply) {
+            console.log("onQrCheckCompleted: " + reply.code);
+            if (reply.code == 800)
+                handleQRCodeExpired();
+            else if (reply.code == 801)
+                console.log("二维码未被扫描，等待扫码");
+            else if (reply.code == 802)
+                console.log("扫描成功，请在手机上确认登录");
+            else if (reply.code == 803)
+                handleQRCodeScanned(reply.cookie); // 登录成功
+        }
     }
 
     Component.onCompleted: {

@@ -20,8 +20,8 @@
 
 #include <QJsonObject>
 
-#include "MDGetArtistSingle_200_response_songs_inner_ar_inner.h"
 #include "MDSearch_200_response_result_songs_inner_al.h"
+#include "MDSearch_200_response_result_songs_inner_ar_inner.h"
 #include <QList>
 #include <QString>
 
@@ -29,7 +29,7 @@
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDGetArtistSingle_200_response_songs_inner_ar_inner;
+class MDSearch_200_response_result_songs_inner_ar_inner;
 class MDSearch_200_response_result_songs_inner_al;
 
 class MDSearch_200_response_result_songs_inner : public MDObject {
@@ -53,8 +53,8 @@ public:
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
-    QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> getAr() const;
-    void setAr(const QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> &ar);
+    QList<MDSearch_200_response_result_songs_inner_ar_inner> getAr() const;
+    void setAr(const QList<MDSearch_200_response_result_songs_inner_ar_inner> &ar);
     bool is_ar_Set() const;
     bool is_ar_Valid() const;
 
@@ -112,7 +112,7 @@ private:
     bool m_id_isSet;
     bool m_id_isValid;
 
-    QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> m_ar;
+    QList<MDSearch_200_response_result_songs_inner_ar_inner> m_ar;
     bool m_ar_isSet;
     bool m_ar_isValid;
 

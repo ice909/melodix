@@ -20,7 +20,7 @@
 
 #include <QJsonObject>
 
-#include "MDGetArtistSingle_200_response_songs_inner_al.h"
+#include "MDGetPlaylistTrackAll_200_response_songs_inner_al.h"
 #include "MDGetSongDetail_200_response_songs_inner_ar_inner.h"
 #include <QList>
 #include <QString>
@@ -30,7 +30,7 @@
 
 namespace MelodixAPI {
 class MDGetSongDetail_200_response_songs_inner_ar_inner;
-class MDGetArtistSingle_200_response_songs_inner_al;
+class MDGetPlaylistTrackAll_200_response_songs_inner_al;
 
 class MDGetSongDetail_200_response_songs_inner : public MDObject {
 public:
@@ -58,8 +58,8 @@ public:
     bool is_ar_Set() const;
     bool is_ar_Valid() const;
 
-    MDGetArtistSingle_200_response_songs_inner_al getAl() const;
-    void setAl(const MDGetArtistSingle_200_response_songs_inner_al &al);
+    MDGetPlaylistTrackAll_200_response_songs_inner_al getAl() const;
+    void setAl(const MDGetPlaylistTrackAll_200_response_songs_inner_al &al);
     bool is_al_Set() const;
     bool is_al_Valid() const;
 
@@ -91,7 +91,7 @@ private:
     bool m_ar_isSet;
     bool m_ar_isValid;
 
-    MDGetArtistSingle_200_response_songs_inner_al m_al;
+    MDGetPlaylistTrackAll_200_response_songs_inner_al m_al;
     bool m_al_isSet;
     bool m_al_isValid;
 

@@ -134,13 +134,13 @@ API::API(QObject *parent)
                 emit qrCheckCompleted(response.asJsonObject());
             });
     connect(apiInstance,
-            &MDClientApi::sendCaptchaSignalFull,
-            [&](MDHttpRequestWorker *worker, MDSendCaptcha_200_response response) {
+            &MDClientApi::sentCaptchaSignalFull,
+            [&](MDHttpRequestWorker *worker, MDVerifyCaptcha_200_response response) {
                 emit sendCaptchaCompleted();
             });
     connect(apiInstance,
             &MDClientApi::verifyCaptchaSignalFull,
-            [&](MDHttpRequestWorker *worker, MDSendCaptcha_200_response response) {
+            [&](MDHttpRequestWorker *worker, MDVerifyCaptcha_200_response response) {
                 emit verifyCaptchaCompleted(response.asJsonObject());
             });
     connect(apiInstance,
@@ -331,7 +331,7 @@ void API::qrCheck(const QString unikey)
 
 void API::getCaptcha(const int phone)
 {
-    apiInstance->sendCaptcha(phone);
+    apiInstance->sentCaptcha(phone);
 }
 
 void API::verifyCaptcha(const int phone, const int captcha)

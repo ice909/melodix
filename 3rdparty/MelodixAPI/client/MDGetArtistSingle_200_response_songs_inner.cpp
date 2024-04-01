@@ -142,10 +142,10 @@ bool MDGetArtistSingle_200_response_songs_inner::is_id_Valid() const{
     return m_id_isValid;
 }
 
-QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> MDGetArtistSingle_200_response_songs_inner::getAr() const {
+QList<MDSearch_200_response_result_songs_inner_ar_inner> MDGetArtistSingle_200_response_songs_inner::getAr() const {
     return m_ar;
 }
-void MDGetArtistSingle_200_response_songs_inner::setAr(const QList<MDGetArtistSingle_200_response_songs_inner_ar_inner> &ar) {
+void MDGetArtistSingle_200_response_songs_inner::setAr(const QList<MDSearch_200_response_result_songs_inner_ar_inner> &ar) {
     m_ar = ar;
     m_ar_isSet = true;
 }
@@ -158,10 +158,10 @@ bool MDGetArtistSingle_200_response_songs_inner::is_ar_Valid() const{
     return m_ar_isValid;
 }
 
-MDGetArtistSingle_200_response_songs_inner_al MDGetArtistSingle_200_response_songs_inner::getAl() const {
+MDGetPlaylistTrackAll_200_response_songs_inner_al MDGetArtistSingle_200_response_songs_inner::getAl() const {
     return m_al;
 }
-void MDGetArtistSingle_200_response_songs_inner::setAl(const MDGetArtistSingle_200_response_songs_inner_al &al) {
+void MDGetArtistSingle_200_response_songs_inner::setAl(const MDGetPlaylistTrackAll_200_response_songs_inner_al &al) {
     m_al = al;
     m_al_isSet = true;
 }

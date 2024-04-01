@@ -10,13 +10,13 @@
  */
 
 /*
- * MDSendCaptcha_200_response.h
+ * MDVerifyCaptcha_200_response.h
  *
  * 
  */
 
-#ifndef MDSendCaptcha_200_response_H
-#define MDSendCaptcha_200_response_H
+#ifndef MDVerifyCaptcha_200_response_H
+#define MDVerifyCaptcha_200_response_H
 
 #include <QJsonObject>
 
@@ -26,11 +26,11 @@
 
 namespace MelodixAPI {
 
-class MDSendCaptcha_200_response : public MDObject {
+class MDVerifyCaptcha_200_response : public MDObject {
 public:
-    MDSendCaptcha_200_response();
-    MDSendCaptcha_200_response(QString json);
-    ~MDSendCaptcha_200_response() override;
+    MDVerifyCaptcha_200_response();
+    MDVerifyCaptcha_200_response(QString json);
+    ~MDVerifyCaptcha_200_response() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -64,6 +64,6 @@ private:
 
 } // namespace MelodixAPI
 
-Q_DECLARE_METATYPE(MelodixAPI::MDSendCaptcha_200_response)
+Q_DECLARE_METATYPE(MelodixAPI::MDVerifyCaptcha_200_response)
 
-#endif // MDSendCaptcha_200_response_H
+#endif // MDVerifyCaptcha_200_response_H

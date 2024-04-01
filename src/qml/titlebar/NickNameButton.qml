@@ -103,8 +103,7 @@ WindowButton {
                 Layout.preferredHeight: 30
                 text: "登录"
                 onClicked: {
-                    loginDialog.setSource("");
-                    loginDialog.setSource("../login/LoginDialog.qml");
+                    Router.showLogin();
                     accountMenu.close();
                 }
             }

@@ -10,13 +10,13 @@
  */
 
 /*
- * MDGetArtistSingle_200_response_songs_inner_al.h
+ * MDGetPlaylistTrackAll_200_response_songs_inner_al.h
  *
  * 
  */
 
-#ifndef MDGetArtistSingle_200_response_songs_inner_al_H
-#define MDGetArtistSingle_200_response_songs_inner_al_H
+#ifndef MDGetPlaylistTrackAll_200_response_songs_inner_al_H
+#define MDGetPlaylistTrackAll_200_response_songs_inner_al_H
 
 #include <QJsonObject>
 
@@ -27,11 +27,11 @@
 
 namespace MelodixAPI {
 
-class MDGetArtistSingle_200_response_songs_inner_al : public MDObject {
+class MDGetPlaylistTrackAll_200_response_songs_inner_al : public MDObject {
 public:
-    MDGetArtistSingle_200_response_songs_inner_al();
-    MDGetArtistSingle_200_response_songs_inner_al(QString json);
-    ~MDGetArtistSingle_200_response_songs_inner_al() override;
+    MDGetPlaylistTrackAll_200_response_songs_inner_al();
+    MDGetPlaylistTrackAll_200_response_songs_inner_al(QString json);
+    ~MDGetPlaylistTrackAll_200_response_songs_inner_al() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -74,6 +74,6 @@ private:
 
 } // namespace MelodixAPI
 
-Q_DECLARE_METATYPE(MelodixAPI::MDGetArtistSingle_200_response_songs_inner_al)
+Q_DECLARE_METATYPE(MelodixAPI::MDGetPlaylistTrackAll_200_response_songs_inner_al)
 
-#endif // MDGetArtistSingle_200_response_songs_inner_al_H
+#endif // MDGetPlaylistTrackAll_200_response_songs_inner_al_H

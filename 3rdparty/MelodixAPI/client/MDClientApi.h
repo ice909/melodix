@@ -47,7 +47,7 @@
 #include "MDQrCheck_200_response.h"
 #include "MDQrCreate_200_response.h"
 #include "MDSearch_200_response.h"
-#include "MDSendCaptcha_200_response.h"
+#include "MDVerifyCaptcha_200_response.h"
 #include <QString>
 
 #include <QObject>
@@ -110,9 +110,9 @@ public:
     void dailySongRecommend();
 
     /**
-    * @param[in]  timestamp double [required]
+    * @param[in]  timestamp qint32 [required]
     */
-    void getAccountInfo(const double &timestamp);
+    void getAccountInfo(const qint32 &timestamp);
 
     /**
     * @param[in]  id QString [required]
@@ -131,9 +131,9 @@ public:
     void getArtistSingle(const QString &id);
 
     /**
-    * @param[in]  timestamp double [required]
+    * @param[in]  timestamp qint32 [required]
     */
-    void getArtistSublist(const double &timestamp);
+    void getArtistSublist(const qint32 &timestamp);
 
     /**
     * @param[in]  uid QString [required]
@@ -141,9 +141,9 @@ public:
     void getLikeSongId(const QString &uid);
 
     /**
-    * @param[in]  timestamp double [required]
+    * @param[in]  timestamp qint32 [required]
     */
-    void getLoginStatus(const double &timestamp);
+    void getLoginStatus(const qint32 &timestamp);
 
     /**
     * @param[in]  id QString [required]
@@ -173,9 +173,9 @@ public:
     void getPurchasedAlbum(const ::MelodixAPI::OptionalParam<double> &limit = ::MelodixAPI::OptionalParam<double>());
 
     /**
-    * @param[in]  timestamp double [required]
+    * @param[in]  timestamp qint32 [required]
     */
-    void getQrKey(const double &timestamp);
+    void getQrKey(const qint32 &timestamp);
 
 
     void getRecommendResource();
@@ -225,22 +225,22 @@ public:
     /**
     * @param[in]  id QString [required]
     * @param[in]  like QString [required]
-    * @param[in]  timestamp double [required]
+    * @param[in]  timestamp qint32 [required]
     */
-    void likeMusic(const QString &id, const QString &like, const double &timestamp);
+    void likeMusic(const QString &id, const QString &like, const qint32 &timestamp);
 
     /**
     * @param[in]  key QString [required]
-    * @param[in]  timestamp double [required]
+    * @param[in]  timestamp qint32 [required]
     */
-    void qrCheck(const QString &key, const double &timestamp);
+    void qrCheck(const QString &key, const qint32 &timestamp);
 
     /**
     * @param[in]  key QString [required]
-    * @param[in]  timestamp double [required]
+    * @param[in]  timestamp qint32 [required]
     * @param[in]  qrimg double [optional]
     */
-    void qrCreate(const QString &key, const double &timestamp, const ::MelodixAPI::OptionalParam<double> &qrimg = ::MelodixAPI::OptionalParam<double>());
+    void qrCreate(const QString &key, const qint32 &timestamp, const ::MelodixAPI::OptionalParam<double> &qrimg = ::MelodixAPI::OptionalParam<double>());
 
     /**
     * @param[in]  keywords QString [required]
@@ -254,7 +254,7 @@ public:
     * @param[in]  phone double [required]
     * @param[in]  ctcode double [optional]
     */
-    void sendCaptcha(const double &phone, const ::MelodixAPI::OptionalParam<double> &ctcode = ::MelodixAPI::OptionalParam<double>());
+    void sentCaptcha(const double &phone, const ::MelodixAPI::OptionalParam<double> &ctcode = ::MelodixAPI::OptionalParam<double>());
 
     /**
     * @param[in]  phone double [required]
@@ -315,7 +315,7 @@ private:
     void qrCheckCallback(MDHttpRequestWorker *worker);
     void qrCreateCallback(MDHttpRequestWorker *worker);
     void searchCallback(MDHttpRequestWorker *worker);
-    void sendCaptchaCallback(MDHttpRequestWorker *worker);
+    void sentCaptchaCallback(MDHttpRequestWorker *worker);
     void verifyCaptchaCallback(MDHttpRequestWorker *worker);
 
 signals:
@@ -350,8 +350,8 @@ signals:
     void qrCheckSignal(MDQrCheck_200_response summary);
     void qrCreateSignal(MDQrCreate_200_response summary);
     void searchSignal(MDSearch_200_response summary);
-    void sendCaptchaSignal(MDSendCaptcha_200_response summary);
-    void verifyCaptchaSignal(MDSendCaptcha_200_response summary);
+    void sentCaptchaSignal(MDVerifyCaptcha_200_response summary);
+    void verifyCaptchaSignal(MDVerifyCaptcha_200_response summary);
 
     void bannerSignalFull(MDHttpRequestWorker *worker, MDBanner_200_response summary);
     void cellphoneLoginSignalFull(MDHttpRequestWorker *worker, MDCellphoneLogin_200_response summary);
@@ -383,8 +383,8 @@ signals:
     void qrCheckSignalFull(MDHttpRequestWorker *worker, MDQrCheck_200_response summary);
     void qrCreateSignalFull(MDHttpRequestWorker *worker, MDQrCreate_200_response summary);
     void searchSignalFull(MDHttpRequestWorker *worker, MDSearch_200_response summary);
-    void sendCaptchaSignalFull(MDHttpRequestWorker *worker, MDSendCaptcha_200_response summary);
-    void verifyCaptchaSignalFull(MDHttpRequestWorker *worker, MDSendCaptcha_200_response summary);
+    void sentCaptchaSignalFull(MDHttpRequestWorker *worker, MDVerifyCaptcha_200_response summary);
+    void verifyCaptchaSignalFull(MDHttpRequestWorker *worker, MDVerifyCaptcha_200_response summary);
 
     void bannerSignalE(MDBanner_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void cellphoneLoginSignalE(MDCellphoneLogin_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
@@ -416,8 +416,8 @@ signals:
     void qrCheckSignalE(MDQrCheck_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void qrCreateSignalE(MDQrCreate_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
     void searchSignalE(MDSearch_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void sendCaptchaSignalE(MDSendCaptcha_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void verifyCaptchaSignalE(MDSendCaptcha_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void sentCaptchaSignalE(MDVerifyCaptcha_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void verifyCaptchaSignalE(MDVerifyCaptcha_200_response summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void bannerSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void cellphoneLoginSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
@@ -449,7 +449,7 @@ signals:
     void qrCheckSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void qrCreateSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void searchSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void sendCaptchaSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void sentCaptchaSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void verifyCaptchaSignalEFull(MDHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
