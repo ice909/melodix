@@ -515,10 +515,10 @@ FloatingPanel {
                         isVolSliderShow = !isVolSliderShow;
                         if (volSliderLoader.status === Loader.Null) {
                             volSliderLoader.setSource("VolumeSlider.qml");
-                            volSliderLoader.item.x = toolbarRoot.width - 10 * 3 - width * 2;
                             volSliderLoader.item.y = -255;
                             volSliderLoader.item.hoveredChanged.connect(onVolSliderHoveredChanged);
                         }
+                        volSliderLoader.item.x = toolbarRoot.width - 10 * 3 - volumeBtn.width * 2;
                         volSliderLoader.item.visible = isVolSliderShow;
                     }
                 }
