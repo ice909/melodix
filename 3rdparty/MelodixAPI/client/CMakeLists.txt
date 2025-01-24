@@ -17,10 +17,9 @@ add_library(${PROJECT_NAME}
   MDCellphoneLogin_200_response_profile_avatarDetail.h
   MDCheckMusic_200_response.h
   MDDailySongRecommend_200_response.h
-  MDDailySongRecommend_200_response_data.h
-  MDDailySongRecommend_200_response_data_dailySongs_inner.h
-  MDDailySongRecommend_200_response_data_dailySongs_inner_ar_inner.h
+  MDDailySongRecommend_200_response_data_inner.h
   MDGetAccountInfo_200_response.h
+  MDGetAccountInfo_200_response_account.h
   MDGetAccountInfo_200_response_profile.h
   MDGetArtistAlbum_200_response.h
   MDGetArtistAlbum_200_response_artist.h
@@ -53,8 +52,10 @@ add_library(${PROJECT_NAME}
   MDGetPlaylistDetail_200_response_playlist.h
   MDGetPlaylistDetail_200_response_playlist_creator.h
   MDGetPlaylistTrackAll_200_response.h
+  MDGetPlaylistTrackAll_200_response_privileges_inner.h
+  MDGetPlaylistTrackAll_200_response_privileges_inner_chargeInfoList_inner.h
+  MDGetPlaylistTrackAll_200_response_privileges_inner_freeTrialPrivilege.h
   MDGetPlaylistTrackAll_200_response_songs_inner.h
-  MDGetPlaylistTrackAll_200_response_songs_inner_al.h
   MDGetPurchasedAlbum_200_response.h
   MDGetPurchasedAlbum_200_response_paidAlbums_inner.h
   MDGetQrKey_200_response.h
@@ -63,6 +64,7 @@ add_library(${PROJECT_NAME}
   MDGetRecommendResource_200_response_recommend_inner.h
   MDGetRecommendedNewSongs_200_response.h
   MDGetRecommendedNewSongs_200_response_result_inner.h
+  MDGetRecommendedNewSongs_200_response_result_inner_ar_inner.h
   MDGetRecommendedNewSongs_200_response_result_inner_song.h
   MDGetRecommendedNewSongs_200_response_result_inner_song_album.h
   MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner.h
@@ -70,6 +72,7 @@ add_library(${PROJECT_NAME}
   MDGetRecommendedPlaylist_200_response_result_inner.h
   MDGetSongDetail_200_response.h
   MDGetSongDetail_200_response_songs_inner.h
+  MDGetSongDetail_200_response_songs_inner_al.h
   MDGetSongDetail_200_response_songs_inner_ar_inner.h
   MDGetSongUrl_200_response.h
   MDGetSongUrl_200_response_data_inner.h
@@ -101,7 +104,6 @@ add_library(${PROJECT_NAME}
   MDSearch_200_response.h
   MDSearch_200_response_result.h
   MDSearch_200_response_result_songs_inner.h
-  MDSearch_200_response_result_songs_inner_al.h
   MDSearch_200_response_result_songs_inner_ar_inner.h
   MDVerifyCaptcha_200_response.h
   MDClientApi.h
@@ -122,10 +124,9 @@ add_library(${PROJECT_NAME}
   MDCellphoneLogin_200_response_profile_avatarDetail.cpp
   MDCheckMusic_200_response.cpp
   MDDailySongRecommend_200_response.cpp
-  MDDailySongRecommend_200_response_data.cpp
-  MDDailySongRecommend_200_response_data_dailySongs_inner.cpp
-  MDDailySongRecommend_200_response_data_dailySongs_inner_ar_inner.cpp
+  MDDailySongRecommend_200_response_data_inner.cpp
   MDGetAccountInfo_200_response.cpp
+  MDGetAccountInfo_200_response_account.cpp
   MDGetAccountInfo_200_response_profile.cpp
   MDGetArtistAlbum_200_response.cpp
   MDGetArtistAlbum_200_response_artist.cpp
@@ -158,8 +159,10 @@ add_library(${PROJECT_NAME}
   MDGetPlaylistDetail_200_response_playlist.cpp
   MDGetPlaylistDetail_200_response_playlist_creator.cpp
   MDGetPlaylistTrackAll_200_response.cpp
+  MDGetPlaylistTrackAll_200_response_privileges_inner.cpp
+  MDGetPlaylistTrackAll_200_response_privileges_inner_chargeInfoList_inner.cpp
+  MDGetPlaylistTrackAll_200_response_privileges_inner_freeTrialPrivilege.cpp
   MDGetPlaylistTrackAll_200_response_songs_inner.cpp
-  MDGetPlaylistTrackAll_200_response_songs_inner_al.cpp
   MDGetPurchasedAlbum_200_response.cpp
   MDGetPurchasedAlbum_200_response_paidAlbums_inner.cpp
   MDGetQrKey_200_response.cpp
@@ -168,6 +171,7 @@ add_library(${PROJECT_NAME}
   MDGetRecommendResource_200_response_recommend_inner.cpp
   MDGetRecommendedNewSongs_200_response.cpp
   MDGetRecommendedNewSongs_200_response_result_inner.cpp
+  MDGetRecommendedNewSongs_200_response_result_inner_ar_inner.cpp
   MDGetRecommendedNewSongs_200_response_result_inner_song.cpp
   MDGetRecommendedNewSongs_200_response_result_inner_song_album.cpp
   MDGetRecommendedNewSongs_200_response_result_inner_song_artists_inner.cpp
@@ -175,6 +179,7 @@ add_library(${PROJECT_NAME}
   MDGetRecommendedPlaylist_200_response_result_inner.cpp
   MDGetSongDetail_200_response.cpp
   MDGetSongDetail_200_response_songs_inner.cpp
+  MDGetSongDetail_200_response_songs_inner_al.cpp
   MDGetSongDetail_200_response_songs_inner_ar_inner.cpp
   MDGetSongUrl_200_response.cpp
   MDGetSongUrl_200_response_data_inner.cpp
@@ -206,7 +211,6 @@ add_library(${PROJECT_NAME}
   MDSearch_200_response.cpp
   MDSearch_200_response_result.cpp
   MDSearch_200_response_result_songs_inner.cpp
-  MDSearch_200_response_result_songs_inner_al.cpp
   MDSearch_200_response_result_songs_inner_ar_inner.cpp
   MDVerifyCaptcha_200_response.cpp
   MDClientApi.cpp

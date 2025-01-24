@@ -21,7 +21,7 @@ public:
 
     explicit Playlist(QObject *parent = nullptr);
 
-    void addSong(const int &id,
+    void addSong(const QString &id,
                  const QString &name,
                  const QString &artist,
                  const QString &pic,
@@ -44,7 +44,7 @@ public:
     // 获取当前播放歌曲下标
     int getCurrentIndex();
     // 获取当前播放歌曲ID
-    int getCurrentId();
+    QString getCurrentId();
     // 获取当前播放歌曲名
     QString getCurrentName();
     // 获取当前播放歌曲作者
@@ -54,7 +54,7 @@ public:
     // 获取当前播放歌曲所属专辑
     QString getCurrentAlbum();
     // 判断歌曲是否存在于播放列表
-    int isSongExist(const int &id);
+    int isSongExist(const QString &id);
     // 将指定歌曲移动到最后
     void moveToLast(const int &index);
     // 清空播放列表

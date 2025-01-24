@@ -72,7 +72,7 @@ Player::Player(QObject *parent)
  * @param isVip 歌曲是否为VIP歌曲
  *
  */
-void Player::addSingleToPlaylist(const int &id,
+void Player::addSingleToPlaylist(const QString &id,
                                  const QString &name,
                                  const QString &artist,
                                  const QString &pic,
@@ -106,7 +106,7 @@ void Player::addSingleToPlaylist(const int &id,
  * @param isVip 歌曲是否为VIP歌曲
  *
  */
-void Player::addPlaylistToPlaylist(const int &id,
+void Player::addPlaylistToPlaylist(const QString &id,
                                    const QString &name,
                                    const QString &artist,
                                    const QString &pic,
@@ -274,7 +274,7 @@ void Player::onDurationChanged(qint64 duration)
  */
 void Player::onCurrentIndexChanged(int index)
 {
-    const int id = m_currentPlaylist->getCurrentId();
+    const QString id = m_currentPlaylist->getCurrentId();
 
     getSongUrlById(id);
 
@@ -377,7 +377,7 @@ void Player::setPosition(qint64 position)
  *
  * @return 当前播放音乐的ID
  */
-int Player::getId()
+QString Player::getId()
 {
     if (m_currentPlaylist->getSongCount() != 0)
         return m_currentPlaylist->getCurrentId();
@@ -581,9 +581,9 @@ void Player::clearPlaylist()
  *
  * @return void
  */
-void Player::getSongUrlById(const int &id)
+void Player::getSongUrlById(const QString &id)
 {
-    m_api->getSongUrl(QString::number(id));
+    m_api->getSongUrl(id);
 }
 
 void Player::onSongUrlReady(const QJsonArray &response)

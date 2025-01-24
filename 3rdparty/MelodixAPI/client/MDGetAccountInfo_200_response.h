@@ -20,14 +20,14 @@
 
 #include <QJsonObject>
 
+#include "MDGetAccountInfo_200_response_account.h"
 #include "MDGetAccountInfo_200_response_profile.h"
-#include "MDGetLoginStatus_200_response_data_account.h"
 
 #include "MDEnum.h"
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDGetLoginStatus_200_response_data_account;
+class MDGetAccountInfo_200_response_account;
 class MDGetAccountInfo_200_response_profile;
 
 class MDGetAccountInfo_200_response : public MDObject {
@@ -46,8 +46,8 @@ public:
     bool is_code_Set() const;
     bool is_code_Valid() const;
 
-    MDGetLoginStatus_200_response_data_account getAccount() const;
-    void setAccount(const MDGetLoginStatus_200_response_data_account &account);
+    MDGetAccountInfo_200_response_account getAccount() const;
+    void setAccount(const MDGetAccountInfo_200_response_account &account);
     bool is_account_Set() const;
     bool is_account_Valid() const;
 
@@ -66,7 +66,7 @@ private:
     bool m_code_isSet;
     bool m_code_isValid;
 
-    MDGetLoginStatus_200_response_data_account m_account;
+    MDGetAccountInfo_200_response_account m_account;
     bool m_account_isSet;
     bool m_account_isValid;
 

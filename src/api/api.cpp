@@ -29,7 +29,6 @@ API::API(QObject *parent)
     : QObject(parent)
     , apiInstance(new MDClientApi)
     , userApiInstance(new MDClientApi)
-    , formatter(new DataFormatter(this))
 {
     addCookie();
     connect(apiInstance,
@@ -39,7 +38,7 @@ API::API(QObject *parent)
             });
     connect(userApiInstance,
             &MDClientApi::getLoginStatusSignalFull,
-            [&](MDHttpRequestWorker *worker, MDGetLoginStatus_200_response response) {
+            [this](MDHttpRequestWorker *worker, MDGetLoginStatus_200_response response) {
                 emit loginStatusCompleted(response.getData().asJsonObject());
             });
     connect(userApiInstance,
@@ -65,9 +64,7 @@ API::API(QObject *parent)
     connect(apiInstance,
             &MDClientApi::getPlaylistTrackAllSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetPlaylistTrackAll_200_response response) {
-                QJsonArray data = toJsonArray(response.getSongs());
-                QJsonArray arr = formatter->format(data, DataFormatter::PlaylistSongs);
-                emit playlistSongsCompleted(arr);
+                emit playlistSongsCompleted(toJsonArray(response.getSongs()));
             });
     connect(userApiInstance,
             &MDClientApi::getUserPlaylistSignalFull,
@@ -102,16 +99,12 @@ API::API(QObject *parent)
     connect(apiInstance,
             &MDClientApi::getArtistSingleSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetArtistSingle_200_response response) {
-                QJsonArray data = toJsonArray(response.getSongs());
-                QJsonArray arr = formatter->format(data, DataFormatter::ArtistSingle);
-                emit artistSongsCompleted(arr);
+                emit artistSongsCompleted(toJsonArray(response.getSongs()));
             });
     connect(apiInstance,
             &MDClientApi::searchSignalFull,
             [&](MDHttpRequestWorker *worker, MDSearch_200_response response) {
-                QJsonObject data = response.getResult().asJsonObject();
-                QJsonObject obj = formatter->format(data, DataFormatter::Search);
-                emit searchCompleted(obj);
+                emit searchCompleted(response.getResult().asJsonObject());
             });
     connect(userApiInstance,
             &MDClientApi::likeMusicSignalFull,
@@ -151,9 +144,7 @@ API::API(QObject *parent)
     connect(userApiInstance,
             &MDClientApi::dailySongRecommendSignalFull,
             [&](MDHttpRequestWorker *worker, MDDailySongRecommend_200_response response) {
-                QJsonArray data = toJsonArray(response.getData().getDailySongs());
-                QJsonArray arr = formatter->format(data, DataFormatter::DailyRecommendSongs);
-                emit dailyRecommendSongsCompleted(arr);
+                emit dailyRecommendSongsCompleted(toJsonArray(response.getData()));
             });
 }
 void API::banner(const int type)
@@ -203,8 +194,7 @@ void API::getRecommendedNewSongs(const int limit)
             &MDClientApi::getRecommendedNewSongsSignalFull,
             [&](MDHttpRequestWorker *worker, MDGetRecommendedNewSongs_200_response response) {
                 QJsonArray data = toJsonArray(response.getResult());
-                QJsonArray arr = formatter->format(data, DataFormatter::RecommendNewSongs);
-                emit recommendedNewSongsCompleted(arr);
+                emit recommendedNewSongsCompleted(data);
             });
 }
 
@@ -270,7 +260,7 @@ void API::getUserPlaylist(const QString id)
 
 void API::getLyric(const QString id)
 {
-    qDebug() << "获取歌词";
+    qDebug() << "获取歌词: id: " << id;
     apiInstance->getLyric(id);
 }
 

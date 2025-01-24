@@ -20,6 +20,7 @@
 
 #include <QJsonObject>
 
+#include "MDGetPlaylistTrackAll_200_response_privileges_inner.h"
 #include "MDGetPlaylistTrackAll_200_response_songs_inner.h"
 #include <QList>
 
@@ -28,6 +29,7 @@
 
 namespace MelodixAPI {
 class MDGetPlaylistTrackAll_200_response_songs_inner;
+class MDGetPlaylistTrackAll_200_response_privileges_inner;
 
 class MDGetPlaylistTrackAll_200_response : public MDObject {
 public:
@@ -50,6 +52,11 @@ public:
     bool is_code_Set() const;
     bool is_code_Valid() const;
 
+    QList<MDGetPlaylistTrackAll_200_response_privileges_inner> getPrivileges() const;
+    void setPrivileges(const QList<MDGetPlaylistTrackAll_200_response_privileges_inner> &privileges);
+    bool is_privileges_Set() const;
+    bool is_privileges_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -63,6 +70,10 @@ private:
     qint32 m_code;
     bool m_code_isSet;
     bool m_code_isValid;
+
+    QList<MDGetPlaylistTrackAll_200_response_privileges_inner> m_privileges;
+    bool m_privileges_isSet;
+    bool m_privileges_isValid;
 };
 
 } // namespace MelodixAPI

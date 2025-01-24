@@ -1,68 +1,68 @@
-# Melodix Music
+# Melodix 音乐
 
-Melodix Music is an online Music player, interface using QMl technology building, data from [NeteaseCloudMusicApi] (<https://github.com/Binaryify/NeteaseCloudMusicApi>)
+Melodix 音乐是一个在线音乐播放器，界面使用 QML 技术构建，数据来自 [NeteaseCloudMusicApi] (<https://github.com/Binaryify/NeteaseCloudMusicApi>)
 
-## Functional characteristics
+## 功能特点
 
-- Online Music playback: Melodix Music can play music online by obtaining data from the NeteaseCloudMusicApi.
+- 在线音乐播放：Melodix 音乐可以通过获取 NeteaseCloudMusicApi 的数据来播放在线音乐。
 
-- NetEase Cloud Account Login support: Users can log in to Melodix Music using their NetEase Cloud account in order to access their personal music library and playlists.
+- 支持网易云账号登录：用户可以使用网易云账号登录 Melodix 音乐，以访问他们的个人音乐库和播放列表。
 
-- Music Search: Melodix Music offers a convenient search function that allows users to quickly find the music they want to listen to. Users can search for music by song title.
+- 音乐搜索：Melodix 音乐提供了便捷的搜索功能，用户可以快速找到他们想听的音乐。用户可以通过歌曲标题搜索音乐。
 
-- Playlist management: Melodix Music allows users to create and manage their own playlists. Users can add their favorite songs to a playlist and enjoy their music anytime, anywhere.
+- 播放列表管理：Melodix 音乐允许用户创建和管理自己的播放列表。用户可以将自己喜欢的歌曲添加到播放列表中，随时随地享受音乐。
 
-- Playback control: Melodix Music provides basic playback control functions such as play, pause, previous song, next song, and more. Users can easily control the progress and volume of music.
+- 播放控制：Melodix 音乐提供基本的播放控制功能，如播放、暂停、上一首、下一首等。用户可以轻松控制音乐的进度和音量。
 
-## Installation and operation
+## 安装和操作
 
-1. Clone the project locally:
+1. 将项目克隆到本地：
 
-    ```bash
-    git clone https://github.com/student-ice/melodix.git
-    ```
+   ```bash
+   git clone https://github.com/student-ice/melodix.git
+   ```
 
-2. Dependencies required for installation:
+2. 安装所需依赖：
 
-    ```bash
-    cd melodix
-    sudo apt build-dep .
-    ```
+   ```bash
+   cd melodix
+   sudo apt build-dep .
+   ```
 
-3. Compile:
+3. 编译：
 
-    ```bash
-    cmake -B build
-    cmake --build build
-    ```
+   ```bash
+   cmake -B build
+   cmake --build build
+   ```
 
-4. install：
+4. 安装：
 
-    ```bash
-    sudo make install
-    ```
+   ```bash
+   sudo make install
+   ```
 
-5. Build package:
+5. 构建包：
 
-    ```bash
-    sudo dpkg-buildpackage -us -uc
-    ```
+   ```bash
+   sudo dpkg-buildpackage -us -uc
+   ```
 
-## Technology stack
+## 技术栈
 
-- Front-end: Build the user interface using the QML language.
-- Data sources: use [NeteaseCloudMusicApi] (<https://github.com/Binaryify/NeteaseCloudMusicApi>)
+- 前端：使用 QML 语言构建用户界面。
+- 数据来源：使用 [NeteaseCloudMusicApi] (<https://github.com/Binaryify/NeteaseCloudMusicApi>)
 
-## Contribution
+## 贡献
 
-If you are interested in this project, feel free to submit PRs or provide suggestions and issues. I will respond and address them as soon as possible.
+如果你对这个项目感兴趣，欢迎提交 PR 或提供建议和问题。我会尽快回复和处理。
 
-## License
+## 许可证
 
-This project is licensed under the GPL-3.0 License. For more details, please refer to the [LICENSE](./LICENSE) file.
+此项目使用 GPL-3.0 许可证。更多详情请参阅 [LICENSE](./LICENSE) 文件。
 
-## Contact
+## 联系方式
 
-If you have any questions or suggestions, you can reach me through the following channels:
+如果你有任何问题或建议，可以通过以下渠道联系我：
 
-- Email: <tonimayloneya@gmail.com>
+- 邮箱: <tonimayloneya@gmail.com>

@@ -38,6 +38,9 @@ void MDGetPlaylistTrackAll_200_response::initializeModel() {
 
     m_code_isSet = false;
     m_code_isValid = false;
+
+    m_privileges_isSet = false;
+    m_privileges_isValid = false;
 }
 
 void MDGetPlaylistTrackAll_200_response::fromJson(QString jsonString) {
@@ -54,6 +57,9 @@ void MDGetPlaylistTrackAll_200_response::fromJsonObject(QJsonObject json) {
 
     m_code_isValid = ::MelodixAPI::fromJsonValue(m_code, json[QString("code")]);
     m_code_isSet = !json[QString("code")].isNull() && m_code_isValid;
+
+    m_privileges_isValid = ::MelodixAPI::fromJsonValue(m_privileges, json[QString("privileges")]);
+    m_privileges_isSet = !json[QString("privileges")].isNull() && m_privileges_isValid;
 }
 
 QString MDGetPlaylistTrackAll_200_response::asJson() const {
@@ -70,6 +76,9 @@ QJsonObject MDGetPlaylistTrackAll_200_response::asJsonObject() const {
     }
     if (m_code_isSet) {
         obj.insert(QString("code"), ::MelodixAPI::toJsonValue(m_code));
+    }
+    if (m_privileges.size() > 0) {
+        obj.insert(QString("privileges"), ::MelodixAPI::toJsonValue(m_privileges));
     }
     return obj;
 }
@@ -106,6 +115,22 @@ bool MDGetPlaylistTrackAll_200_response::is_code_Valid() const{
     return m_code_isValid;
 }
 
+QList<MDGetPlaylistTrackAll_200_response_privileges_inner> MDGetPlaylistTrackAll_200_response::getPrivileges() const {
+    return m_privileges;
+}
+void MDGetPlaylistTrackAll_200_response::setPrivileges(const QList<MDGetPlaylistTrackAll_200_response_privileges_inner> &privileges) {
+    m_privileges = privileges;
+    m_privileges_isSet = true;
+}
+
+bool MDGetPlaylistTrackAll_200_response::is_privileges_Set() const{
+    return m_privileges_isSet;
+}
+
+bool MDGetPlaylistTrackAll_200_response::is_privileges_Valid() const{
+    return m_privileges_isValid;
+}
+
 bool MDGetPlaylistTrackAll_200_response::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -118,13 +143,18 @@ bool MDGetPlaylistTrackAll_200_response::isSet() const {
             isObjectUpdated = true;
             break;
         }
+
+        if (m_privileges.size() > 0) {
+            isObjectUpdated = true;
+            break;
+        }
     } while (false);
     return isObjectUpdated;
 }
 
 bool MDGetPlaylistTrackAll_200_response::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_songs_isValid && m_code_isValid && true;
+    return m_songs_isValid && m_code_isValid && m_privileges_isValid && true;
 }
 
 } // namespace MelodixAPI

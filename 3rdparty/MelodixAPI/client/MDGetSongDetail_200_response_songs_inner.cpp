@@ -158,10 +158,10 @@ bool MDGetSongDetail_200_response_songs_inner::is_ar_Valid() const{
     return m_ar_isValid;
 }
 
-MDGetPlaylistTrackAll_200_response_songs_inner_al MDGetSongDetail_200_response_songs_inner::getAl() const {
+MDGetSongDetail_200_response_songs_inner_al MDGetSongDetail_200_response_songs_inner::getAl() const {
     return m_al;
 }
-void MDGetSongDetail_200_response_songs_inner::setAl(const MDGetPlaylistTrackAll_200_response_songs_inner_al &al) {
+void MDGetSongDetail_200_response_songs_inner::setAl(const MDGetSongDetail_200_response_songs_inner_al &al) {
     m_al = al;
     m_al_isSet = true;
 }

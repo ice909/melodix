@@ -20,7 +20,6 @@
 
 #include <QJsonObject>
 
-#include "MDGetPlaylistTrackAll_200_response_songs_inner_al.h"
 #include "MDSearch_200_response_result_songs_inner_ar_inner.h"
 #include <QList>
 #include <QString>
@@ -30,7 +29,6 @@
 
 namespace MelodixAPI {
 class MDSearch_200_response_result_songs_inner_ar_inner;
-class MDGetPlaylistTrackAll_200_response_songs_inner_al;
 
 class MDGetArtistSingle_200_response_songs_inner : public MDObject {
 public:
@@ -48,8 +46,8 @@ public:
     bool is_name_Set() const;
     bool is_name_Valid() const;
 
-    qint32 getId() const;
-    void setId(const qint32 &id);
+    QString getId() const;
+    void setId(const QString &id);
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
@@ -58,8 +56,8 @@ public:
     bool is_ar_Set() const;
     bool is_ar_Valid() const;
 
-    MDGetPlaylistTrackAll_200_response_songs_inner_al getAl() const;
-    void setAl(const MDGetPlaylistTrackAll_200_response_songs_inner_al &al);
+    QString getAl() const;
+    void setAl(const QString &al);
     bool is_al_Set() const;
     bool is_al_Valid() const;
 
@@ -73,6 +71,16 @@ public:
     bool is_publish_time_Set() const;
     bool is_publish_time_Valid() const;
 
+    QString getPic() const;
+    void setPic(const QString &pic);
+    bool is_pic_Set() const;
+    bool is_pic_Valid() const;
+
+    qint32 getDuration() const;
+    void setDuration(const qint32 &duration);
+    bool is_duration_Set() const;
+    bool is_duration_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -83,7 +91,7 @@ private:
     bool m_name_isSet;
     bool m_name_isValid;
 
-    qint32 m_id;
+    QString m_id;
     bool m_id_isSet;
     bool m_id_isValid;
 
@@ -91,7 +99,7 @@ private:
     bool m_ar_isSet;
     bool m_ar_isValid;
 
-    MDGetPlaylistTrackAll_200_response_songs_inner_al m_al;
+    QString m_al;
     bool m_al_isSet;
     bool m_al_isValid;
 
@@ -102,6 +110,14 @@ private:
     qint32 m_publish_time;
     bool m_publish_time_isSet;
     bool m_publish_time_isValid;
+
+    QString m_pic;
+    bool m_pic_isSet;
+    bool m_pic_isValid;
+
+    qint32 m_duration;
+    bool m_duration_isSet;
+    bool m_duration_isValid;
 };
 
 } // namespace MelodixAPI

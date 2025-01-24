@@ -20,13 +20,14 @@
 
 #include <QJsonObject>
 
-#include "MDDailySongRecommend_200_response_data.h"
+#include "MDDailySongRecommend_200_response_data_inner.h"
+#include <QList>
 
 #include "MDEnum.h"
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDDailySongRecommend_200_response_data;
+class MDDailySongRecommend_200_response_data_inner;
 
 class MDDailySongRecommend_200_response : public MDObject {
 public:
@@ -44,8 +45,8 @@ public:
     bool is_code_Set() const;
     bool is_code_Valid() const;
 
-    MDDailySongRecommend_200_response_data getData() const;
-    void setData(const MDDailySongRecommend_200_response_data &data);
+    QList<MDDailySongRecommend_200_response_data_inner> getData() const;
+    void setData(const QList<MDDailySongRecommend_200_response_data_inner> &data);
     bool is_data_Set() const;
     bool is_data_Valid() const;
 
@@ -59,7 +60,7 @@ private:
     bool m_code_isSet;
     bool m_code_isValid;
 
-    MDDailySongRecommend_200_response_data m_data;
+    QList<MDDailySongRecommend_200_response_data_inner> m_data;
     bool m_data_isSet;
     bool m_data_isValid;
 };

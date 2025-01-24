@@ -32,7 +32,7 @@ void MDClientApi::initializeServerConfigs() {
     QList<MDServerConfiguration> defaultConf = QList<MDServerConfiguration>();
     //varying endpoint server
     defaultConf.append(MDServerConfiguration(
-    QUrl("http://81.70.119.233:4000/"),
+    QUrl("http://localhost:4000/"),
     "No description provided",
     QMap<QString, MDServerVariable>()));
     _serverConfigs.insert("banner", defaultConf);

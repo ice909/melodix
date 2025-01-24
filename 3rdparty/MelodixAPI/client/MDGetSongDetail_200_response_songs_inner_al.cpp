@@ -9,7 +9,7 @@
  * Do not edit the class manually.
  */
 
-#include "MDGetPlaylistTrackAll_200_response_songs_inner_al.h"
+#include "MDGetSongDetail_200_response_songs_inner_al.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -20,18 +20,18 @@
 
 namespace MelodixAPI {
 
-MDGetPlaylistTrackAll_200_response_songs_inner_al::MDGetPlaylistTrackAll_200_response_songs_inner_al(QString json) {
+MDGetSongDetail_200_response_songs_inner_al::MDGetSongDetail_200_response_songs_inner_al(QString json) {
     this->initializeModel();
     this->fromJson(json);
 }
 
-MDGetPlaylistTrackAll_200_response_songs_inner_al::MDGetPlaylistTrackAll_200_response_songs_inner_al() {
+MDGetSongDetail_200_response_songs_inner_al::MDGetSongDetail_200_response_songs_inner_al() {
     this->initializeModel();
 }
 
-MDGetPlaylistTrackAll_200_response_songs_inner_al::~MDGetPlaylistTrackAll_200_response_songs_inner_al() {}
+MDGetSongDetail_200_response_songs_inner_al::~MDGetSongDetail_200_response_songs_inner_al() {}
 
-void MDGetPlaylistTrackAll_200_response_songs_inner_al::initializeModel() {
+void MDGetSongDetail_200_response_songs_inner_al::initializeModel() {
 
     m_id_isSet = false;
     m_id_isValid = false;
@@ -43,14 +43,14 @@ void MDGetPlaylistTrackAll_200_response_songs_inner_al::initializeModel() {
     m_pic_url_isValid = false;
 }
 
-void MDGetPlaylistTrackAll_200_response_songs_inner_al::fromJson(QString jsonString) {
+void MDGetSongDetail_200_response_songs_inner_al::fromJson(QString jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void MDGetPlaylistTrackAll_200_response_songs_inner_al::fromJsonObject(QJsonObject json) {
+void MDGetSongDetail_200_response_songs_inner_al::fromJsonObject(QJsonObject json) {
 
     m_id_isValid = ::MelodixAPI::fromJsonValue(m_id, json[QString("id")]);
     m_id_isSet = !json[QString("id")].isNull() && m_id_isValid;
@@ -62,14 +62,14 @@ void MDGetPlaylistTrackAll_200_response_songs_inner_al::fromJsonObject(QJsonObje
     m_pic_url_isSet = !json[QString("picUrl")].isNull() && m_pic_url_isValid;
 }
 
-QString MDGetPlaylistTrackAll_200_response_songs_inner_al::asJson() const {
+QString MDGetSongDetail_200_response_songs_inner_al::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject MDGetPlaylistTrackAll_200_response_songs_inner_al::asJsonObject() const {
+QJsonObject MDGetSongDetail_200_response_songs_inner_al::asJsonObject() const {
     QJsonObject obj;
     if (m_id_isSet) {
         obj.insert(QString("id"), ::MelodixAPI::toJsonValue(m_id));
@@ -83,55 +83,55 @@ QJsonObject MDGetPlaylistTrackAll_200_response_songs_inner_al::asJsonObject() co
     return obj;
 }
 
-qint32 MDGetPlaylistTrackAll_200_response_songs_inner_al::getId() const {
+qint32 MDGetSongDetail_200_response_songs_inner_al::getId() const {
     return m_id;
 }
-void MDGetPlaylistTrackAll_200_response_songs_inner_al::setId(const qint32 &id) {
+void MDGetSongDetail_200_response_songs_inner_al::setId(const qint32 &id) {
     m_id = id;
     m_id_isSet = true;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_al::is_id_Set() const{
+bool MDGetSongDetail_200_response_songs_inner_al::is_id_Set() const{
     return m_id_isSet;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_al::is_id_Valid() const{
+bool MDGetSongDetail_200_response_songs_inner_al::is_id_Valid() const{
     return m_id_isValid;
 }
 
-QString MDGetPlaylistTrackAll_200_response_songs_inner_al::getName() const {
+QString MDGetSongDetail_200_response_songs_inner_al::getName() const {
     return m_name;
 }
-void MDGetPlaylistTrackAll_200_response_songs_inner_al::setName(const QString &name) {
+void MDGetSongDetail_200_response_songs_inner_al::setName(const QString &name) {
     m_name = name;
     m_name_isSet = true;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_al::is_name_Set() const{
+bool MDGetSongDetail_200_response_songs_inner_al::is_name_Set() const{
     return m_name_isSet;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_al::is_name_Valid() const{
+bool MDGetSongDetail_200_response_songs_inner_al::is_name_Valid() const{
     return m_name_isValid;
 }
 
-QString MDGetPlaylistTrackAll_200_response_songs_inner_al::getPicUrl() const {
+QString MDGetSongDetail_200_response_songs_inner_al::getPicUrl() const {
     return m_pic_url;
 }
-void MDGetPlaylistTrackAll_200_response_songs_inner_al::setPicUrl(const QString &pic_url) {
+void MDGetSongDetail_200_response_songs_inner_al::setPicUrl(const QString &pic_url) {
     m_pic_url = pic_url;
     m_pic_url_isSet = true;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_al::is_pic_url_Set() const{
+bool MDGetSongDetail_200_response_songs_inner_al::is_pic_url_Set() const{
     return m_pic_url_isSet;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_al::is_pic_url_Valid() const{
+bool MDGetSongDetail_200_response_songs_inner_al::is_pic_url_Valid() const{
     return m_pic_url_isValid;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_al::isSet() const {
+bool MDGetSongDetail_200_response_songs_inner_al::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (m_id_isSet) {
@@ -152,7 +152,7 @@ bool MDGetPlaylistTrackAll_200_response_songs_inner_al::isSet() const {
     return isObjectUpdated;
 }
 
-bool MDGetPlaylistTrackAll_200_response_songs_inner_al::isValid() const {
+bool MDGetSongDetail_200_response_songs_inner_al::isValid() const {
     // only required properties are required for the object to be considered valid
     return m_id_isValid && m_name_isValid && m_pic_url_isValid && true;
 }

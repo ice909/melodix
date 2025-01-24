@@ -9,7 +9,7 @@ set(PROJECT_NAME melodix)
 project(${PROJECT_NAME}
     VERSION ${VERSION}
     DESCRIPTION "Music Player"
-    HOMEPAGE_URL "https://github.com/student-ice/melodix"
+    HOMEPAGE_URL "https://github.com/ice909/melodix"
     LANGUAGES CXX
 )
 

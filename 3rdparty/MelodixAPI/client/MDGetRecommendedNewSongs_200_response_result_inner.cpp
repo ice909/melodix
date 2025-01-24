@@ -44,6 +44,18 @@ void MDGetRecommendedNewSongs_200_response_result_inner::initializeModel() {
 
     m_song_isSet = false;
     m_song_isValid = false;
+
+    m_pic_isSet = false;
+    m_pic_isValid = false;
+
+    m_ar_isSet = false;
+    m_ar_isValid = false;
+
+    m_al_isSet = false;
+    m_al_isValid = false;
+
+    m_duration_isSet = false;
+    m_duration_isValid = false;
 }
 
 void MDGetRecommendedNewSongs_200_response_result_inner::fromJson(QString jsonString) {
@@ -66,6 +78,18 @@ void MDGetRecommendedNewSongs_200_response_result_inner::fromJsonObject(QJsonObj
 
     m_song_isValid = ::MelodixAPI::fromJsonValue(m_song, json[QString("song")]);
     m_song_isSet = !json[QString("song")].isNull() && m_song_isValid;
+
+    m_pic_isValid = ::MelodixAPI::fromJsonValue(m_pic, json[QString("pic")]);
+    m_pic_isSet = !json[QString("pic")].isNull() && m_pic_isValid;
+
+    m_ar_isValid = ::MelodixAPI::fromJsonValue(m_ar, json[QString("ar")]);
+    m_ar_isSet = !json[QString("ar")].isNull() && m_ar_isValid;
+
+    m_al_isValid = ::MelodixAPI::fromJsonValue(m_al, json[QString("al")]);
+    m_al_isSet = !json[QString("al")].isNull() && m_al_isValid;
+
+    m_duration_isValid = ::MelodixAPI::fromJsonValue(m_duration, json[QString("duration")]);
+    m_duration_isSet = !json[QString("duration")].isNull() && m_duration_isValid;
 }
 
 QString MDGetRecommendedNewSongs_200_response_result_inner::asJson() const {
@@ -89,13 +113,25 @@ QJsonObject MDGetRecommendedNewSongs_200_response_result_inner::asJsonObject() c
     if (m_song.isSet()) {
         obj.insert(QString("song"), ::MelodixAPI::toJsonValue(m_song));
     }
+    if (m_pic_isSet) {
+        obj.insert(QString("pic"), ::MelodixAPI::toJsonValue(m_pic));
+    }
+    if (m_ar.size() > 0) {
+        obj.insert(QString("ar"), ::MelodixAPI::toJsonValue(m_ar));
+    }
+    if (m_al_isSet) {
+        obj.insert(QString("al"), ::MelodixAPI::toJsonValue(m_al));
+    }
+    if (m_duration_isSet) {
+        obj.insert(QString("duration"), ::MelodixAPI::toJsonValue(m_duration));
+    }
     return obj;
 }
 
-qint32 MDGetRecommendedNewSongs_200_response_result_inner::getId() const {
+QString MDGetRecommendedNewSongs_200_response_result_inner::getId() const {
     return m_id;
 }
-void MDGetRecommendedNewSongs_200_response_result_inner::setId(const qint32 &id) {
+void MDGetRecommendedNewSongs_200_response_result_inner::setId(const QString &id) {
     m_id = id;
     m_id_isSet = true;
 }
@@ -156,6 +192,70 @@ bool MDGetRecommendedNewSongs_200_response_result_inner::is_song_Valid() const{
     return m_song_isValid;
 }
 
+QString MDGetRecommendedNewSongs_200_response_result_inner::getPic() const {
+    return m_pic;
+}
+void MDGetRecommendedNewSongs_200_response_result_inner::setPic(const QString &pic) {
+    m_pic = pic;
+    m_pic_isSet = true;
+}
+
+bool MDGetRecommendedNewSongs_200_response_result_inner::is_pic_Set() const{
+    return m_pic_isSet;
+}
+
+bool MDGetRecommendedNewSongs_200_response_result_inner::is_pic_Valid() const{
+    return m_pic_isValid;
+}
+
+QList<MDGetRecommendedNewSongs_200_response_result_inner_ar_inner> MDGetRecommendedNewSongs_200_response_result_inner::getAr() const {
+    return m_ar;
+}
+void MDGetRecommendedNewSongs_200_response_result_inner::setAr(const QList<MDGetRecommendedNewSongs_200_response_result_inner_ar_inner> &ar) {
+    m_ar = ar;
+    m_ar_isSet = true;
+}
+
+bool MDGetRecommendedNewSongs_200_response_result_inner::is_ar_Set() const{
+    return m_ar_isSet;
+}
+
+bool MDGetRecommendedNewSongs_200_response_result_inner::is_ar_Valid() const{
+    return m_ar_isValid;
+}
+
+QString MDGetRecommendedNewSongs_200_response_result_inner::getAl() const {
+    return m_al;
+}
+void MDGetRecommendedNewSongs_200_response_result_inner::setAl(const QString &al) {
+    m_al = al;
+    m_al_isSet = true;
+}
+
+bool MDGetRecommendedNewSongs_200_response_result_inner::is_al_Set() const{
+    return m_al_isSet;
+}
+
+bool MDGetRecommendedNewSongs_200_response_result_inner::is_al_Valid() const{
+    return m_al_isValid;
+}
+
+qint32 MDGetRecommendedNewSongs_200_response_result_inner::getDuration() const {
+    return m_duration;
+}
+void MDGetRecommendedNewSongs_200_response_result_inner::setDuration(const qint32 &duration) {
+    m_duration = duration;
+    m_duration_isSet = true;
+}
+
+bool MDGetRecommendedNewSongs_200_response_result_inner::is_duration_Set() const{
+    return m_duration_isSet;
+}
+
+bool MDGetRecommendedNewSongs_200_response_result_inner::is_duration_Valid() const{
+    return m_duration_isValid;
+}
+
 bool MDGetRecommendedNewSongs_200_response_result_inner::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -178,13 +278,33 @@ bool MDGetRecommendedNewSongs_200_response_result_inner::isSet() const {
             isObjectUpdated = true;
             break;
         }
+
+        if (m_pic_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_ar.size() > 0) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_al_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_duration_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
     } while (false);
     return isObjectUpdated;
 }
 
 bool MDGetRecommendedNewSongs_200_response_result_inner::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_id_isValid && m_name_isValid && m_pic_url_isValid && m_song_isValid && true;
+    return m_id_isValid && m_name_isValid && m_pic_url_isValid && m_song_isValid && m_pic_isValid && m_ar_isValid && m_al_isValid && m_duration_isValid && true;
 }
 
 } // namespace MelodixAPI

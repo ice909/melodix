@@ -99,10 +99,10 @@ bool MDGetAccountInfo_200_response::is_code_Valid() const{
     return m_code_isValid;
 }
 
-MDGetLoginStatus_200_response_data_account MDGetAccountInfo_200_response::getAccount() const {
+MDGetAccountInfo_200_response_account MDGetAccountInfo_200_response::getAccount() const {
     return m_account;
 }
-void MDGetAccountInfo_200_response::setAccount(const MDGetLoginStatus_200_response_data_account &account) {
+void MDGetAccountInfo_200_response::setAccount(const MDGetAccountInfo_200_response_account &account) {
     m_account = account;
     m_account_isSet = true;
 }

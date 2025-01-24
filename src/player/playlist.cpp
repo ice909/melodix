@@ -9,7 +9,7 @@ Playlist::Playlist(QObject *parent)
     , m_playlistModel(new PlaylistModel(this))
 {}
 
-void Playlist::addSong(const int &id,
+void Playlist::addSong(const QString &id,
                        const QString &name,
                        const QString &artist,
                        const QString &pic,
@@ -106,7 +106,7 @@ int Playlist::getCurrentIndex()
     return m_currentIndex;
 }
 
-int Playlist::getCurrentId()
+QString Playlist::getCurrentId()
 {
     return m_playlistModel->getId(m_currentIndex);
 }
@@ -136,7 +136,7 @@ PlaylistModel *Playlist::getPlaylistModel()
     return m_playlistModel;
 }
 
-int Playlist::isSongExist(const int &id)
+int Playlist::isSongExist(const QString &id)
 {
     return m_playlistModel->indexOfId(id);
 }

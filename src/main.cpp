@@ -20,11 +20,6 @@ int main(int argc, char *argv[])
     // 告知PulseAudio系统当前的音频流是用于播放音乐，并希望系统能够相应地进行处理和调度。
     setenv("PULSE_PROP_media.role", "music", 1);
 
-    if (qEnvironmentVariableIsEmpty("XDG_CURRENT_DESKTOP")) {
-        qputenv("XDG_CURRENT_DESKTOP", "Deepin");
-    }
-    qputenv("D_POPUP_MODE", "embed");
-
     DApplication *app = new DApplication(argc, argv);
     app->setAttribute(Qt::AA_UseHighDpiPixmaps);
     app->setOrganizationName("ice");

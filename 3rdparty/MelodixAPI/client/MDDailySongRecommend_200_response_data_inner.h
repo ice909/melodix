@@ -10,18 +10,17 @@
  */
 
 /*
- * MDGetRecommendedNewSongs_200_response_result_inner.h
+ * MDDailySongRecommend_200_response_data_inner.h
  *
  * 
  */
 
-#ifndef MDGetRecommendedNewSongs_200_response_result_inner_H
-#define MDGetRecommendedNewSongs_200_response_result_inner_H
+#ifndef MDDailySongRecommend_200_response_data_inner_H
+#define MDDailySongRecommend_200_response_data_inner_H
 
 #include <QJsonObject>
 
 #include "MDGetRecommendedNewSongs_200_response_result_inner_ar_inner.h"
-#include "MDGetRecommendedNewSongs_200_response_result_inner_song.h"
 #include <QList>
 #include <QString>
 
@@ -29,14 +28,13 @@
 #include "MDObject.h"
 
 namespace MelodixAPI {
-class MDGetRecommendedNewSongs_200_response_result_inner_song;
 class MDGetRecommendedNewSongs_200_response_result_inner_ar_inner;
 
-class MDGetRecommendedNewSongs_200_response_result_inner : public MDObject {
+class MDDailySongRecommend_200_response_data_inner : public MDObject {
 public:
-    MDGetRecommendedNewSongs_200_response_result_inner();
-    MDGetRecommendedNewSongs_200_response_result_inner(QString json);
-    ~MDGetRecommendedNewSongs_200_response_result_inner() override;
+    MDDailySongRecommend_200_response_data_inner();
+    MDDailySongRecommend_200_response_data_inner(QString json);
+    ~MDDailySongRecommend_200_response_data_inner() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -52,16 +50,6 @@ public:
     void setName(const QString &name);
     bool is_name_Set() const;
     bool is_name_Valid() const;
-
-    QString getPicUrl() const;
-    void setPicUrl(const QString &pic_url);
-    bool is_pic_url_Set() const;
-    bool is_pic_url_Valid() const;
-
-    MDGetRecommendedNewSongs_200_response_result_inner_song getSong() const;
-    void setSong(const MDGetRecommendedNewSongs_200_response_result_inner_song &song);
-    bool is_song_Set() const;
-    bool is_song_Valid() const;
 
     QString getPic() const;
     void setPic(const QString &pic);
@@ -97,14 +85,6 @@ private:
     bool m_name_isSet;
     bool m_name_isValid;
 
-    QString m_pic_url;
-    bool m_pic_url_isSet;
-    bool m_pic_url_isValid;
-
-    MDGetRecommendedNewSongs_200_response_result_inner_song m_song;
-    bool m_song_isSet;
-    bool m_song_isValid;
-
     QString m_pic;
     bool m_pic_isSet;
     bool m_pic_isValid;
@@ -124,6 +104,6 @@ private:
 
 } // namespace MelodixAPI
 
-Q_DECLARE_METATYPE(MelodixAPI::MDGetRecommendedNewSongs_200_response_result_inner)
+Q_DECLARE_METATYPE(MelodixAPI::MDDailySongRecommend_200_response_data_inner)
 
-#endif // MDGetRecommendedNewSongs_200_response_result_inner_H
+#endif // MDDailySongRecommend_200_response_data_inner_H

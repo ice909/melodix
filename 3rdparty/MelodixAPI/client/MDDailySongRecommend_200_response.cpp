@@ -68,7 +68,7 @@ QJsonObject MDDailySongRecommend_200_response::asJsonObject() const {
     if (m_code_isSet) {
         obj.insert(QString("code"), ::MelodixAPI::toJsonValue(m_code));
     }
-    if (m_data.isSet()) {
+    if (m_data.size() > 0) {
         obj.insert(QString("data"), ::MelodixAPI::toJsonValue(m_data));
     }
     return obj;
@@ -90,10 +90,10 @@ bool MDDailySongRecommend_200_response::is_code_Valid() const{
     return m_code_isValid;
 }
 
-MDDailySongRecommend_200_response_data MDDailySongRecommend_200_response::getData() const {
+QList<MDDailySongRecommend_200_response_data_inner> MDDailySongRecommend_200_response::getData() const {
     return m_data;
 }
-void MDDailySongRecommend_200_response::setData(const MDDailySongRecommend_200_response_data &data) {
+void MDDailySongRecommend_200_response::setData(const QList<MDDailySongRecommend_200_response_data_inner> &data) {
     m_data = data;
     m_data_isSet = true;
 }
@@ -114,7 +114,7 @@ bool MDDailySongRecommend_200_response::isSet() const {
             break;
         }
 
-        if (m_data.isSet()) {
+        if (m_data.size() > 0) {
             isObjectUpdated = true;
             break;
         }

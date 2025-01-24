@@ -5,8 +5,6 @@
 #include <QObject>
 #include <QPointer>
 
-#include "dataformatter.h"
-
 using namespace MelodixAPI;
 
 class API : public QObject
@@ -87,7 +85,6 @@ private:
     static QPointer<API> INSTANCE;
     MDClientApi *apiInstance = nullptr;
     MDClientApi *userApiInstance = nullptr;
-    DataFormatter *formatter = nullptr;
 };
 
 #endif // MELODIX_API_H

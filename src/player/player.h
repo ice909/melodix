@@ -36,7 +36,7 @@ public slots:
     // 上一首
     void previous();
     // 添加单个歌曲到播放列表
-    void addSingleToPlaylist(const int &id,
+    void addSingleToPlaylist(const QString &id,
                              const QString &name,
                              const QString &artist,
                              const QString &pic,
@@ -44,14 +44,14 @@ public slots:
                              const QString &album);
 
     // 添加歌单所有歌曲到播放列表
-    void addPlaylistToPlaylist(const int &id,
+    void addPlaylistToPlaylist(const QString &id,
                                const QString &name,
                                const QString &artist,
                                const QString &pic,
                                const QString &duration,
                                const QString &album);
     // 获取当前正在播放的歌曲ID
-    int getId();
+    QString getId();
     // 获取当前正在播放的歌曲名
     QString getName();
     // 获取当前正在播放的歌曲作者
@@ -99,7 +99,7 @@ public slots:
     // 切换到单曲的播放列表
     void switchToSingleTrackMode();
     // 根据歌曲ID去请求歌曲Url
-    void getSongUrlById(const int &id);
+    void getSongUrlById(const QString &id);
     // 切换到歌单的播放列表
     void switchToPlaylistMode();
 signals:

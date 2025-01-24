@@ -154,7 +154,7 @@ bool MDBanner_200_response_banners_inner::isSet() const {
 
 bool MDBanner_200_response_banners_inner::isValid() const {
     // only required properties are required for the object to be considered valid
-    return m_image_url_isValid && m_url_isValid && m_banner_biz_type_isValid && true;
+    return m_image_url_isValid && m_banner_biz_type_isValid && true;
 }
 
 } // namespace MelodixAPI

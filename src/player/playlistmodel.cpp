@@ -50,7 +50,7 @@ QHash<int, QByteArray> PlaylistModel::roleNames() const
     return roles;
 }
 
-void PlaylistModel::addSong(const int &id,
+void PlaylistModel::addSong(const QString &id,
                             const QString &title,
                             const QString &author,
                             const QString &imageUrl,
@@ -71,7 +71,7 @@ void PlaylistModel::addSong(const int &id,
     endInsertRows();
 }
 
-int PlaylistModel::getId(int index) const
+QString PlaylistModel::getId(int index) const
 {
     if (index < 0 || index >= m_songs.size()) {
         return 0;
@@ -124,13 +124,13 @@ QString PlaylistModel::getAllId()
 {
     QString ids;
     for (int i = 0; i < m_songs.size() - 1; ++i) {
-        ids += QString::number(m_songs[i].id) + ",";
+        ids += m_songs[i].id + ",";
     }
     ids += m_songs[m_songs.size() - 1].id;
     return ids;
 }
 
-int PlaylistModel::indexOfId(const int &id) const
+int PlaylistModel::indexOfId(const QString &id) const
 {
     int index = -1;
     for (int i = 0; i < m_songs.size(); ++i) {

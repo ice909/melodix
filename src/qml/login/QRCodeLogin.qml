@@ -1,3 +1,4 @@
+import "../../router"
 import "../../util"
 import "../widgets"
 import Melodix.API 1.0
@@ -59,9 +60,14 @@ Item {
         timer.stop();
     }
 
-    Connections {
-        target: API
+    Component.onCompleted: {
+        generateQRCodeKey();
+    }
+    Component.onDestruction: {
+        timer.stop();
+    }
 
+    Connections {
         function onQrCheckCompleted(reply) {
             console.log("onQrCheckCompleted: " + reply.code);
             if (reply.code == 800)
@@ -73,13 +79,8 @@ Item {
             else if (reply.code == 803)
                 handleQRCodeScanned(reply.cookie); // 登录成功
         }
-    }
 
-    Component.onCompleted: {
-        generateQRCodeKey();
-    }
-    Component.onDestruction: {
-        timer.stop();
+        target: API
     }
 
     Timer {
