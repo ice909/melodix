@@ -100,6 +100,7 @@ ApplicationWindow {
             userProvince = profile.province;
             userBirthday = profile.birthday;
             console.log("用户信息获取成功");
+            isLogin = true;
             API.getUserLikeSongIds(userID);
         }
 

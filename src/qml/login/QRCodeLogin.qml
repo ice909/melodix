@@ -48,9 +48,7 @@ Item {
         API.addCookie();
         API.getAccountInfo();
         Router.back();
-        isLogin = true;
         timer.stop();
-        root.close();
     }
 
     // 处理二维码失效后的逻辑

@@ -12,11 +12,11 @@ Item {
         // 验证验证码
         function onReply(reply) {
             API.onVerifyCaptchaCompleted.disconnect(onReply);
-            if (reply.data === true)
+            if (reply.data === true) {
                 login();
-            else {
+            } else {
                 code.text = "";
-                code.showAlert = true
+                code.showAlert = true;
             }
         }
 
@@ -110,6 +110,14 @@ Item {
                 RecommandButton {
                     id: captchaBtn
 
+                    function onReply() {
+                        API.onSendCaptchaCompleted.disconnect(onReply);
+                        console.log("验证码发送成功");
+                        captchaBtn.enabled = false;
+                        captchaBtn.text = "59s后重发";
+                        sendCaptchaTimer.start();
+                    }
+
                     width: 100
                     text: "获取验证码"
                     enabled: phone.text !== "" && phone.text.length === 11
@@ -119,15 +127,6 @@ Item {
                         API.onSendCaptchaCompleted.connect(onReply);
                         API.getCaptcha(phone.text);
                     }
-
-                    function onReply() {
-                        API.onSendCaptchaCompleted.disconnect(onReply);
-                        console.log("验证码发送成功");
-                        captchaBtn.enabled = false;
-                        captchaBtn.text = "59s后重发";
-                        sendCaptchaTimer.start();
-                    }
-
                 }
 
             }
