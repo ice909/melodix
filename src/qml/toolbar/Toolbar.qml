@@ -420,6 +420,7 @@ FloatingPanel {
 
         Slider {
             width: parent.width - (coverRectWidth + infoRectWidth + playControlRectWidth + rightAreaRectWidth + contentItemSpacing * 4 + leftPaddingWidth + rightPaddingWidth)
+            height: 20
             anchors.verticalCenter: parent.verticalCenter
             from: 0
             value: currentPosition

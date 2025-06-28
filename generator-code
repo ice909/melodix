@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# 检查必要的命令是否存在
+check_command() {
+    if ! command -v "$1" &> /dev/null; then
+        echo "错误：未找到 '$1' 命令，请先安装它！"
+        exit 1
+    fi
+}
+
+# 检查 Java 和 openapi-generator-cli
+check_command "java"
+check_command "openapi-generator-cli"
+
 rm -rf ./3rdparty
 
 json_path=./MelodixAPI.swagger.json

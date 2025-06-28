@@ -14,7 +14,9 @@ Build-Depends: debhelper-compat (= 12),
   libdtkdeclarative-dev,
   qttools5-dev-tools,
   libmpris-qt5-dev,
-  qtmultimedia5-dev
+  qtmultimedia5-dev,
+  qml-module-qt-labs-platform,
+  qml-module-qtquick-shapes
 Standards-Version: 4.6.0
 Rules-Requires-Root: no
 
