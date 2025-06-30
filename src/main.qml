@@ -80,7 +80,7 @@ ApplicationWindow {
 
     Connections {
         function onLoginStatusCompleted(res) {
-            if (res.code == 200 && res.account.status == 0 && res.profile != null) {
+            if (res.code == 200 && res.account && res.account.status == 0 && res.profile != null) {
                 console.log("用户已登录");
                 isLogin = true;
                 API.getAccountInfo();

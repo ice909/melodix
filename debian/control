@@ -24,4 +24,5 @@ Package: melodix
 Architecture: any
 Depends: ${shlibs:Depends},
   ${misc:Depends},
+  libqt5multimedia5-plugins
 Description: Melodix是一款界面美观的在线音乐播放器

@@ -31,7 +31,7 @@ Item {
         }
 
         API.onRecommendedPlaylistCompleted.connect(onReply);
-        if (res.code == 200 && res.account.status == 0 && res.profile != null)
+        if (res.code == 200 && res.account && res.account.status == 0 && res.profile != null)
             API.getRecommendResource();
         else
             API.getRecommendedPlaylist(10);
